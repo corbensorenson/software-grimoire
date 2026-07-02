@@ -773,6 +773,7 @@ def validate_v3_evidence_layer(errors: list[str]) -> None:
         "jailbreak-resilience-model-runs",
         "local-warded-baseline",
         "real-warded-ab",
+        "hardness-intake-decision-template",
         "adoption-intake-decision-template",
         "canon-audit-decision-template",
         "package-check",
@@ -926,6 +927,7 @@ def validate_hardness_model_surface(errors: list[str]) -> None:
             if run.get("extraction_result", {}).get("complete") not in {True, False}:
                 fail(errors, f"Bench v4 model-surface {slug} run has no extraction status")
     template_path = ROOT / "examples" / "evaluations" / "hardness-v4" / "manual-import-template.json"
+    decision_path = ROOT / "examples" / "evaluations" / "hardness-v4" / "hardness-intake-decision-template.json"
     if not template_path.exists():
         fail(errors, "Missing examples/evaluations/hardness-v4/manual-import-template.json")
         return
@@ -970,6 +972,20 @@ def validate_hardness_model_surface(errors: list[str]) -> None:
         value = template.get(key)
         if value and not (ROOT / value).exists():
             fail(errors, f"Bench v4 manual import template missing path {key}: {value}")
+    if not decision_path.exists():
+        fail(errors, "Missing examples/evaluations/hardness-v4/hardness-intake-decision-template.json")
+    else:
+        decision = json.loads(decision_path.read_text(encoding="utf-8"))
+        if decision.get("status") != "pending-maintainer":
+            fail(errors, "Bench v4 hardness intake decision template must remain pending-maintainer")
+        if decision.get("decision") != "pending":
+            fail(errors, "Bench v4 hardness intake decision template must not contain a real decision")
+        if decision.get("counts_as_cross_surface_hardness") is not False:
+            fail(errors, "Bench v4 hardness intake decision template cannot count as cross-surface hardness")
+        if decision.get("blocks_hardness_credit") is not True:
+            fail(errors, "Bench v4 hardness intake decision template must block hardness credit")
+        if decision.get("import_path") != "examples/evaluations/hardness-v4/manual-import-template.json":
+            fail(errors, "Bench v4 hardness intake decision template must reference the manual import template")
 
 
 def validate_public_package_and_smoke(errors: list[str]) -> None:
@@ -992,6 +1008,8 @@ def validate_public_package_and_smoke(errors: list[str]) -> None:
             fail(errors, "Package check must verify grimoire-check-package-index entry point")
         if not any("grimoire-check-adoption-intake --help" in step.get("name", "") for step in package.get("steps", [])):
             fail(errors, "Package check must verify grimoire-check-adoption-intake entry point")
+        if not any("grimoire-check-hardness-intake --help" in step.get("name", "") for step in package.get("steps", [])):
+            fail(errors, "Package check must verify grimoire-check-hardness-intake entry point")
         if not any("grimoire-check-canon-decision --help" in step.get("name", "") for step in package.get("steps", [])):
             fail(errors, "Package check must verify grimoire-check-canon-decision entry point")
         if not any("grimoire-check-package-publish-workflow --help" in step.get("name", "") for step in package.get("steps", [])):
@@ -1050,6 +1068,8 @@ def validate_public_package_and_smoke(errors: list[str]) -> None:
                 fail(errors, f"Public smoke check missing target: {expected}")
         if "examples/canon/canon-audit-decision-template.json" not in targets:
             fail(errors, "Public smoke check missing canon audit decision template")
+        if "examples/evaluations/hardness-v4/hardness-intake-decision-template.json" not in targets:
+            fail(errors, "Public smoke check missing Bench v4 hardness intake decision template")
         if "examples/adoption/adoption-intake-decision-template.json" not in targets:
             fail(errors, "Public smoke check missing adoption intake decision template")
         if "examples/adoption/package-index-smoke-template.json" not in targets:

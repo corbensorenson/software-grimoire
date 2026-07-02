@@ -10,7 +10,7 @@ import zipfile
 from pathlib import Path
 
 from grimoire_build.architecture import architecture_contract
-from grimoire_build.bench import adoption_report_template, bench_manual_import_template, hardness_manual_import_template
+from grimoire_build.bench import adoption_report_template, bench_manual_import_template, hardness_intake_decision_template, hardness_manual_import_template
 from grimoire_build.exports import library_asset_roots, library_bundle_specs
 from grimoire_build.lexicon import generated_template_text, semantic_counts
 from grimoire_build.seals import public_seal_records
@@ -2657,6 +2657,7 @@ def evidence_index_data() -> dict:
     model_execution = load_runtime_json("examples/evaluations/model-execution-results.json", {"surfaces": {}, "cases": {}})
     hardness = load_hardness_results()
     hardness_model = load_hardness_model_results()
+    hardness_intake_decision = load_runtime_json("examples/evaluations/hardness-v4/hardness-intake-decision-template.json", {"status": "pending-maintainer", "evidence_checked": []})
     jailbreak = load_runtime_json("examples/jailbreak-resilience/results.json", {"surfaces": {}, "cases": {}})
     deterministic_baseline = load_runtime_json("examples/jailbreak-resilience/baseline-results.json", {"surfaces": {}, "cases": {}})
     ward_science = load_runtime_json("examples/jailbreak-resilience/ward-science-results.json", {"surfaces": {}, "ablation_case": {"variants": {}}})
@@ -2716,6 +2717,20 @@ def evidence_index_data() -> dict:
             "Model-produced artifacts are extracted from named local model/tool surfaces and graded against hidden Bench v4 fixture checks.",
             hardness_model,
         ),
+        {
+            "id": "hardness-intake-decision-template",
+            "title": "Bench v4 Hardness Intake Decision Template",
+            "path": "examples/evaluations/hardness-v4/hardness-intake-decision-template.json",
+            "exists": (ROOT / "examples/evaluations/hardness-v4/hardness-intake-decision-template.json").exists(),
+            "bytes": (ROOT / "examples/evaluations/hardness-v4/hardness-intake-decision-template.json").stat().st_size if (ROOT / "examples/evaluations/hardness-v4/hardness-intake-decision-template.json").exists() else 0,
+            "evidence_class": "reviewer_supplied_model_run",
+            "calibration_role": "external_hardness_intake",
+            "claim_scope": "Schema-valid pending maintainer decision template for accepting and publishing real non-Codex or reviewer-supplied Bench v4 hardness imports; does not count as cross-surface evidence.",
+            "generated_at": hardness_intake_decision.get("generated_at"),
+            "surfaces": [],
+            "run_count": len(hardness_intake_decision.get("evidence_checked", [])),
+            "passed": hardness_intake_decision.get("counts_as_cross_surface_hardness") is True,
+        },
         evidence_artifact_record(
             "jailbreak-resilience-model-runs",
             "Jailbreak-Resilience Model Runs",
@@ -3374,7 +3389,9 @@ def write_hardness_v4_pages() -> None:
     results = load_hardness_results()
     model_results = load_hardness_model_results()
     import_template = hardness_manual_import_template()
+    decision_template = hardness_intake_decision_template()
     write_json(ROOT / "examples" / "evaluations" / "hardness-v4" / "manual-import-template.json", import_template)
+    write_json(ROOT / "examples" / "evaluations" / "hardness-v4" / "hardness-intake-decision-template.json", decision_template)
     rows = [["Case", "Rung", "Hardness Axis", "Weak", "Repaired", "n", "Fixture"]]
     for slug, case in results.get("cases", {}).items():
         summary = case.get("summary", {})
@@ -3438,6 +3455,21 @@ Validate a bundle:
 ```bash
 python3 scripts/import_hardness_model_run.py validate examples/evaluations/hardness-v4/manual-import-template.json
 python3 scripts/grimoire.py bench hardness-import examples/evaluations/hardness-v4/manual-import-template.json
+```
+
+## Reviewer Acceptance Decision
+
+Validated import bundles remain intake records until a named maintainer accepts
+and publishes a decision. The pending decision template does not count as
+cross-surface evidence.
+
+Decision template: [hardness-intake-decision-template.json](../examples/evaluations/hardness-v4/hardness-intake-decision-template.json)
+
+Validate a decision:
+
+```bash
+python3 scripts/check_hardness_intake.py validate examples/evaluations/hardness-v4/hardness-intake-decision-template.json
+python3 scripts/grimoire.py bench hardness-decision examples/evaluations/hardness-v4/hardness-intake-decision-template.json
 ```
 
 ## Interpretation

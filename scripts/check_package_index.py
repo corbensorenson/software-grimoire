@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import re
 import subprocess
 import sys
@@ -33,7 +34,12 @@ INDEXES = {
 
 
 def run(command: list[str], cwd: Path = ROOT) -> subprocess.CompletedProcess[str]:
-    return subprocess.run(command, cwd=cwd, check=False, capture_output=True, text=True)
+    SCRATCH_DIR.mkdir(parents=True, exist_ok=True)
+    with tempfile.TemporaryDirectory(prefix="grimoire-subprocess-", dir=SCRATCH_DIR) as raw_tmp:
+        env = os.environ.copy()
+        scratch = str(Path(raw_tmp).resolve())
+        env.update({"TMPDIR": scratch, "TEMP": scratch, "TMP": scratch})
+        return subprocess.run(command, cwd=cwd, check=False, capture_output=True, text=True, env=env)
 
 
 def read_project_metadata() -> tuple[str, str]:
@@ -180,6 +186,7 @@ def main() -> int:
                 [str(venv / "bin" / "grimoire-check-package-index"), "--help"],
                 [str(venv / "bin" / "grimoire-create-adoption-report"), "--help"],
                 [str(venv / "bin" / "grimoire-check-adoption-intake"), "--help"],
+                [str(venv / "bin" / "grimoire-check-hardness-intake"), "--help"],
                 [str(venv / "bin" / "grimoire-check-canon-decision"), "--help"],
                 [str(venv / "bin" / "grimoire-check-package-publish-workflow"), "--help"],
                 [str(venv / "bin" / "grimoire-install-assets"), "--help"],

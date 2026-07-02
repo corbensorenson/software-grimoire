@@ -108,6 +108,11 @@ Current public-site status:
   artifacts, extraction failures, and hidden-grader execution outcomes
   preserved. The result is intentionally null-heavy rather than polished:
   weak and repaired artifacts each passed 1/25 execution checks.
+- Bench v4 external hardness evidence now has a schema-backed intake decision
+  path: a pending decision template, validator, package/CLI entry point, public
+  issue form, generated Bench v4-page instructions, smoke coverage, and
+  evidence-index entry. It does not count until a named maintainer accepts and
+  publishes a real non-Codex or reviewer-supplied import.
 - The external-reality workstream now has a standalone adoption-report
   generator that creates schema-valid report drafts while keeping publication,
   external-adoption counts, and reviewer acceptance separate from generation.
@@ -551,13 +556,13 @@ Absorption status:
   delta reporting, all five local hardness seed rungs, ward-science seed data,
   package-index release materials and manual trusted-publishing workflow,
   one-step installs, adoption-report generation, adoption intake decisions,
-  bounded canon-review queue,
-  canon-audit decision intake, methods write-up, Codex trap-tier field-spell
-  runs, Codex real warded A/B runs, and Codex Bench v4 model-surface
-  hardness-ladder runs are implemented. The remaining open work is Claude Code
-  standard warded jailbreak-resilience runs, additional non-Codex or
-  reviewer-supplied hardness-ladder surfaces, human package upload, human canon
-  signoff, and accepted external adoption reports.
+  bounded canon-review queue, canon-audit decision intake, hardness intake
+  decisions, methods write-up, Codex trap-tier field-spell runs, Codex real
+  warded A/B runs, and Codex Bench v4 model-surface hardness-ladder runs are
+  implemented. The remaining open work is Claude Code standard warded
+  jailbreak-resilience runs, accepted non-Codex or reviewer-supplied
+  hardness-ladder surfaces, human package upload, human canon signoff, and
+  accepted external adoption reports.
 - `data/logical_conclusion_status.json` now maps all 90 logical-conclusion
   acceptance criteria to current evidence, blockers, and status counts. It
   records 84 proven criteria, one partial package-index criterion, and five
@@ -4642,7 +4647,10 @@ transcripts, extracted artifacts, extraction failures, and hidden-grader
 execution results. Codex trap-tier field-spell runs are now recorded across
 all six v3 fixtures with three weak/repaired repetitions per case. Codex
 baseline/warded A/B runs are also recorded across all eight existing defanged
-jailbreak-resilience fixtures with three repetitions per case/variant.
+jailbreak-resilience fixtures with three repetitions per case/variant. The
+hardness-intake decision validator is also implemented, so a future maintainer
+can validate acceptance/publication decisions for real non-Codex or
+reviewer-supplied imports without counting pending templates.
 
 1. Fix current reporting before adding new cases:
    - report deltas by surface, tier, variant, and repetition cell;
@@ -5506,7 +5514,9 @@ The project is complete in the strong sense when:
 78. Bench v4 includes a hardness ladder with ambiguity, hidden-invariant,
     misleading-context, blast-radius, and agentic rungs.
 79. At least two hardness rungs include executable fixtures, ground truth,
-    model-produced artifacts, and cross-surface results.
+    model-produced artifacts, and cross-surface results. A pending intake
+    decision validator exists, but this remains open until real accepted
+    non-Codex or reviewer-supplied imports are published.
 80. Ward-science pages include real baseline/warded A/B runs on both primary
     surfaces for the original eight defanged attack shapes.
 81. At least one ward-limb ablation is published with a clear non-effect or
@@ -5596,4 +5606,6 @@ preserved evaluation record, reviewed semantic canon, named human signoff, or
 explicitly labeled adoption evidence. Calibration must stay separate from model
 evidence, reviewability claims must stay separate from execution-proven outcome
 claims, and wards must be measured against real baselines before the project
-calls them externally validated.
+calls them externally validated. Reviewer/non-Codex Bench v4 imports must pass
+the import validator, pass the hardness-intake decision validator, and be
+published before they count toward cross-surface hardness evidence.

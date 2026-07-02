@@ -49,6 +49,21 @@ python3 scripts/import_hardness_model_run.py validate examples/evaluations/hardn
 python3 scripts/grimoire.py bench hardness-import examples/evaluations/hardness-v4/manual-import-template.json
 ```
 
+## Reviewer Acceptance Decision
+
+Validated import bundles remain intake records until a named maintainer accepts
+and publishes a decision. The pending decision template does not count as
+cross-surface evidence.
+
+Decision template: [hardness-intake-decision-template.json](../examples/evaluations/hardness-v4/hardness-intake-decision-template.json)
+
+Validate a decision:
+
+```bash
+python3 scripts/check_hardness_intake.py validate examples/evaluations/hardness-v4/hardness-intake-decision-template.json
+python3 scripts/grimoire.py bench hardness-decision examples/evaluations/hardness-v4/hardness-intake-decision-template.json
+```
+
 ## Interpretation
 
 - The ambiguity rung tests whether an artifact resolves a stale docstring versus a stronger caller contract.

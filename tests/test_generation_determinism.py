@@ -30,6 +30,7 @@ TRACKED_GENERATED = [
     "examples/evaluations/execution-results.json",
     "examples/evaluations/surface-comparison.json",
     "examples/evaluations/hardness-v4/results.json",
+    "examples/evaluations/hardness-v4/hardness-intake-decision-template.json",
     "reference/hardness-v4.qmd",
     "reference/canon-review-queue.qmd",
     "reference/methods-structure-reviewability-warding.qmd",

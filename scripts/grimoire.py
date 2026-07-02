@@ -177,6 +177,9 @@ def main(argv: list[str] | None = None) -> int:
     bench_hardness_import = bench_sub.add_parser("hardness-import", help="validate a manual Bench v4 hardness import record")
     bench_hardness_import.add_argument("path", help="manual Bench v4 hardness import JSON path")
     bench_hardness_import.add_argument("args", nargs=argparse.REMAINDER, help="arguments forwarded to import_hardness_model_run.py")
+    bench_hardness_decision = bench_sub.add_parser("hardness-decision", help="validate a Bench v4 hardness intake decision record")
+    bench_hardness_decision.add_argument("path", help="Bench v4 hardness intake decision JSON path")
+    bench_hardness_decision.add_argument("args", nargs=argparse.REMAINDER, help="arguments forwarded to check_hardness_intake.py")
     package_parser = sub.add_parser("package", help="package and package-index release utilities")
     package_sub = package_parser.add_subparsers(dest="package_command", required=True)
     package_sub.add_parser("check", help="build and install the local wheel/sdist")
@@ -230,6 +233,8 @@ def main(argv: list[str] | None = None) -> int:
             return run([sys.executable, "scripts/run_hardness_model_surfaces.py", *forwarded_args(args.args)])
         if args.bench_command == "hardness-import":
             return run([sys.executable, "scripts/import_hardness_model_run.py", "validate", args.path, *forwarded_args(args.args)])
+        if args.bench_command == "hardness-decision":
+            return run([sys.executable, "scripts/check_hardness_intake.py", "validate", args.path, *forwarded_args(args.args)])
         return 2
     if args.command == "package":
         if args.package_command == "check":

@@ -3,8 +3,8 @@
   "generated_at": "2026-07-02T00:00:00Z",
   "policy": "Calibration fixtures, project-owned model runs, local deterministic checks, reviewer imports, human audit, and adoption reports must remain separately labeled.",
   "summary": {
-    "artifact_count": 17,
-    "available_artifacts": 17,
+    "artifact_count": 18,
+    "available_artifacts": 18,
     "project_owned_model_surfaces": [
       "claude-code-safe",
       "claude-code-safe:baseline",
@@ -96,6 +96,20 @@
         "codex-cli-default"
       ],
       "run_count": 50
+    },
+    {
+      "id": "hardness-intake-decision-template",
+      "title": "Bench v4 Hardness Intake Decision Template",
+      "path": "examples/evaluations/hardness-v4/hardness-intake-decision-template.json",
+      "exists": true,
+      "bytes": 1553,
+      "evidence_class": "reviewer_supplied_model_run",
+      "calibration_role": "external_hardness_intake",
+      "claim_scope": "Schema-valid pending maintainer decision template for accepting and publishing real non-Codex or reviewer-supplied Bench v4 hardness imports; does not count as cross-surface evidence.",
+      "generated_at": "pending-maintainer",
+      "surfaces": [],
+      "run_count": 2,
+      "passed": false
     },
     {
       "id": "jailbreak-resilience-model-runs",
@@ -208,7 +222,7 @@
       "title": "Logical Conclusion Status",
       "path": "data/logical_conclusion_status.json",
       "exists": true,
-      "bytes": 40257,
+      "bytes": 40971,
       "evidence_class": "roadmap_acceptance_status",
       "calibration_role": "release_readiness",
       "claim_scope": "All 90 roadmap acceptance criteria are mapped to evidence, explicit blockers, and non-fabrication gates.",
@@ -222,13 +236,13 @@
       "title": "Public Package Build and Install Check",
       "path": "examples/adoption/package-check.json",
       "exists": true,
-      "bytes": 18291,
+      "bytes": 18814,
       "evidence_class": "packaging_or_release_check",
       "calibration_role": "release_evidence",
       "claim_scope": "The wheel/sdist build, temporary install, and console scripts work in the current environment.",
-      "generated_at": "2026-07-02T19:11:42.152203+00:00",
+      "generated_at": "2026-07-02T19:59:17.932299+00:00",
       "surfaces": [],
-      "run_count": 14,
+      "run_count": 15,
       "passed": true
     },
     {
@@ -264,13 +278,13 @@
       "title": "Public Site Smoke Check",
       "path": "examples/release-gate/public-smoke-check.json",
       "exists": true,
-      "bytes": 3451,
+      "bytes": 3608,
       "evidence_class": "packaging_or_release_check",
       "calibration_role": "release_evidence",
       "claim_scope": "Rendered local site resources and optionally live GitHub Pages URLs resolve.",
-      "generated_at": "2026-07-02T19:16:46.230354+00:00",
+      "generated_at": "2026-07-02T19:53:37.131937+00:00",
       "surfaces": [],
-      "run_count": 27,
+      "run_count": 28,
       "passed": true
     }
   ]

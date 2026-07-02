@@ -100,6 +100,7 @@ def test_package_and_smoke_checks_pass() -> None:
     assert any("grimoire-import-hardness-run --help" in step["name"] for step in package["steps"])
     assert any("grimoire-check-package-index --help" in step["name"] for step in package["steps"])
     assert any("grimoire-check-adoption-intake --help" in step["name"] for step in package["steps"])
+    assert any("grimoire-check-hardness-intake --help" in step["name"] for step in package["steps"])
     assert any("grimoire-check-canon-decision --help" in step["name"] for step in package["steps"])
     assert any("grimoire-check-package-publish-workflow --help" in step["name"] for step in package["steps"])
     assert {
@@ -116,6 +117,7 @@ def test_package_and_smoke_checks_pass() -> None:
     assert "examples/evaluations/hardness-v4/results.json" in {check["target"] for check in smoke["checks"]}
     assert "examples/evaluations/hardness-v4/model-surface-results.json" in {check["target"] for check in smoke["checks"]}
     assert "examples/evaluations/hardness-v4/manual-import-template.json" in {check["target"] for check in smoke["checks"]}
+    assert "examples/evaluations/hardness-v4/hardness-intake-decision-template.json" in {check["target"] for check in smoke["checks"]}
     assert "data/logical_conclusion_status.json" in {check["target"] for check in smoke["checks"]}
     assert "examples/adoption/adoption-intake-decision-template.json" in {check["target"] for check in smoke["checks"]}
     assert "examples/adoption/package-index-release-plan.json" in {check["target"] for check in smoke["checks"]}

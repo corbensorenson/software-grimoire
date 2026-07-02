@@ -1,0 +1,74 @@
+name: Bench v4 Hardness Run Submission
+description: Submit a non-Codex or reviewer-supplied Bench v4 hardness import bundle for maintainer review.
+title: "[hardness-run] "
+labels: ["hardness-v4", "reviewer-supplied", "needs-maintainer-review"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this form for real Bench v4 manual-import bundles. Do not paste secrets, private code, live jailbreak payloads, or hidden grader material.
+  - type: input
+    id: surface_id
+    attributes:
+      label: Surface ID
+      description: Stable lowercase surface id matching the import record.
+      placeholder: "reviewer-tool-model-2026-07"
+    validations:
+      required: true
+  - type: dropdown
+    id: provenance
+    attributes:
+      label: Provenance
+      options:
+        - reviewer-supplied
+        - external-user
+        - project-owned
+    validations:
+      required: true
+  - type: input
+    id: import_path_or_link
+    attributes:
+      label: Import record or PR link
+      description: Link to the JSON import record or pull request containing it.
+    validations:
+      required: true
+  - type: input
+    id: normalized_validation
+    attributes:
+      label: Validation output
+      description: Link to normalized validation output from scripts/import_hardness_model_run.py, if available.
+    validations:
+      required: false
+  - type: textarea
+    id: rungs
+    attributes:
+      label: Covered rungs and variants
+      description: List case_slug, variant, repetition, and whether fixture-local execution passed.
+      placeholder: |
+        ambiguity-disabled-status, weak, r01, failed
+        hidden-invariant-event-order, repaired, r01, passed
+    validations:
+      required: true
+  - type: textarea
+    id: redaction
+    attributes:
+      label: Redaction and safety statement
+      description: Explain what was redacted and confirm no secrets/private code/hidden grader content are included.
+    validations:
+      required: true
+  - type: textarea
+    id: friction
+    attributes:
+      label: Friction, failures, or null results
+      description: Preserve setup friction, extraction failures, over-refusals, ties, and failed runs.
+    validations:
+      required: true
+  - type: checkboxes
+    id: attestations
+    attributes:
+      label: Attestations
+      options:
+        - label: I did not include secrets, private customer data, live exploit payloads, or hidden grader material.
+          required: true
+        - label: I understand this does not count until a named maintainer accepts and publishes a hardness intake decision.
+          required: true

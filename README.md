@@ -105,6 +105,9 @@ Implemented:
   non-Codex surface bundles, including schema checks, repo-local path checks,
   artifact filename checks, provenance consistency, and fixture-local execution
   without automatically publishing the run.
+- Bench v4 hardness intake decision template, validator, CLI route, and issue
+  form for accepting future non-Codex or reviewer-supplied hardness bundles
+  without counting pending templates as cross-surface evidence.
 - Logical-conclusion status ledger for all 90 roadmap acceptance criteria,
   with evidence links and explicit blockers for human canon signoff, public
   package-index upload, non-maintainer adoption, and non-Codex/reviewer
@@ -145,6 +148,7 @@ python3 scripts/grimoire.py bench hardness
 python3 scripts/grimoire.py bench hardness-model -- --surface codex-cli-default --repetitions 5 --append
 python3 scripts/grimoire.py bench import examples/evaluations/manual-import-template.json
 python3 scripts/grimoire.py bench hardness-import examples/evaluations/hardness-v4/manual-import-template.json
+python3 scripts/grimoire.py bench hardness-decision examples/evaluations/hardness-v4/hardness-intake-decision-template.json
 python3 scripts/grimoire.py canon decision examples/canon/canon-audit-decision-template.json
 python3 scripts/grimoire.py adoption decision examples/adoption/adoption-intake-decision-template.json
 python3 scripts/grimoire.py adoption report -- --id adoption.example-review.v1 --title "Example Review" --provenance reviewer-supplied --task "Describe the real task." --spell-or-stack-used spell.safe-refactoring.v1 --surface "Reviewer workflow" --artifact-produced "Patch or review artifact." --verification-performed "Tests or review checks." --time-cost "Low" --failure-or-friction "Record friction honestly." --reuse-decision reuse --write-report tmp/adoption-report.json

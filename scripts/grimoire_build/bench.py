@@ -43,6 +43,43 @@ HARDNESS_MANUAL_IMPORT_TEMPLATE = {
     "evaluator_notes": "Template validates the import contract only. It does not count as reviewer-supplied evidence.",
 }
 
+HARDNESS_INTAKE_DECISION_TEMPLATE = {
+    "schema_version": "4.0.0-hardness-intake-decision",
+    "decision_id": "hardness-intake.manual-reviewer-import-template.v1",
+    "generated_at": "pending-maintainer",
+    "status": "pending-maintainer",
+    "policy": "This template validates Bench v4 hardness-import acceptance structure. It does not count as cross-surface hardness evidence until a named maintainer accepts and publishes a real non-Codex, reviewer-supplied, or external-user bundle.",
+    "import_path": "examples/evaluations/hardness-v4/manual-import-template.json",
+    "surface_id": "manual-reviewer-import",
+    "benchmark": "hardness-v4-model-surface",
+    "case_slug": "ambiguity-disabled-status",
+    "variant": "weak",
+    "repetition": 1,
+    "provenance": "project-owned",
+    "maintainer": "",
+    "review_date": "",
+    "decision": "pending",
+    "evidence_checked": [
+        {
+            "kind": "import_record",
+            "path_or_url": "examples/evaluations/hardness-v4/manual-import-template.json",
+            "notes": "Schema-valid project-owned template only; replace with a real reviewer/non-Codex import before acceptance.",
+        },
+        {
+            "kind": "artifact",
+            "path_or_url": "examples/evaluations/hardness-v4/model-surface-results.json",
+            "notes": "Current accepted Bench v4 model-surface ledger; currently Codex-only.",
+        },
+    ],
+    "publication": {
+        "status": "not-published",
+        "url_or_path": "",
+    },
+    "acceptance_notes": "Pending maintainer review; this is not accepted cross-surface hardness evidence.",
+    "counts_as_cross_surface_hardness": False,
+    "blocks_hardness_credit": True,
+}
+
 ADOPTION_REPORT_TEMPLATE = {
     "id": "adoption.example-reviewer-run.v1",
     "title": "Example Reviewer Adoption Report",
@@ -65,6 +102,10 @@ def bench_manual_import_template() -> dict:
 
 def hardness_manual_import_template() -> dict:
     return dict(HARDNESS_MANUAL_IMPORT_TEMPLATE)
+
+
+def hardness_intake_decision_template() -> dict:
+    return dict(HARDNESS_INTAKE_DECISION_TEMPLATE)
 
 
 def adoption_report_template() -> dict:

@@ -83,6 +83,11 @@
   workflow validator, package entry point, CI coverage, and release-plan wiring
   so a named maintainer can publish through GitHub OIDC without secret/token
   upload paths.
+- Added a Bench v4 hardness intake decision schema, pending template,
+  validator, `grimoire bench hardness-decision` wrapper, package entry point,
+  issue form, smoke coverage, and evidence-index wiring so non-Codex or
+  reviewer-supplied hardness bundles can be accepted later without counting
+  pending templates as cross-surface evidence.
 - Normalized pytest duration text in hardness-ladder execution ledgers so
   repeated deterministic bench runs do not churn committed evidence on timing
   noise alone.

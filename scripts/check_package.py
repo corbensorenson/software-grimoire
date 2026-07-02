@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import shutil
 import subprocess
 import sys
@@ -18,7 +19,12 @@ SCRATCH_DIR = ROOT / "tmp"
 
 
 def run(command: list[str], cwd: Path = ROOT) -> subprocess.CompletedProcess[str]:
-    return subprocess.run(command, cwd=cwd, check=False, capture_output=True, text=True)
+    SCRATCH_DIR.mkdir(parents=True, exist_ok=True)
+    with tempfile.TemporaryDirectory(prefix="grimoire-subprocess-", dir=SCRATCH_DIR) as raw_tmp:
+        env = os.environ.copy()
+        scratch = str(Path(raw_tmp).resolve())
+        env.update({"TMPDIR": scratch, "TEMP": scratch, "TMP": scratch})
+        return subprocess.run(command, cwd=cwd, check=False, capture_output=True, text=True, env=env)
 
 
 def main() -> int:
@@ -82,6 +88,7 @@ def main() -> int:
                 [str(venv / "bin" / "grimoire"), "--help"],
                 [str(venv / "bin" / "grimoire-create-adoption-report"), "--help"],
                 [str(venv / "bin" / "grimoire-check-adoption-intake"), "--help"],
+                [str(venv / "bin" / "grimoire-check-hardness-intake"), "--help"],
                 [str(venv / "bin" / "grimoire-check-package-publish-workflow"), "--help"],
                 [str(venv / "bin" / "grimoire-install-assets"), "--help"],
                 [str(venv / "bin" / "grimoire-run-bench"), "--help"],

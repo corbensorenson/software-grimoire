@@ -28,6 +28,7 @@ grimoire-create-adoption-report = "create_adoption_report:main"
 grimoire-check-adoption-intake = "check_adoption_intake:main"
 grimoire-install-assets = "install_assets:main"
 grimoire-check-package-publish-workflow = "check_package_publish_workflow:main"
+grimoire-check-hardness-intake = "check_hardness_intake:main"
 grimoire-run-bench = "run_bench:main"
 grimoire-run-execution-bench = "run_execution_bench:main"
 grimoire-run-hardness-bench = "run_hardness_bench:main"
@@ -45,6 +46,7 @@ package-dir = {"" = "scripts"}
 py-modules = [
   "bootstrap_project",
   "check_adoption_intake",
+  "check_hardness_intake",
   "check_package_publish_workflow",
   "create_adoption_report",
   "generate_seals",
