@@ -112,9 +112,9 @@ Current public-site status:
   generator that creates schema-valid report drafts while keeping publication,
   external-adoption counts, and reviewer acceptance separate from generation.
 - Package-index release materials are prepared for human TestPyPI/PyPI upload:
-  preflight checks, build commands, post-upload checks, evidence rules, schema,
-  generated reference page, and evidence-index entry all preserve upload as
-  pending until a maintainer performs it.
+  preflight checks, build commands, post-upload package-index smoke tooling,
+  evidence rules, schema, generated reference page, and evidence-index entry
+  all preserve upload as pending until a maintainer performs it.
 - Ward science now has a local deterministic seed: a limb ablation over a
   defanged indirect-injection case, overrefusal-aware scoring, and six
   additional defanged attack-shape designs. Model-provider ward-science runs
@@ -4757,7 +4757,10 @@ only; it does not publish them or increment external adoption counts. The
 one-step `grimoire install` wrapper is also implemented over the dry-run-first
 asset installer, with tests covering repo-local `tmp/` destinations. The
 package-index release plan is prepared as structured release material, but
-actual TestPyPI/PyPI upload remains pending human action.
+actual TestPyPI/PyPI upload remains pending human action. The post-upload
+checker now exists as `scripts/check_package_index.py` and writes a structured
+report only after it can install the named version from the selected public
+index.
 
 Implementation note as of July 2, 2026: Workstream B has a local deterministic
 seed for ward-limb ablation and the six additional defanged attack shapes are
@@ -4774,7 +4777,8 @@ baseline/warded model-surface A/B expansion remains open.
 2. Human uploads remain human:
    - Codex can prepare TestPyPI/PyPI instructions and artifacts;
    - a named human performs the upload;
-   - package-index checks run only after the package exists.
+   - package-index checks run only after the package exists;
+   - `scripts/check_package_index.py` records the install proof after upload.
 3. Add one-step local install commands:
    - `grimoire install --target claude-code --dest ./.claude/skills`;
    - `grimoire install --target cursor --dest ./.cursor/rules`;

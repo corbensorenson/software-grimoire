@@ -169,6 +169,11 @@ def main(argv: list[str] | None = None) -> int:
     bench_hardness_import = bench_sub.add_parser("hardness-import", help="validate a manual Bench v4 hardness import record")
     bench_hardness_import.add_argument("path", help="manual Bench v4 hardness import JSON path")
     bench_hardness_import.add_argument("args", nargs=argparse.REMAINDER, help="arguments forwarded to import_hardness_model_run.py")
+    package_parser = sub.add_parser("package", help="package and package-index release utilities")
+    package_sub = package_parser.add_subparsers(dest="package_command", required=True)
+    package_sub.add_parser("check", help="build and install the local wheel/sdist")
+    package_index = package_sub.add_parser("index-smoke", help="smoke-test a human-uploaded package-index release")
+    package_index.add_argument("args", nargs=argparse.REMAINDER, help="arguments forwarded to check_package_index.py")
     sub.add_parser("seals", help="regenerate seal summary data")
     sub.add_parser("render", help="render the Quarto site")
     sub.add_parser("test", help="run repository tests")
@@ -211,6 +216,12 @@ def main(argv: list[str] | None = None) -> int:
             return run([sys.executable, "scripts/run_hardness_model_surfaces.py", *forwarded_args(args.args)])
         if args.bench_command == "hardness-import":
             return run([sys.executable, "scripts/import_hardness_model_run.py", "validate", args.path, *forwarded_args(args.args)])
+        return 2
+    if args.command == "package":
+        if args.package_command == "check":
+            return run([sys.executable, "scripts/check_package.py"])
+        if args.package_command == "index-smoke":
+            return run([sys.executable, "scripts/check_package_index.py", *forwarded_args(args.args)])
         return 2
     if args.command == "seals":
         return run([sys.executable, "scripts/generate_seals.py"])

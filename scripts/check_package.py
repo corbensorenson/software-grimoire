@@ -85,6 +85,7 @@ def main() -> int:
                 [str(venv / "bin" / "grimoire-run-bench"), "--help"],
                 [str(venv / "bin" / "grimoire-run-hardness-bench"), "--help"],
                 [str(venv / "bin" / "grimoire-import-hardness-run"), "--help"],
+                [str(venv / "bin" / "grimoire-check-package-index"), "--help"],
             ]:
                 if code:
                     break

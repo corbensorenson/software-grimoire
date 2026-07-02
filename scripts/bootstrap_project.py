@@ -458,6 +458,7 @@ PACKAGE_INDEX_RELEASE_PLAN = {
         "python3 scripts/validate_data.py",
         "python3 -m pytest",
         "python3 scripts/check_package.py",
+        "python3 scripts/check_package_index.py --index pypi --dry-run --write-report tmp/package-index-smoke-dry-run.json",
         "quarto render",
         "python3 scripts/smoke_public_site.py --write-report tmp/package-index-smoke.json",
     ],
@@ -469,18 +470,47 @@ PACKAGE_INDEX_RELEASE_PLAN = {
     "testpypi_upload": {
         "human_required": True,
         "command": "python3 -m twine upload --repository testpypi dist/*",
-        "post_upload_check": "python3 -m pip install --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple software-grimoire==3.0.0",
+        "post_upload_check": "python3 scripts/check_package_index.py --index testpypi --write-report examples/adoption/package-index-smoke.json",
     },
     "pypi_upload": {
         "human_required": True,
         "command": "python3 -m twine upload dist/*",
-        "post_upload_check": "python3 -m pip install software-grimoire==3.0.0",
+        "post_upload_check": "python3 scripts/check_package_index.py --index pypi --write-report examples/adoption/package-index-smoke.json",
     },
     "evidence_rules": [
         "Do not mark package-index release complete before a human performs upload.",
         "Do not count local wheel install as package-index availability.",
+        "Commit examples/adoption/package-index-smoke.json only after the checker installs the uploaded version from the selected public index.",
         "Record TestPyPI/PyPI URL, uploader, date, installed version, and post-upload smoke output after upload.",
     ],
+}
+
+PACKAGE_INDEX_SMOKE_TEMPLATE = {
+    "schema_version": "4.0.0-package-index-smoke",
+    "generated_at": "pending-human-upload",
+    "status": "pending_upload",
+    "policy": "This report template does not prove package-index availability. Replace it with examples/adoption/package-index-smoke.json only after a named human upload and a successful public-index install smoke.",
+    "index": "pypi",
+    "index_url": "https://pypi.org/simple/",
+    "extra_index_url": "",
+    "package": "software-grimoire",
+    "version": "3.0.0",
+    "human_upload": {
+        "required": True,
+        "uploader": "",
+        "uploaded_at": "",
+        "package_url": "https://pypi.org/project/software-grimoire/",
+    },
+    "steps": [
+        {
+            "name": "human package-index upload",
+            "passed": False,
+            "stdout": "",
+            "stderr": "",
+            "remediation": "A named maintainer must upload to TestPyPI/PyPI, then run scripts/check_package_index.py without --dry-run.",
+        }
+    ],
+    "passed": False,
 }
 
 EVIDENCE_TAXONOMY_DATA = {
@@ -2550,6 +2580,7 @@ def evidence_index_data() -> dict:
     real_ab = load_runtime_json("examples/jailbreak-resilience/ab-results.json", {"surfaces": {}, "cases": {}})
     package_check = load_runtime_json("examples/adoption/package-check.json", {"steps": [], "passed": False})
     package_index_plan = load_runtime_json("examples/adoption/package-index-release-plan.json", {"preflight_checks": [], "build_commands": []})
+    package_index_smoke = load_runtime_json("examples/adoption/package-index-smoke-template.json", {"steps": [], "passed": False})
     canon_review_queue = load_runtime_json("data/canon_review_queue.json", {"summary": {"queued_candidates": 0}, "batches": []})
     logical_conclusion = load_runtime_json("data/logical_conclusion_status.json", {"criteria": [], "summary": {}})
     smoke = load_runtime_json("examples/release-gate/public-smoke-check.json", {"checks": [], "passed": False})
@@ -2695,6 +2726,20 @@ def evidence_index_data() -> dict:
             "surfaces": [],
             "run_count": len(package_index_plan.get("preflight_checks", [])) + len(package_index_plan.get("build_commands", [])),
             "passed": package_index_plan.get("package", {}).get("upload_status") == "uploaded",
+        },
+        {
+            "id": "package-index-smoke-template",
+            "title": "Package-Index Smoke Template",
+            "path": "examples/adoption/package-index-smoke-template.json",
+            "exists": (ROOT / "examples/adoption/package-index-smoke-template.json").exists(),
+            "bytes": (ROOT / "examples/adoption/package-index-smoke-template.json").stat().st_size if (ROOT / "examples/adoption/package-index-smoke-template.json").exists() else 0,
+            "evidence_class": "packaging_or_release_check",
+            "calibration_role": "release_materials",
+            "claim_scope": "Schema-valid pending template for post-human-upload public-index install smoke evidence; does not prove upload.",
+            "generated_at": package_index_smoke.get("generated_at"),
+            "surfaces": [],
+            "run_count": len(package_index_smoke.get("steps", [])),
+            "passed": package_index_smoke.get("passed", False),
         },
         {
             "id": "public-smoke-check",
@@ -4735,6 +4780,7 @@ Paste the filled spell into your AI tool. Save the model/tool surface, output, v
 def write_package_index_release_pages() -> None:
     plan = PACKAGE_INDEX_RELEASE_PLAN
     write_json(ROOT / "examples" / "adoption" / "package-index-release-plan.json", plan)
+    write_json(ROOT / "examples" / "adoption" / "package-index-smoke-template.json", PACKAGE_INDEX_SMOKE_TEMPLATE)
     package = plan["package"]
     rows = [
         ["Area", "Value"],
@@ -4749,6 +4795,9 @@ This page prepares the package-index release path without pretending the package
 has already been uploaded. Local wheel/sdist checks are release evidence; public
 TestPyPI/PyPI availability requires a named human maintainer to perform upload
 and record the post-upload checks.
+
+The dry-run preflight only proves that the command contract and report path are
+valid. It does not prove public package-index availability.
 
 ## Status
 
@@ -4787,6 +4836,8 @@ Human required: `{pypi_human}`
 {rules}
 
 Raw plan: [package-index-release-plan.json](../examples/adoption/package-index-release-plan.json)
+
+Pending smoke template: [package-index-smoke-template.json](../examples/adoption/package-index-smoke-template.json)
 """.format(
         status=qmd_table(rows),
         preflight="\n".join(f"- `{item}`" for item in plan["preflight_checks"]),

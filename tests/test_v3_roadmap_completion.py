@@ -93,6 +93,7 @@ def test_package_and_smoke_checks_pass() -> None:
     assert smoke["passed"] is True
     assert {"build wheel and sdist", "install wheel"} <= {step["name"] for step in package["steps"]}
     assert any("grimoire-import-hardness-run --help" in step["name"] for step in package["steps"])
+    assert any("grimoire-check-package-index --help" in step["name"] for step in package["steps"])
     assert {
         "index.html",
         "reference/evidence-browser.html",
@@ -109,6 +110,7 @@ def test_package_and_smoke_checks_pass() -> None:
     assert "examples/evaluations/hardness-v4/manual-import-template.json" in {check["target"] for check in smoke["checks"]}
     assert "data/logical_conclusion_status.json" in {check["target"] for check in smoke["checks"]}
     assert "examples/adoption/package-index-release-plan.json" in {check["target"] for check in smoke["checks"]}
+    assert "examples/adoption/package-index-smoke-template.json" in {check["target"] for check in smoke["checks"]}
     assert "examples/jailbreak-resilience/ward-science-results.json" in {check["target"] for check in smoke["checks"]}
     assert "data/canon_review_queue.json" in {check["target"] for check in smoke["checks"]}
 

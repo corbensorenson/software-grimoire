@@ -124,3 +124,27 @@ def test_bench_hardness_import_command_validates_template() -> None:
     imported = run_cli("bench", "hardness-import", "examples/evaluations/hardness-v4/manual-import-template.json")
     assert imported.returncode == 0, imported.stderr
     assert "Hardness import record is valid" in imported.stdout
+
+
+def test_package_index_smoke_command_dry_run_is_exposed() -> None:
+    scratch = ROOT / "tmp" / "tests" / "grimoire-package-index"
+    remove_scratch(scratch)
+    scratch.mkdir(parents=True, exist_ok=True)
+    report = scratch / "index-smoke.json"
+    try:
+        checked = run_cli(
+            "package",
+            "index-smoke",
+            "--",
+            "--index",
+            "pypi",
+            "--dry-run",
+            "--write-report",
+            str(report.relative_to(ROOT)),
+        )
+        assert checked.returncode == 0, checked.stderr
+        data = json.loads(report.read_text(encoding="utf-8"))
+        assert data["status"] == "dry_run"
+        assert data["passed"] is False
+    finally:
+        remove_scratch(scratch)

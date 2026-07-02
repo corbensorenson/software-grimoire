@@ -84,8 +84,9 @@ Implemented:
   evidence browser pages, public smoke checks, package install checks, and
   usage-earned canon audit records.
 - Package-index release plan for TestPyPI/PyPI human upload, with preflight,
-  build, upload, post-upload, and evidence-recording instructions that keep
-  public package availability pending until a maintainer performs it.
+  build, upload, post-upload, package-index smoke tooling, and
+  evidence-recording instructions that keep public package availability pending
+  until a maintainer performs it.
 - Bench v4 seed hardness ladder with ambiguity, hidden-invariant,
   misleading-context, blast-radius, and agentic executable fixtures,
   weak/repaired seed artifacts, five deterministic repetitions per variant,

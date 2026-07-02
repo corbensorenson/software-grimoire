@@ -759,6 +759,7 @@ def validate_v3_evidence_layer(errors: list[str]) -> None:
         "local-warded-baseline",
         "real-warded-ab",
         "package-check",
+        "package-index-smoke-template",
         "logical-conclusion-status",
         "public-smoke-check",
     ]:
@@ -940,6 +941,8 @@ def validate_hardness_model_surface(errors: list[str]) -> None:
 
 def validate_public_package_and_smoke(errors: list[str]) -> None:
     package_path = ROOT / "examples" / "adoption" / "package-check.json"
+    package_index_plan_path = ROOT / "examples" / "adoption" / "package-index-release-plan.json"
+    package_index_smoke_path = ROOT / "examples" / "adoption" / "package-index-smoke-template.json"
     smoke_path = ROOT / "examples" / "release-gate" / "public-smoke-check.json"
     if not package_path.exists():
         fail(errors, "Missing examples/adoption/package-check.json")
@@ -951,6 +954,26 @@ def validate_public_package_and_smoke(errors: list[str]) -> None:
         for expected in ["build wheel and sdist", "install wheel"]:
             if expected not in step_names:
                 fail(errors, f"Package check missing step: {expected}")
+        if not any("grimoire-check-package-index --help" in step.get("name", "") for step in package.get("steps", [])):
+            fail(errors, "Package check must verify grimoire-check-package-index entry point")
+    if not package_index_plan_path.exists():
+        fail(errors, "Missing examples/adoption/package-index-release-plan.json")
+    else:
+        plan = json.loads(package_index_plan_path.read_text(encoding="utf-8"))
+        for upload_key in ["testpypi_upload", "pypi_upload"]:
+            check = plan.get(upload_key, {}).get("post_upload_check", "")
+            if "scripts/check_package_index.py" not in check:
+                fail(errors, f"Package-index release plan {upload_key} must use scripts/check_package_index.py")
+        if not any("check_package_index.py" in item and "--dry-run" in item for item in plan.get("preflight_checks", [])):
+            fail(errors, "Package-index release plan must include a dry-run checker preflight")
+    if not package_index_smoke_path.exists():
+        fail(errors, "Missing examples/adoption/package-index-smoke-template.json")
+    else:
+        package_index_smoke = json.loads(package_index_smoke_path.read_text(encoding="utf-8"))
+        if package_index_smoke.get("status") != "pending_upload":
+            fail(errors, "Package-index smoke template must remain pending_upload")
+        if package_index_smoke.get("passed") is not False:
+            fail(errors, "Package-index smoke template cannot pass before public upload")
     if not smoke_path.exists():
         fail(errors, "Missing examples/release-gate/public-smoke-check.json")
     else:
@@ -961,6 +984,8 @@ def validate_public_package_and_smoke(errors: list[str]) -> None:
         for expected in ["index.html", "reference/evidence-browser.html", "exports/library-manifest.json"]:
             if expected not in targets:
                 fail(errors, f"Public smoke check missing target: {expected}")
+        if "examples/adoption/package-index-smoke-template.json" not in targets:
+            fail(errors, "Public smoke check missing package-index smoke template")
 
 
 def validate_logical_conclusion_status(errors: list[str]) -> None:

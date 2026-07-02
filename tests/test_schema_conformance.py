@@ -130,6 +130,11 @@ def test_package_index_release_plan_matches_schema() -> None:
     assert not errors, "\n".join(errors[:25])
 
 
+def test_package_index_smoke_template_matches_schema() -> None:
+    errors = collect_errors("schemas/package-index-smoke.schema.json", [load_json("examples/adoption/package-index-smoke-template.json")], "package_index_smoke")
+    assert not errors, "\n".join(errors[:25])
+
+
 def test_evidence_taxonomy_matches_schema() -> None:
     errors = collect_errors("schemas/evidence-taxonomy.schema.json", [load_json("data/evidence_taxonomy.json")], "evidence_taxonomy")
     assert not errors, "\n".join(errors[:25])

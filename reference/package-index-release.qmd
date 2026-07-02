@@ -9,6 +9,9 @@ has already been uploaded. Local wheel/sdist checks are release evidence; public
 TestPyPI/PyPI availability requires a named human maintainer to perform upload
 and record the post-upload checks.
 
+The dry-run preflight only proves that the command contract and report path are
+valid. It does not prove public package-index availability.
+
 ## Status
 
 | Area                  | Value                       |
@@ -24,6 +27,7 @@ and record the post-upload checks.
 - `python3 scripts/validate_data.py`
 - `python3 -m pytest`
 - `python3 scripts/check_package.py`
+- `python3 scripts/check_package_index.py --index pypi --dry-run --write-report tmp/package-index-smoke-dry-run.json`
 - `quarto render`
 - `python3 scripts/smoke_public_site.py --write-report tmp/package-index-smoke.json`
 
@@ -41,7 +45,7 @@ Human required: `true`
 
 ```bash
 python3 -m twine upload --repository testpypi dist/*
-python3 -m pip install --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple software-grimoire==3.0.0
+python3 scripts/check_package_index.py --index testpypi --write-report examples/adoption/package-index-smoke.json
 ```
 
 ## PyPI
@@ -50,13 +54,16 @@ Human required: `true`
 
 ```bash
 python3 -m twine upload dist/*
-python3 -m pip install software-grimoire==3.0.0
+python3 scripts/check_package_index.py --index pypi --write-report examples/adoption/package-index-smoke.json
 ```
 
 ## Evidence Rules
 
 - Do not mark package-index release complete before a human performs upload.
 - Do not count local wheel install as package-index availability.
+- Commit examples/adoption/package-index-smoke.json only after the checker installs the uploaded version from the selected public index.
 - Record TestPyPI/PyPI URL, uploader, date, installed version, and post-upload smoke output after upload.
 
 Raw plan: [package-index-release-plan.json](../examples/adoption/package-index-release-plan.json)
+
+Pending smoke template: [package-index-smoke-template.json](../examples/adoption/package-index-smoke-template.json)

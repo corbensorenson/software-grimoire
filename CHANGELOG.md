@@ -67,6 +67,10 @@
   criteria to evidence, explicit blockers, schema validation, public smoke
   coverage, and a reference page while keeping human, package-index, and
   external-adoption gates out of the proven bucket.
+- Added a package-index smoke checker, schema, pending template, CLI entry
+  point, and generated release-plan wiring so post-upload TestPyPI/PyPI install
+  proof can be recorded without counting local wheel checks as public package
+  availability.
 - Normalized pytest duration text in hardness-ladder execution ledgers so
   repeated deterministic bench runs do not churn committed evidence on timing
   noise alone.

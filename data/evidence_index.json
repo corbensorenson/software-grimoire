@@ -3,8 +3,8 @@
   "generated_at": "2026-07-02T00:00:00Z",
   "policy": "Calibration fixtures, project-owned model runs, local deterministic checks, reviewer imports, human audit, and adoption reports must remain separately labeled.",
   "summary": {
-    "artifact_count": 14,
-    "available_artifacts": 14,
+    "artifact_count": 15,
+    "available_artifacts": 15,
     "project_owned_model_surfaces": [
       "claude-code-safe",
       "claude-code-safe:baseline",
@@ -180,7 +180,7 @@
       "title": "Logical Conclusion Status",
       "path": "data/logical_conclusion_status.json",
       "exists": true,
-      "bytes": 26513,
+      "bytes": 37911,
       "evidence_class": "roadmap_acceptance_status",
       "calibration_role": "release_readiness",
       "claim_scope": "All 90 roadmap acceptance criteria are mapped to evidence, explicit blockers, and non-fabrication gates.",
@@ -194,13 +194,13 @@
       "title": "Public Package Build and Install Check",
       "path": "examples/adoption/package-check.json",
       "exists": true,
-      "bytes": 15949,
+      "bytes": 17033,
       "evidence_class": "packaging_or_release_check",
       "calibration_role": "release_evidence",
       "claim_scope": "The wheel/sdist build, temporary install, and console scripts work in the current environment.",
-      "generated_at": "2026-07-02T17:17:36.080845+00:00",
+      "generated_at": "2026-07-02T17:53:42.744366+00:00",
       "surfaces": [],
-      "run_count": 10,
+      "run_count": 11,
       "passed": true
     },
     {
@@ -208,13 +208,27 @@
       "title": "Package-Index Release Plan",
       "path": "examples/adoption/package-index-release-plan.json",
       "exists": true,
-      "bytes": 1493,
+      "bytes": 1800,
       "evidence_class": "packaging_or_release_check",
       "calibration_role": "release_materials",
       "claim_scope": "Human-upload package-index release instructions and checks are prepared; upload remains pending.",
       "generated_at": null,
       "surfaces": [],
-      "run_count": 9,
+      "run_count": 10,
+      "passed": false
+    },
+    {
+      "id": "package-index-smoke-template",
+      "title": "Package-Index Smoke Template",
+      "path": "examples/adoption/package-index-smoke-template.json",
+      "exists": true,
+      "bytes": 924,
+      "evidence_class": "packaging_or_release_check",
+      "calibration_role": "release_materials",
+      "claim_scope": "Schema-valid pending template for post-human-upload public-index install smoke evidence; does not prove upload.",
+      "generated_at": "pending-human-upload",
+      "surfaces": [],
+      "run_count": 1,
       "passed": false
     },
     {
@@ -222,13 +236,13 @@
       "title": "Public Site Smoke Check",
       "path": "examples/release-gate/public-smoke-check.json",
       "exists": true,
-      "bytes": 3037,
+      "bytes": 3174,
       "evidence_class": "packaging_or_release_check",
       "calibration_role": "release_evidence",
       "claim_scope": "Rendered local site resources and optionally live GitHub Pages URLs resolve.",
-      "generated_at": "2026-07-02T17:27:06.982277+00:00",
+      "generated_at": "2026-07-02T17:56:41.887987+00:00",
       "surfaces": [],
-      "run_count": 24,
+      "run_count": 25,
       "passed": true
     }
   ]
