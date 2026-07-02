@@ -2311,6 +2311,10 @@ def load_runtime_json(relative_path: str, default: dict | None = None) -> dict:
     return json.loads(path.read_text(encoding="utf-8"))
 
 
+def load_hardness_results() -> dict:
+    return load_runtime_json("examples/evaluations/hardness-v4/results.json", {"surfaces": {}, "cases": {}})
+
+
 def count_result_runs(data: dict) -> int:
     return sum(len(case.get("runs", [])) for case in data.get("cases", {}).values())
 
@@ -2389,6 +2393,7 @@ def evidence_index_data() -> dict:
     evaluation = load_runtime_json("examples/evaluations/results.json", {"surfaces": {}, "cases": {}})
     execution = load_runtime_json("examples/evaluations/execution-results.json", {"surfaces": {}, "cases": {}})
     model_execution = load_runtime_json("examples/evaluations/model-execution-results.json", {"surfaces": {}, "cases": {}})
+    hardness = load_hardness_results()
     jailbreak = load_runtime_json("examples/jailbreak-resilience/results.json", {"surfaces": {}, "cases": {}})
     deterministic_baseline = load_runtime_json("examples/jailbreak-resilience/baseline-results.json", {"surfaces": {}, "cases": {}})
     real_ab = load_runtime_json("examples/jailbreak-resilience/ab-results.json", {"surfaces": {}, "cases": {}})
@@ -2420,8 +2425,17 @@ def evidence_index_data() -> dict:
             "examples/evaluations/model-execution-results.json",
             "local_deterministic_execution",
             "execution_evidence",
-            "Model outputs are extracted into files and graded inside fixture-local temporary directories.",
+            "Model outputs are extracted into files and graded inside repo-local fixture sandboxes.",
             model_execution,
+        ),
+        evidence_artifact_record(
+            "hardness-v4-seed",
+            "Bench v4 Hardness Ladder Seed",
+            "examples/evaluations/hardness-v4/results.json",
+            "local_deterministic_execution",
+            "execution_evidence",
+            "Weak/repaired seed artifacts are executed across ambiguity and hidden-invariant hardness rungs.",
+            hardness,
         ),
         evidence_artifact_record(
             "jailbreak-resilience-model-runs",
@@ -2938,6 +2952,50 @@ Raw execution results: [execution-results.json](../examples/evaluations/executio
         rows=qmd_table(rows),
     )
     write_text(ROOT / "reference" / "execution-bench.qmd", page("Execution-Graded Bench", body))
+
+
+def write_hardness_v4_pages() -> None:
+    results = load_hardness_results()
+    rows = [["Case", "Rung", "Hardness Axis", "Weak", "Repaired", "n", "Fixture"]]
+    for slug, case in results.get("cases", {}).items():
+        summary = case.get("summary", {})
+        rows.append(
+            [
+                case.get("title", slug),
+                case.get("rung", ""),
+                case.get("hardness_axis", ""),
+                f"{summary.get('weak_passes', 0)}/{summary.get('weak_runs', 0)} passed",
+                f"{summary.get('repaired_passes', 0)}/{summary.get('repaired_runs', 0)} passed",
+                str(summary.get("weak_runs", 0) + summary.get("repaired_runs", 0)),
+                f"[fixture](https://github.com/corbensorenson/software-grimoire/tree/main/{case.get('fixture_path', '')})",
+            ]
+        )
+
+    body = """# Bench v4 Hardness Ladder
+
+Bench v4 begins where the v3 field-spell corpus stopped being discriminating enough. The seed ladder keeps the evidence narrow: local deterministic artifacts are executed repeatedly in repo-local `tmp/` sandboxes so the fixture contract can be inspected before any model-surface claims are made.
+
+## Policy
+
+{policy}
+
+## Seed Rungs
+
+{rows}
+
+## Interpretation
+
+- The ambiguity rung tests whether an artifact resolves a stale docstring versus a stronger caller contract.
+- The hidden-invariant rung tests whether an artifact preserves replay order and mutation boundaries that are easy to erase with a naive cleanup.
+- These are execution checks for seed artifacts. They do not count as independent model-provider evidence, external adoption, or human review.
+- Model-surface runs should be added only as recorded transcripts or extracted artifacts; do not simulate them.
+
+Raw results: [results.json](../examples/evaluations/hardness-v4/results.json)
+""".format(
+        policy=results.get("policy", "pending"),
+        rows=qmd_table(rows),
+    )
+    write_text(ROOT / "reference" / "hardness-v4.qmd", page("Bench v4 Hardness Ladder", body))
 
 
 def load_jailbreak_results() -> dict:
@@ -4610,6 +4668,7 @@ def write_reference_pages(houses: list[dict], lexicon: list[dict], major: dict[i
             "- [Calibration](calibration.qmd)\n"
             "- [Bench v2](bench-v2.qmd)\n"
             "- [Execution-Graded Bench](execution-bench.qmd)\n"
+            "- [Bench v4 Hardness Ladder](hardness-v4.qmd)\n"
             "- [Model Artifact Execution](model-artifact-execution.qmd)\n"
             "- [Surface Comparison](surface-comparison.qmd)\n"
             "- [Jailbreak Resilience](jailbreak-resilience.qmd)\n"
@@ -5117,6 +5176,7 @@ def write_quarto_config(houses: list[dict]) -> None:
             "reference/calibration.qmd",
             "reference/bench-v2.qmd",
             "reference/execution-bench.qmd",
+            "reference/hardness-v4.qmd",
             "reference/model-artifact-execution.qmd",
             "reference/surface-comparison.qmd",
             "reference/jailbreak-resilience.qmd",
@@ -5295,6 +5355,7 @@ def main() -> None:
     write_proof_examples()
     write_evaluation_pages()
     write_execution_bench_assets()
+    write_hardness_v4_pages()
     write_jailbreak_pages()
     write_surface_comparison_pages()
     write_jailbreak_baseline_matrix()

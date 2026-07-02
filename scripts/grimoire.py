@@ -126,6 +126,10 @@ def export_assets(target: str) -> int:
     return 0
 
 
+def forwarded_args(args: list[str]) -> list[str]:
+    return args[1:] if args and args[0] == "--" else args
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(prog="grimoire", description="Software Grimoire maintenance CLI")
     sub = parser.add_subparsers(dest="command", required=True)
@@ -146,6 +150,8 @@ def main(argv: list[str] | None = None) -> int:
     bench_import.add_argument("path", help="manual import JSON path")
     bench_execution = bench_sub.add_parser("execution", help="run execution-graded trap bench")
     bench_execution.add_argument("args", nargs=argparse.REMAINDER, help="arguments forwarded to run_execution_bench.py")
+    bench_hardness = bench_sub.add_parser("hardness", help="run Bench v4 hardness ladder")
+    bench_hardness.add_argument("args", nargs=argparse.REMAINDER, help="arguments forwarded to run_hardness_bench.py")
     sub.add_parser("seals", help="regenerate seal summary data")
     sub.add_parser("render", help="render the Quarto site")
     sub.add_parser("test", help="run repository tests")
@@ -170,7 +176,9 @@ def main(argv: list[str] | None = None) -> int:
         if args.bench_command == "import":
             return run([sys.executable, "scripts/run_bench.py", "import", args.path])
         if args.bench_command == "execution":
-            return run([sys.executable, "scripts/run_bench.py", "execution", *args.args])
+            return run([sys.executable, "scripts/run_execution_bench.py", *forwarded_args(args.args)])
+        if args.bench_command == "hardness":
+            return run([sys.executable, "scripts/run_hardness_bench.py", *forwarded_args(args.args)])
         return 2
     if args.command == "seals":
         return run([sys.executable, "scripts/generate_seals.py"])
@@ -183,6 +191,7 @@ def main(argv: list[str] | None = None) -> int:
             [sys.executable, "scripts/bootstrap_project.py"],
             [sys.executable, "scripts/validate_data.py"],
             [sys.executable, "scripts/run_execution_bench.py"],
+            [sys.executable, "scripts/run_hardness_bench.py"],
             ["quarto", "render"],
             [sys.executable, "-m", "pytest"],
         ]:

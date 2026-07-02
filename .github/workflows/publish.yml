@@ -41,6 +41,9 @@ jobs:
       - name: Run execution bench
         run: python scripts/run_execution_bench.py
 
+      - name: Run Bench v4 hardness ladder
+        run: python scripts/run_hardness_bench.py
+
       - name: Check package build and install
         run: python scripts/check_package.py
 

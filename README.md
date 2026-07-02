@@ -74,6 +74,9 @@ Implemented:
   runs, model-produced artifact execution, real warded A/B runs, evidence
   browser pages, public smoke checks, package install checks, and usage-earned
   canon audit records.
+- Bench v4 seed hardness ladder with ambiguity and hidden-invariant executable
+  fixtures, weak/repaired seed artifacts, five deterministic repetitions per
+  variant, and a generated reference page.
 - JSON schemas, validation tooling, seal-stability tests, and rendered
   internal-link audit.
 - Working seal generation for spells and stacks, plus a local CLI for
@@ -103,6 +106,7 @@ python3 scripts/grimoire.py seal tmp/my-spell.json
 python3 scripts/grimoire.py export --target cursor
 python3 scripts/grimoire.py export --target claude-code
 python3 scripts/grimoire.py bench execution
+python3 scripts/grimoire.py bench hardness
 python3 scripts/grimoire.py bench import examples/evaluations/manual-import-template.json
 python3 scripts/install_assets.py --target cursor --dest tmp/grimoire-assets
 python3 scripts/install_assets.py --target claude-code --dest tmp/grimoire-assets

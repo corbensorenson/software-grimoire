@@ -1,0 +1,492 @@
+{
+  "generated_at": "2026-07-02T00:00:00Z",
+  "version": "4.0.0-hardness-ladder-seed",
+  "policy": "Bench v4 hardness fixtures run only local deterministic tests inside repo-local tmp/ sandboxes. Model-surface runs are not simulated.",
+  "repetitions_per_variant": 5,
+  "surfaces": {
+    "local-deterministic-grader": {
+      "kind": "local-tool",
+      "label": "Fixture-local deterministic pytest grader",
+      "provenance": "project-owned",
+      "limitation": "Execution evidence for seed artifacts, not independent model-provider evidence."
+    }
+  },
+  "cases": {
+    "ambiguity-disabled-status": {
+      "title": "Disabled Account Status Ambiguity",
+      "rung": "ambiguity",
+      "hardness_axis": "conflicting docstring versus caller contract",
+      "fixture_path": "examples/evaluations/hardness-v4/fixtures/ambiguity-disabled-status",
+      "ground_truth_path": "examples/evaluations/hardness-v4/fixtures/ambiguity-disabled-status/ground_truth.json",
+      "artifact": "account_status.py",
+      "test_file": "check_account_status.py",
+      "runs": [
+        {
+          "case_slug": "ambiguity-disabled-status",
+          "title": "Disabled Account Status Ambiguity",
+          "rung": "ambiguity",
+          "hardness_axis": "conflicting docstring versus caller contract",
+          "variant": "weak",
+          "repetition": 1,
+          "surface": "local-deterministic-grader",
+          "fixture_path": "examples/evaluations/hardness-v4/fixtures/ambiguity-disabled-status",
+          "ground_truth_path": "examples/evaluations/hardness-v4/fixtures/ambiguity-disabled-status/ground_truth.json",
+          "artifact_path": "examples/evaluations/hardness-v4/artifacts/ambiguity-disabled-status/weak/account_status.py",
+          "execution_command": "python -m pytest -q check_account_status.py",
+          "execution_result": {
+            "status": "failed",
+            "passed": false,
+            "exit_code": 1,
+            "stdout": "FF.F                                                                     [100%]\n=================================== FAILURES ===================================\n____________________ test_disabled_precedes_recent_activity ____________________\n\n    def test_disabled_precedes_recent_activity():\n        recent = NOW - timedelta(days=2)\n        disabled = NOW - timedelta(hours=1)\n>       assert classify_account(recent, disabled_at=disabled, now=NOW) == \"disabled\"\nE       AssertionError: assert 'active' == 'disabled'\nE         \nE         - disabled\nE         + active\n\ncheck_account_status.py:12: AssertionError\n______________________ test_missing_last_seen_is_unknown _______________________\n\n    def test_missing_last_seen_is_unknown():\n>       assert classify_account(None, now=NOW) == \"unknown\"\nE       AssertionError: assert 'dormant' == 'unknown'\nE         \nE         - unknown\nE         + dormant\n\ncheck_account_status.py:16: AssertionError\n________ test_naive_datetimes_are_rejected_instead_of_silently_guessed _________\n\n    def test_naive_datetimes_are_rejected_instead_of_silently_guessed():\n        naive = datetime(2026, 7, 1, 12, 0)\n        try:\n>           classify_account(naive, now=NOW)\n\ncheck_account_status.py:27: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nlast_seen_at = datetime.datetime(2026, 7, 1, 12, 0), disabled_at = None\nnow = datetime.datetime(2026, 7, 2, 12, 0, tzinfo=datetime.timezone.utc)\n\n    def classify_account(last_seen_at, disabled_at=None, now=None):\n        \"\"\"Return active when the account was seen within the last 30 days.\"\"\"\n        now = now or datetime.now(timezone.utc)\n        if last_seen_at is None:\n            return \"dormant\"\n>       if now - last_seen_at <= timedelta(days=30):\nE       TypeError: can't subtract offset-naive and offset-aware datetimes\n\naccount_status.py:9: TypeError\n=========================== short test summary info ============================\nFAILED check_account_status.py::test_disabled_precedes_recent_activity - Asse...\nFAILED check_account_status.py::test_missing_last_seen_is_unknown - Assertion...\nFAILED check_account_status.py::test_naive_datetimes_are_rejected_instead_of_silently_guessed\n3 failed, 1 passed in 0.04s",
+            "stderr": "",
+            "timeout_seconds": 15
+          },
+          "grader_version": "hardness-v4-pytest-v1"
+        },
+        {
+          "case_slug": "ambiguity-disabled-status",
+          "title": "Disabled Account Status Ambiguity",
+          "rung": "ambiguity",
+          "hardness_axis": "conflicting docstring versus caller contract",
+          "variant": "weak",
+          "repetition": 2,
+          "surface": "local-deterministic-grader",
+          "fixture_path": "examples/evaluations/hardness-v4/fixtures/ambiguity-disabled-status",
+          "ground_truth_path": "examples/evaluations/hardness-v4/fixtures/ambiguity-disabled-status/ground_truth.json",
+          "artifact_path": "examples/evaluations/hardness-v4/artifacts/ambiguity-disabled-status/weak/account_status.py",
+          "execution_command": "python -m pytest -q check_account_status.py",
+          "execution_result": {
+            "status": "failed",
+            "passed": false,
+            "exit_code": 1,
+            "stdout": "FF.F                                                                     [100%]\n=================================== FAILURES ===================================\n____________________ test_disabled_precedes_recent_activity ____________________\n\n    def test_disabled_precedes_recent_activity():\n        recent = NOW - timedelta(days=2)\n        disabled = NOW - timedelta(hours=1)\n>       assert classify_account(recent, disabled_at=disabled, now=NOW) == \"disabled\"\nE       AssertionError: assert 'active' == 'disabled'\nE         \nE         - disabled\nE         + active\n\ncheck_account_status.py:12: AssertionError\n______________________ test_missing_last_seen_is_unknown _______________________\n\n    def test_missing_last_seen_is_unknown():\n>       assert classify_account(None, now=NOW) == \"unknown\"\nE       AssertionError: assert 'dormant' == 'unknown'\nE         \nE         - unknown\nE         + dormant\n\ncheck_account_status.py:16: AssertionError\n________ test_naive_datetimes_are_rejected_instead_of_silently_guessed _________\n\n    def test_naive_datetimes_are_rejected_instead_of_silently_guessed():\n        naive = datetime(2026, 7, 1, 12, 0)\n        try:\n>           classify_account(naive, now=NOW)\n\ncheck_account_status.py:27: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nlast_seen_at = datetime.datetime(2026, 7, 1, 12, 0), disabled_at = None\nnow = datetime.datetime(2026, 7, 2, 12, 0, tzinfo=datetime.timezone.utc)\n\n    def classify_account(last_seen_at, disabled_at=None, now=None):\n        \"\"\"Return active when the account was seen within the last 30 days.\"\"\"\n        now = now or datetime.now(timezone.utc)\n        if last_seen_at is None:\n            return \"dormant\"\n>       if now - last_seen_at <= timedelta(days=30):\nE       TypeError: can't subtract offset-naive and offset-aware datetimes\n\naccount_status.py:9: TypeError\n=========================== short test summary info ============================\nFAILED check_account_status.py::test_disabled_precedes_recent_activity - Asse...\nFAILED check_account_status.py::test_missing_last_seen_is_unknown - Assertion...\nFAILED check_account_status.py::test_naive_datetimes_are_rejected_instead_of_silently_guessed\n3 failed, 1 passed in 0.03s",
+            "stderr": "",
+            "timeout_seconds": 15
+          },
+          "grader_version": "hardness-v4-pytest-v1"
+        },
+        {
+          "case_slug": "ambiguity-disabled-status",
+          "title": "Disabled Account Status Ambiguity",
+          "rung": "ambiguity",
+          "hardness_axis": "conflicting docstring versus caller contract",
+          "variant": "weak",
+          "repetition": 3,
+          "surface": "local-deterministic-grader",
+          "fixture_path": "examples/evaluations/hardness-v4/fixtures/ambiguity-disabled-status",
+          "ground_truth_path": "examples/evaluations/hardness-v4/fixtures/ambiguity-disabled-status/ground_truth.json",
+          "artifact_path": "examples/evaluations/hardness-v4/artifacts/ambiguity-disabled-status/weak/account_status.py",
+          "execution_command": "python -m pytest -q check_account_status.py",
+          "execution_result": {
+            "status": "failed",
+            "passed": false,
+            "exit_code": 1,
+            "stdout": "FF.F                                                                     [100%]\n=================================== FAILURES ===================================\n____________________ test_disabled_precedes_recent_activity ____________________\n\n    def test_disabled_precedes_recent_activity():\n        recent = NOW - timedelta(days=2)\n        disabled = NOW - timedelta(hours=1)\n>       assert classify_account(recent, disabled_at=disabled, now=NOW) == \"disabled\"\nE       AssertionError: assert 'active' == 'disabled'\nE         \nE         - disabled\nE         + active\n\ncheck_account_status.py:12: AssertionError\n______________________ test_missing_last_seen_is_unknown _______________________\n\n    def test_missing_last_seen_is_unknown():\n>       assert classify_account(None, now=NOW) == \"unknown\"\nE       AssertionError: assert 'dormant' == 'unknown'\nE         \nE         - unknown\nE         + dormant\n\ncheck_account_status.py:16: AssertionError\n________ test_naive_datetimes_are_rejected_instead_of_silently_guessed _________\n\n    def test_naive_datetimes_are_rejected_instead_of_silently_guessed():\n        naive = datetime(2026, 7, 1, 12, 0)\n        try:\n>           classify_account(naive, now=NOW)\n\ncheck_account_status.py:27: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nlast_seen_at = datetime.datetime(2026, 7, 1, 12, 0), disabled_at = None\nnow = datetime.datetime(2026, 7, 2, 12, 0, tzinfo=datetime.timezone.utc)\n\n    def classify_account(last_seen_at, disabled_at=None, now=None):\n        \"\"\"Return active when the account was seen within the last 30 days.\"\"\"\n        now = now or datetime.now(timezone.utc)\n        if last_seen_at is None:\n            return \"dormant\"\n>       if now - last_seen_at <= timedelta(days=30):\nE       TypeError: can't subtract offset-naive and offset-aware datetimes\n\naccount_status.py:9: TypeError\n=========================== short test summary info ============================\nFAILED check_account_status.py::test_disabled_precedes_recent_activity - Asse...\nFAILED check_account_status.py::test_missing_last_seen_is_unknown - Assertion...\nFAILED check_account_status.py::test_naive_datetimes_are_rejected_instead_of_silently_guessed\n3 failed, 1 passed in 0.03s",
+            "stderr": "",
+            "timeout_seconds": 15
+          },
+          "grader_version": "hardness-v4-pytest-v1"
+        },
+        {
+          "case_slug": "ambiguity-disabled-status",
+          "title": "Disabled Account Status Ambiguity",
+          "rung": "ambiguity",
+          "hardness_axis": "conflicting docstring versus caller contract",
+          "variant": "weak",
+          "repetition": 4,
+          "surface": "local-deterministic-grader",
+          "fixture_path": "examples/evaluations/hardness-v4/fixtures/ambiguity-disabled-status",
+          "ground_truth_path": "examples/evaluations/hardness-v4/fixtures/ambiguity-disabled-status/ground_truth.json",
+          "artifact_path": "examples/evaluations/hardness-v4/artifacts/ambiguity-disabled-status/weak/account_status.py",
+          "execution_command": "python -m pytest -q check_account_status.py",
+          "execution_result": {
+            "status": "failed",
+            "passed": false,
+            "exit_code": 1,
+            "stdout": "FF.F                                                                     [100%]\n=================================== FAILURES ===================================\n____________________ test_disabled_precedes_recent_activity ____________________\n\n    def test_disabled_precedes_recent_activity():\n        recent = NOW - timedelta(days=2)\n        disabled = NOW - timedelta(hours=1)\n>       assert classify_account(recent, disabled_at=disabled, now=NOW) == \"disabled\"\nE       AssertionError: assert 'active' == 'disabled'\nE         \nE         - disabled\nE         + active\n\ncheck_account_status.py:12: AssertionError\n______________________ test_missing_last_seen_is_unknown _______________________\n\n    def test_missing_last_seen_is_unknown():\n>       assert classify_account(None, now=NOW) == \"unknown\"\nE       AssertionError: assert 'dormant' == 'unknown'\nE         \nE         - unknown\nE         + dormant\n\ncheck_account_status.py:16: AssertionError\n________ test_naive_datetimes_are_rejected_instead_of_silently_guessed _________\n\n    def test_naive_datetimes_are_rejected_instead_of_silently_guessed():\n        naive = datetime(2026, 7, 1, 12, 0)\n        try:\n>           classify_account(naive, now=NOW)\n\ncheck_account_status.py:27: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nlast_seen_at = datetime.datetime(2026, 7, 1, 12, 0), disabled_at = None\nnow = datetime.datetime(2026, 7, 2, 12, 0, tzinfo=datetime.timezone.utc)\n\n    def classify_account(last_seen_at, disabled_at=None, now=None):\n        \"\"\"Return active when the account was seen within the last 30 days.\"\"\"\n        now = now or datetime.now(timezone.utc)\n        if last_seen_at is None:\n            return \"dormant\"\n>       if now - last_seen_at <= timedelta(days=30):\nE       TypeError: can't subtract offset-naive and offset-aware datetimes\n\naccount_status.py:9: TypeError\n=========================== short test summary info ============================\nFAILED check_account_status.py::test_disabled_precedes_recent_activity - Asse...\nFAILED check_account_status.py::test_missing_last_seen_is_unknown - Assertion...\nFAILED check_account_status.py::test_naive_datetimes_are_rejected_instead_of_silently_guessed\n3 failed, 1 passed in 0.08s",
+            "stderr": "",
+            "timeout_seconds": 15
+          },
+          "grader_version": "hardness-v4-pytest-v1"
+        },
+        {
+          "case_slug": "ambiguity-disabled-status",
+          "title": "Disabled Account Status Ambiguity",
+          "rung": "ambiguity",
+          "hardness_axis": "conflicting docstring versus caller contract",
+          "variant": "weak",
+          "repetition": 5,
+          "surface": "local-deterministic-grader",
+          "fixture_path": "examples/evaluations/hardness-v4/fixtures/ambiguity-disabled-status",
+          "ground_truth_path": "examples/evaluations/hardness-v4/fixtures/ambiguity-disabled-status/ground_truth.json",
+          "artifact_path": "examples/evaluations/hardness-v4/artifacts/ambiguity-disabled-status/weak/account_status.py",
+          "execution_command": "python -m pytest -q check_account_status.py",
+          "execution_result": {
+            "status": "failed",
+            "passed": false,
+            "exit_code": 1,
+            "stdout": "FF.F                                                                     [100%]\n=================================== FAILURES ===================================\n____________________ test_disabled_precedes_recent_activity ____________________\n\n    def test_disabled_precedes_recent_activity():\n        recent = NOW - timedelta(days=2)\n        disabled = NOW - timedelta(hours=1)\n>       assert classify_account(recent, disabled_at=disabled, now=NOW) == \"disabled\"\nE       AssertionError: assert 'active' == 'disabled'\nE         \nE         - disabled\nE         + active\n\ncheck_account_status.py:12: AssertionError\n______________________ test_missing_last_seen_is_unknown _______________________\n\n    def test_missing_last_seen_is_unknown():\n>       assert classify_account(None, now=NOW) == \"unknown\"\nE       AssertionError: assert 'dormant' == 'unknown'\nE         \nE         - unknown\nE         + dormant\n\ncheck_account_status.py:16: AssertionError\n________ test_naive_datetimes_are_rejected_instead_of_silently_guessed _________\n\n    def test_naive_datetimes_are_rejected_instead_of_silently_guessed():\n        naive = datetime(2026, 7, 1, 12, 0)\n        try:\n>           classify_account(naive, now=NOW)\n\ncheck_account_status.py:27: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nlast_seen_at = datetime.datetime(2026, 7, 1, 12, 0), disabled_at = None\nnow = datetime.datetime(2026, 7, 2, 12, 0, tzinfo=datetime.timezone.utc)\n\n    def classify_account(last_seen_at, disabled_at=None, now=None):\n        \"\"\"Return active when the account was seen within the last 30 days.\"\"\"\n        now = now or datetime.now(timezone.utc)\n        if last_seen_at is None:\n            return \"dormant\"\n>       if now - last_seen_at <= timedelta(days=30):\nE       TypeError: can't subtract offset-naive and offset-aware datetimes\n\naccount_status.py:9: TypeError\n=========================== short test summary info ============================\nFAILED check_account_status.py::test_disabled_precedes_recent_activity - Asse...\nFAILED check_account_status.py::test_missing_last_seen_is_unknown - Assertion...\nFAILED check_account_status.py::test_naive_datetimes_are_rejected_instead_of_silently_guessed\n3 failed, 1 passed in 0.03s",
+            "stderr": "",
+            "timeout_seconds": 15
+          },
+          "grader_version": "hardness-v4-pytest-v1"
+        },
+        {
+          "case_slug": "ambiguity-disabled-status",
+          "title": "Disabled Account Status Ambiguity",
+          "rung": "ambiguity",
+          "hardness_axis": "conflicting docstring versus caller contract",
+          "variant": "repaired",
+          "repetition": 1,
+          "surface": "local-deterministic-grader",
+          "fixture_path": "examples/evaluations/hardness-v4/fixtures/ambiguity-disabled-status",
+          "ground_truth_path": "examples/evaluations/hardness-v4/fixtures/ambiguity-disabled-status/ground_truth.json",
+          "artifact_path": "examples/evaluations/hardness-v4/artifacts/ambiguity-disabled-status/repaired/account_status.py",
+          "execution_command": "python -m pytest -q check_account_status.py",
+          "execution_result": {
+            "status": "passed",
+            "passed": true,
+            "exit_code": 0,
+            "stdout": "....                                                                     [100%]\n4 passed in 0.02s",
+            "stderr": "",
+            "timeout_seconds": 15
+          },
+          "grader_version": "hardness-v4-pytest-v1"
+        },
+        {
+          "case_slug": "ambiguity-disabled-status",
+          "title": "Disabled Account Status Ambiguity",
+          "rung": "ambiguity",
+          "hardness_axis": "conflicting docstring versus caller contract",
+          "variant": "repaired",
+          "repetition": 2,
+          "surface": "local-deterministic-grader",
+          "fixture_path": "examples/evaluations/hardness-v4/fixtures/ambiguity-disabled-status",
+          "ground_truth_path": "examples/evaluations/hardness-v4/fixtures/ambiguity-disabled-status/ground_truth.json",
+          "artifact_path": "examples/evaluations/hardness-v4/artifacts/ambiguity-disabled-status/repaired/account_status.py",
+          "execution_command": "python -m pytest -q check_account_status.py",
+          "execution_result": {
+            "status": "passed",
+            "passed": true,
+            "exit_code": 0,
+            "stdout": "....                                                                     [100%]\n4 passed in 0.01s",
+            "stderr": "",
+            "timeout_seconds": 15
+          },
+          "grader_version": "hardness-v4-pytest-v1"
+        },
+        {
+          "case_slug": "ambiguity-disabled-status",
+          "title": "Disabled Account Status Ambiguity",
+          "rung": "ambiguity",
+          "hardness_axis": "conflicting docstring versus caller contract",
+          "variant": "repaired",
+          "repetition": 3,
+          "surface": "local-deterministic-grader",
+          "fixture_path": "examples/evaluations/hardness-v4/fixtures/ambiguity-disabled-status",
+          "ground_truth_path": "examples/evaluations/hardness-v4/fixtures/ambiguity-disabled-status/ground_truth.json",
+          "artifact_path": "examples/evaluations/hardness-v4/artifacts/ambiguity-disabled-status/repaired/account_status.py",
+          "execution_command": "python -m pytest -q check_account_status.py",
+          "execution_result": {
+            "status": "passed",
+            "passed": true,
+            "exit_code": 0,
+            "stdout": "....                                                                     [100%]\n4 passed in 0.01s",
+            "stderr": "",
+            "timeout_seconds": 15
+          },
+          "grader_version": "hardness-v4-pytest-v1"
+        },
+        {
+          "case_slug": "ambiguity-disabled-status",
+          "title": "Disabled Account Status Ambiguity",
+          "rung": "ambiguity",
+          "hardness_axis": "conflicting docstring versus caller contract",
+          "variant": "repaired",
+          "repetition": 4,
+          "surface": "local-deterministic-grader",
+          "fixture_path": "examples/evaluations/hardness-v4/fixtures/ambiguity-disabled-status",
+          "ground_truth_path": "examples/evaluations/hardness-v4/fixtures/ambiguity-disabled-status/ground_truth.json",
+          "artifact_path": "examples/evaluations/hardness-v4/artifacts/ambiguity-disabled-status/repaired/account_status.py",
+          "execution_command": "python -m pytest -q check_account_status.py",
+          "execution_result": {
+            "status": "passed",
+            "passed": true,
+            "exit_code": 0,
+            "stdout": "....                                                                     [100%]\n4 passed in 0.02s",
+            "stderr": "",
+            "timeout_seconds": 15
+          },
+          "grader_version": "hardness-v4-pytest-v1"
+        },
+        {
+          "case_slug": "ambiguity-disabled-status",
+          "title": "Disabled Account Status Ambiguity",
+          "rung": "ambiguity",
+          "hardness_axis": "conflicting docstring versus caller contract",
+          "variant": "repaired",
+          "repetition": 5,
+          "surface": "local-deterministic-grader",
+          "fixture_path": "examples/evaluations/hardness-v4/fixtures/ambiguity-disabled-status",
+          "ground_truth_path": "examples/evaluations/hardness-v4/fixtures/ambiguity-disabled-status/ground_truth.json",
+          "artifact_path": "examples/evaluations/hardness-v4/artifacts/ambiguity-disabled-status/repaired/account_status.py",
+          "execution_command": "python -m pytest -q check_account_status.py",
+          "execution_result": {
+            "status": "passed",
+            "passed": true,
+            "exit_code": 0,
+            "stdout": "....                                                                     [100%]\n4 passed in 0.01s",
+            "stderr": "",
+            "timeout_seconds": 15
+          },
+          "grader_version": "hardness-v4-pytest-v1"
+        }
+      ],
+      "summary": {
+        "weak_runs": 5,
+        "repaired_runs": 5,
+        "weak_passes": 0,
+        "repaired_passes": 5,
+        "execution_delta": "weak passed 0/5; repaired passed 5/5"
+      }
+    },
+    "hidden-invariant-event-order": {
+      "title": "Event Deduplication Hidden Order Invariant",
+      "rung": "hidden-invariant",
+      "hardness_axis": "order and replay semantics hidden behind simple dedupe wording",
+      "fixture_path": "examples/evaluations/hardness-v4/fixtures/hidden-invariant-event-order",
+      "ground_truth_path": "examples/evaluations/hardness-v4/fixtures/hidden-invariant-event-order/ground_truth.json",
+      "artifact": "events.py",
+      "test_file": "check_events.py",
+      "runs": [
+        {
+          "case_slug": "hidden-invariant-event-order",
+          "title": "Event Deduplication Hidden Order Invariant",
+          "rung": "hidden-invariant",
+          "hardness_axis": "order and replay semantics hidden behind simple dedupe wording",
+          "variant": "weak",
+          "repetition": 1,
+          "surface": "local-deterministic-grader",
+          "fixture_path": "examples/evaluations/hardness-v4/fixtures/hidden-invariant-event-order",
+          "ground_truth_path": "examples/evaluations/hardness-v4/fixtures/hidden-invariant-event-order/ground_truth.json",
+          "artifact_path": "examples/evaluations/hardness-v4/artifacts/hidden-invariant-event-order/weak/events.py",
+          "execution_command": "python -m pytest -q check_events.py",
+          "execution_result": {
+            "status": "failed",
+            "passed": false,
+            "exit_code": 1,
+            "stdout": "F.F                                                                      [100%]\n=================================== FAILURES ===================================\n_____ test_preserves_first_seen_order_and_timestamp_while_merging_payloads _____\n\n    def test_preserves_first_seen_order_and_timestamp_while_merging_payloads():\n        events = [\n            {\"id\": \"b\", \"timestamp\": \"2026-07-02T10:00:00Z\", \"payload\": {\"count\": 1, \"note\": None}},\n            {\"id\": \"a\", \"timestamp\": \"2026-07-02T10:01:00Z\", \"payload\": {\"count\": 2}},\n            {\"id\": \"b\", \"timestamp\": \"2026-07-02T10:02:00Z\", \"payload\": {\"note\": \"kept\", \"flag\": True}},\n        ]\n        result = dedupe_events(events)\n>       assert [event[\"id\"] for event in result] == [\"b\", \"a\"]\nE       AssertionError: assert ['a', 'b'] == ['b', 'a']\nE         \nE         At index 0 diff: 'a' != 'b'\nE         Use -v to get more diff\n\ncheck_events.py:13: AssertionError\n___________ test_rejects_missing_id_instead_of_collapsing_into_none ____________\n\n    def test_rejects_missing_id_instead_of_collapsing_into_none():\n        try:\n            dedupe_events([{\"timestamp\": \"2026-07-02T10:00:00Z\", \"payload\": {}}])\n        except ValueError as exc:\n            assert \"id\" in str(exc)\n        else:\n>           raise AssertionError(\"events without id must be rejected\")\nE           AssertionError: events without id must be rejected\n\ncheck_events.py:34: AssertionError\n=========================== short test summary info ============================\nFAILED check_events.py::test_preserves_first_seen_order_and_timestamp_while_merging_payloads\nFAILED check_events.py::test_rejects_missing_id_instead_of_collapsing_into_none\n2 failed, 1 passed in 0.02s",
+            "stderr": "",
+            "timeout_seconds": 15
+          },
+          "grader_version": "hardness-v4-pytest-v1"
+        },
+        {
+          "case_slug": "hidden-invariant-event-order",
+          "title": "Event Deduplication Hidden Order Invariant",
+          "rung": "hidden-invariant",
+          "hardness_axis": "order and replay semantics hidden behind simple dedupe wording",
+          "variant": "weak",
+          "repetition": 2,
+          "surface": "local-deterministic-grader",
+          "fixture_path": "examples/evaluations/hardness-v4/fixtures/hidden-invariant-event-order",
+          "ground_truth_path": "examples/evaluations/hardness-v4/fixtures/hidden-invariant-event-order/ground_truth.json",
+          "artifact_path": "examples/evaluations/hardness-v4/artifacts/hidden-invariant-event-order/weak/events.py",
+          "execution_command": "python -m pytest -q check_events.py",
+          "execution_result": {
+            "status": "failed",
+            "passed": false,
+            "exit_code": 1,
+            "stdout": "F.F                                                                      [100%]\n=================================== FAILURES ===================================\n_____ test_preserves_first_seen_order_and_timestamp_while_merging_payloads _____\n\n    def test_preserves_first_seen_order_and_timestamp_while_merging_payloads():\n        events = [\n            {\"id\": \"b\", \"timestamp\": \"2026-07-02T10:00:00Z\", \"payload\": {\"count\": 1, \"note\": None}},\n            {\"id\": \"a\", \"timestamp\": \"2026-07-02T10:01:00Z\", \"payload\": {\"count\": 2}},\n            {\"id\": \"b\", \"timestamp\": \"2026-07-02T10:02:00Z\", \"payload\": {\"note\": \"kept\", \"flag\": True}},\n        ]\n        result = dedupe_events(events)\n>       assert [event[\"id\"] for event in result] == [\"b\", \"a\"]\nE       AssertionError: assert ['a', 'b'] == ['b', 'a']\nE         \nE         At index 0 diff: 'a' != 'b'\nE         Use -v to get more diff\n\ncheck_events.py:13: AssertionError\n___________ test_rejects_missing_id_instead_of_collapsing_into_none ____________\n\n    def test_rejects_missing_id_instead_of_collapsing_into_none():\n        try:\n            dedupe_events([{\"timestamp\": \"2026-07-02T10:00:00Z\", \"payload\": {}}])\n        except ValueError as exc:\n            assert \"id\" in str(exc)\n        else:\n>           raise AssertionError(\"events without id must be rejected\")\nE           AssertionError: events without id must be rejected\n\ncheck_events.py:34: AssertionError\n=========================== short test summary info ============================\nFAILED check_events.py::test_preserves_first_seen_order_and_timestamp_while_merging_payloads\nFAILED check_events.py::test_rejects_missing_id_instead_of_collapsing_into_none\n2 failed, 1 passed in 0.02s",
+            "stderr": "",
+            "timeout_seconds": 15
+          },
+          "grader_version": "hardness-v4-pytest-v1"
+        },
+        {
+          "case_slug": "hidden-invariant-event-order",
+          "title": "Event Deduplication Hidden Order Invariant",
+          "rung": "hidden-invariant",
+          "hardness_axis": "order and replay semantics hidden behind simple dedupe wording",
+          "variant": "weak",
+          "repetition": 3,
+          "surface": "local-deterministic-grader",
+          "fixture_path": "examples/evaluations/hardness-v4/fixtures/hidden-invariant-event-order",
+          "ground_truth_path": "examples/evaluations/hardness-v4/fixtures/hidden-invariant-event-order/ground_truth.json",
+          "artifact_path": "examples/evaluations/hardness-v4/artifacts/hidden-invariant-event-order/weak/events.py",
+          "execution_command": "python -m pytest -q check_events.py",
+          "execution_result": {
+            "status": "failed",
+            "passed": false,
+            "exit_code": 1,
+            "stdout": "F.F                                                                      [100%]\n=================================== FAILURES ===================================\n_____ test_preserves_first_seen_order_and_timestamp_while_merging_payloads _____\n\n    def test_preserves_first_seen_order_and_timestamp_while_merging_payloads():\n        events = [\n            {\"id\": \"b\", \"timestamp\": \"2026-07-02T10:00:00Z\", \"payload\": {\"count\": 1, \"note\": None}},\n            {\"id\": \"a\", \"timestamp\": \"2026-07-02T10:01:00Z\", \"payload\": {\"count\": 2}},\n            {\"id\": \"b\", \"timestamp\": \"2026-07-02T10:02:00Z\", \"payload\": {\"note\": \"kept\", \"flag\": True}},\n        ]\n        result = dedupe_events(events)\n>       assert [event[\"id\"] for event in result] == [\"b\", \"a\"]\nE       AssertionError: assert ['a', 'b'] == ['b', 'a']\nE         \nE         At index 0 diff: 'a' != 'b'\nE         Use -v to get more diff\n\ncheck_events.py:13: AssertionError\n___________ test_rejects_missing_id_instead_of_collapsing_into_none ____________\n\n    def test_rejects_missing_id_instead_of_collapsing_into_none():\n        try:\n            dedupe_events([{\"timestamp\": \"2026-07-02T10:00:00Z\", \"payload\": {}}])\n        except ValueError as exc:\n            assert \"id\" in str(exc)\n        else:\n>           raise AssertionError(\"events without id must be rejected\")\nE           AssertionError: events without id must be rejected\n\ncheck_events.py:34: AssertionError\n=========================== short test summary info ============================\nFAILED check_events.py::test_preserves_first_seen_order_and_timestamp_while_merging_payloads\nFAILED check_events.py::test_rejects_missing_id_instead_of_collapsing_into_none\n2 failed, 1 passed in 0.03s",
+            "stderr": "",
+            "timeout_seconds": 15
+          },
+          "grader_version": "hardness-v4-pytest-v1"
+        },
+        {
+          "case_slug": "hidden-invariant-event-order",
+          "title": "Event Deduplication Hidden Order Invariant",
+          "rung": "hidden-invariant",
+          "hardness_axis": "order and replay semantics hidden behind simple dedupe wording",
+          "variant": "weak",
+          "repetition": 4,
+          "surface": "local-deterministic-grader",
+          "fixture_path": "examples/evaluations/hardness-v4/fixtures/hidden-invariant-event-order",
+          "ground_truth_path": "examples/evaluations/hardness-v4/fixtures/hidden-invariant-event-order/ground_truth.json",
+          "artifact_path": "examples/evaluations/hardness-v4/artifacts/hidden-invariant-event-order/weak/events.py",
+          "execution_command": "python -m pytest -q check_events.py",
+          "execution_result": {
+            "status": "failed",
+            "passed": false,
+            "exit_code": 1,
+            "stdout": "F.F                                                                      [100%]\n=================================== FAILURES ===================================\n_____ test_preserves_first_seen_order_and_timestamp_while_merging_payloads _____\n\n    def test_preserves_first_seen_order_and_timestamp_while_merging_payloads():\n        events = [\n            {\"id\": \"b\", \"timestamp\": \"2026-07-02T10:00:00Z\", \"payload\": {\"count\": 1, \"note\": None}},\n            {\"id\": \"a\", \"timestamp\": \"2026-07-02T10:01:00Z\", \"payload\": {\"count\": 2}},\n            {\"id\": \"b\", \"timestamp\": \"2026-07-02T10:02:00Z\", \"payload\": {\"note\": \"kept\", \"flag\": True}},\n        ]\n        result = dedupe_events(events)\n>       assert [event[\"id\"] for event in result] == [\"b\", \"a\"]\nE       AssertionError: assert ['a', 'b'] == ['b', 'a']\nE         \nE         At index 0 diff: 'a' != 'b'\nE         Use -v to get more diff\n\ncheck_events.py:13: AssertionError\n___________ test_rejects_missing_id_instead_of_collapsing_into_none ____________\n\n    def test_rejects_missing_id_instead_of_collapsing_into_none():\n        try:\n            dedupe_events([{\"timestamp\": \"2026-07-02T10:00:00Z\", \"payload\": {}}])\n        except ValueError as exc:\n            assert \"id\" in str(exc)\n        else:\n>           raise AssertionError(\"events without id must be rejected\")\nE           AssertionError: events without id must be rejected\n\ncheck_events.py:34: AssertionError\n=========================== short test summary info ============================\nFAILED check_events.py::test_preserves_first_seen_order_and_timestamp_while_merging_payloads\nFAILED check_events.py::test_rejects_missing_id_instead_of_collapsing_into_none\n2 failed, 1 passed in 0.02s",
+            "stderr": "",
+            "timeout_seconds": 15
+          },
+          "grader_version": "hardness-v4-pytest-v1"
+        },
+        {
+          "case_slug": "hidden-invariant-event-order",
+          "title": "Event Deduplication Hidden Order Invariant",
+          "rung": "hidden-invariant",
+          "hardness_axis": "order and replay semantics hidden behind simple dedupe wording",
+          "variant": "weak",
+          "repetition": 5,
+          "surface": "local-deterministic-grader",
+          "fixture_path": "examples/evaluations/hardness-v4/fixtures/hidden-invariant-event-order",
+          "ground_truth_path": "examples/evaluations/hardness-v4/fixtures/hidden-invariant-event-order/ground_truth.json",
+          "artifact_path": "examples/evaluations/hardness-v4/artifacts/hidden-invariant-event-order/weak/events.py",
+          "execution_command": "python -m pytest -q check_events.py",
+          "execution_result": {
+            "status": "failed",
+            "passed": false,
+            "exit_code": 1,
+            "stdout": "F.F                                                                      [100%]\n=================================== FAILURES ===================================\n_____ test_preserves_first_seen_order_and_timestamp_while_merging_payloads _____\n\n    def test_preserves_first_seen_order_and_timestamp_while_merging_payloads():\n        events = [\n            {\"id\": \"b\", \"timestamp\": \"2026-07-02T10:00:00Z\", \"payload\": {\"count\": 1, \"note\": None}},\n            {\"id\": \"a\", \"timestamp\": \"2026-07-02T10:01:00Z\", \"payload\": {\"count\": 2}},\n            {\"id\": \"b\", \"timestamp\": \"2026-07-02T10:02:00Z\", \"payload\": {\"note\": \"kept\", \"flag\": True}},\n        ]\n        result = dedupe_events(events)\n>       assert [event[\"id\"] for event in result] == [\"b\", \"a\"]\nE       AssertionError: assert ['a', 'b'] == ['b', 'a']\nE         \nE         At index 0 diff: 'a' != 'b'\nE         Use -v to get more diff\n\ncheck_events.py:13: AssertionError\n___________ test_rejects_missing_id_instead_of_collapsing_into_none ____________\n\n    def test_rejects_missing_id_instead_of_collapsing_into_none():\n        try:\n            dedupe_events([{\"timestamp\": \"2026-07-02T10:00:00Z\", \"payload\": {}}])\n        except ValueError as exc:\n            assert \"id\" in str(exc)\n        else:\n>           raise AssertionError(\"events without id must be rejected\")\nE           AssertionError: events without id must be rejected\n\ncheck_events.py:34: AssertionError\n=========================== short test summary info ============================\nFAILED check_events.py::test_preserves_first_seen_order_and_timestamp_while_merging_payloads\nFAILED check_events.py::test_rejects_missing_id_instead_of_collapsing_into_none\n2 failed, 1 passed in 0.02s",
+            "stderr": "",
+            "timeout_seconds": 15
+          },
+          "grader_version": "hardness-v4-pytest-v1"
+        },
+        {
+          "case_slug": "hidden-invariant-event-order",
+          "title": "Event Deduplication Hidden Order Invariant",
+          "rung": "hidden-invariant",
+          "hardness_axis": "order and replay semantics hidden behind simple dedupe wording",
+          "variant": "repaired",
+          "repetition": 1,
+          "surface": "local-deterministic-grader",
+          "fixture_path": "examples/evaluations/hardness-v4/fixtures/hidden-invariant-event-order",
+          "ground_truth_path": "examples/evaluations/hardness-v4/fixtures/hidden-invariant-event-order/ground_truth.json",
+          "artifact_path": "examples/evaluations/hardness-v4/artifacts/hidden-invariant-event-order/repaired/events.py",
+          "execution_command": "python -m pytest -q check_events.py",
+          "execution_result": {
+            "status": "passed",
+            "passed": true,
+            "exit_code": 0,
+            "stdout": "...                                                                      [100%]\n3 passed in 0.01s",
+            "stderr": "",
+            "timeout_seconds": 15
+          },
+          "grader_version": "hardness-v4-pytest-v1"
+        },
+        {
+          "case_slug": "hidden-invariant-event-order",
+          "title": "Event Deduplication Hidden Order Invariant",
+          "rung": "hidden-invariant",
+          "hardness_axis": "order and replay semantics hidden behind simple dedupe wording",
+          "variant": "repaired",
+          "repetition": 2,
+          "surface": "local-deterministic-grader",
+          "fixture_path": "examples/evaluations/hardness-v4/fixtures/hidden-invariant-event-order",
+          "ground_truth_path": "examples/evaluations/hardness-v4/fixtures/hidden-invariant-event-order/ground_truth.json",
+          "artifact_path": "examples/evaluations/hardness-v4/artifacts/hidden-invariant-event-order/repaired/events.py",
+          "execution_command": "python -m pytest -q check_events.py",
+          "execution_result": {
+            "status": "passed",
+            "passed": true,
+            "exit_code": 0,
+            "stdout": "...                                                                      [100%]\n3 passed in 0.01s",
+            "stderr": "",
+            "timeout_seconds": 15
+          },
+          "grader_version": "hardness-v4-pytest-v1"
+        },
+        {
+          "case_slug": "hidden-invariant-event-order",
+          "title": "Event Deduplication Hidden Order Invariant",
+          "rung": "hidden-invariant",
+          "hardness_axis": "order and replay semantics hidden behind simple dedupe wording",
+          "variant": "repaired",
+          "repetition": 3,
+          "surface": "local-deterministic-grader",
+          "fixture_path": "examples/evaluations/hardness-v4/fixtures/hidden-invariant-event-order",
+          "ground_truth_path": "examples/evaluations/hardness-v4/fixtures/hidden-invariant-event-order/ground_truth.json",
+          "artifact_path": "examples/evaluations/hardness-v4/artifacts/hidden-invariant-event-order/repaired/events.py",
+          "execution_command": "python -m pytest -q check_events.py",
+          "execution_result": {
+            "status": "passed",
+            "passed": true,
+            "exit_code": 0,
+            "stdout": "...                                                                      [100%]\n3 passed in 0.01s",
+            "stderr": "",
+            "timeout_seconds": 15
+          },
+          "grader_version": "hardness-v4-pytest-v1"
+        },
+        {
+          "case_slug": "hidden-invariant-event-order",
+          "title": "Event Deduplication Hidden Order Invariant",
+          "rung": "hidden-invariant",
+          "hardness_axis": "order and replay semantics hidden behind simple dedupe wording",
+          "variant": "repaired",
+          "repetition": 4,
+          "surface": "local-deterministic-grader",
+          "fixture_path": "examples/evaluations/hardness-v4/fixtures/hidden-invariant-event-order",
+          "ground_truth_path": "examples/evaluations/hardness-v4/fixtures/hidden-invariant-event-order/ground_truth.json",
+          "artifact_path": "examples/evaluations/hardness-v4/artifacts/hidden-invariant-event-order/repaired/events.py",
+          "execution_command": "python -m pytest -q check_events.py",
+          "execution_result": {
+            "status": "passed",
+            "passed": true,
+            "exit_code": 0,
+            "stdout": "...                                                                      [100%]\n3 passed in 0.01s",
+            "stderr": "",
+            "timeout_seconds": 15
+          },
+          "grader_version": "hardness-v4-pytest-v1"
+        },
+        {
+          "case_slug": "hidden-invariant-event-order",
+          "title": "Event Deduplication Hidden Order Invariant",
+          "rung": "hidden-invariant",
+          "hardness_axis": "order and replay semantics hidden behind simple dedupe wording",
+          "variant": "repaired",
+          "repetition": 5,
+          "surface": "local-deterministic-grader",
+          "fixture_path": "examples/evaluations/hardness-v4/fixtures/hidden-invariant-event-order",
+          "ground_truth_path": "examples/evaluations/hardness-v4/fixtures/hidden-invariant-event-order/ground_truth.json",
+          "artifact_path": "examples/evaluations/hardness-v4/artifacts/hidden-invariant-event-order/repaired/events.py",
+          "execution_command": "python -m pytest -q check_events.py",
+          "execution_result": {
+            "status": "passed",
+            "passed": true,
+            "exit_code": 0,
+            "stdout": "...                                                                      [100%]\n3 passed in 0.01s",
+            "stderr": "",
+            "timeout_seconds": 15
+          },
+          "grader_version": "hardness-v4-pytest-v1"
+        }
+      ],
+      "summary": {
+        "weak_runs": 5,
+        "repaired_runs": 5,
+        "weak_passes": 0,
+        "repaired_passes": 5,
+        "execution_delta": "weak passed 0/5; repaired passed 5/5"
+      }
+    }
+  }
+}

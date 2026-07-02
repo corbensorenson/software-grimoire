@@ -21,6 +21,10 @@
 - Added per-surface and per-tier delta cells to recorded evaluation and surface
   comparison evidence so clean/trap and Codex/Claude results cannot be hidden
   inside aggregate case averages.
+- Added the first Bench v4 hardness-ladder seed: ambiguity and
+  hidden-invariant executable fixtures, weak/repaired seed artifacts,
+  five deterministic repetitions per variant, a schema, CLI/console command,
+  CI wiring, smoke coverage, and generated reference/evidence pages.
 
 ## v3.0.0-evidence-package
 

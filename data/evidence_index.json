@@ -3,8 +3,8 @@
   "generated_at": "2026-07-02T00:00:00Z",
   "policy": "Calibration fixtures, project-owned model runs, local deterministic checks, reviewer imports, human audit, and adoption reports must remain separately labeled.",
   "summary": {
-    "artifact_count": 8,
-    "available_artifacts": 8,
+    "artifact_count": 9,
+    "available_artifacts": 9,
     "project_owned_model_surfaces": [
       "claude-code-safe",
       "claude-code-safe:baseline",
@@ -13,7 +13,7 @@
     ],
     "project_owned_model_surface_count": 4,
     "recorded_model_runs": 132,
-    "deterministic_execution_runs": 30,
+    "deterministic_execution_runs": 50,
     "external_adoption_reports": 0,
     "human_canon_signoff": "pending-human-maintainer-signoff"
   },
@@ -58,12 +58,27 @@
       "bytes": 14946,
       "evidence_class": "local_deterministic_execution",
       "calibration_role": "execution_evidence",
-      "claim_scope": "Model outputs are extracted into files and graded inside fixture-local temporary directories.",
+      "claim_scope": "Model outputs are extracted into files and graded inside repo-local fixture sandboxes.",
       "generated_at": "2026-07-02T08:38:01.379783+00:00",
       "surfaces": [
         "claude-code-safe"
       ],
       "run_count": 6
+    },
+    {
+      "id": "hardness-v4-seed",
+      "title": "Bench v4 Hardness Ladder Seed",
+      "path": "examples/evaluations/hardness-v4/results.json",
+      "exists": true,
+      "bytes": 44480,
+      "evidence_class": "local_deterministic_execution",
+      "calibration_role": "execution_evidence",
+      "claim_scope": "Weak/repaired seed artifacts are executed across ambiguity and hidden-invariant hardness rungs.",
+      "generated_at": "2026-07-02T00:00:00Z",
+      "surfaces": [
+        "local-deterministic-grader"
+      ],
+      "run_count": 20
     },
     {
       "id": "jailbreak-resilience-model-runs",
@@ -117,13 +132,13 @@
       "title": "Public Package Build and Install Check",
       "path": "examples/adoption/package-check.json",
       "exists": true,
-      "bytes": 13854,
+      "bytes": 13624,
       "evidence_class": "packaging_or_release_check",
       "calibration_role": "release_evidence",
       "claim_scope": "The wheel/sdist build, temporary install, and console scripts work in the current environment.",
-      "generated_at": "2026-07-02T08:50:46.715028+00:00",
+      "generated_at": "2026-07-02T10:28:07.965516+00:00",
       "surfaces": [],
-      "run_count": 7,
+      "run_count": 8,
       "passed": true
     },
     {
@@ -131,13 +146,13 @@
       "title": "Public Site Smoke Check",
       "path": "examples/release-gate/public-smoke-check.json",
       "exists": true,
-      "bytes": 1396,
+      "bytes": 1635,
       "evidence_class": "packaging_or_release_check",
       "calibration_role": "release_evidence",
       "claim_scope": "Rendered local site resources and optionally live GitHub Pages URLs resolve.",
-      "generated_at": "2026-07-02T08:53:55.263102+00:00",
+      "generated_at": "2026-07-02T10:32:33.808133+00:00",
       "surfaces": [],
-      "run_count": 11,
+      "run_count": 13,
       "passed": true
     }
   ]

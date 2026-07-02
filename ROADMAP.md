@@ -87,6 +87,11 @@ Current public-site status:
   software outcomes, complete the remaining surface x tier matrix holes, extend
   ward science with ablations, and move external adoption/human canon review
   from scaffolding into real maintainer/user evidence.
+- The first Bench v4 seed implementation is present: two executable hardness
+  rungs, ambiguity and hidden-invariant, run weak/repaired seed artifacts
+  through five deterministic repetitions each inside repo-local `tmp/`
+  sandboxes. These are fixture-contract and local-artifact evidence, not yet
+  model-surface outcome evidence.
 
 Reader-experience requirements:
 
@@ -504,10 +509,11 @@ Absorption status:
   the active project goal.
 - The first v4 implementation slice is underway: repo-local scratch hygiene,
   explicit reviewability-score fields, and per-surface/per-tier delta reporting
-  are implemented for the preserved v3 replay corpus. The remaining open work
-  is the real matrix-completion runs, hardness-ladder fixtures/results,
-  ward-science ablations, package-index release materials, adoption-report
-  generator, and methods write-up.
+  are implemented for the preserved v3 replay corpus. The first two hardness
+  rungs now have executable seed fixtures and deterministic local artifact
+  results. The remaining open work is the real matrix-completion runs,
+  model-surface hardness-ladder results, ward-science ablations, package-index
+  release materials, adoption-report generator, and methods write-up.
 
 ## 1. End State
 
@@ -4572,7 +4578,9 @@ the preserved v3 replay corpus. Evaluation pages now expose per-surface and
 per-tier delta cells; the data model carries explicit `reviewability_scores`
 and `reviewability_total` fields while retaining old structural aliases only
 for backward compatibility; project scratch output is routed under repo-local
-`tmp/`.
+`tmp/`. Item A5 has its first two local deterministic seed rungs implemented
+with ambiguity and hidden-invariant fixtures; model-surface runs over those
+rungs remain open evidence work.
 
 1. Fix current reporting before adding new cases:
    - report deltas by surface, tier, variant, and repetition cell;

@@ -26,6 +26,8 @@ TRACKED_GENERATED = [
     "data/generator_architecture.json",
     "examples/evaluations/execution-results.json",
     "examples/evaluations/surface-comparison.json",
+    "examples/evaluations/hardness-v4/results.json",
+    "reference/hardness-v4.qmd",
     "examples/jailbreak-resilience/baseline-results.json",
     "exports/library-manifest.json",
     "exports/checksums.sha256",

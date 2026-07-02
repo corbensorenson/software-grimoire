@@ -30,23 +30,26 @@ def test_new_spell_validate_and_seal_round_trip() -> None:
     SCRATCH.mkdir(parents=True, exist_ok=True)
     spell_path = SCRATCH / "local-spell.json"
 
-    created = run_cli("new", "spell", str(spell_path))
-    assert created.returncode == 0, created.stderr
-    assert spell_path.exists()
+    try:
+        created = run_cli("new", "spell", str(spell_path))
+        assert created.returncode == 0, created.stderr
+        assert spell_path.exists()
 
-    record = json.loads(spell_path.read_text(encoding="utf-8"))
-    assert record["id"] == "spell.local-example.v1"
-    assert record["working_seal"].startswith("spell://local-example/")
+        record = json.loads(spell_path.read_text(encoding="utf-8"))
+        assert record["id"] == "spell.local-example.v1"
+        assert record["working_seal"].startswith("spell://local-example/")
 
-    validated = run_cli("validate", str(spell_path))
-    assert validated.returncode == 0, validated.stderr
-    assert "Validation passed" in validated.stdout
+        validated = run_cli("validate", str(spell_path))
+        assert validated.returncode == 0, validated.stderr
+        assert "Validation passed" in validated.stdout
 
-    sealed = run_cli("seal", str(spell_path))
-    assert sealed.returncode == 0, sealed.stderr
-    sealed_record = json.loads(sealed.stdout)
-    assert sealed_record["working_seal"] == record["working_seal"]
-    assert sealed_record["formal_sigil"]["digest"] == record["formal_sigil"]["digest"]
+        sealed = run_cli("seal", str(spell_path))
+        assert sealed.returncode == 0, sealed.stderr
+        sealed_record = json.loads(sealed.stdout)
+        assert sealed_record["working_seal"] == record["working_seal"]
+        assert sealed_record["formal_sigil"]["digest"] == record["formal_sigil"]["digest"]
+    finally:
+        shutil.rmtree(SCRATCH, ignore_errors=True)
 
 
 def test_export_command_lists_generated_assets() -> None:
@@ -69,3 +72,17 @@ def test_bench_execution_command_runs_fixture() -> None:
     executed = run_cli("bench", "execution")
     assert executed.returncode == 0, executed.stderr
     assert "execution-results.json" in executed.stdout
+
+
+def test_bench_hardness_command_runs_fixture() -> None:
+    scratch = ROOT / "tmp" / "tests" / "grimoire-cli-hardness"
+    shutil.rmtree(scratch, ignore_errors=True)
+    scratch.mkdir(parents=True, exist_ok=True)
+    report = scratch / "grimoire-hardness.json"
+    executed = run_cli("bench", "hardness", "--", "--write-report", str(report.relative_to(ROOT)))
+    try:
+        assert executed.returncode == 0, executed.stderr
+        assert "grimoire-hardness.json" in executed.stdout
+        assert report.exists()
+    finally:
+        shutil.rmtree(scratch, ignore_errors=True)

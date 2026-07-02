@@ -11,6 +11,7 @@ QUARTO_RESOURCE_PATTERNS = [
     "examples/evaluations/execution-results.json",
     "examples/evaluations/model-execution-results.json",
     "examples/evaluations/surface-comparison.json",
+    "examples/evaluations/hardness-v4/**",
     "examples/evaluations/artifacts/**",
     "examples/evaluations/model-artifacts/**",
     "examples/evaluations/fixtures/**",

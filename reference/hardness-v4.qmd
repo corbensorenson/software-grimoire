@@ -1,0 +1,27 @@
+---
+title: "Bench v4 Hardness Ladder"
+---
+
+# Bench v4 Hardness Ladder
+
+Bench v4 begins where the v3 field-spell corpus stopped being discriminating enough. The seed ladder keeps the evidence narrow: local deterministic artifacts are executed repeatedly in repo-local `tmp/` sandboxes so the fixture contract can be inspected before any model-surface claims are made.
+
+## Policy
+
+Bench v4 hardness fixtures run only local deterministic tests inside repo-local tmp/ sandboxes. Model-surface runs are not simulated.
+
+## Seed Rungs
+
+| Case                                       | Rung             | Hardness Axis                                                  | Weak       | Repaired   | n  | Fixture                                                                                                                                         |
+| ------------------------------------------ | ---------------- | -------------------------------------------------------------- | ---------- | ---------- | -- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| Disabled Account Status Ambiguity          | ambiguity        | conflicting docstring versus caller contract                   | 0/5 passed | 5/5 passed | 10 | [fixture](https://github.com/corbensorenson/software-grimoire/tree/main/examples/evaluations/hardness-v4/fixtures/ambiguity-disabled-status)    |
+| Event Deduplication Hidden Order Invariant | hidden-invariant | order and replay semantics hidden behind simple dedupe wording | 0/5 passed | 5/5 passed | 10 | [fixture](https://github.com/corbensorenson/software-grimoire/tree/main/examples/evaluations/hardness-v4/fixtures/hidden-invariant-event-order) |
+
+## Interpretation
+
+- The ambiguity rung tests whether an artifact resolves a stale docstring versus a stronger caller contract.
+- The hidden-invariant rung tests whether an artifact preserves replay order and mutation boundaries that are easy to erase with a naive cleanup.
+- These are execution checks for seed artifacts. They do not count as independent model-provider evidence, external adoption, or human review.
+- Model-surface runs should be added only as recorded transcripts or extracted artifacts; do not simulate them.
+
+Raw results: [results.json](../examples/evaluations/hardness-v4/results.json)

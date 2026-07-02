@@ -13,6 +13,7 @@ validate:
 
 bench:
 	$(PYTHON) scripts/run_execution_bench.py
+	$(PYTHON) scripts/run_hardness_bench.py
 
 seals:
 	$(PYTHON) scripts/generate_seals.py

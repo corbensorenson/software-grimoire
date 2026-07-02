@@ -1,0 +1,14 @@
+{
+  "case_slug": "hidden-invariant-event-order",
+  "rung": "hidden-invariant",
+  "title": "Event Deduplication Hidden Order Invariant",
+  "artifact": "events.py",
+  "test_file": "check_events.py",
+  "hidden_obligations": [
+    "preserve first-seen event order",
+    "preserve first-seen timestamp for duplicate ids",
+    "merge later non-null payload fields",
+    "do not mutate input events",
+    "reject records missing id"
+  ]
+}
