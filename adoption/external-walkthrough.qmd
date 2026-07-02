@@ -15,7 +15,7 @@ Refactor the account serializer so duplicated validation branches are easier to 
 ## 2. Create A Spell Skeleton
 
 ```bash
-python3 scripts/grimoire.py new spell /tmp/account-serializer-refactor.json
+python3 scripts/grimoire.py new spell tmp/account-serializer-refactor.json
 ```
 
 ## 3. Fill The Contract
@@ -25,13 +25,13 @@ Add the artifact boundary, invariant, output contract, verification command, and
 ## 4. Validate Locally
 
 ```bash
-python3 scripts/grimoire.py validate /tmp/account-serializer-refactor.json
+python3 scripts/grimoire.py validate tmp/account-serializer-refactor.json
 ```
 
 ## 5. Seal It
 
 ```bash
-python3 scripts/grimoire.py seal /tmp/account-serializer-refactor.json
+python3 scripts/grimoire.py seal tmp/account-serializer-refactor.json
 ```
 
 ## 6. Use And Record

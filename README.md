@@ -6,7 +6,7 @@
 Operative vocabulary, prompt-spells, and stackcraft for AI-assisted software
 engineering.
 
-This repository is the v2.5 roadmap-completion release of the Software
+This repository is the v3.0 evidence-package release of the Software
 Grimoire: a public Quarto site, structured reference canon, reusable spell and
 stack templates, measured evaluation bench, jailbreak-resilience harness,
 installable prompt/rule exports, package manifests, visual review instruments,
@@ -17,7 +17,7 @@ enough to inspect.
 
 ## Current Status
 
-This is the public v2.5 release generated from the three source DOCX
+This is the public v3.0 release generated from the three source DOCX
 manuscripts in `source_docs/` and their Markdown extracts in
 `source_extracts/`.
 
@@ -70,6 +70,10 @@ Implemented:
 - Release-gate stack dogfood record tied to the public GitHub Pages workflow.
 - Project-owned adoption evidence records, adoption report template, and public
   GitHub issue templates for adoption evidence and canon corrections.
+- Evidence taxonomy, calibration separation, real Claude Code second-surface
+  runs, model-produced artifact execution, real warded A/B runs, evidence
+  browser pages, public smoke checks, package install checks, and usage-earned
+  canon audit records.
 - JSON schemas, validation tooling, seal-stability tests, and rendered
   internal-link audit.
 - Working seal generation for spells and stacks, plus a local CLI for
@@ -93,22 +97,24 @@ make test
 make all
 python3 scripts/grimoire.py validate
 python3 scripts/grimoire.py seals
-python3 scripts/grimoire.py new spell /tmp/my-spell.json
-python3 scripts/grimoire.py validate /tmp/my-spell.json
-python3 scripts/grimoire.py seal /tmp/my-spell.json
+python3 scripts/grimoire.py new spell tmp/my-spell.json
+python3 scripts/grimoire.py validate tmp/my-spell.json
+python3 scripts/grimoire.py seal tmp/my-spell.json
 python3 scripts/grimoire.py export --target cursor
 python3 scripts/grimoire.py export --target claude-code
 python3 scripts/grimoire.py bench execution
 python3 scripts/grimoire.py bench import examples/evaluations/manual-import-template.json
-python3 scripts/install_assets.py --target cursor --dest /tmp/grimoire-assets
-python3 scripts/install_assets.py --target claude-code --dest /tmp/grimoire-assets
-python3 scripts/install_assets.py --target cursor --dest /tmp/grimoire-assets --write
+python3 scripts/install_assets.py --target cursor --dest tmp/grimoire-assets
+python3 scripts/install_assets.py --target claude-code --dest tmp/grimoire-assets
+python3 scripts/install_assets.py --target cursor --dest tmp/grimoire-assets --write
 python3 scripts/grimoire.py all
 ```
 
 The generated site is written to `_site/`.
+Repo-local scratch files should go under `tmp/`, which is ignored except for
+`tmp/.gitkeep`.
 
-Current render size: 99 Quarto pages.
+Current render size: 107 Quarto pages.
 
 ## Repository Map
 

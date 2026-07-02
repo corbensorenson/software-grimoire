@@ -31,14 +31,17 @@ RESOURCE_REQUIRED = [
 
 def report_path(value: str) -> Path:
     path = Path(value).expanduser()
-    return path if path.is_absolute() else ROOT / path
+    candidate = path if path.is_absolute() else ROOT / path
+    resolved = candidate.resolve()
+    try:
+        resolved.relative_to(ROOT)
+    except ValueError as exc:
+        raise ValueError("Report path must stay inside this repository; use tmp/... for scratch reports.") from exc
+    return resolved
 
 
 def display_path(path: Path) -> str:
-    try:
-        return str(path.relative_to(ROOT))
-    except ValueError:
-        return str(path)
+    return str(path.relative_to(ROOT))
 
 
 def fetch(url: str, timeout: int = 20) -> tuple[bool, int | None, str]:
@@ -79,7 +82,10 @@ def main() -> int:
         "checks": checks,
         "passed": all(item["passed"] for item in checks),
     }
-    out = report_path(args.write_report)
+    try:
+        out = report_path(args.write_report)
+    except ValueError as exc:
+        parser.error(str(exc))
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(json.dumps(report, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     print(f"Wrote {display_path(out)}")

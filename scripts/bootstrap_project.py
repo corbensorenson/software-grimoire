@@ -2173,7 +2173,7 @@ def write_installable_exports(spells: list[dict], stacks: list[dict]) -> None:
         "These generated files are installable prompt, rule, and workflow assets. "
         "Edit canonical spell and stack data, then regenerate; do not hand-maintain exports.\n\n"
             "Package metadata lives in [`library-manifest.json`](library-manifest.json), and release bundles live in [`bundles/`](bundles/).\n\n"
-            "Dry-run an install with `python3 scripts/install_assets.py --target codex --dest /tmp/grimoire-assets`; add `--write` to copy files.\n\n"
+            "Dry-run an install with `python3 scripts/install_assets.py --target codex --dest tmp/grimoire-assets`; add `--write` to copy files.\n\n"
         + qmd_table(export_rows)
         + "\n",
     )
@@ -3857,9 +3857,9 @@ Use the repository CLI through Python:
 
 ```bash
 python3 scripts/grimoire.py validate
-python3 scripts/grimoire.py new spell /tmp/my-spell.json
-python3 scripts/grimoire.py validate /tmp/my-spell.json
-python3 scripts/grimoire.py seal /tmp/my-spell.json
+python3 scripts/grimoire.py new spell tmp/my-spell.json
+python3 scripts/grimoire.py validate tmp/my-spell.json
+python3 scripts/grimoire.py seal tmp/my-spell.json
 ```
 
 The CLI stays local. It has no hidden model calls and no provider dependency.
@@ -3904,13 +3904,13 @@ The installable library is generated from canonical spell and stack data. It giv
 Dry-run first:
 
 ```bash
-python3 scripts/install_assets.py --target codex --dest /tmp/grimoire-assets
+python3 scripts/install_assets.py --target codex --dest tmp/grimoire-assets
 ```
 
 Copy selected assets:
 
 ```bash
-python3 scripts/install_assets.py --target codex --dest /tmp/grimoire-assets --write
+python3 scripts/install_assets.py --target codex --dest tmp/grimoire-assets --write
 ```
 
 Installable console scripts are declared in `pyproject.toml` for editable local use:
@@ -3920,8 +3920,8 @@ python3 -m pip install -e .
 grimoire export --target cursor
 grimoire export --target claude-code
 grimoire bench import examples/evaluations/manual-import-template.json
-grimoire-install-assets --target cursor --dest /tmp/grimoire-assets --write
-grimoire-install-assets --target claude-code --dest /tmp/grimoire-assets --write
+grimoire-install-assets --target cursor --dest tmp/grimoire-assets --write
+grimoire-install-assets --target claude-code --dest tmp/grimoire-assets --write
 ```
 
 ## Rules
@@ -3952,7 +3952,7 @@ Refactor the account serializer so duplicated validation branches are easier to 
 ## 2. Create A Spell Skeleton
 
 ```bash
-python3 scripts/grimoire.py new spell /tmp/account-serializer-refactor.json
+python3 scripts/grimoire.py new spell tmp/account-serializer-refactor.json
 ```
 
 ## 3. Fill The Contract
@@ -3962,13 +3962,13 @@ Add the artifact boundary, invariant, output contract, verification command, and
 ## 4. Validate Locally
 
 ```bash
-python3 scripts/grimoire.py validate /tmp/account-serializer-refactor.json
+python3 scripts/grimoire.py validate tmp/account-serializer-refactor.json
 ```
 
 ## 5. Seal It
 
 ```bash
-python3 scripts/grimoire.py seal /tmp/account-serializer-refactor.json
+python3 scripts/grimoire.py seal tmp/account-serializer-refactor.json
 ```
 
 ## 6. Use And Record

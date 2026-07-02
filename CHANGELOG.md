@@ -1,5 +1,41 @@
 # Changelog
 
+## Unreleased
+
+- Updated the roadmap with the post-v3 boundary-hunt direction: Bench v4
+  hardness ladder, ward-limb ablations, usage-earned canon review queue,
+  package-index preparation, one-step installs, adoption-report generation, and
+  evidence-built methods write-up.
+- Corrected roadmap phase statuses for the v3 evidence package while keeping
+  human canon signoff, public package upload, and external adoption honestly
+  pending.
+- Added a repo-local `tmp/` scratch directory policy and changed docs/tests so
+  project examples do not write to device-global `/tmp`.
+- Hardened `scripts/smoke_public_site.py` so report output paths must stay
+  inside the repository.
+
+## v3.0.0-evidence-package
+
+- Added `data/evidence_taxonomy.json` and `data/evidence_index.json` to
+  separate calibration fixtures, project-owned model runs, deterministic
+  execution, release checks, human-audit pending records, and adoption reports.
+- Added shared surface adapters for Codex CLI, Claude Code safe mode, and
+  manual imports.
+- Recorded real Claude Code safe-mode field-spell runs across clean and trap
+  tiers, with preserved prompts/transcripts and tool-version metadata.
+- Added model-produced artifact execution for safe-refactoring and
+  test-generation, applying extracted artifacts to fixture-local copies and
+  running deterministic checks.
+- Added real Claude Code baseline-versus-warded adversarial A/B runs across all
+  eight defanged jailbreak-resilience fixtures.
+- Added evidence browser, calibration, model-artifact execution, warded A/B,
+  canon audit, usage-earned canon, and public-smoke-check reference pages.
+- Added package build/install checks and public-site smoke checks to the local
+  and CI release gates.
+- Kept canonical rune promotion honestly gated on human maintainer signoff;
+  canonical count remains zero until real signoff occurs.
+- Rendered site size is now 107 Quarto pages.
+
 ## v2.5.0-roadmap-completion
 
 - Added execution-graded clean/trap bench data, trap-tier fixtures for all six

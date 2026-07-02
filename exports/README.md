@@ -4,7 +4,7 @@ These generated files are installable prompt, rule, and workflow assets. Edit ca
 
 Package metadata lives in [`library-manifest.json`](library-manifest.json), and release bundles live in [`bundles/`](bundles/).
 
-Dry-run an install with `python3 scripts/install_assets.py --target codex --dest /tmp/grimoire-assets`; add `--write` to copy files.
+Dry-run an install with `python3 scripts/install_assets.py --target codex --dest tmp/grimoire-assets`; add `--write` to copy files.
 
 | Target      | Path                                                         | Source                                   | Seal                                               |
 | ----------- | ------------------------------------------------------------ | ---------------------------------------- | -------------------------------------------------- |

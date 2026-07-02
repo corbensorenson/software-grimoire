@@ -22,9 +22,9 @@ Use the repository CLI through Python:
 
 ```bash
 python3 scripts/grimoire.py validate
-python3 scripts/grimoire.py new spell /tmp/my-spell.json
-python3 scripts/grimoire.py validate /tmp/my-spell.json
-python3 scripts/grimoire.py seal /tmp/my-spell.json
+python3 scripts/grimoire.py new spell tmp/my-spell.json
+python3 scripts/grimoire.py validate tmp/my-spell.json
+python3 scripts/grimoire.py seal tmp/my-spell.json
 ```
 
 The CLI stays local. It has no hidden model calls and no provider dependency.

@@ -50,11 +50,13 @@ Current public-site status:
 - The repository includes schemas, validation, seal generation, CI, GitHub Pages
   publishing, pull-request checks, contribution templates, examples, package
   metadata, install tooling, and public releases.
-- The rendered Quarto site currently contains 99 pages, including six
+- The rendered Quarto site currently contains 107 pages, including six
   Proof-by-Difference cases, six recorded evaluation result pages, a dedicated
   Proof by Difference reference page, an installable-library page, a visual
   grammar, a task chooser, adoption evidence, a jailbreak-resilience bench,
-  execution bench, surface comparison, warded baseline matrix, and semantic
+  execution bench, surface comparison, warded baseline matrix, real warded A/B
+  evidence, evidence browser, calibration page, model-artifact execution page,
+  public smoke checks, canon audit page, usage-earned canon page, and semantic
   promotion board.
 - The recorded evaluation layer has moved past the seed state: all six field
   spells now have executable fixtures, planted ground truth, structural scores,
@@ -70,12 +72,20 @@ Current public-site status:
   surface comparison records, defanged baseline-versus-warded calibration,
   Claude Code exports, data-driven diagrams, release bundles, and a semantic
   promotion ladder with 510 reviewed entries and two fully reviewed houses.
-- A post-v2.5 evidence audit found the next growth point: the repo has built
-  the internal instrument, but some v2.5 artifacts are staged calibration
-  evidence rather than independent model evidence. The next roadmap arc should
-  move staged artifacts and canned baselines into harness calibration, then
-  collect real second-surface model runs, real trap-tier outputs, real
-  adversarial baselines, real adoption reports, and human-audited canon review.
+- The v3.0 evidence-package pass separated calibration from evidence, added a
+  shared surface adapter layer, recorded real Claude Code second-surface runs,
+  executed model-produced artifacts for safe-refactoring and test-generation,
+  ran real warded A/B adversarial comparisons on Claude Code, published an
+  evidence browser, added package-install checks, smoke-checked the public
+  site, and kept human canon signoff explicitly pending instead of simulating
+  it.
+- A post-v3 evidence audit found the next growth point: the project now has
+  real cross-surface evidence and a measured warding effect, but the current
+  field-spell tasks are too easy to reveal execution deltas. The next roadmap
+  arc is Bench v4: find the boundary where prompt structure changes actual
+  software outcomes, complete the remaining surface x tier matrix holes, extend
+  ward science with ablations, and move external adoption/human canon review
+  from scaffolding into real maintainer/user evidence.
 
 Reader-experience requirements:
 
@@ -93,6 +103,9 @@ Reader-experience requirements:
 - Add related-spell and related-rune sections to stack pages.
 - Keep these links generated from structured data where possible so they do not
   drift from the canon.
+- Keep local scratch files inside the repository under `tmp/`; do not write
+  smoke reports, example spells, install dry-runs, or benchmark scratch output
+  to device-global `/tmp`.
 
 Reader-experience acceptance criteria:
 
@@ -432,10 +445,62 @@ Self-review findings added to the post-v2.5 roadmap:
 
 Absorption status:
 
-- These findings are not implemented yet. They define the v3.0 external-validity
-  arc: calibration/evidence separation, real second-surface runs, model-output
-  execution grading, real adversarial baselines, human-audited reviewed canon,
-  PyPI packaging, evidence dashboards, and public smoke checks.
+- The v3.0 external-validity arc is implemented for the evidence, adapter,
+  model-output execution, real adversarial A/B, evidence-dashboard, package
+  check, and public-smoke portions. Human-audited reviewed canon remains
+  honestly pending human maintainer action, and PyPI/public external adoption
+  move forward into the v4 external-reality workstream.
+
+Post-v3 external review findings accepted into the roadmap:
+
+1. The v3 evidence package is real and should be treated as the project's first
+   externally meaningful evidence milestone: the taxonomy is enforced, Claude
+   Code safe-mode runs are genuine second-surface runs, model-produced
+   artifacts were executed, real warded A/B adversarial runs produced baseline
+   failures, package build/install checks pass, and human canon signoff is
+   honestly pending.
+2. The empirical thesis must now be stated narrowly: structure reliably improves
+   **reviewability**, outcome markers are near-ties with slight positive drift,
+   execution results on the current fixtures show no separation, and warding
+   shows a measured protective effect. Null and near-null results are not a
+   failure; they are the instrument identifying the next boundary.
+3. The current field-spell tasks and trap tier are too easy for current strong
+   models. Bench v4 should become a hardness ladder that deliberately searches
+   for the task conditions where structure changes executable outcomes.
+4. Per-case deltas currently aggregate too much. Every evaluation page should
+   report deltas per surface, tier, variant, and repetition cell so
+   Claude-trap, Codex-clean, weak, repaired, baseline, and warded comparisons
+   cannot be hidden inside averages.
+5. The structural rubric should be renamed to **reviewability score** across
+   data, scripts, pages, and tests. It is a valid metric, but its name should
+   describe what it actually measures.
+6. Matrix holes are now the highest-priority evidence defects: Codex needs
+   trap-tier runs, Codex needs real warded A/B runs, and Claude Code needs the
+   standard warded jailbreak-resilience suite, all with normalized tool-version
+   metadata.
+7. Ward science is the most novel security arc. The project should complete
+   baseline/warded coverage across surfaces, add ward-limb ablations, add more
+   defanged attack shapes, and publish resistance-versus-utility frontiers
+   rather than optimizing for blanket refusal.
+8. Canonical rune promotion must be usage-earned and human-real. The
+   `rune_usage_graph` should generate a bounded canon-review queue, but
+   canonical entries should only appear after named human maintainer signoff
+   with reviewer, date, usage evidence, and decision recorded.
+9. External reality is the next product gate: prepare PyPI/TestPyPI release
+   materials for human upload, add install-from-package smoke checks, add
+   one-step local install commands for Claude Code and Cursor targets, and add
+   an adoption-report generator that creates valid evidence records without
+   fabricating external adoption.
+10. The project should eventually publish a methods write-up built entirely
+    from recorded evidence, foregrounding the honest finding: structure improves
+    reviewability, outcome effects are task-dependent, and warding measurably
+    reduces injection success on the current defanged fixtures.
+
+Absorption status:
+
+- Findings 1 through 10 define the v4 boundary-hunt and ward-science roadmap.
+  The immediate documentation update is in progress. Implementation is tracked
+  in Phase 36 and the active project goal.
 
 ## 1. End State
 
@@ -3836,7 +3901,20 @@ Recommended release:
 
 Implementation status:
 
-- Not started.
+- Completed in `v3.0.0-evidence-package`.
+
+Implementation evidence:
+
+- `data/evidence_taxonomy.json` defines calibration, project-owned model runs,
+  reviewer-supplied model runs, local deterministic execution, local
+  deterministic controls, release checks, human-audit pending records, and
+  adoption reports.
+- `data/evidence_index.json` inventories each evidence artifact with evidence
+  class, claim scope, surfaces, run counts, and limitations.
+- `reference/evidence-browser.qmd` and `reference/calibration.qmd` separate
+  model evidence from harness calibration on the public site.
+- Validation and tests reject evidence records without claim scope and keep
+  calibration from being counted as independent model evidence.
 
 Goal:
 
@@ -3915,7 +3993,20 @@ Recommended release:
 
 Implementation status:
 
-- Not started.
+- Completed in `v3.0.0-evidence-package` for the first real second-surface
+  milestone; v4 carries forward matrix-completion work.
+
+Implementation evidence:
+
+- `scripts/surface_adapters.py` normalizes surface metadata, redaction policy,
+  and execution constraints across Codex CLI, Claude Code safe mode, and manual
+  import records.
+- `examples/evaluations/results.json` includes real `claude-code-safe` runs
+  with Claude Code CLI 2.1.185 metadata and preserved transcripts.
+- The first second-surface pass covers all six field-spell cases on clean and
+  trap tiers for Claude Code safe mode.
+- Remaining v4 matrix gaps: Codex trap-tier runs, Codex warded A/B runs, and
+  Claude Code standard warded jailbreak-resilience runs.
 
 Goal:
 
@@ -3971,7 +4062,8 @@ Definition of done:
 - Surface metadata is normalized across Codex, Claude Code/manual, and future
   adapters.
 - The site reports where the second surface ties, loses, improves, or fails.
-- `v3.0.0` is not final until the second-surface evidence is published.
+- This condition is satisfied for `v3.0.0-evidence-package`; future surfaces
+  extend the v4 matrix rather than defining the first second-surface milestone.
 
 What not to do in this phase:
 
@@ -3988,7 +4080,20 @@ Recommended release:
 
 Implementation status:
 
-- Not started.
+- Completed for the v3 acceptance slice; expanded hardness-ladder execution
+  grading moves to Phase 36.
+
+Implementation evidence:
+
+- `scripts/run_model_artifact_execution.py` extracts model-produced artifacts,
+  applies them to fixture-local copies, rejects unsafe paths, and runs
+  deterministic graders.
+- `examples/evaluations/model-execution-results.json` records executable
+  Claude Code artifacts for safe-refactoring and test-generation.
+- `reference/model-artifact-execution.qmd` publishes the model-output
+  execution table and limitations.
+- v4 must extend this beyond the current two executable cases and make harder
+  fixtures discriminate.
 
 Goal:
 
@@ -4074,7 +4179,20 @@ Recommended release:
 
 Implementation status:
 
-- Not started.
+- Completed for one real model/tool surface in `v3.0.0-evidence-package`;
+  multi-surface ward science and ablations move to Phase 36.
+
+Implementation evidence:
+
+- `scripts/run_warded_ab.py` runs unwarded and warded prompts over the same
+  defanged fixtures with preserved prompts/transcripts and publication
+  redaction.
+- `examples/jailbreak-resilience/ab-results.json` records 48 real Claude Code
+  A/B runs across eight attack shapes, three repetitions, and two variants.
+- Baseline failures are model-produced and preserved; warded variants improve
+  the measured protective effect on the current fixtures.
+- `reference/warded-ab-evidence.qmd` publishes the results, deltas, and
+  limitations.
 
 Goal:
 
@@ -4149,7 +4267,18 @@ Recommended release:
 
 Implementation status:
 
-- Not started.
+- Completed for the v3 evidence-browser and site-smoke scope; release-download
+  and richer longitudinal charting continue in Phase 36.
+
+Implementation evidence:
+
+- `reference/evidence-browser.qmd`, `reference/public-smoke-checks.qmd`, and
+  `examples/release-gate/public-smoke-check.json` publish the evidence index
+  and release checks.
+- `scripts/smoke_public_site.py` validates local render artifacts and optional
+  live GitHub Pages URLs.
+- The script now keeps scratch reports inside the repository; use `tmp/...` for
+  non-committed post-deploy reports.
 
 Goal:
 
@@ -4227,7 +4356,19 @@ Recommended release:
 
 Implementation status:
 
-- Not started.
+- Governance scaffold complete; human maintainer signoff remains intentionally
+  pending.
+
+Implementation evidence:
+
+- `data/canon_audit.json` records the pending human-maintainer signoff state
+  instead of simulating a human audit.
+- `data/rune_usage_graph.json` identifies usage-earned canonical review
+  candidates and blocks promotion on human signoff.
+- `reference/canon-audit.qmd` and `reference/usage-earned-canon.qmd` expose the
+  queue and blockers.
+- Phase 36 turns this from a scaffold into a bounded review queue with real
+  reviewer/date/decision records.
 
 Goal:
 
@@ -4301,7 +4442,20 @@ Recommended release:
 
 Implementation status:
 
-- Not started.
+- Partially complete. Package build/install checks and adoption scaffolding are
+  implemented; public package-index release and non-maintainer adoption reports
+  remain v4 external-reality work.
+
+Implementation evidence:
+
+- `examples/adoption/package-check.json` records wheel/sdist build,
+  installation, and console-script checks.
+- `scripts/check_package.py` validates package readiness without uploading to a
+  public index.
+- Adoption issue templates, report templates, project-owned dogfood evidence,
+  and the adoption playbook exist.
+- PyPI/TestPyPI upload, install-from-index CI checks, one-step tool installs,
+  and real external adoption reports are intentionally not fabricated.
 
 Goal:
 
@@ -4364,6 +4518,241 @@ What not to do in this phase:
 - Do not fabricate external adoption.
 - Do not count Claude/Codex review text as user adoption.
 - Do not let package distribution outrun safety and evidence labels.
+
+### Phase 36: Bench v4 Boundary Hunt, Ward Science, and External Reality
+
+Recommended release:
+
+- `v4.0.0-hardness-and-ward-science`
+
+Implementation status:
+
+- Newly accepted from the post-v3 review. Not started beyond roadmap capture
+  and scratch-output hygiene.
+
+Goal:
+
+Turn v3's honest evidence into a stronger scientific and practical program:
+find the task hardness boundary where prompt structure changes execution
+outcomes, extend measured warding into a real defensive prompt-hardening
+instrument, make canonical vocabulary usage-earned and human-signed, and turn
+the library outward through package distribution and adoption evidence.
+
+Rationale:
+
+The v3 evidence package changed the project. It proved that the instrument can
+measure real surfaces and can publish uncomfortable results. The current state
+is precise: repaired spells improve reviewability, outcome markers barely move,
+execution on current clean/trap fixtures does not separate weak from repaired
+outputs, and warded prompts show a real protective effect on Claude Code safe
+mode. The next step is not to polish the narrative. The next step is to hunt
+for the boundary where the method matters, and to publish the null results when
+it does not.
+
+North star:
+
+1. **The Bench**: a replayable longitudinal record of where prompt structure
+   changes AI software-engineering outcomes, not only output shape.
+2. **The Library**: spells, stacks, and wards installable into real tools with
+   package-grade provenance and adoption evidence.
+3. **The Canon**: reviewed vocabulary whose canonical tier is earned by
+   documented operative use and named human maintainer signoff.
+
+Workstream A: Bench v4 hardness ladder
+
+1. Fix current reporting before adding new cases:
+   - report deltas by surface, tier, variant, and repetition cell;
+   - stop relying on aggregate per-case deltas that mix clean, trap, Codex,
+     Claude, weak, and repaired results;
+   - freeze the v3 fixtures as a replayable corpus.
+2. Rename structural scores to `reviewability_score` everywhere:
+   - data files;
+   - scripts;
+   - generated pages;
+   - schemas;
+   - tests;
+   - explanatory prose.
+3. Normalize tool-version metadata for every run record, not only Claude Code
+   records.
+4. Fill the v3 matrix holes:
+   - run the trap tier on `codex-cli-default`;
+   - run standard jailbreak-resilience warded runs on `claude-code-safe`;
+   - run real warded A/B on `codex-cli-default`;
+   - keep CI free of private credentials by validating shape and preserving
+     manual import paths.
+5. Build at least five hardness rungs with fixtures, ground truth, and
+   execution-based grading:
+   - ambiguity rung: conflicting docstring versus caller expectation, graded on
+     ambiguity surfacing and internally consistent resolution;
+   - hidden-invariant rung: ordering, timezone, idempotency, retry, or
+     compatibility invariant that naive edits break;
+   - misleading-context rung: stale comment, wrong README, misleading log, or
+     false performance hint that a weak prompt follows;
+   - blast-radius rung: multi-file fixture where the correct change is narrow
+     and tempting overreach is measurable;
+   - agentic rung: multi-step tasks in disposable repo-local scratch worktrees,
+     with tools enabled only under explicit sandbox and allowlist policy.
+6. For every new rung:
+   - run at least five repetitions per variant per surface where credentials
+     and cost permit;
+   - report variance and a simple sign test;
+   - execute model-produced artifacts wherever the fixture permits;
+   - preserve malformed outputs and failed applications as benchmark failures;
+   - publish null, tie, and regression cases.
+
+Workstream B: Ward science
+
+1. Complete real baseline/warded A/B across both primary surfaces and all eight
+   existing defanged attack shapes with at least three repetitions per variant.
+2. Add a ward-limb ablation ladder:
+   - constraints-only;
+   - verification-only;
+   - trust-boundary-only;
+   - refusal-contract-only;
+   - audit-only;
+   - full ward.
+3. Attribute protective effect to specific limbs where the evidence supports
+   it, and publish non-effects when a limb does not matter.
+4. Add at least six additional defanged attack shapes:
+   - tool-output poisoning;
+   - unicode or homoglyph smuggling;
+   - delimiter confusion;
+   - dependency-name squatting in generated code;
+   - license-exfiltration framing;
+   - retrieval-index poisoning.
+5. Keep the safety policy intact:
+   - no operational bypass payloads;
+   - no real secrets;
+   - no destructive commands;
+   - no external jailbreak corpora in CI;
+   - cite external corpora for morphology without vendoring live payloads.
+6. Add resistance-versus-utility reporting:
+   - attack resistance;
+   - utility preservation;
+   - audit quality;
+   - overrefusal rate;
+   - frontier plots or tables showing that blanket refusal is not full success.
+
+Workstream C: Usage-earned canon and human review
+
+1. Use `data/rune_usage_graph.json` as the promotion engine:
+   - spell references;
+   - stack references;
+   - benchmark references;
+   - ward references;
+   - adoption report references;
+   - reviewer-supplied evidence references.
+2. Generate a bounded canon-review queue:
+   - 10 to 20 candidates per page or batch;
+   - usage evidence visible inline;
+   - force, shadow, prompt uses, examples, and related runes visible;
+   - explicit accept, revise, defer, or reject decisions.
+3. Record real human maintainer decisions in `data/canon_audit.json`:
+   - reviewer name or handle;
+   - date;
+   - rune ID;
+   - decision;
+   - usage evidence;
+   - correction issue or PR when needed.
+4. Enforce invariants:
+   - `canonical <= reviewed`;
+   - canonical requires reviewed status first;
+   - canonical requires usage evidence;
+   - canonical requires no unresolved correction blocker;
+   - Codex may prepare queues but cannot sign as the human maintainer.
+5. Target the first 50 human-signed canonical entries only after real maintainer
+   signoff. If human signoff is not available, keep canonical count at zero and
+   publish the pending queue honestly.
+
+Workstream D: External reality and distribution
+
+1. Prepare package-index release materials:
+   - long description suitable for PyPI;
+   - version policy tied to evidence milestones;
+   - license and classifiers;
+   - built wheel/sdist artifacts;
+   - clean environment install checks;
+   - README rendering check.
+2. Human uploads remain human:
+   - Codex can prepare TestPyPI/PyPI instructions and artifacts;
+   - a named human performs the upload;
+   - package-index checks run only after the package exists.
+3. Add one-step local install commands:
+   - `grimoire install --target claude-code --dest ./.claude/skills`;
+   - `grimoire install --target cursor --dest ./.cursor/rules`;
+   - dry-run by default;
+   - explicit `--write` required;
+   - no writes outside the destination;
+   - tests use repo-local `tmp/` destinations.
+4. Add `grimoire adopt-report`:
+   - generates a schema-valid adoption evidence record;
+   - prompts for provenance, task, spell/stack, surface, artifact,
+     verification, friction, and reuse decision;
+   - marks project-owned, reviewer-supplied, and external-user reports
+     separately;
+   - never counts project-owned dogfood as external adoption.
+5. Write a methods artifact after the hardness ladder has evidence:
+   - title around the honest finding, not a marketing claim;
+   - source every number from evidence JSON;
+   - foreground at least one null, tie, or task-dependent result;
+   - explain where structure improves reviewability and where execution
+     outcomes remain unproven.
+
+Scratch and artifact policy:
+
+- Do not write reports or local examples to device-global `/tmp`.
+- Repo-local scratch output belongs under `tmp/`, which is ignored except for
+  `tmp/.gitkeep`.
+- CI may use runner-provided temp directories internally, but project commands,
+  docs, examples, and tests should prefer repo-local scratch paths.
+- Fixture-local execution may create temporary directories only inside an
+  explicit sandbox or repo-local scratch area and must reject path traversal.
+
+Versioning:
+
+- `v3.0.0` is earned by the evidence package and may be tagged after maintainer
+  review of changelog/release notes.
+- Reserve `v4.0.0` for the first hardness-ladder release with cross-surface
+  execution data and ward-science improvements.
+- Do not use version numbers to imply human canon signoff or external adoption
+  before those events exist.
+
+Definition of done:
+
+- At least two new hardness rungs are implemented with executable fixtures,
+  ground truth, per-surface/per-tier delta tables, and `n >= 5` where feasible.
+- Existing matrix holes are closed or explicitly blocked with evidence.
+- All evaluation pages show per-surface, per-tier, per-variant breakdowns.
+- Structural rubric language is renamed to reviewability score everywhere.
+- Ward A/B runs cover both primary surfaces for the existing eight attack
+  shapes, and at least four new defanged attack shapes are added.
+- At least one ward-limb ablation result is published.
+- Resistance-versus-utility reporting prevents blanket refusal from scoring as
+  full success.
+- A canon-review queue is generated from usage evidence.
+- Canonical entries remain zero unless real human signoff is recorded; if human
+  signoff is available, the first signed entries include reviewer/date/decision
+  records and satisfy `canonical <= reviewed`.
+- Package-index release artifacts and instructions are ready, with human upload
+  explicitly separated from automation.
+- One-step install commands for Claude Code and Cursor targets are tested in
+  repo-local `tmp/` destinations.
+- Adoption-report generation produces schema-valid records without fabricating
+  external adoption.
+- A methods write-up exists only after it can be generated from recorded
+  evidence.
+- `make all`, Quarto render, pytest, schema validation, and GitHub workflows
+  pass.
+
+What not to do in this phase:
+
+- Do not simulate model runs, human audits, adoption reports, or package-index
+  uploads.
+- Do not shrink the project to make the roadmap easier.
+- Do not hide ties, losses, overrefusals, malformed outputs, or null results.
+- Do not publish operational jailbreak prompts.
+- Do not let package work outrun evidence labeling or safety policy.
+- Do not write project scratch output outside the repository.
 
 ## 7. Project Governance
 
@@ -4973,57 +5362,106 @@ The project is complete in the strong sense when:
     published with friction/failure fields intact.
 75. The project preserves an explicit record of where prompt structure ties,
     loses, over-refuses, or fails, not only where it wins.
+76. Evaluation pages report deltas per surface, tier, variant, and repetition
+    cell instead of only aggregate case deltas.
+77. The structural rubric is renamed to reviewability score everywhere it
+    appears.
+78. Bench v4 includes a hardness ladder with ambiguity, hidden-invariant,
+    misleading-context, blast-radius, and agentic rungs.
+79. At least two hardness rungs include executable fixtures, ground truth,
+    model-produced artifacts, and cross-surface results.
+80. Ward-science pages include real baseline/warded A/B runs on both primary
+    surfaces for the original eight defanged attack shapes.
+81. At least one ward-limb ablation is published with a clear non-effect or
+    effect attribution.
+82. Additional defanged attack shapes cover tool-output poisoning,
+    unicode/homoglyph smuggling, delimiter confusion, dependency-name
+    squatting, license-exfiltration framing, and retrieval-index poisoning.
+83. Resistance-versus-utility reporting prevents blanket refusal from scoring
+    as complete adversarial success.
+84. The canon-review queue is generated from usage evidence and gives the
+    human maintainer a bounded review surface.
+85. Canonical rune entries require reviewed status, usage evidence, no
+    unresolved correction blocker, and named human maintainer signoff.
+86. One-step local install commands exist for Claude Code and Cursor targets
+    and are tested against repo-local `tmp/` destinations.
+87. Adoption-report generation produces schema-valid records without counting
+    project-owned dogfood as external adoption.
+88. Package-index release materials are ready and package-index smoke checks are
+    added once a human upload exists.
+89. Project commands, docs, tests, and examples do not write scratch output to
+    device-global `/tmp`; repo-local scratch output lives under `tmp/`.
+90. A methods write-up is generated from recorded evidence and foregrounds
+    null, tie, or task-dependent results instead of hiding them.
 
 ## 15. Immediate Next Move
 
-The roadmap through `v2.5.0-roadmap-completion` is implemented as internal
-infrastructure. The project now has the public site, source port, semantic canon
-quality gates, Bench v2 import contract, execution-graded trap bench,
-multi-surface comparison records, warded baseline calibration, adversarial
-harness, semantic promotion ladder, Claude Code exports, package-grade release
-assets, install tooling, generator ownership modules, data-driven visual
-grammar, task chooser, and adoption evidence intake path.
+The roadmap through `v3.0.0-evidence-package` is implemented for the public
+site, source port, semantic canon quality gates, Bench v2 import contract,
+execution-graded trap bench, shared surface adapter, real Claude Code
+second-surface runs, model-output execution slice, real Claude Code warded A/B
+runs, evidence browser, package checks, release smoke checks, install tooling,
+generator ownership modules, data-driven visual grammar, task chooser, and
+adoption evidence intake path.
 
-The next highest-leverage move is **v3.0 external validity**, not another
-internal scope expansion. The project must now make reality answer back:
-separate calibration from evidence, run a real second model/tool surface,
-execute real model-produced artifacts, run real adversarial A/B baselines, and
-start human/external review loops.
+The next highest-leverage move is **Phase 36: Bench v4 boundary hunt and ward
+science**. The project has reached the point where its own evidence is more
+interesting than its promises: structure improves reviewability, current
+execution fixtures do not yet show separation, and warding shows a real
+protective effect. The right response is to make the benchmark harder, not to
+soften the claim.
 
 Do this first:
 
-1. Phase 29: add the evidence taxonomy and move staged artifacts/canned
-   baselines into harness calibration.
-2. Phase 30: build the shared surface adapter layer and record the first real
-   second-surface runs.
-3. Phase 31: connect model-produced artifacts to fixture-local execution.
-4. Phase 32: run real unwarded-versus-warded adversarial A/B comparisons.
-5. Phase 34 in parallel where possible: human-audit samples from the two
-   reviewed houses so `reviewed` does not inflate into a regex-only label.
-6. Preserve failures, ties, friction, overrefusal, and "too heavy" reports
-   rather than polishing them away.
+1. Enforce repo-local scratch hygiene everywhere:
+   - keep `tmp/` as the ignored scratch directory;
+   - remove `/tmp` from public docs and examples;
+   - reject smoke-report paths outside the repository.
+2. Fix evidence reporting before adding more evidence:
+   - add per-surface x tier x variant delta tables;
+   - rename structural score to reviewability score;
+   - normalize tool-version metadata across all run records.
+3. Close the most important matrix holes:
+   - Codex trap-tier field-spell runs;
+   - Codex real warded A/B runs;
+   - Claude Code standard warded jailbreak-resilience runs.
+4. Build the first two hardness rungs:
+   - ambiguity;
+   - hidden invariant;
+   - both with executable graders, ground truth, and null-result publication.
+5. Start ward science:
+   - complete both-surface A/B for the original eight attack shapes;
+   - add the first limb ablation;
+   - add at least four new defanged attack shapes before v4.
+6. Build the usage-earned canon review queue:
+   - queue candidates from `rune_usage_graph`;
+   - keep canonical count at zero until a human maintainer signs;
+   - if human signoff occurs, record reviewer/date/decision.
+7. Prepare external distribution without fabricating external reality:
+   - package-index release materials;
+   - one-step local install command;
+   - adoption-report generator;
+   - package-index smoke checks only after human upload.
+8. Preserve failures, ties, friction, overrefusal, malformed outputs, and "too
+   heavy" reports rather than polishing them away.
 
 Then proceed in this order:
 
-1. Phase 33: evidence browser, longitudinal dashboard, live-site smoke checks,
-   and release download verification.
-2. Phase 35: PyPI/TestPyPI packaging, package-install smoke tests, adoption
-   playbook, and first non-maintainer adoption/reviewer reports.
-3. Continue semantic promotion only through the review gates and usage-earned
-   canonicalization policy.
-4. Add future model/tool surfaces only through the shared adapter and Bench v2
-   provenance contract.
+1. Complete Phase 36 workstreams A and B until at least two hardness rungs and
+   the first ward-ablation result are published.
+2. Complete Phase 36 workstream C only as far as real human signoff permits.
+   Queue preparation is automatable; canonical promotion is not.
+3. Complete Phase 36 workstream D through package preparation, install tests,
+   and adoption-report generation. External adoption remains pending until real
+   non-maintainer reports arrive.
+4. Write the methods artifact only after the evidence can support it.
+5. Tag or release only when the changelog, evidence index, live site, package
+   checks, and CI agree.
 
-The project has moved past the "make it public and navigable" phase, the first
-integrity hardening pass, the practical front-door pass, the initial recorded
-evidence pass, the measured benchmark pass, the installable-library pass, the
-full-canon structural pass, the defensive jailbreak-resilience pass, the
-post-v1.4 completion phases, and the post-v2.1 evidence-hardening phases. The
-standing standard is now stricter than measured trust alone: every major claim
-should come with an executable fixture,
-a reusable artifact, a validation check, a safety boundary, a preserved
-evaluation record, reviewed semantic canon, or explicitly labeled adoption
-evidence. The post-v2.5 standard is stricter again: calibration must stay
-separate from model evidence, reviewability claims must stay separate from
-execution-proven outcome claims, and wards must be measured against real
-baselines before the project calls them externally validated.
+The standing standard is now: every major claim must come with an executable
+fixture, a reusable artifact, a validation check, a safety boundary, a
+preserved evaluation record, reviewed semantic canon, named human signoff, or
+explicitly labeled adoption evidence. Calibration must stay separate from model
+evidence, reviewability claims must stay separate from execution-proven outcome
+claims, and wards must be measured against real baselines before the project
+calls them externally validated.
