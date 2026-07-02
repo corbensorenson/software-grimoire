@@ -10,95 +10,94 @@ Range: `0887-0968`.
 
 | Status   | Count |
 | -------- | ----- |
-| authored | 16    |
-| stub     | 66    |
+| authored | 82    |
 
 Use the summary table for scanning. Each row links to the detailed anchored entry below.
 
-| Sigil | Term                                    | Completion | Summary                                                                                                                                                            |
-| ----- | --------------------------------------- | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| 0887  | [ACID](#rune-0887)                      | authored   | The classic four-part law of transactional storage: atomicity, consistency, isolation, durability.                                                                 |
-| 0888  | `STUB` [append-only log](#rune-0888)    | stub       | A storage-law word; it governs how facts are kept, found, or rolled back.                                                                                          |
-| 0889  | `STUB` [archive table](#rune-0889)      | stub       | A durable-state word; it matters because the system must remember through change.                                                                                  |
-| 0890  | `STUB` [audit trail](#rune-0890)        | stub       | A query-and-history word; it shapes how stored truth is accessed or preserved.                                                                                     |
-| 0891  | `STUB` [B-tree](#rune-0891)             | stub       | A query-and-history word; it shapes how stored truth is accessed or preserved.                                                                                     |
-| 0892  | [backup](#rune-0892)                    | authored   | A restorable copy taken so loss is not final.                                                                                                                      |
-| 0893  | `STUB` [base table](#rune-0893)         | stub       | A query-and-history word; it shapes how stored truth is accessed or preserved.                                                                                     |
-| 0894  | `STUB` [bitmap index](#rune-0894)       | stub       | A storage-law word; it governs how facts are kept, found, or rolled back.                                                                                          |
-| 0895  | `STUB` [checkpoint](#rune-0895)         | stub       | A persistence-word; it binds state to time and query.                                                                                                              |
-| 0896  | `STUB` [column {DB}](#rune-0896)        | stub       | A durable-state word; it matters because the system must remember through change.                                                                                  |
-| 0897  | `STUB` [column store](#rune-0897)       | stub       | A query-and-history word; it shapes how stored truth is accessed or preserved.                                                                                     |
-| 0898  | [commit {DB}](#rune-0898)               | authored   | The moment a proposed change becomes durable history. Shadow: writing too early, before the world is actually ready to carry the new truth.                        |
-| 0899  | `STUB` [compaction {DB}](#rune-0899)    | stub       | A storage-law word; it governs how facts are kept, found, or rolled back.                                                                                          |
-| 0900  | `STUB` [conflict](#rune-0900)           | stub       | A durable-state word; it matters because the system must remember through change.                                                                                  |
-| 0901  | [constraint {DB}](#rune-0901)           | authored   | A rule the data is not allowed to violate.                                                                                                                         |
-| 0902  | `STUB` [covering index](#rune-0902)     | stub       | A storage-law word; it governs how facts are kept, found, or rolled back.                                                                                          |
-| 0903  | `STUB` [cursor {DB}](#rune-0903)        | stub       | A durable-state word; it matters because the system must remember through change.                                                                                  |
-| 0904  | `STUB` [data lake](#rune-0904)          | stub       | A query-and-history word; it shapes how stored truth is accessed or preserved.                                                                                     |
-| 0905  | `STUB` [data warehouse](#rune-0905)     | stub       | A storage-law word; it governs how facts are kept, found, or rolled back.                                                                                          |
-| 0906  | `STUB` [database](#rune-0906)           | stub       | A storage-law word; it governs how facts are kept, found, or rolled back.                                                                                          |
-| 0907  | `STUB` [deadlock {DB}](#rune-0907)      | stub       | A binding curse; multiple actors wait on one another forever.                                                                                                      |
-| 0908  | `STUB` [denormalization](#rune-0908)    | stub       | A persistence-word; it binds state to time and query.                                                                                                              |
-| 0909  | `STUB` [dimension table](#rune-0909)    | stub       | A durable-state word; it matters because the system must remember through change.                                                                                  |
-| 0910  | `STUB` [durability](#rune-0910)         | stub       | A storage-law word; it governs how facts are kept, found, or rolled back.                                                                                          |
-| 0911  | `STUB` [durable log](#rune-0911)        | stub       | A storage-law word; it governs how facts are kept, found, or rolled back.                                                                                          |
-| 0912  | `STUB` [entity table](#rune-0912)       | stub       | A storage-law word; it governs how facts are kept, found, or rolled back.                                                                                          |
-| 0913  | `STUB` [event store](#rune-0913)        | stub       | A query-and-history word; it shapes how stored truth is accessed or preserved.                                                                                     |
-| 0914  | `STUB` [fact table](#rune-0914)         | stub       | A durable-state word; it matters because the system must remember through change.                                                                                  |
-| 0915  | `STUB` [failover replica](#rune-0915)   | stub       | A persistence-word; it binds state to time and query.                                                                                                              |
-| 0916  | [foreign key](#rune-0916)               | authored   | A declared reference from one table to another table's key.                                                                                                        |
-| 0917  | `STUB` [full table scan](#rune-0917)    | stub       | A persistence-word; it binds state to time and query.                                                                                                              |
-| 0918  | [index {DB}](#rune-0918)                | authored   | An access structure that speeds reads by paying extra write and space cost.                                                                                        |
-| 0919  | `STUB` [index hint](#rune-0919)         | stub       | A query-and-history word; it shapes how stored truth is accessed or preserved.                                                                                     |
-| 0920  | `STUB` [index seek](#rune-0920)         | stub       | A persistence-word; it binds state to time and query.                                                                                                              |
-| 0921  | [isolation level](#rune-0921)           | authored   | The degree to which concurrent transactions are allowed to see one another's motion.                                                                               |
-| 0922  | `STUB` [join {DB}](#rune-0922)          | stub       | A union word; separate streams, sets, or histories are brought into one result.                                                                                    |
-| 0923  | `STUB` [keyspace](#rune-0923)           | stub       | A storage-law word; it governs how facts are kept, found, or rolled back.                                                                                          |
-| 0924  | `STUB` [LSM tree](#rune-0924)           | stub       | A persistence-word; it binds state to time and query.                                                                                                              |
-| 0925  | [materialized view](#rune-0925)         | authored   | A stored query result traded for cheaper future reads.                                                                                                             |
-| 0926  | [migration](#rune-0926)                 | authored   | Stored reality changing shape without being lost. Good migrations are staged, inspectable, and reversible long enough to discover what the data actually contains. |
-| 0927  | [MVCC](#rune-0927)                      | authored   | Versioned rows that let readers and writers coexist more safely.                                                                                                   |
-| 0928  | `STUB` [nonclustered index](#rune-0928) | stub       | A durable-state word; it matters because the system must remember through change.                                                                                  |
-| 0929  | `STUB` [OLAP](#rune-0929)               | stub       | A persistence-word; it binds state to time and query.                                                                                                              |
-| 0930  | `STUB` [OLTP](#rune-0930)               | stub       | A query-and-history word; it shapes how stored truth is accessed or preserved.                                                                                     |
-| 0931  | `STUB` [partition {DB}](#rune-0931)     | stub       | A durable-state word; it matters because the system must remember through change.                                                                                  |
-| 0932  | `STUB` [partition key](#rune-0932)      | stub       | A query-and-history word; it shapes how stored truth is accessed or preserved.                                                                                     |
-| 0933  | [primary key](#rune-0933)               | authored   | The key that uniquely names one row inside its table.                                                                                                              |
-| 0934  | [query plan](#rune-0934)                | authored   | The strategy the database chose to answer the query.                                                                                                               |
-| 0935  | `STUB` [read committed](#rune-0935)     | stub       | A durable-state word; it matters because the system must remember through change.                                                                                  |
-| 0936  | `STUB` [read replica](#rune-0936)       | stub       | A persistence-word; it binds state to time and query.                                                                                                              |
-| 0937  | `STUB` [record lock](#rune-0937)        | stub       | A persistence-word; it binds state to time and query.                                                                                                              |
-| 0938  | `STUB` [redo log](#rune-0938)           | stub       | A persistence-word; it binds state to time and query.                                                                                                              |
-| 0939  | `STUB` [relation {DB}](#rune-0939)      | stub       | A durable-state word; it matters because the system must remember through change.                                                                                  |
-| 0940  | `STUB` [repeatable read](#rune-0940)    | stub       | A storage-law word; it governs how facts are kept, found, or rolled back.                                                                                          |
-| 0941  | `STUB` [replication lag](#rune-0941)    | stub       | A durable-state word; it matters because the system must remember through change.                                                                                  |
-| 0942  | `STUB` [retention](#rune-0942)          | stub       | A persistence-word; it binds state to time and query.                                                                                                              |
-| 0943  | [rollback {DB}](#rune-0943)             | authored   | Permission to retreat toward a previously trusted state. A system without rollback mistakes hope for safety.                                                       |
-| 0944  | `STUB` [row {DB}](#rune-0944)           | stub       | A persistence-word; it binds state to time and query.                                                                                                              |
-| 0945  | `STUB` [row store](#rune-0945)          | stub       | A storage-law word; it governs how facts are kept, found, or rolled back.                                                                                          |
-| 0946  | `STUB` [savepoint](#rune-0946)          | stub       | A storage-law word; it governs how facts are kept, found, or rolled back.                                                                                          |
-| 0947  | `STUB` [scan {DB}](#rune-0947)          | stub       | A storage-law word; it governs how facts are kept, found, or rolled back.                                                                                          |
-| 0948  | [schema {DB}](#rune-0948)               | authored   | The declared shape of database truth.                                                                                                                              |
-| 0949  | `STUB` [secondary index](#rune-0949)    | stub       | A persistence-word; it binds state to time and query.                                                                                                              |
-| 0950  | `STUB` [seed data](#rune-0950)          | stub       | A query-and-history word; it shapes how stored truth is accessed or preserved.                                                                                     |
-| 0951  | `STUB` [serializable {DB}](#rune-0951)  | stub       | A query-and-history word; it shapes how stored truth is accessed or preserved.                                                                                     |
-| 0952  | `STUB` [sharding](#rune-0952)           | stub       | A persistence-word; it binds state to time and query.                                                                                                              |
-| 0953  | `STUB` [snapshot isolation](#rune-0953) | stub       | A durable-state word; it matters because the system must remember through change.                                                                                  |
-| 0954  | `STUB` [sort key](#rune-0954)           | stub       | A storage-law word; it governs how facts are kept, found, or rolled back.                                                                                          |
-| 0955  | `STUB` [stored procedure](#rune-0955)   | stub       | A durable-state word; it matters because the system must remember through change.                                                                                  |
-| 0956  | `STUB` [table {DB}](#rune-0956)         | stub       | A persistence-word; it binds state to time and query.                                                                                                              |
-| 0957  | `STUB` [table scan](#rune-0957)         | stub       | A storage-law word; it governs how facts are kept, found, or rolled back.                                                                                          |
-| 0958  | `STUB` [tenant isolation](#rune-0958)   | stub       | A persistence-word; it binds state to time and query.                                                                                                              |
-| 0959  | [transaction](#rune-0959)               | authored   | A unit of work meant to stand or fall together.                                                                                                                    |
-| 0960  | `STUB` [TTL](#rune-0960)                | stub       | A persistence-word; it binds state to time and query.                                                                                                              |
-| 0961  | `STUB` [tuple {DB}](#rune-0961)         | stub       | A durable-state word; it matters because the system must remember through change.                                                                                  |
-| 0962  | `STUB` [unique constraint](#rune-0962)  | stub       | A persistence-word; it binds state to time and query.                                                                                                              |
-| 0963  | `STUB` [upsert](#rune-0963)             | stub       | A query-and-history word; it shapes how stored truth is accessed or preserved.                                                                                     |
-| 0964  | `STUB` [vacuum](#rune-0964)             | stub       | A storage-law word; it governs how facts are kept, found, or rolled back.                                                                                          |
-| 0965  | `STUB` [view {DB}](#rune-0965)          | stub       | A query-and-history word; it shapes how stored truth is accessed or preserved.                                                                                     |
-| 0966  | [WAL](#rune-0966)                       | authored   | Write-ahead log: history recorded before dirty pages reach their final home.                                                                                       |
-| 0967  | `STUB` [warehouse model](#rune-0967)    | stub       | A persistence-word; it binds state to time and query.                                                                                                              |
-| 0968  | `STUB` [write skew {DB}](#rune-0968)    | stub       | A storage-law word; it governs how facts are kept, found, or rolled back.                                                                                          |
+| Sigil | Term                             | Completion | Summary                                                                                                                                                                                                                                 |
+| ----- | -------------------------------- | ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 0887  | [ACID](#rune-0887)               | authored   | The classic four-part law of transactional storage: atomicity, consistency, isolation, durability.                                                                                                                                      |
+| 0888  | [append-only log](#rune-0888)    | authored   | `append-only log` is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the append-only log obligation named before work proceeds.           |
+| 0889  | [archive table](#rune-0889)      | authored   | `archive table` is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the archive table obligation named before work proceeds.               |
+| 0890  | [audit trail](#rune-0890)        | authored   | `audit trail` is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the audit trail obligation named before work proceeds.                   |
+| 0891  | [B-tree](#rune-0891)             | authored   | `B-tree` is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the B-tree obligation named before work proceeds.                             |
+| 0892  | [backup](#rune-0892)             | authored   | A restorable copy taken so loss is not final.                                                                                                                                                                                           |
+| 0893  | [base table](#rune-0893)         | authored   | `base table` is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the base table obligation named before work proceeds.                     |
+| 0894  | [bitmap index](#rune-0894)       | authored   | `bitmap index` is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the bitmap index obligation named before work proceeds.                 |
+| 0895  | [checkpoint](#rune-0895)         | authored   | `checkpoint` is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the checkpoint obligation named before work proceeds.                     |
+| 0896  | [column {DB}](#rune-0896)        | authored   | `column` in its DB sense is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the column obligation named before work proceeds.             |
+| 0897  | [column store](#rune-0897)       | authored   | `column store` is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the column store obligation named before work proceeds.                 |
+| 0898  | [commit {DB}](#rune-0898)        | authored   | The moment a proposed change becomes durable history. Shadow: writing too early, before the world is actually ready to carry the new truth.                                                                                             |
+| 0899  | [compaction {DB}](#rune-0899)    | authored   | `compaction` in its DB sense is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the compaction obligation named before work proceeds.     |
+| 0900  | [conflict](#rune-0900)           | authored   | `conflict` is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the conflict obligation named before work proceeds.                         |
+| 0901  | [constraint {DB}](#rune-0901)    | authored   | A rule the data is not allowed to violate.                                                                                                                                                                                              |
+| 0902  | [covering index](#rune-0902)     | authored   | `covering index` is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the covering index obligation named before work proceeds.             |
+| 0903  | [cursor {DB}](#rune-0903)        | authored   | `cursor` in its DB sense is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the cursor obligation named before work proceeds.             |
+| 0904  | [data lake](#rune-0904)          | authored   | `data lake` is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the data lake obligation named before work proceeds.                       |
+| 0905  | [data warehouse](#rune-0905)     | authored   | `data warehouse` is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the data warehouse obligation named before work proceeds.             |
+| 0906  | [database](#rune-0906)           | authored   | `database` is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the database obligation named before work proceeds.                         |
+| 0907  | [deadlock {DB}](#rune-0907)      | authored   | `deadlock` in its DB sense is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the deadlock obligation named before work proceeds.         |
+| 0908  | [denormalization](#rune-0908)    | authored   | `denormalization` is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the denormalization obligation named before work proceeds.           |
+| 0909  | [dimension table](#rune-0909)    | authored   | `dimension table` is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the dimension table obligation named before work proceeds.           |
+| 0910  | [durability](#rune-0910)         | authored   | `durability` is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the durability obligation named before work proceeds.                     |
+| 0911  | [durable log](#rune-0911)        | authored   | `durable log` is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the durable log obligation named before work proceeds.                   |
+| 0912  | [entity table](#rune-0912)       | authored   | `entity table` is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the entity table obligation named before work proceeds.                 |
+| 0913  | [event store](#rune-0913)        | authored   | `event store` is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the event store obligation named before work proceeds.                   |
+| 0914  | [fact table](#rune-0914)         | authored   | `fact table` is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the fact table obligation named before work proceeds.                     |
+| 0915  | [failover replica](#rune-0915)   | authored   | `failover replica` is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the failover replica obligation named before work proceeds.         |
+| 0916  | [foreign key](#rune-0916)        | authored   | A declared reference from one table to another table's key.                                                                                                                                                                             |
+| 0917  | [full table scan](#rune-0917)    | authored   | `full table scan` is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the full table scan obligation named before work proceeds.           |
+| 0918  | [index {DB}](#rune-0918)         | authored   | An access structure that speeds reads by paying extra write and space cost.                                                                                                                                                             |
+| 0919  | [index hint](#rune-0919)         | authored   | `index hint` is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the index hint obligation named before work proceeds.                     |
+| 0920  | [index seek](#rune-0920)         | authored   | `index seek` is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the index seek obligation named before work proceeds.                     |
+| 0921  | [isolation level](#rune-0921)    | authored   | The degree to which concurrent transactions are allowed to see one another's motion.                                                                                                                                                    |
+| 0922  | [join {DB}](#rune-0922)          | authored   | `join` in its DB sense is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the join obligation named before work proceeds.                 |
+| 0923  | [keyspace](#rune-0923)           | authored   | `keyspace` is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the keyspace obligation named before work proceeds.                         |
+| 0924  | [LSM tree](#rune-0924)           | authored   | `LSM tree` is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the LSM tree obligation named before work proceeds.                         |
+| 0925  | [materialized view](#rune-0925)  | authored   | A stored query result traded for cheaper future reads.                                                                                                                                                                                  |
+| 0926  | [migration](#rune-0926)          | authored   | Stored reality changing shape without being lost. Good migrations are staged, inspectable, and reversible long enough to discover what the data actually contains.                                                                      |
+| 0927  | [MVCC](#rune-0927)               | authored   | Versioned rows that let readers and writers coexist more safely.                                                                                                                                                                        |
+| 0928  | [nonclustered index](#rune-0928) | authored   | `nonclustered index` is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the nonclustered index obligation named before work proceeds.     |
+| 0929  | [OLAP](#rune-0929)               | authored   | `OLAP` is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the OLAP obligation named before work proceeds.                                 |
+| 0930  | [OLTP](#rune-0930)               | authored   | `OLTP` is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the OLTP obligation named before work proceeds.                                 |
+| 0931  | [partition {DB}](#rune-0931)     | authored   | `partition` in its DB sense is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the partition obligation named before work proceeds.       |
+| 0932  | [partition key](#rune-0932)      | authored   | `partition key` is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the partition key obligation named before work proceeds.               |
+| 0933  | [primary key](#rune-0933)        | authored   | The key that uniquely names one row inside its table.                                                                                                                                                                                   |
+| 0934  | [query plan](#rune-0934)         | authored   | The strategy the database chose to answer the query.                                                                                                                                                                                    |
+| 0935  | [read committed](#rune-0935)     | authored   | `read committed` is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the read committed obligation named before work proceeds.             |
+| 0936  | [read replica](#rune-0936)       | authored   | `read replica` is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the read replica obligation named before work proceeds.                 |
+| 0937  | [record lock](#rune-0937)        | authored   | `record lock` is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the record lock obligation named before work proceeds.                   |
+| 0938  | [redo log](#rune-0938)           | authored   | `redo log` is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the redo log obligation named before work proceeds.                         |
+| 0939  | [relation {DB}](#rune-0939)      | authored   | `relation` in its DB sense is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the relation obligation named before work proceeds.         |
+| 0940  | [repeatable read](#rune-0940)    | authored   | `repeatable read` is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the repeatable read obligation named before work proceeds.           |
+| 0941  | [replication lag](#rune-0941)    | authored   | `replication lag` is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the replication lag obligation named before work proceeds.           |
+| 0942  | [retention](#rune-0942)          | authored   | `retention` is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the retention obligation named before work proceeds.                       |
+| 0943  | [rollback {DB}](#rune-0943)      | authored   | Permission to retreat toward a previously trusted state. A system without rollback mistakes hope for safety.                                                                                                                            |
+| 0944  | [row {DB}](#rune-0944)           | authored   | `row` in its DB sense is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the row obligation named before work proceeds.                   |
+| 0945  | [row store](#rune-0945)          | authored   | `row store` is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the row store obligation named before work proceeds.                       |
+| 0946  | [savepoint](#rune-0946)          | authored   | `savepoint` is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the savepoint obligation named before work proceeds.                       |
+| 0947  | [scan {DB}](#rune-0947)          | authored   | `scan` in its DB sense is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the scan obligation named before work proceeds.                 |
+| 0948  | [schema {DB}](#rune-0948)        | authored   | The declared shape of database truth.                                                                                                                                                                                                   |
+| 0949  | [secondary index](#rune-0949)    | authored   | `secondary index` is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the secondary index obligation named before work proceeds.           |
+| 0950  | [seed data](#rune-0950)          | authored   | `seed data` is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the seed data obligation named before work proceeds.                       |
+| 0951  | [serializable {DB}](#rune-0951)  | authored   | `serializable` in its DB sense is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the serializable obligation named before work proceeds. |
+| 0952  | [sharding](#rune-0952)           | authored   | `sharding` is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the sharding obligation named before work proceeds.                         |
+| 0953  | [snapshot isolation](#rune-0953) | authored   | `snapshot isolation` is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the snapshot isolation obligation named before work proceeds.     |
+| 0954  | [sort key](#rune-0954)           | authored   | `sort key` is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the sort key obligation named before work proceeds.                         |
+| 0955  | [stored procedure](#rune-0955)   | authored   | `stored procedure` is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the stored procedure obligation named before work proceeds.         |
+| 0956  | [table {DB}](#rune-0956)         | authored   | `table` in its DB sense is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the table obligation named before work proceeds.               |
+| 0957  | [table scan](#rune-0957)         | authored   | `table scan` is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the table scan obligation named before work proceeds.                     |
+| 0958  | [tenant isolation](#rune-0958)   | authored   | `tenant isolation` is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the tenant isolation obligation named before work proceeds.         |
+| 0959  | [transaction](#rune-0959)        | authored   | A unit of work meant to stand or fall together.                                                                                                                                                                                         |
+| 0960  | [TTL](#rune-0960)                | authored   | `TTL` is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the TTL obligation named before work proceeds.                                   |
+| 0961  | [tuple {DB}](#rune-0961)         | authored   | `tuple` in its DB sense is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the tuple obligation named before work proceeds.               |
+| 0962  | [unique constraint](#rune-0962)  | authored   | `unique constraint` is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the unique constraint obligation named before work proceeds.       |
+| 0963  | [upsert](#rune-0963)             | authored   | `upsert` is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the upsert obligation named before work proceeds.                             |
+| 0964  | [vacuum](#rune-0964)             | authored   | `vacuum` is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the vacuum obligation named before work proceeds.                             |
+| 0965  | [view {DB}](#rune-0965)          | authored   | `view` in its DB sense is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the view obligation named before work proceeds.                 |
+| 0966  | [WAL](#rune-0966)                | authored   | Write-ahead log: history recorded before dirty pages reach their final home.                                                                                                                                                            |
+| 0967  | [warehouse model](#rune-0967)    | authored   | `warehouse model` is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the warehouse model obligation named before work proceeds.           |
+| 0968  | [write skew {DB}](#rune-0968)    | authored   | `write skew` in its DB sense is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the write skew obligation named before work proceeds.     |
 
 ## Entries
 
@@ -110,7 +109,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** The classic four-part law of transactional storage: atomicity, consistency, isolation, durability.
 
-**Shadow:** durable state can preserve the wrong truth longer than the code remembers why it changed.
+**Shadow:** misusing `ACID` at rune 0887 in the database lane can let durability can preserve the wrong truth longer than code remembers; verify by requiring the caster to state isolation, migration, rollback, and validation queries.
 
 **Pocket gloss:** The classic four-part law of transactional storage: atomicity, consistency, isolation, durability.
 
@@ -118,41 +117,41 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A storage-law word; it governs how facts are kept, found, or rolled back.
+**Force:** `append-only log` is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the append-only log obligation named before work proceeds.
 
-**Shadow:** durable state can preserve the wrong truth longer than the code remembers why it changed.
+**Shadow:** misusing `append-only log` at rune 0888 in the database lane can let durability can preserve the wrong truth longer than code remembers; verify by requiring the caster to state isolation, migration, rollback, and validation queries.
 
 ### [0889] archive table {#rune-0889}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A durable-state word; it matters because the system must remember through change.
+**Force:** `archive table` is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the archive table obligation named before work proceeds.
 
-**Shadow:** durable state can preserve the wrong truth longer than the code remembers why it changed.
+**Shadow:** misusing `archive table` at rune 0889 in the database lane can let durability can preserve the wrong truth longer than code remembers; verify by requiring the caster to state isolation, migration, rollback, and validation queries.
 
 ### [0890] audit trail {#rune-0890}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A query-and-history word; it shapes how stored truth is accessed or preserved.
+**Force:** `audit trail` is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the audit trail obligation named before work proceeds.
 
-**Shadow:** durable state can preserve the wrong truth longer than the code remembers why it changed.
+**Shadow:** misusing `audit trail` at rune 0890 in the database lane can let durability can preserve the wrong truth longer than code remembers; verify by requiring the caster to state isolation, migration, rollback, and validation queries.
 
 ### [0891] B-tree {#rune-0891}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A query-and-history word; it shapes how stored truth is accessed or preserved.
+**Force:** `B-tree` is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the B-tree obligation named before work proceeds.
 
-**Shadow:** durable state can preserve the wrong truth longer than the code remembers why it changed.
+**Shadow:** misusing `B-tree` at rune 0891 in the database lane can let durability can preserve the wrong truth longer than code remembers; verify by requiring the caster to state isolation, migration, rollback, and validation queries.
 
 ### [0892] backup {#rune-0892}
 
@@ -162,7 +161,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** A restorable copy taken so loss is not final.
 
-**Shadow:** durable state can preserve the wrong truth longer than the code remembers why it changed.
+**Shadow:** misusing `backup` at rune 0892 in the database lane can let durability can preserve the wrong truth longer than code remembers; verify by requiring the caster to state isolation, migration, rollback, and validation queries.
 
 **Pocket gloss:** A restorable copy taken so loss is not final.
 
@@ -170,51 +169,51 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A query-and-history word; it shapes how stored truth is accessed or preserved.
+**Force:** `base table` is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the base table obligation named before work proceeds.
 
-**Shadow:** durable state can preserve the wrong truth longer than the code remembers why it changed.
+**Shadow:** misusing `base table` at rune 0893 in the database lane can let durability can preserve the wrong truth longer than code remembers; verify by requiring the caster to state isolation, migration, rollback, and validation queries.
 
 ### [0894] bitmap index {#rune-0894}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A storage-law word; it governs how facts are kept, found, or rolled back.
+**Force:** `bitmap index` is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the bitmap index obligation named before work proceeds.
 
-**Shadow:** durable state can preserve the wrong truth longer than the code remembers why it changed.
+**Shadow:** misusing `bitmap index` at rune 0894 in the database lane can let durability can preserve the wrong truth longer than code remembers; verify by requiring the caster to state isolation, migration, rollback, and validation queries.
 
 ### [0895] checkpoint {#rune-0895}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A persistence-word; it binds state to time and query.
+**Force:** `checkpoint` is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the checkpoint obligation named before work proceeds.
 
-**Shadow:** durable state can preserve the wrong truth longer than the code remembers why it changed.
+**Shadow:** misusing `checkpoint` at rune 0895 in the database lane can let durability can preserve the wrong truth longer than code remembers; verify by requiring the caster to state isolation, migration, rollback, and validation queries.
 
 ### [0896] column {DB} {#rune-0896}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A durable-state word; it matters because the system must remember through change.
+**Force:** `column` in its DB sense is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the column obligation named before work proceeds.
 
-**Shadow:** durable state can preserve the wrong truth longer than the code remembers why it changed.
+**Shadow:** misusing `column` at rune 0896 in the DB lane can let durability can preserve the wrong truth longer than code remembers; verify by requiring the caster to state isolation, migration, rollback, and validation queries.
 
 ### [0897] column store {#rune-0897}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A query-and-history word; it shapes how stored truth is accessed or preserved.
+**Force:** `column store` is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the column store obligation named before work proceeds.
 
-**Shadow:** durable state can preserve the wrong truth longer than the code remembers why it changed.
+**Shadow:** misusing `column store` at rune 0897 in the database lane can let durability can preserve the wrong truth longer than code remembers; verify by requiring the caster to state isolation, migration, rollback, and validation queries.
 
 ### [0898] commit {DB} {#rune-0898}
 
@@ -232,21 +231,21 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A storage-law word; it governs how facts are kept, found, or rolled back.
+**Force:** `compaction` in its DB sense is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the compaction obligation named before work proceeds.
 
-**Shadow:** durable state can preserve the wrong truth longer than the code remembers why it changed.
+**Shadow:** misusing `compaction` at rune 0899 in the DB lane can let durability can preserve the wrong truth longer than code remembers; verify by requiring the caster to state isolation, migration, rollback, and validation queries.
 
 ### [0900] conflict {#rune-0900}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A durable-state word; it matters because the system must remember through change.
+**Force:** `conflict` is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the conflict obligation named before work proceeds.
 
-**Shadow:** durable state can preserve the wrong truth longer than the code remembers why it changed.
+**Shadow:** misusing `conflict` at rune 0900 in the database lane can let durability can preserve the wrong truth longer than code remembers; verify by requiring the caster to state isolation, migration, rollback, and validation queries.
 
 ### [0901] constraint {DB} {#rune-0901}
 
@@ -256,7 +255,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** A rule the data is not allowed to violate.
 
-**Shadow:** durable state can preserve the wrong truth longer than the code remembers why it changed.
+**Shadow:** misusing `constraint` at rune 0901 in the DB lane can let durability can preserve the wrong truth longer than code remembers; verify by requiring the caster to state isolation, migration, rollback, and validation queries.
 
 **Pocket gloss:** A rule the data is not allowed to violate.
 
@@ -264,141 +263,141 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A storage-law word; it governs how facts are kept, found, or rolled back.
+**Force:** `covering index` is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the covering index obligation named before work proceeds.
 
-**Shadow:** durable state can preserve the wrong truth longer than the code remembers why it changed.
+**Shadow:** misusing `covering index` at rune 0902 in the database lane can let durability can preserve the wrong truth longer than code remembers; verify by requiring the caster to state isolation, migration, rollback, and validation queries.
 
 ### [0903] cursor {DB} {#rune-0903}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A durable-state word; it matters because the system must remember through change.
+**Force:** `cursor` in its DB sense is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the cursor obligation named before work proceeds.
 
-**Shadow:** durable state can preserve the wrong truth longer than the code remembers why it changed.
+**Shadow:** misusing `cursor` at rune 0903 in the DB lane can let durability can preserve the wrong truth longer than code remembers; verify by requiring the caster to state isolation, migration, rollback, and validation queries.
 
 ### [0904] data lake {#rune-0904}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A query-and-history word; it shapes how stored truth is accessed or preserved.
+**Force:** `data lake` is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the data lake obligation named before work proceeds.
 
-**Shadow:** durable state can preserve the wrong truth longer than the code remembers why it changed.
+**Shadow:** misusing `data lake` at rune 0904 in the database lane can let durability can preserve the wrong truth longer than code remembers; verify by requiring the caster to state isolation, migration, rollback, and validation queries.
 
 ### [0905] data warehouse {#rune-0905}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A storage-law word; it governs how facts are kept, found, or rolled back.
+**Force:** `data warehouse` is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the data warehouse obligation named before work proceeds.
 
-**Shadow:** durable state can preserve the wrong truth longer than the code remembers why it changed.
+**Shadow:** misusing `data warehouse` at rune 0905 in the database lane can let durability can preserve the wrong truth longer than code remembers; verify by requiring the caster to state isolation, migration, rollback, and validation queries.
 
 ### [0906] database {#rune-0906}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A storage-law word; it governs how facts are kept, found, or rolled back.
+**Force:** `database` is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the database obligation named before work proceeds.
 
-**Shadow:** durable state can preserve the wrong truth longer than the code remembers why it changed.
+**Shadow:** misusing `database` at rune 0906 in the database lane can let durability can preserve the wrong truth longer than code remembers; verify by requiring the caster to state isolation, migration, rollback, and validation queries.
 
 ### [0907] deadlock {DB} {#rune-0907}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A binding curse; multiple actors wait on one another forever.
+**Force:** `deadlock` in its DB sense is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the deadlock obligation named before work proceeds.
 
-**Shadow:** durable state can preserve the wrong truth longer than the code remembers why it changed.
+**Shadow:** misusing `deadlock` at rune 0907 in the DB lane can let durability can preserve the wrong truth longer than code remembers; verify by requiring the caster to state isolation, migration, rollback, and validation queries.
 
 ### [0908] denormalization {#rune-0908}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A persistence-word; it binds state to time and query.
+**Force:** `denormalization` is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the denormalization obligation named before work proceeds.
 
-**Shadow:** durable state can preserve the wrong truth longer than the code remembers why it changed.
+**Shadow:** misusing `denormalization` at rune 0908 in the database lane can let durability can preserve the wrong truth longer than code remembers; verify by requiring the caster to state isolation, migration, rollback, and validation queries.
 
 ### [0909] dimension table {#rune-0909}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A durable-state word; it matters because the system must remember through change.
+**Force:** `dimension table` is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the dimension table obligation named before work proceeds.
 
-**Shadow:** durable state can preserve the wrong truth longer than the code remembers why it changed.
+**Shadow:** misusing `dimension table` at rune 0909 in the database lane can let durability can preserve the wrong truth longer than code remembers; verify by requiring the caster to state isolation, migration, rollback, and validation queries.
 
 ### [0910] durability {#rune-0910}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A storage-law word; it governs how facts are kept, found, or rolled back.
+**Force:** `durability` is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the durability obligation named before work proceeds.
 
-**Shadow:** durable state can preserve the wrong truth longer than the code remembers why it changed.
+**Shadow:** misusing `durability` at rune 0910 in the database lane can let durability can preserve the wrong truth longer than code remembers; verify by requiring the caster to state isolation, migration, rollback, and validation queries.
 
 ### [0911] durable log {#rune-0911}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A storage-law word; it governs how facts are kept, found, or rolled back.
+**Force:** `durable log` is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the durable log obligation named before work proceeds.
 
-**Shadow:** durable state can preserve the wrong truth longer than the code remembers why it changed.
+**Shadow:** misusing `durable log` at rune 0911 in the database lane can let durability can preserve the wrong truth longer than code remembers; verify by requiring the caster to state isolation, migration, rollback, and validation queries.
 
 ### [0912] entity table {#rune-0912}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A storage-law word; it governs how facts are kept, found, or rolled back.
+**Force:** `entity table` is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the entity table obligation named before work proceeds.
 
-**Shadow:** durable state can preserve the wrong truth longer than the code remembers why it changed.
+**Shadow:** misusing `entity table` at rune 0912 in the database lane can let durability can preserve the wrong truth longer than code remembers; verify by requiring the caster to state isolation, migration, rollback, and validation queries.
 
 ### [0913] event store {#rune-0913}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A query-and-history word; it shapes how stored truth is accessed or preserved.
+**Force:** `event store` is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the event store obligation named before work proceeds.
 
-**Shadow:** durable state can preserve the wrong truth longer than the code remembers why it changed.
+**Shadow:** misusing `event store` at rune 0913 in the database lane can let durability can preserve the wrong truth longer than code remembers; verify by requiring the caster to state isolation, migration, rollback, and validation queries.
 
 ### [0914] fact table {#rune-0914}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A durable-state word; it matters because the system must remember through change.
+**Force:** `fact table` is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the fact table obligation named before work proceeds.
 
-**Shadow:** durable state can preserve the wrong truth longer than the code remembers why it changed.
+**Shadow:** misusing `fact table` at rune 0914 in the database lane can let durability can preserve the wrong truth longer than code remembers; verify by requiring the caster to state isolation, migration, rollback, and validation queries.
 
 ### [0915] failover replica {#rune-0915}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A persistence-word; it binds state to time and query.
+**Force:** `failover replica` is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the failover replica obligation named before work proceeds.
 
-**Shadow:** durable state can preserve the wrong truth longer than the code remembers why it changed.
+**Shadow:** misusing `failover replica` at rune 0915 in the database lane can let durability can preserve the wrong truth longer than code remembers; verify by requiring the caster to state isolation, migration, rollback, and validation queries.
 
 ### [0916] foreign key {#rune-0916}
 
@@ -408,7 +407,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** A declared reference from one table to another table's key.
 
-**Shadow:** durable state can preserve the wrong truth longer than the code remembers why it changed.
+**Shadow:** misusing `foreign key` at rune 0916 in the database lane can let durability can preserve the wrong truth longer than code remembers; verify by requiring the caster to state isolation, migration, rollback, and validation queries.
 
 **Pocket gloss:** A declared reference from one table to another table's key.
 
@@ -416,11 +415,11 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A persistence-word; it binds state to time and query.
+**Force:** `full table scan` is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the full table scan obligation named before work proceeds.
 
-**Shadow:** durable state can preserve the wrong truth longer than the code remembers why it changed.
+**Shadow:** misusing `full table scan` at rune 0917 in the database lane can let durability can preserve the wrong truth longer than code remembers; verify by requiring the caster to state isolation, migration, rollback, and validation queries.
 
 ### [0918] index {DB} {#rune-0918}
 
@@ -430,7 +429,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** An access structure that speeds reads by paying extra write and space cost.
 
-**Shadow:** durable state can preserve the wrong truth longer than the code remembers why it changed.
+**Shadow:** misusing `index` at rune 0918 in the DB lane can let durability can preserve the wrong truth longer than code remembers; verify by requiring the caster to state isolation, migration, rollback, and validation queries.
 
 **Pocket gloss:** An access structure that speeds reads by paying extra write and space cost.
 
@@ -438,21 +437,21 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A query-and-history word; it shapes how stored truth is accessed or preserved.
+**Force:** `index hint` is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the index hint obligation named before work proceeds.
 
-**Shadow:** durable state can preserve the wrong truth longer than the code remembers why it changed.
+**Shadow:** misusing `index hint` at rune 0919 in the database lane can let durability can preserve the wrong truth longer than code remembers; verify by requiring the caster to state isolation, migration, rollback, and validation queries.
 
 ### [0920] index seek {#rune-0920}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A persistence-word; it binds state to time and query.
+**Force:** `index seek` is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the index seek obligation named before work proceeds.
 
-**Shadow:** durable state can preserve the wrong truth longer than the code remembers why it changed.
+**Shadow:** misusing `index seek` at rune 0920 in the database lane can let durability can preserve the wrong truth longer than code remembers; verify by requiring the caster to state isolation, migration, rollback, and validation queries.
 
 ### [0921] isolation level {#rune-0921}
 
@@ -462,7 +461,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** The degree to which concurrent transactions are allowed to see one another's motion.
 
-**Shadow:** durable state can preserve the wrong truth longer than the code remembers why it changed.
+**Shadow:** misusing `isolation level` at rune 0921 in the database lane can let durability can preserve the wrong truth longer than code remembers; verify by requiring the caster to state isolation, migration, rollback, and validation queries.
 
 **Pocket gloss:** The degree to which concurrent transactions are allowed to see one another's motion.
 
@@ -470,31 +469,31 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A union word; separate streams, sets, or histories are brought into one result.
+**Force:** `join` in its DB sense is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the join obligation named before work proceeds.
 
-**Shadow:** durable state can preserve the wrong truth longer than the code remembers why it changed.
+**Shadow:** misusing `join` at rune 0922 in the DB lane can let durability can preserve the wrong truth longer than code remembers; verify by requiring the caster to state isolation, migration, rollback, and validation queries.
 
 ### [0923] keyspace {#rune-0923}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A storage-law word; it governs how facts are kept, found, or rolled back.
+**Force:** `keyspace` is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the keyspace obligation named before work proceeds.
 
-**Shadow:** durable state can preserve the wrong truth longer than the code remembers why it changed.
+**Shadow:** misusing `keyspace` at rune 0923 in the database lane can let durability can preserve the wrong truth longer than code remembers; verify by requiring the caster to state isolation, migration, rollback, and validation queries.
 
 ### [0924] LSM tree {#rune-0924}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A persistence-word; it binds state to time and query.
+**Force:** `LSM tree` is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the LSM tree obligation named before work proceeds.
 
-**Shadow:** durable state can preserve the wrong truth longer than the code remembers why it changed.
+**Shadow:** misusing `LSM tree` at rune 0924 in the database lane can let durability can preserve the wrong truth longer than code remembers; verify by requiring the caster to state isolation, migration, rollback, and validation queries.
 
 ### [0925] materialized view {#rune-0925}
 
@@ -504,7 +503,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** A stored query result traded for cheaper future reads.
 
-**Shadow:** durable state can preserve the wrong truth longer than the code remembers why it changed.
+**Shadow:** misusing `materialized view` at rune 0925 in the database lane can let durability can preserve the wrong truth longer than code remembers; verify by requiring the caster to state isolation, migration, rollback, and validation queries.
 
 **Pocket gloss:** A stored query result traded for cheaper future reads.
 
@@ -528,7 +527,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** Versioned rows that let readers and writers coexist more safely.
 
-**Shadow:** durable state can preserve the wrong truth longer than the code remembers why it changed.
+**Shadow:** misusing `MVCC` at rune 0927 in the database lane can let durability can preserve the wrong truth longer than code remembers; verify by requiring the caster to state isolation, migration, rollback, and validation queries.
 
 **Pocket gloss:** Versioned rows that let readers and writers coexist more safely.
 
@@ -536,51 +535,51 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A durable-state word; it matters because the system must remember through change.
+**Force:** `nonclustered index` is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the nonclustered index obligation named before work proceeds.
 
-**Shadow:** durable state can preserve the wrong truth longer than the code remembers why it changed.
+**Shadow:** misusing `nonclustered index` at rune 0928 in the database lane can let durability can preserve the wrong truth longer than code remembers; verify by requiring the caster to state isolation, migration, rollback, and validation queries.
 
 ### [0929] OLAP {#rune-0929}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A persistence-word; it binds state to time and query.
+**Force:** `OLAP` is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the OLAP obligation named before work proceeds.
 
-**Shadow:** durable state can preserve the wrong truth longer than the code remembers why it changed.
+**Shadow:** misusing `OLAP` at rune 0929 in the database lane can let durability can preserve the wrong truth longer than code remembers; verify by requiring the caster to state isolation, migration, rollback, and validation queries.
 
 ### [0930] OLTP {#rune-0930}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A query-and-history word; it shapes how stored truth is accessed or preserved.
+**Force:** `OLTP` is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the OLTP obligation named before work proceeds.
 
-**Shadow:** durable state can preserve the wrong truth longer than the code remembers why it changed.
+**Shadow:** misusing `OLTP` at rune 0930 in the database lane can let durability can preserve the wrong truth longer than code remembers; verify by requiring the caster to state isolation, migration, rollback, and validation queries.
 
 ### [0931] partition {DB} {#rune-0931}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A durable-state word; it matters because the system must remember through change.
+**Force:** `partition` in its DB sense is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the partition obligation named before work proceeds.
 
-**Shadow:** durable state can preserve the wrong truth longer than the code remembers why it changed.
+**Shadow:** misusing `partition` at rune 0931 in the DB lane can let durability can preserve the wrong truth longer than code remembers; verify by requiring the caster to state isolation, migration, rollback, and validation queries.
 
 ### [0932] partition key {#rune-0932}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A query-and-history word; it shapes how stored truth is accessed or preserved.
+**Force:** `partition key` is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the partition key obligation named before work proceeds.
 
-**Shadow:** durable state can preserve the wrong truth longer than the code remembers why it changed.
+**Shadow:** misusing `partition key` at rune 0932 in the database lane can let durability can preserve the wrong truth longer than code remembers; verify by requiring the caster to state isolation, migration, rollback, and validation queries.
 
 ### [0933] primary key {#rune-0933}
 
@@ -590,7 +589,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** The key that uniquely names one row inside its table.
 
-**Shadow:** durable state can preserve the wrong truth longer than the code remembers why it changed.
+**Shadow:** misusing `primary key` at rune 0933 in the database lane can let durability can preserve the wrong truth longer than code remembers; verify by requiring the caster to state isolation, migration, rollback, and validation queries.
 
 **Pocket gloss:** The key that uniquely names one row inside its table.
 
@@ -602,7 +601,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** The strategy the database chose to answer the query.
 
-**Shadow:** durable state can preserve the wrong truth longer than the code remembers why it changed.
+**Shadow:** misusing `query plan` at rune 0934 in the database lane can let durability can preserve the wrong truth longer than code remembers; verify by requiring the caster to state isolation, migration, rollback, and validation queries.
 
 **Pocket gloss:** The strategy the database chose to answer the query.
 
@@ -610,81 +609,81 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A durable-state word; it matters because the system must remember through change.
+**Force:** `read committed` is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the read committed obligation named before work proceeds.
 
-**Shadow:** durable state can preserve the wrong truth longer than the code remembers why it changed.
+**Shadow:** misusing `read committed` at rune 0935 in the database lane can let durability can preserve the wrong truth longer than code remembers; verify by requiring the caster to state isolation, migration, rollback, and validation queries.
 
 ### [0936] read replica {#rune-0936}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A persistence-word; it binds state to time and query.
+**Force:** `read replica` is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the read replica obligation named before work proceeds.
 
-**Shadow:** durable state can preserve the wrong truth longer than the code remembers why it changed.
+**Shadow:** misusing `read replica` at rune 0936 in the database lane can let durability can preserve the wrong truth longer than code remembers; verify by requiring the caster to state isolation, migration, rollback, and validation queries.
 
 ### [0937] record lock {#rune-0937}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A persistence-word; it binds state to time and query.
+**Force:** `record lock` is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the record lock obligation named before work proceeds.
 
-**Shadow:** durable state can preserve the wrong truth longer than the code remembers why it changed.
+**Shadow:** misusing `record lock` at rune 0937 in the database lane can let durability can preserve the wrong truth longer than code remembers; verify by requiring the caster to state isolation, migration, rollback, and validation queries.
 
 ### [0938] redo log {#rune-0938}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A persistence-word; it binds state to time and query.
+**Force:** `redo log` is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the redo log obligation named before work proceeds.
 
-**Shadow:** durable state can preserve the wrong truth longer than the code remembers why it changed.
+**Shadow:** misusing `redo log` at rune 0938 in the database lane can let durability can preserve the wrong truth longer than code remembers; verify by requiring the caster to state isolation, migration, rollback, and validation queries.
 
 ### [0939] relation {DB} {#rune-0939}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A durable-state word; it matters because the system must remember through change.
+**Force:** `relation` in its DB sense is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the relation obligation named before work proceeds.
 
-**Shadow:** durable state can preserve the wrong truth longer than the code remembers why it changed.
+**Shadow:** misusing `relation` at rune 0939 in the DB lane can let durability can preserve the wrong truth longer than code remembers; verify by requiring the caster to state isolation, migration, rollback, and validation queries.
 
 ### [0940] repeatable read {#rune-0940}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A storage-law word; it governs how facts are kept, found, or rolled back.
+**Force:** `repeatable read` is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the repeatable read obligation named before work proceeds.
 
-**Shadow:** durable state can preserve the wrong truth longer than the code remembers why it changed.
+**Shadow:** misusing `repeatable read` at rune 0940 in the database lane can let durability can preserve the wrong truth longer than code remembers; verify by requiring the caster to state isolation, migration, rollback, and validation queries.
 
 ### [0941] replication lag {#rune-0941}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A durable-state word; it matters because the system must remember through change.
+**Force:** `replication lag` is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the replication lag obligation named before work proceeds.
 
-**Shadow:** durable state can preserve the wrong truth longer than the code remembers why it changed.
+**Shadow:** misusing `replication lag` at rune 0941 in the database lane can let durability can preserve the wrong truth longer than code remembers; verify by requiring the caster to state isolation, migration, rollback, and validation queries.
 
 ### [0942] retention {#rune-0942}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A persistence-word; it binds state to time and query.
+**Force:** `retention` is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the retention obligation named before work proceeds.
 
-**Shadow:** durable state can preserve the wrong truth longer than the code remembers why it changed.
+**Shadow:** misusing `retention` at rune 0942 in the database lane can let durability can preserve the wrong truth longer than code remembers; verify by requiring the caster to state isolation, migration, rollback, and validation queries.
 
 ### [0943] rollback {DB} {#rune-0943}
 
@@ -702,41 +701,41 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A persistence-word; it binds state to time and query.
+**Force:** `row` in its DB sense is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the row obligation named before work proceeds.
 
-**Shadow:** durable state can preserve the wrong truth longer than the code remembers why it changed.
+**Shadow:** misusing `row` at rune 0944 in the DB lane can let durability can preserve the wrong truth longer than code remembers; verify by requiring the caster to state isolation, migration, rollback, and validation queries.
 
 ### [0945] row store {#rune-0945}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A storage-law word; it governs how facts are kept, found, or rolled back.
+**Force:** `row store` is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the row store obligation named before work proceeds.
 
-**Shadow:** durable state can preserve the wrong truth longer than the code remembers why it changed.
+**Shadow:** misusing `row store` at rune 0945 in the database lane can let durability can preserve the wrong truth longer than code remembers; verify by requiring the caster to state isolation, migration, rollback, and validation queries.
 
 ### [0946] savepoint {#rune-0946}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A storage-law word; it governs how facts are kept, found, or rolled back.
+**Force:** `savepoint` is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the savepoint obligation named before work proceeds.
 
-**Shadow:** durable state can preserve the wrong truth longer than the code remembers why it changed.
+**Shadow:** misusing `savepoint` at rune 0946 in the database lane can let durability can preserve the wrong truth longer than code remembers; verify by requiring the caster to state isolation, migration, rollback, and validation queries.
 
 ### [0947] scan {DB} {#rune-0947}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A storage-law word; it governs how facts are kept, found, or rolled back.
+**Force:** `scan` in its DB sense is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the scan obligation named before work proceeds.
 
-**Shadow:** durable state can preserve the wrong truth longer than the code remembers why it changed.
+**Shadow:** misusing `scan` at rune 0947 in the DB lane can let durability can preserve the wrong truth longer than code remembers; verify by requiring the caster to state isolation, migration, rollback, and validation queries.
 
 ### [0948] schema {DB} {#rune-0948}
 
@@ -746,7 +745,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** The declared shape of database truth.
 
-**Shadow:** durable state can preserve the wrong truth longer than the code remembers why it changed.
+**Shadow:** misusing `schema` at rune 0948 in the DB lane can let durability can preserve the wrong truth longer than code remembers; verify by requiring the caster to state isolation, migration, rollback, and validation queries.
 
 **Pocket gloss:** The declared shape of database truth.
 
@@ -754,101 +753,101 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A persistence-word; it binds state to time and query.
+**Force:** `secondary index` is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the secondary index obligation named before work proceeds.
 
-**Shadow:** durable state can preserve the wrong truth longer than the code remembers why it changed.
+**Shadow:** misusing `secondary index` at rune 0949 in the database lane can let durability can preserve the wrong truth longer than code remembers; verify by requiring the caster to state isolation, migration, rollback, and validation queries.
 
 ### [0950] seed data {#rune-0950}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A query-and-history word; it shapes how stored truth is accessed or preserved.
+**Force:** `seed data` is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the seed data obligation named before work proceeds.
 
-**Shadow:** durable state can preserve the wrong truth longer than the code remembers why it changed.
+**Shadow:** misusing `seed data` at rune 0950 in the database lane can let durability can preserve the wrong truth longer than code remembers; verify by requiring the caster to state isolation, migration, rollback, and validation queries.
 
 ### [0951] serializable {DB} {#rune-0951}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A query-and-history word; it shapes how stored truth is accessed or preserved.
+**Force:** `serializable` in its DB sense is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the serializable obligation named before work proceeds.
 
-**Shadow:** durable state can preserve the wrong truth longer than the code remembers why it changed.
+**Shadow:** misusing `serializable` at rune 0951 in the DB lane can let durability can preserve the wrong truth longer than code remembers; verify by requiring the caster to state isolation, migration, rollback, and validation queries.
 
 ### [0952] sharding {#rune-0952}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A persistence-word; it binds state to time and query.
+**Force:** `sharding` is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the sharding obligation named before work proceeds.
 
-**Shadow:** durable state can preserve the wrong truth longer than the code remembers why it changed.
+**Shadow:** misusing `sharding` at rune 0952 in the database lane can let durability can preserve the wrong truth longer than code remembers; verify by requiring the caster to state isolation, migration, rollback, and validation queries.
 
 ### [0953] snapshot isolation {#rune-0953}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A durable-state word; it matters because the system must remember through change.
+**Force:** `snapshot isolation` is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the snapshot isolation obligation named before work proceeds.
 
-**Shadow:** durable state can preserve the wrong truth longer than the code remembers why it changed.
+**Shadow:** misusing `snapshot isolation` at rune 0953 in the database lane can let durability can preserve the wrong truth longer than code remembers; verify by requiring the caster to state isolation, migration, rollback, and validation queries.
 
 ### [0954] sort key {#rune-0954}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A storage-law word; it governs how facts are kept, found, or rolled back.
+**Force:** `sort key` is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the sort key obligation named before work proceeds.
 
-**Shadow:** durable state can preserve the wrong truth longer than the code remembers why it changed.
+**Shadow:** misusing `sort key` at rune 0954 in the database lane can let durability can preserve the wrong truth longer than code remembers; verify by requiring the caster to state isolation, migration, rollback, and validation queries.
 
 ### [0955] stored procedure {#rune-0955}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A durable-state word; it matters because the system must remember through change.
+**Force:** `stored procedure` is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the stored procedure obligation named before work proceeds.
 
-**Shadow:** durable state can preserve the wrong truth longer than the code remembers why it changed.
+**Shadow:** misusing `stored procedure` at rune 0955 in the database lane can let durability can preserve the wrong truth longer than code remembers; verify by requiring the caster to state isolation, migration, rollback, and validation queries.
 
 ### [0956] table {DB} {#rune-0956}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A persistence-word; it binds state to time and query.
+**Force:** `table` in its DB sense is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the table obligation named before work proceeds.
 
-**Shadow:** durable state can preserve the wrong truth longer than the code remembers why it changed.
+**Shadow:** misusing `table` at rune 0956 in the DB lane can let durability can preserve the wrong truth longer than code remembers; verify by requiring the caster to state isolation, migration, rollback, and validation queries.
 
 ### [0957] table scan {#rune-0957}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A storage-law word; it governs how facts are kept, found, or rolled back.
+**Force:** `table scan` is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the table scan obligation named before work proceeds.
 
-**Shadow:** durable state can preserve the wrong truth longer than the code remembers why it changed.
+**Shadow:** misusing `table scan` at rune 0957 in the database lane can let durability can preserve the wrong truth longer than code remembers; verify by requiring the caster to state isolation, migration, rollback, and validation queries.
 
 ### [0958] tenant isolation {#rune-0958}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A persistence-word; it binds state to time and query.
+**Force:** `tenant isolation` is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the tenant isolation obligation named before work proceeds.
 
-**Shadow:** durable state can preserve the wrong truth longer than the code remembers why it changed.
+**Shadow:** misusing `tenant isolation` at rune 0958 in the database lane can let durability can preserve the wrong truth longer than code remembers; verify by requiring the caster to state isolation, migration, rollback, and validation queries.
 
 ### [0959] transaction {#rune-0959}
 
@@ -858,7 +857,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** A unit of work meant to stand or fall together.
 
-**Shadow:** durable state can preserve the wrong truth longer than the code remembers why it changed.
+**Shadow:** misusing `transaction` at rune 0959 in the database lane can let durability can preserve the wrong truth longer than code remembers; verify by requiring the caster to state isolation, migration, rollback, and validation queries.
 
 **Pocket gloss:** A unit of work meant to stand or fall together.
 
@@ -866,61 +865,61 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A persistence-word; it binds state to time and query.
+**Force:** `TTL` is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the TTL obligation named before work proceeds.
 
-**Shadow:** durable state can preserve the wrong truth longer than the code remembers why it changed.
+**Shadow:** misusing `TTL` at rune 0960 in the database lane can let durability can preserve the wrong truth longer than code remembers; verify by requiring the caster to state isolation, migration, rollback, and validation queries.
 
 ### [0961] tuple {DB} {#rune-0961}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A durable-state word; it matters because the system must remember through change.
+**Force:** `tuple` in its DB sense is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the tuple obligation named before work proceeds.
 
-**Shadow:** durable state can preserve the wrong truth longer than the code remembers why it changed.
+**Shadow:** misusing `tuple` at rune 0961 in the DB lane can let durability can preserve the wrong truth longer than code remembers; verify by requiring the caster to state isolation, migration, rollback, and validation queries.
 
 ### [0962] unique constraint {#rune-0962}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A persistence-word; it binds state to time and query.
+**Force:** `unique constraint` is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the unique constraint obligation named before work proceeds.
 
-**Shadow:** durable state can preserve the wrong truth longer than the code remembers why it changed.
+**Shadow:** misusing `unique constraint` at rune 0962 in the database lane can let durability can preserve the wrong truth longer than code remembers; verify by requiring the caster to state isolation, migration, rollback, and validation queries.
 
 ### [0963] upsert {#rune-0963}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A query-and-history word; it shapes how stored truth is accessed or preserved.
+**Force:** `upsert` is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the upsert obligation named before work proceeds.
 
-**Shadow:** durable state can preserve the wrong truth longer than the code remembers why it changed.
+**Shadow:** misusing `upsert` at rune 0963 in the database lane can let durability can preserve the wrong truth longer than code remembers; verify by requiring the caster to state isolation, migration, rollback, and validation queries.
 
 ### [0964] vacuum {#rune-0964}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A storage-law word; it governs how facts are kept, found, or rolled back.
+**Force:** `vacuum` is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the vacuum obligation named before work proceeds.
 
-**Shadow:** durable state can preserve the wrong truth longer than the code remembers why it changed.
+**Shadow:** misusing `vacuum` at rune 0964 in the database lane can let durability can preserve the wrong truth longer than code remembers; verify by requiring the caster to state isolation, migration, rollback, and validation queries.
 
 ### [0965] view {DB} {#rune-0965}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A query-and-history word; it shapes how stored truth is accessed or preserved.
+**Force:** `view` in its DB sense is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the view obligation named before work proceeds.
 
-**Shadow:** durable state can preserve the wrong truth longer than the code remembers why it changed.
+**Shadow:** misusing `view` at rune 0965 in the DB lane can let durability can preserve the wrong truth longer than code remembers; verify by requiring the caster to state isolation, migration, rollback, and validation queries.
 
 ### [0966] WAL {#rune-0966}
 
@@ -930,7 +929,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** Write-ahead log: history recorded before dirty pages reach their final home.
 
-**Shadow:** durable state can preserve the wrong truth longer than the code remembers why it changed.
+**Shadow:** misusing `WAL` at rune 0966 in the database lane can let durability can preserve the wrong truth longer than code remembers; verify by requiring the caster to state isolation, migration, rollback, and validation queries.
 
 **Pocket gloss:** Write-ahead log: history recorded before dirty pages reach their final home.
 
@@ -938,18 +937,18 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A persistence-word; it binds state to time and query.
+**Force:** `warehouse model` is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the warehouse model obligation named before work proceeds.
 
-**Shadow:** durable state can preserve the wrong truth longer than the code remembers why it changed.
+**Shadow:** misusing `warehouse model` at rune 0967 in the database lane can let durability can preserve the wrong truth longer than code remembers; verify by requiring the caster to state isolation, migration, rollback, and validation queries.
 
 ### [0968] write skew {DB} {#rune-0968}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A storage-law word; it governs how facts are kept, found, or rolled back.
+**Force:** `write skew` in its DB sense is a databases and persistence rune for bind durable state, transactions, migrations, and time to explicit rules; use it when the artifact needs the write skew obligation named before work proceeds.
 
-**Shadow:** durable state can preserve the wrong truth longer than the code remembers why it changed.
+**Shadow:** misusing `write skew` at rune 0968 in the DB lane can let durability can preserve the wrong truth longer than code remembers; verify by requiring the caster to state isolation, migration, rollback, and validation queries.

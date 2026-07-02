@@ -4,21 +4,23 @@ title: "Recorded Evaluations"
 
 # Recorded Evaluations
 
-Proof by Difference becomes credible only when weak and repaired prompts are run against the same context and scored with the same rubric. This section preserves those runs, including non-wins when they occur.
+Proof by Difference becomes credible only when weak and repaired prompts are run against the same fixture and scored with the same rubric. This section preserves those runs, including non-wins when they occur.
 
-Generated at: `2026-07-02T03:02:02.713572+00:00`
+Generated at: `2026-07-02T04:25:50.025930+00:00`
 
 ## Summary
 
-| Case                                                                          | Surfaces          | Weak Avg | Repaired Avg | Observed Delta                                       |
-| ----------------------------------------------------------------------------- | ----------------- | -------- | ------------ | ---------------------------------------------------- |
-| [Refactor Without Breaking Behavior](safe-refactoring.qmd)                    | codex-cli-default | 8.0      | 11.0         | repaired prompts scored 3.0 points higher on average |
-| [Incident Diagnosis Without Fake Certainty](bug-diagnosis-from-logs.qmd)      | codex-cli-default | 6.0      | 9.0          | repaired prompts scored 3.0 points higher on average |
-| [API Design Without Hidden Compatibility Traps](api-design.qmd)               | codex-cli-default | 6.0      | 10.0         | repaired prompts scored 4.0 points higher on average |
-| [Online Migration Without Data Loss](migration-without-data-loss.qmd)         | codex-cli-default | 10.0     | 8.0          | weak prompts scored 2.0 points higher on average     |
-| [Test Generation Without Overfitting To Implementation](test-generation.qmd)  | codex-cli-default | 8.0      | 9.0          | repaired prompts scored 1.0 points higher on average |
-| [Performance Tuning Without Micro-Optimization Drift](performance-tuning.qmd) | codex-cli-default | 7.0      | 10.0         | repaired prompts scored 3.0 points higher on average |
+| Case                                                                          | Surfaces          | Weak Outcome | Repaired Outcome | Outcome Delta                                                 | Structural Delta                                     |
+| ----------------------------------------------------------------------------- | ----------------- | ------------ | ---------------- | ------------------------------------------------------------- | ---------------------------------------------------- |
+| [Refactor Without Breaking Behavior](safe-refactoring.qmd)                    | codex-cli-default | 2.7          | 2.7              | weak and repaired prompts tied on outcome checks              | repaired prompts scored 2.3 points higher on average |
+| [Incident Diagnosis Without Fake Certainty](bug-diagnosis-from-logs.qmd)      | codex-cli-default | 3.0          | 3.0              | weak and repaired prompts tied on outcome checks              | repaired prompts scored 1.0 points higher on average |
+| [API Design Without Hidden Compatibility Traps](api-design.qmd)               | codex-cli-default | 3.0          | 3.0              | weak and repaired prompts tied on outcome checks              | repaired prompts scored 3.3 points higher on average |
+| [Online Migration Without Data Loss](migration-without-data-loss.qmd)         | codex-cli-default | 3.0          | 3.0              | weak and repaired prompts tied on outcome checks              | repaired prompts scored 0.7 points higher on average |
+| [Test Generation Without Overfitting To Implementation](test-generation.qmd)  | codex-cli-default | 2.7          | 3.0              | repaired prompts satisfied 0.3 more outcome checks on average | repaired prompts scored 2.3 points higher on average |
+| [Performance Tuning Without Micro-Optimization Drift](performance-tuning.qmd) | codex-cli-default | 3.0          | 3.0              | weak and repaired prompts tied on outcome checks              | repaired prompts scored 2.3 points higher on average |
 
 ## Rubric
 
-Scores use 0-2 per criterion: artifact boundary, invariants, output contract, verification, failure behavior, and assumption control. The score is structural and review-oriented; transcripts remain the primary evidence.
+Outcome scores count case-specific obligations such as passing fixture tests, naming planted causes, preserving invariants, avoiding dirty-data traps, and including rollback boundaries.
+
+Structural scores use 0-2 per criterion: artifact boundary, invariants, output contract, verification, failure behavior, and assumption control. The structural score is secondary and review-oriented. It partly rewards prompt echo because repaired spells contain words such as invariant, verify, rollback, and assumption. Read it as an inspectability signal, not as direct work quality. Transcripts and outcome checks remain the primary evidence.

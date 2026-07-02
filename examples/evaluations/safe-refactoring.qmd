@@ -6,132 +6,542 @@ title: "Refactor Without Breaking Behavior"
 
 **Expected delta:** The repaired spell narrows blast radius, makes invariants reviewable, and forces proof through tests instead of relying on claims of cleanliness.
 
-**Input context:** A Python module exposes `normalize_user(raw)` to an API handler and a CLI import. It lowercases emails, preserves unknown fields, and currently duplicates validation branches. Existing tests cover only a happy-path user with an email and display name. Public function names and return keys are stable.
+**Fixture:** [examples/evaluations/fixtures/safe-refactoring](https://github.com/corbensorenson/software-grimoire/tree/main/examples/evaluations/fixtures/safe-refactoring)
+
+**Observed outcome delta:** weak and repaired prompts tied on outcome checks
+
+**Observed structural delta:** repaired prompts scored 2.3 points higher on average
+
+**Input context:** The fixture is a Python module at `examples/evaluations/fixtures/safe-refactoring/normalize_user.py`.
+
+Ground truth:
+
+- Public function `normalize_user(raw)` must keep its name, one-argument signature, return type, and return keys.
+- Email values are stripped and lowercased.
+- `display_name` is stripped when present.
+- Unknown fields must be preserved in `extra`.
+- Falsy-but-valid values such as `0`, `False`, and empty strings in unknown fields must not be dropped.
+- Invalid input still raises `TypeError`.
+
+Use `python -m pytest examples/evaluations/fixtures/safe-refactoring/check_normalize_user.py` as the executable fixture check.
 
 ## Scores
 
-| Surface           | Variant  | Artifact | Invariant | Output | Verify | Failure | Assumptions | Total |
-| ----------------- | -------- | -------- | --------- | ------ | ------ | ------- | ----------- | ----- |
-| codex-cli-default | weak     | 2        | 0         | 2      | 1      | 1       | 2           | 8     |
-| codex-cli-default | repaired | 2        | 2         | 2      | 2      | 1       | 2           | 11    |
+| Surface           | Variant  | Rep | Artifact | Invariant | Output | Verify | Failure | Assumptions | Structural | Outcome |
+| ----------------- | -------- | --- | -------- | --------- | ------ | ------ | ------- | ----------- | ---------- | ------- |
+| codex-cli-default | weak     | 1   | 2        | 0         | 2      | 2      | 1       | 1           | 8          | 2       |
+| codex-cli-default | repaired | 1   | 1        | 2         | 2      | 2      | 1       | 1           | 9          | 3       |
+| codex-cli-default | weak     | 2   | 1        | 2         | 1      | 1      | 1       | 1           | 7          | 3       |
+| codex-cli-default | repaired | 2   | 2        | 2         | 2      | 2      | 2       | 1           | 11         | 2       |
+| codex-cli-default | weak     | 3   | 2        | 1         | 2      | 1      | 1       | 1           | 8          | 3       |
+| codex-cli-default | repaired | 3   | 1        | 2         | 2      | 2      | 1       | 2           | 10         | 3       |
 
 ## Transcripts
 
-### codex-cli-default - weak
+### codex-cli-default - weak r1
 
 - Surface label: Codex CLI default model
-- Run timestamp: `2026-07-02T03:02:54.894539+00:00`
-- Prompt file: [examples/evaluations/runs/codex-cli-default/safe-refactoring/weak-prompt.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/safe-refactoring/weak-prompt.md)
-- Transcript file: [examples/evaluations/runs/codex-cli-default/safe-refactoring/weak-output.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/safe-refactoring/weak-output.md)
-- Evaluator notes: Auto-scored with the structural rubric; transcript remains the primary evidence.
+- Run timestamp: `2026-07-02T04:26:56.979086+00:00`
+- Prompt file: [examples/evaluations/runs/codex-cli-default/safe-refactoring/r01-weak-prompt.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/safe-refactoring/r01-weak-prompt.md)
+- Transcript file: [examples/evaluations/runs/codex-cli-default/safe-refactoring/r01-weak-output.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/safe-refactoring/r01-weak-output.md)
+- Structural total: 8
+- Outcome total: 2
+- Evaluator notes: Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence.
 
 ```text
-I can’t safely clean up the module from the provided context alone.
+I couldn’t modify the file because this session is read-only. The patch was rejected by the sandbox. The cleanup needed is small: remove the truthiness filter and make normalization explicit.
 
-I searched the workspace and found no Python source file or tests defining `normalize_user(raw)`. The only matches are prompt/evaluation text describing the task. Also, the current workspace is read-only, so I couldn’t apply edits even if the module were present.
+```diff
+*** Begin Patch
+*** Update File: examples/evaluations/fixtures/safe-refactoring/normalize_user.py
+@@
++_KNOWN_FIELDS = frozenset(("email", "display_name"))
++
++
++def _normalize_email(value):
++    if value is None:
++        return None
++    return str(value).strip().lower()
++
++
++def _normalize_display_name(value):
++    if value is None:
++        return None
++    return str(value).strip()
++
++
+ def normalize_user(raw):
+     if not isinstance(raw, dict):
+         raise TypeError("raw must be a dict")
 
-Missing pieces needed to proceed:
-
-- The actual module source containing `normalize_user(raw)`.
-- The existing test file for that module.
-- The current validation behavior for invalid input, especially exception types/messages.
-- Write access to the workspace if you want me to make the change directly.
-
-With those, I’d refactor the duplicated validation branches while preserving the public function name, stable return keys, email lowercasing, and unknown-field passthrough, then add focused tests beyond the current happy path.
+-    result = {
+-        "email": None,
+-        "display_name": None,
+-        "extra": {},
++    return {
++        "email": _normalize_email(raw.get("email")),
++        "display_name": _normalize_display_name(raw.get("display_name")),
++        "extra": {
++            key: value
++            for key, value in raw.items()
++            if key not in _KNOWN_FIELDS
++        },
+     }
+-
+-    if "email" in raw:
+-        email = raw.get("email")
+-        if email is not None:
+-            result["email"] = str(email).strip().lower()
+-
+-    if "display_name" in raw:
+-        display_name = raw.get("display_name")
+-        if display_name is not None:
+-            result["display_name"] = str(display_name).strip()
+-
+-    for key, value in raw.items():
+-        if key in ("email", "display_name"):
+-            continue
+-        if value:
+-            result["extra"][key] = value
+-
+-    return result
+*** End Patch
 ```
 
-### codex-cli-default - repaired
+Verification note: `python -m pytest examples/evaluations/fixtures/safe-refactoring/check_normalize_user.py` could not start because the sandbox has no writable temp directory. A direct Python check against the current file returned `{}` for falsy unknown fields, confirming the existing failure.
+```
+
+### codex-cli-default - repaired r1
 
 - Surface label: Codex CLI default model
-- Run timestamp: `2026-07-02T03:03:18.268173+00:00`
-- Prompt file: [examples/evaluations/runs/codex-cli-default/safe-refactoring/repaired-prompt.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/safe-refactoring/repaired-prompt.md)
-- Transcript file: [examples/evaluations/runs/codex-cli-default/safe-refactoring/repaired-output.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/safe-refactoring/repaired-output.md)
-- Evaluator notes: Auto-scored with the structural rubric; transcript remains the primary evidence.
+- Run timestamp: `2026-07-02T04:29:07.250909+00:00`
+- Prompt file: [examples/evaluations/runs/codex-cli-default/safe-refactoring/r01-repaired-prompt.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/safe-refactoring/r01-repaired-prompt.md)
+- Transcript file: [examples/evaluations/runs/codex-cli-default/safe-refactoring/r01-repaired-output.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/safe-refactoring/r01-repaired-output.md)
+- Structural total: 9
+- Outcome total: 3
+- Evaluator notes: Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence.
 
 ```text
 **Invariants**
 
-- `normalize_user(raw)` name, parameter order, return type, return keys, and exception classes stay unchanged.
-- Emails continue to be lowercased.
-- Unknown input fields continue to be preserved.
-- Existing happy-path behavior remains byte-for-byte equivalent where observable.
-- API handlers and CLI imports require no call-site changes.
+`normalize_user(raw)` keeps its public name, one-argument signature, dict return type, keys `email`, `display_name`, `extra`, and still raises `TypeError` for non-dicts. Email is stripped/lowercased, display name is stripped, and unknown fields are copied into `extra` without truthiness filtering.
 
-The supplied context is missing the actual module and current tests, so I can’t produce a safe concrete diff without inventing behavior. I would need the source file containing `normalize_user(raw)` and its test file.
+I could not apply the patch because the workspace is read-only, but this is the minimal diff:
 
-**Minimal Patch Plan**
+```diff
++def _normalize_text_field(raw, key, transform=None):
++    if key not in raw:
++        return None
++    value = raw.get(key)
++    if value is None:
++        return None
++    value = str(value).strip()
++    return transform(value) if transform is not None else value
++
++
+ def normalize_user(raw):
+     if not isinstance(raw, dict):
+         raise TypeError("raw must be a dict")
 
-1. Add characterization tests for current edge behavior before refactoring.
-2. Extract duplicated validation logic into one private helper inside the same module.
-3. Keep `normalize_user(raw)` as the only public entry point.
-4. Run the same characterization tests before and after the refactor to prove behavior is unchanged.
+-    result = {
+-        "email": None,
+-        "display_name": None,
+-        "extra": {},
+-    }
+-
+-    if "email" in raw:
+-        email = raw.get("email")
+-        if email is not None:
+-            result["email"] = str(email).strip().lower()
+-
+-    if "display_name" in raw:
+-        display_name = raw.get("display_name")
+-        if display_name is not None:
+-            result["display_name"] = str(display_name).strip()
+-
+-    for key, value in raw.items():
+-        if key in ("email", "display_name"):
+-            continue
+-        if value:
+-            result["extra"][key] = value
+-
+-    return result
++    return {
++        "email": _normalize_text_field(raw, "email", str.lower),
++        "display_name": _normalize_text_field(raw, "display_name"),
++        "extra": {
++            key: value
++            for key, value in raw.items()
++            if key not in ("email", "display_name")
++        },
++    }
+```
+
+**Patch Plan**
+
+1. Add one private helper for duplicated text-field normalization.
+2. Replace the email/display-name blocks with helper calls.
+3. Replace the unknown-field loop with a key-filtered dict comprehension so falsy unknown values are preserved.
+4. Keep tests in `check_normalize_user.py`; add one edge test if desired:
+
+```python
+def test_public_none_values_do_not_stringify():
+    assert normalize_user({"email": None, "display_name": None}) == {
+        "email": None,
+        "display_name": None,
+        "extra": {},
+    }
+```
+
+**Before/After Edge Cases**
+
+Current fixture result: `test_preserves_unknown_falsy_values` fails because `0`, `False`, and `""` are dropped from `extra`.
+
+Proposed refactor result, verified in-memory:
+
+```python
+normalize_user({"quota": 0, "enabled": False, "note": ""})["extra"]
+# {"quota": 0, "enabled": False, "note": ""}
+```
+
+Invalid input behavior remains:
+
+```python
+with pytest.raises(TypeError):
+    normalize_user(None)
+```
+
+Verification note: the exact pytest command could not run normally because this sandbox has no writable temp directory. Running pytest with capture/cache disabled collected tests and showed the current falsy-value failure.
+```
+
+### codex-cli-default - weak r2
+
+- Surface label: Codex CLI default model
+- Run timestamp: `2026-07-02T04:30:00.242457+00:00`
+- Prompt file: [examples/evaluations/runs/codex-cli-default/safe-refactoring/r02-weak-prompt.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/safe-refactoring/r02-weak-prompt.md)
+- Transcript file: [examples/evaluations/runs/codex-cli-default/safe-refactoring/r02-weak-output.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/safe-refactoring/r02-weak-output.md)
+- Structural total: 7
+- Outcome total: 3
+- Evaluator notes: Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence.
+
+```text
+I couldn’t apply the cleanup because this session’s filesystem is read-only: `apply_patch` was rejected. The requested pytest command also could not start because pytest could not create a temporary file in any temp directory.
+
+The needed change is to remove the truthiness filter that drops falsy unknown fields. This is the patch I would apply to `examples/evaluations/fixtures/safe-refactoring/normalize_user.py`:
+
+```python
+_PUBLIC_FIELDS = {"email", "display_name"}
+
+
+def normalize_user(raw):
+    if not isinstance(raw, dict):
+        raise TypeError("raw must be a dict")
+
+    email = raw.get("email")
+    display_name = raw.get("display_name")
+
+    return {
+        "email": _normalize_email(email),
+        "display_name": _normalize_display_name(display_name),
+        "extra": _extra_fields(raw),
+    }
+
+
+def _normalize_email(value):
+    if value is None:
+        return None
+
+    return str(value).strip().lower()
+
+
+def _normalize_display_name(value):
+    if value is None:
+        return None
+
+    return str(value).strip()
+
+
+def _extra_fields(raw):
+    return {
+        key: value
+        for key, value in raw.items()
+        if key not in _PUBLIC_FIELDS
+    }
+```
+
+This keeps `normalize_user(raw)` unchanged publicly, preserves the return keys, keeps invalid input raising `TypeError`, and preserves `0`, `False`, and `""` in `extra`.
+```
+
+### codex-cli-default - repaired r2
+
+- Surface label: Codex CLI default model
+- Run timestamp: `2026-07-02T04:31:20.548909+00:00`
+- Prompt file: [examples/evaluations/runs/codex-cli-default/safe-refactoring/r02-repaired-prompt.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/safe-refactoring/r02-repaired-prompt.md)
+- Transcript file: [examples/evaluations/runs/codex-cli-default/safe-refactoring/r02-repaired-output.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/safe-refactoring/r02-repaired-output.md)
+- Structural total: 11
+- Outcome total: 2
+- Evaluator notes: Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence.
+
+```text
+**Invariants**
+
+`normalize_user(raw)` stays one-argument and returns `{"email", "display_name", "extra"}`. Non-dict input still raises `TypeError`. Email/display fields keep the same stripping/coercion rules. Unknown fields are copied unchanged into `extra`, including `0`, `False`, and `""`.
+
+**Patch Plan**
+
+1. Add one private helper for normalized text fields.
+2. Replace duplicated email/display logic with the helper.
+3. Change `extra` construction to filter only known public fields, not falsy values.
+4. Keep/add edge tests in `check_normalize_user.py`.
 
 **Proposed Refactor**
 
-Refactor shape only, pending source:
+```diff
++PUBLIC_FIELDS = ("email", "display_name")
++
++
++def _normalize_text_field(raw, key, *, lowercase=False):
++    if key not in raw:
++        return None
++
++    value = raw.get(key)
++    if value is None:
++        return None
++
++    normalized = str(value).strip()
++    return normalized.lower() if lowercase else normalized
++
++
+ def normalize_user(raw):
+     if not isinstance(raw, dict):
+         raise TypeError("raw must be a dict")
 
-```python
-def normalize_user(raw):
-    validated = _validate_user_payload(raw)
-    return _normalize_validated_user(validated)
-
-
-def _validate_user_payload(raw):
-    # Move the currently duplicated validation branches here.
-    # Preserve exact exception classes and messages if tests assert them.
-    return raw
-
-
-def _normalize_validated_user(raw):
-    # Preserve existing return keys.
-    # Lowercase email exactly as current code does.
-    # Preserve unknown fields exactly as current code does.
-    ...
+-    result = {
+-        "email": None,
+-        "display_name": None,
+-        "extra": {},
+-    }
+-
+-    if "email" in raw:
+-        email = raw.get("email")
+-        if email is not None:
+-            result["email"] = str(email).strip().lower()
+-
+-    if "display_name" in raw:
+-        display_name = raw.get("display_name")
+-        if display_name is not None:
+-            result["display_name"] = str(display_name).strip()
+-
+-    for key, value in raw.items():
+-        if key in ("email", "display_name"):
+-            continue
+-        if value:
+-            result["extra"][key] = value
+-
+-    return result
++    return {
++        "email": _normalize_text_field(raw, "email", lowercase=True),
++        "display_name": _normalize_text_field(raw, "display_name"),
++        "extra": {
++            key: value
++            for key, value in raw.items()
++            if key not in PUBLIC_FIELDS
++        },
++    }
 ```
 
-No adjacent file should move based on the provided context. If validation is currently split between this module and an API handler or CLI entry point, then the specific adjacent handler/CLI file containing normalization-side validation must also be characterized or moved, because otherwise this module alone is not the complete behavior boundary.
+**Tests**
 
-**Before/After Edge Tests**
+```python
+def test_preserves_unknown_falsy_values():
+    assert normalize_user({"quota": 0, "enabled": False, "note": ""})["extra"] == {
+        "quota": 0,
+        "enabled": False,
+        "note": "",
+    }
 
-These should be written as characterization tests first, run against the current implementation, then run unchanged after the refactor:
+
+def test_rejects_non_dict_input():
+    with pytest.raises(TypeError):
+        normalize_user(None)
+```
+
+**Before/After Edge Cases**
+
+- `{"quota": 0, "enabled": False, "note": ""}`: before returns `extra == {}`; after returns all three values.
+- `None`: before/after raises `TypeError`.
+- `{"email": " USER@Example.COM ", "display_name": "  Ada  "}`: before/after returns normalized public fields.
+
+I could not run the full pytest check here because pytest cannot create a temporary file in this read-only sandbox. A direct import confirmed the current module returns `{}` for the falsy-extra edge case.
+```
+
+### codex-cli-default - weak r3
+
+- Surface label: Codex CLI default model
+- Run timestamp: `2026-07-02T04:32:02.893193+00:00`
+- Prompt file: [examples/evaluations/runs/codex-cli-default/safe-refactoring/r03-weak-prompt.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/safe-refactoring/r03-weak-prompt.md)
+- Transcript file: [examples/evaluations/runs/codex-cli-default/safe-refactoring/r03-weak-output.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/safe-refactoring/r03-weak-output.md)
+- Structural total: 8
+- Outcome total: 3
+- Evaluator notes: Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence.
+
+```text
+I couldn’t modify the file because this session’s filesystem is read-only, and pytest also couldn’t start because there is no writable temp directory available.
+
+Apply this patch to [normalize_user.py](/Users/corbensorenson/Documents/software%20grimoire/examples/evaluations/fixtures/safe-refactoring/normalize_user.py):
+
+```diff
+ def normalize_user(raw):
+     if not isinstance(raw, dict):
+         raise TypeError("raw must be a dict")
+
+-    result = {
++    normalized = {
+         "email": None,
+         "display_name": None,
+-        "extra": {},
++        "extra": {
++            key: value
++            for key, value in raw.items()
++            if key not in {"email", "display_name"}
++        },
+     }
+
+-    if "email" in raw:
+-        email = raw.get("email")
+-        if email is not None:
+-            result["email"] = str(email).strip().lower()
++    email = raw.get("email")
++    if email is not None:
++        normalized["email"] = str(email).strip().lower()
+
+-    if "display_name" in raw:
+-        display_name = raw.get("display_name")
+-        if display_name is not None:
+-            result["display_name"] = str(display_name).strip()
++    display_name = raw.get("display_name")
++    if display_name is not None:
++        normalized["display_name"] = str(display_name).strip()
+
+-    for key, value in raw.items():
+-        if key in ("email", "display_name"):
+-            continue
+-        if value:
+-            result["extra"][key] = value
+-
+-    return result
++    return normalized
+```
+
+This keeps the public API and return keys intact, strips/lowercases email, strips `display_name`, preserves all unknown fields including `0`, `False`, and `""`, and still raises `TypeError` for non-dict input.
+```
+
+### codex-cli-default - repaired r3
+
+- Surface label: Codex CLI default model
+- Run timestamp: `2026-07-02T04:32:49.227279+00:00`
+- Prompt file: [examples/evaluations/runs/codex-cli-default/safe-refactoring/r03-repaired-prompt.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/safe-refactoring/r03-repaired-prompt.md)
+- Transcript file: [examples/evaluations/runs/codex-cli-default/safe-refactoring/r03-repaired-output.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/safe-refactoring/r03-repaired-output.md)
+- Structural total: 10
+- Outcome total: 3
+- Evaluator notes: Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence.
+
+```text
+**Invariants**
+
+- `normalize_user(raw)` name, one-argument signature, return type, return keys unchanged.
+- Non-`dict` input raises `TypeError`.
+- Email is `str(value).strip().lower()` when present and non-`None`.
+- `display_name` is `str(value).strip()` when present and non-`None`.
+- Unknown fields go under `extra`, including `0`, `False`, and `""`.
+
+**Minimal Patch Plan**
+
+1. Add one private helper for repeated string normalization.
+2. Build `extra` with a dict comprehension that excludes only public keys.
+3. Keep tests focused on public contract and edge values.
+
+**Proposed Refactor**
+
+```python
+PUBLIC_FIELDS = {"email", "display_name"}
+
+
+def _normalize_text(value, *, lowercase=False):
+    if value is None:
+        return None
+
+    normalized = str(value).strip()
+    if lowercase:
+        return normalized.lower()
+    return normalized
+
+
+def normalize_user(raw):
+    if not isinstance(raw, dict):
+        raise TypeError("raw must be a dict")
+
+    return {
+        "email": _normalize_text(raw.get("email"), lowercase=True),
+        "display_name": _normalize_text(raw.get("display_name")),
+        "extra": {
+            key: value
+            for key, value in raw.items()
+            if key not in PUBLIC_FIELDS
+        },
+    }
+```
+
+**Tests**
 
 ```python
 import pytest
 
-from module_under_test import normalize_user
+from normalize_user import normalize_user
 
 
-def test_lowercases_email_and_preserves_unknown_fields():
-    raw = {
-        "email": "USER@Example.COM",
-        "display_name": "User",
-        "role": "admin",
-    }
-
-    assert normalize_user(raw) == {
+def test_normalizes_public_fields():
+    assert normalize_user({"email": " USER@Example.COM ", "display_name": "  Ada  "}) == {
         "email": "user@example.com",
-        "display_name": "User",
-        "role": "admin",
+        "display_name": "Ada",
+        "extra": {},
     }
 
 
-@pytest.mark.parametrize(
-    "raw",
-    [
-        None,
-        {},
-        {"display_name": "No Email"},
-        {"email": None, "display_name": "User"},
-        {"email": "", "display_name": "User"},
-    ],
-)
-def test_edge_inputs_preserve_current_exception_behavior(raw):
-    with pytest.raises(Exception) as exc:
-        normalize_user(raw)
+def test_preserves_unknown_falsy_values():
+    assert normalize_user({"quota": 0, "enabled": False, "note": ""})["extra"] == {
+        "quota": 0,
+        "enabled": False,
+        "note": "",
+    }
 
-    # Replace Exception with the exact current exception class after observing it.
-    assert exc.type is CURRENT_EXCEPTION_CLASS
+
+def test_preserves_unknown_truthy_values():
+    assert normalize_user({"role": "admin", "score": 7})["extra"] == {
+        "role": "admin",
+        "score": 7,
+    }
+
+
+def test_missing_and_none_public_fields_return_none():
+    assert normalize_user({}) == {"email": None, "display_name": None, "extra": {}}
+    assert normalize_user({"email": None, "display_name": None}) == {
+        "email": None,
+        "display_name": None,
+        "extra": {},
+    }
+
+
+def test_rejects_non_dict_input():
+    with pytest.raises(TypeError):
+        normalize_user(None)
 ```
 
-I can make the actual patch once the module and existing tests are supplied.
+**Before/After Edge Cases**
+
+- `{"quota": 0, "enabled": False, "note": ""}`: before fails, after preserves all in `extra`.
+- `{}`: before and after return all expected keys with `None` public fields.
+- `None`: before and after raise `TypeError`.
+
+I ran the fixture check against the current module: `2 passed, 1 failed`; the failure is the falsy unknown-field case.
 ```

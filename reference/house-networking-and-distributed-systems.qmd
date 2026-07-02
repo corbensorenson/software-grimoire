@@ -8,132 +8,130 @@ Range: `0771-0886`.
 
 ## Completion
 
-| Status      | Count |
-| ----------- | ----- |
-| authored    | 21    |
-| stub        | 90    |
-| needs_sense | 5     |
+| Status   | Count |
+| -------- | ----- |
+| authored | 116   |
 
 Use the summary table for scanning. Each row links to the detailed anchored entry below.
 
-| Sigil | Term                                     | Completion  | Summary                                                                                                                                |
-| ----- | ---------------------------------------- | ----------- | -------------------------------------------------------------------------------------------------------------------------------------- |
-| 0771  | `STUB` [accept](#rune-0771)              | stub        | A distance-word; it carries intention across boundaries and unreliable space.                                                          |
-| 0772  | `STUB` [acknowledgment](#rune-0772)      | stub        | A distributed-systems word; it manages failure, ordering, or reachability across nodes.                                                |
-| 0773  | `STUB` [anycast](#rune-0773)             | stub        | A distributed-systems word; it manages failure, ordering, or reachability across nodes.                                                |
-| 0774  | `STUB` [API request](#rune-0774)         | stub        | A distributed-systems word; it manages failure, ordering, or reachability across nodes.                                                |
-| 0775  | `STUB` [API response](#rune-0775)        | stub        | A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.                                        |
-| 0776  | `STUB` [availability zone](#rune-0776)   | stub        | A distributed-systems word; it manages failure, ordering, or reachability across nodes.                                                |
-| 0777  | `STUB` [backoff {Net}](#rune-0777)       | stub        | A distance-word; it carries intention across boundaries and unreliable space.                                                          |
-| 0778  | [backpressure](#rune-0778)               | authored    | Resistance pushed upstream when demand outruns capacity. Without it, overload spreads faster than truth.                               |
-| 0779  | `STUB` [bandwidth {Net}](#rune-0779)     | stub        | A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.                                        |
-| 0780  | [bind](#rune-0780)                       | needs_sense | A fastening word; it joins a name, port, address, or variable to a concrete referent.                                                  |
-| 0781  | `STUB` [broadcast](#rune-0781)           | stub        | A distributed-systems word; it manages failure, ordering, or reachability across nodes.                                                |
-| 0782  | `STUB` [broker {Net}](#rune-0782)        | stub        | A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.                                        |
-| 0783  | `STUB` [CDN](#rune-0783)                 | stub        | A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.                                        |
-| 0784  | `STUB` [certificate {Net}](#rune-0784)   | stub        | A delegated-trust word; it lets one party assert another's identity by signed authority.                                               |
-| 0785  | `STUB` [checksum handoff](#rune-0785)    | stub        | A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.                                        |
-| 0786  | `STUB` [client {Net}](#rune-0786)        | stub        | A distributed-systems word; it manages failure, ordering, or reachability across nodes.                                                |
-| 0787  | `STUB` [client timeout](#rune-0787)      | stub        | A many-machine word; it coordinates transport, routing, or agreement beyond one process.                                               |
-| 0788  | `STUB` [cluster {Net}](#rune-0788)       | stub        | A many-body word; several machines are treated as one operational unit.                                                                |
-| 0789  | `STUB` [connect](#rune-0789)             | stub        | A many-machine word; it coordinates transport, routing, or agreement beyond one process.                                               |
-| 0790  | `STUB` [connection pool](#rune-0790)     | stub        | A many-machine word; it coordinates transport, routing, or agreement beyond one process.                                               |
-| 0791  | [consensus](#rune-0791)                  | authored    | Agreement protocol for shared truth across unreliable nodes.                                                                           |
-| 0792  | `STUB` [consistency level](#rune-0792)   | stub        | A many-machine word; it coordinates transport, routing, or agreement beyond one process.                                               |
-| 0793  | `STUB` [control plane {Net}](#rune-0793) | stub        | A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.                                        |
-| 0794  | `STUB` [CRC](#rune-0794)                 | stub        | A distance-word; it carries intention across boundaries and unreliable space.                                                          |
-| 0795  | `STUB` [datagram](#rune-0795)            | stub        | A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.                                        |
-| 0796  | `STUB` [deadline](#rune-0796)            | stub        | A many-machine word; it coordinates transport, routing, or agreement beyond one process.                                               |
-| 0797  | `STUB` [destination](#rune-0797)         | stub        | A many-machine word; it coordinates transport, routing, or agreement beyond one process.                                               |
-| 0798  | `STUB` [discovery](#rune-0798)           | stub        | A distance-word; it carries intention across boundaries and unreliable space.                                                          |
-| 0799  | [DNS](#rune-0799)                        | authored    | Translate names into network-reachable locations.                                                                                      |
-| 0800  | `STUB` [DNS record](#rune-0800)          | stub        | A distance-word; it carries intention across boundaries and unreliable space.                                                          |
-| 0801  | `STUB` [edge {Net}](#rune-0801)          | stub        | A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.                                        |
-| 0802  | `STUB` [egress](#rune-0802)              | stub        | A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.                                        |
-| 0803  | `STUB` [election](#rune-0803)            | stub        | A distributed-systems word; it manages failure, ordering, or reachability across nodes.                                                |
-| 0804  | [endpoint](#rune-0804)                   | authored    | A callable boundary where a service can be reached.                                                                                    |
-| 0805  | [eventual consistency](#rune-0805)       | authored    | Agreement postponed rather than denied. Shadow: stale reads treated as if they were fresh truth.                                       |
-| 0806  | [failover](#rune-0806)                   | authored    | Shift responsibility to a surviving node or path after failure.                                                                        |
-| 0807  | `STUB` [fan-out {Net}](#rune-0807)       | stub        | A many-machine word; it coordinates transport, routing, or agreement beyond one process.                                               |
-| 0808  | `STUB` [firewall](#rune-0808)            | stub        | A many-machine word; it coordinates transport, routing, or agreement beyond one process.                                               |
-| 0809  | `STUB` [follower](#rune-0809)            | stub        | A many-machine word; it coordinates transport, routing, or agreement beyond one process.                                               |
-| 0810  | `STUB` [forwarding](#rune-0810)          | stub        | A distributed-systems word; it manages failure, ordering, or reachability across nodes.                                                |
-| 0811  | `STUB` [frame {Net}](#rune-0811)         | stub        | A distributed-systems word; it manages failure, ordering, or reachability across nodes.                                                |
-| 0812  | `STUB` [gateway {Net}](#rune-0812)       | stub        | A many-machine word; it coordinates transport, routing, or agreement beyond one process.                                               |
-| 0813  | [gossip](#rune-0813)                     | needs_sense | A rumor-propagation word; state spreads by repeated local exchange.                                                                    |
-| 0814  | `STUB` [gRPC](#rune-0814)                | stub        | A distance-word; it carries intention across boundaries and unreliable space.                                                          |
-| 0815  | [handshake](#rune-0815)                  | authored    | Opening ritual that establishes trust, parameters, or session state.                                                                   |
-| 0816  | `STUB` [health check](#rune-0816)        | stub        | A distance-word; it carries intention across boundaries and unreliable space.                                                          |
-| 0817  | `STUB` [heartbeat {Net}](#rune-0817)     | stub        | A distance-word; it carries intention across boundaries and unreliable space.                                                          |
-| 0818  | `STUB` [hop](#rune-0818)                 | stub        | A distributed-systems word; it manages failure, ordering, or reachability across nodes.                                                |
-| 0819  | [HTTP](#rune-0819)                       | authored    | The dominant request-response protocol of the web.                                                                                     |
-| 0820  | `STUB` [HTTPS](#rune-0820)               | stub        | A distributed-systems word; it manages failure, ordering, or reachability across nodes.                                                |
-| 0821  | `STUB` [idempotency key](#rune-0821)     | stub        | A many-machine word; it coordinates transport, routing, or agreement beyond one process.                                               |
-| 0822  | [ingress](#rune-0822)                    | authored    | Traffic entering a service boundary.                                                                                                   |
-| 0823  | `STUB` [jitter {Net}](#rune-0823)        | stub        | A timing-noise word; repeated operations arrive with unstable spacing.                                                                 |
-| 0824  | `STUB` [keepalive](#rune-0824)           | stub        | A many-machine word; it coordinates transport, routing, or agreement beyond one process.                                               |
-| 0825  | [latency](#rune-0825)                    | authored    | The delay before useful work reaches the caller. Latency is what users feel even when throughput graphs look flattering.               |
-| 0826  | `STUB` [leader](#rune-0826)              | stub        | A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.                                        |
-| 0827  | [lease](#rune-0827)                      | needs_sense | A temporary-authority word; a resource is held only for a bounded duration.                                                            |
-| 0828  | [load balancer](#rune-0828)              | authored    | Distribute incoming work across many backends.                                                                                         |
-| 0829  | `STUB` [loss](#rune-0829)                | stub        | A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.                                        |
-| 0830  | `STUB` [mailbox](#rune-0830)             | stub        | A distance-word; it carries intention across boundaries and unreliable space.                                                          |
-| 0831  | `STUB` [membership](#rune-0831)          | stub        | A distance-word; it carries intention across boundaries and unreliable space.                                                          |
-| 0832  | `STUB` [mesh {Net}](#rune-0832)          | stub        | A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.                                        |
-| 0833  | `STUB` [message queue](#rune-0833)       | stub        | A many-machine word; it coordinates transport, routing, or agreement beyond one process.                                               |
-| 0834  | [mTLS {Net}](#rune-0834)                 | authored    | Mutual certificate-based identity proof on both sides of a connection.                                                                 |
-| 0835  | `STUB` [multicast](#rune-0835)           | stub        | A many-machine word; it coordinates transport, routing, or agreement beyond one process.                                               |
-| 0836  | `STUB` [NAT](#rune-0836)                 | stub        | A distributed-systems word; it manages failure, ordering, or reachability across nodes.                                                |
-| 0837  | [network partition](#rune-0837)          | authored    | A split network that makes one cluster behave like several worlds.                                                                     |
-| 0838  | `STUB` [node {Net}](#rune-0838)          | stub        | A many-machine word; it coordinates transport, routing, or agreement beyond one process.                                               |
-| 0839  | `STUB` [origin](#rune-0839)              | stub        | A distance-word; it carries intention across boundaries and unreliable space.                                                          |
-| 0840  | `STUB` [packet](#rune-0840)              | stub        | A distance-word; it carries intention across boundaries and unreliable space.                                                          |
-| 0841  | `STUB` [packet loss {Net}](#rune-0841)   | stub        | A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.                                        |
-| 0842  | `STUB` [peer](#rune-0842)                | stub        | A distance-word; it carries intention across boundaries and unreliable space.                                                          |
-| 0843  | `STUB` [pipeline depth](#rune-0843)      | stub        | A distributed-systems word; it manages failure, ordering, or reachability across nodes.                                                |
-| 0844  | `STUB` [port {Net}](#rune-0844)          | stub        | A contact word; a defined point of communication or adaptation.                                                                        |
-| 0845  | `STUB` [proxy {Net}](#rune-0845)         | stub        | A stand-in word; one body speaks or receives on behalf of another.                                                                     |
-| 0846  | `STUB` [publish-subscribe](#rune-0846)   | stub        | A many-machine word; it coordinates transport, routing, or agreement beyond one process.                                               |
-| 0847  | `STUB` [QUIC](#rune-0847)                | stub        | A many-machine word; it coordinates transport, routing, or agreement beyond one process.                                               |
-| 0848  | [quorum](#rune-0848)                     | authored    | Not everyone must agree, but enough must. This word turns distributed action into a threshold question instead of a unanimous fantasy. |
-| 0849  | `STUB` [rate limit](#rune-0849)          | stub        | A distributed-systems word; it manages failure, ordering, or reachability across nodes.                                                |
-| 0850  | `STUB` [receiver window](#rune-0850)     | stub        | A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.                                        |
-| 0851  | `STUB` [redirect](#rune-0851)            | stub        | A many-machine word; it coordinates transport, routing, or agreement beyond one process.                                               |
-| 0852  | [replica](#rune-0852)                    | authored    | A copy kept elsewhere for durability, scale, or locality.                                                                              |
-| 0853  | `STUB` [replication](#rune-0853)         | stub        | A many-machine word; it coordinates transport, routing, or agreement beyond one process.                                               |
-| 0854  | `STUB` [request](#rune-0854)             | stub        | A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.                                        |
-| 0855  | `STUB` [request coalescing](#rune-0855)  | stub        | A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.                                        |
-| 0856  | [response](#rune-0856)                   | needs_sense | A returning word; the answer carried back across an invoked boundary.                                                                  |
-| 0857  | [retry {Net}](#rune-0857)                | authored    | A second-attempt word; failure does not end the ritual if policy allows another try.                                                   |
-| 0858  | `STUB` [reverse proxy](#rune-0858)       | stub        | A many-machine word; it coordinates transport, routing, or agreement beyond one process.                                               |
-| 0859  | [route](#rune-0859)                      | authored    | The chosen path by which traffic should travel.                                                                                        |
-| 0860  | `STUB` [router {Net}](#rune-0860)        | stub        | A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.                                        |
-| 0861  | `STUB` [routing table](#rune-0861)       | stub        | A distance-word; it carries intention across boundaries and unreliable space.                                                          |
-| 0862  | [RPC](#rune-0862)                        | authored    | Invoke remote behavior as though it were local, with all the risks that implies.                                                       |
-| 0863  | `STUB` [segment {Net}](#rune-0863)       | stub        | A distributed-systems word; it manages failure, ordering, or reachability across nodes.                                                |
-| 0864  | `STUB` [sequence number](#rune-0864)     | stub        | A many-machine word; it coordinates transport, routing, or agreement beyond one process.                                               |
-| 0865  | `STUB` [service discovery](#rune-0865)   | stub        | A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.                                        |
-| 0866  | `STUB` [service mesh {Net}](#rune-0866)  | stub        | A side-channel governance word for service-to-service traffic.                                                                         |
-| 0867  | `STUB` [shard {Net}](#rune-0867)         | stub        | A splitting word; one logical body is divided across multiple partitions.                                                              |
-| 0868  | `STUB` [sidecar](#rune-0868)             | stub        | A distributed-systems word; it manages failure, ordering, or reachability across nodes.                                                |
-| 0869  | `STUB` [sliding window](#rune-0869)      | stub        | A many-machine word; it coordinates transport, routing, or agreement beyond one process.                                               |
-| 0870  | [socket {Net}](#rune-0870)               | authored    | A network communication endpoint bound to protocol and address.                                                                        |
-| 0871  | `STUB` [source](#rune-0871)              | stub        | A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.                                        |
-| 0872  | `STUB` [split-brain {Net}](#rune-0872)   | stub        | A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.                                        |
-| 0873  | `STUB` [stream {Net}](#rune-0873)        | stub        | A flow word; values arrive over time rather than all at once.                                                                          |
-| 0874  | [strong consistency](#rune-0874)         | needs_sense | A sameness word across distance; readers do not see old worlds after new ones commit.                                                  |
-| 0875  | `STUB` [subscription](#rune-0875)        | stub        | A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.                                        |
-| 0876  | [TCP](#rune-0876)                        | authored    | Ordered reliable stream transport with congestion control.                                                                             |
-| 0877  | `STUB` [timeout {Net}](#rune-0877)       | stub        | A patience-bound word; after a duration, waiting is no longer allowed.                                                                 |
-| 0878  | `STUB` [TLS](#rune-0878)                 | stub        | A distributed-systems word; it manages failure, ordering, or reachability across nodes.                                                |
-| 0879  | `STUB` [topic](#rune-0879)               | stub        | A distributed-systems word; it manages failure, ordering, or reachability across nodes.                                                |
-| 0880  | `STUB` [tracing header](#rune-0880)      | stub        | A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.                                        |
-| 0881  | `STUB` [UDP](#rune-0881)                 | stub        | A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.                                        |
-| 0882  | `STUB` [unicast](#rune-0882)             | stub        | A distributed-systems word; it manages failure, ordering, or reachability across nodes.                                                |
-| 0883  | `STUB` [virtual IP](#rune-0883)          | stub        | A distance-word; it carries intention across boundaries and unreliable space.                                                          |
-| 0884  | [webhook](#rune-0884)                    | authored    | An outbound callback triggered by an event.                                                                                            |
-| 0885  | `STUB` [WebSocket](#rune-0885)           | stub        | A distributed-systems word; it manages failure, ordering, or reachability across nodes.                                                |
-| 0886  | `STUB` [wire format](#rune-0886)         | stub        | A distance-word; it carries intention across boundaries and unreliable space.                                                          |
+| Sigil | Term                               | Completion | Summary                                                                                                                                                                                                                                             |
+| ----- | ---------------------------------- | ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 0771  | [accept](#rune-0771)               | authored   | `accept` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the accept obligation named before work proceeds.                                |
+| 0772  | [acknowledgment](#rune-0772)       | authored   | `acknowledgment` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the acknowledgment obligation named before work proceeds.                |
+| 0773  | [anycast](#rune-0773)              | authored   | `anycast` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the anycast obligation named before work proceeds.                              |
+| 0774  | [API request](#rune-0774)          | authored   | `API request` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the API request obligation named before work proceeds.                      |
+| 0775  | [API response](#rune-0775)         | authored   | `API response` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the API response obligation named before work proceeds.                    |
+| 0776  | [availability zone](#rune-0776)    | authored   | `availability zone` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the availability zone obligation named before work proceeds.          |
+| 0777  | [backoff {Net}](#rune-0777)        | authored   | `backoff` in its Net sense is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the backoff obligation named before work proceeds.             |
+| 0778  | [backpressure](#rune-0778)         | authored   | Resistance pushed upstream when demand outruns capacity. Without it, overload spreads faster than truth.                                                                                                                                            |
+| 0779  | [bandwidth {Net}](#rune-0779)      | authored   | `bandwidth` in its Net sense is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the bandwidth obligation named before work proceeds.         |
+| 0780  | [bind](#rune-0780)                 | authored   | `bind` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the bind obligation named before work proceeds.                                    |
+| 0781  | [broadcast](#rune-0781)            | authored   | `broadcast` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the broadcast obligation named before work proceeds.                          |
+| 0782  | [broker {Net}](#rune-0782)         | authored   | `broker` in its Net sense is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the broker obligation named before work proceeds.               |
+| 0783  | [CDN](#rune-0783)                  | authored   | `CDN` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the CDN obligation named before work proceeds.                                      |
+| 0784  | [certificate {Net}](#rune-0784)    | authored   | `certificate` in its Net sense is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the certificate obligation named before work proceeds.     |
+| 0785  | [checksum handoff](#rune-0785)     | authored   | `checksum handoff` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the checksum handoff obligation named before work proceeds.            |
+| 0786  | [client {Net}](#rune-0786)         | authored   | `client` in its Net sense is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the client obligation named before work proceeds.               |
+| 0787  | [client timeout](#rune-0787)       | authored   | `client timeout` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the client timeout obligation named before work proceeds.                |
+| 0788  | [cluster {Net}](#rune-0788)        | authored   | `cluster` in its Net sense is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the cluster obligation named before work proceeds.             |
+| 0789  | [connect](#rune-0789)              | authored   | `connect` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the connect obligation named before work proceeds.                              |
+| 0790  | [connection pool](#rune-0790)      | authored   | `connection pool` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the connection pool obligation named before work proceeds.              |
+| 0791  | [consensus](#rune-0791)            | authored   | Agreement protocol for shared truth across unreliable nodes.                                                                                                                                                                                        |
+| 0792  | [consistency level](#rune-0792)    | authored   | `consistency level` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the consistency level obligation named before work proceeds.          |
+| 0793  | [control plane {Net}](#rune-0793)  | authored   | `control plane` in its Net sense is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the control plane obligation named before work proceeds. |
+| 0794  | [CRC](#rune-0794)                  | authored   | `CRC` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the CRC obligation named before work proceeds.                                      |
+| 0795  | [datagram](#rune-0795)             | authored   | `datagram` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the datagram obligation named before work proceeds.                            |
+| 0796  | [deadline](#rune-0796)             | authored   | `deadline` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the deadline obligation named before work proceeds.                            |
+| 0797  | [destination](#rune-0797)          | authored   | `destination` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the destination obligation named before work proceeds.                      |
+| 0798  | [discovery](#rune-0798)            | authored   | `discovery` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the discovery obligation named before work proceeds.                          |
+| 0799  | [DNS](#rune-0799)                  | authored   | Translate names into network-reachable locations.                                                                                                                                                                                                   |
+| 0800  | [DNS record](#rune-0800)           | authored   | `DNS record` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the DNS record obligation named before work proceeds.                        |
+| 0801  | [edge {Net}](#rune-0801)           | authored   | `edge` in its Net sense is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the edge obligation named before work proceeds.                   |
+| 0802  | [egress](#rune-0802)               | authored   | `egress` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the egress obligation named before work proceeds.                                |
+| 0803  | [election](#rune-0803)             | authored   | `election` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the election obligation named before work proceeds.                            |
+| 0804  | [endpoint](#rune-0804)             | authored   | A callable boundary where a service can be reached.                                                                                                                                                                                                 |
+| 0805  | [eventual consistency](#rune-0805) | authored   | Agreement postponed rather than denied. Shadow: stale reads treated as if they were fresh truth.                                                                                                                                                    |
+| 0806  | [failover](#rune-0806)             | authored   | Shift responsibility to a surviving node or path after failure.                                                                                                                                                                                     |
+| 0807  | [fan-out {Net}](#rune-0807)        | authored   | `fan-out` in its Net sense is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the fan-out obligation named before work proceeds.             |
+| 0808  | [firewall](#rune-0808)             | authored   | `firewall` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the firewall obligation named before work proceeds.                            |
+| 0809  | [follower](#rune-0809)             | authored   | `follower` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the follower obligation named before work proceeds.                            |
+| 0810  | [forwarding](#rune-0810)           | authored   | `forwarding` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the forwarding obligation named before work proceeds.                        |
+| 0811  | [frame {Net}](#rune-0811)          | authored   | `frame` in its Net sense is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the frame obligation named before work proceeds.                 |
+| 0812  | [gateway {Net}](#rune-0812)        | authored   | `gateway` in its Net sense is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the gateway obligation named before work proceeds.             |
+| 0813  | [gossip](#rune-0813)               | authored   | `gossip` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the gossip obligation named before work proceeds.                                |
+| 0814  | [gRPC](#rune-0814)                 | authored   | `gRPC` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the gRPC obligation named before work proceeds.                                    |
+| 0815  | [handshake](#rune-0815)            | authored   | Opening ritual that establishes trust, parameters, or session state.                                                                                                                                                                                |
+| 0816  | [health check](#rune-0816)         | authored   | `health check` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the health check obligation named before work proceeds.                    |
+| 0817  | [heartbeat {Net}](#rune-0817)      | authored   | `heartbeat` in its Net sense is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the heartbeat obligation named before work proceeds.         |
+| 0818  | [hop](#rune-0818)                  | authored   | `hop` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the hop obligation named before work proceeds.                                      |
+| 0819  | [HTTP](#rune-0819)                 | authored   | The dominant request-response protocol of the web.                                                                                                                                                                                                  |
+| 0820  | [HTTPS](#rune-0820)                | authored   | `HTTPS` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the HTTPS obligation named before work proceeds.                                  |
+| 0821  | [idempotency key](#rune-0821)      | authored   | `idempotency key` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the idempotency key obligation named before work proceeds.              |
+| 0822  | [ingress](#rune-0822)              | authored   | Traffic entering a service boundary.                                                                                                                                                                                                                |
+| 0823  | [jitter {Net}](#rune-0823)         | authored   | `jitter` in its Net sense is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the jitter obligation named before work proceeds.               |
+| 0824  | [keepalive](#rune-0824)            | authored   | `keepalive` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the keepalive obligation named before work proceeds.                          |
+| 0825  | [latency](#rune-0825)              | authored   | The delay before useful work reaches the caller. Latency is what users feel even when throughput graphs look flattering.                                                                                                                            |
+| 0826  | [leader](#rune-0826)               | authored   | `leader` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the leader obligation named before work proceeds.                                |
+| 0827  | [lease](#rune-0827)                | authored   | `lease` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the lease obligation named before work proceeds.                                  |
+| 0828  | [load balancer](#rune-0828)        | authored   | Distribute incoming work across many backends.                                                                                                                                                                                                      |
+| 0829  | [loss](#rune-0829)                 | authored   | `loss` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the loss obligation named before work proceeds.                                    |
+| 0830  | [mailbox](#rune-0830)              | authored   | `mailbox` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the mailbox obligation named before work proceeds.                              |
+| 0831  | [membership](#rune-0831)           | authored   | `membership` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the membership obligation named before work proceeds.                        |
+| 0832  | [mesh {Net}](#rune-0832)           | authored   | `mesh` in its Net sense is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the mesh obligation named before work proceeds.                   |
+| 0833  | [message queue](#rune-0833)        | authored   | `message queue` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the message queue obligation named before work proceeds.                  |
+| 0834  | [mTLS {Net}](#rune-0834)           | authored   | Mutual certificate-based identity proof on both sides of a connection.                                                                                                                                                                              |
+| 0835  | [multicast](#rune-0835)            | authored   | `multicast` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the multicast obligation named before work proceeds.                          |
+| 0836  | [NAT](#rune-0836)                  | authored   | `NAT` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the NAT obligation named before work proceeds.                                      |
+| 0837  | [network partition](#rune-0837)    | authored   | A split network that makes one cluster behave like several worlds.                                                                                                                                                                                  |
+| 0838  | [node {Net}](#rune-0838)           | authored   | `node` in its Net sense is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the node obligation named before work proceeds.                   |
+| 0839  | [origin](#rune-0839)               | authored   | `origin` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the origin obligation named before work proceeds.                                |
+| 0840  | [packet](#rune-0840)               | authored   | `packet` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the packet obligation named before work proceeds.                                |
+| 0841  | [packet loss {Net}](#rune-0841)    | authored   | `packet loss` in its Net sense is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the packet loss obligation named before work proceeds.     |
+| 0842  | [peer](#rune-0842)                 | authored   | `peer` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the peer obligation named before work proceeds.                                    |
+| 0843  | [pipeline depth](#rune-0843)       | authored   | `pipeline depth` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the pipeline depth obligation named before work proceeds.                |
+| 0844  | [port {Net}](#rune-0844)           | authored   | `port` in its Net sense is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the port obligation named before work proceeds.                   |
+| 0845  | [proxy {Net}](#rune-0845)          | authored   | `proxy` in its Net sense is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the proxy obligation named before work proceeds.                 |
+| 0846  | [publish-subscribe](#rune-0846)    | authored   | `publish-subscribe` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the publish-subscribe obligation named before work proceeds.          |
+| 0847  | [QUIC](#rune-0847)                 | authored   | `QUIC` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the QUIC obligation named before work proceeds.                                    |
+| 0848  | [quorum](#rune-0848)               | authored   | Not everyone must agree, but enough must. This word turns distributed action into a threshold question instead of a unanimous fantasy.                                                                                                              |
+| 0849  | [rate limit](#rune-0849)           | authored   | `rate limit` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the rate limit obligation named before work proceeds.                        |
+| 0850  | [receiver window](#rune-0850)      | authored   | `receiver window` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the receiver window obligation named before work proceeds.              |
+| 0851  | [redirect](#rune-0851)             | authored   | `redirect` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the redirect obligation named before work proceeds.                            |
+| 0852  | [replica](#rune-0852)              | authored   | A copy kept elsewhere for durability, scale, or locality.                                                                                                                                                                                           |
+| 0853  | [replication](#rune-0853)          | authored   | `replication` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the replication obligation named before work proceeds.                      |
+| 0854  | [request](#rune-0854)              | authored   | `request` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the request obligation named before work proceeds.                              |
+| 0855  | [request coalescing](#rune-0855)   | authored   | `request coalescing` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the request coalescing obligation named before work proceeds.        |
+| 0856  | [response](#rune-0856)             | authored   | `response` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the response obligation named before work proceeds.                            |
+| 0857  | [retry {Net}](#rune-0857)          | authored   | `retry` in its Net sense is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the retry obligation named before work proceeds.                 |
+| 0858  | [reverse proxy](#rune-0858)        | authored   | `reverse proxy` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the reverse proxy obligation named before work proceeds.                  |
+| 0859  | [route](#rune-0859)                | authored   | The chosen path by which traffic should travel.                                                                                                                                                                                                     |
+| 0860  | [router {Net}](#rune-0860)         | authored   | `router` in its Net sense is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the router obligation named before work proceeds.               |
+| 0861  | [routing table](#rune-0861)        | authored   | `routing table` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the routing table obligation named before work proceeds.                  |
+| 0862  | [RPC](#rune-0862)                  | authored   | Invoke remote behavior as though it were local, with all the risks that implies.                                                                                                                                                                    |
+| 0863  | [segment {Net}](#rune-0863)        | authored   | `segment` in its Net sense is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the segment obligation named before work proceeds.             |
+| 0864  | [sequence number](#rune-0864)      | authored   | `sequence number` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the sequence number obligation named before work proceeds.              |
+| 0865  | [service discovery](#rune-0865)    | authored   | `service discovery` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the service discovery obligation named before work proceeds.          |
+| 0866  | [service mesh {Net}](#rune-0866)   | authored   | `service mesh` in its Net sense is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the service mesh obligation named before work proceeds.   |
+| 0867  | [shard {Net}](#rune-0867)          | authored   | `shard` in its Net sense is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the shard obligation named before work proceeds.                 |
+| 0868  | [sidecar](#rune-0868)              | authored   | `sidecar` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the sidecar obligation named before work proceeds.                              |
+| 0869  | [sliding window](#rune-0869)       | authored   | `sliding window` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the sliding window obligation named before work proceeds.                |
+| 0870  | [socket {Net}](#rune-0870)         | authored   | A network communication endpoint bound to protocol and address.                                                                                                                                                                                     |
+| 0871  | [source](#rune-0871)               | authored   | `source` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the source obligation named before work proceeds.                                |
+| 0872  | [split-brain {Net}](#rune-0872)    | authored   | `split-brain` in its Net sense is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the split-brain obligation named before work proceeds.     |
+| 0873  | [stream {Net}](#rune-0873)         | authored   | `stream` in its Net sense is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the stream obligation named before work proceeds.               |
+| 0874  | [strong consistency](#rune-0874)   | authored   | `strong consistency` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the strong consistency obligation named before work proceeds.        |
+| 0875  | [subscription](#rune-0875)         | authored   | `subscription` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the subscription obligation named before work proceeds.                    |
+| 0876  | [TCP](#rune-0876)                  | authored   | Ordered reliable stream transport with congestion control.                                                                                                                                                                                          |
+| 0877  | [timeout {Net}](#rune-0877)        | authored   | `timeout` in its Net sense is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the timeout obligation named before work proceeds.             |
+| 0878  | [TLS](#rune-0878)                  | authored   | `TLS` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the TLS obligation named before work proceeds.                                      |
+| 0879  | [topic](#rune-0879)                | authored   | `topic` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the topic obligation named before work proceeds.                                  |
+| 0880  | [tracing header](#rune-0880)       | authored   | `tracing header` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the tracing header obligation named before work proceeds.                |
+| 0881  | [UDP](#rune-0881)                  | authored   | `UDP` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the UDP obligation named before work proceeds.                                      |
+| 0882  | [unicast](#rune-0882)              | authored   | `unicast` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the unicast obligation named before work proceeds.                              |
+| 0883  | [virtual IP](#rune-0883)           | authored   | `virtual IP` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the virtual IP obligation named before work proceeds.                        |
+| 0884  | [webhook](#rune-0884)              | authored   | An outbound callback triggered by an event.                                                                                                                                                                                                         |
+| 0885  | [WebSocket](#rune-0885)            | authored   | `WebSocket` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the WebSocket obligation named before work proceeds.                          |
+| 0886  | [wire format](#rune-0886)          | authored   | `wire format` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the wire format obligation named before work proceeds.                      |
 
 ## Entries
 
@@ -141,71 +139,71 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A distance-word; it carries intention across boundaries and unreliable space.
+**Force:** `accept` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the accept obligation named before work proceeds.
 
-**Shadow:** distance can turn a local-looking operation into partial failure, delay, or split authority.
+**Shadow:** misusing `accept` at rune 0771 in the distributed-systems lane can let local-looking calls can become delay, split authority, or partial failure; verify by requiring the caster to state timeout, retry, consistency, and idempotency expectations.
 
 ### [0772] acknowledgment {#rune-0772}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A distributed-systems word; it manages failure, ordering, or reachability across nodes.
+**Force:** `acknowledgment` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the acknowledgment obligation named before work proceeds.
 
-**Shadow:** distance can turn a local-looking operation into partial failure, delay, or split authority.
+**Shadow:** misusing `acknowledgment` at rune 0772 in the distributed-systems lane can let local-looking calls can become delay, split authority, or partial failure; verify by requiring the caster to state timeout, retry, consistency, and idempotency expectations.
 
 ### [0773] anycast {#rune-0773}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A distributed-systems word; it manages failure, ordering, or reachability across nodes.
+**Force:** `anycast` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the anycast obligation named before work proceeds.
 
-**Shadow:** distance can turn a local-looking operation into partial failure, delay, or split authority.
+**Shadow:** misusing `anycast` at rune 0773 in the distributed-systems lane can let local-looking calls can become delay, split authority, or partial failure; verify by requiring the caster to state timeout, retry, consistency, and idempotency expectations.
 
 ### [0774] API request {#rune-0774}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A distributed-systems word; it manages failure, ordering, or reachability across nodes.
+**Force:** `API request` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the API request obligation named before work proceeds.
 
-**Shadow:** distance can turn a local-looking operation into partial failure, delay, or split authority.
+**Shadow:** misusing `API request` at rune 0774 in the distributed-systems lane can let local-looking calls can become delay, split authority, or partial failure; verify by requiring the caster to state timeout, retry, consistency, and idempotency expectations.
 
 ### [0775] API response {#rune-0775}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.
+**Force:** `API response` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the API response obligation named before work proceeds.
 
-**Shadow:** distance can turn a local-looking operation into partial failure, delay, or split authority.
+**Shadow:** misusing `API response` at rune 0775 in the distributed-systems lane can let local-looking calls can become delay, split authority, or partial failure; verify by requiring the caster to state timeout, retry, consistency, and idempotency expectations.
 
 ### [0776] availability zone {#rune-0776}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A distributed-systems word; it manages failure, ordering, or reachability across nodes.
+**Force:** `availability zone` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the availability zone obligation named before work proceeds.
 
-**Shadow:** distance can turn a local-looking operation into partial failure, delay, or split authority.
+**Shadow:** misusing `availability zone` at rune 0776 in the distributed-systems lane can let local-looking calls can become delay, split authority, or partial failure; verify by requiring the caster to state timeout, retry, consistency, and idempotency expectations.
 
 ### [0777] backoff {Net} {#rune-0777}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A distance-word; it carries intention across boundaries and unreliable space.
+**Force:** `backoff` in its Net sense is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the backoff obligation named before work proceeds.
 
-**Shadow:** distance can turn a local-looking operation into partial failure, delay, or split authority.
+**Shadow:** misusing `backoff` at rune 0777 in the Net lane can let local-looking calls can become delay, split authority, or partial failure; verify by requiring the caster to state timeout, retry, consistency, and idempotency expectations.
 
 ### [0778] backpressure {#rune-0778}
 
@@ -223,121 +221,121 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.
+**Force:** `bandwidth` in its Net sense is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the bandwidth obligation named before work proceeds.
 
-**Shadow:** distance can turn a local-looking operation into partial failure, delay, or split authority.
+**Shadow:** misusing `bandwidth` at rune 0779 in the Net lane can let local-looking calls can become delay, split authority, or partial failure; verify by requiring the caster to state timeout, retry, consistency, and idempotency expectations.
 
 ### [0780] bind {#rune-0780}
 
 **Status:** canonical
 
-**Completion:** needs_sense
+**Completion:** authored
 
-**Force:** A fastening word; it joins a name, port, address, or variable to a concrete referent.
+**Force:** `bind` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the bind obligation named before work proceeds.
 
-**Shadow:** distance can turn a local-looking operation into partial failure, delay, or split authority.
+**Shadow:** misusing `bind` at rune 0780 in the distributed-systems lane can let local-looking calls can become delay, split authority, or partial failure; verify by requiring the caster to state timeout, retry, consistency, and idempotency expectations.
 
 ### [0781] broadcast {#rune-0781}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A distributed-systems word; it manages failure, ordering, or reachability across nodes.
+**Force:** `broadcast` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the broadcast obligation named before work proceeds.
 
-**Shadow:** distance can turn a local-looking operation into partial failure, delay, or split authority.
+**Shadow:** misusing `broadcast` at rune 0781 in the distributed-systems lane can let local-looking calls can become delay, split authority, or partial failure; verify by requiring the caster to state timeout, retry, consistency, and idempotency expectations.
 
 ### [0782] broker {Net} {#rune-0782}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.
+**Force:** `broker` in its Net sense is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the broker obligation named before work proceeds.
 
-**Shadow:** distance can turn a local-looking operation into partial failure, delay, or split authority.
+**Shadow:** misusing `broker` at rune 0782 in the Net lane can let local-looking calls can become delay, split authority, or partial failure; verify by requiring the caster to state timeout, retry, consistency, and idempotency expectations.
 
 ### [0783] CDN {#rune-0783}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.
+**Force:** `CDN` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the CDN obligation named before work proceeds.
 
-**Shadow:** distance can turn a local-looking operation into partial failure, delay, or split authority.
+**Shadow:** misusing `CDN` at rune 0783 in the distributed-systems lane can let local-looking calls can become delay, split authority, or partial failure; verify by requiring the caster to state timeout, retry, consistency, and idempotency expectations.
 
 ### [0784] certificate {Net} {#rune-0784}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A delegated-trust word; it lets one party assert another's identity by signed authority.
+**Force:** `certificate` in its Net sense is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the certificate obligation named before work proceeds.
 
-**Shadow:** distance can turn a local-looking operation into partial failure, delay, or split authority.
+**Shadow:** misusing `certificate` at rune 0784 in the Net lane can let local-looking calls can become delay, split authority, or partial failure; verify by requiring the caster to state timeout, retry, consistency, and idempotency expectations.
 
 ### [0785] checksum handoff {#rune-0785}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.
+**Force:** `checksum handoff` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the checksum handoff obligation named before work proceeds.
 
-**Shadow:** distance can turn a local-looking operation into partial failure, delay, or split authority.
+**Shadow:** misusing `checksum handoff` at rune 0785 in the distributed-systems lane can let local-looking calls can become delay, split authority, or partial failure; verify by requiring the caster to state timeout, retry, consistency, and idempotency expectations.
 
 ### [0786] client {Net} {#rune-0786}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A distributed-systems word; it manages failure, ordering, or reachability across nodes.
+**Force:** `client` in its Net sense is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the client obligation named before work proceeds.
 
-**Shadow:** distance can turn a local-looking operation into partial failure, delay, or split authority.
+**Shadow:** misusing `client` at rune 0786 in the Net lane can let local-looking calls can become delay, split authority, or partial failure; verify by requiring the caster to state timeout, retry, consistency, and idempotency expectations.
 
 ### [0787] client timeout {#rune-0787}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A many-machine word; it coordinates transport, routing, or agreement beyond one process.
+**Force:** `client timeout` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the client timeout obligation named before work proceeds.
 
-**Shadow:** distance can turn a local-looking operation into partial failure, delay, or split authority.
+**Shadow:** misusing `client timeout` at rune 0787 in the distributed-systems lane can let local-looking calls can become delay, split authority, or partial failure; verify by requiring the caster to state timeout, retry, consistency, and idempotency expectations.
 
 ### [0788] cluster {Net} {#rune-0788}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A many-body word; several machines are treated as one operational unit.
+**Force:** `cluster` in its Net sense is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the cluster obligation named before work proceeds.
 
-**Shadow:** distance can turn a local-looking operation into partial failure, delay, or split authority.
+**Shadow:** misusing `cluster` at rune 0788 in the Net lane can let local-looking calls can become delay, split authority, or partial failure; verify by requiring the caster to state timeout, retry, consistency, and idempotency expectations.
 
 ### [0789] connect {#rune-0789}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A many-machine word; it coordinates transport, routing, or agreement beyond one process.
+**Force:** `connect` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the connect obligation named before work proceeds.
 
-**Shadow:** distance can turn a local-looking operation into partial failure, delay, or split authority.
+**Shadow:** misusing `connect` at rune 0789 in the distributed-systems lane can let local-looking calls can become delay, split authority, or partial failure; verify by requiring the caster to state timeout, retry, consistency, and idempotency expectations.
 
 ### [0790] connection pool {#rune-0790}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A many-machine word; it coordinates transport, routing, or agreement beyond one process.
+**Force:** `connection pool` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the connection pool obligation named before work proceeds.
 
-**Shadow:** distance can turn a local-looking operation into partial failure, delay, or split authority.
+**Shadow:** misusing `connection pool` at rune 0790 in the distributed-systems lane can let local-looking calls can become delay, split authority, or partial failure; verify by requiring the caster to state timeout, retry, consistency, and idempotency expectations.
 
 ### [0791] consensus {#rune-0791}
 
@@ -347,7 +345,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** Agreement protocol for shared truth across unreliable nodes.
 
-**Shadow:** distance can turn a local-looking operation into partial failure, delay, or split authority.
+**Shadow:** misusing `consensus` at rune 0791 in the distributed-systems lane can let local-looking calls can become delay, split authority, or partial failure; verify by requiring the caster to state timeout, retry, consistency, and idempotency expectations.
 
 **Pocket gloss:** Agreement protocol for shared truth across unreliable nodes.
 
@@ -355,71 +353,71 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A many-machine word; it coordinates transport, routing, or agreement beyond one process.
+**Force:** `consistency level` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the consistency level obligation named before work proceeds.
 
-**Shadow:** distance can turn a local-looking operation into partial failure, delay, or split authority.
+**Shadow:** misusing `consistency level` at rune 0792 in the distributed-systems lane can let local-looking calls can become delay, split authority, or partial failure; verify by requiring the caster to state timeout, retry, consistency, and idempotency expectations.
 
 ### [0793] control plane {Net} {#rune-0793}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.
+**Force:** `control plane` in its Net sense is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the control plane obligation named before work proceeds.
 
-**Shadow:** distance can turn a local-looking operation into partial failure, delay, or split authority.
+**Shadow:** misusing `control plane` at rune 0793 in the Net lane can let local-looking calls can become delay, split authority, or partial failure; verify by requiring the caster to state timeout, retry, consistency, and idempotency expectations.
 
 ### [0794] CRC {#rune-0794}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A distance-word; it carries intention across boundaries and unreliable space.
+**Force:** `CRC` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the CRC obligation named before work proceeds.
 
-**Shadow:** distance can turn a local-looking operation into partial failure, delay, or split authority.
+**Shadow:** misusing `CRC` at rune 0794 in the distributed-systems lane can let local-looking calls can become delay, split authority, or partial failure; verify by requiring the caster to state timeout, retry, consistency, and idempotency expectations.
 
 ### [0795] datagram {#rune-0795}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.
+**Force:** `datagram` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the datagram obligation named before work proceeds.
 
-**Shadow:** distance can turn a local-looking operation into partial failure, delay, or split authority.
+**Shadow:** misusing `datagram` at rune 0795 in the distributed-systems lane can let local-looking calls can become delay, split authority, or partial failure; verify by requiring the caster to state timeout, retry, consistency, and idempotency expectations.
 
 ### [0796] deadline {#rune-0796}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A many-machine word; it coordinates transport, routing, or agreement beyond one process.
+**Force:** `deadline` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the deadline obligation named before work proceeds.
 
-**Shadow:** distance can turn a local-looking operation into partial failure, delay, or split authority.
+**Shadow:** misusing `deadline` at rune 0796 in the distributed-systems lane can let local-looking calls can become delay, split authority, or partial failure; verify by requiring the caster to state timeout, retry, consistency, and idempotency expectations.
 
 ### [0797] destination {#rune-0797}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A many-machine word; it coordinates transport, routing, or agreement beyond one process.
+**Force:** `destination` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the destination obligation named before work proceeds.
 
-**Shadow:** distance can turn a local-looking operation into partial failure, delay, or split authority.
+**Shadow:** misusing `destination` at rune 0797 in the distributed-systems lane can let local-looking calls can become delay, split authority, or partial failure; verify by requiring the caster to state timeout, retry, consistency, and idempotency expectations.
 
 ### [0798] discovery {#rune-0798}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A distance-word; it carries intention across boundaries and unreliable space.
+**Force:** `discovery` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the discovery obligation named before work proceeds.
 
-**Shadow:** distance can turn a local-looking operation into partial failure, delay, or split authority.
+**Shadow:** misusing `discovery` at rune 0798 in the distributed-systems lane can let local-looking calls can become delay, split authority, or partial failure; verify by requiring the caster to state timeout, retry, consistency, and idempotency expectations.
 
 ### [0799] DNS {#rune-0799}
 
@@ -429,7 +427,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** Translate names into network-reachable locations.
 
-**Shadow:** distance can turn a local-looking operation into partial failure, delay, or split authority.
+**Shadow:** misusing `DNS` at rune 0799 in the distributed-systems lane can let local-looking calls can become delay, split authority, or partial failure; verify by requiring the caster to state timeout, retry, consistency, and idempotency expectations.
 
 **Pocket gloss:** Translate names into network-reachable locations.
 
@@ -437,41 +435,41 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A distance-word; it carries intention across boundaries and unreliable space.
+**Force:** `DNS record` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the DNS record obligation named before work proceeds.
 
-**Shadow:** distance can turn a local-looking operation into partial failure, delay, or split authority.
+**Shadow:** misusing `DNS record` at rune 0800 in the distributed-systems lane can let local-looking calls can become delay, split authority, or partial failure; verify by requiring the caster to state timeout, retry, consistency, and idempotency expectations.
 
 ### [0801] edge {Net} {#rune-0801}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.
+**Force:** `edge` in its Net sense is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the edge obligation named before work proceeds.
 
-**Shadow:** distance can turn a local-looking operation into partial failure, delay, or split authority.
+**Shadow:** misusing `edge` at rune 0801 in the Net lane can let local-looking calls can become delay, split authority, or partial failure; verify by requiring the caster to state timeout, retry, consistency, and idempotency expectations.
 
 ### [0802] egress {#rune-0802}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.
+**Force:** `egress` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the egress obligation named before work proceeds.
 
-**Shadow:** distance can turn a local-looking operation into partial failure, delay, or split authority.
+**Shadow:** misusing `egress` at rune 0802 in the distributed-systems lane can let local-looking calls can become delay, split authority, or partial failure; verify by requiring the caster to state timeout, retry, consistency, and idempotency expectations.
 
 ### [0803] election {#rune-0803}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A distributed-systems word; it manages failure, ordering, or reachability across nodes.
+**Force:** `election` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the election obligation named before work proceeds.
 
-**Shadow:** distance can turn a local-looking operation into partial failure, delay, or split authority.
+**Shadow:** misusing `election` at rune 0803 in the distributed-systems lane can let local-looking calls can become delay, split authority, or partial failure; verify by requiring the caster to state timeout, retry, consistency, and idempotency expectations.
 
 ### [0804] endpoint {#rune-0804}
 
@@ -481,7 +479,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** A callable boundary where a service can be reached.
 
-**Shadow:** distance can turn a local-looking operation into partial failure, delay, or split authority.
+**Shadow:** misusing `endpoint` at rune 0804 in the distributed-systems lane can let local-looking calls can become delay, split authority, or partial failure; verify by requiring the caster to state timeout, retry, consistency, and idempotency expectations.
 
 **Pocket gloss:** A callable boundary where a service can be reached.
 
@@ -505,7 +503,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** Shift responsibility to a surviving node or path after failure.
 
-**Shadow:** distance can turn a local-looking operation into partial failure, delay, or split authority.
+**Shadow:** misusing `failover` at rune 0806 in the distributed-systems lane can let local-looking calls can become delay, split authority, or partial failure; verify by requiring the caster to state timeout, retry, consistency, and idempotency expectations.
 
 **Pocket gloss:** Shift responsibility to a surviving node or path after failure.
 
@@ -513,81 +511,81 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A many-machine word; it coordinates transport, routing, or agreement beyond one process.
+**Force:** `fan-out` in its Net sense is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the fan-out obligation named before work proceeds.
 
-**Shadow:** distance can turn a local-looking operation into partial failure, delay, or split authority.
+**Shadow:** misusing `fan-out` at rune 0807 in the Net lane can let local-looking calls can become delay, split authority, or partial failure; verify by requiring the caster to state timeout, retry, consistency, and idempotency expectations.
 
 ### [0808] firewall {#rune-0808}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A many-machine word; it coordinates transport, routing, or agreement beyond one process.
+**Force:** `firewall` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the firewall obligation named before work proceeds.
 
-**Shadow:** distance can turn a local-looking operation into partial failure, delay, or split authority.
+**Shadow:** misusing `firewall` at rune 0808 in the distributed-systems lane can let local-looking calls can become delay, split authority, or partial failure; verify by requiring the caster to state timeout, retry, consistency, and idempotency expectations.
 
 ### [0809] follower {#rune-0809}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A many-machine word; it coordinates transport, routing, or agreement beyond one process.
+**Force:** `follower` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the follower obligation named before work proceeds.
 
-**Shadow:** distance can turn a local-looking operation into partial failure, delay, or split authority.
+**Shadow:** misusing `follower` at rune 0809 in the distributed-systems lane can let local-looking calls can become delay, split authority, or partial failure; verify by requiring the caster to state timeout, retry, consistency, and idempotency expectations.
 
 ### [0810] forwarding {#rune-0810}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A distributed-systems word; it manages failure, ordering, or reachability across nodes.
+**Force:** `forwarding` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the forwarding obligation named before work proceeds.
 
-**Shadow:** distance can turn a local-looking operation into partial failure, delay, or split authority.
+**Shadow:** misusing `forwarding` at rune 0810 in the distributed-systems lane can let local-looking calls can become delay, split authority, or partial failure; verify by requiring the caster to state timeout, retry, consistency, and idempotency expectations.
 
 ### [0811] frame {Net} {#rune-0811}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A distributed-systems word; it manages failure, ordering, or reachability across nodes.
+**Force:** `frame` in its Net sense is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the frame obligation named before work proceeds.
 
-**Shadow:** distance can turn a local-looking operation into partial failure, delay, or split authority.
+**Shadow:** misusing `frame` at rune 0811 in the Net lane can let local-looking calls can become delay, split authority, or partial failure; verify by requiring the caster to state timeout, retry, consistency, and idempotency expectations.
 
 ### [0812] gateway {Net} {#rune-0812}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A many-machine word; it coordinates transport, routing, or agreement beyond one process.
+**Force:** `gateway` in its Net sense is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the gateway obligation named before work proceeds.
 
-**Shadow:** distance can turn a local-looking operation into partial failure, delay, or split authority.
+**Shadow:** misusing `gateway` at rune 0812 in the Net lane can let local-looking calls can become delay, split authority, or partial failure; verify by requiring the caster to state timeout, retry, consistency, and idempotency expectations.
 
 ### [0813] gossip {#rune-0813}
 
 **Status:** canonical
 
-**Completion:** needs_sense
+**Completion:** authored
 
-**Force:** A rumor-propagation word; state spreads by repeated local exchange.
+**Force:** `gossip` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the gossip obligation named before work proceeds.
 
-**Shadow:** distance can turn a local-looking operation into partial failure, delay, or split authority.
+**Shadow:** misusing `gossip` at rune 0813 in the distributed-systems lane can let local-looking calls can become delay, split authority, or partial failure; verify by requiring the caster to state timeout, retry, consistency, and idempotency expectations.
 
 ### [0814] gRPC {#rune-0814}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A distance-word; it carries intention across boundaries and unreliable space.
+**Force:** `gRPC` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the gRPC obligation named before work proceeds.
 
-**Shadow:** distance can turn a local-looking operation into partial failure, delay, or split authority.
+**Shadow:** misusing `gRPC` at rune 0814 in the distributed-systems lane can let local-looking calls can become delay, split authority, or partial failure; verify by requiring the caster to state timeout, retry, consistency, and idempotency expectations.
 
 ### [0815] handshake {#rune-0815}
 
@@ -597,7 +595,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** Opening ritual that establishes trust, parameters, or session state.
 
-**Shadow:** distance can turn a local-looking operation into partial failure, delay, or split authority.
+**Shadow:** misusing `handshake` at rune 0815 in the distributed-systems lane can let local-looking calls can become delay, split authority, or partial failure; verify by requiring the caster to state timeout, retry, consistency, and idempotency expectations.
 
 **Pocket gloss:** Opening ritual that establishes trust, parameters, or session state.
 
@@ -605,31 +603,31 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A distance-word; it carries intention across boundaries and unreliable space.
+**Force:** `health check` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the health check obligation named before work proceeds.
 
-**Shadow:** distance can turn a local-looking operation into partial failure, delay, or split authority.
+**Shadow:** misusing `health check` at rune 0816 in the distributed-systems lane can let local-looking calls can become delay, split authority, or partial failure; verify by requiring the caster to state timeout, retry, consistency, and idempotency expectations.
 
 ### [0817] heartbeat {Net} {#rune-0817}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A distance-word; it carries intention across boundaries and unreliable space.
+**Force:** `heartbeat` in its Net sense is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the heartbeat obligation named before work proceeds.
 
-**Shadow:** distance can turn a local-looking operation into partial failure, delay, or split authority.
+**Shadow:** misusing `heartbeat` at rune 0817 in the Net lane can let local-looking calls can become delay, split authority, or partial failure; verify by requiring the caster to state timeout, retry, consistency, and idempotency expectations.
 
 ### [0818] hop {#rune-0818}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A distributed-systems word; it manages failure, ordering, or reachability across nodes.
+**Force:** `hop` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the hop obligation named before work proceeds.
 
-**Shadow:** distance can turn a local-looking operation into partial failure, delay, or split authority.
+**Shadow:** misusing `hop` at rune 0818 in the distributed-systems lane can let local-looking calls can become delay, split authority, or partial failure; verify by requiring the caster to state timeout, retry, consistency, and idempotency expectations.
 
 ### [0819] HTTP {#rune-0819}
 
@@ -639,7 +637,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** The dominant request-response protocol of the web.
 
-**Shadow:** distance can turn a local-looking operation into partial failure, delay, or split authority.
+**Shadow:** misusing `HTTP` at rune 0819 in the distributed-systems lane can let local-looking calls can become delay, split authority, or partial failure; verify by requiring the caster to state timeout, retry, consistency, and idempotency expectations.
 
 **Pocket gloss:** The dominant request-response protocol of the web.
 
@@ -647,21 +645,21 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A distributed-systems word; it manages failure, ordering, or reachability across nodes.
+**Force:** `HTTPS` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the HTTPS obligation named before work proceeds.
 
-**Shadow:** distance can turn a local-looking operation into partial failure, delay, or split authority.
+**Shadow:** misusing `HTTPS` at rune 0820 in the distributed-systems lane can let local-looking calls can become delay, split authority, or partial failure; verify by requiring the caster to state timeout, retry, consistency, and idempotency expectations.
 
 ### [0821] idempotency key {#rune-0821}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A many-machine word; it coordinates transport, routing, or agreement beyond one process.
+**Force:** `idempotency key` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the idempotency key obligation named before work proceeds.
 
-**Shadow:** distance can turn a local-looking operation into partial failure, delay, or split authority.
+**Shadow:** misusing `idempotency key` at rune 0821 in the distributed-systems lane can let local-looking calls can become delay, split authority, or partial failure; verify by requiring the caster to state timeout, retry, consistency, and idempotency expectations.
 
 ### [0822] ingress {#rune-0822}
 
@@ -671,7 +669,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** Traffic entering a service boundary.
 
-**Shadow:** distance can turn a local-looking operation into partial failure, delay, or split authority.
+**Shadow:** misusing `ingress` at rune 0822 in the distributed-systems lane can let local-looking calls can become delay, split authority, or partial failure; verify by requiring the caster to state timeout, retry, consistency, and idempotency expectations.
 
 **Pocket gloss:** Traffic entering a service boundary.
 
@@ -679,21 +677,21 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A timing-noise word; repeated operations arrive with unstable spacing.
+**Force:** `jitter` in its Net sense is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the jitter obligation named before work proceeds.
 
-**Shadow:** distance can turn a local-looking operation into partial failure, delay, or split authority.
+**Shadow:** misusing `jitter` at rune 0823 in the Net lane can let local-looking calls can become delay, split authority, or partial failure; verify by requiring the caster to state timeout, retry, consistency, and idempotency expectations.
 
 ### [0824] keepalive {#rune-0824}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A many-machine word; it coordinates transport, routing, or agreement beyond one process.
+**Force:** `keepalive` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the keepalive obligation named before work proceeds.
 
-**Shadow:** distance can turn a local-looking operation into partial failure, delay, or split authority.
+**Shadow:** misusing `keepalive` at rune 0824 in the distributed-systems lane can let local-looking calls can become delay, split authority, or partial failure; verify by requiring the caster to state timeout, retry, consistency, and idempotency expectations.
 
 ### [0825] latency {#rune-0825}
 
@@ -711,21 +709,21 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.
+**Force:** `leader` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the leader obligation named before work proceeds.
 
-**Shadow:** distance can turn a local-looking operation into partial failure, delay, or split authority.
+**Shadow:** misusing `leader` at rune 0826 in the distributed-systems lane can let local-looking calls can become delay, split authority, or partial failure; verify by requiring the caster to state timeout, retry, consistency, and idempotency expectations.
 
 ### [0827] lease {#rune-0827}
 
 **Status:** canonical
 
-**Completion:** needs_sense
+**Completion:** authored
 
-**Force:** A temporary-authority word; a resource is held only for a bounded duration.
+**Force:** `lease` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the lease obligation named before work proceeds.
 
-**Shadow:** distance can turn a local-looking operation into partial failure, delay, or split authority.
+**Shadow:** misusing `lease` at rune 0827 in the distributed-systems lane can let local-looking calls can become delay, split authority, or partial failure; verify by requiring the caster to state timeout, retry, consistency, and idempotency expectations.
 
 ### [0828] load balancer {#rune-0828}
 
@@ -735,7 +733,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** Distribute incoming work across many backends.
 
-**Shadow:** distance can turn a local-looking operation into partial failure, delay, or split authority.
+**Shadow:** misusing `load balancer` at rune 0828 in the distributed-systems lane can let local-looking calls can become delay, split authority, or partial failure; verify by requiring the caster to state timeout, retry, consistency, and idempotency expectations.
 
 **Pocket gloss:** Distribute incoming work across many backends.
 
@@ -743,51 +741,51 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.
+**Force:** `loss` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the loss obligation named before work proceeds.
 
-**Shadow:** distance can turn a local-looking operation into partial failure, delay, or split authority.
+**Shadow:** misusing `loss` at rune 0829 in the distributed-systems lane can let local-looking calls can become delay, split authority, or partial failure; verify by requiring the caster to state timeout, retry, consistency, and idempotency expectations.
 
 ### [0830] mailbox {#rune-0830}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A distance-word; it carries intention across boundaries and unreliable space.
+**Force:** `mailbox` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the mailbox obligation named before work proceeds.
 
-**Shadow:** distance can turn a local-looking operation into partial failure, delay, or split authority.
+**Shadow:** misusing `mailbox` at rune 0830 in the distributed-systems lane can let local-looking calls can become delay, split authority, or partial failure; verify by requiring the caster to state timeout, retry, consistency, and idempotency expectations.
 
 ### [0831] membership {#rune-0831}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A distance-word; it carries intention across boundaries and unreliable space.
+**Force:** `membership` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the membership obligation named before work proceeds.
 
-**Shadow:** distance can turn a local-looking operation into partial failure, delay, or split authority.
+**Shadow:** misusing `membership` at rune 0831 in the distributed-systems lane can let local-looking calls can become delay, split authority, or partial failure; verify by requiring the caster to state timeout, retry, consistency, and idempotency expectations.
 
 ### [0832] mesh {Net} {#rune-0832}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.
+**Force:** `mesh` in its Net sense is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the mesh obligation named before work proceeds.
 
-**Shadow:** distance can turn a local-looking operation into partial failure, delay, or split authority.
+**Shadow:** misusing `mesh` at rune 0832 in the Net lane can let local-looking calls can become delay, split authority, or partial failure; verify by requiring the caster to state timeout, retry, consistency, and idempotency expectations.
 
 ### [0833] message queue {#rune-0833}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A many-machine word; it coordinates transport, routing, or agreement beyond one process.
+**Force:** `message queue` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the message queue obligation named before work proceeds.
 
-**Shadow:** distance can turn a local-looking operation into partial failure, delay, or split authority.
+**Shadow:** misusing `message queue` at rune 0833 in the distributed-systems lane can let local-looking calls can become delay, split authority, or partial failure; verify by requiring the caster to state timeout, retry, consistency, and idempotency expectations.
 
 ### [0834] mTLS {Net} {#rune-0834}
 
@@ -797,7 +795,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** Mutual certificate-based identity proof on both sides of a connection.
 
-**Shadow:** distance can turn a local-looking operation into partial failure, delay, or split authority.
+**Shadow:** misusing `mTLS` at rune 0834 in the Net lane can let local-looking calls can become delay, split authority, or partial failure; verify by requiring the caster to state timeout, retry, consistency, and idempotency expectations.
 
 **Pocket gloss:** Mutual certificate-based identity proof on both sides of a connection.
 
@@ -805,21 +803,21 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A many-machine word; it coordinates transport, routing, or agreement beyond one process.
+**Force:** `multicast` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the multicast obligation named before work proceeds.
 
-**Shadow:** distance can turn a local-looking operation into partial failure, delay, or split authority.
+**Shadow:** misusing `multicast` at rune 0835 in the distributed-systems lane can let local-looking calls can become delay, split authority, or partial failure; verify by requiring the caster to state timeout, retry, consistency, and idempotency expectations.
 
 ### [0836] NAT {#rune-0836}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A distributed-systems word; it manages failure, ordering, or reachability across nodes.
+**Force:** `NAT` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the NAT obligation named before work proceeds.
 
-**Shadow:** distance can turn a local-looking operation into partial failure, delay, or split authority.
+**Shadow:** misusing `NAT` at rune 0836 in the distributed-systems lane can let local-looking calls can become delay, split authority, or partial failure; verify by requiring the caster to state timeout, retry, consistency, and idempotency expectations.
 
 ### [0837] network partition {#rune-0837}
 
@@ -829,7 +827,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** A split network that makes one cluster behave like several worlds.
 
-**Shadow:** distance can turn a local-looking operation into partial failure, delay, or split authority.
+**Shadow:** misusing `network partition` at rune 0837 in the distributed-systems lane can let local-looking calls can become delay, split authority, or partial failure; verify by requiring the caster to state timeout, retry, consistency, and idempotency expectations.
 
 **Pocket gloss:** A split network that makes one cluster behave like several worlds.
 
@@ -837,101 +835,101 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A many-machine word; it coordinates transport, routing, or agreement beyond one process.
+**Force:** `node` in its Net sense is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the node obligation named before work proceeds.
 
-**Shadow:** distance can turn a local-looking operation into partial failure, delay, or split authority.
+**Shadow:** misusing `node` at rune 0838 in the Net lane can let local-looking calls can become delay, split authority, or partial failure; verify by requiring the caster to state timeout, retry, consistency, and idempotency expectations.
 
 ### [0839] origin {#rune-0839}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A distance-word; it carries intention across boundaries and unreliable space.
+**Force:** `origin` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the origin obligation named before work proceeds.
 
-**Shadow:** distance can turn a local-looking operation into partial failure, delay, or split authority.
+**Shadow:** misusing `origin` at rune 0839 in the distributed-systems lane can let local-looking calls can become delay, split authority, or partial failure; verify by requiring the caster to state timeout, retry, consistency, and idempotency expectations.
 
 ### [0840] packet {#rune-0840}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A distance-word; it carries intention across boundaries and unreliable space.
+**Force:** `packet` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the packet obligation named before work proceeds.
 
-**Shadow:** distance can turn a local-looking operation into partial failure, delay, or split authority.
+**Shadow:** misusing `packet` at rune 0840 in the distributed-systems lane can let local-looking calls can become delay, split authority, or partial failure; verify by requiring the caster to state timeout, retry, consistency, and idempotency expectations.
 
 ### [0841] packet loss {Net} {#rune-0841}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.
+**Force:** `packet loss` in its Net sense is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the packet loss obligation named before work proceeds.
 
-**Shadow:** distance can turn a local-looking operation into partial failure, delay, or split authority.
+**Shadow:** misusing `packet loss` at rune 0841 in the Net lane can let local-looking calls can become delay, split authority, or partial failure; verify by requiring the caster to state timeout, retry, consistency, and idempotency expectations.
 
 ### [0842] peer {#rune-0842}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A distance-word; it carries intention across boundaries and unreliable space.
+**Force:** `peer` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the peer obligation named before work proceeds.
 
-**Shadow:** distance can turn a local-looking operation into partial failure, delay, or split authority.
+**Shadow:** misusing `peer` at rune 0842 in the distributed-systems lane can let local-looking calls can become delay, split authority, or partial failure; verify by requiring the caster to state timeout, retry, consistency, and idempotency expectations.
 
 ### [0843] pipeline depth {#rune-0843}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A distributed-systems word; it manages failure, ordering, or reachability across nodes.
+**Force:** `pipeline depth` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the pipeline depth obligation named before work proceeds.
 
-**Shadow:** distance can turn a local-looking operation into partial failure, delay, or split authority.
+**Shadow:** misusing `pipeline depth` at rune 0843 in the distributed-systems lane can let local-looking calls can become delay, split authority, or partial failure; verify by requiring the caster to state timeout, retry, consistency, and idempotency expectations.
 
 ### [0844] port {Net} {#rune-0844}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A contact word; a defined point of communication or adaptation.
+**Force:** `port` in its Net sense is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the port obligation named before work proceeds.
 
-**Shadow:** distance can turn a local-looking operation into partial failure, delay, or split authority.
+**Shadow:** misusing `port` at rune 0844 in the Net lane can let local-looking calls can become delay, split authority, or partial failure; verify by requiring the caster to state timeout, retry, consistency, and idempotency expectations.
 
 ### [0845] proxy {Net} {#rune-0845}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A stand-in word; one body speaks or receives on behalf of another.
+**Force:** `proxy` in its Net sense is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the proxy obligation named before work proceeds.
 
-**Shadow:** distance can turn a local-looking operation into partial failure, delay, or split authority.
+**Shadow:** misusing `proxy` at rune 0845 in the Net lane can let local-looking calls can become delay, split authority, or partial failure; verify by requiring the caster to state timeout, retry, consistency, and idempotency expectations.
 
 ### [0846] publish-subscribe {#rune-0846}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A many-machine word; it coordinates transport, routing, or agreement beyond one process.
+**Force:** `publish-subscribe` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the publish-subscribe obligation named before work proceeds.
 
-**Shadow:** distance can turn a local-looking operation into partial failure, delay, or split authority.
+**Shadow:** misusing `publish-subscribe` at rune 0846 in the distributed-systems lane can let local-looking calls can become delay, split authority, or partial failure; verify by requiring the caster to state timeout, retry, consistency, and idempotency expectations.
 
 ### [0847] QUIC {#rune-0847}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A many-machine word; it coordinates transport, routing, or agreement beyond one process.
+**Force:** `QUIC` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the QUIC obligation named before work proceeds.
 
-**Shadow:** distance can turn a local-looking operation into partial failure, delay, or split authority.
+**Shadow:** misusing `QUIC` at rune 0847 in the distributed-systems lane can let local-looking calls can become delay, split authority, or partial failure; verify by requiring the caster to state timeout, retry, consistency, and idempotency expectations.
 
 ### [0848] quorum {#rune-0848}
 
@@ -949,31 +947,31 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A distributed-systems word; it manages failure, ordering, or reachability across nodes.
+**Force:** `rate limit` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the rate limit obligation named before work proceeds.
 
-**Shadow:** distance can turn a local-looking operation into partial failure, delay, or split authority.
+**Shadow:** misusing `rate limit` at rune 0849 in the distributed-systems lane can let local-looking calls can become delay, split authority, or partial failure; verify by requiring the caster to state timeout, retry, consistency, and idempotency expectations.
 
 ### [0850] receiver window {#rune-0850}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.
+**Force:** `receiver window` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the receiver window obligation named before work proceeds.
 
-**Shadow:** distance can turn a local-looking operation into partial failure, delay, or split authority.
+**Shadow:** misusing `receiver window` at rune 0850 in the distributed-systems lane can let local-looking calls can become delay, split authority, or partial failure; verify by requiring the caster to state timeout, retry, consistency, and idempotency expectations.
 
 ### [0851] redirect {#rune-0851}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A many-machine word; it coordinates transport, routing, or agreement beyond one process.
+**Force:** `redirect` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the redirect obligation named before work proceeds.
 
-**Shadow:** distance can turn a local-looking operation into partial failure, delay, or split authority.
+**Shadow:** misusing `redirect` at rune 0851 in the distributed-systems lane can let local-looking calls can become delay, split authority, or partial failure; verify by requiring the caster to state timeout, retry, consistency, and idempotency expectations.
 
 ### [0852] replica {#rune-0852}
 
@@ -983,7 +981,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** A copy kept elsewhere for durability, scale, or locality.
 
-**Shadow:** distance can turn a local-looking operation into partial failure, delay, or split authority.
+**Shadow:** misusing `replica` at rune 0852 in the distributed-systems lane can let local-looking calls can become delay, split authority, or partial failure; verify by requiring the caster to state timeout, retry, consistency, and idempotency expectations.
 
 **Pocket gloss:** A copy kept elsewhere for durability, scale, or locality.
 
@@ -991,41 +989,41 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A many-machine word; it coordinates transport, routing, or agreement beyond one process.
+**Force:** `replication` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the replication obligation named before work proceeds.
 
-**Shadow:** distance can turn a local-looking operation into partial failure, delay, or split authority.
+**Shadow:** misusing `replication` at rune 0853 in the distributed-systems lane can let local-looking calls can become delay, split authority, or partial failure; verify by requiring the caster to state timeout, retry, consistency, and idempotency expectations.
 
 ### [0854] request {#rune-0854}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.
+**Force:** `request` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the request obligation named before work proceeds.
 
-**Shadow:** distance can turn a local-looking operation into partial failure, delay, or split authority.
+**Shadow:** misusing `request` at rune 0854 in the distributed-systems lane can let local-looking calls can become delay, split authority, or partial failure; verify by requiring the caster to state timeout, retry, consistency, and idempotency expectations.
 
 ### [0855] request coalescing {#rune-0855}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.
+**Force:** `request coalescing` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the request coalescing obligation named before work proceeds.
 
-**Shadow:** distance can turn a local-looking operation into partial failure, delay, or split authority.
+**Shadow:** misusing `request coalescing` at rune 0855 in the distributed-systems lane can let local-looking calls can become delay, split authority, or partial failure; verify by requiring the caster to state timeout, retry, consistency, and idempotency expectations.
 
 ### [0856] response {#rune-0856}
 
 **Status:** canonical
 
-**Completion:** needs_sense
+**Completion:** authored
 
-**Force:** A returning word; the answer carried back across an invoked boundary.
+**Force:** `response` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the response obligation named before work proceeds.
 
-**Shadow:** distance can turn a local-looking operation into partial failure, delay, or split authority.
+**Shadow:** misusing `response` at rune 0856 in the distributed-systems lane can let local-looking calls can become delay, split authority, or partial failure; verify by requiring the caster to state timeout, retry, consistency, and idempotency expectations.
 
 ### [0857] retry {Net} {#rune-0857}
 
@@ -1033,19 +1031,19 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
-**Force:** A second-attempt word; failure does not end the ritual if policy allows another try.
+**Force:** `retry` in its Net sense is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the retry obligation named before work proceeds.
 
-**Shadow:** distance can turn a local-looking operation into partial failure, delay, or split authority.
+**Shadow:** misusing `retry` at rune 0857 in the Net lane can let local-looking calls can become delay, split authority, or partial failure; verify by requiring the caster to state timeout, retry, consistency, and idempotency expectations.
 
 ### [0858] reverse proxy {#rune-0858}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A many-machine word; it coordinates transport, routing, or agreement beyond one process.
+**Force:** `reverse proxy` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the reverse proxy obligation named before work proceeds.
 
-**Shadow:** distance can turn a local-looking operation into partial failure, delay, or split authority.
+**Shadow:** misusing `reverse proxy` at rune 0858 in the distributed-systems lane can let local-looking calls can become delay, split authority, or partial failure; verify by requiring the caster to state timeout, retry, consistency, and idempotency expectations.
 
 ### [0859] route {#rune-0859}
 
@@ -1055,7 +1053,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** The chosen path by which traffic should travel.
 
-**Shadow:** distance can turn a local-looking operation into partial failure, delay, or split authority.
+**Shadow:** misusing `route` at rune 0859 in the distributed-systems lane can let local-looking calls can become delay, split authority, or partial failure; verify by requiring the caster to state timeout, retry, consistency, and idempotency expectations.
 
 **Pocket gloss:** The chosen path by which traffic should travel.
 
@@ -1063,21 +1061,21 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.
+**Force:** `router` in its Net sense is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the router obligation named before work proceeds.
 
-**Shadow:** distance can turn a local-looking operation into partial failure, delay, or split authority.
+**Shadow:** misusing `router` at rune 0860 in the Net lane can let local-looking calls can become delay, split authority, or partial failure; verify by requiring the caster to state timeout, retry, consistency, and idempotency expectations.
 
 ### [0861] routing table {#rune-0861}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A distance-word; it carries intention across boundaries and unreliable space.
+**Force:** `routing table` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the routing table obligation named before work proceeds.
 
-**Shadow:** distance can turn a local-looking operation into partial failure, delay, or split authority.
+**Shadow:** misusing `routing table` at rune 0861 in the distributed-systems lane can let local-looking calls can become delay, split authority, or partial failure; verify by requiring the caster to state timeout, retry, consistency, and idempotency expectations.
 
 ### [0862] RPC {#rune-0862}
 
@@ -1087,7 +1085,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** Invoke remote behavior as though it were local, with all the risks that implies.
 
-**Shadow:** distance can turn a local-looking operation into partial failure, delay, or split authority.
+**Shadow:** misusing `RPC` at rune 0862 in the distributed-systems lane can let local-looking calls can become delay, split authority, or partial failure; verify by requiring the caster to state timeout, retry, consistency, and idempotency expectations.
 
 **Pocket gloss:** Invoke remote behavior as though it were local, with all the risks that implies.
 
@@ -1095,71 +1093,71 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A distributed-systems word; it manages failure, ordering, or reachability across nodes.
+**Force:** `segment` in its Net sense is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the segment obligation named before work proceeds.
 
-**Shadow:** distance can turn a local-looking operation into partial failure, delay, or split authority.
+**Shadow:** misusing `segment` at rune 0863 in the Net lane can let local-looking calls can become delay, split authority, or partial failure; verify by requiring the caster to state timeout, retry, consistency, and idempotency expectations.
 
 ### [0864] sequence number {#rune-0864}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A many-machine word; it coordinates transport, routing, or agreement beyond one process.
+**Force:** `sequence number` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the sequence number obligation named before work proceeds.
 
-**Shadow:** distance can turn a local-looking operation into partial failure, delay, or split authority.
+**Shadow:** misusing `sequence number` at rune 0864 in the distributed-systems lane can let local-looking calls can become delay, split authority, or partial failure; verify by requiring the caster to state timeout, retry, consistency, and idempotency expectations.
 
 ### [0865] service discovery {#rune-0865}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.
+**Force:** `service discovery` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the service discovery obligation named before work proceeds.
 
-**Shadow:** distance can turn a local-looking operation into partial failure, delay, or split authority.
+**Shadow:** misusing `service discovery` at rune 0865 in the distributed-systems lane can let local-looking calls can become delay, split authority, or partial failure; verify by requiring the caster to state timeout, retry, consistency, and idempotency expectations.
 
 ### [0866] service mesh {Net} {#rune-0866}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A side-channel governance word for service-to-service traffic.
+**Force:** `service mesh` in its Net sense is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the service mesh obligation named before work proceeds.
 
-**Shadow:** distance can turn a local-looking operation into partial failure, delay, or split authority.
+**Shadow:** misusing `service mesh` at rune 0866 in the Net lane can let local-looking calls can become delay, split authority, or partial failure; verify by requiring the caster to state timeout, retry, consistency, and idempotency expectations.
 
 ### [0867] shard {Net} {#rune-0867}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A splitting word; one logical body is divided across multiple partitions.
+**Force:** `shard` in its Net sense is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the shard obligation named before work proceeds.
 
-**Shadow:** distance can turn a local-looking operation into partial failure, delay, or split authority.
+**Shadow:** misusing `shard` at rune 0867 in the Net lane can let local-looking calls can become delay, split authority, or partial failure; verify by requiring the caster to state timeout, retry, consistency, and idempotency expectations.
 
 ### [0868] sidecar {#rune-0868}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A distributed-systems word; it manages failure, ordering, or reachability across nodes.
+**Force:** `sidecar` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the sidecar obligation named before work proceeds.
 
-**Shadow:** distance can turn a local-looking operation into partial failure, delay, or split authority.
+**Shadow:** misusing `sidecar` at rune 0868 in the distributed-systems lane can let local-looking calls can become delay, split authority, or partial failure; verify by requiring the caster to state timeout, retry, consistency, and idempotency expectations.
 
 ### [0869] sliding window {#rune-0869}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A many-machine word; it coordinates transport, routing, or agreement beyond one process.
+**Force:** `sliding window` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the sliding window obligation named before work proceeds.
 
-**Shadow:** distance can turn a local-looking operation into partial failure, delay, or split authority.
+**Shadow:** misusing `sliding window` at rune 0869 in the distributed-systems lane can let local-looking calls can become delay, split authority, or partial failure; verify by requiring the caster to state timeout, retry, consistency, and idempotency expectations.
 
 ### [0870] socket {Net} {#rune-0870}
 
@@ -1169,7 +1167,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** A network communication endpoint bound to protocol and address.
 
-**Shadow:** distance can turn a local-looking operation into partial failure, delay, or split authority.
+**Shadow:** misusing `socket` at rune 0870 in the Net lane can let local-looking calls can become delay, split authority, or partial failure; verify by requiring the caster to state timeout, retry, consistency, and idempotency expectations.
 
 **Pocket gloss:** A network communication endpoint bound to protocol and address.
 
@@ -1177,51 +1175,51 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.
+**Force:** `source` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the source obligation named before work proceeds.
 
-**Shadow:** distance can turn a local-looking operation into partial failure, delay, or split authority.
+**Shadow:** misusing `source` at rune 0871 in the distributed-systems lane can let local-looking calls can become delay, split authority, or partial failure; verify by requiring the caster to state timeout, retry, consistency, and idempotency expectations.
 
 ### [0872] split-brain {Net} {#rune-0872}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.
+**Force:** `split-brain` in its Net sense is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the split-brain obligation named before work proceeds.
 
-**Shadow:** distance can turn a local-looking operation into partial failure, delay, or split authority.
+**Shadow:** misusing `split-brain` at rune 0872 in the Net lane can let local-looking calls can become delay, split authority, or partial failure; verify by requiring the caster to state timeout, retry, consistency, and idempotency expectations.
 
 ### [0873] stream {Net} {#rune-0873}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A flow word; values arrive over time rather than all at once.
+**Force:** `stream` in its Net sense is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the stream obligation named before work proceeds.
 
-**Shadow:** distance can turn a local-looking operation into partial failure, delay, or split authority.
+**Shadow:** misusing `stream` at rune 0873 in the Net lane can let local-looking calls can become delay, split authority, or partial failure; verify by requiring the caster to state timeout, retry, consistency, and idempotency expectations.
 
 ### [0874] strong consistency {#rune-0874}
 
 **Status:** canonical
 
-**Completion:** needs_sense
+**Completion:** authored
 
-**Force:** A sameness word across distance; readers do not see old worlds after new ones commit.
+**Force:** `strong consistency` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the strong consistency obligation named before work proceeds.
 
-**Shadow:** distance can turn a local-looking operation into partial failure, delay, or split authority.
+**Shadow:** misusing `strong consistency` at rune 0874 in the distributed-systems lane can let local-looking calls can become delay, split authority, or partial failure; verify by requiring the caster to state timeout, retry, consistency, and idempotency expectations.
 
 ### [0875] subscription {#rune-0875}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.
+**Force:** `subscription` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the subscription obligation named before work proceeds.
 
-**Shadow:** distance can turn a local-looking operation into partial failure, delay, or split authority.
+**Shadow:** misusing `subscription` at rune 0875 in the distributed-systems lane can let local-looking calls can become delay, split authority, or partial failure; verify by requiring the caster to state timeout, retry, consistency, and idempotency expectations.
 
 ### [0876] TCP {#rune-0876}
 
@@ -1231,7 +1229,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** Ordered reliable stream transport with congestion control.
 
-**Shadow:** distance can turn a local-looking operation into partial failure, delay, or split authority.
+**Shadow:** misusing `TCP` at rune 0876 in the distributed-systems lane can let local-looking calls can become delay, split authority, or partial failure; verify by requiring the caster to state timeout, retry, consistency, and idempotency expectations.
 
 **Pocket gloss:** Ordered reliable stream transport with congestion control.
 
@@ -1239,71 +1237,71 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A patience-bound word; after a duration, waiting is no longer allowed.
+**Force:** `timeout` in its Net sense is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the timeout obligation named before work proceeds.
 
-**Shadow:** distance can turn a local-looking operation into partial failure, delay, or split authority.
+**Shadow:** misusing `timeout` at rune 0877 in the Net lane can let local-looking calls can become delay, split authority, or partial failure; verify by requiring the caster to state timeout, retry, consistency, and idempotency expectations.
 
 ### [0878] TLS {#rune-0878}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A distributed-systems word; it manages failure, ordering, or reachability across nodes.
+**Force:** `TLS` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the TLS obligation named before work proceeds.
 
-**Shadow:** distance can turn a local-looking operation into partial failure, delay, or split authority.
+**Shadow:** misusing `TLS` at rune 0878 in the distributed-systems lane can let local-looking calls can become delay, split authority, or partial failure; verify by requiring the caster to state timeout, retry, consistency, and idempotency expectations.
 
 ### [0879] topic {#rune-0879}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A distributed-systems word; it manages failure, ordering, or reachability across nodes.
+**Force:** `topic` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the topic obligation named before work proceeds.
 
-**Shadow:** distance can turn a local-looking operation into partial failure, delay, or split authority.
+**Shadow:** misusing `topic` at rune 0879 in the distributed-systems lane can let local-looking calls can become delay, split authority, or partial failure; verify by requiring the caster to state timeout, retry, consistency, and idempotency expectations.
 
 ### [0880] tracing header {#rune-0880}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.
+**Force:** `tracing header` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the tracing header obligation named before work proceeds.
 
-**Shadow:** distance can turn a local-looking operation into partial failure, delay, or split authority.
+**Shadow:** misusing `tracing header` at rune 0880 in the distributed-systems lane can let local-looking calls can become delay, split authority, or partial failure; verify by requiring the caster to state timeout, retry, consistency, and idempotency expectations.
 
 ### [0881] UDP {#rune-0881}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.
+**Force:** `UDP` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the UDP obligation named before work proceeds.
 
-**Shadow:** distance can turn a local-looking operation into partial failure, delay, or split authority.
+**Shadow:** misusing `UDP` at rune 0881 in the distributed-systems lane can let local-looking calls can become delay, split authority, or partial failure; verify by requiring the caster to state timeout, retry, consistency, and idempotency expectations.
 
 ### [0882] unicast {#rune-0882}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A distributed-systems word; it manages failure, ordering, or reachability across nodes.
+**Force:** `unicast` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the unicast obligation named before work proceeds.
 
-**Shadow:** distance can turn a local-looking operation into partial failure, delay, or split authority.
+**Shadow:** misusing `unicast` at rune 0882 in the distributed-systems lane can let local-looking calls can become delay, split authority, or partial failure; verify by requiring the caster to state timeout, retry, consistency, and idempotency expectations.
 
 ### [0883] virtual IP {#rune-0883}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A distance-word; it carries intention across boundaries and unreliable space.
+**Force:** `virtual IP` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the virtual IP obligation named before work proceeds.
 
-**Shadow:** distance can turn a local-looking operation into partial failure, delay, or split authority.
+**Shadow:** misusing `virtual IP` at rune 0883 in the distributed-systems lane can let local-looking calls can become delay, split authority, or partial failure; verify by requiring the caster to state timeout, retry, consistency, and idempotency expectations.
 
 ### [0884] webhook {#rune-0884}
 
@@ -1313,7 +1311,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** An outbound callback triggered by an event.
 
-**Shadow:** distance can turn a local-looking operation into partial failure, delay, or split authority.
+**Shadow:** misusing `webhook` at rune 0884 in the distributed-systems lane can let local-looking calls can become delay, split authority, or partial failure; verify by requiring the caster to state timeout, retry, consistency, and idempotency expectations.
 
 **Pocket gloss:** An outbound callback triggered by an event.
 
@@ -1321,18 +1319,18 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A distributed-systems word; it manages failure, ordering, or reachability across nodes.
+**Force:** `WebSocket` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the WebSocket obligation named before work proceeds.
 
-**Shadow:** distance can turn a local-looking operation into partial failure, delay, or split authority.
+**Shadow:** misusing `WebSocket` at rune 0885 in the distributed-systems lane can let local-looking calls can become delay, split authority, or partial failure; verify by requiring the caster to state timeout, retry, consistency, and idempotency expectations.
 
 ### [0886] wire format {#rune-0886}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A distance-word; it carries intention across boundaries and unreliable space.
+**Force:** `wire format` is a networking and distributed systems rune for treat distance, partial failure, ordering, and authority as design facts; use it when the artifact needs the wire format obligation named before work proceeds.
 
-**Shadow:** distance can turn a local-looking operation into partial failure, delay, or split authority.
+**Shadow:** misusing `wire format` at rune 0886 in the distributed-systems lane can let local-looking calls can become delay, split authority, or partial failure; verify by requiring the caster to state timeout, retry, consistency, and idempotency expectations.

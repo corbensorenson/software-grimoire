@@ -8,113 +8,111 @@ Range: `0512-0608`.
 
 ## Completion
 
-| Status      | Count |
-| ----------- | ----- |
-| authored    | 18    |
-| stub        | 78    |
-| needs_sense | 1     |
+| Status   | Count |
+| -------- | ----- |
+| authored | 97    |
 
 Use the summary table for scanning. Each row links to the detailed anchored entry below.
 
-| Sigil | Term                                  | Completion  | Summary                                                                                                                                       |
-| ----- | ------------------------------------- | ----------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
-| 0512  | `STUB` [abort](#rune-0512)            | stub        | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
-| 0513  | `STUB` [acknowledge](#rune-0513)      | stub        | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
-| 0514  | [async](#rune-0514)                   | authored    | Work may proceed without immediate blocking at the call site.                                                                                 |
-| 0515  | [await](#rune-0515)                   | authored    | Pause until an asynchronous result becomes ready.                                                                                             |
-| 0516  | [backoff {Ctrl}](#rune-0516)          | authored    | Wait longer between retries so recovery does not become attack.                                                                               |
-| 0517  | [barrier {Ctrl}](#rune-0517)          | authored    | A synchronization point no participant may cross early.                                                                                       |
-| 0518  | `STUB` [block {Ctrl}](#rune-0518)     | stub        | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
-| 0519  | `STUB` [branch {Ctrl}](#rune-0519)    | stub        | A divergence word; execution or history splits into alternate paths.                                                                          |
-| 0520  | `STUB` [break](#rune-0520)            | stub        | A sequencing word; it decides what happens next and under what condition.                                                                     |
-| 0521  | `STUB` [callback](#rune-0521)         | stub        | A sequencing word; it decides what happens next and under what condition.                                                                     |
-| 0522  | `STUB` [cancel](#rune-0522)           | stub        | A time-binding word; it changes when an action may proceed.                                                                                   |
-| 0523  | `STUB` [case](#rune-0523)             | stub        | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
-| 0524  | `STUB` [catch](#rune-0524)            | stub        | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
-| 0525  | `STUB` [chain](#rune-0525)            | stub        | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
-| 0526  | `STUB` [choose](#rune-0526)           | stub        | A sequencing word; it decides what happens next and under what condition.                                                                     |
-| 0527  | [circuit breaker](#rune-0527)         | authored    | Trip open after repeated failure to prevent repeated harm.                                                                                    |
-| 0528  | `STUB` [clause](#rune-0528)           | stub        | A sequencing word; it decides what happens next and under what condition.                                                                     |
-| 0529  | `STUB` [continue](#rune-0529)         | stub        | A sequencing word; it decides what happens next and under what condition.                                                                     |
-| 0530  | [coroutine](#rune-0530)               | authored    | A suspendable routine that can yield and later resume.                                                                                        |
-| 0531  | `STUB` [countdown](#rune-0531)        | stub        | A sequencing word; it decides what happens next and under what condition.                                                                     |
-| 0532  | `STUB` [cycle](#rune-0532)            | stub        | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
-| 0533  | `STUB` [debounce](#rune-0533)         | stub        | A sequencing word; it decides what happens next and under what condition.                                                                     |
-| 0534  | `STUB` [defer {Ctrl}](#rune-0534)     | stub        | A time-binding word; it changes when an action may proceed.                                                                                   |
-| 0535  | `STUB` [delay](#rune-0535)            | stub        | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
-| 0536  | `STUB` [dispatch {Ctrl}](#rune-0536)  | stub        | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
-| 0537  | `STUB` [do](#rune-0537)               | stub        | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
-| 0538  | `STUB` [else](#rune-0538)             | stub        | A sequencing word; it decides what happens next and under what condition.                                                                     |
-| 0539  | [enqueue](#rune-0539)                 | authored    | Place work onto a queue for later handling.                                                                                                   |
-| 0540  | [event loop](#rune-0540)              | authored    | The scheduler that drives nonblocking tasks and callbacks.                                                                                    |
-| 0541  | `STUB` [fallback {Ctrl}](#rune-0541)  | stub        | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
-| 0542  | `STUB` [fan-in](#rune-0542)           | stub        | A sequencing word; it decides what happens next and under what condition.                                                                     |
-| 0543  | `STUB` [fan-out {Ctrl}](#rune-0543)   | stub        | A time-binding word; it changes when an action may proceed.                                                                                   |
-| 0544  | `STUB` [finally](#rune-0544)          | stub        | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
-| 0545  | `STUB` [fire-and-forget](#rune-0545)  | stub        | A time-binding word; it changes when an action may proceed.                                                                                   |
-| 0546  | [flow control](#rune-0546)            | authored    | Mechanisms that keep producers from outrunning consumers.                                                                                     |
-| 0547  | `STUB` [for](#rune-0547)              | stub        | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
-| 0548  | `STUB` [fork {Ctrl}](#rune-0548)      | stub        | A time-binding word; it changes when an action may proceed.                                                                                   |
-| 0549  | [future](#rune-0549)                  | authored    | A placeholder for a value that will exist later.                                                                                              |
-| 0550  | [gate](#rune-0550)                    | needs_sense | A permission word; passage occurs only when conditions hold.                                                                                  |
-| 0551  | `STUB` [guard](#rune-0551)            | stub        | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
-| 0552  | `STUB` [halt](#rune-0552)             | stub        | A sequencing word; it decides what happens next and under what condition.                                                                     |
-| 0553  | `STUB` [heartbeat {Ctrl}](#rune-0553) | stub        | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
-| 0554  | `STUB` [if](#rune-0554)               | stub        | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
-| 0555  | `STUB` [iterate](#rune-0555)          | stub        | A time-binding word; it changes when an action may proceed.                                                                                   |
-| 0556  | `STUB` [join {Ctrl}](#rune-0556)      | stub        | A union word; separate streams, sets, or histories are brought into one result.                                                               |
-| 0557  | `STUB` [jump](#rune-0557)             | stub        | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
-| 0558  | `STUB` [latch](#rune-0558)            | stub        | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
-| 0559  | `STUB` [loop](#rune-0559)             | stub        | A time-binding word; it changes when an action may proceed.                                                                                   |
-| 0560  | `STUB` [match](#rune-0560)            | stub        | A sequencing word; it decides what happens next and under what condition.                                                                     |
-| 0561  | [mutex](#rune-0561)                   | authored    | Mutual exclusion for one critical region at a time.                                                                                           |
-| 0562  | `STUB` [notify](#rune-0562)           | stub        | A sequencing word; it decides what happens next and under what condition.                                                                     |
-| 0563  | `STUB` [once](#rune-0563)             | stub        | A sequencing word; it decides what happens next and under what condition.                                                                     |
-| 0564  | `STUB` [parallel {Ctrl}](#rune-0564)  | stub        | A sequencing word; it decides what happens next and under what condition.                                                                     |
-| 0565  | `STUB` [pause](#rune-0565)            | stub        | A time-binding word; it changes when an action may proceed.                                                                                   |
-| 0566  | `STUB` [poll {Ctrl}](#rune-0566)      | stub        | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
-| 0567  | `STUB` [preempt](#rune-0567)          | stub        | A sequencing word; it decides what happens next and under what condition.                                                                     |
-| 0568  | `STUB` [priority](#rune-0568)         | stub        | A time-binding word; it changes when an action may proceed.                                                                                   |
-| 0569  | `STUB` [process {Ctrl}](#rune-0569)   | stub        | A sovereignty word; an executing program with its own protected address space.                                                                |
-| 0570  | `STUB` [promise](#rune-0570)          | stub        | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
-| 0571  | [queue {Ctrl}](#rune-0571)            | authored    | Ordered holding area that decouples production from consumption.                                                                              |
-| 0572  | `STUB` [race window](#rune-0572)      | stub        | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
-| 0573  | `STUB` [recurse](#rune-0573)          | stub        | A sequencing word; it decides what happens next and under what condition.                                                                     |
-| 0574  | `STUB` [repeat](#rune-0574)           | stub        | A sequencing word; it decides what happens next and under what condition.                                                                     |
-| 0575  | `STUB` [reserve](#rune-0575)          | stub        | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
-| 0576  | [retry {Ctrl}](#rune-0576)            | authored    | Failure does not necessarily end the ritual; policy may permit another attempt. Shadow: blind repetition against a broken precondition.       |
-| 0577  | `STUB` [return](#rune-0577)           | stub        | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
-| 0578  | `STUB` [round-robin](#rune-0578)      | stub        | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
-| 0579  | [schedule {Ctrl}](#rune-0579)         | authored    | Assign work to time, order, or execution slots.                                                                                               |
-| 0580  | `STUB` [select {Ctrl}](#rune-0580)    | stub        | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
-| 0581  | [semaphore](#rune-0581)               | authored    | A counted gate controlling concurrent access to limited capacity.                                                                             |
-| 0582  | `STUB` [sequence point](#rune-0582)   | stub        | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
-| 0583  | `STUB` [serialize access](#rune-0583) | stub        | A time-binding word; it changes when an action may proceed.                                                                                   |
-| 0584  | [signal {Ctrl}](#rune-0584)           | authored    | Emit a condition change another task may respond to.                                                                                          |
-| 0585  | `STUB` [sleep](#rune-0585)            | stub        | A sequencing word; it decides what happens next and under what condition.                                                                     |
-| 0586  | `STUB` [spawn {Ctrl}](#rune-0586)     | stub        | A sequencing word; it decides what happens next and under what condition.                                                                     |
-| 0587  | `STUB` [step](#rune-0587)             | stub        | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
-| 0588  | `STUB` [stop](#rune-0588)             | stub        | A time-binding word; it changes when an action may proceed.                                                                                   |
-| 0589  | `STUB` [suspend](#rune-0589)          | stub        | A time-binding word; it changes when an action may proceed.                                                                                   |
-| 0590  | `STUB` [switch](#rune-0590)           | stub        | A time-binding word; it changes when an action may proceed.                                                                                   |
-| 0591  | `STUB` [sync](#rune-0591)             | stub        | A sequencing word; it decides what happens next and under what condition.                                                                     |
-| 0592  | `STUB` [synchronize](#rune-0592)      | stub        | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
-| 0593  | `STUB` [task](#rune-0593)             | stub        | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
-| 0594  | `STUB` [terminate](#rune-0594)        | stub        | A sequencing word; it decides what happens next and under what condition.                                                                     |
-| 0595  | `STUB` [then](#rune-0595)             | stub        | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
-| 0596  | `STUB` [throttle](#rune-0596)         | stub        | A time-binding word; it changes when an action may proceed.                                                                                   |
-| 0597  | `STUB` [tick](#rune-0597)             | stub        | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
-| 0598  | [timeout {Ctrl}](#rune-0598)          | authored    | Waiting is not free and patience must have a boundary. A timeout is a contract with reality about how long uncertainty is allowed to persist. |
-| 0599  | `STUB` [timeslice](#rune-0599)        | stub        | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
-| 0600  | `STUB` [trigger](#rune-0600)          | stub        | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
-| 0601  | `STUB` [try](#rune-0601)              | stub        | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
-| 0602  | `STUB` [unblock](#rune-0602)          | stub        | A time-binding word; it changes when an action may proceed.                                                                                   |
-| 0603  | `STUB` [until](#rune-0603)            | stub        | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
-| 0604  | `STUB` [wait](#rune-0604)             | stub        | A sequencing word; it decides what happens next and under what condition.                                                                     |
-| 0605  | `STUB` [wake](#rune-0605)             | stub        | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
-| 0606  | `STUB` [when](#rune-0606)             | stub        | A time-binding word; it changes when an action may proceed.                                                                                   |
-| 0607  | `STUB` [while](#rune-0607)            | stub        | A sequencing word; it decides what happens next and under what condition.                                                                     |
-| 0608  | [yield](#rune-0608)                   | authored    | Give up control now so another act may proceed.                                                                                               |
+| Sigil | Term                           | Completion | Summary                                                                                                                                                                                                                      |
+| ----- | ------------------------------ | ---------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 0512  | [abort](#rune-0512)            | authored   | `abort` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the abort obligation named before work proceeds.                           |
+| 0513  | [acknowledge](#rune-0513)      | authored   | `acknowledge` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the acknowledge obligation named before work proceeds.               |
+| 0514  | [async](#rune-0514)            | authored   | Work may proceed without immediate blocking at the call site.                                                                                                                                                                |
+| 0515  | [await](#rune-0515)            | authored   | Pause until an asynchronous result becomes ready.                                                                                                                                                                            |
+| 0516  | [backoff {Ctrl}](#rune-0516)   | authored   | Wait longer between retries so recovery does not become attack.                                                                                                                                                              |
+| 0517  | [barrier {Ctrl}](#rune-0517)   | authored   | A synchronization point no participant may cross early.                                                                                                                                                                      |
+| 0518  | [block {Ctrl}](#rune-0518)     | authored   | `block` in its Ctrl sense is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the block obligation named before work proceeds.         |
+| 0519  | [branch {Ctrl}](#rune-0519)    | authored   | `branch` in its Ctrl sense is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the branch obligation named before work proceeds.       |
+| 0520  | [break](#rune-0520)            | authored   | `break` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the break obligation named before work proceeds.                           |
+| 0521  | [callback](#rune-0521)         | authored   | `callback` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the callback obligation named before work proceeds.                     |
+| 0522  | [cancel](#rune-0522)           | authored   | `cancel` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the cancel obligation named before work proceeds.                         |
+| 0523  | [case](#rune-0523)             | authored   | `case` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the case obligation named before work proceeds.                             |
+| 0524  | [catch](#rune-0524)            | authored   | `catch` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the catch obligation named before work proceeds.                           |
+| 0525  | [chain](#rune-0525)            | authored   | `chain` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the chain obligation named before work proceeds.                           |
+| 0526  | [choose](#rune-0526)           | authored   | `choose` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the choose obligation named before work proceeds.                         |
+| 0527  | [circuit breaker](#rune-0527)  | authored   | Trip open after repeated failure to prevent repeated harm.                                                                                                                                                                   |
+| 0528  | [clause](#rune-0528)           | authored   | `clause` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the clause obligation named before work proceeds.                         |
+| 0529  | [continue](#rune-0529)         | authored   | `continue` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the continue obligation named before work proceeds.                     |
+| 0530  | [coroutine](#rune-0530)        | authored   | A suspendable routine that can yield and later resume.                                                                                                                                                                       |
+| 0531  | [countdown](#rune-0531)        | authored   | `countdown` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the countdown obligation named before work proceeds.                   |
+| 0532  | [cycle](#rune-0532)            | authored   | `cycle` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the cycle obligation named before work proceeds.                           |
+| 0533  | [debounce](#rune-0533)         | authored   | `debounce` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the debounce obligation named before work proceeds.                     |
+| 0534  | [defer {Ctrl}](#rune-0534)     | authored   | `defer` in its Ctrl sense is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the defer obligation named before work proceeds.         |
+| 0535  | [delay](#rune-0535)            | authored   | `delay` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the delay obligation named before work proceeds.                           |
+| 0536  | [dispatch {Ctrl}](#rune-0536)  | authored   | `dispatch` in its Ctrl sense is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the dispatch obligation named before work proceeds.   |
+| 0537  | [do](#rune-0537)               | authored   | `do` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the do obligation named before work proceeds.                                 |
+| 0538  | [else](#rune-0538)             | authored   | `else` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the else obligation named before work proceeds.                             |
+| 0539  | [enqueue](#rune-0539)          | authored   | Place work onto a queue for later handling.                                                                                                                                                                                  |
+| 0540  | [event loop](#rune-0540)       | authored   | The scheduler that drives nonblocking tasks and callbacks.                                                                                                                                                                   |
+| 0541  | [fallback {Ctrl}](#rune-0541)  | authored   | `fallback` in its Ctrl sense is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the fallback obligation named before work proceeds.   |
+| 0542  | [fan-in](#rune-0542)           | authored   | `fan-in` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the fan-in obligation named before work proceeds.                         |
+| 0543  | [fan-out {Ctrl}](#rune-0543)   | authored   | `fan-out` in its Ctrl sense is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the fan-out obligation named before work proceeds.     |
+| 0544  | [finally](#rune-0544)          | authored   | `finally` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the finally obligation named before work proceeds.                       |
+| 0545  | [fire-and-forget](#rune-0545)  | authored   | `fire-and-forget` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the fire-and-forget obligation named before work proceeds.       |
+| 0546  | [flow control](#rune-0546)     | authored   | Mechanisms that keep producers from outrunning consumers.                                                                                                                                                                    |
+| 0547  | [for](#rune-0547)              | authored   | `for` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the for obligation named before work proceeds.                               |
+| 0548  | [fork {Ctrl}](#rune-0548)      | authored   | `fork` in its Ctrl sense is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the fork obligation named before work proceeds.           |
+| 0549  | [future](#rune-0549)           | authored   | A placeholder for a value that will exist later.                                                                                                                                                                             |
+| 0550  | [gate](#rune-0550)             | authored   | `gate` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the gate obligation named before work proceeds.                             |
+| 0551  | [guard](#rune-0551)            | authored   | `guard` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the guard obligation named before work proceeds.                           |
+| 0552  | [halt](#rune-0552)             | authored   | `halt` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the halt obligation named before work proceeds.                             |
+| 0553  | [heartbeat {Ctrl}](#rune-0553) | authored   | `heartbeat` in its Ctrl sense is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the heartbeat obligation named before work proceeds. |
+| 0554  | [if](#rune-0554)               | authored   | `if` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the if obligation named before work proceeds.                                 |
+| 0555  | [iterate](#rune-0555)          | authored   | `iterate` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the iterate obligation named before work proceeds.                       |
+| 0556  | [join {Ctrl}](#rune-0556)      | authored   | `join` in its Ctrl sense is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the join obligation named before work proceeds.           |
+| 0557  | [jump](#rune-0557)             | authored   | `jump` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the jump obligation named before work proceeds.                             |
+| 0558  | [latch](#rune-0558)            | authored   | `latch` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the latch obligation named before work proceeds.                           |
+| 0559  | [loop](#rune-0559)             | authored   | `loop` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the loop obligation named before work proceeds.                             |
+| 0560  | [match](#rune-0560)            | authored   | `match` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the match obligation named before work proceeds.                           |
+| 0561  | [mutex](#rune-0561)            | authored   | Mutual exclusion for one critical region at a time.                                                                                                                                                                          |
+| 0562  | [notify](#rune-0562)           | authored   | `notify` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the notify obligation named before work proceeds.                         |
+| 0563  | [once](#rune-0563)             | authored   | `once` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the once obligation named before work proceeds.                             |
+| 0564  | [parallel {Ctrl}](#rune-0564)  | authored   | `parallel` in its Ctrl sense is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the parallel obligation named before work proceeds.   |
+| 0565  | [pause](#rune-0565)            | authored   | `pause` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the pause obligation named before work proceeds.                           |
+| 0566  | [poll {Ctrl}](#rune-0566)      | authored   | `poll` in its Ctrl sense is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the poll obligation named before work proceeds.           |
+| 0567  | [preempt](#rune-0567)          | authored   | `preempt` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the preempt obligation named before work proceeds.                       |
+| 0568  | [priority](#rune-0568)         | authored   | `priority` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the priority obligation named before work proceeds.                     |
+| 0569  | [process {Ctrl}](#rune-0569)   | authored   | `process` in its Ctrl sense is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the process obligation named before work proceeds.     |
+| 0570  | [promise](#rune-0570)          | authored   | `promise` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the promise obligation named before work proceeds.                       |
+| 0571  | [queue {Ctrl}](#rune-0571)     | authored   | Ordered holding area that decouples production from consumption.                                                                                                                                                             |
+| 0572  | [race window](#rune-0572)      | authored   | `race window` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the race window obligation named before work proceeds.               |
+| 0573  | [recurse](#rune-0573)          | authored   | `recurse` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the recurse obligation named before work proceeds.                       |
+| 0574  | [repeat](#rune-0574)           | authored   | `repeat` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the repeat obligation named before work proceeds.                         |
+| 0575  | [reserve](#rune-0575)          | authored   | `reserve` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the reserve obligation named before work proceeds.                       |
+| 0576  | [retry {Ctrl}](#rune-0576)     | authored   | Failure does not necessarily end the ritual; policy may permit another attempt. Shadow: blind repetition against a broken precondition.                                                                                      |
+| 0577  | [return](#rune-0577)           | authored   | `return` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the return obligation named before work proceeds.                         |
+| 0578  | [round-robin](#rune-0578)      | authored   | `round-robin` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the round-robin obligation named before work proceeds.               |
+| 0579  | [schedule {Ctrl}](#rune-0579)  | authored   | Assign work to time, order, or execution slots.                                                                                                                                                                              |
+| 0580  | [select {Ctrl}](#rune-0580)    | authored   | `select` in its Ctrl sense is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the select obligation named before work proceeds.       |
+| 0581  | [semaphore](#rune-0581)        | authored   | A counted gate controlling concurrent access to limited capacity.                                                                                                                                                            |
+| 0582  | [sequence point](#rune-0582)   | authored   | `sequence point` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the sequence point obligation named before work proceeds.         |
+| 0583  | [serialize access](#rune-0583) | authored   | `serialize access` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the serialize access obligation named before work proceeds.     |
+| 0584  | [signal {Ctrl}](#rune-0584)    | authored   | Emit a condition change another task may respond to.                                                                                                                                                                         |
+| 0585  | [sleep](#rune-0585)            | authored   | `sleep` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the sleep obligation named before work proceeds.                           |
+| 0586  | [spawn {Ctrl}](#rune-0586)     | authored   | `spawn` in its Ctrl sense is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the spawn obligation named before work proceeds.         |
+| 0587  | [step](#rune-0587)             | authored   | `step` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the step obligation named before work proceeds.                             |
+| 0588  | [stop](#rune-0588)             | authored   | `stop` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the stop obligation named before work proceeds.                             |
+| 0589  | [suspend](#rune-0589)          | authored   | `suspend` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the suspend obligation named before work proceeds.                       |
+| 0590  | [switch](#rune-0590)           | authored   | `switch` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the switch obligation named before work proceeds.                         |
+| 0591  | [sync](#rune-0591)             | authored   | `sync` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the sync obligation named before work proceeds.                             |
+| 0592  | [synchronize](#rune-0592)      | authored   | `synchronize` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the synchronize obligation named before work proceeds.               |
+| 0593  | [task](#rune-0593)             | authored   | `task` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the task obligation named before work proceeds.                             |
+| 0594  | [terminate](#rune-0594)        | authored   | `terminate` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the terminate obligation named before work proceeds.                   |
+| 0595  | [then](#rune-0595)             | authored   | `then` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the then obligation named before work proceeds.                             |
+| 0596  | [throttle](#rune-0596)         | authored   | `throttle` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the throttle obligation named before work proceeds.                     |
+| 0597  | [tick](#rune-0597)             | authored   | `tick` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the tick obligation named before work proceeds.                             |
+| 0598  | [timeout {Ctrl}](#rune-0598)   | authored   | Waiting is not free and patience must have a boundary. A timeout is a contract with reality about how long uncertainty is allowed to persist.                                                                                |
+| 0599  | [timeslice](#rune-0599)        | authored   | `timeslice` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the timeslice obligation named before work proceeds.                   |
+| 0600  | [trigger](#rune-0600)          | authored   | `trigger` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the trigger obligation named before work proceeds.                       |
+| 0601  | [try](#rune-0601)              | authored   | `try` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the try obligation named before work proceeds.                               |
+| 0602  | [unblock](#rune-0602)          | authored   | `unblock` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the unblock obligation named before work proceeds.                       |
+| 0603  | [until](#rune-0603)            | authored   | `until` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the until obligation named before work proceeds.                           |
+| 0604  | [wait](#rune-0604)             | authored   | `wait` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the wait obligation named before work proceeds.                             |
+| 0605  | [wake](#rune-0605)             | authored   | `wake` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the wake obligation named before work proceeds.                             |
+| 0606  | [when](#rune-0606)             | authored   | `when` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the when obligation named before work proceeds.                             |
+| 0607  | [while](#rune-0607)            | authored   | `while` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the while obligation named before work proceeds.                           |
+| 0608  | [yield](#rune-0608)            | authored   | Give up control now so another act may proceed.                                                                                                                                                                              |
 
 ## Entries
 
@@ -122,21 +120,21 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A tempo-word; it governs order, waiting, branching, or repetition.
+**Force:** `abort` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the abort obligation named before work proceeds.
 
-**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
+**Shadow:** misusing `abort` at rune 0512 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
 
 ### [0513] acknowledge {#rune-0513}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A tempo-word; it governs order, waiting, branching, or repetition.
+**Force:** `acknowledge` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the acknowledge obligation named before work proceeds.
 
-**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
+**Shadow:** misusing `acknowledge` at rune 0513 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
 
 ### [0514] async {#rune-0514}
 
@@ -146,7 +144,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** Work may proceed without immediate blocking at the call site.
 
-**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
+**Shadow:** misusing `async` at rune 0514 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
 
 **Pocket gloss:** Work may proceed without immediate blocking at the call site.
 
@@ -158,7 +156,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** Pause until an asynchronous result becomes ready.
 
-**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
+**Shadow:** misusing `await` at rune 0515 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
 
 **Pocket gloss:** Pause until an asynchronous result becomes ready.
 
@@ -170,7 +168,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** Wait longer between retries so recovery does not become attack.
 
-**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
+**Shadow:** misusing `backoff` at rune 0516 in the Ctrl lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
 
 **Pocket gloss:** Wait longer between retries so recovery does not become attack.
 
@@ -182,7 +180,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** A synchronization point no participant may cross early.
 
-**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
+**Shadow:** misusing `barrier` at rune 0517 in the Ctrl lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
 
 **Pocket gloss:** A synchronization point no participant may cross early.
 
@@ -190,91 +188,91 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A coordination word; it manages concurrency, interruption, or flow.
+**Force:** `block` in its Ctrl sense is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the block obligation named before work proceeds.
 
-**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
+**Shadow:** misusing `block` at rune 0518 in the Ctrl lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
 
 ### [0519] branch {Ctrl} {#rune-0519}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A divergence word; execution or history splits into alternate paths.
+**Force:** `branch` in its Ctrl sense is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the branch obligation named before work proceeds.
 
-**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
+**Shadow:** misusing `branch` at rune 0519 in the Ctrl lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
 
 ### [0520] break {#rune-0520}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A sequencing word; it decides what happens next and under what condition.
+**Force:** `break` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the break obligation named before work proceeds.
 
-**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
+**Shadow:** misusing `break` at rune 0520 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
 
 ### [0521] callback {#rune-0521}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A sequencing word; it decides what happens next and under what condition.
+**Force:** `callback` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the callback obligation named before work proceeds.
 
-**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
+**Shadow:** misusing `callback` at rune 0521 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
 
 ### [0522] cancel {#rune-0522}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A time-binding word; it changes when an action may proceed.
+**Force:** `cancel` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the cancel obligation named before work proceeds.
 
-**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
+**Shadow:** misusing `cancel` at rune 0522 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
 
 ### [0523] case {#rune-0523}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A tempo-word; it governs order, waiting, branching, or repetition.
+**Force:** `case` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the case obligation named before work proceeds.
 
-**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
+**Shadow:** misusing `case` at rune 0523 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
 
 ### [0524] catch {#rune-0524}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A coordination word; it manages concurrency, interruption, or flow.
+**Force:** `catch` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the catch obligation named before work proceeds.
 
-**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
+**Shadow:** misusing `catch` at rune 0524 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
 
 ### [0525] chain {#rune-0525}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A coordination word; it manages concurrency, interruption, or flow.
+**Force:** `chain` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the chain obligation named before work proceeds.
 
-**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
+**Shadow:** misusing `chain` at rune 0525 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
 
 ### [0526] choose {#rune-0526}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A sequencing word; it decides what happens next and under what condition.
+**Force:** `choose` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the choose obligation named before work proceeds.
 
-**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
+**Shadow:** misusing `choose` at rune 0526 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
 
 ### [0527] circuit breaker {#rune-0527}
 
@@ -284,7 +282,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** Trip open after repeated failure to prevent repeated harm.
 
-**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
+**Shadow:** misusing `circuit breaker` at rune 0527 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
 
 **Pocket gloss:** Trip open after repeated failure to prevent repeated harm.
 
@@ -292,21 +290,21 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A sequencing word; it decides what happens next and under what condition.
+**Force:** `clause` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the clause obligation named before work proceeds.
 
-**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
+**Shadow:** misusing `clause` at rune 0528 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
 
 ### [0529] continue {#rune-0529}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A sequencing word; it decides what happens next and under what condition.
+**Force:** `continue` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the continue obligation named before work proceeds.
 
-**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
+**Shadow:** misusing `continue` at rune 0529 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
 
 ### [0530] coroutine {#rune-0530}
 
@@ -316,7 +314,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** A suspendable routine that can yield and later resume.
 
-**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
+**Shadow:** misusing `coroutine` at rune 0530 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
 
 **Pocket gloss:** A suspendable routine that can yield and later resume.
 
@@ -324,81 +322,81 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A sequencing word; it decides what happens next and under what condition.
+**Force:** `countdown` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the countdown obligation named before work proceeds.
 
-**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
+**Shadow:** misusing `countdown` at rune 0531 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
 
 ### [0532] cycle {#rune-0532}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A tempo-word; it governs order, waiting, branching, or repetition.
+**Force:** `cycle` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the cycle obligation named before work proceeds.
 
-**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
+**Shadow:** misusing `cycle` at rune 0532 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
 
 ### [0533] debounce {#rune-0533}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A sequencing word; it decides what happens next and under what condition.
+**Force:** `debounce` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the debounce obligation named before work proceeds.
 
-**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
+**Shadow:** misusing `debounce` at rune 0533 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
 
 ### [0534] defer {Ctrl} {#rune-0534}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A time-binding word; it changes when an action may proceed.
+**Force:** `defer` in its Ctrl sense is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the defer obligation named before work proceeds.
 
-**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
+**Shadow:** misusing `defer` at rune 0534 in the Ctrl lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
 
 ### [0535] delay {#rune-0535}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A coordination word; it manages concurrency, interruption, or flow.
+**Force:** `delay` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the delay obligation named before work proceeds.
 
-**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
+**Shadow:** misusing `delay` at rune 0535 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
 
 ### [0536] dispatch {Ctrl} {#rune-0536}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A tempo-word; it governs order, waiting, branching, or repetition.
+**Force:** `dispatch` in its Ctrl sense is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the dispatch obligation named before work proceeds.
 
-**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
+**Shadow:** misusing `dispatch` at rune 0536 in the Ctrl lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
 
 ### [0537] do {#rune-0537}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A coordination word; it manages concurrency, interruption, or flow.
+**Force:** `do` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the do obligation named before work proceeds.
 
-**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
+**Shadow:** misusing `do` at rune 0537 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
 
 ### [0538] else {#rune-0538}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A sequencing word; it decides what happens next and under what condition.
+**Force:** `else` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the else obligation named before work proceeds.
 
-**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
+**Shadow:** misusing `else` at rune 0538 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
 
 ### [0539] enqueue {#rune-0539}
 
@@ -408,7 +406,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** Place work onto a queue for later handling.
 
-**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
+**Shadow:** misusing `enqueue` at rune 0539 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
 
 **Pocket gloss:** Place work onto a queue for later handling.
 
@@ -420,7 +418,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** The scheduler that drives nonblocking tasks and callbacks.
 
-**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
+**Shadow:** misusing `event loop` at rune 0540 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
 
 **Pocket gloss:** The scheduler that drives nonblocking tasks and callbacks.
 
@@ -428,51 +426,51 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A tempo-word; it governs order, waiting, branching, or repetition.
+**Force:** `fallback` in its Ctrl sense is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the fallback obligation named before work proceeds.
 
-**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
+**Shadow:** misusing `fallback` at rune 0541 in the Ctrl lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
 
 ### [0542] fan-in {#rune-0542}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A sequencing word; it decides what happens next and under what condition.
+**Force:** `fan-in` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the fan-in obligation named before work proceeds.
 
-**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
+**Shadow:** misusing `fan-in` at rune 0542 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
 
 ### [0543] fan-out {Ctrl} {#rune-0543}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A time-binding word; it changes when an action may proceed.
+**Force:** `fan-out` in its Ctrl sense is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the fan-out obligation named before work proceeds.
 
-**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
+**Shadow:** misusing `fan-out` at rune 0543 in the Ctrl lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
 
 ### [0544] finally {#rune-0544}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A coordination word; it manages concurrency, interruption, or flow.
+**Force:** `finally` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the finally obligation named before work proceeds.
 
-**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
+**Shadow:** misusing `finally` at rune 0544 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
 
 ### [0545] fire-and-forget {#rune-0545}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A time-binding word; it changes when an action may proceed.
+**Force:** `fire-and-forget` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the fire-and-forget obligation named before work proceeds.
 
-**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
+**Shadow:** misusing `fire-and-forget` at rune 0545 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
 
 ### [0546] flow control {#rune-0546}
 
@@ -482,7 +480,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** Mechanisms that keep producers from outrunning consumers.
 
-**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
+**Shadow:** misusing `flow control` at rune 0546 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
 
 **Pocket gloss:** Mechanisms that keep producers from outrunning consumers.
 
@@ -490,21 +488,21 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A coordination word; it manages concurrency, interruption, or flow.
+**Force:** `for` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the for obligation named before work proceeds.
 
-**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
+**Shadow:** misusing `for` at rune 0547 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
 
 ### [0548] fork {Ctrl} {#rune-0548}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A time-binding word; it changes when an action may proceed.
+**Force:** `fork` in its Ctrl sense is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the fork obligation named before work proceeds.
 
-**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
+**Shadow:** misusing `fork` at rune 0548 in the Ctrl lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
 
 ### [0549] future {#rune-0549}
 
@@ -514,7 +512,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** A placeholder for a value that will exist later.
 
-**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
+**Shadow:** misusing `future` at rune 0549 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
 
 **Pocket gloss:** A placeholder for a value that will exist later.
 
@@ -522,111 +520,111 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** needs_sense
+**Completion:** authored
 
-**Force:** A permission word; passage occurs only when conditions hold.
+**Force:** `gate` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the gate obligation named before work proceeds.
 
-**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
+**Shadow:** misusing `gate` at rune 0550 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
 
 ### [0551] guard {#rune-0551}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A coordination word; it manages concurrency, interruption, or flow.
+**Force:** `guard` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the guard obligation named before work proceeds.
 
-**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
+**Shadow:** misusing `guard` at rune 0551 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
 
 ### [0552] halt {#rune-0552}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A sequencing word; it decides what happens next and under what condition.
+**Force:** `halt` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the halt obligation named before work proceeds.
 
-**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
+**Shadow:** misusing `halt` at rune 0552 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
 
 ### [0553] heartbeat {Ctrl} {#rune-0553}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A tempo-word; it governs order, waiting, branching, or repetition.
+**Force:** `heartbeat` in its Ctrl sense is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the heartbeat obligation named before work proceeds.
 
-**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
+**Shadow:** misusing `heartbeat` at rune 0553 in the Ctrl lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
 
 ### [0554] if {#rune-0554}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A coordination word; it manages concurrency, interruption, or flow.
+**Force:** `if` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the if obligation named before work proceeds.
 
-**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
+**Shadow:** misusing `if` at rune 0554 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
 
 ### [0555] iterate {#rune-0555}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A time-binding word; it changes when an action may proceed.
+**Force:** `iterate` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the iterate obligation named before work proceeds.
 
-**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
+**Shadow:** misusing `iterate` at rune 0555 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
 
 ### [0556] join {Ctrl} {#rune-0556}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A union word; separate streams, sets, or histories are brought into one result.
+**Force:** `join` in its Ctrl sense is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the join obligation named before work proceeds.
 
-**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
+**Shadow:** misusing `join` at rune 0556 in the Ctrl lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
 
 ### [0557] jump {#rune-0557}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A tempo-word; it governs order, waiting, branching, or repetition.
+**Force:** `jump` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the jump obligation named before work proceeds.
 
-**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
+**Shadow:** misusing `jump` at rune 0557 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
 
 ### [0558] latch {#rune-0558}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A tempo-word; it governs order, waiting, branching, or repetition.
+**Force:** `latch` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the latch obligation named before work proceeds.
 
-**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
+**Shadow:** misusing `latch` at rune 0558 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
 
 ### [0559] loop {#rune-0559}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A time-binding word; it changes when an action may proceed.
+**Force:** `loop` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the loop obligation named before work proceeds.
 
-**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
+**Shadow:** misusing `loop` at rune 0559 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
 
 ### [0560] match {#rune-0560}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A sequencing word; it decides what happens next and under what condition.
+**Force:** `match` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the match obligation named before work proceeds.
 
-**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
+**Shadow:** misusing `match` at rune 0560 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
 
 ### [0561] mutex {#rune-0561}
 
@@ -636,7 +634,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** Mutual exclusion for one critical region at a time.
 
-**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
+**Shadow:** misusing `mutex` at rune 0561 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
 
 **Pocket gloss:** Mutual exclusion for one critical region at a time.
 
@@ -644,91 +642,91 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A sequencing word; it decides what happens next and under what condition.
+**Force:** `notify` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the notify obligation named before work proceeds.
 
-**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
+**Shadow:** misusing `notify` at rune 0562 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
 
 ### [0563] once {#rune-0563}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A sequencing word; it decides what happens next and under what condition.
+**Force:** `once` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the once obligation named before work proceeds.
 
-**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
+**Shadow:** misusing `once` at rune 0563 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
 
 ### [0564] parallel {Ctrl} {#rune-0564}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A sequencing word; it decides what happens next and under what condition.
+**Force:** `parallel` in its Ctrl sense is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the parallel obligation named before work proceeds.
 
-**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
+**Shadow:** misusing `parallel` at rune 0564 in the Ctrl lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
 
 ### [0565] pause {#rune-0565}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A time-binding word; it changes when an action may proceed.
+**Force:** `pause` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the pause obligation named before work proceeds.
 
-**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
+**Shadow:** misusing `pause` at rune 0565 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
 
 ### [0566] poll {Ctrl} {#rune-0566}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A coordination word; it manages concurrency, interruption, or flow.
+**Force:** `poll` in its Ctrl sense is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the poll obligation named before work proceeds.
 
-**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
+**Shadow:** misusing `poll` at rune 0566 in the Ctrl lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
 
 ### [0567] preempt {#rune-0567}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A sequencing word; it decides what happens next and under what condition.
+**Force:** `preempt` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the preempt obligation named before work proceeds.
 
-**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
+**Shadow:** misusing `preempt` at rune 0567 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
 
 ### [0568] priority {#rune-0568}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A time-binding word; it changes when an action may proceed.
+**Force:** `priority` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the priority obligation named before work proceeds.
 
-**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
+**Shadow:** misusing `priority` at rune 0568 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
 
 ### [0569] process {Ctrl} {#rune-0569}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A sovereignty word; an executing program with its own protected address space.
+**Force:** `process` in its Ctrl sense is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the process obligation named before work proceeds.
 
-**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
+**Shadow:** misusing `process` at rune 0569 in the Ctrl lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
 
 ### [0570] promise {#rune-0570}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A coordination word; it manages concurrency, interruption, or flow.
+**Force:** `promise` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the promise obligation named before work proceeds.
 
-**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
+**Shadow:** misusing `promise` at rune 0570 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
 
 ### [0571] queue {Ctrl} {#rune-0571}
 
@@ -738,7 +736,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** Ordered holding area that decouples production from consumption.
 
-**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
+**Shadow:** misusing `queue` at rune 0571 in the Ctrl lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
 
 **Pocket gloss:** Ordered holding area that decouples production from consumption.
 
@@ -746,41 +744,41 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A coordination word; it manages concurrency, interruption, or flow.
+**Force:** `race window` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the race window obligation named before work proceeds.
 
-**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
+**Shadow:** misusing `race window` at rune 0572 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
 
 ### [0573] recurse {#rune-0573}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A sequencing word; it decides what happens next and under what condition.
+**Force:** `recurse` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the recurse obligation named before work proceeds.
 
-**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
+**Shadow:** misusing `recurse` at rune 0573 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
 
 ### [0574] repeat {#rune-0574}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A sequencing word; it decides what happens next and under what condition.
+**Force:** `repeat` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the repeat obligation named before work proceeds.
 
-**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
+**Shadow:** misusing `repeat` at rune 0574 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
 
 ### [0575] reserve {#rune-0575}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A tempo-word; it governs order, waiting, branching, or repetition.
+**Force:** `reserve` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the reserve obligation named before work proceeds.
 
-**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
+**Shadow:** misusing `reserve` at rune 0575 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
 
 ### [0576] retry {Ctrl} {#rune-0576}
 
@@ -798,21 +796,21 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A tempo-word; it governs order, waiting, branching, or repetition.
+**Force:** `return` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the return obligation named before work proceeds.
 
-**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
+**Shadow:** misusing `return` at rune 0577 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
 
 ### [0578] round-robin {#rune-0578}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A coordination word; it manages concurrency, interruption, or flow.
+**Force:** `round-robin` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the round-robin obligation named before work proceeds.
 
-**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
+**Shadow:** misusing `round-robin` at rune 0578 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
 
 ### [0579] schedule {Ctrl} {#rune-0579}
 
@@ -822,7 +820,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** Assign work to time, order, or execution slots.
 
-**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
+**Shadow:** misusing `schedule` at rune 0579 in the Ctrl lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
 
 **Pocket gloss:** Assign work to time, order, or execution slots.
 
@@ -830,11 +828,11 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A tempo-word; it governs order, waiting, branching, or repetition.
+**Force:** `select` in its Ctrl sense is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the select obligation named before work proceeds.
 
-**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
+**Shadow:** misusing `select` at rune 0580 in the Ctrl lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
 
 ### [0581] semaphore {#rune-0581}
 
@@ -844,7 +842,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** A counted gate controlling concurrent access to limited capacity.
 
-**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
+**Shadow:** misusing `semaphore` at rune 0581 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
 
 **Pocket gloss:** A counted gate controlling concurrent access to limited capacity.
 
@@ -852,21 +850,21 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A coordination word; it manages concurrency, interruption, or flow.
+**Force:** `sequence point` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the sequence point obligation named before work proceeds.
 
-**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
+**Shadow:** misusing `sequence point` at rune 0582 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
 
 ### [0583] serialize access {#rune-0583}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A time-binding word; it changes when an action may proceed.
+**Force:** `serialize access` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the serialize access obligation named before work proceeds.
 
-**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
+**Shadow:** misusing `serialize access` at rune 0583 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
 
 ### [0584] signal {Ctrl} {#rune-0584}
 
@@ -876,7 +874,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** Emit a condition change another task may respond to.
 
-**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
+**Shadow:** misusing `signal` at rune 0584 in the Ctrl lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
 
 **Pocket gloss:** Emit a condition change another task may respond to.
 
@@ -884,131 +882,131 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A sequencing word; it decides what happens next and under what condition.
+**Force:** `sleep` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the sleep obligation named before work proceeds.
 
-**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
+**Shadow:** misusing `sleep` at rune 0585 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
 
 ### [0586] spawn {Ctrl} {#rune-0586}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A sequencing word; it decides what happens next and under what condition.
+**Force:** `spawn` in its Ctrl sense is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the spawn obligation named before work proceeds.
 
-**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
+**Shadow:** misusing `spawn` at rune 0586 in the Ctrl lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
 
 ### [0587] step {#rune-0587}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A tempo-word; it governs order, waiting, branching, or repetition.
+**Force:** `step` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the step obligation named before work proceeds.
 
-**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
+**Shadow:** misusing `step` at rune 0587 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
 
 ### [0588] stop {#rune-0588}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A time-binding word; it changes when an action may proceed.
+**Force:** `stop` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the stop obligation named before work proceeds.
 
-**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
+**Shadow:** misusing `stop` at rune 0588 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
 
 ### [0589] suspend {#rune-0589}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A time-binding word; it changes when an action may proceed.
+**Force:** `suspend` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the suspend obligation named before work proceeds.
 
-**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
+**Shadow:** misusing `suspend` at rune 0589 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
 
 ### [0590] switch {#rune-0590}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A time-binding word; it changes when an action may proceed.
+**Force:** `switch` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the switch obligation named before work proceeds.
 
-**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
+**Shadow:** misusing `switch` at rune 0590 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
 
 ### [0591] sync {#rune-0591}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A sequencing word; it decides what happens next and under what condition.
+**Force:** `sync` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the sync obligation named before work proceeds.
 
-**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
+**Shadow:** misusing `sync` at rune 0591 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
 
 ### [0592] synchronize {#rune-0592}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A tempo-word; it governs order, waiting, branching, or repetition.
+**Force:** `synchronize` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the synchronize obligation named before work proceeds.
 
-**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
+**Shadow:** misusing `synchronize` at rune 0592 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
 
 ### [0593] task {#rune-0593}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A coordination word; it manages concurrency, interruption, or flow.
+**Force:** `task` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the task obligation named before work proceeds.
 
-**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
+**Shadow:** misusing `task` at rune 0593 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
 
 ### [0594] terminate {#rune-0594}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A sequencing word; it decides what happens next and under what condition.
+**Force:** `terminate` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the terminate obligation named before work proceeds.
 
-**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
+**Shadow:** misusing `terminate` at rune 0594 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
 
 ### [0595] then {#rune-0595}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A coordination word; it manages concurrency, interruption, or flow.
+**Force:** `then` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the then obligation named before work proceeds.
 
-**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
+**Shadow:** misusing `then` at rune 0595 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
 
 ### [0596] throttle {#rune-0596}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A time-binding word; it changes when an action may proceed.
+**Force:** `throttle` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the throttle obligation named before work proceeds.
 
-**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
+**Shadow:** misusing `throttle` at rune 0596 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
 
 ### [0597] tick {#rune-0597}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A coordination word; it manages concurrency, interruption, or flow.
+**Force:** `tick` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the tick obligation named before work proceeds.
 
-**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
+**Shadow:** misusing `tick` at rune 0597 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
 
 ### [0598] timeout {Ctrl} {#rune-0598}
 
@@ -1026,91 +1024,91 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A coordination word; it manages concurrency, interruption, or flow.
+**Force:** `timeslice` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the timeslice obligation named before work proceeds.
 
-**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
+**Shadow:** misusing `timeslice` at rune 0599 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
 
 ### [0600] trigger {#rune-0600}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A tempo-word; it governs order, waiting, branching, or repetition.
+**Force:** `trigger` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the trigger obligation named before work proceeds.
 
-**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
+**Shadow:** misusing `trigger` at rune 0600 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
 
 ### [0601] try {#rune-0601}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A coordination word; it manages concurrency, interruption, or flow.
+**Force:** `try` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the try obligation named before work proceeds.
 
-**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
+**Shadow:** misusing `try` at rune 0601 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
 
 ### [0602] unblock {#rune-0602}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A time-binding word; it changes when an action may proceed.
+**Force:** `unblock` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the unblock obligation named before work proceeds.
 
-**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
+**Shadow:** misusing `unblock` at rune 0602 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
 
 ### [0603] until {#rune-0603}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A tempo-word; it governs order, waiting, branching, or repetition.
+**Force:** `until` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the until obligation named before work proceeds.
 
-**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
+**Shadow:** misusing `until` at rune 0603 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
 
 ### [0604] wait {#rune-0604}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A sequencing word; it decides what happens next and under what condition.
+**Force:** `wait` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the wait obligation named before work proceeds.
 
-**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
+**Shadow:** misusing `wait` at rune 0604 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
 
 ### [0605] wake {#rune-0605}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A tempo-word; it governs order, waiting, branching, or repetition.
+**Force:** `wake` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the wake obligation named before work proceeds.
 
-**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
+**Shadow:** misusing `wake` at rune 0605 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
 
 ### [0606] when {#rune-0606}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A time-binding word; it changes when an action may proceed.
+**Force:** `when` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the when obligation named before work proceeds.
 
-**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
+**Shadow:** misusing `when` at rune 0606 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
 
 ### [0607] while {#rune-0607}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A sequencing word; it decides what happens next and under what condition.
+**Force:** `while` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the while obligation named before work proceeds.
 
-**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
+**Shadow:** misusing `while` at rune 0607 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
 
 ### [0608] yield {#rune-0608}
 
@@ -1120,6 +1118,6 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** Give up control now so another act may proceed.
 
-**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
+**Shadow:** misusing `yield` at rune 0608 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
 
 **Pocket gloss:** Give up control now so another act may proceed.

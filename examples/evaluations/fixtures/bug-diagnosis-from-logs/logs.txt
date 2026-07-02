@@ -1,0 +1,6 @@
+2026-07-02T02:10:04Z api checkout request_id=a1 latency_ms=2470 redis_timeout_ms=250 pg_ms=83 feature_profile_cache_v2=true
+2026-07-02T02:10:05Z api checkout request_id=a2 latency_ms=2318 redis_timeout_ms=250 pg_ms=91 feature_profile_cache_v2=true
+2026-07-02T02:10:06Z redis pool_wait_ms=244 pool_size=20 in_use=20 command=GET key=profile:account:884
+2026-07-02T02:10:07Z api checkout request_id=a3 latency_ms=2391 redis_timeout_ms=250 pg_ms=78 feature_profile_cache_v2=true
+2026-07-02T02:10:08Z postgres query="select * from accounts where id=$1" duration_ms=934 rows=1
+2026-07-02T02:10:09Z redis pool_wait_ms=251 pool_size=20 in_use=20 command=MGET key_prefix=profile_cache_v2

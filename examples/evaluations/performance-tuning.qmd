@@ -6,133 +6,346 @@ title: "Performance Tuning Without Micro-Optimization Drift"
 
 **Expected delta:** The repaired spell forces measurement before optimization and keeps rollback criteria attached to speed claims.
 
-**Input context:** A report endpoint now takes 9 seconds for large accounts. It fetches projects, tasks, comments, and users from PostgreSQL, then builds a nested JSON response. There is no profile yet. The team suspects Python loops, but database query count may have changed.
+**Fixture:** [examples/evaluations/fixtures/performance-tuning](https://github.com/corbensorenson/software-grimoire/tree/main/examples/evaluations/fixtures/performance-tuning)
+
+**Observed outcome delta:** weak and repaired prompts tied on outcome checks
+
+**Observed structural delta:** repaired prompts scored 2.3 points higher on average
+
+**Input context:** The fixture is a report endpoint performance packet.
+
+Files:
+
+- `trace.json`: representative trace showing query count and timing.
+- `workload.json`: target latency budget and data scale.
+- `ground_truth.json`: planted bottlenecks and misleading path.
+
+Ground truth:
+
+- The planted primary bottleneck is database query count/N+1 behavior, not Python loop micro-optimization.
+- A good answer measures first, asks for profiling/tracing, and ranks optimizations by risk and expected benefit.
+- A good answer names rollback or regression criteria before changing production behavior.
 
 ## Scores
 
-| Surface           | Variant  | Artifact | Invariant | Output | Verify | Failure | Assumptions | Total |
-| ----------------- | -------- | -------- | --------- | ------ | ------ | ------- | ----------- | ----- |
-| codex-cli-default | weak     | 2        | 0         | 1      | 2      | 1       | 1           | 7     |
-| codex-cli-default | repaired | 2        | 1         | 1      | 2      | 2       | 2           | 10    |
+| Surface           | Variant  | Rep | Artifact | Invariant | Output | Verify | Failure | Assumptions | Structural | Outcome |
+| ----------------- | -------- | --- | -------- | --------- | ------ | ------ | ------- | ----------- | ---------- | ------- |
+| codex-cli-default | weak     | 1   | 1        | 0         | 2      | 2      | 2       | 0           | 7          | 3       |
+| codex-cli-default | repaired | 1   | 2        | 1         | 2      | 2      | 2       | 2           | 11         | 3       |
+| codex-cli-default | weak     | 2   | 2        | 1         | 2      | 2      | 2       | 1           | 10         | 3       |
+| codex-cli-default | repaired | 2   | 2        | 2         | 2      | 2      | 2       | 1           | 11         | 3       |
+| codex-cli-default | weak     | 3   | 1        | 1         | 2      | 2      | 2       | 1           | 9          | 3       |
+| codex-cli-default | repaired | 3   | 2        | 1         | 2      | 2      | 2       | 2           | 11         | 3       |
 
 ## Transcripts
 
-### codex-cli-default - weak
+### codex-cli-default - weak r1
 
 - Surface label: Codex CLI default model
-- Run timestamp: `2026-07-02T03:10:50.994905+00:00`
-- Prompt file: [examples/evaluations/runs/codex-cli-default/performance-tuning/weak-prompt.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/performance-tuning/weak-prompt.md)
-- Transcript file: [examples/evaluations/runs/codex-cli-default/performance-tuning/weak-output.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/performance-tuning/weak-output.md)
-- Evaluator notes: Auto-scored with the structural rubric; transcript remains the primary evidence.
+- Run timestamp: `2026-07-02T04:54:18.031389+00:00`
+- Prompt file: [examples/evaluations/runs/codex-cli-default/performance-tuning/r01-weak-prompt.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/performance-tuning/r01-weak-prompt.md)
+- Transcript file: [examples/evaluations/runs/codex-cli-default/performance-tuning/r01-weak-output.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/performance-tuning/r01-weak-output.md)
+- Structural total: 7
+- Outcome total: 3
+- Evaluator notes: Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence.
 
 ```text
-I can’t safely “make this faster” from the provided context alone. What’s missing is the endpoint code, ORM/query layer, schema/indexes, sample large-account sizes, and any query timing/query count data.
+I can’t directly patch the endpoint from this packet: only the fixture data is provided, and this workspace is read-only. Based on [trace.json](</Users/corbensorenson/Documents/software grimoire/examples/evaluations/fixtures/performance-tuning/trace.json:1>), the bottleneck is clearly DB query count/N+1 behavior.
 
-The first fix should be measurement, not guessing. Add temporary profiling around the endpoint:
+Current state:
 
-- total request time
-- number of PostgreSQL queries
-- duration of each query
-- rows returned per query
-- time spent building JSON in Python
+- p95 is `9000ms`; target is `1500ms`.
+- DB time is `8110ms`; Python assembly is only `430ms`.
+- Query count is `1842`.
+- Repeated patterns: tasks by project `620` calls, comments by task `1100` calls, users by id `122` calls.
 
-Given the symptoms, the most likely regression is an N+1 query pattern, not Python loops. The target shape should be something like:
+I would not start by micro-optimizing Python loops. The ranked fix plan is:
 
-1. Fetch all projects for the account.
-2. Fetch all tasks for those project IDs in one query.
-3. Fetch all comments for those task IDs in one query.
-4. Fetch all referenced users in one query.
-5. Build lookup maps in Python: `project_id -> tasks`, `task_id -> comments`, `user_id -> user`.
+1. Replace N+1 queries with batched/eager loads.
+   - Fetch tasks for all project IDs in one query.
+   - Fetch comments for all task IDs in one query.
+   - Fetch users for all referenced user IDs in one query.
+   - Reassemble in memory using maps keyed by IDs.
 
-That keeps the endpoint at roughly 4 database queries instead of growing with project/task/comment count.
+2. Push summary work into SQL where appropriate.
+   - If the report only needs counts/totals/recent metadata, query aggregates instead of loading every comment/task row.
 
-Also verify indexes exist on the foreign keys used by those batched queries:
+3. Verify indexes after query shape is fixed.
+   - Check indexes on `tasks.project_id`, `comments.task_id`, and `users.id`.
+   - Use `EXPLAIN`/query plans before adding indexes.
 
-- `projects.account_id`
-- `tasks.project_id`
-- `comments.task_id`
-- any user reference column used by comments/tasks
+4. Consider caching only after query count is controlled.
+   - Cache account-summary results if freshness rules allow it.
 
-If profiling shows JSON assembly is the bottleneck after query batching, optimize the nested build with dictionaries/lists and avoid repeated scans. But don’t start there until query count and SQL timings are known.
+Benchmark plan:
 
-To actually implement this, I need the report endpoint file, the database models/query code, and permission to edit the workspace.
+- Capture before/after traces for large accounts: `120` projects and `6200` tasks from [workload.json](</Users/corbensorenson/Documents/software grimoire/examples/evaluations/fixtures/performance-tuning/workload.json:1>).
+- Track p50/p95, DB time, Python assembly time, query count, rows read, and memory.
+- Acceptance target: p95 <= `1500ms`, query count reduced from `1842` to low double digits or fewer.
+
+Rollback/regression criteria before production change:
+
+- Roll back if p95 worsens, query count rises materially, memory spikes beyond agreed limits, or report output differs from current results.
+- Add regression coverage asserting bounded query count for a large-account fixture.
 ```
 
-### codex-cli-default - repaired
+### codex-cli-default - repaired r1
 
 - Surface label: Codex CLI default model
-- Run timestamp: `2026-07-02T03:11:19.975600+00:00`
-- Prompt file: [examples/evaluations/runs/codex-cli-default/performance-tuning/repaired-prompt.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/performance-tuning/repaired-prompt.md)
-- Transcript file: [examples/evaluations/runs/codex-cli-default/performance-tuning/repaired-output.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/performance-tuning/repaired-output.md)
-- Evaluator notes: Auto-scored with the structural rubric; transcript remains the primary evidence.
+- Run timestamp: `2026-07-02T04:54:53.523965+00:00`
+- Prompt file: [examples/evaluations/runs/codex-cli-default/performance-tuning/r01-repaired-prompt.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/performance-tuning/r01-repaired-prompt.md)
+- Transcript file: [examples/evaluations/runs/codex-cli-default/performance-tuning/r01-repaired-output.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/performance-tuning/r01-repaired-output.md)
+- Structural total: 11
+- Outcome total: 3
+- Evaluator notes: Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence.
 
 ```text
-**Evidence Gap**
-
-Do not change code yet beyond instrumentation. Needed data: endpoint trace with per-stage timing, SQL query count, per-query duration, `EXPLAIN ANALYZE` for slow queries, payload size, Python CPU profile, allocation profile, DB connection-pool wait time, and p50/p95/p99 latency under representative large accounts.
-
 **Bottleneck Hypotheses**
 
-1. **Database round trips / N+1 queries**
-   Query count may have changed. Fetching projects, tasks, comments, and users separately can become many queries or repeated lookups.
+Primary: N+1 database access on `/reports/account-summary`.
 
-2. **Slow SQL plans or missing indexes**
-   Large-account filters, joins, ordering, or comment lookups may now scan too many rows.
+Evidence: p95 is `9000ms` against a `1500ms` budget. DB time is `8110ms`, while Python assembly is only `430ms`. Query count is `1842`, dominated by repeated calls:
 
-3. **Row explosion / over-fetching**
-   Joining nested entities can multiply rows, increasing DB work, network transfer, Python allocation, and JSON size.
+- `tasks where project_id=$1`: `620` calls
+- `comments where task_id=$1`: `1100` calls
+- `users where id=$1`: `122` calls
 
-4. **Python assembly complexity**
-   Nested loops may be `O(projects * tasks * comments)` instead of using keyed maps/grouping.
-
-5. **Serialization and memory pressure**
-   Building one large nested object before encoding can cause high allocation, GC pressure, and latency spikes.
-
-6. **Connection-pool or DB saturation**
-   Under load, throughput may be limited by pool waits, DB CPU, I/O, or lock contention.
+This points to per-project/per-task/per-user fetching, not Python loop cost. Python micro-optimization should wait until DB/query behavior is isolated.
 
 **What To Measure**
 
-- Request latency split: DB time, Python build time, JSON serialization time, network response time.
-- Query count per request and duplicate query signatures.
-- Slowest queries with row counts and plans.
-- Response size and number of projects/tasks/comments/users.
-- CPU profile and allocation profile during report generation.
-- DB CPU, I/O, buffer cache hit rate, locks, and pool wait time.
-- p50/p95/p99 latency and max RSS under concurrent load.
+- Full trace by request size: query count, DB time, Python time, serialization time.
+- Per-query latency, rows returned, and total bytes returned.
+- `EXPLAIN ANALYZE` for the task, comment, and user queries.
+- DB CPU, I/O wait, lock wait, connection pool wait, cache hit rate.
+- Request p50/p95/p99 under accounts near `120` projects and `6200` tasks.
+- Result correctness before and after query-shape changes.
 
 **Ranked Optimization Options**
 
-1. **Add tracing and query instrumentation**
-   Highest benefit-to-risk. Required to separate DB, CPU, allocation, and network effects.
+1. **Batch/eager-load report data**
+   Highest benefit, moderate risk. Replace per-project task queries and per-task comment queries with bounded batch queries: fetch tasks for all project IDs, comments for all task IDs, users for all referenced IDs. Expected to collapse query count from `1842` toward a small fixed number.
 
-2. **Eliminate N+1 queries and duplicate user/comment/project fetches**
-   High benefit, moderate risk. Batch by IDs, use bounded eager loading, or consolidate queries carefully.
+2. **Aggregate in SQL where report shape allows**
+   High benefit, moderate-to-high risk. If the endpoint only needs counts/summaries, avoid loading every comment/task row. Use grouped aggregates by account/project/task as appropriate. Risk is semantic drift in report calculations.
 
-3. **Tune SQL plans and indexes**
-   High benefit, moderate risk. Add/adjust composite indexes around account ID, project/task/comment foreign keys, and sort/filter columns.
+3. **Add or verify indexes**
+   Medium-to-high benefit, lower risk if missing. Check indexes on `tasks.project_id`, `comments.task_id`, and `users.id`. Validate with query plans before adding.
 
-4. **Reduce over-fetching and row explosion**
-   High benefit, moderate risk. Fetch only required columns, avoid multiplicative joins, batch child records and group in memory.
+4. **Cache stable report subcomponents**
+   Medium benefit, moderate risk. Useful if reports are frequently requested and tolerate staleness. Only after query shape is fixed.
 
-5. **Fix Python assembly algorithm**
-   Medium-to-high benefit, low-to-moderate risk. Build dictionaries keyed by IDs and append children in linear time.
-
-6. **Optimize serialization/allocation**
-   Medium benefit, moderate risk. Stream JSON or use a faster encoder only after DB and algorithmic costs are understood.
-
-7. **Caching or precomputed reports**
-   Potentially high benefit, higher product risk. Requires freshness rules and invalidation strategy.
+5. **Python assembly optimization**
+   Low expected benefit now. `430ms` is not the dominant cost and should be revisited only after DB time is reduced.
 
 **Benchmark Plan**
 
-Create a representative large-account fixture. Capture baseline p50/p95/p99, query count, DB time, CPU time, memory, and payload size. Test each optimization independently and under realistic concurrency. Verify byte-level or schema-level response equivalence.
+Create a representative benchmark using the large-account shape: `120` projects, `6200` tasks. Capture baseline p50/p95/p99, query count, DB ms, Python ms, errors, and result checksum. Run each optimization behind a flag/canary and compare against baseline under commodity cloud conditions.
+
+**Success And Rollback Criteria**
+
+Success: p95 under `1500ms`, query count reduced materially from `1842`, DB time no longer dominates, and report output matches baseline.
+
+Rollback if p95/p99 worsens, errors/timeouts increase, DB CPU/I/O spikes, query count regresses, memory rises materially, or report totals differ from baseline.
+```
+
+### codex-cli-default - weak r2
+
+- Surface label: Codex CLI default model
+- Run timestamp: `2026-07-02T04:55:28.317199+00:00`
+- Prompt file: [examples/evaluations/runs/codex-cli-default/performance-tuning/r02-weak-prompt.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/performance-tuning/r02-weak-prompt.md)
+- Transcript file: [examples/evaluations/runs/codex-cli-default/performance-tuning/r02-weak-output.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/performance-tuning/r02-weak-output.md)
+- Structural total: 10
+- Outcome total: 3
+- Evaluator notes: Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence.
+
+```text
+I can’t safely patch this from the packet alone: the endpoint code, ORM/query layer, schema, indexes, and test harness are missing. Based on the trace, though, the target fix is clear.
+
+Current baseline for `/reports/account-summary`:
+
+- p95: `9000ms`
+- budget: `1500ms`
+- DB time: `8110ms`
+- Python assembly: `430ms`
+- query count: `1842`
+
+The bottleneck is database query count/N+1 behavior, not Python loop work.
+
+Ranked fix plan:
+
+1. Eliminate N+1 queries first.
+   - Replace per-project task fetches: `620` calls to `select * from tasks where project_id=$1`
+   - Replace per-task comment fetches: `1100` calls to `select * from comments where task_id=$1`
+   - Replace per-user fetches: `122` calls to `select * from users where id=$1`
+   - Use batched `WHERE project_id IN (...)`, `WHERE task_id IN (...)`, and `WHERE id IN (...)`, or ORM eager loading with bounded prefetches.
+
+2. Keep result shape unchanged.
+   - Batch fetch rows, group them in memory by `project_id`, `task_id`, and `user_id`.
+   - Python grouping is acceptable here: `430ms` is not the main cost.
+
+3. Verify indexes before rollout.
+   - Need indexes on `tasks.project_id`, `comments.task_id`, and `users.id`.
+   - If missing, add them separately with normal migration safety.
+
+Benchmark plan:
+
+- Re-run the same representative large-account workload: `120` projects, `6200` tasks.
+- Capture p50/p95, DB time, query count, and endpoint output equivalence.
+- Success target: p95 below `1500ms`, query count reduced from `1842` to a small bounded number, ideally single digits to low tens.
+
+Rollback/regression criteria:
+
+- Roll back if output differs from the old endpoint for sampled accounts.
+- Roll back if p95 exceeds budget, DB CPU/load spikes materially, memory use grows beyond acceptable limits, or query count regresses above the agreed ceiling.
+- Add a regression test/assertion around maximum query count for the large-account fixture.
+```
+
+### codex-cli-default - repaired r2
+
+- Surface label: Codex CLI default model
+- Run timestamp: `2026-07-02T04:56:12.068308+00:00`
+- Prompt file: [examples/evaluations/runs/codex-cli-default/performance-tuning/r02-repaired-prompt.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/performance-tuning/r02-repaired-prompt.md)
+- Transcript file: [examples/evaluations/runs/codex-cli-default/performance-tuning/r02-repaired-output.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/performance-tuning/r02-repaired-output.md)
+- Structural total: 11
+- Outcome total: 3
+- Evaluator notes: Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence.
+
+```text
+Based on the fixture, the likely bottleneck is database I/O from N+1 query behavior.
+
+**Bottleneck Hypotheses**
+- Primary: N+1 database access. Trace shows `/reports/account-summary` at `p95=9000ms` against a `1500ms` budget, with `8110ms` in DB time and `1842` queries.
+- Query patterns strongly indicate fanout:
+  - `tasks where project_id=$1`: `620` calls
+  - `comments where task_id=$1`: `1100` calls
+  - `users where id=$1`: `122` calls
+- Secondary: Python assembly is only `430ms`, so loop micro-optimization should wait until DB, network, allocation, and algorithmic effects are separated.
+
+**What To Measure First**
+- Full trace by account size: query count, DB time, row counts, payload bytes, connection pool wait, and endpoint p50/p95/p99.
+- `EXPLAIN ANALYZE` for repeated task/comment/user queries.
+- DB CPU, I/O, lock waits, cache hit rate, and network round trips.
+- Python CPU/allocation profile only after DB query count is reduced.
+
+**Ranked Optimization Options**
+1. **Collapse N+1 queries into batched/set-based queries**
+   Expected benefit: very high. Risk: medium.
+   Fetch tasks with `WHERE project_id IN (...)`, comments with `WHERE task_id IN (...)`, and users with `WHERE id IN (...)`. Preserve ordering and authorization semantics.
+
+2. **Move report aggregation into SQL or pre-aggregated summaries**
+   Expected benefit: high. Risk: medium-high.
+   Avoid loading full comment/task graphs if the report only needs counts, statuses, or totals.
+
+3. **Add/verify indexes on join/filter columns**
+   Expected benefit: medium if missing. Risk: low-medium.
+   Check `tasks(project_id)`, `comments(task_id)`, and relevant user/account foreign keys.
+
+4. **Cache or materialize account report snapshots**
+   Expected benefit: high for repeated reads. Risk: medium-high due staleness/invalidation.
+   Only after correctness and freshness requirements are explicit.
+
+5. **Optimize Python assembly**
+   Expected benefit: low until DB is fixed. Risk: low.
+   Current assembly time is not the budget breaker.
+
+**Benchmark Plan**
+- Baseline current endpoint on representative large account: `120` projects, `6200` tasks.
+- Record p50/p95/p99, throughput, query count, DB time, app CPU, memory, and correctness output.
+- Test each optimization behind a flag against identical data and concurrency on commodity cloud hardware.
+- Success: p95 below `1500ms`, query count reduced by orders of magnitude, DB time no longer dominant, output unchanged.
+
+**Rollback / Regression Criteria**
+- Roll back if p95/p99 exceeds budget, error rate rises, report output differs, query count regresses, DB CPU/I/O saturates, pool wait increases, memory spikes, or cache/materialized data becomes stale beyond accepted limits.
+```
+
+### codex-cli-default - weak r3
+
+- Surface label: Codex CLI default model
+- Run timestamp: `2026-07-02T04:57:12.061858+00:00`
+- Prompt file: [examples/evaluations/runs/codex-cli-default/performance-tuning/r03-weak-prompt.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/performance-tuning/r03-weak-prompt.md)
+- Transcript file: [examples/evaluations/runs/codex-cli-default/performance-tuning/r03-weak-output.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/performance-tuning/r03-weak-output.md)
+- Structural total: 9
+- Outcome total: 3
+- Evaluator notes: Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence.
+
+```text
+I can’t patch the endpoint from this packet alone; the implementation, ORM/query code, schema, and indexes are missing. The trace is enough to rank the likely fix.
+
+Baseline:
+
+- `/reports/account-summary` p95: `9000 ms`
+- Target p95: `1500 ms`
+- DB time: `8110 ms`
+- Python assembly: `430 ms`
+- Queries: `1842`
+
+The primary bottleneck is N+1 database access, not Python loop speed.
+
+Recommended order:
+
+1. Instrument first: capture query count, normalized SQL, DB time, account size, and p95 for this endpoint in staging/prod.
+2. Remove N+1 queries:
+   - Replace per-project `tasks where project_id=$1` calls with one batched query over project IDs.
+   - Replace per-task `comments where task_id=$1` calls with one batched query over task IDs.
+   - Batch user lookup by unique user IDs instead of `users where id=$1` repeatedly.
+3. Verify indexes after query shape is known:
+   - `tasks.project_id`
+   - `comments.task_id`
+   - user lookup should already use primary key; confirm with `EXPLAIN`.
+4. Only after DB query count is fixed, consider Python assembly tuning. It is currently about 5% of p95, so it cannot close the gap alone.
+
+Benchmark plan:
+
+- Re-run against the large-account workload: `120` projects, `6200` tasks.
+- Compare p95, DB time, total query count, and response correctness.
+- Success criteria: p95 at or below `1500 ms`, query count no longer scales linearly with projects/tasks, and output matches baseline.
+
+Rollback/regression criteria before release:
+
+- Roll back if response data differs from baseline.
+- Roll back if p95 remains above budget or worsens versus current baseline.
+- Roll back if query count still grows with project/task count.
+- Ship behind a flag or canary so the old query path can be restored quickly.
+```
+
+### codex-cli-default - repaired r3
+
+- Surface label: Codex CLI default model
+- Run timestamp: `2026-07-02T04:57:57.406948+00:00`
+- Prompt file: [examples/evaluations/runs/codex-cli-default/performance-tuning/r03-repaired-prompt.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/performance-tuning/r03-repaired-prompt.md)
+- Transcript file: [examples/evaluations/runs/codex-cli-default/performance-tuning/r03-repaired-output.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/performance-tuning/r03-repaired-output.md)
+- Structural total: 11
+- Outcome total: 3
+- Evaluator notes: Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence.
+
+```text
+**Bottleneck Hypotheses**
+
+Primary: N+1 database access. Current trace shows `/reports/account-summary` at `p95=9000ms` against a `1500ms` budget, with `8110ms` in DB time and `1842` queries. The largest patterns are repeated task, comment, and user lookups: `620`, `1100`, and `122` calls.
+
+Secondary: inefficient query shapes or missing indexes may appear after batching. Python assembly is only `430ms`, so loop micro-optimization should wait until DB, I/O, allocation, and network effects are separated.
+
+**What To Measure**
+
+Track per-request `p50/p95/p99`, query count, duplicate query fingerprints, DB execution time versus connection wait time, rows scanned/returned, payload size, Python assembly time, memory allocation, DB CPU/I/O, connection pool saturation, and network RTT. Capture `EXPLAIN ANALYZE` for the repeated query patterns and benchmark against the large account scale: `120` projects and `6200` tasks.
+
+**Ranked Optimizations**
+
+1. Replace N+1 lookups with set-based loading: joins, eager loading, or `WHERE id IN (...)` batches. Highest expected benefit, medium risk around duplicate rows, ordering, and authorization filters.
+2. Push report aggregation into fewer DB queries instead of hydrating all objects. High benefit, medium-high risk if business logic currently lives in Python.
+3. Add request-scope memoization for repeated user/project/task lookups. Medium benefit, lower risk, but not a substitute for removing N+1.
+4. Add or adjust indexes after validating query plans. Medium benefit, low-to-medium risk from write overhead and migration impact.
+5. Consider cached/precomputed summaries or pagination if the report does not need fully fresh complete detail. High benefit, higher product/behavior risk.
+6. Optimize Python assembly only after DB query count and DB time are reduced; current evidence does not justify starting there.
+
+**Benchmark Plan**
+
+Baseline the current endpoint with tracing enabled on representative large accounts. Then test each optimization independently on commodity-like hardware with cold and warm cache runs. Compare query count, DB time, total latency, throughput, correctness, DB CPU/I/O, connection pool wait, and memory. Run concurrency tests until p95 crosses the `1500ms` budget.
 
 **Rollback Criteria**
 
-Rollback if p95/p99 worsens, DB load increases materially, memory grows, connection-pool waits increase, error rate rises, or report JSON changes unexpectedly.
+Roll back or disable behind a feature flag if p95 exceeds budget, query count rises materially, DB CPU/I/O or connection wait worsens, error rate increases, report results differ from baseline, memory grows unexpectedly, or stale/incomplete report data appears.
 
-**Success Measures**
-
-Success means the endpoint meets the strict latency budget on large accounts, reduces query count or DB time if DB-bound, reduces CPU/allocation if Python-bound, and does not regress correctness, throughput, memory, or DB health.
+Success means p95 under `1500ms`, materially lower query count, lower DB time, stable correctness, and no throughput regression under target load.
 ```

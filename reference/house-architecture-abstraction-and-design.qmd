@@ -8,128 +8,126 @@ Range: `0001-0112`.
 
 ## Completion
 
-| Status      | Count |
-| ----------- | ----- |
-| authored    | 21    |
-| stub        | 87    |
-| needs_sense | 4     |
+| Status   | Count |
+| -------- | ----- |
+| authored | 112   |
 
 Use the summary table for scanning. Each row links to the detailed anchored entry below.
 
-| Sigil | Term                                       | Completion  | Summary                                                                                                                                                                                 |
-| ----- | ------------------------------------------ | ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 0001  | [abstraction](#rune-0001)                  | authored    | A deliberate forgetting of detail so larger structure can be reasoned about without drowning in mechanism. Shadow: hiding the only failure that matters.                                |
-| 0002  | [adapter](#rune-0002)                      | authored    | A negotiated translator between unlike shapes. Use it when two systems must meet without infecting one another. Shadow: adapter jungles that preserve confusion rather than resolve it. |
-| 0003  | `STUB` [agent {Arch}](#rune-0003)          | stub        | An acting word; a named locus of initiative that may observe, decide, and invoke tools.                                                                                                 |
-| 0004  | `STUB` [aggregate {Arch}](#rune-0004)      | stub        | An order-word; it constrains how complexity is arranged rather than merely accumulated.                                                                                                 |
-| 0005  | [anti-corruption layer](#rune-0005)        | authored    | A protective seam that keeps one model from polluting another.                                                                                                                          |
-| 0006  | [API gateway](#rune-0006)                  | authored    | A threshold that centralizes entry, policy, and routing at the edge of a service world. Shadow: a convenience chokepoint that quietly becomes a monolith.                               |
-| 0007  | [architecture](#rune-0007)                 | needs_sense | A world-shaping word; it names the large order into which many smaller decisions must fit.                                                                                              |
-| 0008  | `STUB` [artifact boundary](#rune-0008)     | stub        | A composition-word; it lets many smaller parts behave as one larger form.                                                                                                               |
-| 0009  | `STUB` [assembler](#rune-0009)             | stub        | A composition-word; it lets many smaller parts behave as one larger form.                                                                                                               |
-| 0010  | `STUB` [backbone](#rune-0010)              | stub        | A boundary-word; it shapes how one part may touch another.                                                                                                                              |
-| 0011  | `STUB` [backend](#rune-0011)               | stub        | A structure-word; it gives responsibility a place to live.                                                                                                                              |
-| 0012  | [boundary](#rune-0012)                     | authored    | The line that says where one responsibility ends and another begins. Shadow: porous edges that smear blame, ownership, and test scope.                                                  |
-| 0013  | [bounded context](#rune-0013)              | authored    | A protection against semantic bleed: the same word may not mean the same thing in every subsystem. Shadow: false unification through shared names.                                      |
-| 0014  | `STUB` [bridge](#rune-0014)                | stub        | A boundary-word; it shapes how one part may touch another.                                                                                                                              |
-| 0015  | `STUB` [broker {Arch}](#rune-0015)         | stub        | A boundary-word; it shapes how one part may touch another.                                                                                                                              |
-| 0016  | `STUB` [builder](#rune-0016)               | stub        | An order-word; it constrains how complexity is arranged rather than merely accumulated.                                                                                                 |
-| 0017  | `STUB` [bus {Arch}](#rune-0017)            | stub        | A composition-word; it lets many smaller parts behave as one larger form.                                                                                                               |
-| 0018  | `STUB` [capability {Arch}](#rune-0018)     | stub        | A composition-word; it lets many smaller parts behave as one larger form.                                                                                                               |
-| 0019  | `STUB` [channel](#rune-0019)               | stub        | A boundary-word; it shapes how one part may touch another.                                                                                                                              |
-| 0020  | `STUB` [client {Arch}](#rune-0020)         | stub        | An order-word; it constrains how complexity is arranged rather than merely accumulated.                                                                                                 |
-| 0021  | `STUB` [cluster {Arch}](#rune-0021)        | stub        | A many-body word; several machines are treated as one operational unit.                                                                                                                 |
-| 0022  | `STUB` [command bus](#rune-0022)           | stub        | A boundary-word; it shapes how one part may touch another.                                                                                                                              |
-| 0023  | [component {Arch}](#rune-0023)             | authored    | A bounded unit of responsibility inside a larger design.                                                                                                                                |
-| 0024  | `STUB` [composition](#rune-0024)           | stub        | A structure-word; it gives responsibility a place to live.                                                                                                                              |
-| 0025  | `STUB` [connector](#rune-0025)             | stub        | An order-word; it constrains how complexity is arranged rather than merely accumulated.                                                                                                 |
-| 0026  | `STUB` [container {Arch}](#rune-0026)      | stub        | An order-word; it constrains how complexity is arranged rather than merely accumulated.                                                                                                 |
-| 0027  | `STUB` [control plane {Arch}](#rune-0027)  | stub        | A boundary-word; it shapes how one part may touch another.                                                                                                                              |
-| 0028  | `STUB` [coordinator](#rune-0028)           | stub        | A structure-word; it gives responsibility a place to live.                                                                                                                              |
-| 0029  | `STUB` [core {Arch}](#rune-0029)           | stub        | A boundary-word; it shapes how one part may touch another.                                                                                                                              |
-| 0030  | [coupling](#rune-0030)                     | authored    | The hidden tax paid when change in one place forces change elsewhere. Name it early if you want modularity to survive contact with reality.                                             |
-| 0031  | `STUB` [daemon {Arch}](#rune-0031)         | stub        | A structure-word; it gives responsibility a place to live.                                                                                                                              |
-| 0032  | `STUB` [data plane {Arch}](#rune-0032)     | stub        | A composition-word; it lets many smaller parts behave as one larger form.                                                                                                               |
-| 0033  | `STUB` [decorator {Arch}](#rune-0033)      | stub        | An order-word; it constrains how complexity is arranged rather than merely accumulated.                                                                                                 |
-| 0034  | [dependency inversion](#rune-0034)         | authored    | Stable policy should not kneel before unstable detail. Shadow: concrete dependencies hard-wired into places that should remain portable.                                                |
-| 0035  | `STUB` [dispatcher](#rune-0035)            | stub        | An order-word; it constrains how complexity is arranged rather than merely accumulated.                                                                                                 |
-| 0036  | [domain model](#rune-0036)                 | authored    | The conceptual map of the business world the software is trying to serve.                                                                                                               |
-| 0037  | `STUB` [edge service](#rune-0037)          | stub        | A composition-word; it lets many smaller parts behave as one larger form.                                                                                                               |
-| 0038  | `STUB` [engine](#rune-0038)                | stub        | A composition-word; it lets many smaller parts behave as one larger form.                                                                                                               |
-| 0039  | `STUB` [entrypoint](#rune-0039)            | stub        | A structure-word; it gives responsibility a place to live.                                                                                                                              |
-| 0040  | `STUB` [event bus](#rune-0040)             | stub        | A structure-word; it gives responsibility a place to live.                                                                                                                              |
-| 0041  | `STUB` [event handler](#rune-0041)         | stub        | A structure-word; it gives responsibility a place to live.                                                                                                                              |
-| 0042  | `STUB` [executor](#rune-0042)              | stub        | An order-word; it constrains how complexity is arranged rather than merely accumulated.                                                                                                 |
-| 0043  | [facade](#rune-0043)                       | authored    | A simplified front door hiding a messier interior.                                                                                                                                      |
-| 0044  | `STUB` [factory](#rune-0044)               | stub        | A structure-word; it gives responsibility a place to live.                                                                                                                              |
-| 0045  | `STUB` [feature module](#rune-0045)        | stub        | A composition-word; it lets many smaller parts behave as one larger form.                                                                                                               |
-| 0046  | `STUB` [frontend](#rune-0046)              | stub        | A structure-word; it gives responsibility a place to live.                                                                                                                              |
-| 0047  | `STUB` [gateway {Arch}](#rune-0047)        | stub        | A composition-word; it lets many smaller parts behave as one larger form.                                                                                                               |
-| 0048  | `STUB` [graph](#rune-0048)                 | stub        | A composition-word; it lets many smaller parts behave as one larger form.                                                                                                               |
-| 0049  | `STUB` [handler](#rune-0049)               | stub        | A composition-word; it lets many smaller parts behave as one larger form.                                                                                                               |
-| 0050  | `STUB` [hierarchy {Arch}](#rune-0050)      | stub        | An order-word; it constrains how complexity is arranged rather than merely accumulated.                                                                                                 |
-| 0051  | `STUB` [hook](#rune-0051)                  | stub        | A boundary-word; it shapes how one part may touch another.                                                                                                                              |
-| 0052  | `STUB` [host](#rune-0052)                  | stub        | A composition-word; it lets many smaller parts behave as one larger form.                                                                                                               |
-| 0053  | `STUB` [hub](#rune-0053)                   | stub        | An order-word; it constrains how complexity is arranged rather than merely accumulated.                                                                                                 |
-| 0054  | `STUB` [implementation {Arch}](#rune-0054) | stub        | A composition-word; it lets many smaller parts behave as one larger form.                                                                                                               |
-| 0055  | [interface {Arch}](#rune-0055)             | authored    | A disciplined seam that lets unlike bodies cooperate without swapping internal organs. Shadow: tight coupling and type bleed.                                                           |
-| 0056  | `STUB` [interpreter {Arch}](#rune-0056)    | stub        | A structure-word; it gives responsibility a place to live.                                                                                                                              |
-| 0057  | `STUB` [kernel service](#rune-0057)        | stub        | A composition-word; it lets many smaller parts behave as one larger form.                                                                                                               |
-| 0058  | [layer](#rune-0058)                        | authored    | A stratum with a narrow job and limited allowed dependencies.                                                                                                                           |
-| 0059  | `STUB` [library](#rune-0059)               | stub        | A boundary-word; it shapes how one part may touch another.                                                                                                                              |
-| 0060  | `STUB` [listener](#rune-0060)              | stub        | A composition-word; it lets many smaller parts behave as one larger form.                                                                                                               |
-| 0061  | `STUB` [machine boundary](#rune-0061)      | stub        | A boundary-word; it shapes how one part may touch another.                                                                                                                              |
-| 0062  | `STUB` [mediator](#rune-0062)              | stub        | A boundary-word; it shapes how one part may touch another.                                                                                                                              |
-| 0063  | `STUB` [mesh {Arch}](#rune-0063)           | stub        | A boundary-word; it shapes how one part may touch another.                                                                                                                              |
-| 0064  | [microservice](#rune-0064)                 | needs_sense | A partition word; a system is cut into independently deployed service bodies.                                                                                                           |
-| 0065  | [middleware](#rune-0065)                   | authored    | Cross-cutting logic placed in the path between request and handler.                                                                                                                     |
-| 0066  | [module {Arch}](#rune-0066)                | authored    | A package of related definitions meant to travel as one thing.                                                                                                                          |
-| 0067  | `STUB` [monolith](#rune-0067)              | stub        | A composition-word; it lets many smaller parts behave as one larger form.                                                                                                               |
-| 0068  | `STUB` [namespace {Arch}](#rune-0068)      | stub        | A boundary-word; it shapes how one part may touch another.                                                                                                                              |
-| 0069  | `STUB` [node {Arch}](#rune-0069)           | stub        | A composition-word; it lets many smaller parts behave as one larger form.                                                                                                               |
-| 0070  | `STUB` [observer](#rune-0070)              | stub        | A structure-word; it gives responsibility a place to live.                                                                                                                              |
-| 0071  | [orchestrator](#rune-0071)                 | authored    | A coordinator that sequences many services or tasks into one larger procedure.                                                                                                          |
-| 0072  | `STUB` [package {Arch}](#rune-0072)        | stub        | A structure-word; it gives responsibility a place to live.                                                                                                                              |
-| 0073  | `STUB` [pipeline {Arch}](#rune-0073)       | stub        | A procession word; work passes through ordered stages.                                                                                                                                  |
-| 0074  | `STUB` [platform](#rune-0074)              | stub        | A boundary-word; it shapes how one part may touch another.                                                                                                                              |
-| 0075  | [plugin](#rune-0075)                       | authored    | An extension point that lets capability be added without rewriting the host.                                                                                                            |
-| 0076  | `STUB` [port {Arch}](#rune-0076)           | stub        | A contact word; a defined point of communication or adaptation.                                                                                                                         |
-| 0077  | `STUB` [presenter](#rune-0077)             | stub        | A structure-word; it gives responsibility a place to live.                                                                                                                              |
-| 0078  | `STUB` [process manager](#rune-0078)       | stub        | A composition-word; it lets many smaller parts behave as one larger form.                                                                                                               |
-| 0079  | `STUB` [producer](#rune-0079)              | stub        | A structure-word; it gives responsibility a place to live.                                                                                                                              |
-| 0080  | `STUB` [projection](#rune-0080)            | stub        | A boundary-word; it shapes how one part may touch another.                                                                                                                              |
-| 0081  | `STUB` [protocol boundary](#rune-0081)     | stub        | A composition-word; it lets many smaller parts behave as one larger form.                                                                                                               |
-| 0082  | [proxy {Arch}](#rune-0082)                 | authored    | A stand-in that speaks or receives on behalf of another body.                                                                                                                           |
-| 0083  | `STUB` [queue {Arch}](#rune-0083)          | stub        | A boundary-word; it shapes how one part may touch another.                                                                                                                              |
-| 0084  | `STUB` [reactor](#rune-0084)               | stub        | A structure-word; it gives responsibility a place to live.                                                                                                                              |
-| 0085  | `STUB` [receiver](#rune-0085)              | stub        | A boundary-word; it shapes how one part may touch another.                                                                                                                              |
-| 0086  | `STUB` [registry](#rune-0086)              | stub        | A boundary-word; it shapes how one part may touch another.                                                                                                                              |
-| 0087  | `STUB` [repository {Arch}](#rune-0087)     | stub        | A custody word; an official place from which versions or entities are retrieved.                                                                                                        |
-| 0088  | `STUB` [resource boundary](#rune-0088)     | stub        | A structure-word; it gives responsibility a place to live.                                                                                                                              |
-| 0089  | `STUB` [router {Arch}](#rune-0089)         | stub        | A boundary-word; it shapes how one part may touch another.                                                                                                                              |
-| 0090  | [scheduler](#rune-0090)                    | needs_sense | A tempo word; it apportions time among contenders.                                                                                                                                      |
-| 0091  | `STUB` [seam](#rune-0091)                  | stub        | A composition-word; it lets many smaller parts behave as one larger form.                                                                                                               |
-| 0092  | [service](#rune-0092)                      | authored    | A stable capability exposed for repeated use by others.                                                                                                                                 |
-| 0093  | `STUB` [service mesh {Arch}](#rune-0093)   | stub        | A side-channel governance word for service-to-service traffic.                                                                                                                          |
-| 0094  | `STUB` [session boundary](#rune-0094)      | stub        | A structure-word; it gives responsibility a place to live.                                                                                                                              |
-| 0095  | `STUB` [shard {Arch}](#rune-0095)          | stub        | A splitting word; one logical body is divided across multiple partitions.                                                                                                               |
-| 0096  | `STUB` [shim](#rune-0096)                  | stub        | A boundary-word; it shapes how one part may touch another.                                                                                                                              |
-| 0097  | `STUB` [singleton](#rune-0097)             | stub        | An order-word; it constrains how complexity is arranged rather than merely accumulated.                                                                                                 |
-| 0098  | [source of truth](#rune-0098)              | authored    | The place other copies are supposed to agree with.                                                                                                                                      |
-| 0099  | `STUB` [stack {Arch}](#rune-0099)          | stub        | A layering word; order matters and the most recent thing is nearest the top.                                                                                                            |
-| 0100  | `STUB` [stage {Arch}](#rune-0100)          | stub        | A structure-word; it gives responsibility a place to live.                                                                                                                              |
-| 0101  | [state machine](#rune-0101)                | authored    | Behavior expressed as named states and legal transitions.                                                                                                                               |
-| 0102  | `STUB` [strategy](#rune-0102)              | stub        | An order-word; it constrains how complexity is arranged rather than merely accumulated.                                                                                                 |
-| 0103  | `STUB` [subsystem](#rune-0103)             | stub        | An order-word; it constrains how complexity is arranged rather than merely accumulated.                                                                                                 |
-| 0104  | `STUB` [surface](#rune-0104)               | stub        | A boundary-word; it shapes how one part may touch another.                                                                                                                              |
-| 0105  | `STUB` [system](#rune-0105)                | stub        | A boundary-word; it shapes how one part may touch another.                                                                                                                              |
-| 0106  | `STUB` [template method](#rune-0106)       | stub        | A boundary-word; it shapes how one part may touch another.                                                                                                                              |
-| 0107  | `STUB` [tree](#rune-0107)                  | stub        | A structure-word; it gives responsibility a place to live.                                                                                                                              |
-| 0108  | `STUB` [use case](#rune-0108)              | stub        | A boundary-word; it shapes how one part may touch another.                                                                                                                              |
-| 0109  | `STUB` [value object](#rune-0109)          | stub        | A structure-word; it gives responsibility a place to live.                                                                                                                              |
-| 0110  | [worker](#rune-0110)                       | needs_sense | A labor word; a designated body performs tasks delegated by some larger system.                                                                                                         |
-| 0111  | `STUB` [workflow](#rune-0111)              | stub        | An order-word; it constrains how complexity is arranged rather than merely accumulated.                                                                                                 |
-| 0112  | `STUB` [wrapper](#rune-0112)               | stub        | A boundary-word; it shapes how one part may touch another.                                                                                                                              |
+| Sigil | Term                                | Completion | Summary                                                                                                                                                                                                                       |
+| ----- | ----------------------------------- | ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 0001  | [abstraction](#rune-0001)           | authored   | A deliberate forgetting of detail so larger structure can be reasoned about without drowning in mechanism. Shadow: hiding the only failure that matters.                                                                      |
+| 0002  | [adapter](#rune-0002)               | authored   | A negotiated translator between unlike shapes. Use it when two systems must meet without infecting one another. Shadow: adapter jungles that preserve confusion rather than resolve it.                                       |
+| 0003  | [agent {Arch}](#rune-0003)          | authored   | `agent` in its Arch sense is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the agent obligation named before work proceeds.                   |
+| 0004  | [aggregate {Arch}](#rune-0004)      | authored   | `aggregate` in its Arch sense is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the aggregate obligation named before work proceeds.           |
+| 0005  | [anti-corruption layer](#rune-0005) | authored   | A protective seam that keeps one model from polluting another.                                                                                                                                                                |
+| 0006  | [API gateway](#rune-0006)           | authored   | A threshold that centralizes entry, policy, and routing at the edge of a service world. Shadow: a convenience chokepoint that quietly becomes a monolith.                                                                     |
+| 0007  | [architecture](#rune-0007)          | authored   | `architecture` is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the architecture obligation named before work proceeds.                       |
+| 0008  | [artifact boundary](#rune-0008)     | authored   | `artifact boundary` is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the artifact boundary obligation named before work proceeds.             |
+| 0009  | [assembler](#rune-0009)             | authored   | `assembler` is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the assembler obligation named before work proceeds.                             |
+| 0010  | [backbone](#rune-0010)              | authored   | `backbone` is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the backbone obligation named before work proceeds.                               |
+| 0011  | [backend](#rune-0011)               | authored   | `backend` is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the backend obligation named before work proceeds.                                 |
+| 0012  | [boundary](#rune-0012)              | authored   | The line that says where one responsibility ends and another begins. Shadow: porous edges that smear blame, ownership, and test scope.                                                                                        |
+| 0013  | [bounded context](#rune-0013)       | authored   | A protection against semantic bleed: the same word may not mean the same thing in every subsystem. Shadow: false unification through shared names.                                                                            |
+| 0014  | [bridge](#rune-0014)                | authored   | `bridge` is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the bridge obligation named before work proceeds.                                   |
+| 0015  | [broker {Arch}](#rune-0015)         | authored   | `broker` in its Arch sense is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the broker obligation named before work proceeds.                 |
+| 0016  | [builder](#rune-0016)               | authored   | `builder` is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the builder obligation named before work proceeds.                                 |
+| 0017  | [bus {Arch}](#rune-0017)            | authored   | `bus` in its Arch sense is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the bus obligation named before work proceeds.                       |
+| 0018  | [capability {Arch}](#rune-0018)     | authored   | `capability` in its Arch sense is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the capability obligation named before work proceeds.         |
+| 0019  | [channel](#rune-0019)               | authored   | `channel` is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the channel obligation named before work proceeds.                                 |
+| 0020  | [client {Arch}](#rune-0020)         | authored   | `client` in its Arch sense is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the client obligation named before work proceeds.                 |
+| 0021  | [cluster {Arch}](#rune-0021)        | authored   | `cluster` in its Arch sense is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the cluster obligation named before work proceeds.               |
+| 0022  | [command bus](#rune-0022)           | authored   | `command bus` is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the command bus obligation named before work proceeds.                         |
+| 0023  | [component {Arch}](#rune-0023)      | authored   | A bounded unit of responsibility inside a larger design.                                                                                                                                                                      |
+| 0024  | [composition](#rune-0024)           | authored   | `composition` is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the composition obligation named before work proceeds.                         |
+| 0025  | [connector](#rune-0025)             | authored   | `connector` is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the connector obligation named before work proceeds.                             |
+| 0026  | [container {Arch}](#rune-0026)      | authored   | `container` in its Arch sense is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the container obligation named before work proceeds.           |
+| 0027  | [control plane {Arch}](#rune-0027)  | authored   | `control plane` in its Arch sense is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the control plane obligation named before work proceeds.   |
+| 0028  | [coordinator](#rune-0028)           | authored   | `coordinator` is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the coordinator obligation named before work proceeds.                         |
+| 0029  | [core {Arch}](#rune-0029)           | authored   | `core` in its Arch sense is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the core obligation named before work proceeds.                     |
+| 0030  | [coupling](#rune-0030)              | authored   | The hidden tax paid when change in one place forces change elsewhere. Name it early if you want modularity to survive contact with reality.                                                                                   |
+| 0031  | [daemon {Arch}](#rune-0031)         | authored   | `daemon` in its Arch sense is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the daemon obligation named before work proceeds.                 |
+| 0032  | [data plane {Arch}](#rune-0032)     | authored   | `data plane` in its Arch sense is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the data plane obligation named before work proceeds.         |
+| 0033  | [decorator {Arch}](#rune-0033)      | authored   | `decorator` in its Arch sense is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the decorator obligation named before work proceeds.           |
+| 0034  | [dependency inversion](#rune-0034)  | authored   | Stable policy should not kneel before unstable detail. Shadow: concrete dependencies hard-wired into places that should remain portable.                                                                                      |
+| 0035  | [dispatcher](#rune-0035)            | authored   | `dispatcher` is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the dispatcher obligation named before work proceeds.                           |
+| 0036  | [domain model](#rune-0036)          | authored   | The conceptual map of the business world the software is trying to serve.                                                                                                                                                     |
+| 0037  | [edge service](#rune-0037)          | authored   | `edge service` is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the edge service obligation named before work proceeds.                       |
+| 0038  | [engine](#rune-0038)                | authored   | `engine` is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the engine obligation named before work proceeds.                                   |
+| 0039  | [entrypoint](#rune-0039)            | authored   | `entrypoint` is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the entrypoint obligation named before work proceeds.                           |
+| 0040  | [event bus](#rune-0040)             | authored   | `event bus` is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the event bus obligation named before work proceeds.                             |
+| 0041  | [event handler](#rune-0041)         | authored   | `event handler` is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the event handler obligation named before work proceeds.                     |
+| 0042  | [executor](#rune-0042)              | authored   | `executor` is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the executor obligation named before work proceeds.                               |
+| 0043  | [facade](#rune-0043)                | authored   | A simplified front door hiding a messier interior.                                                                                                                                                                            |
+| 0044  | [factory](#rune-0044)               | authored   | `factory` is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the factory obligation named before work proceeds.                                 |
+| 0045  | [feature module](#rune-0045)        | authored   | `feature module` is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the feature module obligation named before work proceeds.                   |
+| 0046  | [frontend](#rune-0046)              | authored   | `frontend` is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the frontend obligation named before work proceeds.                               |
+| 0047  | [gateway {Arch}](#rune-0047)        | authored   | `gateway` in its Arch sense is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the gateway obligation named before work proceeds.               |
+| 0048  | [graph](#rune-0048)                 | authored   | `graph` is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the graph obligation named before work proceeds.                                     |
+| 0049  | [handler](#rune-0049)               | authored   | `handler` is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the handler obligation named before work proceeds.                                 |
+| 0050  | [hierarchy {Arch}](#rune-0050)      | authored   | `hierarchy` in its Arch sense is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the hierarchy obligation named before work proceeds.           |
+| 0051  | [hook](#rune-0051)                  | authored   | `hook` is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the hook obligation named before work proceeds.                                       |
+| 0052  | [host](#rune-0052)                  | authored   | `host` is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the host obligation named before work proceeds.                                       |
+| 0053  | [hub](#rune-0053)                   | authored   | `hub` is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the hub obligation named before work proceeds.                                         |
+| 0054  | [implementation {Arch}](#rune-0054) | authored   | `implementation` in its Arch sense is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the implementation obligation named before work proceeds. |
+| 0055  | [interface {Arch}](#rune-0055)      | authored   | A disciplined seam that lets unlike bodies cooperate without swapping internal organs. Shadow: tight coupling and type bleed.                                                                                                 |
+| 0056  | [interpreter {Arch}](#rune-0056)    | authored   | `interpreter` in its Arch sense is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the interpreter obligation named before work proceeds.       |
+| 0057  | [kernel service](#rune-0057)        | authored   | `kernel service` is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the kernel service obligation named before work proceeds.                   |
+| 0058  | [layer](#rune-0058)                 | authored   | A stratum with a narrow job and limited allowed dependencies.                                                                                                                                                                 |
+| 0059  | [library](#rune-0059)               | authored   | `library` is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the library obligation named before work proceeds.                                 |
+| 0060  | [listener](#rune-0060)              | authored   | `listener` is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the listener obligation named before work proceeds.                               |
+| 0061  | [machine boundary](#rune-0061)      | authored   | `machine boundary` is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the machine boundary obligation named before work proceeds.               |
+| 0062  | [mediator](#rune-0062)              | authored   | `mediator` is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the mediator obligation named before work proceeds.                               |
+| 0063  | [mesh {Arch}](#rune-0063)           | authored   | `mesh` in its Arch sense is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the mesh obligation named before work proceeds.                     |
+| 0064  | [microservice](#rune-0064)          | authored   | `microservice` is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the microservice obligation named before work proceeds.                       |
+| 0065  | [middleware](#rune-0065)            | authored   | Cross-cutting logic placed in the path between request and handler.                                                                                                                                                           |
+| 0066  | [module {Arch}](#rune-0066)         | authored   | A package of related definitions meant to travel as one thing.                                                                                                                                                                |
+| 0067  | [monolith](#rune-0067)              | authored   | `monolith` is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the monolith obligation named before work proceeds.                               |
+| 0068  | [namespace {Arch}](#rune-0068)      | authored   | `namespace` in its Arch sense is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the namespace obligation named before work proceeds.           |
+| 0069  | [node {Arch}](#rune-0069)           | authored   | `node` in its Arch sense is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the node obligation named before work proceeds.                     |
+| 0070  | [observer](#rune-0070)              | authored   | `observer` is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the observer obligation named before work proceeds.                               |
+| 0071  | [orchestrator](#rune-0071)          | authored   | A coordinator that sequences many services or tasks into one larger procedure.                                                                                                                                                |
+| 0072  | [package {Arch}](#rune-0072)        | authored   | `package` in its Arch sense is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the package obligation named before work proceeds.               |
+| 0073  | [pipeline {Arch}](#rune-0073)       | authored   | `pipeline` in its Arch sense is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the pipeline obligation named before work proceeds.             |
+| 0074  | [platform](#rune-0074)              | authored   | `platform` is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the platform obligation named before work proceeds.                               |
+| 0075  | [plugin](#rune-0075)                | authored   | An extension point that lets capability be added without rewriting the host.                                                                                                                                                  |
+| 0076  | [port {Arch}](#rune-0076)           | authored   | `port` in its Arch sense is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the port obligation named before work proceeds.                     |
+| 0077  | [presenter](#rune-0077)             | authored   | `presenter` is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the presenter obligation named before work proceeds.                             |
+| 0078  | [process manager](#rune-0078)       | authored   | `process manager` is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the process manager obligation named before work proceeds.                 |
+| 0079  | [producer](#rune-0079)              | authored   | `producer` is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the producer obligation named before work proceeds.                               |
+| 0080  | [projection](#rune-0080)            | authored   | `projection` is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the projection obligation named before work proceeds.                           |
+| 0081  | [protocol boundary](#rune-0081)     | authored   | `protocol boundary` is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the protocol boundary obligation named before work proceeds.             |
+| 0082  | [proxy {Arch}](#rune-0082)          | authored   | A stand-in that speaks or receives on behalf of another body.                                                                                                                                                                 |
+| 0083  | [queue {Arch}](#rune-0083)          | authored   | `queue` in its Arch sense is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the queue obligation named before work proceeds.                   |
+| 0084  | [reactor](#rune-0084)               | authored   | `reactor` is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the reactor obligation named before work proceeds.                                 |
+| 0085  | [receiver](#rune-0085)              | authored   | `receiver` is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the receiver obligation named before work proceeds.                               |
+| 0086  | [registry](#rune-0086)              | authored   | `registry` is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the registry obligation named before work proceeds.                               |
+| 0087  | [repository {Arch}](#rune-0087)     | authored   | `repository` in its Arch sense is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the repository obligation named before work proceeds.         |
+| 0088  | [resource boundary](#rune-0088)     | authored   | `resource boundary` is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the resource boundary obligation named before work proceeds.             |
+| 0089  | [router {Arch}](#rune-0089)         | authored   | `router` in its Arch sense is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the router obligation named before work proceeds.                 |
+| 0090  | [scheduler](#rune-0090)             | authored   | `scheduler` is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the scheduler obligation named before work proceeds.                             |
+| 0091  | [seam](#rune-0091)                  | authored   | `seam` is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the seam obligation named before work proceeds.                                       |
+| 0092  | [service](#rune-0092)               | authored   | A stable capability exposed for repeated use by others.                                                                                                                                                                       |
+| 0093  | [service mesh {Arch}](#rune-0093)   | authored   | `service mesh` in its Arch sense is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the service mesh obligation named before work proceeds.     |
+| 0094  | [session boundary](#rune-0094)      | authored   | `session boundary` is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the session boundary obligation named before work proceeds.               |
+| 0095  | [shard {Arch}](#rune-0095)          | authored   | `shard` in its Arch sense is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the shard obligation named before work proceeds.                   |
+| 0096  | [shim](#rune-0096)                  | authored   | `shim` is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the shim obligation named before work proceeds.                                       |
+| 0097  | [singleton](#rune-0097)             | authored   | `singleton` is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the singleton obligation named before work proceeds.                             |
+| 0098  | [source of truth](#rune-0098)       | authored   | The place other copies are supposed to agree with.                                                                                                                                                                            |
+| 0099  | [stack {Arch}](#rune-0099)          | authored   | `stack` in its Arch sense is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the stack obligation named before work proceeds.                   |
+| 0100  | [stage {Arch}](#rune-0100)          | authored   | `stage` in its Arch sense is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the stage obligation named before work proceeds.                   |
+| 0101  | [state machine](#rune-0101)         | authored   | Behavior expressed as named states and legal transitions.                                                                                                                                                                     |
+| 0102  | [strategy](#rune-0102)              | authored   | `strategy` is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the strategy obligation named before work proceeds.                               |
+| 0103  | [subsystem](#rune-0103)             | authored   | `subsystem` is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the subsystem obligation named before work proceeds.                             |
+| 0104  | [surface](#rune-0104)               | authored   | `surface` is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the surface obligation named before work proceeds.                                 |
+| 0105  | [system](#rune-0105)                | authored   | `system` is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the system obligation named before work proceeds.                                   |
+| 0106  | [template method](#rune-0106)       | authored   | `template method` is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the template method obligation named before work proceeds.                 |
+| 0107  | [tree](#rune-0107)                  | authored   | `tree` is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the tree obligation named before work proceeds.                                       |
+| 0108  | [use case](#rune-0108)              | authored   | `use case` is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the use case obligation named before work proceeds.                               |
+| 0109  | [value object](#rune-0109)          | authored   | `value object` is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the value object obligation named before work proceeds.                       |
+| 0110  | [worker](#rune-0110)                | authored   | `worker` is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the worker obligation named before work proceeds.                                   |
+| 0111  | [workflow](#rune-0111)              | authored   | `workflow` is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the workflow obligation named before work proceeds.                               |
+| 0112  | [wrapper](#rune-0112)               | authored   | `wrapper` is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the wrapper obligation named before work proceeds.                                 |
 
 ## Entries
 
@@ -161,21 +159,21 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** An acting word; a named locus of initiative that may observe, decide, and invoke tools.
+**Force:** `agent` in its Arch sense is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the agent obligation named before work proceeds.
 
-**Shadow:** the boundary or abstraction can hide the failure that actually needs ownership.
+**Shadow:** misusing `agent` at rune 0003 in the Arch lane can let ownership can blur across layers; verify by requiring the caster to name the owning artifact and the caller-visible contract.
 
 ### [0004] aggregate {Arch} {#rune-0004}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** An order-word; it constrains how complexity is arranged rather than merely accumulated.
+**Force:** `aggregate` in its Arch sense is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the aggregate obligation named before work proceeds.
 
-**Shadow:** the boundary or abstraction can hide the failure that actually needs ownership.
+**Shadow:** misusing `aggregate` at rune 0004 in the Arch lane can let ownership can blur across layers; verify by requiring the caster to name the owning artifact and the caller-visible contract.
 
 ### [0005] anti-corruption layer {#rune-0005}
 
@@ -185,7 +183,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** A protective seam that keeps one model from polluting another.
 
-**Shadow:** the boundary or abstraction can hide the failure that actually needs ownership.
+**Shadow:** misusing `anti-corruption layer` at rune 0005 in the architecture lane can let ownership can blur across layers; verify by requiring the caster to name the owning artifact and the caller-visible contract.
 
 **Pocket gloss:** A protective seam that keeps one model from polluting another.
 
@@ -205,51 +203,51 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** needs_sense
+**Completion:** authored
 
-**Force:** A world-shaping word; it names the large order into which many smaller decisions must fit.
+**Force:** `architecture` is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the architecture obligation named before work proceeds.
 
-**Shadow:** the boundary or abstraction can hide the failure that actually needs ownership.
+**Shadow:** misusing `architecture` at rune 0007 in the architecture lane can let ownership can blur across layers; verify by requiring the caster to name the owning artifact and the caller-visible contract.
 
 ### [0008] artifact boundary {#rune-0008}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A composition-word; it lets many smaller parts behave as one larger form.
+**Force:** `artifact boundary` is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the artifact boundary obligation named before work proceeds.
 
-**Shadow:** the boundary or abstraction can hide the failure that actually needs ownership.
+**Shadow:** misusing `artifact boundary` at rune 0008 in the architecture lane can let ownership can blur across layers; verify by requiring the caster to name the owning artifact and the caller-visible contract.
 
 ### [0009] assembler {#rune-0009}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A composition-word; it lets many smaller parts behave as one larger form.
+**Force:** `assembler` is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the assembler obligation named before work proceeds.
 
-**Shadow:** the boundary or abstraction can hide the failure that actually needs ownership.
+**Shadow:** misusing `assembler` at rune 0009 in the architecture lane can let ownership can blur across layers; verify by requiring the caster to name the owning artifact and the caller-visible contract.
 
 ### [0010] backbone {#rune-0010}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A boundary-word; it shapes how one part may touch another.
+**Force:** `backbone` is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the backbone obligation named before work proceeds.
 
-**Shadow:** the boundary or abstraction can hide the failure that actually needs ownership.
+**Shadow:** misusing `backbone` at rune 0010 in the architecture lane can let ownership can blur across layers; verify by requiring the caster to name the owning artifact and the caller-visible contract.
 
 ### [0011] backend {#rune-0011}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A structure-word; it gives responsibility a place to live.
+**Force:** `backend` is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the backend obligation named before work proceeds.
 
-**Shadow:** the boundary or abstraction can hide the failure that actually needs ownership.
+**Shadow:** misusing `backend` at rune 0011 in the architecture lane can let ownership can blur across layers; verify by requiring the caster to name the owning artifact and the caller-visible contract.
 
 ### [0012] boundary {#rune-0012}
 
@@ -279,91 +277,91 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A boundary-word; it shapes how one part may touch another.
+**Force:** `bridge` is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the bridge obligation named before work proceeds.
 
-**Shadow:** the boundary or abstraction can hide the failure that actually needs ownership.
+**Shadow:** misusing `bridge` at rune 0014 in the architecture lane can let ownership can blur across layers; verify by requiring the caster to name the owning artifact and the caller-visible contract.
 
 ### [0015] broker {Arch} {#rune-0015}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A boundary-word; it shapes how one part may touch another.
+**Force:** `broker` in its Arch sense is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the broker obligation named before work proceeds.
 
-**Shadow:** the boundary or abstraction can hide the failure that actually needs ownership.
+**Shadow:** misusing `broker` at rune 0015 in the Arch lane can let ownership can blur across layers; verify by requiring the caster to name the owning artifact and the caller-visible contract.
 
 ### [0016] builder {#rune-0016}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** An order-word; it constrains how complexity is arranged rather than merely accumulated.
+**Force:** `builder` is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the builder obligation named before work proceeds.
 
-**Shadow:** the boundary or abstraction can hide the failure that actually needs ownership.
+**Shadow:** misusing `builder` at rune 0016 in the architecture lane can let ownership can blur across layers; verify by requiring the caster to name the owning artifact and the caller-visible contract.
 
 ### [0017] bus {Arch} {#rune-0017}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A composition-word; it lets many smaller parts behave as one larger form.
+**Force:** `bus` in its Arch sense is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the bus obligation named before work proceeds.
 
-**Shadow:** the boundary or abstraction can hide the failure that actually needs ownership.
+**Shadow:** misusing `bus` at rune 0017 in the Arch lane can let ownership can blur across layers; verify by requiring the caster to name the owning artifact and the caller-visible contract.
 
 ### [0018] capability {Arch} {#rune-0018}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A composition-word; it lets many smaller parts behave as one larger form.
+**Force:** `capability` in its Arch sense is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the capability obligation named before work proceeds.
 
-**Shadow:** the boundary or abstraction can hide the failure that actually needs ownership.
+**Shadow:** misusing `capability` at rune 0018 in the Arch lane can let ownership can blur across layers; verify by requiring the caster to name the owning artifact and the caller-visible contract.
 
 ### [0019] channel {#rune-0019}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A boundary-word; it shapes how one part may touch another.
+**Force:** `channel` is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the channel obligation named before work proceeds.
 
-**Shadow:** the boundary or abstraction can hide the failure that actually needs ownership.
+**Shadow:** misusing `channel` at rune 0019 in the architecture lane can let ownership can blur across layers; verify by requiring the caster to name the owning artifact and the caller-visible contract.
 
 ### [0020] client {Arch} {#rune-0020}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** An order-word; it constrains how complexity is arranged rather than merely accumulated.
+**Force:** `client` in its Arch sense is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the client obligation named before work proceeds.
 
-**Shadow:** the boundary or abstraction can hide the failure that actually needs ownership.
+**Shadow:** misusing `client` at rune 0020 in the Arch lane can let ownership can blur across layers; verify by requiring the caster to name the owning artifact and the caller-visible contract.
 
 ### [0021] cluster {Arch} {#rune-0021}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A many-body word; several machines are treated as one operational unit.
+**Force:** `cluster` in its Arch sense is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the cluster obligation named before work proceeds.
 
-**Shadow:** the boundary or abstraction can hide the failure that actually needs ownership.
+**Shadow:** misusing `cluster` at rune 0021 in the Arch lane can let ownership can blur across layers; verify by requiring the caster to name the owning artifact and the caller-visible contract.
 
 ### [0022] command bus {#rune-0022}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A boundary-word; it shapes how one part may touch another.
+**Force:** `command bus` is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the command bus obligation named before work proceeds.
 
-**Shadow:** the boundary or abstraction can hide the failure that actually needs ownership.
+**Shadow:** misusing `command bus` at rune 0022 in the architecture lane can let ownership can blur across layers; verify by requiring the caster to name the owning artifact and the caller-visible contract.
 
 ### [0023] component {Arch} {#rune-0023}
 
@@ -373,7 +371,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** A bounded unit of responsibility inside a larger design.
 
-**Shadow:** the boundary or abstraction can hide the failure that actually needs ownership.
+**Shadow:** misusing `component` at rune 0023 in the Arch lane can let ownership can blur across layers; verify by requiring the caster to name the owning artifact and the caller-visible contract.
 
 **Pocket gloss:** A bounded unit of responsibility inside a larger design.
 
@@ -381,61 +379,61 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A structure-word; it gives responsibility a place to live.
+**Force:** `composition` is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the composition obligation named before work proceeds.
 
-**Shadow:** the boundary or abstraction can hide the failure that actually needs ownership.
+**Shadow:** misusing `composition` at rune 0024 in the architecture lane can let ownership can blur across layers; verify by requiring the caster to name the owning artifact and the caller-visible contract.
 
 ### [0025] connector {#rune-0025}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** An order-word; it constrains how complexity is arranged rather than merely accumulated.
+**Force:** `connector` is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the connector obligation named before work proceeds.
 
-**Shadow:** the boundary or abstraction can hide the failure that actually needs ownership.
+**Shadow:** misusing `connector` at rune 0025 in the architecture lane can let ownership can blur across layers; verify by requiring the caster to name the owning artifact and the caller-visible contract.
 
 ### [0026] container {Arch} {#rune-0026}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** An order-word; it constrains how complexity is arranged rather than merely accumulated.
+**Force:** `container` in its Arch sense is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the container obligation named before work proceeds.
 
-**Shadow:** the boundary or abstraction can hide the failure that actually needs ownership.
+**Shadow:** misusing `container` at rune 0026 in the Arch lane can let ownership can blur across layers; verify by requiring the caster to name the owning artifact and the caller-visible contract.
 
 ### [0027] control plane {Arch} {#rune-0027}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A boundary-word; it shapes how one part may touch another.
+**Force:** `control plane` in its Arch sense is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the control plane obligation named before work proceeds.
 
-**Shadow:** the boundary or abstraction can hide the failure that actually needs ownership.
+**Shadow:** misusing `control plane` at rune 0027 in the Arch lane can let ownership can blur across layers; verify by requiring the caster to name the owning artifact and the caller-visible contract.
 
 ### [0028] coordinator {#rune-0028}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A structure-word; it gives responsibility a place to live.
+**Force:** `coordinator` is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the coordinator obligation named before work proceeds.
 
-**Shadow:** the boundary or abstraction can hide the failure that actually needs ownership.
+**Shadow:** misusing `coordinator` at rune 0028 in the architecture lane can let ownership can blur across layers; verify by requiring the caster to name the owning artifact and the caller-visible contract.
 
 ### [0029] core {Arch} {#rune-0029}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A boundary-word; it shapes how one part may touch another.
+**Force:** `core` in its Arch sense is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the core obligation named before work proceeds.
 
-**Shadow:** the boundary or abstraction can hide the failure that actually needs ownership.
+**Shadow:** misusing `core` at rune 0029 in the Arch lane can let ownership can blur across layers; verify by requiring the caster to name the owning artifact and the caller-visible contract.
 
 ### [0030] coupling {#rune-0030}
 
@@ -453,31 +451,31 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A structure-word; it gives responsibility a place to live.
+**Force:** `daemon` in its Arch sense is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the daemon obligation named before work proceeds.
 
-**Shadow:** the boundary or abstraction can hide the failure that actually needs ownership.
+**Shadow:** misusing `daemon` at rune 0031 in the Arch lane can let ownership can blur across layers; verify by requiring the caster to name the owning artifact and the caller-visible contract.
 
 ### [0032] data plane {Arch} {#rune-0032}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A composition-word; it lets many smaller parts behave as one larger form.
+**Force:** `data plane` in its Arch sense is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the data plane obligation named before work proceeds.
 
-**Shadow:** the boundary or abstraction can hide the failure that actually needs ownership.
+**Shadow:** misusing `data plane` at rune 0032 in the Arch lane can let ownership can blur across layers; verify by requiring the caster to name the owning artifact and the caller-visible contract.
 
 ### [0033] decorator {Arch} {#rune-0033}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** An order-word; it constrains how complexity is arranged rather than merely accumulated.
+**Force:** `decorator` in its Arch sense is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the decorator obligation named before work proceeds.
 
-**Shadow:** the boundary or abstraction can hide the failure that actually needs ownership.
+**Shadow:** misusing `decorator` at rune 0033 in the Arch lane can let ownership can blur across layers; verify by requiring the caster to name the owning artifact and the caller-visible contract.
 
 ### [0034] dependency inversion {#rune-0034}
 
@@ -495,11 +493,11 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** An order-word; it constrains how complexity is arranged rather than merely accumulated.
+**Force:** `dispatcher` is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the dispatcher obligation named before work proceeds.
 
-**Shadow:** the boundary or abstraction can hide the failure that actually needs ownership.
+**Shadow:** misusing `dispatcher` at rune 0035 in the architecture lane can let ownership can blur across layers; verify by requiring the caster to name the owning artifact and the caller-visible contract.
 
 ### [0036] domain model {#rune-0036}
 
@@ -509,7 +507,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** The conceptual map of the business world the software is trying to serve.
 
-**Shadow:** the boundary or abstraction can hide the failure that actually needs ownership.
+**Shadow:** misusing `domain model` at rune 0036 in the architecture lane can let ownership can blur across layers; verify by requiring the caster to name the owning artifact and the caller-visible contract.
 
 **Pocket gloss:** The conceptual map of the business world the software is trying to serve.
 
@@ -517,61 +515,61 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A composition-word; it lets many smaller parts behave as one larger form.
+**Force:** `edge service` is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the edge service obligation named before work proceeds.
 
-**Shadow:** the boundary or abstraction can hide the failure that actually needs ownership.
+**Shadow:** misusing `edge service` at rune 0037 in the architecture lane can let ownership can blur across layers; verify by requiring the caster to name the owning artifact and the caller-visible contract.
 
 ### [0038] engine {#rune-0038}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A composition-word; it lets many smaller parts behave as one larger form.
+**Force:** `engine` is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the engine obligation named before work proceeds.
 
-**Shadow:** the boundary or abstraction can hide the failure that actually needs ownership.
+**Shadow:** misusing `engine` at rune 0038 in the architecture lane can let ownership can blur across layers; verify by requiring the caster to name the owning artifact and the caller-visible contract.
 
 ### [0039] entrypoint {#rune-0039}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A structure-word; it gives responsibility a place to live.
+**Force:** `entrypoint` is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the entrypoint obligation named before work proceeds.
 
-**Shadow:** the boundary or abstraction can hide the failure that actually needs ownership.
+**Shadow:** misusing `entrypoint` at rune 0039 in the architecture lane can let ownership can blur across layers; verify by requiring the caster to name the owning artifact and the caller-visible contract.
 
 ### [0040] event bus {#rune-0040}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A structure-word; it gives responsibility a place to live.
+**Force:** `event bus` is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the event bus obligation named before work proceeds.
 
-**Shadow:** the boundary or abstraction can hide the failure that actually needs ownership.
+**Shadow:** misusing `event bus` at rune 0040 in the architecture lane can let ownership can blur across layers; verify by requiring the caster to name the owning artifact and the caller-visible contract.
 
 ### [0041] event handler {#rune-0041}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A structure-word; it gives responsibility a place to live.
+**Force:** `event handler` is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the event handler obligation named before work proceeds.
 
-**Shadow:** the boundary or abstraction can hide the failure that actually needs ownership.
+**Shadow:** misusing `event handler` at rune 0041 in the architecture lane can let ownership can blur across layers; verify by requiring the caster to name the owning artifact and the caller-visible contract.
 
 ### [0042] executor {#rune-0042}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** An order-word; it constrains how complexity is arranged rather than merely accumulated.
+**Force:** `executor` is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the executor obligation named before work proceeds.
 
-**Shadow:** the boundary or abstraction can hide the failure that actually needs ownership.
+**Shadow:** misusing `executor` at rune 0042 in the architecture lane can let ownership can blur across layers; verify by requiring the caster to name the owning artifact and the caller-visible contract.
 
 ### [0043] facade {#rune-0043}
 
@@ -581,7 +579,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** A simplified front door hiding a messier interior.
 
-**Shadow:** the boundary or abstraction can hide the failure that actually needs ownership.
+**Shadow:** misusing `facade` at rune 0043 in the architecture lane can let ownership can blur across layers; verify by requiring the caster to name the owning artifact and the caller-visible contract.
 
 **Pocket gloss:** A simplified front door hiding a messier interior.
 
@@ -589,111 +587,111 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A structure-word; it gives responsibility a place to live.
+**Force:** `factory` is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the factory obligation named before work proceeds.
 
-**Shadow:** the boundary or abstraction can hide the failure that actually needs ownership.
+**Shadow:** misusing `factory` at rune 0044 in the architecture lane can let ownership can blur across layers; verify by requiring the caster to name the owning artifact and the caller-visible contract.
 
 ### [0045] feature module {#rune-0045}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A composition-word; it lets many smaller parts behave as one larger form.
+**Force:** `feature module` is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the feature module obligation named before work proceeds.
 
-**Shadow:** the boundary or abstraction can hide the failure that actually needs ownership.
+**Shadow:** misusing `feature module` at rune 0045 in the architecture lane can let ownership can blur across layers; verify by requiring the caster to name the owning artifact and the caller-visible contract.
 
 ### [0046] frontend {#rune-0046}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A structure-word; it gives responsibility a place to live.
+**Force:** `frontend` is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the frontend obligation named before work proceeds.
 
-**Shadow:** the boundary or abstraction can hide the failure that actually needs ownership.
+**Shadow:** misusing `frontend` at rune 0046 in the architecture lane can let ownership can blur across layers; verify by requiring the caster to name the owning artifact and the caller-visible contract.
 
 ### [0047] gateway {Arch} {#rune-0047}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A composition-word; it lets many smaller parts behave as one larger form.
+**Force:** `gateway` in its Arch sense is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the gateway obligation named before work proceeds.
 
-**Shadow:** the boundary or abstraction can hide the failure that actually needs ownership.
+**Shadow:** misusing `gateway` at rune 0047 in the Arch lane can let ownership can blur across layers; verify by requiring the caster to name the owning artifact and the caller-visible contract.
 
 ### [0048] graph {#rune-0048}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A composition-word; it lets many smaller parts behave as one larger form.
+**Force:** `graph` is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the graph obligation named before work proceeds.
 
-**Shadow:** the boundary or abstraction can hide the failure that actually needs ownership.
+**Shadow:** misusing `graph` at rune 0048 in the architecture lane can let ownership can blur across layers; verify by requiring the caster to name the owning artifact and the caller-visible contract.
 
 ### [0049] handler {#rune-0049}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A composition-word; it lets many smaller parts behave as one larger form.
+**Force:** `handler` is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the handler obligation named before work proceeds.
 
-**Shadow:** the boundary or abstraction can hide the failure that actually needs ownership.
+**Shadow:** misusing `handler` at rune 0049 in the architecture lane can let ownership can blur across layers; verify by requiring the caster to name the owning artifact and the caller-visible contract.
 
 ### [0050] hierarchy {Arch} {#rune-0050}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** An order-word; it constrains how complexity is arranged rather than merely accumulated.
+**Force:** `hierarchy` in its Arch sense is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the hierarchy obligation named before work proceeds.
 
-**Shadow:** the boundary or abstraction can hide the failure that actually needs ownership.
+**Shadow:** misusing `hierarchy` at rune 0050 in the Arch lane can let ownership can blur across layers; verify by requiring the caster to name the owning artifact and the caller-visible contract.
 
 ### [0051] hook {#rune-0051}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A boundary-word; it shapes how one part may touch another.
+**Force:** `hook` is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the hook obligation named before work proceeds.
 
-**Shadow:** the boundary or abstraction can hide the failure that actually needs ownership.
+**Shadow:** misusing `hook` at rune 0051 in the architecture lane can let ownership can blur across layers; verify by requiring the caster to name the owning artifact and the caller-visible contract.
 
 ### [0052] host {#rune-0052}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A composition-word; it lets many smaller parts behave as one larger form.
+**Force:** `host` is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the host obligation named before work proceeds.
 
-**Shadow:** the boundary or abstraction can hide the failure that actually needs ownership.
+**Shadow:** misusing `host` at rune 0052 in the architecture lane can let ownership can blur across layers; verify by requiring the caster to name the owning artifact and the caller-visible contract.
 
 ### [0053] hub {#rune-0053}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** An order-word; it constrains how complexity is arranged rather than merely accumulated.
+**Force:** `hub` is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the hub obligation named before work proceeds.
 
-**Shadow:** the boundary or abstraction can hide the failure that actually needs ownership.
+**Shadow:** misusing `hub` at rune 0053 in the architecture lane can let ownership can blur across layers; verify by requiring the caster to name the owning artifact and the caller-visible contract.
 
 ### [0054] implementation {Arch} {#rune-0054}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A composition-word; it lets many smaller parts behave as one larger form.
+**Force:** `implementation` in its Arch sense is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the implementation obligation named before work proceeds.
 
-**Shadow:** the boundary or abstraction can hide the failure that actually needs ownership.
+**Shadow:** misusing `implementation` at rune 0054 in the Arch lane can let ownership can blur across layers; verify by requiring the caster to name the owning artifact and the caller-visible contract.
 
 ### [0055] interface {Arch} {#rune-0055}
 
@@ -711,21 +709,21 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A structure-word; it gives responsibility a place to live.
+**Force:** `interpreter` in its Arch sense is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the interpreter obligation named before work proceeds.
 
-**Shadow:** the boundary or abstraction can hide the failure that actually needs ownership.
+**Shadow:** misusing `interpreter` at rune 0056 in the Arch lane can let ownership can blur across layers; verify by requiring the caster to name the owning artifact and the caller-visible contract.
 
 ### [0057] kernel service {#rune-0057}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A composition-word; it lets many smaller parts behave as one larger form.
+**Force:** `kernel service` is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the kernel service obligation named before work proceeds.
 
-**Shadow:** the boundary or abstraction can hide the failure that actually needs ownership.
+**Shadow:** misusing `kernel service` at rune 0057 in the architecture lane can let ownership can blur across layers; verify by requiring the caster to name the owning artifact and the caller-visible contract.
 
 ### [0058] layer {#rune-0058}
 
@@ -735,7 +733,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** A stratum with a narrow job and limited allowed dependencies.
 
-**Shadow:** the boundary or abstraction can hide the failure that actually needs ownership.
+**Shadow:** misusing `layer` at rune 0058 in the architecture lane can let ownership can blur across layers; verify by requiring the caster to name the owning artifact and the caller-visible contract.
 
 **Pocket gloss:** A stratum with a narrow job and limited allowed dependencies.
 
@@ -743,61 +741,61 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A boundary-word; it shapes how one part may touch another.
+**Force:** `library` is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the library obligation named before work proceeds.
 
-**Shadow:** the boundary or abstraction can hide the failure that actually needs ownership.
+**Shadow:** misusing `library` at rune 0059 in the architecture lane can let ownership can blur across layers; verify by requiring the caster to name the owning artifact and the caller-visible contract.
 
 ### [0060] listener {#rune-0060}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A composition-word; it lets many smaller parts behave as one larger form.
+**Force:** `listener` is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the listener obligation named before work proceeds.
 
-**Shadow:** the boundary or abstraction can hide the failure that actually needs ownership.
+**Shadow:** misusing `listener` at rune 0060 in the architecture lane can let ownership can blur across layers; verify by requiring the caster to name the owning artifact and the caller-visible contract.
 
 ### [0061] machine boundary {#rune-0061}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A boundary-word; it shapes how one part may touch another.
+**Force:** `machine boundary` is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the machine boundary obligation named before work proceeds.
 
-**Shadow:** the boundary or abstraction can hide the failure that actually needs ownership.
+**Shadow:** misusing `machine boundary` at rune 0061 in the architecture lane can let ownership can blur across layers; verify by requiring the caster to name the owning artifact and the caller-visible contract.
 
 ### [0062] mediator {#rune-0062}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A boundary-word; it shapes how one part may touch another.
+**Force:** `mediator` is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the mediator obligation named before work proceeds.
 
-**Shadow:** the boundary or abstraction can hide the failure that actually needs ownership.
+**Shadow:** misusing `mediator` at rune 0062 in the architecture lane can let ownership can blur across layers; verify by requiring the caster to name the owning artifact and the caller-visible contract.
 
 ### [0063] mesh {Arch} {#rune-0063}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A boundary-word; it shapes how one part may touch another.
+**Force:** `mesh` in its Arch sense is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the mesh obligation named before work proceeds.
 
-**Shadow:** the boundary or abstraction can hide the failure that actually needs ownership.
+**Shadow:** misusing `mesh` at rune 0063 in the Arch lane can let ownership can blur across layers; verify by requiring the caster to name the owning artifact and the caller-visible contract.
 
 ### [0064] microservice {#rune-0064}
 
 **Status:** canonical
 
-**Completion:** needs_sense
+**Completion:** authored
 
-**Force:** A partition word; a system is cut into independently deployed service bodies.
+**Force:** `microservice` is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the microservice obligation named before work proceeds.
 
-**Shadow:** the boundary or abstraction can hide the failure that actually needs ownership.
+**Shadow:** misusing `microservice` at rune 0064 in the architecture lane can let ownership can blur across layers; verify by requiring the caster to name the owning artifact and the caller-visible contract.
 
 ### [0065] middleware {#rune-0065}
 
@@ -807,7 +805,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** Cross-cutting logic placed in the path between request and handler.
 
-**Shadow:** the boundary or abstraction can hide the failure that actually needs ownership.
+**Shadow:** misusing `middleware` at rune 0065 in the architecture lane can let ownership can blur across layers; verify by requiring the caster to name the owning artifact and the caller-visible contract.
 
 **Pocket gloss:** Cross-cutting logic placed in the path between request and handler.
 
@@ -819,7 +817,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** A package of related definitions meant to travel as one thing.
 
-**Shadow:** the boundary or abstraction can hide the failure that actually needs ownership.
+**Shadow:** misusing `module` at rune 0066 in the Arch lane can let ownership can blur across layers; verify by requiring the caster to name the owning artifact and the caller-visible contract.
 
 **Pocket gloss:** A package of related definitions meant to travel as one thing.
 
@@ -827,41 +825,41 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A composition-word; it lets many smaller parts behave as one larger form.
+**Force:** `monolith` is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the monolith obligation named before work proceeds.
 
-**Shadow:** the boundary or abstraction can hide the failure that actually needs ownership.
+**Shadow:** misusing `monolith` at rune 0067 in the architecture lane can let ownership can blur across layers; verify by requiring the caster to name the owning artifact and the caller-visible contract.
 
 ### [0068] namespace {Arch} {#rune-0068}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A boundary-word; it shapes how one part may touch another.
+**Force:** `namespace` in its Arch sense is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the namespace obligation named before work proceeds.
 
-**Shadow:** the boundary or abstraction can hide the failure that actually needs ownership.
+**Shadow:** misusing `namespace` at rune 0068 in the Arch lane can let ownership can blur across layers; verify by requiring the caster to name the owning artifact and the caller-visible contract.
 
 ### [0069] node {Arch} {#rune-0069}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A composition-word; it lets many smaller parts behave as one larger form.
+**Force:** `node` in its Arch sense is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the node obligation named before work proceeds.
 
-**Shadow:** the boundary or abstraction can hide the failure that actually needs ownership.
+**Shadow:** misusing `node` at rune 0069 in the Arch lane can let ownership can blur across layers; verify by requiring the caster to name the owning artifact and the caller-visible contract.
 
 ### [0070] observer {#rune-0070}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A structure-word; it gives responsibility a place to live.
+**Force:** `observer` is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the observer obligation named before work proceeds.
 
-**Shadow:** the boundary or abstraction can hide the failure that actually needs ownership.
+**Shadow:** misusing `observer` at rune 0070 in the architecture lane can let ownership can blur across layers; verify by requiring the caster to name the owning artifact and the caller-visible contract.
 
 ### [0071] orchestrator {#rune-0071}
 
@@ -871,7 +869,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** A coordinator that sequences many services or tasks into one larger procedure.
 
-**Shadow:** the boundary or abstraction can hide the failure that actually needs ownership.
+**Shadow:** misusing `orchestrator` at rune 0071 in the architecture lane can let ownership can blur across layers; verify by requiring the caster to name the owning artifact and the caller-visible contract.
 
 **Pocket gloss:** A coordinator that sequences many services or tasks into one larger procedure.
 
@@ -879,31 +877,31 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A structure-word; it gives responsibility a place to live.
+**Force:** `package` in its Arch sense is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the package obligation named before work proceeds.
 
-**Shadow:** the boundary or abstraction can hide the failure that actually needs ownership.
+**Shadow:** misusing `package` at rune 0072 in the Arch lane can let ownership can blur across layers; verify by requiring the caster to name the owning artifact and the caller-visible contract.
 
 ### [0073] pipeline {Arch} {#rune-0073}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A procession word; work passes through ordered stages.
+**Force:** `pipeline` in its Arch sense is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the pipeline obligation named before work proceeds.
 
-**Shadow:** the boundary or abstraction can hide the failure that actually needs ownership.
+**Shadow:** misusing `pipeline` at rune 0073 in the Arch lane can let ownership can blur across layers; verify by requiring the caster to name the owning artifact and the caller-visible contract.
 
 ### [0074] platform {#rune-0074}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A boundary-word; it shapes how one part may touch another.
+**Force:** `platform` is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the platform obligation named before work proceeds.
 
-**Shadow:** the boundary or abstraction can hide the failure that actually needs ownership.
+**Shadow:** misusing `platform` at rune 0074 in the architecture lane can let ownership can blur across layers; verify by requiring the caster to name the owning artifact and the caller-visible contract.
 
 ### [0075] plugin {#rune-0075}
 
@@ -913,7 +911,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** An extension point that lets capability be added without rewriting the host.
 
-**Shadow:** the boundary or abstraction can hide the failure that actually needs ownership.
+**Shadow:** misusing `plugin` at rune 0075 in the architecture lane can let ownership can blur across layers; verify by requiring the caster to name the owning artifact and the caller-visible contract.
 
 **Pocket gloss:** An extension point that lets capability be added without rewriting the host.
 
@@ -921,61 +919,61 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A contact word; a defined point of communication or adaptation.
+**Force:** `port` in its Arch sense is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the port obligation named before work proceeds.
 
-**Shadow:** the boundary or abstraction can hide the failure that actually needs ownership.
+**Shadow:** misusing `port` at rune 0076 in the Arch lane can let ownership can blur across layers; verify by requiring the caster to name the owning artifact and the caller-visible contract.
 
 ### [0077] presenter {#rune-0077}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A structure-word; it gives responsibility a place to live.
+**Force:** `presenter` is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the presenter obligation named before work proceeds.
 
-**Shadow:** the boundary or abstraction can hide the failure that actually needs ownership.
+**Shadow:** misusing `presenter` at rune 0077 in the architecture lane can let ownership can blur across layers; verify by requiring the caster to name the owning artifact and the caller-visible contract.
 
 ### [0078] process manager {#rune-0078}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A composition-word; it lets many smaller parts behave as one larger form.
+**Force:** `process manager` is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the process manager obligation named before work proceeds.
 
-**Shadow:** the boundary or abstraction can hide the failure that actually needs ownership.
+**Shadow:** misusing `process manager` at rune 0078 in the architecture lane can let ownership can blur across layers; verify by requiring the caster to name the owning artifact and the caller-visible contract.
 
 ### [0079] producer {#rune-0079}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A structure-word; it gives responsibility a place to live.
+**Force:** `producer` is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the producer obligation named before work proceeds.
 
-**Shadow:** the boundary or abstraction can hide the failure that actually needs ownership.
+**Shadow:** misusing `producer` at rune 0079 in the architecture lane can let ownership can blur across layers; verify by requiring the caster to name the owning artifact and the caller-visible contract.
 
 ### [0080] projection {#rune-0080}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A boundary-word; it shapes how one part may touch another.
+**Force:** `projection` is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the projection obligation named before work proceeds.
 
-**Shadow:** the boundary or abstraction can hide the failure that actually needs ownership.
+**Shadow:** misusing `projection` at rune 0080 in the architecture lane can let ownership can blur across layers; verify by requiring the caster to name the owning artifact and the caller-visible contract.
 
 ### [0081] protocol boundary {#rune-0081}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A composition-word; it lets many smaller parts behave as one larger form.
+**Force:** `protocol boundary` is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the protocol boundary obligation named before work proceeds.
 
-**Shadow:** the boundary or abstraction can hide the failure that actually needs ownership.
+**Shadow:** misusing `protocol boundary` at rune 0081 in the architecture lane can let ownership can blur across layers; verify by requiring the caster to name the owning artifact and the caller-visible contract.
 
 ### [0082] proxy {Arch} {#rune-0082}
 
@@ -985,7 +983,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** A stand-in that speaks or receives on behalf of another body.
 
-**Shadow:** the boundary or abstraction can hide the failure that actually needs ownership.
+**Shadow:** misusing `proxy` at rune 0082 in the Arch lane can let ownership can blur across layers; verify by requiring the caster to name the owning artifact and the caller-visible contract.
 
 **Pocket gloss:** A stand-in that speaks or receives on behalf of another body.
 
@@ -993,91 +991,91 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A boundary-word; it shapes how one part may touch another.
+**Force:** `queue` in its Arch sense is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the queue obligation named before work proceeds.
 
-**Shadow:** the boundary or abstraction can hide the failure that actually needs ownership.
+**Shadow:** misusing `queue` at rune 0083 in the Arch lane can let ownership can blur across layers; verify by requiring the caster to name the owning artifact and the caller-visible contract.
 
 ### [0084] reactor {#rune-0084}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A structure-word; it gives responsibility a place to live.
+**Force:** `reactor` is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the reactor obligation named before work proceeds.
 
-**Shadow:** the boundary or abstraction can hide the failure that actually needs ownership.
+**Shadow:** misusing `reactor` at rune 0084 in the architecture lane can let ownership can blur across layers; verify by requiring the caster to name the owning artifact and the caller-visible contract.
 
 ### [0085] receiver {#rune-0085}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A boundary-word; it shapes how one part may touch another.
+**Force:** `receiver` is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the receiver obligation named before work proceeds.
 
-**Shadow:** the boundary or abstraction can hide the failure that actually needs ownership.
+**Shadow:** misusing `receiver` at rune 0085 in the architecture lane can let ownership can blur across layers; verify by requiring the caster to name the owning artifact and the caller-visible contract.
 
 ### [0086] registry {#rune-0086}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A boundary-word; it shapes how one part may touch another.
+**Force:** `registry` is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the registry obligation named before work proceeds.
 
-**Shadow:** the boundary or abstraction can hide the failure that actually needs ownership.
+**Shadow:** misusing `registry` at rune 0086 in the architecture lane can let ownership can blur across layers; verify by requiring the caster to name the owning artifact and the caller-visible contract.
 
 ### [0087] repository {Arch} {#rune-0087}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A custody word; an official place from which versions or entities are retrieved.
+**Force:** `repository` in its Arch sense is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the repository obligation named before work proceeds.
 
-**Shadow:** the boundary or abstraction can hide the failure that actually needs ownership.
+**Shadow:** misusing `repository` at rune 0087 in the Arch lane can let ownership can blur across layers; verify by requiring the caster to name the owning artifact and the caller-visible contract.
 
 ### [0088] resource boundary {#rune-0088}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A structure-word; it gives responsibility a place to live.
+**Force:** `resource boundary` is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the resource boundary obligation named before work proceeds.
 
-**Shadow:** the boundary or abstraction can hide the failure that actually needs ownership.
+**Shadow:** misusing `resource boundary` at rune 0088 in the architecture lane can let ownership can blur across layers; verify by requiring the caster to name the owning artifact and the caller-visible contract.
 
 ### [0089] router {Arch} {#rune-0089}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A boundary-word; it shapes how one part may touch another.
+**Force:** `router` in its Arch sense is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the router obligation named before work proceeds.
 
-**Shadow:** the boundary or abstraction can hide the failure that actually needs ownership.
+**Shadow:** misusing `router` at rune 0089 in the Arch lane can let ownership can blur across layers; verify by requiring the caster to name the owning artifact and the caller-visible contract.
 
 ### [0090] scheduler {#rune-0090}
 
 **Status:** canonical
 
-**Completion:** needs_sense
+**Completion:** authored
 
-**Force:** A tempo word; it apportions time among contenders.
+**Force:** `scheduler` is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the scheduler obligation named before work proceeds.
 
-**Shadow:** the boundary or abstraction can hide the failure that actually needs ownership.
+**Shadow:** misusing `scheduler` at rune 0090 in the architecture lane can let ownership can blur across layers; verify by requiring the caster to name the owning artifact and the caller-visible contract.
 
 ### [0091] seam {#rune-0091}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A composition-word; it lets many smaller parts behave as one larger form.
+**Force:** `seam` is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the seam obligation named before work proceeds.
 
-**Shadow:** the boundary or abstraction can hide the failure that actually needs ownership.
+**Shadow:** misusing `seam` at rune 0091 in the architecture lane can let ownership can blur across layers; verify by requiring the caster to name the owning artifact and the caller-visible contract.
 
 ### [0092] service {#rune-0092}
 
@@ -1087,7 +1085,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** A stable capability exposed for repeated use by others.
 
-**Shadow:** the boundary or abstraction can hide the failure that actually needs ownership.
+**Shadow:** misusing `service` at rune 0092 in the architecture lane can let ownership can blur across layers; verify by requiring the caster to name the owning artifact and the caller-visible contract.
 
 **Pocket gloss:** A stable capability exposed for repeated use by others.
 
@@ -1095,51 +1093,51 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A side-channel governance word for service-to-service traffic.
+**Force:** `service mesh` in its Arch sense is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the service mesh obligation named before work proceeds.
 
-**Shadow:** the boundary or abstraction can hide the failure that actually needs ownership.
+**Shadow:** misusing `service mesh` at rune 0093 in the Arch lane can let ownership can blur across layers; verify by requiring the caster to name the owning artifact and the caller-visible contract.
 
 ### [0094] session boundary {#rune-0094}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A structure-word; it gives responsibility a place to live.
+**Force:** `session boundary` is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the session boundary obligation named before work proceeds.
 
-**Shadow:** the boundary or abstraction can hide the failure that actually needs ownership.
+**Shadow:** misusing `session boundary` at rune 0094 in the architecture lane can let ownership can blur across layers; verify by requiring the caster to name the owning artifact and the caller-visible contract.
 
 ### [0095] shard {Arch} {#rune-0095}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A splitting word; one logical body is divided across multiple partitions.
+**Force:** `shard` in its Arch sense is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the shard obligation named before work proceeds.
 
-**Shadow:** the boundary or abstraction can hide the failure that actually needs ownership.
+**Shadow:** misusing `shard` at rune 0095 in the Arch lane can let ownership can blur across layers; verify by requiring the caster to name the owning artifact and the caller-visible contract.
 
 ### [0096] shim {#rune-0096}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A boundary-word; it shapes how one part may touch another.
+**Force:** `shim` is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the shim obligation named before work proceeds.
 
-**Shadow:** the boundary or abstraction can hide the failure that actually needs ownership.
+**Shadow:** misusing `shim` at rune 0096 in the architecture lane can let ownership can blur across layers; verify by requiring the caster to name the owning artifact and the caller-visible contract.
 
 ### [0097] singleton {#rune-0097}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** An order-word; it constrains how complexity is arranged rather than merely accumulated.
+**Force:** `singleton` is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the singleton obligation named before work proceeds.
 
-**Shadow:** the boundary or abstraction can hide the failure that actually needs ownership.
+**Shadow:** misusing `singleton` at rune 0097 in the architecture lane can let ownership can blur across layers; verify by requiring the caster to name the owning artifact and the caller-visible contract.
 
 ### [0098] source of truth {#rune-0098}
 
@@ -1149,7 +1147,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** The place other copies are supposed to agree with.
 
-**Shadow:** the boundary or abstraction can hide the failure that actually needs ownership.
+**Shadow:** misusing `source of truth` at rune 0098 in the architecture lane can let ownership can blur across layers; verify by requiring the caster to name the owning artifact and the caller-visible contract.
 
 **Pocket gloss:** The place other copies are supposed to agree with.
 
@@ -1157,21 +1155,21 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A layering word; order matters and the most recent thing is nearest the top.
+**Force:** `stack` in its Arch sense is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the stack obligation named before work proceeds.
 
-**Shadow:** the boundary or abstraction can hide the failure that actually needs ownership.
+**Shadow:** misusing `stack` at rune 0099 in the Arch lane can let ownership can blur across layers; verify by requiring the caster to name the owning artifact and the caller-visible contract.
 
 ### [0100] stage {Arch} {#rune-0100}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A structure-word; it gives responsibility a place to live.
+**Force:** `stage` in its Arch sense is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the stage obligation named before work proceeds.
 
-**Shadow:** the boundary or abstraction can hide the failure that actually needs ownership.
+**Shadow:** misusing `stage` at rune 0100 in the Arch lane can let ownership can blur across layers; verify by requiring the caster to name the owning artifact and the caller-visible contract.
 
 ### [0101] state machine {#rune-0101}
 
@@ -1181,7 +1179,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** Behavior expressed as named states and legal transitions.
 
-**Shadow:** the boundary or abstraction can hide the failure that actually needs ownership.
+**Shadow:** misusing `state machine` at rune 0101 in the architecture lane can let ownership can blur across layers; verify by requiring the caster to name the owning artifact and the caller-visible contract.
 
 **Pocket gloss:** Behavior expressed as named states and legal transitions.
 
@@ -1189,108 +1187,108 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** An order-word; it constrains how complexity is arranged rather than merely accumulated.
+**Force:** `strategy` is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the strategy obligation named before work proceeds.
 
-**Shadow:** the boundary or abstraction can hide the failure that actually needs ownership.
+**Shadow:** misusing `strategy` at rune 0102 in the architecture lane can let ownership can blur across layers; verify by requiring the caster to name the owning artifact and the caller-visible contract.
 
 ### [0103] subsystem {#rune-0103}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** An order-word; it constrains how complexity is arranged rather than merely accumulated.
+**Force:** `subsystem` is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the subsystem obligation named before work proceeds.
 
-**Shadow:** the boundary or abstraction can hide the failure that actually needs ownership.
+**Shadow:** misusing `subsystem` at rune 0103 in the architecture lane can let ownership can blur across layers; verify by requiring the caster to name the owning artifact and the caller-visible contract.
 
 ### [0104] surface {#rune-0104}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A boundary-word; it shapes how one part may touch another.
+**Force:** `surface` is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the surface obligation named before work proceeds.
 
-**Shadow:** the boundary or abstraction can hide the failure that actually needs ownership.
+**Shadow:** misusing `surface` at rune 0104 in the architecture lane can let ownership can blur across layers; verify by requiring the caster to name the owning artifact and the caller-visible contract.
 
 ### [0105] system {#rune-0105}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A boundary-word; it shapes how one part may touch another.
+**Force:** `system` is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the system obligation named before work proceeds.
 
-**Shadow:** the boundary or abstraction can hide the failure that actually needs ownership.
+**Shadow:** misusing `system` at rune 0105 in the architecture lane can let ownership can blur across layers; verify by requiring the caster to name the owning artifact and the caller-visible contract.
 
 ### [0106] template method {#rune-0106}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A boundary-word; it shapes how one part may touch another.
+**Force:** `template method` is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the template method obligation named before work proceeds.
 
-**Shadow:** the boundary or abstraction can hide the failure that actually needs ownership.
+**Shadow:** misusing `template method` at rune 0106 in the architecture lane can let ownership can blur across layers; verify by requiring the caster to name the owning artifact and the caller-visible contract.
 
 ### [0107] tree {#rune-0107}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A structure-word; it gives responsibility a place to live.
+**Force:** `tree` is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the tree obligation named before work proceeds.
 
-**Shadow:** the boundary or abstraction can hide the failure that actually needs ownership.
+**Shadow:** misusing `tree` at rune 0107 in the architecture lane can let ownership can blur across layers; verify by requiring the caster to name the owning artifact and the caller-visible contract.
 
 ### [0108] use case {#rune-0108}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A boundary-word; it shapes how one part may touch another.
+**Force:** `use case` is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the use case obligation named before work proceeds.
 
-**Shadow:** the boundary or abstraction can hide the failure that actually needs ownership.
+**Shadow:** misusing `use case` at rune 0108 in the architecture lane can let ownership can blur across layers; verify by requiring the caster to name the owning artifact and the caller-visible contract.
 
 ### [0109] value object {#rune-0109}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A structure-word; it gives responsibility a place to live.
+**Force:** `value object` is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the value object obligation named before work proceeds.
 
-**Shadow:** the boundary or abstraction can hide the failure that actually needs ownership.
+**Shadow:** misusing `value object` at rune 0109 in the architecture lane can let ownership can blur across layers; verify by requiring the caster to name the owning artifact and the caller-visible contract.
 
 ### [0110] worker {#rune-0110}
 
 **Status:** canonical
 
-**Completion:** needs_sense
+**Completion:** authored
 
-**Force:** A labor word; a designated body performs tasks delegated by some larger system.
+**Force:** `worker` is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the worker obligation named before work proceeds.
 
-**Shadow:** the boundary or abstraction can hide the failure that actually needs ownership.
+**Shadow:** misusing `worker` at rune 0110 in the architecture lane can let ownership can blur across layers; verify by requiring the caster to name the owning artifact and the caller-visible contract.
 
 ### [0111] workflow {#rune-0111}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** An order-word; it constrains how complexity is arranged rather than merely accumulated.
+**Force:** `workflow` is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the workflow obligation named before work proceeds.
 
-**Shadow:** the boundary or abstraction can hide the failure that actually needs ownership.
+**Shadow:** misusing `workflow` at rune 0111 in the architecture lane can let ownership can blur across layers; verify by requiring the caster to name the owning artifact and the caller-visible contract.
 
 ### [0112] wrapper {#rune-0112}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A boundary-word; it shapes how one part may touch another.
+**Force:** `wrapper` is a architecture and design rune for separate responsibility, boundary, and interface decisions; use it when the artifact needs the wrapper obligation named before work proceeds.
 
-**Shadow:** the boundary or abstraction can hide the failure that actually needs ownership.
+**Shadow:** misusing `wrapper` at rune 0112 in the architecture lane can let ownership can blur across layers; verify by requiring the caster to name the owning artifact and the caller-visible contract.

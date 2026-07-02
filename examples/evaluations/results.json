@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-07-02T03:02:02.713572+00:00",
+  "generated_at": "2026-07-02T04:25:50.025930+00:00",
   "surfaces": {
     "codex-cli-default": {
       "kind": "codex",
       "label": "Codex CLI default model"
     }
   },
-  "rubric": {
+  "structural_rubric": {
     "artifact_boundary": [
       "artifact",
       "module",
@@ -63,131 +63,709 @@
       "insufficient"
     ]
   },
+  "outcome_rubric": {
+    "safe-refactoring": [
+      {
+        "id": "preserves_public_api",
+        "description": "Names public function and return-key compatibility.",
+        "keywords": [
+          "public function",
+          "return key",
+          "return schema",
+          "signature"
+        ]
+      },
+      {
+        "id": "covers_behavior_trap",
+        "description": "Protects unknown fields and falsy-but-valid values.",
+        "keywords": [
+          "unknown field",
+          "unknown fields",
+          "0",
+          "false",
+          "empty string",
+          "falsy"
+        ]
+      },
+      {
+        "id": "requires_tests",
+        "description": "Requires executable tests for unchanged behavior.",
+        "keywords": [
+          "pytest",
+          "test",
+          "characterization",
+          "edge"
+        ]
+      }
+    ],
+    "bug-diagnosis-from-logs": [
+      {
+        "id": "names_planted_cause",
+        "description": "Identifies Redis connection-pool saturation from the cache feature.",
+        "keywords": [
+          "redis",
+          "connection pool",
+          "pool",
+          "profile_cache_v2",
+          "cache"
+        ]
+      },
+      {
+        "id": "separates_hypothesis",
+        "description": "Separates facts, hypotheses, and missing signals.",
+        "keywords": [
+          "hypothesis",
+          "fact",
+          "missing",
+          "evidence"
+        ]
+      },
+      {
+        "id": "next_checks",
+        "description": "Gives concrete next checks or commands.",
+        "keywords": [
+          "command",
+          "dashboard",
+          "check",
+          "inspect"
+        ]
+      }
+    ],
+    "api-design": [
+      {
+        "id": "idempotency",
+        "description": "Handles idempotent retries for payment attempts.",
+        "keywords": [
+          "idempotency",
+          "idempotent",
+          "retry"
+        ]
+      },
+      {
+        "id": "compatibility",
+        "description": "Names versioning and backward compatibility.",
+        "keywords": [
+          "version",
+          "backward",
+          "compatibility"
+        ]
+      },
+      {
+        "id": "error_contract",
+        "description": "Defines durable error and pagination contracts.",
+        "keywords": [
+          "error",
+          "pagination",
+          "schema"
+        ]
+      }
+    ],
+    "migration-without-data-loss": [
+      {
+        "id": "expand_contract",
+        "description": "Uses expand-and-contract rather than destructive ALTER.",
+        "keywords": [
+          "expand",
+          "contract",
+          "dual",
+          "backfill"
+        ]
+      },
+      {
+        "id": "dirty_data",
+        "description": "Handles invalid, unknown, empty, and null birthdate values.",
+        "keywords": [
+          "invalid",
+          "unknown",
+          "empty",
+          "null",
+          "quarantine"
+        ]
+      },
+      {
+        "id": "rollback",
+        "description": "Keeps rollback and validation before cleanup.",
+        "keywords": [
+          "rollback",
+          "validation",
+          "parity",
+          "cleanup"
+        ]
+      }
+    ],
+    "test-generation": [
+      {
+        "id": "observable_behavior",
+        "description": "Tests public behavior rather than implementation details.",
+        "keywords": [
+          "observable",
+          "behavior",
+          "public",
+          "implementation"
+        ]
+      },
+      {
+        "id": "boundary_cases",
+        "description": "Covers boundary seats, coupons, and invalid input.",
+        "keywords": [
+          "boundary",
+          "coupon",
+          "negative",
+          "invalid",
+          "seat"
+        ]
+      },
+      {
+        "id": "rounding",
+        "description": "Protects currency rounding to cents.",
+        "keywords": [
+          "round",
+          "cent",
+          "currency"
+        ]
+      }
+    ],
+    "performance-tuning": [
+      {
+        "id": "measure_first",
+        "description": "Requires profiling or tracing before optimizing.",
+        "keywords": [
+          "profile",
+          "trace",
+          "measure",
+          "benchmark"
+        ]
+      },
+      {
+        "id": "database_path",
+        "description": "Considers N+1/query-count and database bottlenecks.",
+        "keywords": [
+          "n+1",
+          "query",
+          "database",
+          "sql",
+          "postgres"
+        ]
+      },
+      {
+        "id": "rollback_budget",
+        "description": "Names success metric and rollback or regression criteria.",
+        "keywords": [
+          "rollback",
+          "regression",
+          "latency",
+          "budget"
+        ]
+      }
+    ]
+  },
   "cases": {
     "safe-refactoring": {
       "title": "Refactor Without Breaking Behavior",
-      "input_context": "A Python module exposes `normalize_user(raw)` to an API handler and a CLI import. It lowercases emails, preserves unknown fields, and currently duplicates validation branches. Existing tests cover only a happy-path user with an email and display name. Public function names and return keys are stable.",
+      "input_context": "The fixture is a Python module at `examples/evaluations/fixtures/safe-refactoring/normalize_user.py`.\n\nGround truth:\n\n- Public function `normalize_user(raw)` must keep its name, one-argument signature, return type, and return keys.\n- Email values are stripped and lowercased.\n- `display_name` is stripped when present.\n- Unknown fields must be preserved in `extra`.\n- Falsy-but-valid values such as `0`, `False`, and empty strings in unknown fields must not be dropped.\n- Invalid input still raises `TypeError`.\n\nUse `python -m pytest examples/evaluations/fixtures/safe-refactoring/check_normalize_user.py` as the executable fixture check.",
+      "fixture_path": "examples/evaluations/fixtures/safe-refactoring",
       "expected_delta": "The repaired spell narrows blast radius, makes invariants reviewable, and forces proof through tests instead of relying on claims of cleanliness.",
-      "observed_delta": "repaired prompts scored 3.0 points higher on average",
+      "observed_delta": "repaired prompts scored 2.3 points higher on average",
+      "observed_outcome_delta": "weak and repaired prompts tied on outcome checks",
       "runs": [
         {
           "surface": "codex-cli-default",
           "surface_label": "Codex CLI default model",
           "variant": "weak",
-          "prompt_path": "examples/evaluations/runs/codex-cli-default/safe-refactoring/weak-prompt.md",
-          "transcript_path": "examples/evaluations/runs/codex-cli-default/safe-refactoring/weak-output.md",
-          "output": "I can’t safely clean up the module from the provided context alone.\n\nI searched the workspace and found no Python source file or tests defining `normalize_user(raw)`. The only matches are prompt/evaluation text describing the task. Also, the current workspace is read-only, so I couldn’t apply edits even if the module were present.\n\nMissing pieces needed to proceed:\n\n- The actual module source containing `normalize_user(raw)`.\n- The existing test file for that module.\n- The current validation behavior for invalid input, especially exception types/messages.\n- Write access to the workspace if you want me to make the change directly.\n\nWith those, I’d refactor the duplicated validation branches while preserving the public function name, stable return keys, email lowercasing, and unknown-field passthrough, then add focused tests beyond the current happy path.",
+          "repetition": 1,
+          "run_timestamp": "2026-07-02T04:26:56.979086+00:00",
+          "fixture_path": "examples/evaluations/fixtures/safe-refactoring",
+          "prompt_path": "examples/evaluations/runs/codex-cli-default/safe-refactoring/r01-weak-prompt.md",
+          "transcript_path": "examples/evaluations/runs/codex-cli-default/safe-refactoring/r01-weak-output.md",
+          "output": "I couldn’t modify the file because this session is read-only. The patch was rejected by the sandbox. The cleanup needed is small: remove the truthiness filter and make normalization explicit.\n\n```diff\n*** Begin Patch\n*** Update File: examples/evaluations/fixtures/safe-refactoring/normalize_user.py\n@@\n+_KNOWN_FIELDS = frozenset((\"email\", \"display_name\"))\n+\n+\n+def _normalize_email(value):\n+    if value is None:\n+        return None\n+    return str(value).strip().lower()\n+\n+\n+def _normalize_display_name(value):\n+    if value is None:\n+        return None\n+    return str(value).strip()\n+\n+\n def normalize_user(raw):\n     if not isinstance(raw, dict):\n         raise TypeError(\"raw must be a dict\")\n\n-    result = {\n-        \"email\": None,\n-        \"display_name\": None,\n-        \"extra\": {},\n+    return {\n+        \"email\": _normalize_email(raw.get(\"email\")),\n+        \"display_name\": _normalize_display_name(raw.get(\"display_name\")),\n+        \"extra\": {\n+            key: value\n+            for key, value in raw.items()\n+            if key not in _KNOWN_FIELDS\n+        },\n     }\n-\n-    if \"email\" in raw:\n-        email = raw.get(\"email\")\n-        if email is not None:\n-            result[\"email\"] = str(email).strip().lower()\n-\n-    if \"display_name\" in raw:\n-        display_name = raw.get(\"display_name\")\n-        if display_name is not None:\n-            result[\"display_name\"] = str(display_name).strip()\n-\n-    for key, value in raw.items():\n-        if key in (\"email\", \"display_name\"):\n-            continue\n-        if value:\n-            result[\"extra\"][key] = value\n-\n-    return result\n*** End Patch\n```\n\nVerification note: `python -m pytest examples/evaluations/fixtures/safe-refactoring/check_normalize_user.py` could not start because the sandbox has no writable temp directory. A direct Python check against the current file returned `{}` for falsy unknown fields, confirming the existing failure.",
           "scores": {
             "artifact_boundary": 2,
             "invariants": 0,
             "output_contract": 2,
-            "verification": 1,
+            "verification": 2,
             "failure_behavior": 1,
-            "assumption_control": 2
+            "assumption_control": 1
           },
+          "structural_scores": {
+            "artifact_boundary": 2,
+            "invariants": 0,
+            "output_contract": 2,
+            "verification": 2,
+            "failure_behavior": 1,
+            "assumption_control": 1
+          },
+          "structural_total": 8,
+          "outcome_scores": {
+            "preserves_public_api": 0,
+            "covers_behavior_trap": 1,
+            "requires_tests": 1
+          },
+          "outcome_total": 2,
           "total_score": 8,
-          "run_timestamp": "2026-07-02T03:02:54.894539+00:00",
-          "evaluator_notes": "Auto-scored with the structural rubric; transcript remains the primary evidence."
+          "evaluator_notes": "Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence."
         },
         {
           "surface": "codex-cli-default",
           "surface_label": "Codex CLI default model",
           "variant": "repaired",
-          "prompt_path": "examples/evaluations/runs/codex-cli-default/safe-refactoring/repaired-prompt.md",
-          "transcript_path": "examples/evaluations/runs/codex-cli-default/safe-refactoring/repaired-output.md",
-          "output": "**Invariants**\n\n- `normalize_user(raw)` name, parameter order, return type, return keys, and exception classes stay unchanged.\n- Emails continue to be lowercased.\n- Unknown input fields continue to be preserved.\n- Existing happy-path behavior remains byte-for-byte equivalent where observable.\n- API handlers and CLI imports require no call-site changes.\n\nThe supplied context is missing the actual module and current tests, so I can’t produce a safe concrete diff without inventing behavior. I would need the source file containing `normalize_user(raw)` and its test file.\n\n**Minimal Patch Plan**\n\n1. Add characterization tests for current edge behavior before refactoring.\n2. Extract duplicated validation logic into one private helper inside the same module.\n3. Keep `normalize_user(raw)` as the only public entry point.\n4. Run the same characterization tests before and after the refactor to prove behavior is unchanged.\n\n**Proposed Refactor**\n\nRefactor shape only, pending source:\n\n```python\ndef normalize_user(raw):\n    validated = _validate_user_payload(raw)\n    return _normalize_validated_user(validated)\n\n\ndef _validate_user_payload(raw):\n    # Move the currently duplicated validation branches here.\n    # Preserve exact exception classes and messages if tests assert them.\n    return raw\n\n\ndef _normalize_validated_user(raw):\n    # Preserve existing return keys.\n    # Lowercase email exactly as current code does.\n    # Preserve unknown fields exactly as current code does.\n    ...\n```\n\nNo adjacent file should move based on the provided context. If validation is currently split between this module and an API handler or CLI entry point, then the specific adjacent handler/CLI file containing normalization-side validation must also be characterized or moved, because otherwise this module alone is not the complete behavior boundary.\n\n**Before/After Edge Tests**\n\nThese should be written as characterization tests first, run against the current implementation, then run unchanged after the refactor:\n\n```python\nimport pytest\n\nfrom module_under_test import normalize_user\n\n\ndef test_lowercases_email_and_preserves_unknown_fields():\n    raw = {\n        \"email\": \"USER@Example.COM\",\n        \"display_name\": \"User\",\n        \"role\": \"admin\",\n    }\n\n    assert normalize_user(raw) == {\n        \"email\": \"user@example.com\",\n        \"display_name\": \"User\",\n        \"role\": \"admin\",\n    }\n\n\n@pytest.mark.parametrize(\n    \"raw\",\n    [\n        None,\n        {},\n        {\"display_name\": \"No Email\"},\n        {\"email\": None, \"display_name\": \"User\"},\n        {\"email\": \"\", \"display_name\": \"User\"},\n    ],\n)\ndef test_edge_inputs_preserve_current_exception_behavior(raw):\n    with pytest.raises(Exception) as exc:\n        normalize_user(raw)\n\n    # Replace Exception with the exact current exception class after observing it.\n    assert exc.type is CURRENT_EXCEPTION_CLASS\n```\n\nI can make the actual patch once the module and existing tests are supplied.",
+          "repetition": 1,
+          "run_timestamp": "2026-07-02T04:29:07.250909+00:00",
+          "fixture_path": "examples/evaluations/fixtures/safe-refactoring",
+          "prompt_path": "examples/evaluations/runs/codex-cli-default/safe-refactoring/r01-repaired-prompt.md",
+          "transcript_path": "examples/evaluations/runs/codex-cli-default/safe-refactoring/r01-repaired-output.md",
+          "output": "**Invariants**\n\n`normalize_user(raw)` keeps its public name, one-argument signature, dict return type, keys `email`, `display_name`, `extra`, and still raises `TypeError` for non-dicts. Email is stripped/lowercased, display name is stripped, and unknown fields are copied into `extra` without truthiness filtering.\n\nI could not apply the patch because the workspace is read-only, but this is the minimal diff:\n\n```diff\n+def _normalize_text_field(raw, key, transform=None):\n+    if key not in raw:\n+        return None\n+    value = raw.get(key)\n+    if value is None:\n+        return None\n+    value = str(value).strip()\n+    return transform(value) if transform is not None else value\n+\n+\n def normalize_user(raw):\n     if not isinstance(raw, dict):\n         raise TypeError(\"raw must be a dict\")\n\n-    result = {\n-        \"email\": None,\n-        \"display_name\": None,\n-        \"extra\": {},\n-    }\n-\n-    if \"email\" in raw:\n-        email = raw.get(\"email\")\n-        if email is not None:\n-            result[\"email\"] = str(email).strip().lower()\n-\n-    if \"display_name\" in raw:\n-        display_name = raw.get(\"display_name\")\n-        if display_name is not None:\n-            result[\"display_name\"] = str(display_name).strip()\n-\n-    for key, value in raw.items():\n-        if key in (\"email\", \"display_name\"):\n-            continue\n-        if value:\n-            result[\"extra\"][key] = value\n-\n-    return result\n+    return {\n+        \"email\": _normalize_text_field(raw, \"email\", str.lower),\n+        \"display_name\": _normalize_text_field(raw, \"display_name\"),\n+        \"extra\": {\n+            key: value\n+            for key, value in raw.items()\n+            if key not in (\"email\", \"display_name\")\n+        },\n+    }\n```\n\n**Patch Plan**\n\n1. Add one private helper for duplicated text-field normalization.\n2. Replace the email/display-name blocks with helper calls.\n3. Replace the unknown-field loop with a key-filtered dict comprehension so falsy unknown values are preserved.\n4. Keep tests in `check_normalize_user.py`; add one edge test if desired:\n\n```python\ndef test_public_none_values_do_not_stringify():\n    assert normalize_user({\"email\": None, \"display_name\": None}) == {\n        \"email\": None,\n        \"display_name\": None,\n        \"extra\": {},\n    }\n```\n\n**Before/After Edge Cases**\n\nCurrent fixture result: `test_preserves_unknown_falsy_values` fails because `0`, `False`, and `\"\"` are dropped from `extra`.\n\nProposed refactor result, verified in-memory:\n\n```python\nnormalize_user({\"quota\": 0, \"enabled\": False, \"note\": \"\"})[\"extra\"]\n# {\"quota\": 0, \"enabled\": False, \"note\": \"\"}\n```\n\nInvalid input behavior remains:\n\n```python\nwith pytest.raises(TypeError):\n    normalize_user(None)\n```\n\nVerification note: the exact pytest command could not run normally because this sandbox has no writable temp directory. Running pytest with capture/cache disabled collected tests and showed the current falsy-value failure.",
+          "scores": {
+            "artifact_boundary": 1,
+            "invariants": 2,
+            "output_contract": 2,
+            "verification": 2,
+            "failure_behavior": 1,
+            "assumption_control": 1
+          },
+          "structural_scores": {
+            "artifact_boundary": 1,
+            "invariants": 2,
+            "output_contract": 2,
+            "verification": 2,
+            "failure_behavior": 1,
+            "assumption_control": 1
+          },
+          "structural_total": 9,
+          "outcome_scores": {
+            "preserves_public_api": 1,
+            "covers_behavior_trap": 1,
+            "requires_tests": 1
+          },
+          "outcome_total": 3,
+          "total_score": 9,
+          "evaluator_notes": "Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence."
+        },
+        {
+          "surface": "codex-cli-default",
+          "surface_label": "Codex CLI default model",
+          "variant": "weak",
+          "repetition": 2,
+          "run_timestamp": "2026-07-02T04:30:00.242457+00:00",
+          "fixture_path": "examples/evaluations/fixtures/safe-refactoring",
+          "prompt_path": "examples/evaluations/runs/codex-cli-default/safe-refactoring/r02-weak-prompt.md",
+          "transcript_path": "examples/evaluations/runs/codex-cli-default/safe-refactoring/r02-weak-output.md",
+          "output": "I couldn’t apply the cleanup because this session’s filesystem is read-only: `apply_patch` was rejected. The requested pytest command also could not start because pytest could not create a temporary file in any temp directory.\n\nThe needed change is to remove the truthiness filter that drops falsy unknown fields. This is the patch I would apply to `examples/evaluations/fixtures/safe-refactoring/normalize_user.py`:\n\n```python\n_PUBLIC_FIELDS = {\"email\", \"display_name\"}\n\n\ndef normalize_user(raw):\n    if not isinstance(raw, dict):\n        raise TypeError(\"raw must be a dict\")\n\n    email = raw.get(\"email\")\n    display_name = raw.get(\"display_name\")\n\n    return {\n        \"email\": _normalize_email(email),\n        \"display_name\": _normalize_display_name(display_name),\n        \"extra\": _extra_fields(raw),\n    }\n\n\ndef _normalize_email(value):\n    if value is None:\n        return None\n\n    return str(value).strip().lower()\n\n\ndef _normalize_display_name(value):\n    if value is None:\n        return None\n\n    return str(value).strip()\n\n\ndef _extra_fields(raw):\n    return {\n        key: value\n        for key, value in raw.items()\n        if key not in _PUBLIC_FIELDS\n    }\n```\n\nThis keeps `normalize_user(raw)` unchanged publicly, preserves the return keys, keeps invalid input raising `TypeError`, and preserves `0`, `False`, and `\"\"` in `extra`.",
+          "scores": {
+            "artifact_boundary": 1,
+            "invariants": 2,
+            "output_contract": 1,
+            "verification": 1,
+            "failure_behavior": 1,
+            "assumption_control": 1
+          },
+          "structural_scores": {
+            "artifact_boundary": 1,
+            "invariants": 2,
+            "output_contract": 1,
+            "verification": 1,
+            "failure_behavior": 1,
+            "assumption_control": 1
+          },
+          "structural_total": 7,
+          "outcome_scores": {
+            "preserves_public_api": 1,
+            "covers_behavior_trap": 1,
+            "requires_tests": 1
+          },
+          "outcome_total": 3,
+          "total_score": 7,
+          "evaluator_notes": "Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence."
+        },
+        {
+          "surface": "codex-cli-default",
+          "surface_label": "Codex CLI default model",
+          "variant": "repaired",
+          "repetition": 2,
+          "run_timestamp": "2026-07-02T04:31:20.548909+00:00",
+          "fixture_path": "examples/evaluations/fixtures/safe-refactoring",
+          "prompt_path": "examples/evaluations/runs/codex-cli-default/safe-refactoring/r02-repaired-prompt.md",
+          "transcript_path": "examples/evaluations/runs/codex-cli-default/safe-refactoring/r02-repaired-output.md",
+          "output": "**Invariants**\n\n`normalize_user(raw)` stays one-argument and returns `{\"email\", \"display_name\", \"extra\"}`. Non-dict input still raises `TypeError`. Email/display fields keep the same stripping/coercion rules. Unknown fields are copied unchanged into `extra`, including `0`, `False`, and `\"\"`.\n\n**Patch Plan**\n\n1. Add one private helper for normalized text fields.\n2. Replace duplicated email/display logic with the helper.\n3. Change `extra` construction to filter only known public fields, not falsy values.\n4. Keep/add edge tests in `check_normalize_user.py`.\n\n**Proposed Refactor**\n\n```diff\n+PUBLIC_FIELDS = (\"email\", \"display_name\")\n+\n+\n+def _normalize_text_field(raw, key, *, lowercase=False):\n+    if key not in raw:\n+        return None\n+\n+    value = raw.get(key)\n+    if value is None:\n+        return None\n+\n+    normalized = str(value).strip()\n+    return normalized.lower() if lowercase else normalized\n+\n+\n def normalize_user(raw):\n     if not isinstance(raw, dict):\n         raise TypeError(\"raw must be a dict\")\n\n-    result = {\n-        \"email\": None,\n-        \"display_name\": None,\n-        \"extra\": {},\n-    }\n-\n-    if \"email\" in raw:\n-        email = raw.get(\"email\")\n-        if email is not None:\n-            result[\"email\"] = str(email).strip().lower()\n-\n-    if \"display_name\" in raw:\n-        display_name = raw.get(\"display_name\")\n-        if display_name is not None:\n-            result[\"display_name\"] = str(display_name).strip()\n-\n-    for key, value in raw.items():\n-        if key in (\"email\", \"display_name\"):\n-            continue\n-        if value:\n-            result[\"extra\"][key] = value\n-\n-    return result\n+    return {\n+        \"email\": _normalize_text_field(raw, \"email\", lowercase=True),\n+        \"display_name\": _normalize_text_field(raw, \"display_name\"),\n+        \"extra\": {\n+            key: value\n+            for key, value in raw.items()\n+            if key not in PUBLIC_FIELDS\n+        },\n+    }\n```\n\n**Tests**\n\n```python\ndef test_preserves_unknown_falsy_values():\n    assert normalize_user({\"quota\": 0, \"enabled\": False, \"note\": \"\"})[\"extra\"] == {\n        \"quota\": 0,\n        \"enabled\": False,\n        \"note\": \"\",\n    }\n\n\ndef test_rejects_non_dict_input():\n    with pytest.raises(TypeError):\n        normalize_user(None)\n```\n\n**Before/After Edge Cases**\n\n- `{\"quota\": 0, \"enabled\": False, \"note\": \"\"}`: before returns `extra == {}`; after returns all three values.\n- `None`: before/after raises `TypeError`.\n- `{\"email\": \" USER@Example.COM \", \"display_name\": \"  Ada  \"}`: before/after returns normalized public fields.\n\nI could not run the full pytest check here because pytest cannot create a temporary file in this read-only sandbox. A direct import confirmed the current module returns `{}` for the falsy-extra edge case.",
           "scores": {
             "artifact_boundary": 2,
+            "invariants": 2,
+            "output_contract": 2,
+            "verification": 2,
+            "failure_behavior": 2,
+            "assumption_control": 1
+          },
+          "structural_scores": {
+            "artifact_boundary": 2,
+            "invariants": 2,
+            "output_contract": 2,
+            "verification": 2,
+            "failure_behavior": 2,
+            "assumption_control": 1
+          },
+          "structural_total": 11,
+          "outcome_scores": {
+            "preserves_public_api": 0,
+            "covers_behavior_trap": 1,
+            "requires_tests": 1
+          },
+          "outcome_total": 2,
+          "total_score": 11,
+          "evaluator_notes": "Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence."
+        },
+        {
+          "surface": "codex-cli-default",
+          "surface_label": "Codex CLI default model",
+          "variant": "weak",
+          "repetition": 3,
+          "run_timestamp": "2026-07-02T04:32:02.893193+00:00",
+          "fixture_path": "examples/evaluations/fixtures/safe-refactoring",
+          "prompt_path": "examples/evaluations/runs/codex-cli-default/safe-refactoring/r03-weak-prompt.md",
+          "transcript_path": "examples/evaluations/runs/codex-cli-default/safe-refactoring/r03-weak-output.md",
+          "output": "I couldn’t modify the file because this session’s filesystem is read-only, and pytest also couldn’t start because there is no writable temp directory available.\n\nApply this patch to [normalize_user.py](/Users/corbensorenson/Documents/software%20grimoire/examples/evaluations/fixtures/safe-refactoring/normalize_user.py):\n\n```diff\n def normalize_user(raw):\n     if not isinstance(raw, dict):\n         raise TypeError(\"raw must be a dict\")\n\n-    result = {\n+    normalized = {\n         \"email\": None,\n         \"display_name\": None,\n-        \"extra\": {},\n+        \"extra\": {\n+            key: value\n+            for key, value in raw.items()\n+            if key not in {\"email\", \"display_name\"}\n+        },\n     }\n\n-    if \"email\" in raw:\n-        email = raw.get(\"email\")\n-        if email is not None:\n-            result[\"email\"] = str(email).strip().lower()\n+    email = raw.get(\"email\")\n+    if email is not None:\n+        normalized[\"email\"] = str(email).strip().lower()\n\n-    if \"display_name\" in raw:\n-        display_name = raw.get(\"display_name\")\n-        if display_name is not None:\n-            result[\"display_name\"] = str(display_name).strip()\n+    display_name = raw.get(\"display_name\")\n+    if display_name is not None:\n+        normalized[\"display_name\"] = str(display_name).strip()\n\n-    for key, value in raw.items():\n-        if key in (\"email\", \"display_name\"):\n-            continue\n-        if value:\n-            result[\"extra\"][key] = value\n-\n-    return result\n+    return normalized\n```\n\nThis keeps the public API and return keys intact, strips/lowercases email, strips `display_name`, preserves all unknown fields including `0`, `False`, and `\"\"`, and still raises `TypeError` for non-dict input.",
+          "scores": {
+            "artifact_boundary": 2,
+            "invariants": 1,
+            "output_contract": 2,
+            "verification": 1,
+            "failure_behavior": 1,
+            "assumption_control": 1
+          },
+          "structural_scores": {
+            "artifact_boundary": 2,
+            "invariants": 1,
+            "output_contract": 2,
+            "verification": 1,
+            "failure_behavior": 1,
+            "assumption_control": 1
+          },
+          "structural_total": 8,
+          "outcome_scores": {
+            "preserves_public_api": 1,
+            "covers_behavior_trap": 1,
+            "requires_tests": 1
+          },
+          "outcome_total": 3,
+          "total_score": 8,
+          "evaluator_notes": "Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence."
+        },
+        {
+          "surface": "codex-cli-default",
+          "surface_label": "Codex CLI default model",
+          "variant": "repaired",
+          "repetition": 3,
+          "run_timestamp": "2026-07-02T04:32:49.227279+00:00",
+          "fixture_path": "examples/evaluations/fixtures/safe-refactoring",
+          "prompt_path": "examples/evaluations/runs/codex-cli-default/safe-refactoring/r03-repaired-prompt.md",
+          "transcript_path": "examples/evaluations/runs/codex-cli-default/safe-refactoring/r03-repaired-output.md",
+          "output": "**Invariants**\n\n- `normalize_user(raw)` name, one-argument signature, return type, return keys unchanged.\n- Non-`dict` input raises `TypeError`.\n- Email is `str(value).strip().lower()` when present and non-`None`.\n- `display_name` is `str(value).strip()` when present and non-`None`.\n- Unknown fields go under `extra`, including `0`, `False`, and `\"\"`.\n\n**Minimal Patch Plan**\n\n1. Add one private helper for repeated string normalization.\n2. Build `extra` with a dict comprehension that excludes only public keys.\n3. Keep tests focused on public contract and edge values.\n\n**Proposed Refactor**\n\n```python\nPUBLIC_FIELDS = {\"email\", \"display_name\"}\n\n\ndef _normalize_text(value, *, lowercase=False):\n    if value is None:\n        return None\n\n    normalized = str(value).strip()\n    if lowercase:\n        return normalized.lower()\n    return normalized\n\n\ndef normalize_user(raw):\n    if not isinstance(raw, dict):\n        raise TypeError(\"raw must be a dict\")\n\n    return {\n        \"email\": _normalize_text(raw.get(\"email\"), lowercase=True),\n        \"display_name\": _normalize_text(raw.get(\"display_name\")),\n        \"extra\": {\n            key: value\n            for key, value in raw.items()\n            if key not in PUBLIC_FIELDS\n        },\n    }\n```\n\n**Tests**\n\n```python\nimport pytest\n\nfrom normalize_user import normalize_user\n\n\ndef test_normalizes_public_fields():\n    assert normalize_user({\"email\": \" USER@Example.COM \", \"display_name\": \"  Ada  \"}) == {\n        \"email\": \"user@example.com\",\n        \"display_name\": \"Ada\",\n        \"extra\": {},\n    }\n\n\ndef test_preserves_unknown_falsy_values():\n    assert normalize_user({\"quota\": 0, \"enabled\": False, \"note\": \"\"})[\"extra\"] == {\n        \"quota\": 0,\n        \"enabled\": False,\n        \"note\": \"\",\n    }\n\n\ndef test_preserves_unknown_truthy_values():\n    assert normalize_user({\"role\": \"admin\", \"score\": 7})[\"extra\"] == {\n        \"role\": \"admin\",\n        \"score\": 7,\n    }\n\n\ndef test_missing_and_none_public_fields_return_none():\n    assert normalize_user({}) == {\"email\": None, \"display_name\": None, \"extra\": {}}\n    assert normalize_user({\"email\": None, \"display_name\": None}) == {\n        \"email\": None,\n        \"display_name\": None,\n        \"extra\": {},\n    }\n\n\ndef test_rejects_non_dict_input():\n    with pytest.raises(TypeError):\n        normalize_user(None)\n```\n\n**Before/After Edge Cases**\n\n- `{\"quota\": 0, \"enabled\": False, \"note\": \"\"}`: before fails, after preserves all in `extra`.\n- `{}`: before and after return all expected keys with `None` public fields.\n- `None`: before and after raise `TypeError`.\n\nI ran the fixture check against the current module: `2 passed, 1 failed`; the failure is the falsy unknown-field case.",
+          "scores": {
+            "artifact_boundary": 1,
             "invariants": 2,
             "output_contract": 2,
             "verification": 2,
             "failure_behavior": 1,
             "assumption_control": 2
           },
-          "total_score": 11,
-          "run_timestamp": "2026-07-02T03:03:18.268173+00:00",
-          "evaluator_notes": "Auto-scored with the structural rubric; transcript remains the primary evidence."
+          "structural_scores": {
+            "artifact_boundary": 1,
+            "invariants": 2,
+            "output_contract": 2,
+            "verification": 2,
+            "failure_behavior": 1,
+            "assumption_control": 2
+          },
+          "structural_total": 10,
+          "outcome_scores": {
+            "preserves_public_api": 1,
+            "covers_behavior_trap": 1,
+            "requires_tests": 1
+          },
+          "outcome_total": 3,
+          "total_score": 10,
+          "evaluator_notes": "Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence."
         }
       ]
     },
     "bug-diagnosis-from-logs": {
       "title": "Incident Diagnosis Without Fake Certainty",
-      "input_context": "A containerized API had p95 latency jump from 180 ms to 2.4 s after a deploy. Logs show repeated `redis timeout after 250ms`, occasional PostgreSQL queries over 900 ms, and a new feature flag `profile_cache_v2=true`. Error rate is low, but checkout requests are timing out.",
+      "input_context": "The fixture is a small incident packet with logs, deploy metadata, and planted ground truth.\n\nFiles:\n\n- `logs.txt`: observed request, Redis, and PostgreSQL logs.\n- `deploy.json`: deploy metadata and feature flag state.\n- `ground_truth.json`: planted cause and expected diagnosis obligations.\n\nGround truth:\n\n- The most likely planted cause is Redis connection-pool saturation triggered by `profile_cache_v2`.\n- PostgreSQL slow queries are a correlated symptom, not the primary planted cause.\n- A good answer separates facts, hypotheses, missing signals, and next checks.\n- A good answer does not claim certainty beyond the provided evidence.",
+      "fixture_path": "examples/evaluations/fixtures/bug-diagnosis-from-logs",
       "expected_delta": "The repaired spell prevents counterfeit certainty while still producing actionable next checks.",
-      "observed_delta": "repaired prompts scored 3.0 points higher on average",
+      "observed_delta": "repaired prompts scored 1.0 points higher on average",
+      "observed_outcome_delta": "weak and repaired prompts tied on outcome checks",
       "runs": [
         {
           "surface": "codex-cli-default",
           "surface_label": "Codex CLI default model",
           "variant": "weak",
-          "prompt_path": "examples/evaluations/runs/codex-cli-default/bug-diagnosis-from-logs/weak-prompt.md",
-          "transcript_path": "examples/evaluations/runs/codex-cli-default/bug-diagnosis-from-logs/weak-output.md",
-          "output": "Requests are timing out because the new deploy likely put a Redis-dependent path in the request flow, probably via `profile_cache_v2=true`, and Redis is repeatedly hitting its `250ms` timeout.\n\nThat creates latency amplification:\n\n- Each Redis timeout costs ~250 ms before the app can continue.\n- If checkout performs multiple profile/cache reads, or retries them, those timeouts stack.\n- When Redis misses/fails, the app may fall back to PostgreSQL, where some queries are already taking `900ms+`.\n- The combined Redis wait + fallback DB latency pushes checkout past its request deadline, raising p95 from `180 ms` to `2.4 s`.\n\nThe low error rate fits this: the app may be recovering from Redis failures instead of returning errors, but it is doing so too slowly. So users see timeouts even though the service is technically handling many failures internally.\n\nMost likely cause: `profile_cache_v2=true` introduced or changed synchronous Redis usage on the checkout path, and Redis timeouts/fallback behavior are exhausting the latency budget.\n\nWhat is missing to prove it definitively: traces per checkout request, Redis command latency, retry counts, connection pool metrics, and whether disabling `profile_cache_v2` restores latency.",
+          "repetition": 1,
+          "run_timestamp": "2026-07-02T04:33:23.697094+00:00",
+          "fixture_path": "examples/evaluations/fixtures/bug-diagnosis-from-logs",
+          "prompt_path": "examples/evaluations/runs/codex-cli-default/bug-diagnosis-from-logs/r01-weak-prompt.md",
+          "transcript_path": "examples/evaluations/runs/codex-cli-default/bug-diagnosis-from-logs/r01-weak-output.md",
+          "output": "Requests are most likely timing out because `profile_cache_v2` is saturating the shared Redis connection pool.\n\n**Facts:**\n- `profile_cache_v2` was enabled in the deploy at `2026-07-02T01:54:00Z`.\n- Around `2026-07-02T02:10:04Z` to `02:10:09Z`, checkout requests show high latency: `2318-2470ms`.\n- Those same API logs include `redis_timeout_ms=250` and `feature_profile_cache_v2=true`.\n- Redis logs show the pool fully exhausted: `pool_size=20 in_use=20`, with `pool_wait_ms=244` and `251`.\n- The recent change switched profile lookups from one `GET` to batched `MGET` calls using the shared Redis pool.\n\n**Most likely hypothesis:**\n`profile_cache_v2` increased Redis pool pressure enough that requests wait near or beyond the Redis timeout threshold. That Redis wait then pushes checkout request latency into timeout territory.\n\n**PostgreSQL:**\nThere is one slow PostgreSQL query at `934ms`, but the API request logs show `pg_ms` around `78-91ms`. Based on this packet, PostgreSQL looks correlated or secondary, not the primary cause.\n\n**Missing signals:**\nWe would need Redis pool wait metrics over time, Redis command latency, MGET batch sizes, timeout/error rates split by feature flag state, and before/after deploy comparisons to prove it.\n\n**Next checks:**\nDisable or roll back `profile_cache_v2` and verify whether checkout timeouts and Redis pool waits drop. Also inspect Redis pool saturation metrics and consider isolating profile-cache traffic from the shared pool or resizing/backpressuring the pool.",
           "scores": {
             "artifact_boundary": 1,
             "invariants": 0,
-            "output_contract": 1,
-            "verification": 1,
-            "failure_behavior": 2,
-            "assumption_control": 1
+            "output_contract": 0,
+            "verification": 2,
+            "failure_behavior": 1,
+            "assumption_control": 2
           },
+          "structural_scores": {
+            "artifact_boundary": 1,
+            "invariants": 0,
+            "output_contract": 0,
+            "verification": 2,
+            "failure_behavior": 1,
+            "assumption_control": 2
+          },
+          "structural_total": 6,
+          "outcome_scores": {
+            "names_planted_cause": 1,
+            "separates_hypothesis": 1,
+            "next_checks": 1
+          },
+          "outcome_total": 3,
           "total_score": 6,
-          "run_timestamp": "2026-07-02T03:04:13.476800+00:00",
-          "evaluator_notes": "Auto-scored with the structural rubric; transcript remains the primary evidence."
+          "evaluator_notes": "Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence."
         },
         {
           "surface": "codex-cli-default",
           "surface_label": "Codex CLI default model",
           "variant": "repaired",
-          "prompt_path": "examples/evaluations/runs/codex-cli-default/bug-diagnosis-from-logs/repaired-prompt.md",
-          "transcript_path": "examples/evaluations/runs/codex-cli-default/bug-diagnosis-from-logs/repaired-output.md",
-          "output": "Evidence is insufficient to claim a root cause. The minimum additional signals are request traces by endpoint/feature-flag state, Redis client/server latency and pool metrics, and PostgreSQL query/pool breakdown during the last hour.\n\n**Ranked Hypotheses**\n\n1. **Hypothesis:** `profile_cache_v2=true` introduced a Redis-heavy or poorly bounded code path.\n   - **Evidence present:** Latency jumped after a deploy; logs show repeated `redis timeout after 250ms`; a new feature flag `profile_cache_v2=true` is present.\n   - **Missing evidence:** Latency split by flag state, Redis calls per request, cache hit/miss rate, key cardinality, Redis command latency, client connection-pool wait time.\n   - **Distinguishes it:** Requests with `profile_cache_v2=true` are slower or time out more often than flag-off requests, or disabling the flag reduces Redis timeouts and p95 latency.\n\n2. **Hypothesis:** Redis saturation, network latency, or client pool exhaustion is causing request stalls.\n   - **Evidence present:** Logs show repeated `redis timeout after 250ms`; p95 increased from 180 ms to 2.4 s; checkout requests are timing out.\n   - **Missing evidence:** Redis CPU/memory, ops/sec, slowlog, blocked clients, network errors, client pool utilization, timeout rate by endpoint.\n   - **Distinguishes it:** Redis latency or pool wait spikes align with API p95, across multiple endpoints or instances, independent of the new flag.\n\n3. **Hypothesis:** PostgreSQL query regression is contributing but may not be primary.\n   - **Evidence present:** Logs show occasional PostgreSQL queries over 900 ms; p95 is 2.4 s.\n   - **Missing evidence:** Slow query fingerprints, query count/rate, lock waits, connection pool saturation, execution plans, checkout-specific DB spans.\n   - **Distinguishes it:** Traces show most timeout duration spent in PostgreSQL, and slow query frequency aligns with the p95 spike.\n\n4. **Hypothesis:** Checkout-specific path regression is amplifying dependency latency into user-visible timeouts.\n   - **Evidence present:** Checkout requests are timing out while overall error rate is low.\n   - **Missing evidence:** Endpoint-level latency/error dashboards, checkout traces, deploy diff for checkout/profile cache interactions.\n   - **Distinguishes it:** Checkout latency spikes far more than other endpoints, especially when Redis or `profile_cache_v2` is involved.\n\n**Next Three Inspections**\n\n1. APM dashboard: p95/p99/error/timeouts by endpoint, service instance, and `profile_cache_v2` flag state.\n\n2. Redis dashboard/logs: command latency, timeout count, slowlog, ops/sec, CPU, memory, connected clients, blocked clients, client pool wait.\n\n3. PostgreSQL dashboard: slow query fingerprints, lock waits, connection pool saturation, checkout query traces, deploy-time query plan changes.",
+          "repetition": 1,
+          "run_timestamp": "2026-07-02T04:34:04.792517+00:00",
+          "fixture_path": "examples/evaluations/fixtures/bug-diagnosis-from-logs",
+          "prompt_path": "examples/evaluations/runs/codex-cli-default/bug-diagnosis-from-logs/r01-repaired-prompt.md",
+          "transcript_path": "examples/evaluations/runs/codex-cli-default/bug-diagnosis-from-logs/r01-repaired-output.md",
+          "output": "**Assessment**\n\nEvidence is insufficient to claim a confirmed root cause. The strongest supported hypothesis is Redis pool saturation associated with `profile_cache_v2`.\n\n**Ranked Hypotheses**\n\n1. **Redis shared connection-pool saturation from `profile_cache_v2`**\n   - Evidence present: Redis logs show `pool_size=20` and `in_use=20` with `pool_wait_ms=244` and `251` at `02:10:06Z` and `02:10:09Z`.\n   - Evidence present: API requests show `redis_timeout_ms=250` while checkout latency is high: `2318-2470ms`.\n   - Evidence present: `deploy.json` says `profile_cache_v2` was enabled and changed profile lookups from one `GET` to batched `MGET` using the shared Redis pool.\n   - Missing evidence: Redis pool wait/in-use time series before and after `01:54:00Z`, Redis command latency/error counts, and impact after disabling `profile_cache_v2`.\n\n2. **PostgreSQL slowness contributing but not primary**\n   - Evidence present: One PostgreSQL query took `934ms` at `02:10:08Z`.\n   - Evidence against primary: API request logs around the spike show `pg_ms=78`, `83`, and `91`, while total latency is over `2300ms` and Redis timeouts are present.\n   - Missing evidence: database wait events, lock waits, query frequency, connection-pool saturation, and whether checkout latency correlates with `pg_ms`.\n\n3. **General traffic or concurrency spike exhausting Redis pool**\n   - Hypothesis: Higher request concurrency could fill the shared Redis pool, independent of the feature change.\n   - Evidence present: Redis pool is fully used, `in_use=20` of `pool_size=20`.\n   - Missing evidence: checkout RPS, concurrent request count, Redis pool usage by endpoint/caller, and deploy-time traffic comparison.\n\n**Evidence That Would Distinguish Them**\n\nIf Redis `pool_wait_ms`, `in_use=pool_size`, and Redis timeout counts rise immediately after `profile_cache_v2=true` or fall after disabling it, that supports hypothesis 1.\n\nIf checkout latency tracks PostgreSQL `duration_ms`, DB locks, or DB connection waits while Redis pool wait is normal, that supports hypothesis 2.\n\nIf Redis pool saturation tracks global RPS across endpoints rather than `profile_cache_v2` traffic, that supports hypothesis 3.\n\n**Next Three Checks**\n\n1. Redis dashboard: pool `in_use`, `pool_wait_ms`, timeout count, command latency split by `GET` vs `MGET`, from `01:30Z-02:20Z`.\n\n2. Feature-flag/deploy dashboard: `profile_cache_v2` rollout timeline, enabled percentage, and rollback/disable impact.\n\n3. PostgreSQL dashboard: slow query rate, lock waits, DB connection-pool usage, and checkout `pg_ms` percentiles over the same window.",
           "scores": {
             "artifact_boundary": 2,
             "invariants": 0,
-            "output_contract": 1,
+            "output_contract": 0,
             "verification": 2,
             "failure_behavior": 2,
             "assumption_control": 2
           },
-          "total_score": 9,
-          "run_timestamp": "2026-07-02T03:04:42.893585+00:00",
-          "evaluator_notes": "Auto-scored with the structural rubric; transcript remains the primary evidence."
+          "structural_scores": {
+            "artifact_boundary": 2,
+            "invariants": 0,
+            "output_contract": 0,
+            "verification": 2,
+            "failure_behavior": 2,
+            "assumption_control": 2
+          },
+          "structural_total": 8,
+          "outcome_scores": {
+            "names_planted_cause": 1,
+            "separates_hypothesis": 1,
+            "next_checks": 1
+          },
+          "outcome_total": 3,
+          "total_score": 8,
+          "evaluator_notes": "Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence."
+        },
+        {
+          "surface": "codex-cli-default",
+          "surface_label": "Codex CLI default model",
+          "variant": "weak",
+          "repetition": 2,
+          "run_timestamp": "2026-07-02T04:34:38.908300+00:00",
+          "fixture_path": "examples/evaluations/fixtures/bug-diagnosis-from-logs",
+          "prompt_path": "examples/evaluations/runs/codex-cli-default/bug-diagnosis-from-logs/r02-weak-prompt.md",
+          "transcript_path": "examples/evaluations/runs/codex-cli-default/bug-diagnosis-from-logs/r02-weak-output.md",
+          "output": "Requests are most likely timing out because `profile_cache_v2` is saturating the shared Redis connection pool.\n\n**Facts**\n- `profile_cache_v2` is enabled.\n- Recent deploy changed profile lookups from single Redis `GET` calls to batched `MGET` calls using the shared Redis pool.\n- Redis logs show `pool_size=20` and `in_use=20`, with `pool_wait_ms=244-251`.\n- API logs show `redis_timeout_ms=250`, so Redis pool wait is reaching the Redis timeout threshold.\n- Checkout request latency is around `2318-2470ms`.\n- API-side PostgreSQL timings are low on the timed-out checkout requests: `78-91ms`.\n\n**Hypothesis**\nThe new `profile_cache_v2` batched Redis behavior is exhausting the shared Redis pool. Requests then wait about 250ms for a Redis connection, hit the Redis timeout, and overall checkout latency climbs until requests time out.\n\n**Not primary from this evidence**\nThere is one PostgreSQL slow query at `934ms`, but the checkout request logs do not show PostgreSQL as the dominant latency source. Based on the packet, PostgreSQL looks correlated, not the primary planted cause.\n\n**Missing signals**\nI would want Redis pool utilization over time, MGET command volume/latency, request timeout budget, error rates by feature flag state, and before/after metrics around the `2026-07-02T01:54:00Z` deploy.\n\n**Next checks**\nDisable or roll back `profile_cache_v2` and verify whether Redis `in_use`, `pool_wait_ms`, Redis timeouts, and checkout latency drop. If they do not, then investigate PostgreSQL separately.",
+          "scores": {
+            "artifact_boundary": 1,
+            "invariants": 0,
+            "output_contract": 1,
+            "verification": 2,
+            "failure_behavior": 1,
+            "assumption_control": 2
+          },
+          "structural_scores": {
+            "artifact_boundary": 1,
+            "invariants": 0,
+            "output_contract": 1,
+            "verification": 2,
+            "failure_behavior": 1,
+            "assumption_control": 2
+          },
+          "structural_total": 7,
+          "outcome_scores": {
+            "names_planted_cause": 1,
+            "separates_hypothesis": 1,
+            "next_checks": 1
+          },
+          "outcome_total": 3,
+          "total_score": 7,
+          "evaluator_notes": "Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence."
+        },
+        {
+          "surface": "codex-cli-default",
+          "surface_label": "Codex CLI default model",
+          "variant": "repaired",
+          "repetition": 2,
+          "run_timestamp": "2026-07-02T04:35:28.759205+00:00",
+          "fixture_path": "examples/evaluations/fixtures/bug-diagnosis-from-logs",
+          "prompt_path": "examples/evaluations/runs/codex-cli-default/bug-diagnosis-from-logs/r02-repaired-prompt.md",
+          "transcript_path": "examples/evaluations/runs/codex-cli-default/bug-diagnosis-from-logs/r02-repaired-output.md",
+          "output": "**Assessment**\n\nEvidence is insufficient to prove a root cause, but the strongest hypothesis is Redis shared-pool saturation after `profile_cache_v2`.\n\n**Ranked Hypotheses**\n\n1. **Hypothesis:** Redis connection-pool saturation is driving the timeout spike, likely triggered by `profile_cache_v2` batched `MGET`.\n   **Evidence present:** checkout API requests show ~2.3-2.47s latency with `redis_timeout_ms=250` and `feature_profile_cache_v2=true` at `02:10:04-02:10:07` in `logs.txt`. Redis shows `pool_size=20 in_use=20` with `pool_wait_ms=244/251`, including `command=MGET key_prefix=profile_cache_v2` in `logs.txt`. `deploy.json` says `profile_cache_v2` is enabled and changed profile lookups from one `GET` to batched `MGET` using the shared Redis pool.\n   **Missing evidence:** Redis pool wait percentiles, timeout counts, command volume by key prefix, and before/after flag comparison.\n\n2. **Hypothesis:** PostgreSQL slowness is contributing but is probably correlated, not primary.\n   **Evidence present:** one PostgreSQL query took `934ms` in `logs.txt`, but API-side `pg_ms` values are only `78-91ms` while total request latency is >2.3s and Redis timeouts are present in the same API lines.\n   **Missing evidence:** PG p95/p99 latency, lock waits, connection pool saturation, slow query frequency, and whether PG latency remains high after Redis pressure is relieved.\n\n3. **Hypothesis:** A broader traffic or concurrency spike exhausted shared resources.\n   **Evidence present:** Redis pool is fully used at `20/20` in `logs.txt`.\n   **Missing evidence:** RPS, checkout concurrency, worker queue depth, Redis command rate by caller, and app instance saturation.\n\n**Next Three Inspections**\n\n1. Redis dashboard: pool `in_use/max`, `pool_wait_ms` p95/p99, Redis timeout count, command rate by `GET`/`MGET`, and key prefix around deploy time `2026-07-02T01:54:00Z`.\n\n2. Feature flag/deploy dashboard: compare checkout latency/error rate for `profile_cache_v2=true` vs false, then verify whether disabling or rolling back the flag reduces Redis pool waits.\n\n3. PostgreSQL dashboard or `pg_stat_statements`/`pg_stat_activity`: inspect accounts query latency, locks, active connections, and wait events during the same window.",
+          "scores": {
+            "artifact_boundary": 1,
+            "invariants": 0,
+            "output_contract": 0,
+            "verification": 2,
+            "failure_behavior": 2,
+            "assumption_control": 2
+          },
+          "structural_scores": {
+            "artifact_boundary": 1,
+            "invariants": 0,
+            "output_contract": 0,
+            "verification": 2,
+            "failure_behavior": 2,
+            "assumption_control": 2
+          },
+          "structural_total": 7,
+          "outcome_scores": {
+            "names_planted_cause": 1,
+            "separates_hypothesis": 1,
+            "next_checks": 1
+          },
+          "outcome_total": 3,
+          "total_score": 7,
+          "evaluator_notes": "Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence."
+        },
+        {
+          "surface": "codex-cli-default",
+          "surface_label": "Codex CLI default model",
+          "variant": "weak",
+          "repetition": 3,
+          "run_timestamp": "2026-07-02T04:35:56.547798+00:00",
+          "fixture_path": "examples/evaluations/fixtures/bug-diagnosis-from-logs",
+          "prompt_path": "examples/evaluations/runs/codex-cli-default/bug-diagnosis-from-logs/r03-weak-prompt.md",
+          "transcript_path": "examples/evaluations/runs/codex-cli-default/bug-diagnosis-from-logs/r03-weak-output.md",
+          "output": "Requests are most likely timing out because Redis connections are saturated after `profile_cache_v2` was enabled.\n\n**Facts**\n- `profile_cache_v2` is enabled.\n- Recent deploy changed profile lookups from single Redis `GET` calls to batched `MGET` calls using the shared Redis pool.\n- Checkout requests show ~2.3-2.5s latency with `redis_timeout_ms=250`.\n- Redis logs show `pool_size=20` and `in_use=20`, with `pool_wait_ms` around 244-251ms.\n- There is one PostgreSQL slow query at 934ms.\n\n**Best Hypothesis**\nThe new `profile_cache_v2` behavior is exhausting the shared Redis connection pool. Requests then wait roughly the Redis timeout window before continuing/failing, causing checkout latency spikes and timeouts.\n\n**Why PostgreSQL Is Lower-Ranked**\nPostgreSQL is slow in one log line, but the Redis pool is fully saturated and its wait time matches the configured Redis timeout much more directly. The DB slowness looks correlated, not the primary cause in this packet.\n\n**Missing Evidence**\nTo confirm, I would want Redis pool metrics over time: saturation, wait duration, timeout count, command volume, and checkout latency split by feature flag state.\n\n**Next Checks**\n- Disable or roll back `profile_cache_v2` and verify checkout latency drops.\n- Compare Redis pool usage before and after the 2026-07-02T01:54:00Z deploy.\n- Check whether `MGET` calls increased pool hold time or request fanout.",
+          "scores": {
+            "artifact_boundary": 1,
+            "invariants": 0,
+            "output_contract": 0,
+            "verification": 2,
+            "failure_behavior": 1,
+            "assumption_control": 2
+          },
+          "structural_scores": {
+            "artifact_boundary": 1,
+            "invariants": 0,
+            "output_contract": 0,
+            "verification": 2,
+            "failure_behavior": 1,
+            "assumption_control": 2
+          },
+          "structural_total": 6,
+          "outcome_scores": {
+            "names_planted_cause": 1,
+            "separates_hypothesis": 1,
+            "next_checks": 1
+          },
+          "outcome_total": 3,
+          "total_score": 6,
+          "evaluator_notes": "Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence."
+        },
+        {
+          "surface": "codex-cli-default",
+          "surface_label": "Codex CLI default model",
+          "variant": "repaired",
+          "repetition": 3,
+          "run_timestamp": "2026-07-02T04:36:36.656206+00:00",
+          "fixture_path": "examples/evaluations/fixtures/bug-diagnosis-from-logs",
+          "prompt_path": "examples/evaluations/runs/codex-cli-default/bug-diagnosis-from-logs/r03-repaired-prompt.md",
+          "transcript_path": "examples/evaluations/runs/codex-cli-default/bug-diagnosis-from-logs/r03-repaired-output.md",
+          "output": "Evidence is insufficient for a certain root cause, but enough to rank Redis pool saturation first.\n\n**Ranked Hypotheses**\n1. **Redis shared-pool saturation triggered by `profile_cache_v2` MGET usage.**\n   Evidence: Redis logs show `pool_size=20 in_use=20` with `pool_wait_ms=244` and `251`; API logs show `redis_timeout_ms=250`; deploy metadata says `profile_cache_v2` changed profile lookups from one `GET` to batched `MGET` using the shared Redis pool.\n\n2. **`profile_cache_v2` rollout caused a request-path latency regression.**\n   Evidence: deploy at `2026-07-02T01:54:00Z`; logs at `2026-07-02T02:10:04Z` through `02:10:09Z` show `feature_profile_cache_v2=true` and checkout latencies around `2318-2470ms`. Hypothesis: the rollout timing and enabled flag are causally related.\n\n3. **PostgreSQL slowness is contributing, but likely not primary from supplied evidence.**\n   Evidence: one PostgreSQL log shows `duration_ms=934`; however API request logs show `pg_ms=78`, `83`, and `91` while Redis timeout is consistently `250ms`. Hypothesis: PG slowness may be correlated load or fallback behavior, not the main timeout driver.\n\n**Missing Evidence**\n- Redis pool wait, in-use, timeout, and command-latency time series before/after `01:54Z`.\n- Request traces showing exact time spent waiting for Redis pool vs executing Redis vs PostgreSQL.\n- Feature-flag exposure percentage and whether affected requests all use `profile_cache_v2`.\n- PostgreSQL p95/p99 query latency, lock waits, connection saturation, and active session counts.\n\n**Next Three Inspections**\n1. Redis dashboard: pool `in_use/pool_size`, pool wait p95/p99, timeout count, command latency by `GET`/`MGET`, filtered around `2026-07-02T01:54Z-02:15Z`.\n\n2. Feature flag/deploy dashboard: confirm `profile_cache_v2` rollout timing, exposure, and test disable/rollback while watching checkout latency and Redis pool wait.\n\n3. APM/tracing plus DB dashboard: inspect slow checkout traces split by Redis pool wait, Redis command time, PostgreSQL query time, and compare requests with `profile_cache_v2=true` vs false.",
+          "scores": {
+            "artifact_boundary": 1,
+            "invariants": 0,
+            "output_contract": 0,
+            "verification": 2,
+            "failure_behavior": 2,
+            "assumption_control": 2
+          },
+          "structural_scores": {
+            "artifact_boundary": 1,
+            "invariants": 0,
+            "output_contract": 0,
+            "verification": 2,
+            "failure_behavior": 2,
+            "assumption_control": 2
+          },
+          "structural_total": 7,
+          "outcome_scores": {
+            "names_planted_cause": 1,
+            "separates_hypothesis": 1,
+            "next_checks": 1
+          },
+          "outcome_total": 3,
+          "total_score": 7,
+          "evaluator_notes": "Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence."
         }
       ]
     },
     "api-design": {
       "title": "API Design Without Hidden Compatibility Traps",
-      "input_context": "Design the first public billing API for invoices, payment attempts, refunds, and account credits. Clients include web, mobile, and internal automations. Mobile clients update slowly. Auth uses OAuth scopes. Payments must support safe retries.",
+      "input_context": "The fixture describes a public billing API that must remain compatible with slow-upgrading clients.\n\nFiles:\n\n- `requirements.json`: product and compatibility requirements.\n- `client_contracts.json`: existing client assumptions.\n- `ground_truth.json`: planted compatibility traps.\n\nGround truth:\n\n- Payment attempts need idempotency keys.\n- Error responses need stable machine-readable codes.\n- List endpoints need pagination.\n- Mobile clients require backward-compatible versioning.\n- Refunds and invoices are separate resources with linked lifecycle state.",
+      "fixture_path": "examples/evaluations/fixtures/api-design",
       "expected_delta": "The repaired spell forces the design to expose compatibility, authorization, idempotency, and migration surfaces up front.",
-      "observed_delta": "repaired prompts scored 4.0 points higher on average",
+      "observed_delta": "repaired prompts scored 3.3 points higher on average",
+      "observed_outcome_delta": "weak and repaired prompts tied on outcome checks",
       "runs": [
         {
           "surface": "codex-cli-default",
           "surface_label": "Codex CLI default model",
           "variant": "weak",
-          "prompt_path": "examples/evaluations/runs/codex-cli-default/api-design/weak-prompt.md",
-          "transcript_path": "examples/evaluations/runs/codex-cli-default/api-design/weak-output.md",
-          "output": "**API Shape**\n\nUse HTTP/JSON, `/v1`, additive-only changes, cursor pagination, stable enum values, and webhook/event delivery for async changes. Mobile clients should be able to keep working for years, so avoid removing fields, renaming states, or changing default behavior.\n\n**Core Resources**\n\n`Invoice`\n```json\n{\n  \"id\": \"inv_123\",\n  \"account_id\": \"acct_123\",\n  \"status\": \"draft|open|paid|void|uncollectible\",\n  \"currency\": \"USD\",\n  \"amount_due\": 12000,\n  \"amount_paid\": 0,\n  \"credit_applied\": 2000,\n  \"due_at\": \"2026-07-15T00:00:00Z\",\n  \"line_items\": [],\n  \"created_at\": \"...\",\n  \"updated_at\": \"...\"\n}\n```\n\n`PaymentAttempt`\n```json\n{\n  \"id\": \"pa_123\",\n  \"invoice_id\": \"inv_123\",\n  \"status\": \"requires_action|processing|succeeded|failed|canceled\",\n  \"amount\": 10000,\n  \"failure_code\": null,\n  \"retryable\": true,\n  \"created_at\": \"...\"\n}\n```\n\n`Refund`\n```json\n{\n  \"id\": \"rf_123\",\n  \"payment_attempt_id\": \"pa_123\",\n  \"status\": \"pending|succeeded|failed\",\n  \"amount\": 5000,\n  \"reason\": \"requested_by_customer\"\n}\n```\n\n`AccountCredit`\n```json\n{\n  \"id\": \"cr_123\",\n  \"account_id\": \"acct_123\",\n  \"status\": \"available|applied|expired|reversed\",\n  \"amount\": 2000,\n  \"remaining_amount\": 0,\n  \"source\": \"manual|refund_credit|promotion\"\n}\n```\n\n**Endpoints**\n\n```http\nGET    /v1/invoices\nGET    /v1/invoices/{invoice_id}\nPOST   /v1/invoices/{invoice_id}/void\nPOST   /v1/invoices/{invoice_id}/pay\n\nGET    /v1/payment_attempts/{payment_attempt_id}\nPOST   /v1/payment_attempts\nPOST   /v1/payment_attempts/{payment_attempt_id}/cancel\n\nGET    /v1/refunds\nPOST   /v1/refunds\nGET    /v1/refunds/{refund_id}\n\nGET    /v1/account_credits\nPOST   /v1/account_credits\nPOST   /v1/account_credits/{credit_id}/apply\nPOST   /v1/account_credits/{credit_id}/reverse\n\nGET    /v1/events?cursor=...\nPOST   /v1/webhook_endpoints\n```\n\n**Safe Retries**\n\nAll mutating `POST` requests require:\n\n```http\nIdempotency-Key: client-generated-uuid\n```\n\nThe server stores the key with request body hash and final result. Retrying the same request returns the same response. Reusing the key with a different body returns `409 idempotency_conflict`.\n\nPayment creation must be asynchronous-safe: `POST /payment_attempts` creates one attempt, never multiple charges, even if the client times out.\n\n**OAuth Scopes**\n\n```text\nbilling.invoices.read\nbilling.invoices.write\nbilling.payments.read\nbilling.payments.write\nbilling.refunds.read\nbilling.refunds.write\nbilling.credits.read\nbilling.credits.write\nbilling.events.read\n```\n\nInternal automations should use the same API with service accounts and narrower scopes, not hidden behavior.\n\n**Missing To Finalize**\n\nNeed processor constraints, tax rules, multi-currency policy, PCI boundaries, invoice mutability rules, refund limits, and whether credits are cash-equivalent or promotional.",
+          "repetition": 1,
+          "run_timestamp": "2026-07-02T04:37:20.921373+00:00",
+          "fixture_path": "examples/evaluations/fixtures/api-design",
+          "prompt_path": "examples/evaluations/runs/codex-cli-default/api-design/r01-weak-prompt.md",
+          "transcript_path": "examples/evaluations/runs/codex-cli-default/api-design/r01-weak-output.md",
+          "output": "The fixture is missing exact lifecycle status names, amount/currency rules, and payment processor details, so those should be filled from production contracts. This design preserves compatibility.\n\n| Endpoint | Method | Scope | Notes |\n|---|---:|---|---|\n| `/v1/invoices` | `GET` | `billing:read` | Cursor-paginated list |\n| `/v1/invoices/{invoice_id}` | `GET` | `billing:read` | Stable invoice status values; never rename |\n| `/v1/payment_attempts` | `POST` | `billing:write` | Requires `Idempotency-Key` header |\n| `/v1/payment_attempts/{attempt_id}` | `GET` | `billing:read` | Retry-safe result lookup |\n| `/v1/refunds` | `POST` | `billing:write` | Separate refund resource linked to invoice/payment |\n| `/v1/refunds/{refund_id}` | `GET` | `billing:read` | Linked lifecycle state |\n| `/v1/account_credits` | `GET` | `billing:read` | Cursor-paginated list |\n\n**Payment Attempt Request**\n\n```http\nPOST /v1/payment_attempts\nAuthorization: Bearer <token>\nIdempotency-Key: pay_2026_07_01_customer_123_invoice_456\nContent-Type: application/json\n```\n\n```json\n{\n  \"invoice_id\": \"inv_456\",\n  \"account_id\": \"acct_123\",\n  \"amount\": 5000\n}\n```\n\n**Payment Attempt Response**\n\n```json\n{\n  \"id\": \"pa_789\",\n  \"invoice_id\": \"inv_456\",\n  \"status\": \"<stable_payment_attempt_status>\",\n  \"created_at\": \"2026-07-01T12:00:00Z\"\n}\n```\n\nIf the same idempotency key is retried with the same body, return the original result. If reused with a different body, return a stable error.\n\n**Paginated List Response**\n\n```http\nGET /v1/invoices?limit=50&cursor=cur_abc\n```\n\n```json\n{\n  \"data\": [\n    {\n      \"id\": \"inv_456\",\n      \"status\": \"<existing_invoice_status>\",\n      \"refund_ids\": [\"ref_123\"]\n    }\n  ],\n  \"pagination\": {\n    \"next_cursor\": \"cur_def\",\n    \"has_more\": true\n  }\n}\n```\n\n**Refund Response**\n\n```json\n{\n  \"id\": \"ref_123\",\n  \"invoice_id\": \"inv_456\",\n  \"payment_attempt_id\": \"pa_789\",\n  \"status\": \"<stable_refund_status>\"\n}\n```\n\n**Stable Error Schema**\n\n```json\n{\n  \"error\": {\n    \"code\": \"IDEMPOTENCY_KEY_REUSED_WITH_DIFFERENT_BODY\",\n    \"message\": \"The idempotency key was already used for a different request.\",\n    \"request_id\": \"req_abc\"\n  }\n}\n```\n\nCompatibility rules: keep `/v1` backward compatible, add fields only, never rename invoice statuses or error fields, and support old mobile behavior for at least the 120-day upgrade window.",
           "scores": {
             "artifact_boundary": 2,
-            "invariants": 0,
+            "invariants": 2,
             "output_contract": 2,
             "verification": 0,
             "failure_behavior": 1,
             "assumption_control": 1
           },
-          "total_score": 6,
-          "run_timestamp": "2026-07-02T03:05:52.472305+00:00",
-          "evaluator_notes": "Auto-scored with the structural rubric; transcript remains the primary evidence."
+          "structural_scores": {
+            "artifact_boundary": 2,
+            "invariants": 2,
+            "output_contract": 2,
+            "verification": 0,
+            "failure_behavior": 1,
+            "assumption_control": 1
+          },
+          "structural_total": 8,
+          "outcome_scores": {
+            "idempotency": 1,
+            "compatibility": 1,
+            "error_contract": 1
+          },
+          "outcome_total": 3,
+          "total_score": 8,
+          "evaluator_notes": "Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence."
         },
         {
           "surface": "codex-cli-default",
           "surface_label": "Codex CLI default model",
           "variant": "repaired",
-          "prompt_path": "examples/evaluations/runs/codex-cli-default/api-design/repaired-prompt.md",
-          "transcript_path": "examples/evaluations/runs/codex-cli-default/api-design/repaired-output.md",
-          "output": "**Assumptions**\n- A customer/account owns invoices, payment attempts, refunds, and account credits.\n- One invoice may have many payment attempts.\n- Refunds apply to a successful payment attempt.\n- Account credits are ledger entries, not mutable balances.\n\n**Endpoint Table**\n\n| Method | Endpoint | Purpose | Scope |\n|---|---|---|---|\n| `GET` | `/v1/invoices` | List invoices | `billing.invoices:read` |\n| `GET` | `/v1/invoices/{invoice_id}` | Get invoice | `billing.invoices:read` |\n| `POST` | `/v1/invoices/{invoice_id}/payment_attempts` | Attempt payment | `billing.payments:write` |\n| `GET` | `/v1/invoices/{invoice_id}/payment_attempts` | List attempts | `billing.payments:read` |\n| `GET` | `/v1/payment_attempts/{attempt_id}` | Get attempt | `billing.payments:read` |\n| `POST` | `/v1/payment_attempts/{attempt_id}/refunds` | Create refund | `billing.refunds:write` |\n| `GET` | `/v1/refunds` | List refunds | `billing.refunds:read` |\n| `GET` | `/v1/account_credits` | List credit ledger | `billing.credits:read` |\n\nPagination:\n\n```http\nGET /v1/invoices?limit=25&cursor=eyJpZCI6...\n```\n\n```json\n{\n  \"data\": [],\n  \"pagination\": {\n    \"next_cursor\": \"eyJpZCI6...\",\n    \"has_more\": true\n  }\n}\n```\n\n**Request / Response Examples**\n\nCreate payment attempt:\n\n```http\nPOST /v1/invoices/inv_123/payment_attempts\nAuthorization: Bearer ...\nIdempotency-Key: 8d8f1c7e-...\nContent-Type: application/json\n```\n\n```json\n{\n  \"payment_method_id\": \"pm_456\",\n  \"amount\": 4999,\n  \"currency\": \"usd\"\n}\n```\n\n```json\n{\n  \"id\": \"pa_789\",\n  \"invoice_id\": \"inv_123\",\n  \"status\": \"processing\",\n  \"amount\": 4999,\n  \"currency\": \"usd\",\n  \"created_at\": \"2026-07-01T12:00:00Z\"\n}\n```\n\nCreate refund:\n\n```json\n{\n  \"amount\": 2000,\n  \"reason\": \"requested_by_customer\"\n}\n```\n\n```json\n{\n  \"id\": \"rf_123\",\n  \"payment_attempt_id\": \"pa_789\",\n  \"status\": \"succeeded\",\n  \"amount\": 2000,\n  \"currency\": \"usd\"\n}\n```\n\nError schema:\n\n```json\n{\n  \"error\": {\n    \"type\": \"invalid_request\",\n    \"code\": \"amount_exceeds_refundable_balance\",\n    \"message\": \"Refund amount exceeds refundable balance.\",\n    \"request_id\": \"req_123\"\n  }\n}\n```\n\n**Auth Notes**\n- Use OAuth bearer tokens.\n- Scopes are resource/action based.\n- Internal automations should use the same public API with service-account tokens.\n- Avoid exposing different semantics for internal callers.\n\n**Idempotency Notes**\n- Require `Idempotency-Key` on all `POST` mutation endpoints.\n- Store key, account, endpoint, request hash, response body, and status in PostgreSQL.\n- Same key + same request returns the original response.\n- Same key + different request returns `409 idempotency_key_conflict`.\n- Payment provider calls must also use stable downstream idempotency keys.\n\n**Migration / Versioning Notes**\n- Use `/v1`.\n- Additive changes only: new fields, new enum values, new endpoints.\n- Never rename or remove fields in `v1`.\n- Mobile clients must tolerate unknown fields and unknown enum values.\n- Breaking changes require `/v2` plus long deprecation windows.\n\n**Risks To Verify**\n- Double payment from concurrent retries: enforce invoice payment state with DB transactions and unique constraints.\n- Refund races: lock payment/refund rows and compute refundable balance transactionally.\n- Idempotency expiry: document retention period; expired keys may create new attempts.\n- Compatibility risk: mobile clients may fail on new enum values unless explicitly hardened.",
+          "repetition": 1,
+          "run_timestamp": "2026-07-02T04:38:04.444991+00:00",
+          "fixture_path": "examples/evaluations/fixtures/api-design",
+          "prompt_path": "examples/evaluations/runs/codex-cli-default/api-design/r01-repaired-prompt.md",
+          "transcript_path": "examples/evaluations/runs/codex-cli-default/api-design/r01-repaired-output.md",
+          "output": "Assumptions: amounts are integer minor units plus currency; invoice status values are stable enums; refunds are separate resources linked to invoices and successful payment attempts.\n\n| Method | Endpoint | Scope | Notes |\n|---|---|---|---|\n| `GET` | `/v1/invoices?limit=50&cursor=...` | `billing:read` | Paginated list |\n| `POST` | `/v1/invoices` | `billing:write` | Create invoice |\n| `GET` | `/v1/invoices/{invoice_id}` | `billing:read` | Stable invoice shape |\n| `GET` | `/v1/invoices/{invoice_id}/payment_attempts` | `billing:read` | Paginated attempts |\n| `POST` | `/v1/invoices/{invoice_id}/payment_attempts` | `billing:write` | Requires `Idempotency-Key` |\n| `GET` | `/v1/payment_attempts/{attempt_id}` | `billing:read` | Retry/status polling |\n| `POST` | `/v1/payment_attempts/{attempt_id}/refunds` | `billing:write` | Requires `Idempotency-Key` |\n| `GET` | `/v1/refunds?invoice_id=...&limit=50&cursor=...` | `billing:read` | Paginated refunds |\n| `GET` | `/v1/account_credits?limit=50&cursor=...` | `billing:read` | Existing resource support |\n\nCreate payment attempt:\n\n```http\nPOST /v1/invoices/inv_123/payment_attempts\nAuthorization: Bearer <token>\nIdempotency-Key: 7f6b2f0e-...\nContent-Type: application/json\n```\n\n```json\n{\n  \"amount\": 1299,\n  \"currency\": \"USD\",\n  \"payment_method_id\": \"pm_123\"\n}\n```\n\n```json\n{\n  \"id\": \"pa_123\",\n  \"invoice_id\": \"inv_123\",\n  \"status\": \"succeeded\",\n  \"amount\": 1299,\n  \"currency\": \"USD\",\n  \"created_at\": \"2026-07-01T12:00:00Z\"\n}\n```\n\nPaginated list response:\n\n```json\n{\n  \"data\": [{ \"id\": \"inv_123\", \"status\": \"paid\", \"refund_state\": \"none\" }],\n  \"pagination\": { \"next_cursor\": \"cur_abc\", \"has_more\": true }\n}\n```\n\nRefund response:\n\n```json\n{\n  \"id\": \"rf_123\",\n  \"invoice_id\": \"inv_123\",\n  \"payment_attempt_id\": \"pa_123\",\n  \"status\": \"pending\",\n  \"amount\": 500\n}\n```\n\nStable error schema:\n\n```json\n{\n  \"error\": {\n    \"code\": \"idempotency_key_required\",\n    \"message\": \"Idempotency-Key is required.\",\n    \"request_id\": \"req_123\"\n  }\n}\n```\n\nAuth: OAuth bearer tokens only. Preserve existing scopes: `billing:read` for reads, `billing:write` for mutations.\n\nIdempotency: all payment attempts and refunds require `Idempotency-Key`. Reusing a key with the same body returns the original result; reusing it with a different body returns `409` with code `idempotency_key_conflict`.\n\nVersioning/migration: keep `/v1`; additive fields only; never rename status values or change error shape. Mobile clients have a 120-day upgrade window, so breaking changes require `/v2` and overlap.\n\nVerification risks: race concurrent retries with a unique idempotency-key constraint; prevent double refund by checking refundable balance transactionally; do not rely on clients preserving unknown fields.",
           "scores": {
             "artifact_boundary": 2,
             "invariants": 1,
@@ -196,25 +774,188 @@
             "failure_behavior": 2,
             "assumption_control": 2
           },
+          "structural_scores": {
+            "artifact_boundary": 2,
+            "invariants": 1,
+            "output_contract": 2,
+            "verification": 1,
+            "failure_behavior": 2,
+            "assumption_control": 2
+          },
+          "structural_total": 10,
+          "outcome_scores": {
+            "idempotency": 1,
+            "compatibility": 1,
+            "error_contract": 1
+          },
+          "outcome_total": 3,
           "total_score": 10,
-          "run_timestamp": "2026-07-02T03:06:16.192905+00:00",
-          "evaluator_notes": "Auto-scored with the structural rubric; transcript remains the primary evidence."
+          "evaluator_notes": "Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence."
+        },
+        {
+          "surface": "codex-cli-default",
+          "surface_label": "Codex CLI default model",
+          "variant": "weak",
+          "repetition": 2,
+          "run_timestamp": "2026-07-02T04:38:46.757444+00:00",
+          "fixture_path": "examples/evaluations/fixtures/api-design",
+          "prompt_path": "examples/evaluations/runs/codex-cli-default/api-design/r02-weak-prompt.md",
+          "transcript_path": "examples/evaluations/runs/codex-cli-default/api-design/r02-weak-output.md",
+          "output": "Missing specifics: amount/currency format, full lifecycle enums, refund eligibility rules, and account-credit behavior. This design keeps those as stable fields without inventing business rules.\n\n**API Shape**\n\nBase path: `/v1/billing`\nAuth: OAuth bearer token. Existing scopes: `billing:read`, `billing:write`.\n\n| Method | Endpoint | Scope | Notes |\n|---|---|---:|---|\n| `GET` | `/invoices?limit=50&page_token=...` | `billing:read` | Paginated invoice list |\n| `GET` | `/invoices/{invoice_id}` | `billing:read` | Invoice detail |\n| `GET` | `/payment_attempts?invoice_id=...&limit=50&page_token=...` | `billing:read` | Paginated attempts |\n| `POST` | `/payment_attempts` | `billing:write` | Requires `Idempotency-Key` |\n| `GET` | `/refunds?invoice_id=...&limit=50&page_token=...` | `billing:read` | Refunds are separate resources |\n| `POST` | `/refunds` | `billing:write` | Creates refund linked to invoice/payment attempt |\n| `GET` | `/account_credits?limit=50&page_token=...` | `billing:read` | Paginated credits |\n\n**Payment Attempt**\n\nRequest:\n\n```http\nPOST /v1/billing/payment_attempts\nAuthorization: Bearer <token>\nIdempotency-Key: pay_2026_07_01_customer_123_invoice_456\nContent-Type: application/json\n```\n\n```json\n{\n  \"invoice_id\": \"inv_456\",\n  \"payment_method_id\": \"pm_789\"\n}\n```\n\nResponse:\n\n```json\n{\n  \"id\": \"pa_123\",\n  \"invoice_id\": \"inv_456\",\n  \"status\": \"processing\",\n  \"created_at\": \"2026-07-01T00:00:00Z\"\n}\n```\n\nRepeated requests with the same `Idempotency-Key` must return the original result, not create a second charge.\n\n**Invoice With Linked Lifecycle**\n\n```json\n{\n  \"id\": \"inv_456\",\n  \"status\": \"open\",\n  \"payment_attempt_ids\": [\"pa_123\"],\n  \"refund_ids\": [\"ref_222\"],\n  \"account_credit_ids\": []\n}\n```\n\nRefunds remain separate resources:\n\n```json\n{\n  \"id\": \"ref_222\",\n  \"invoice_id\": \"inv_456\",\n  \"payment_attempt_id\": \"pa_123\",\n  \"status\": \"pending\"\n}\n```\n\n**Pagination**\n\nList responses use a stable envelope:\n\n```json\n{\n  \"data\": [{ \"id\": \"inv_456\", \"status\": \"open\" }],\n  \"next_page_token\": \"opaque_token_or_null\"\n}\n```\n\n**Stable Error Schema**\n\nNever change this shape without a new version:\n\n```json\n{\n  \"error\": {\n    \"code\": \"idempotency_key_required\",\n    \"message\": \"Idempotency-Key header is required.\",\n    \"request_id\": \"req_123\"\n  }\n}\n```\n\n`code` is the stable machine-readable contract.\n\n**Compatibility Notes**\n\nUse `/v1` versioning. Do not rename invoice status values, change the error shape, or make payment retries non-idempotent. Changes should be additive because mobile clients may take 120 days to upgrade.",
+          "scores": {
+            "artifact_boundary": 2,
+            "invariants": 1,
+            "output_contract": 2,
+            "verification": 0,
+            "failure_behavior": 1,
+            "assumption_control": 1
+          },
+          "structural_scores": {
+            "artifact_boundary": 2,
+            "invariants": 1,
+            "output_contract": 2,
+            "verification": 0,
+            "failure_behavior": 1,
+            "assumption_control": 1
+          },
+          "structural_total": 7,
+          "outcome_scores": {
+            "idempotency": 1,
+            "compatibility": 1,
+            "error_contract": 1
+          },
+          "outcome_total": 3,
+          "total_score": 7,
+          "evaluator_notes": "Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence."
+        },
+        {
+          "surface": "codex-cli-default",
+          "surface_label": "Codex CLI default model",
+          "variant": "repaired",
+          "repetition": 2,
+          "run_timestamp": "2026-07-02T04:39:30.761061+00:00",
+          "fixture_path": "examples/evaluations/fixtures/api-design",
+          "prompt_path": "examples/evaluations/runs/codex-cli-default/api-design/r02-repaired-prompt.md",
+          "transcript_path": "examples/evaluations/runs/codex-cli-default/api-design/r02-repaired-output.md",
+          "output": "**Assumptions / Missing**\nAmounts, currencies, exact status enum values, customer model, payment provider behavior, invoice line items, and account credit lifecycle are not specified. Design below uses generic fields and treats refunds/invoices as separate linked resources.\n\n**Endpoint Table**\n\n| Method | Endpoint | Scope | Notes |\n|---|---|---:|---|\n| `GET` | `/v1/invoices?limit=&cursor=&status=` | `billing:read` | Paginated list |\n| `GET` | `/v1/invoices/{invoice_id}` | `billing:read` | Stable invoice representation |\n| `POST` | `/v1/invoices` | `billing:write` | Create invoice |\n| `GET` | `/v1/invoices/{invoice_id}/payment_attempts?limit=&cursor=` | `billing:read` | Paginated attempts |\n| `POST` | `/v1/invoices/{invoice_id}/payment_attempts` | `billing:write` | Requires `Idempotency-Key` |\n| `GET` | `/v1/payment_attempts/{attempt_id}` | `billing:read` | Fetch retry result |\n| `GET` | `/v1/refunds?invoice_id=&limit=&cursor=` | `billing:read` | Paginated refunds |\n| `POST` | `/v1/refunds` | `billing:write` | Separate refund resource linked to invoice/payment attempt |\n| `GET` | `/v1/account_credits?limit=&cursor=` | `billing:read` | Included because fixture lists resource |\n\n**Examples**\n\n`POST /v1/invoices`\n\n```json\n{\n  \"customer_id\": \"cus_123\",\n  \"amount_minor\": 5000,\n  \"currency\": \"USD\"\n}\n```\n\n```json\n{\n  \"id\": \"inv_123\",\n  \"status\": \"open\",\n  \"amount_minor\": 5000,\n  \"currency\": \"USD\",\n  \"created_at\": \"2026-07-01T12:00:00Z\"\n}\n```\n\n`POST /v1/invoices/inv_123/payment_attempts` with `Idempotency-Key: pay_20260701_inv_123_001`\n\n```json\n{\n  \"payment_method_id\": \"pm_123\"\n}\n```\n\n```json\n{\n  \"id\": \"pa_123\",\n  \"invoice_id\": \"inv_123\",\n  \"status\": \"succeeded\",\n  \"amount_minor\": 5000\n}\n```\n\nPaginated list response:\n\n```json\n{\n  \"data\": [{ \"id\": \"inv_123\", \"status\": \"open\" }],\n  \"page\": { \"limit\": 50, \"next_cursor\": \"cur_abc\" }\n}\n```\n\nStable error:\n\n```json\n{\n  \"error\": {\n    \"code\": \"idempotency_key_required\",\n    \"message\": \"Idempotency-Key header is required.\",\n    \"request_id\": \"req_123\"\n  }\n}\n```\n\n**Auth**\nUse OAuth bearer tokens. Existing scopes remain `billing:read` and `billing:write`; do not rename them without a new API version.\n\n**Idempotency**\nAll payment attempts require `Idempotency-Key`. Same key plus same request returns the original result. Same key with different body returns `409` and stable code `idempotency_key_conflict`.\n\n**Versioning / Migration**\nUse `/v1`. Add fields only; do not rename invoice statuses, scopes, or error shape. Support old mobile clients for at least 120 days. New breaking behavior requires `/v2`.\n\n**Verification Risks**\nRace conditions: duplicate payment attempts for one invoice, refund while payment is pending, concurrent refund requests. Use PostgreSQL transactions, unique idempotency keys, and state transition checks.\n\nRetry hazards: client timeout after successful charge; idempotency must return the existing attempt.\n\nCompatibility risks: enum renames, unpaginated lists, changed error schema, and coupling refunds directly into invoice objects.",
+          "scores": {
+            "artifact_boundary": 2,
+            "invariants": 1,
+            "output_contract": 2,
+            "verification": 1,
+            "failure_behavior": 2,
+            "assumption_control": 2
+          },
+          "structural_scores": {
+            "artifact_boundary": 2,
+            "invariants": 1,
+            "output_contract": 2,
+            "verification": 1,
+            "failure_behavior": 2,
+            "assumption_control": 2
+          },
+          "structural_total": 10,
+          "outcome_scores": {
+            "idempotency": 1,
+            "compatibility": 1,
+            "error_contract": 1
+          },
+          "outcome_total": 3,
+          "total_score": 10,
+          "evaluator_notes": "Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence."
+        },
+        {
+          "surface": "codex-cli-default",
+          "surface_label": "Codex CLI default model",
+          "variant": "weak",
+          "repetition": 3,
+          "run_timestamp": "2026-07-02T04:40:14.774879+00:00",
+          "fixture_path": "examples/evaluations/fixtures/api-design",
+          "prompt_path": "examples/evaluations/runs/codex-cli-default/api-design/r03-weak-prompt.md",
+          "transcript_path": "examples/evaluations/runs/codex-cli-default/api-design/r03-weak-output.md",
+          "output": "**Billing API Design**\n\nBase path: `/v1/billing`\nVersioning: keep `/v1` backward compatible. Only additive response fields are allowed. Do not rename status values or change error shape without a new version. Mobile-breaking removals require at least the 120-day mobile upgrade window.\n\n| Method | Endpoint | Scope | Purpose |\n|---|---|---:|---|\n| `GET` | `/invoices` | `billing:read` | List invoices, paginated |\n| `GET` | `/invoices/{invoice_id}` | `billing:read` | Fetch invoice |\n| `POST` | `/payment_attempts` | `billing:write` | Attempt payment, idempotent |\n| `GET` | `/payment_attempts` | `billing:read` | List attempts, paginated |\n| `GET` | `/payment_attempts/{attempt_id}` | `billing:read` | Fetch attempt |\n| `POST` | `/refunds` | `billing:write` | Create refund as separate resource |\n| `GET` | `/refunds` | `billing:read` | List refunds, paginated |\n| `GET` | `/refunds/{refund_id}` | `billing:read` | Fetch refund |\n| `GET` | `/account_credits` | `billing:read` | List account credits, paginated |\n\nPayment attempts require an `Idempotency-Key` header. Repeating the same request with the same key returns the same payment attempt. Reusing the key with a different body returns `409 idempotency_key_conflict`.\n\nExample:\n\n```http\nPOST /v1/billing/payment_attempts\nAuthorization: Bearer ...\nIdempotency-Key: pay_2026_001\nContent-Type: application/json\n```\n\n```json\n{\n  \"invoice_id\": \"inv_123\",\n  \"payment_method_id\": \"pm_456\",\n  \"amount\": 5000,\n  \"currency\": \"USD\"\n}\n```\n\nResponse:\n\n```json\n{\n  \"id\": \"pa_789\",\n  \"invoice_id\": \"inv_123\",\n  \"status\": \"succeeded\",\n  \"amount\": 5000,\n  \"currency\": \"USD\",\n  \"created_at\": \"2026-07-01T12:00:00Z\"\n}\n```\n\nRefunds are separate from invoices but linked:\n\n```json\n{\n  \"id\": \"ref_123\",\n  \"invoice_id\": \"inv_123\",\n  \"payment_attempt_id\": \"pa_789\",\n  \"status\": \"pending\",\n  \"amount\": 2000,\n  \"currency\": \"USD\"\n}\n```\n\nList responses use cursor pagination:\n\n```http\nGET /v1/billing/invoices?limit=50&page_after=cursor_abc\n```\n\n```json\n{\n  \"data\": [],\n  \"next_page_token\": \"cursor_def\"\n}\n```\n\nStable error schema:\n\n```json\n{\n  \"error\": {\n    \"code\": \"idempotency_key_required\",\n    \"message\": \"Idempotency-Key header is required.\",\n    \"request_id\": \"req_123\",\n    \"details\": {}\n  }\n}\n```\n\nError `code` is the machine contract; messages may change, codes must not.",
+          "scores": {
+            "artifact_boundary": 2,
+            "invariants": 1,
+            "output_contract": 2,
+            "verification": 0,
+            "failure_behavior": 1,
+            "assumption_control": 0
+          },
+          "structural_scores": {
+            "artifact_boundary": 2,
+            "invariants": 1,
+            "output_contract": 2,
+            "verification": 0,
+            "failure_behavior": 1,
+            "assumption_control": 0
+          },
+          "structural_total": 6,
+          "outcome_scores": {
+            "idempotency": 1,
+            "compatibility": 1,
+            "error_contract": 1
+          },
+          "outcome_total": 3,
+          "total_score": 6,
+          "evaluator_notes": "Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence."
+        },
+        {
+          "surface": "codex-cli-default",
+          "surface_label": "Codex CLI default model",
+          "variant": "repaired",
+          "repetition": 3,
+          "run_timestamp": "2026-07-02T04:40:46.554091+00:00",
+          "fixture_path": "examples/evaluations/fixtures/api-design",
+          "prompt_path": "examples/evaluations/runs/codex-cli-default/api-design/r03-repaired-prompt.md",
+          "transcript_path": "examples/evaluations/runs/codex-cli-default/api-design/r03-repaired-output.md",
+          "output": "**Assumptions:** amounts are integer minor units plus ISO currency; invoices, payment attempts, and refunds are separate resources; refunds link to a successful payment attempt and update invoice/payment lifecycle state.\n\n| Method | Endpoint | Purpose |\n|---|---|---|\n| `GET` | `/v1/invoices?customer_id=&limit=&cursor=` | List invoices with cursor pagination |\n| `GET` | `/v1/invoices/{id}` | Fetch invoice |\n| `POST` | `/v1/invoices` | Create invoice |\n| `GET` | `/v1/payment_attempts?invoice_id=&limit=&cursor=` | List attempts |\n| `POST` | `/v1/payment_attempts` | Create/retry payment attempt |\n| `GET` | `/v1/payment_attempts/{id}` | Fetch attempt |\n| `GET` | `/v1/refunds?invoice_id=&limit=&cursor=` | List refunds |\n| `POST` | `/v1/refunds` | Create refund |\n| `GET` | `/v1/refunds/{id}` | Fetch refund |\n\n**Create Payment Attempt**\n\n```http\nPOST /v1/payment_attempts\nAuthorization: Bearer <oauth-token>\nIdempotency-Key: payatt_2026_07_01_abc123\nContent-Type: application/json\n```\n\n```json\n{\n  \"invoice_id\": \"inv_123\",\n  \"amount\": 2599,\n  \"currency\": \"USD\",\n  \"payment_method_id\": \"pm_456\"\n}\n```\n\n```json\n{\n  \"id\": \"pa_789\",\n  \"invoice_id\": \"inv_123\",\n  \"status\": \"succeeded\",\n  \"amount\": 2599,\n  \"currency\": \"USD\",\n  \"created_at\": \"2026-07-01T12:00:00Z\"\n}\n```\n\n**Paginated List**\n\n```json\n{\n  \"data\": [\n    { \"id\": \"inv_123\", \"status\": \"paid\", \"amount_due\": 2599, \"currency\": \"USD\" }\n  ],\n  \"pagination\": {\n    \"limit\": 50,\n    \"next_cursor\": \"cur_abc\",\n    \"has_more\": true\n  }\n}\n```\n\n**Error Schema**\n\n```json\n{\n  \"error\": {\n    \"code\": \"invoice_already_paid\",\n    \"message\": \"Invoice is already paid.\",\n    \"request_id\": \"req_123\",\n    \"details\": {\n      \"invoice_id\": \"inv_123\"\n    }\n  }\n}\n```\n\nError `code` is stable and machine-readable. Messages may change.\n\n**Auth Notes**\n\nUse OAuth bearer tokens. Scope by action: `billing.invoices.read`, `billing.invoices.write`, `billing.payments.write`, `billing.refunds.write`. Never infer tenant/customer access from request body alone; validate ownership server-side.\n\n**Idempotency Notes**\n\nRequire `Idempotency-Key` for all mutating endpoints. Store key, endpoint, OAuth subject, request hash, response body, status code, and expiry. Same key plus same request returns the original response. Same key plus different body returns `idempotency_key_conflict`.\n\n**Migration / Versioning Notes**\n\nUse `/v1` path versioning. Preserve response fields and enum meanings. Additive fields are allowed. Avoid removing fields, changing types, or reusing error codes. Mobile clients may lag, so support old versions through a documented deprecation window.\n\n**Verification Risks**\n\nRace conditions: concurrent payment attempts for one invoice, duplicate refunds, refund amount exceeding captured amount, invoice status changing during payment. Use DB constraints, transactions, row locks, and lifecycle checks.\n\nRetry hazards: network timeout after charge succeeds; client retries must receive the same attempt, not create a second charge.\n\nCompatibility risks: enum additions, pagination shape changes, unstable errors, and merging refunds into invoices would break slow-upgrading clients.",
+          "scores": {
+            "artifact_boundary": 2,
+            "invariants": 2,
+            "output_contract": 2,
+            "verification": 2,
+            "failure_behavior": 2,
+            "assumption_control": 1
+          },
+          "structural_scores": {
+            "artifact_boundary": 2,
+            "invariants": 2,
+            "output_contract": 2,
+            "verification": 2,
+            "failure_behavior": 2,
+            "assumption_control": 1
+          },
+          "structural_total": 11,
+          "outcome_scores": {
+            "idempotency": 1,
+            "compatibility": 1,
+            "error_contract": 1
+          },
+          "outcome_total": 3,
+          "total_score": 11,
+          "evaluator_notes": "Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence."
         }
       ]
     },
     "migration-without-data-loss": {
       "title": "Online Migration Without Data Loss",
-      "input_context": "A production PostgreSQL `users` table has `birthdate_text VARCHAR`. Values include `1990-04-12`, `04/12/1990`, `unknown`, empty strings, and nulls. The app has old and new versions live during deploy. The table has 40 million rows and receives writes all day.",
+      "input_context": "The fixture is a live PostgreSQL migration packet for `users.birthdate_text`.\n\nFiles:\n\n- `schema.sql`: starting schema.\n- `dirty_rows.csv`: representative dirty values.\n- `checks.sql`: validation queries expected in a safe answer.\n- `ground_truth.json`: planted traps.\n\nGround truth:\n\n- Direct destructive type conversion is unsafe.\n- The safe path is expand-and-contract with dual write or compatibility triggers.\n- Dirty rows such as `unknown`, empty strings, nulls, and ambiguous formats need quarantine or explicit business handling.\n- Rollback must remain possible until parity and dirty-data handling are verified.",
+      "fixture_path": "examples/evaluations/fixtures/migration-without-data-loss",
       "expected_delta": "The repaired spell turns one risky command into a reversible campaign with validation and dirty-data handling.",
-      "observed_delta": "weak prompts scored 2.0 points higher on average",
+      "observed_delta": "repaired prompts scored 0.7 points higher on average",
+      "observed_outcome_delta": "weak and repaired prompts tied on outcome checks",
       "runs": [
         {
           "surface": "codex-cli-default",
           "surface_label": "Codex CLI default model",
           "variant": "weak",
-          "prompt_path": "examples/evaluations/runs/codex-cli-default/migration-without-data-loss/weak-prompt.md",
-          "transcript_path": "examples/evaluations/runs/codex-cli-default/migration-without-data-loss/weak-output.md",
-          "output": "Do this as an expand/contract migration. Do **not** directly `ALTER birthdate_text TYPE date`; on 40M live rows that risks long locks/table rewrites and breaks mixed old/new app versions.\n\nMissing decisions: how to treat invalid strings like `unknown`, whether to preserve the original text forever, and whether all write paths can be updated to dual-write.\n\n**Plan**\n\n1. Add the new nullable column:\n\n```sql\nALTER TABLE users ADD COLUMN birthdate DATE;\n```\n\n2. Add safe parsing logic. Invalid, empty, and `unknown` should become `NULL` unless product requirements say otherwise.\n\n```sql\nCREATE OR REPLACE FUNCTION try_parse_birthdate(value text)\nRETURNS date\nLANGUAGE plpgsql\nAS $$\nBEGIN\n  IF value IS NULL OR btrim(value) = '' OR lower(btrim(value)) = 'unknown' THEN\n    RETURN NULL;\n  END IF;\n\n  IF value ~ '^\\d{4}-\\d{2}-\\d{2}$' THEN\n    RETURN to_date(value, 'YYYY-MM-DD');\n  END IF;\n\n  IF value ~ '^\\d{2}/\\d{2}/\\d{4}$' THEN\n    RETURN to_date(value, 'MM/DD/YYYY');\n  END IF;\n\n  RETURN NULL;\nEXCEPTION WHEN others THEN\n  RETURN NULL;\nEND;\n$$;\n```\n\n3. Deploy app version A that is backward-compatible:\n   - Reads from `birthdate` if present, otherwise falls back to `birthdate_text`.\n   - On writes, writes both columns.\n   - New writes should normalize to `DATE`.\n\n4. Backfill in small batches during normal traffic. Use primary-key ranges or `FOR UPDATE SKIP LOCKED`; do not run one huge update.\n\nExample batch shape:\n\n```sql\nWITH batch AS (\n  SELECT id\n  FROM users\n  WHERE birthdate IS NULL\n    AND birthdate_text IS NOT NULL\n  ORDER BY id\n  LIMIT 10000\n)\nUPDATE users u\nSET birthdate = try_parse_birthdate(u.birthdate_text)\nFROM batch\nWHERE u.id = batch.id;\n```\n\nRun repeatedly from a worker/job, with throttling, monitoring lock waits, replication lag, dead tuples, and write latency.\n\n5. Validate:\n\n```sql\nSELECT count(*) FROM users\nWHERE birthdate_text IS NOT NULL\n  AND btrim(birthdate_text) <> ''\n  AND lower(btrim(birthdate_text)) <> 'unknown'\n  AND birthdate IS NULL;\n```\n\nAlso sample parsed rows manually, especially around ambiguous `MM/DD/YYYY` values.\n\n6. Deploy app version B:\n   - Reads only `birthdate`.\n   - Continues writing `birthdate`.\n   - Stops depending on `birthdate_text`.\n\n7. After old app versions are fully gone, contract:\n\n```sql\nALTER TABLE users DROP COLUMN birthdate_text;\nDROP FUNCTION try_parse_birthdate(text);\n```\n\nOnly add `NOT NULL` or constraints after confirming business rules, since existing `unknown`, empty, and null values imply nullable data today.",
+          "repetition": 1,
+          "run_timestamp": "2026-07-02T04:41:31.162383+00:00",
+          "fixture_path": "examples/evaluations/fixtures/migration-without-data-loss",
+          "prompt_path": "examples/evaluations/runs/codex-cli-default/migration-without-data-loss/r01-weak-prompt.md",
+          "transcript_path": "examples/evaluations/runs/codex-cli-default/migration-without-data-loss/r01-weak-output.md",
+          "output": "Do not run `ALTER COLUMN birthdate_text TYPE DATE`. This needs expand-and-contract.\n\n```sql\nALTER TABLE users ADD COLUMN birthdate DATE;\n\nCREATE TABLE user_birthdate_quarantine (\n  user_id BIGINT PRIMARY KEY,\n  birthdate_text TEXT,\n  reason TEXT NOT NULL,\n  created_at TIMESTAMPTZ NOT NULL DEFAULT now()\n);\n```\n\nBackfill in batches. Only auto-parse unambiguous ISO dates; quarantine everything else requiring policy.\n\n```sql\nUPDATE users\nSET birthdate = birthdate_text::date\nWHERE birthdate IS NULL\n  AND birthdate_text ~ '^\\d{4}-\\d{2}-\\d{2}$';\n\nINSERT INTO user_birthdate_quarantine (user_id, birthdate_text, reason)\nSELECT id, birthdate_text,\n       CASE\n         WHEN birthdate_text IS NULL OR btrim(birthdate_text) = '' THEN 'blank_or_null'\n         WHEN lower(btrim(birthdate_text)) = 'unknown' THEN 'unknown'\n         ELSE 'ambiguous_or_invalid'\n       END\nFROM users\nWHERE birthdate_text IS NULL\n   OR btrim(birthdate_text) = ''\n   OR lower(btrim(birthdate_text)) = 'unknown'\n   OR birthdate IS NULL\nON CONFLICT (user_id) DO NOTHING;\n```\n\n`04/12/1990` is ambiguous and `31/02/1990` is invalid, so the missing requirement is the business rule for non-ISO dates. Until that is defined, quarantine them.\n\nAdd dual-write in the application, or a compatibility trigger during rollout:\n\n```sql\nCREATE OR REPLACE FUNCTION sync_users_birthdate()\nRETURNS trigger LANGUAGE plpgsql AS $$\nBEGIN\n  IF NEW.birthdate IS NOT NULL THEN\n    NEW.birthdate_text := NEW.birthdate::text;\n  END IF;\n  RETURN NEW;\nEND $$;\n\nCREATE TRIGGER users_birthdate_sync\nBEFORE INSERT OR UPDATE ON users\nFOR EACH ROW EXECUTE FUNCTION sync_users_birthdate();\n```\n\nBefore cutover, run the required checks:\n\n```sql\nSELECT count(*) AS dirty_birthdate_text\nFROM users\nWHERE birthdate_text IS NOT NULL\n  AND btrim(birthdate_text) <> ''\n  AND lower(btrim(birthdate_text)) <> 'unknown'\n  AND birthdate IS NULL;\n\nSELECT count(*) AS parsed_rows\nFROM users\nWHERE birthdate IS NOT NULL;\n```\n\nOnly after parity is verified and dirty rows are resolved should readers switch to `birthdate`. Keep `birthdate_text` and the trigger until rollback is no longer needed, then drop the trigger and old column in a later cleanup migration.",
           "scores": {
             "artifact_boundary": 2,
             "invariants": 1,
@@ -223,120 +964,655 @@
             "failure_behavior": 2,
             "assumption_control": 2
           },
+          "structural_scores": {
+            "artifact_boundary": 2,
+            "invariants": 1,
+            "output_contract": 2,
+            "verification": 1,
+            "failure_behavior": 2,
+            "assumption_control": 2
+          },
+          "structural_total": 10,
+          "outcome_scores": {
+            "expand_contract": 1,
+            "dirty_data": 1,
+            "rollback": 1
+          },
+          "outcome_total": 3,
           "total_score": 10,
-          "run_timestamp": "2026-07-02T03:07:40.631592+00:00",
-          "evaluator_notes": "Auto-scored with the structural rubric; transcript remains the primary evidence."
+          "evaluator_notes": "Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence."
         },
         {
           "surface": "codex-cli-default",
           "surface_label": "Codex CLI default model",
           "variant": "repaired",
-          "prompt_path": "examples/evaluations/runs/codex-cli-default/migration-without-data-loss/repaired-prompt.md",
-          "transcript_path": "examples/evaluations/runs/codex-cli-default/migration-without-data-loss/repaired-output.md",
-          "output": "Assumption: `users.id` exists. Replace with the real stable primary key if not.\n\n**1. Schema Expand**\n\n```sql\nALTER TABLE users ADD COLUMN birthdate DATE;\n\nCREATE TABLE users_birthdate_quarantine (\n  user_id BIGINT PRIMARY KEY,\n  birthdate_text VARCHAR,\n  reason TEXT NOT NULL,\n  recorded_at TIMESTAMPTZ NOT NULL DEFAULT now()\n);\n```\n\nCreate a safe parser:\n\n```sql\nCREATE OR REPLACE FUNCTION parse_user_birthdate(v TEXT)\nRETURNS DATE\nLANGUAGE plpgsql\nAS $$\nDECLARE d DATE;\nBEGIN\n  IF v IS NULL OR btrim(v) = '' THEN\n    RETURN NULL;\n  END IF;\n\n  IF v ~ '^\\d{4}-\\d{2}-\\d{2}$' THEN\n    d := to_date(v, 'YYYY-MM-DD');\n    IF to_char(d, 'YYYY-MM-DD') = v THEN RETURN d; END IF;\n  END IF;\n\n  IF v ~ '^\\d{2}/\\d{2}/\\d{4}$' THEN\n    d := to_date(v, 'MM/DD/YYYY');\n    IF to_char(d, 'MM/DD/YYYY') = v THEN RETURN d; END IF;\n  END IF;\n\n  RETURN NULL;\nEND $$;\n```\n\nAdd trigger so old app writes still populate the new column:\n\n```sql\nCREATE OR REPLACE FUNCTION users_birthdate_dual_write()\nRETURNS trigger\nLANGUAGE plpgsql\nAS $$\nBEGIN\n  IF NEW.birthdate IS NULL THEN\n    NEW.birthdate := parse_user_birthdate(NEW.birthdate_text);\n  END IF;\n  RETURN NEW;\nEND $$;\n\nCREATE TRIGGER users_birthdate_dual_write_trg\nBEFORE INSERT OR UPDATE OF birthdate_text, birthdate ON users\nFOR EACH ROW\nEXECUTE FUNCTION users_birthdate_dual_write();\n```\n\n**2. App Deploy 1: Dual Write**\n\nNew app writes both:\n\n```text\nbirthdate_text = original submitted string or canonical YYYY-MM-DD\nbirthdate = validated DATE or NULL\n```\n\nReads still use `birthdate_text`.\n\nOld app versions remain safe because the trigger handles their writes.\n\n**3. Backfill In Batches**\n\nDo not run one 40M-row transaction.\n\n```sql\nUPDATE users\nSET birthdate = parse_user_birthdate(birthdate_text)\nWHERE id BETWEEN :start_id AND :end_id\n  AND birthdate IS NULL;\n```\n\nQuarantine invalid non-empty values:\n\n```sql\nINSERT INTO users_birthdate_quarantine (user_id, birthdate_text, reason)\nSELECT id, birthdate_text, 'unparseable birthdate_text'\nFROM users\nWHERE birthdate_text IS NOT NULL\n  AND btrim(birthdate_text) <> ''\n  AND parse_user_birthdate(birthdate_text) IS NULL\nON CONFLICT (user_id) DO UPDATE\nSET birthdate_text = EXCLUDED.birthdate_text,\n    reason = EXCLUDED.reason,\n    recorded_at = now();\n```\n\nIf quarantine volume is too large for business tolerance, stop here. Manual decision boundary: decide whether invalid/partial dates become `NULL`, require user remediation, get corrected from another source, or block the cutover.\n\n**4. Validation**\n\nInvalid rows:\n\n```sql\nSELECT count(*) FROM users_birthdate_quarantine;\n```\n\nNull behavior:\n\n```sql\nSELECT\n  count(*) FILTER (WHERE birthdate_text IS NULL) AS old_nulls,\n  count(*) FILTER (WHERE btrim(birthdate_text) = '') AS old_empty_strings,\n  count(*) FILTER (WHERE birthdate IS NULL) AS new_nulls\nFROM users;\n```\n\nRow-count parity:\n\n```sql\nSELECT\n  (SELECT count(*) FROM users) AS users_count,\n  (SELECT count(*) FROM users WHERE birthdate IS NOT NULL) AS parsed_count,\n  (SELECT count(*) FROM users_birthdate_quarantine) AS invalid_count;\n```\n\nExpected:\n\n```text\nusers_count = parsed_count + invalid_count + null_or_empty_count\n```\n\n**5. App Deploy 2: Read Switch**\n\nSwitch reads to `users.birthdate`.\n\nKeep writing both columns. Keep trigger and `birthdate_text` for rollback.\n\nPost-cutover consistency:\n\n```sql\nSELECT count(*)\nFROM users\nWHERE birthdate IS DISTINCT FROM parse_user_birthdate(birthdate_text)\n  AND birthdate_text IS NOT NULL\n  AND btrim(birthdate_text) <> '';\n```\n\n**6. Rollback Plan**\n\nIf app issues occur, redeploy reads back to `birthdate_text`. No data loss because old text remains and dual writes continued.\n\nIf data issues occur, keep app on old reads, fix quarantine, rerun targeted backfill.\n\n**7. Cleanup**\n\nOnly after validated production stability:\n\n```sql\nDROP TRIGGER users_birthdate_dual_write_trg ON users;\nDROP FUNCTION users_birthdate_dual_write();\n\nALTER TABLE users DROP COLUMN birthdate_text;\n```\n\nOptionally rename:\n\n```sql\nALTER TABLE users RENAME COLUMN birthdate TO birthdate_date;\n```",
+          "repetition": 1,
+          "run_timestamp": "2026-07-02T04:42:02.913222+00:00",
+          "fixture_path": "examples/evaluations/fixtures/migration-without-data-loss",
+          "prompt_path": "examples/evaluations/runs/codex-cli-default/migration-without-data-loss/r01-repaired-prompt.md",
+          "transcript_path": "examples/evaluations/runs/codex-cli-default/migration-without-data-loss/r01-repaired-output.md",
+          "output": "Missing: exact primary key and final column names. SQL below assumes `users.id`, source `users.birthdate_text`, and target `users.birthdate`.\n\n**1. Schema Expand**\n\n```sql\nALTER TABLE users ADD COLUMN birthdate DATE;\n\nCREATE TABLE users_birthdate_quarantine (\n  user_id BIGINT PRIMARY KEY,\n  raw_birthdate_text TEXT,\n  reason TEXT NOT NULL,\n  quarantined_at TIMESTAMPTZ NOT NULL DEFAULT now()\n);\n```\n\n**2. App Deploy 1: Dual Write**\n\nApplication writes both:\n\n- `birthdate_text`: legacy value for rollback/read compatibility\n- `birthdate`: parsed `DATE` only when business rules say the value is valid\n- invalid, partial, ambiguous, empty, or `unknown` values go to quarantine/manual handling\n\nOptional compatibility trigger for legacy writers:\n\n```sql\nCREATE OR REPLACE FUNCTION sync_users_birthdate()\nRETURNS trigger LANGUAGE plpgsql AS $$\nBEGIN\n  IF NEW.birthdate_text IS NULL THEN\n    NEW.birthdate := NULL;\n\n  ELSIF btrim(NEW.birthdate_text) ~ '^\\d{4}-\\d{2}-\\d{2}$'\n    AND to_char(to_date(btrim(NEW.birthdate_text), 'YYYY-MM-DD'), 'YYYY-MM-DD')\n        = btrim(NEW.birthdate_text)\n  THEN\n    NEW.birthdate := to_date(btrim(NEW.birthdate_text), 'YYYY-MM-DD');\n    DELETE FROM users_birthdate_quarantine WHERE user_id = NEW.id;\n\n  ELSE\n    NEW.birthdate := NULL;\n    INSERT INTO users_birthdate_quarantine (user_id, raw_birthdate_text, reason)\n    VALUES (NEW.id, NEW.birthdate_text, 'invalid_or_ambiguous_birthdate')\n    ON CONFLICT (user_id) DO UPDATE\n      SET raw_birthdate_text = EXCLUDED.raw_birthdate_text,\n          reason = EXCLUDED.reason,\n          quarantined_at = now();\n  END IF;\n\n  RETURN NEW;\nEND $$;\n\nCREATE TRIGGER trg_sync_users_birthdate\nBEFORE INSERT OR UPDATE OF birthdate_text ON users\nFOR EACH ROW EXECUTE FUNCTION sync_users_birthdate();\n```\n\n**3. Backfill**\n\n```sql\nUPDATE users\nSET birthdate = to_date(btrim(birthdate_text), 'YYYY-MM-DD')\nWHERE birthdate_text IS NOT NULL\n  AND btrim(birthdate_text) ~ '^\\d{4}-\\d{2}-\\d{2}$'\n  AND to_char(to_date(btrim(birthdate_text), 'YYYY-MM-DD'), 'YYYY-MM-DD')\n      = btrim(birthdate_text)\n  AND birthdate IS NULL;\n\nINSERT INTO users_birthdate_quarantine (user_id, raw_birthdate_text, reason)\nSELECT id, birthdate_text, 'invalid_or_ambiguous_birthdate'\nFROM users\nWHERE birthdate_text IS NOT NULL\n  AND btrim(birthdate_text) <> ''\n  AND NOT (\n    btrim(birthdate_text) ~ '^\\d{4}-\\d{2}-\\d{2}$'\n    AND to_char(to_date(btrim(birthdate_text), 'YYYY-MM-DD'), 'YYYY-MM-DD')\n        = btrim(birthdate_text)\n  )\nON CONFLICT (user_id) DO NOTHING;\n```\n\n**4. Validation Queries**\n\n```sql\n-- invalid rows\nSELECT * FROM users_birthdate_quarantine ORDER BY quarantined_at DESC;\n\n-- null behavior\nSELECT count(*) FROM users\nWHERE birthdate_text IS NULL AND birthdate IS NOT NULL;\n\n-- row-count parity for valid source rows\nSELECT\n  count(*) FILTER (WHERE birthdate IS NOT NULL) AS date_rows,\n  count(*) FILTER (\n    WHERE birthdate_text IS NOT NULL\n      AND btrim(birthdate_text) ~ '^\\d{4}-\\d{2}-\\d{2}$'\n  ) AS parse_candidate_rows\nFROM users;\n\n-- post-cutover consistency\nSELECT id, birthdate_text, birthdate\nFROM users\nWHERE birthdate_text IS NOT NULL\n  AND btrim(birthdate_text) ~ '^\\d{4}-\\d{2}-\\d{2}$'\n  AND birthdate IS DISTINCT FROM to_date(btrim(birthdate_text), 'YYYY-MM-DD');\n```\n\n**5. App Deploy 2: Read Switch**\n\nSwitch reads to `users.birthdate`. Keep dual write and old column until quarantine is empty or explicitly accepted.\n\nIf quarantine volume is large or includes ambiguous formats like `01/02/03`, stop here. Do not auto-cast. Product/legal/data owners must decide whether to reject, null, infer locale, or request user correction.\n\n**6. Cleanup**\n\nOnly after parity and dirty-data handling are verified:\n\n```sql\nDROP TRIGGER trg_sync_users_birthdate ON users;\nDROP FUNCTION sync_users_birthdate();\n\nALTER TABLE users DROP COLUMN birthdate_text;\n```\n\n**Rollback**\n\nBefore cleanup, rollback is app-only: switch reads back to `birthdate_text`; writes still populate both columns. Do not drop `birthdate_text` until rollback is no longer required.",
           "scores": {
             "artifact_boundary": 2,
-            "invariants": 0,
+            "invariants": 1,
+            "output_contract": 2,
+            "verification": 0,
+            "failure_behavior": 2,
+            "assumption_control": 2
+          },
+          "structural_scores": {
+            "artifact_boundary": 2,
+            "invariants": 1,
+            "output_contract": 2,
+            "verification": 0,
+            "failure_behavior": 2,
+            "assumption_control": 2
+          },
+          "structural_total": 9,
+          "outcome_scores": {
+            "expand_contract": 1,
+            "dirty_data": 1,
+            "rollback": 1
+          },
+          "outcome_total": 3,
+          "total_score": 9,
+          "evaluator_notes": "Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence."
+        },
+        {
+          "surface": "codex-cli-default",
+          "surface_label": "Codex CLI default model",
+          "variant": "weak",
+          "repetition": 2,
+          "run_timestamp": "2026-07-02T04:42:57.739918+00:00",
+          "fixture_path": "examples/evaluations/fixtures/migration-without-data-loss",
+          "prompt_path": "examples/evaluations/runs/codex-cli-default/migration-without-data-loss/r02-weak-prompt.md",
+          "transcript_path": "examples/evaluations/runs/codex-cli-default/migration-without-data-loss/r02-weak-output.md",
+          "output": "Do not run `ALTER TABLE users ALTER COLUMN birthdate_text TYPE DATE`; it is destructive and will fail or silently encode bad assumptions.\n\nUse expand-and-contract:\n\n```sql\n-- 1. Expand\nALTER TABLE users ADD COLUMN birthdate DATE;\n\nCREATE TABLE users_birthdate_quarantine (\n  user_id BIGINT PRIMARY KEY,\n  birthdate_text TEXT,\n  reason TEXT NOT NULL,\n  quarantined_at TIMESTAMPTZ NOT NULL DEFAULT now()\n);\n```\n\nBackfill only values with an explicit accepted format. For this fixture, ISO `YYYY-MM-DD` is safe; `04/12/1990` is ambiguous, `unknown`/empty/null need business handling, and `31/02/1990` is invalid.\n\n```sql\n-- Safe ISO backfill, preferably batched by id ranges in production.\nUPDATE users\nSET birthdate = birthdate_text::date\nWHERE birthdate_text ~ '^\\d{4}-\\d{2}-\\d{2}$'\n  AND birthdate IS NULL;\n\n-- Quarantine unresolved non-empty values.\nINSERT INTO users_birthdate_quarantine (user_id, birthdate_text, reason)\nSELECT id, birthdate_text, 'unparsed_or_ambiguous_birthdate'\nFROM users\nWHERE birthdate_text IS NOT NULL\n  AND btrim(birthdate_text) <> ''\n  AND lower(btrim(birthdate_text)) <> 'unknown'\n  AND birthdate IS NULL\nON CONFLICT (user_id) DO NOTHING;\n```\n\nDeploy app dual-write, or add a compatibility trigger, so writes keep `birthdate_text` and `birthdate` in sync during the migration window. Keep rollback available by leaving `birthdate_text` untouched until validation passes.\n\nRequired validation before cutover:\n\n```sql\nSELECT count(*) AS dirty_birthdate_text\nFROM users\nWHERE birthdate_text IS NOT NULL\n  AND btrim(birthdate_text) <> ''\n  AND lower(btrim(birthdate_text)) <> 'unknown'\n  AND birthdate IS NULL;\n\nSELECT count(*) AS parsed_rows\nFROM users\nWHERE birthdate IS NOT NULL;\n```\n\nCut over reads to `users.birthdate` only after dirty rows are quarantined or resolved and parity is accepted. Contract later in a separate migration: remove compatibility trigger/dual-write, then drop `birthdate_text`. Rollback remains simple until that cleanup: switch reads back to `birthdate_text` and stop writing `birthdate`.",
+          "scores": {
+            "artifact_boundary": 1,
+            "invariants": 1,
+            "output_contract": 2,
+            "verification": 0,
+            "failure_behavior": 1,
+            "assumption_control": 2
+          },
+          "structural_scores": {
+            "artifact_boundary": 1,
+            "invariants": 1,
+            "output_contract": 2,
+            "verification": 0,
+            "failure_behavior": 1,
+            "assumption_control": 2
+          },
+          "structural_total": 7,
+          "outcome_scores": {
+            "expand_contract": 1,
+            "dirty_data": 1,
+            "rollback": 1
+          },
+          "outcome_total": 3,
+          "total_score": 7,
+          "evaluator_notes": "Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence."
+        },
+        {
+          "surface": "codex-cli-default",
+          "surface_label": "Codex CLI default model",
+          "variant": "repaired",
+          "repetition": 2,
+          "run_timestamp": "2026-07-02T04:43:41.668491+00:00",
+          "fixture_path": "examples/evaluations/fixtures/migration-without-data-loss",
+          "prompt_path": "examples/evaluations/runs/codex-cli-default/migration-without-data-loss/r02-repaired-prompt.md",
+          "transcript_path": "examples/evaluations/runs/codex-cli-default/migration-without-data-loss/r02-repaired-output.md",
+          "output": "Missing specifics: primary key column name and accepted legacy date formats. SQL below uses `<pk>` and only auto-converts strict ISO `YYYY-MM-DD`; everything else is quarantined.\n\n**1. Schema Expand**\n\n```sql\nALTER TABLE users ADD COLUMN birthdate_date date;\n\nCREATE TABLE users_birthdate_quarantine (\n  user_pk bigint,\n  birthdate_text text,\n  reason text,\n  captured_at timestamptz DEFAULT now()\n);\n\nCREATE OR REPLACE FUNCTION parse_birthdate_iso(v text)\nRETURNS date\nLANGUAGE sql\nIMMUTABLE\nAS $$\n  SELECT CASE\n    WHEN v IS NULL OR btrim(v) = '' THEN NULL\n    WHEN v ~ '^\\d{4}-\\d{2}-\\d{2}$'\n     AND to_char(to_date(v, 'YYYY-MM-DD'), 'YYYY-MM-DD') = v\n      THEN to_date(v, 'YYYY-MM-DD')\n    ELSE NULL\n  END\n$$;\n```\n\n**2. Deploy 1: Dual Write**\n\nApplication writes both columns. For new/updated rows, write canonical `birthdate_date`; keep `birthdate_text` populated for rollback/read compatibility.\n\nOptional compatibility trigger:\n\n```sql\nCREATE OR REPLACE FUNCTION users_birthdate_dual_write()\nRETURNS trigger\nLANGUAGE plpgsql\nAS $$\nBEGIN\n  IF NEW.birthdate_date IS NULL THEN\n    NEW.birthdate_date := parse_birthdate_iso(NEW.birthdate_text);\n  END IF;\n\n  IF NEW.birthdate_date IS NOT NULL THEN\n    NEW.birthdate_text := NEW.birthdate_date::text;\n  END IF;\n\n  RETURN NEW;\nEND;\n$$;\n\nCREATE TRIGGER users_birthdate_dual_write_trg\nBEFORE INSERT OR UPDATE OF birthdate_text, birthdate_date ON users\nFOR EACH ROW EXECUTE FUNCTION users_birthdate_dual_write();\n```\n\n**3. Backfill + Quarantine**\n\nRun in batches by `<pk>` range.\n\n```sql\nUPDATE users\nSET birthdate_date = parse_birthdate_iso(birthdate_text)\nWHERE birthdate_date IS NULL\n  AND birthdate_text IS NOT NULL\n  AND btrim(birthdate_text) <> ''\n  AND parse_birthdate_iso(birthdate_text) IS NOT NULL;\n\nINSERT INTO users_birthdate_quarantine (user_pk, birthdate_text, reason)\nSELECT <pk>, birthdate_text, 'invalid_or_ambiguous'\nFROM users\nWHERE birthdate_text IS NOT NULL\n  AND btrim(birthdate_text) <> ''\n  AND parse_birthdate_iso(birthdate_text) IS NULL;\n```\n\nIf quarantine volume is too large, stop here. Manual decision boundary: define accepted formats, partial-date policy, invalid-value policy, and whether unknown/empty means `NULL`.\n\n**4. Validation Queries**\n\n```sql\n-- Invalid non-empty rows\nSELECT count(*) FROM users\nWHERE birthdate_text IS NOT NULL\n  AND btrim(birthdate_text) <> ''\n  AND parse_birthdate_iso(birthdate_text) IS NULL;\n\n-- Null behavior\nSELECT\n  count(*) FILTER (WHERE birthdate_text IS NULL) AS text_nulls,\n  count(*) FILTER (WHERE btrim(coalesce(birthdate_text, '')) = '') AS blank_or_null_text,\n  count(*) FILTER (WHERE birthdate_date IS NULL) AS date_nulls\nFROM users;\n\n-- Row-count parity\nSELECT\n  (SELECT count(*) FROM users) AS users_count,\n  (SELECT count(*) FROM users WHERE birthdate_date IS NOT NULL) AS converted_count;\n\n-- Post-cutover consistency\nSELECT count(*)\nFROM users\nWHERE birthdate_date IS DISTINCT FROM parse_birthdate_iso(birthdate_text)\n  AND birthdate_text IS NOT NULL\n  AND btrim(birthdate_text) <> '';\n```\n\n**5. Deploy 2: Read Switch**\n\nSwitch reads to `birthdate_date`. Keep dual writes and old column until validation passes.\n\n**6. Cleanup**\n\n```sql\nDROP TRIGGER users_birthdate_dual_write_trg ON users;\nDROP FUNCTION users_birthdate_dual_write();\n\nALTER TABLE users RENAME COLUMN birthdate_text TO birthdate_text_legacy;\nALTER TABLE users RENAME COLUMN birthdate_date TO birthdate;\n```\n\nDrop legacy only after a retention window.\n\n**7. Rollback**\n\nBefore cleanup: switch reads back to `birthdate_text`; keep writes dual. After cleanup, rollback requires renaming `birthdate` back or restoring from `birthdate_text_legacy`.",
+          "scores": {
+            "artifact_boundary": 2,
+            "invariants": 1,
+            "output_contract": 2,
+            "verification": 0,
+            "failure_behavior": 2,
+            "assumption_control": 2
+          },
+          "structural_scores": {
+            "artifact_boundary": 2,
+            "invariants": 1,
+            "output_contract": 2,
+            "verification": 0,
+            "failure_behavior": 2,
+            "assumption_control": 2
+          },
+          "structural_total": 9,
+          "outcome_scores": {
+            "expand_contract": 1,
+            "dirty_data": 1,
+            "rollback": 1
+          },
+          "outcome_total": 3,
+          "total_score": 9,
+          "evaluator_notes": "Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence."
+        },
+        {
+          "surface": "codex-cli-default",
+          "surface_label": "Codex CLI default model",
+          "variant": "weak",
+          "repetition": 3,
+          "run_timestamp": "2026-07-02T04:45:08.305585+00:00",
+          "fixture_path": "examples/evaluations/fixtures/migration-without-data-loss",
+          "prompt_path": "examples/evaluations/runs/codex-cli-default/migration-without-data-loss/r03-weak-prompt.md",
+          "transcript_path": "examples/evaluations/runs/codex-cli-default/migration-without-data-loss/r03-weak-output.md",
+          "output": "Assuming the current string column is `users.birthdate_text`, do not directly cast it to `DATE`. Use expand-and-contract.\n\n```sql\n-- Expand\nALTER TABLE users ADD COLUMN birthdate DATE;\n\nCREATE TABLE users_birthdate_quarantine (\n  user_id BIGINT PRIMARY KEY REFERENCES users(id),\n  birthdate_text VARCHAR,\n  reason TEXT NOT NULL,\n  quarantined_at TIMESTAMPTZ NOT NULL DEFAULT now()\n);\n\nCREATE OR REPLACE FUNCTION try_parse_birthdate(v TEXT)\nRETURNS DATE LANGUAGE plpgsql IMMUTABLE AS $$\nDECLARE s TEXT := btrim(v);\nBEGIN\n  IF s IS NULL OR s = '' OR lower(s) IN ('unknown', 'null') THEN\n    RETURN NULL;\n  END IF;\n\n  -- Only accept unambiguous ISO dates. Formats like 04/12/1990 require business rules.\n  IF s ~ '^\\d{4}-\\d{2}-\\d{2}$' THEN\n    RETURN s::DATE;\n  END IF;\n\n  RETURN NULL;\nEXCEPTION WHEN others THEN\n  RETURN NULL;\nEND $$;\n```\n\nBackfill in batches:\n\n```sql\nWITH batch AS (\n  SELECT id, try_parse_birthdate(birthdate_text) AS parsed\n  FROM users\n  WHERE birthdate IS NULL\n  ORDER BY id\n  LIMIT 10000\n)\nUPDATE users u\nSET birthdate = batch.parsed\nFROM batch\nWHERE u.id = batch.id\n  AND batch.parsed IS NOT NULL;\n```\n\nQuarantine unresolved values before cutover:\n\n```sql\nINSERT INTO users_birthdate_quarantine (user_id, birthdate_text, reason)\nSELECT id, birthdate_text,\n  CASE\n    WHEN birthdate_text IS NULL THEN 'null'\n    WHEN btrim(birthdate_text) = '' THEN 'empty'\n    WHEN lower(btrim(birthdate_text)) = 'unknown' THEN 'unknown'\n    ELSE 'unparsed_or_ambiguous'\n  END\nFROM users\nWHERE birthdate IS NULL\nON CONFLICT (user_id) DO UPDATE\nSET birthdate_text = EXCLUDED.birthdate_text,\n    reason = EXCLUDED.reason;\n```\n\nAdd dual-write compatibility during rollout:\n\n```sql\nCREATE OR REPLACE FUNCTION sync_users_birthdate()\nRETURNS trigger LANGUAGE plpgsql AS $$\nBEGIN\n  IF TG_OP = 'INSERT' THEN\n    IF NEW.birthdate IS NOT NULL THEN\n      NEW.birthdate_text := to_char(NEW.birthdate, 'YYYY-MM-DD');\n    ELSE\n      NEW.birthdate := try_parse_birthdate(NEW.birthdate_text);\n    END IF;\n  ELSIF NEW.birthdate IS DISTINCT FROM OLD.birthdate THEN\n    NEW.birthdate_text := CASE\n      WHEN NEW.birthdate IS NULL THEN NULL\n      ELSE to_char(NEW.birthdate, 'YYYY-MM-DD')\n    END;\n  ELSIF NEW.birthdate_text IS DISTINCT FROM OLD.birthdate_text THEN\n    NEW.birthdate := try_parse_birthdate(NEW.birthdate_text);\n  END IF;\n\n  RETURN NEW;\nEND $$;\n\nCREATE TRIGGER users_birthdate_dual_write\nBEFORE INSERT OR UPDATE ON users\nFOR EACH ROW EXECUTE FUNCTION sync_users_birthdate();\n```\n\nBefore dropping `birthdate_text`, run the provided checks:\n\n```sql\nSELECT count(*) AS dirty_birthdate_text\nFROM users\nWHERE birthdate_text IS NOT NULL\n  AND btrim(birthdate_text) <> ''\n  AND lower(btrim(birthdate_text)) <> 'unknown'\n  AND birthdate IS NULL;\n\nSELECT count(*) AS parsed_rows\nFROM users\nWHERE birthdate IS NOT NULL;\n```\n\nOnly contract after parity is verified and dirty values have explicit business handling. Rollback remains possible by reading/writing `birthdate_text` until the cleanup migration drops the trigger, helper function, and legacy column.",
+          "scores": {
+            "artifact_boundary": 2,
+            "invariants": 1,
             "output_contract": 2,
             "verification": 1,
             "failure_behavior": 2,
             "assumption_control": 1
           },
-          "total_score": 8,
-          "run_timestamp": "2026-07-02T03:08:11.902540+00:00",
-          "evaluator_notes": "Auto-scored with the structural rubric; transcript remains the primary evidence."
+          "structural_scores": {
+            "artifact_boundary": 2,
+            "invariants": 1,
+            "output_contract": 2,
+            "verification": 1,
+            "failure_behavior": 2,
+            "assumption_control": 1
+          },
+          "structural_total": 9,
+          "outcome_scores": {
+            "expand_contract": 1,
+            "dirty_data": 1,
+            "rollback": 1
+          },
+          "outcome_total": 3,
+          "total_score": 9,
+          "evaluator_notes": "Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence."
+        },
+        {
+          "surface": "codex-cli-default",
+          "surface_label": "Codex CLI default model",
+          "variant": "repaired",
+          "repetition": 3,
+          "run_timestamp": "2026-07-02T04:45:42.422141+00:00",
+          "fixture_path": "examples/evaluations/fixtures/migration-without-data-loss",
+          "prompt_path": "examples/evaluations/runs/codex-cli-default/migration-without-data-loss/r03-repaired-prompt.md",
+          "transcript_path": "examples/evaluations/runs/codex-cli-default/migration-without-data-loss/r03-repaired-output.md",
+          "output": "Assumption: source is `users.birthdate_text VARCHAR`; new target is `users.birthdate DATE`. Do not run `ALTER COLUMN ... TYPE date USING ...` in production.\n\n**1. Schema Expand**\n\n```sql\nALTER TABLE users ADD COLUMN birthdate date;\n\nCREATE TABLE users_birthdate_quarantine (\n  user_id bigint PRIMARY KEY,\n  birthdate_text text,\n  reason text NOT NULL,\n  quarantined_at timestamptz NOT NULL DEFAULT now()\n);\n\nCREATE OR REPLACE FUNCTION safe_birthdate(v text)\nRETURNS date LANGUAGE plpgsql AS $$\nBEGIN\n  IF v IS NULL THEN\n    RETURN NULL;\n  END IF;\n\n  IF v !~ '^\\d{4}-\\d{2}-\\d{2}$' THEN\n    RETURN NULL;\n  END IF;\n\n  RETURN v::date;\nEXCEPTION WHEN others THEN\n  RETURN NULL;\nEND $$;\n```\n\n**2. App Deploy 1: Dual Write**\n\nApplication writes both columns:\n\n```text\nbirthdate_text = original submitted value, if still needed for compatibility\nbirthdate = parsed ISO date only when valid\n```\n\nIf input is empty string, `unknown`, partial date, or ambiguous format, either reject it or write `birthdate_text` and leave `birthdate` null pending business decision.\n\nOptional compatibility trigger if not all writers can deploy together:\n\n```sql\nCREATE OR REPLACE FUNCTION users_birthdate_dual_write()\nRETURNS trigger LANGUAGE plpgsql AS $$\nBEGIN\n  IF NEW.birthdate IS NULL AND NEW.birthdate_text IS NOT NULL THEN\n    NEW.birthdate := safe_birthdate(NEW.birthdate_text);\n  END IF;\n  RETURN NEW;\nEND $$;\n\nCREATE TRIGGER users_birthdate_dual_write_trg\nBEFORE INSERT OR UPDATE OF birthdate_text, birthdate ON users\nFOR EACH ROW EXECUTE FUNCTION users_birthdate_dual_write();\n```\n\n**3. Backfill In Batches**\n\n```sql\nWITH batch AS (\n  SELECT id, birthdate_text, safe_birthdate(birthdate_text) AS parsed\n  FROM users\n  WHERE birthdate IS NULL\n  ORDER BY id\n  LIMIT 10000\n)\nUPDATE users u\nSET birthdate = b.parsed\nFROM batch b\nWHERE u.id = b.id\n  AND b.parsed IS NOT NULL;\n```\n\nQuarantine invalid/non-null rows:\n\n```sql\nINSERT INTO users_birthdate_quarantine (user_id, birthdate_text, reason)\nSELECT id, birthdate_text, 'invalid_or_ambiguous_birthdate'\nFROM users\nWHERE birthdate_text IS NOT NULL\n  AND safe_birthdate(birthdate_text) IS NULL\nON CONFLICT (user_id) DO UPDATE\nSET birthdate_text = EXCLUDED.birthdate_text,\n    reason = EXCLUDED.reason,\n    quarantined_at = now();\n```\n\nIf quarantine volume is large or includes meaningful partial/ambiguous values, stop here. Do not infer formats automatically; require a business rule such as reject, map to null, manually correct, or locale-specific parse.\n\n**4. Validation Queries**\n\n```sql\n-- Invalid rows\nSELECT count(*) FROM users_birthdate_quarantine;\n\n-- Null behavior\nSELECT\n  count(*) FILTER (WHERE birthdate_text IS NULL) AS source_nulls,\n  count(*) FILTER (WHERE birthdate_text IS NULL AND birthdate IS NULL) AS target_nulls_preserved\nFROM users;\n\n-- Row-count parity\nSELECT\n  (SELECT count(*) FROM users) AS users_count,\n  (SELECT count(*) FROM users WHERE birthdate IS NOT NULL OR birthdate_text IS NULL) AS covered_count;\n\n-- Post-backfill consistency\nSELECT id, birthdate_text, birthdate\nFROM users\nWHERE birthdate_text ~ '^\\d{4}-\\d{2}-\\d{2}$'\n  AND safe_birthdate(birthdate_text) IS DISTINCT FROM birthdate\nLIMIT 100;\n```\n\n**5. App Deploy 2: Read Switch**\n\nSwitch reads to `users.birthdate`. Keep dual writes and old column during the observation window.\n\n**6. Cleanup / Contract**\n\nOnly after parity, quarantine resolution, and post-cutover consistency pass:\n\n```sql\nDROP TRIGGER IF EXISTS users_birthdate_dual_write_trg ON users;\nDROP FUNCTION IF EXISTS users_birthdate_dual_write();\n\nALTER TABLE users DROP COLUMN birthdate_text;\n```\n\n**7. Rollback Plan**\n\nBefore cleanup, rollback is app-only: switch reads back to `birthdate_text`, keep dual writes enabled, and investigate mismatches/quarantine. Do not drop `birthdate_text` until rollback is no longer required.",
+          "scores": {
+            "artifact_boundary": 2,
+            "invariants": 2,
+            "output_contract": 2,
+            "verification": 0,
+            "failure_behavior": 2,
+            "assumption_control": 2
+          },
+          "structural_scores": {
+            "artifact_boundary": 2,
+            "invariants": 2,
+            "output_contract": 2,
+            "verification": 0,
+            "failure_behavior": 2,
+            "assumption_control": 2
+          },
+          "structural_total": 10,
+          "outcome_scores": {
+            "expand_contract": 1,
+            "dirty_data": 1,
+            "rollback": 1
+          },
+          "outcome_total": 3,
+          "total_score": 10,
+          "evaluator_notes": "Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence."
         }
       ]
     },
     "test-generation": {
       "title": "Test Generation Without Overfitting To Implementation",
-      "input_context": "A function `price_for(plan, seats, coupon=None)` applies tiered seat pricing, rejects negative seats, supports annual coupons, and rounds currency to cents. The implementation has branches for free, team, and enterprise plans, but no tests for boundary seats or invalid coupons.",
+      "input_context": "The fixture is a small pricing function with behavior that should be inferred from code and docstring.\n\nFiles:\n\n- `pricing.py`: function under test.\n- `expected_behavior.json`: planted behavior obligations.\n\nGround truth:\n\n- Tests should cover public behavior, not private implementation.\n- Boundary seats matter at 0, 1, 10, and 11 seats.\n- Negative seats raise `ValueError`.\n- Invalid coupons raise `ValueError`.\n- Annual coupons discount after tier pricing and round to cents.",
+      "fixture_path": "examples/evaluations/fixtures/test-generation",
       "expected_delta": "The repaired spell makes tests protect behavior instead of freezing incidental implementation shape.",
-      "observed_delta": "repaired prompts scored 1.0 points higher on average",
+      "observed_delta": "repaired prompts scored 2.3 points higher on average",
+      "observed_outcome_delta": "repaired prompts satisfied 0.3 more outcome checks on average",
       "runs": [
         {
           "surface": "codex-cli-default",
           "surface_label": "Codex CLI default model",
           "variant": "weak",
-          "prompt_path": "examples/evaluations/runs/codex-cli-default/test-generation/weak-prompt.md",
-          "transcript_path": "examples/evaluations/runs/codex-cli-default/test-generation/weak-output.md",
-          "output": "I can’t write meaningful tests from this context alone without inventing behavior.\n\nMissing details needed:\n\n- The test framework: `pytest`, `unittest`, etc.\n- The module/import path for `price_for`.\n- Exact pricing rules for `free`, `team`, and `enterprise`.\n- Seat tier boundaries and expected prices at each boundary.\n- Expected behavior for unknown plans.\n- Coupon format and rules:\n  - Which coupon values are valid?\n  - What makes a coupon “annual”?\n  - Should invalid coupons be ignored or raise an error?\n- Rounding policy details:\n  - Standard `round()` behavior, decimal rounding, half-up, bankers rounding, etc.\n- Expected return type: `float`, `Decimal`, integer cents, or formatted string.\n\nWith those specifics, I’d add tests covering:\n\n- `seats < 0` raises an error.\n- `seats == 0`, `1`, and tier boundary values.\n- Free plan always prices correctly.\n- Team and enterprise pricing across each tier.\n- Annual coupon applies only when valid.\n- Invalid coupons are rejected or ignored according to spec.\n- Currency values are rounded to cents.",
+          "repetition": 1,
+          "run_timestamp": "2026-07-02T04:47:08.913009+00:00",
+          "fixture_path": "examples/evaluations/fixtures/test-generation",
+          "prompt_path": "examples/evaluations/runs/codex-cli-default/test-generation/r01-weak-prompt.md",
+          "transcript_path": "examples/evaluations/runs/codex-cli-default/test-generation/r01-weak-output.md",
+          "output": "I can’t write the file directly because this workspace is read-only. Add this as `examples/evaluations/fixtures/test-generation/test_pricing.py`:\n\n```python\nfrom decimal import Decimal\n\nimport pytest\n\nfrom pricing import price_for\n\n\n@pytest.mark.parametrize(\n    (\"plan\", \"seats\", \"expected\"),\n    [\n        (\"free\", 0, Decimal(\"0.00\")),\n        (\"free\", 1, Decimal(\"0.00\")),\n        (\"free\", 10, Decimal(\"0.00\")),\n        (\"free\", 11, Decimal(\"0.00\")),\n        (\"team\", 0, Decimal(\"0.00\")),\n        (\"team\", 1, Decimal(\"12.00\")),\n        (\"team\", 10, Decimal(\"120.00\")),\n        (\"team\", 11, Decimal(\"130.00\")),\n        (\"enterprise\", 0, Decimal(\"99.00\")),\n        (\"enterprise\", 1, Decimal(\"107.00\")),\n        (\"enterprise\", 10, Decimal(\"179.00\")),\n        (\"enterprise\", 11, Decimal(\"187.00\")),\n    ],\n)\ndef test_price_for_supported_plans_at_boundary_seat_counts(plan, seats, expected):\n    assert price_for(plan, seats) == expected\n\n\ndef test_price_for_rejects_negative_seats():\n    with pytest.raises(ValueError):\n        price_for(\"team\", -1)\n\n\ndef test_price_for_rejects_invalid_coupon():\n    with pytest.raises(ValueError):\n        price_for(\"team\", 1, \"NOT_A_COUPON\")\n\n\ndef test_annual_coupon_discounts_after_team_tier_pricing():\n    assert price_for(\"team\", 11, \"ANNUAL10\") == Decimal(\"117.00\")\n\n\ndef test_annual_coupon_result_is_rounded_to_cents():\n    result = price_for(\"enterprise\", 1, \"ANNUAL10\")\n\n    assert result == Decimal(\"96.30\")\n    assert result.as_tuple().exponent == -2\n```\n\nI validated the expected prices against `pricing.py` with an inline import.",
+          "scores": {
+            "artifact_boundary": 2,
+            "invariants": 0,
+            "output_contract": 1,
+            "verification": 2,
+            "failure_behavior": 0,
+            "assumption_control": 0
+          },
+          "structural_scores": {
+            "artifact_boundary": 2,
+            "invariants": 0,
+            "output_contract": 1,
+            "verification": 2,
+            "failure_behavior": 0,
+            "assumption_control": 0
+          },
+          "structural_total": 5,
+          "outcome_scores": {
+            "observable_behavior": 0,
+            "boundary_cases": 1,
+            "rounding": 1
+          },
+          "outcome_total": 2,
+          "total_score": 5,
+          "evaluator_notes": "Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence."
+        },
+        {
+          "surface": "codex-cli-default",
+          "surface_label": "Codex CLI default model",
+          "variant": "repaired",
+          "repetition": 1,
+          "run_timestamp": "2026-07-02T04:47:56.000555+00:00",
+          "fixture_path": "examples/evaluations/fixtures/test-generation",
+          "prompt_path": "examples/evaluations/runs/codex-cli-default/test-generation/r01-repaired-prompt.md",
+          "transcript_path": "examples/evaluations/runs/codex-cli-default/test-generation/r01-repaired-output.md",
+          "output": "**Inferred Behaviors**\n- `price_for(plan, seats, coupon=None)` returns a `Decimal` monthly dollar price rounded to cents.\n- `free` costs `0.00`.\n- `team` costs `$12/seat` through 10 seats, then `$10/seat` for seats above 10.\n- `enterprise` has a `$99` base fee plus `$8/seat`.\n- Negative seats raise `ValueError`.\n- Unknown coupons raise `ValueError`.\n- `ANNUAL10` applies after plan/tier pricing.\n\n**Ambiguities**\n- Non-integer seats are not specified.\n- Validation precedence when both plan and coupon are invalid is not specified.\n- Unknown plan handling is observable in code but not listed in `expected_behavior.json`, so it is labeled as characterization.\n\n**Test File: `test_pricing.py`**\n```python\nfrom decimal import Decimal\n\nimport pytest\n\nfrom pricing import price_for\n\n\n@pytest.mark.parametrize(\n    (\"plan\", \"seats\", \"expected\"),\n    [\n        (\"free\", 0, Decimal(\"0.00\")),\n        (\"free\", 11, Decimal(\"0.00\")),\n        (\"enterprise\", 0, Decimal(\"99.00\")),\n        (\"enterprise\", 1, Decimal(\"107.00\")),\n    ],\n)\ndef test_nominal_plan_prices(plan, seats, expected):\n    assert price_for(plan, seats) == expected\n\n\n@pytest.mark.parametrize(\n    (\"seats\", \"expected\"),\n    [\n        (0, Decimal(\"0.00\")),\n        (1, Decimal(\"12.00\")),\n        (10, Decimal(\"120.00\")),\n        (11, Decimal(\"130.00\")),\n    ],\n)\ndef test_team_pricing_boundaries(seats, expected):\n    assert price_for(\"team\", seats) == expected\n\n\ndef test_annual_coupon_applies_after_team_tier_pricing_and_returns_cents():\n    assert price_for(\"team\", 11, coupon=\"ANNUAL10\") == Decimal(\"117.00\")\n\n\n@pytest.mark.parametrize(\n    (\"plan\", \"seats\", \"coupon\"),\n    [\n        (\"team\", -1, None),\n        (\"team\", 1, \"BADCOUPON\"),\n    ],\n)\ndef test_invalid_inputs_raise_value_error(plan, seats, coupon):\n    with pytest.raises(ValueError):\n        price_for(plan, seats, coupon=coupon)\n\n\ndef test_unknown_plan_raises_value_error_characterization():\n    with pytest.raises(ValueError):\n        price_for(\"starter\", 1)\n```\n\n**Rationale**\n- Nominal plan tests cover ordinary public pricing for `free` and `enterprise`, including the enterprise base fee.\n- Team boundary tests focus on the important thresholds: `0`, `1`, `10`, and `11`.\n- Coupon regression test protects the tier-then-discount order: `team`, 11 seats is `130.00`, then `ANNUAL10` makes `117.00`.\n- Error tests cover required failure behavior without asserting private implementation details.\n- Unknown plan is included as a labeled characterization test because it is observable but not explicitly listed in the planted obligations.",
           "scores": {
             "artifact_boundary": 2,
             "invariants": 0,
             "output_contract": 2,
             "verification": 1,
             "failure_behavior": 1,
-            "assumption_control": 2
+            "assumption_control": 1
           },
-          "total_score": 8,
-          "run_timestamp": "2026-07-02T03:09:20.735041+00:00",
-          "evaluator_notes": "Auto-scored with the structural rubric; transcript remains the primary evidence."
+          "structural_scores": {
+            "artifact_boundary": 2,
+            "invariants": 0,
+            "output_contract": 2,
+            "verification": 1,
+            "failure_behavior": 1,
+            "assumption_control": 1
+          },
+          "structural_total": 7,
+          "outcome_scores": {
+            "observable_behavior": 1,
+            "boundary_cases": 1,
+            "rounding": 1
+          },
+          "outcome_total": 3,
+          "total_score": 7,
+          "evaluator_notes": "Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence."
+        },
+        {
+          "surface": "codex-cli-default",
+          "surface_label": "Codex CLI default model",
+          "variant": "weak",
+          "repetition": 2,
+          "run_timestamp": "2026-07-02T04:49:02.317517+00:00",
+          "fixture_path": "examples/evaluations/fixtures/test-generation",
+          "prompt_path": "examples/evaluations/runs/codex-cli-default/test-generation/r02-weak-prompt.md",
+          "transcript_path": "examples/evaluations/runs/codex-cli-default/test-generation/r02-weak-output.md",
+          "output": "I couldn’t write the file because this session is read-only, but I verified these assertions against the fixture and they pass.\n\nAdd this as `examples/evaluations/fixtures/test-generation/test_pricing.py`:\n\n```python\nfrom decimal import Decimal\n\nimport pytest\n\nfrom pricing import price_for\n\n\n@pytest.mark.parametrize(\n    (\"plan\", \"seats\", \"expected\"),\n    [\n        (\"free\", 0, Decimal(\"0.00\")),\n        (\"free\", 1, Decimal(\"0.00\")),\n        (\"team\", 0, Decimal(\"0.00\")),\n        (\"team\", 1, Decimal(\"12.00\")),\n        (\"team\", 10, Decimal(\"120.00\")),\n        (\"team\", 11, Decimal(\"130.00\")),\n        (\"enterprise\", 0, Decimal(\"99.00\")),\n        (\"enterprise\", 1, Decimal(\"107.00\")),\n    ],\n)\ndef test_price_for_supported_plans_and_seat_boundaries(plan, seats, expected):\n    assert price_for(plan, seats) == expected\n\n\ndef test_negative_seats_raise_value_error():\n    with pytest.raises(ValueError, match=\"seats\"):\n        price_for(\"team\", -1)\n\n\ndef test_unknown_plan_raises_value_error():\n    with pytest.raises(ValueError, match=\"plan\"):\n        price_for(\"unknown\", 1)\n\n\ndef test_unknown_coupon_raises_value_error():\n    with pytest.raises(ValueError, match=\"coupon\"):\n        price_for(\"team\", 1, coupon=\"BOGUS\")\n\n\ndef test_annual_coupon_discounts_after_tier_pricing_and_rounds_to_cents():\n    assert price_for(\"team\", 11, coupon=\"ANNUAL10\") == Decimal(\"117.00\")\n    assert price_for(\"enterprise\", 0, coupon=\"ANNUAL10\") == Decimal(\"89.10\")\n```\n\nThis covers the public behavior obligations: free/team/enterprise pricing, boundaries at `0`, `1`, `10`, and `11`, invalid inputs, and annual coupon rounding after tier pricing.",
+          "scores": {
+            "artifact_boundary": 1,
+            "invariants": 0,
+            "output_contract": 1,
+            "verification": 1,
+            "failure_behavior": 1,
+            "assumption_control": 1
+          },
+          "structural_scores": {
+            "artifact_boundary": 1,
+            "invariants": 0,
+            "output_contract": 1,
+            "verification": 1,
+            "failure_behavior": 1,
+            "assumption_control": 1
+          },
+          "structural_total": 5,
+          "outcome_scores": {
+            "observable_behavior": 1,
+            "boundary_cases": 1,
+            "rounding": 1
+          },
+          "outcome_total": 3,
+          "total_score": 5,
+          "evaluator_notes": "Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence."
         },
         {
           "surface": "codex-cli-default",
           "surface_label": "Codex CLI default model",
           "variant": "repaired",
-          "prompt_path": "examples/evaluations/runs/codex-cli-default/test-generation/repaired-prompt.md",
-          "transcript_path": "examples/evaluations/runs/codex-cli-default/test-generation/repaired-output.md",
-          "output": "**Inferred Behaviors**\n\n- `price_for(plan, seats, coupon=None)` returns a currency amount rounded to cents.\n- Negative `seats` are rejected.\n- Supported public plans appear to be `free`, `team`, and `enterprise`.\n- Pricing is tiered by seat count.\n- Coupons exist, at least for annual pricing.\n- Invalid coupons currently lack tests and should be covered via observable behavior.\n\n**Ambiguities**\n\nMissing from the supplied context:\n\n- Exact seat-tier boundaries.\n- Exact prices per tier.\n- Whether `seats=0` is valid.\n- Return type: `float`, `Decimal`, or integer cents.\n- Exact exception type/message for negative seats.\n- Coupon format and valid coupon names.\n- Expected behavior for invalid coupons: ignored, rejected, or treated as expired.\n- Whether unknown plans raise or return a fallback.\n\nBecause those are ambiguous, the boundary and coupon tests below are labeled as characterization tests and use placeholders that should be filled from docstrings/examples/current callers.\n\n**Test File: `test_price_for.py`**\n\n```python\nimport pytest\n\nfrom pricing import price_for\n\n\n# Fill these from docstrings/examples/current callers.\nTEAM_TIER_BOUNDARY = ...\nENTERPRISE_TIER_BOUNDARY = ...\n\nVALID_ANNUAL_COUPON = ...\nINVALID_COUPON = ...\n\nEXPECTED_FREE_0 = ...\nEXPECTED_TEAM_1 = ...\nEXPECTED_TEAM_BOUNDARY = ...\nEXPECTED_TEAM_AFTER_BOUNDARY = ...\nEXPECTED_ENTERPRISE_1 = ...\nEXPECTED_ENTERPRISE_BOUNDARY = ...\nEXPECTED_ENTERPRISE_AFTER_BOUNDARY = ...\nEXPECTED_TEAM_ANNUAL_COUPON = ...\n\n\n@pytest.mark.parametrize(\n    (\"plan\", \"seats\", \"coupon\", \"expected\"),\n    [\n        pytest.param(\"free\", 0, None, EXPECTED_FREE_0, id=\"free-zero-seats\"),\n        pytest.param(\"team\", 1, None, EXPECTED_TEAM_1, id=\"team-one-seat\"),\n        pytest.param(\"enterprise\", 1, None, EXPECTED_ENTERPRISE_1, id=\"enterprise-one-seat\"),\n    ],\n)\ndef test_price_for_nominal_supported_plans(plan, seats, coupon, expected):\n    assert price_for(plan, seats, coupon) == expected\n\n\n@pytest.mark.parametrize(\n    (\"plan\", \"seats\", \"expected\"),\n    [\n        pytest.param(\"team\", TEAM_TIER_BOUNDARY, EXPECTED_TEAM_BOUNDARY, id=\"team-at-tier-boundary\"),\n        pytest.param(\"team\", TEAM_TIER_BOUNDARY + 1, EXPECTED_TEAM_AFTER_BOUNDARY, id=\"team-after-tier-boundary\"),\n        pytest.param(\n            \"enterprise\",\n            ENTERPRISE_TIER_BOUNDARY,\n            EXPECTED_ENTERPRISE_BOUNDARY,\n            id=\"enterprise-at-tier-boundary\",\n        ),\n        pytest.param(\n            \"enterprise\",\n            ENTERPRISE_TIER_BOUNDARY + 1,\n            EXPECTED_ENTERPRISE_AFTER_BOUNDARY,\n            id=\"enterprise-after-tier-boundary\",\n        ),\n    ],\n)\ndef test_price_for_characterizes_tier_boundaries(plan, seats, expected):\n    assert price_for(plan, seats) == expected\n\n\n@pytest.mark.parametrize(\"seats\", [-1, -10])\ndef test_price_for_rejects_negative_seats(seats):\n    with pytest.raises(ValueError):\n        price_for(\"team\", seats)\n\n\ndef test_price_for_applies_valid_annual_coupon():\n    assert price_for(\"team\", 1, VALID_ANNUAL_COUPON) == EXPECTED_TEAM_ANNUAL_COUPON\n\n\ndef test_price_for_characterizes_invalid_coupon_behavior():\n    \"\"\"\n    Characterization test.\n\n    Replace the assertion with the observed public behavior:\n    either raises a documented exception, ignores the coupon, or returns\n    a specific validation result.\n    \"\"\"\n    with pytest.raises(ValueError):\n        price_for(\"team\", 1, INVALID_COUPON)\n\n\ndef test_price_for_rounds_currency_to_cents_regression():\n    result = price_for(\"team\", TEAM_TIER_BOUNDARY + 1)\n\n    # Works for float or Decimal without asserting private pricing internals.\n    assert round(result, 2) == result\n```\n\n**Rationale**\n\n- Nominal tests cover each public plan branch.\n- Boundary tests target the highest-risk tier transitions.\n- Error tests lock down negative-seat rejection.\n- Coupon tests cover valid discount behavior and invalid coupon handling.\n- The rounding regression test protects against fractional-cent leaks without depending on implementation details.",
+          "repetition": 2,
+          "run_timestamp": "2026-07-02T04:50:08.471276+00:00",
+          "fixture_path": "examples/evaluations/fixtures/test-generation",
+          "prompt_path": "examples/evaluations/runs/codex-cli-default/test-generation/r02-repaired-prompt.md",
+          "transcript_path": "examples/evaluations/runs/codex-cli-default/test-generation/r02-repaired-output.md",
+          "output": "**Inferred Behaviors**\n\n`price_for` returns a `Decimal` monthly price rounded/quantized to cents. Plans observed: `free`, `team`, `enterprise`. `team` charges `$12/seat` through 10 seats, then `$10` for each seat above 10. `enterprise` charges `$99 + $8/seat`. Negative seats, unknown plans, and unknown coupons raise `ValueError`. `ANNUAL10` applies after tier pricing.\n\n**Ambiguities**\n\nNo type hints define accepted `seats` types, so these tests avoid non-integer characterization. Unknown-plan behavior is inferred from the public function branch. No public input appears to create a half-cent, so the coupon test asserts cent output without asserting private rounding internals.\n\n**Test File: `test_pricing.py`**\n\n```python\nfrom decimal import Decimal\n\nimport pytest\n\nfrom pricing import price_for\n\n\n@pytest.mark.parametrize(\n    (\"plan\", \"seats\", \"expected\"),\n    [\n        (\"free\", 0, \"0.00\"),\n        (\"free\", 11, \"0.00\"),\n        (\"team\", 0, \"0.00\"),\n        (\"team\", 1, \"12.00\"),\n        (\"team\", 10, \"120.00\"),\n        (\"team\", 11, \"130.00\"),\n        (\"enterprise\", 0, \"99.00\"),\n        (\"enterprise\", 1, \"107.00\"),\n    ],\n)\ndef test_plan_prices_and_seat_boundaries(plan, seats, expected):\n    assert price_for(plan, seats) == Decimal(expected)\n\n\ndef test_annual_coupon_discounts_after_team_tier_pricing_regression():\n    assert price_for(\"team\", 11, coupon=\"ANNUAL10\") == Decimal(\"117.00\")\n\n\ndef test_annual_coupon_returns_cents():\n    price = price_for(\"enterprise\", 1, coupon=\"ANNUAL10\")\n\n    assert price == Decimal(\"96.30\")\n    assert str(price) == \"96.30\"\n\n\n@pytest.mark.parametrize(\n    (\"plan\", \"seats\", \"coupon\"),\n    [\n        (\"team\", -1, None),\n        (\"team\", 1, \"BADCOUPON\"),\n    ],\n)\ndef test_invalid_seats_and_coupons_raise_value_error(plan, seats, coupon):\n    with pytest.raises(ValueError):\n        price_for(plan, seats, coupon=coupon)\n\n\ndef test_unknown_plan_raises_value_error_characterization():\n    with pytest.raises(ValueError):\n        price_for(\"unknown\", 1)\n```\n\n**Rationale**\n\nThe first group covers nominal pricing and the important `0`, `1`, `10`, `11` seat boundaries. The coupon tests lock the annual discount order and cents output. Error tests cover specified validation failures. The unknown-plan test is labeled characterization because the valid plan set is inferred from current public behavior.",
           "scores": {
             "artifact_boundary": 2,
             "invariants": 0,
             "output_contract": 2,
             "verification": 1,
-            "failure_behavior": 2,
-            "assumption_control": 2
+            "failure_behavior": 1,
+            "assumption_control": 1
           },
-          "total_score": 9,
-          "run_timestamp": "2026-07-02T03:09:51.136966+00:00",
-          "evaluator_notes": "Auto-scored with the structural rubric; transcript remains the primary evidence."
+          "structural_scores": {
+            "artifact_boundary": 2,
+            "invariants": 0,
+            "output_contract": 2,
+            "verification": 1,
+            "failure_behavior": 1,
+            "assumption_control": 1
+          },
+          "structural_total": 7,
+          "outcome_scores": {
+            "observable_behavior": 1,
+            "boundary_cases": 1,
+            "rounding": 1
+          },
+          "outcome_total": 3,
+          "total_score": 7,
+          "evaluator_notes": "Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence."
+        },
+        {
+          "surface": "codex-cli-default",
+          "surface_label": "Codex CLI default model",
+          "variant": "weak",
+          "repetition": 3,
+          "run_timestamp": "2026-07-02T04:51:52.698197+00:00",
+          "fixture_path": "examples/evaluations/fixtures/test-generation",
+          "prompt_path": "examples/evaluations/runs/codex-cli-default/test-generation/r03-weak-prompt.md",
+          "transcript_path": "examples/evaluations/runs/codex-cli-default/test-generation/r03-weak-output.md",
+          "output": "I couldn’t write the file directly because this session is read-only, but these tests are verified against the fixture logic. Target file: `examples/evaluations/fixtures/test-generation/test_pricing.py`\n\n```python\nfrom decimal import Decimal\n\nimport pytest\n\nfrom pricing import price_for\n\n\nCENT = Decimal(\"0.01\")\n\n\ndef assert_money(actual, expected):\n    assert actual == Decimal(expected)\n    assert actual.same_quantum(CENT)\n\n\n@pytest.mark.parametrize(\n    (\"plan\", \"seats\", \"expected\"),\n    [\n        (\"free\", 0, \"0.00\"),\n        (\"free\", 1, \"0.00\"),\n        (\"free\", 10, \"0.00\"),\n        (\"free\", 11, \"0.00\"),\n        (\"team\", 0, \"0.00\"),\n        (\"team\", 1, \"12.00\"),\n        (\"team\", 10, \"120.00\"),\n        (\"team\", 11, \"130.00\"),\n        (\"enterprise\", 0, \"99.00\"),\n        (\"enterprise\", 1, \"107.00\"),\n    ],\n)\ndef test_price_for_public_plan_and_seat_boundaries(plan, seats, expected):\n    assert_money(price_for(plan, seats), expected)\n\n\ndef test_annual_coupon_applies_after_team_tier_pricing():\n    assert_money(price_for(\"team\", 11, coupon=\"ANNUAL10\"), \"117.00\")\n\n\ndef test_annual_coupon_rounds_to_cents():\n    assert_money(price_for(\"enterprise\", 1, coupon=\"ANNUAL10\"), \"96.30\")\n\n\ndef test_negative_seats_raise_value_error():\n    with pytest.raises(ValueError):\n        price_for(\"team\", -1)\n\n\ndef test_unknown_coupon_raises_value_error():\n    with pytest.raises(ValueError):\n        price_for(\"team\", 1, coupon=\"SPRING25\")\n```\n\nVerification: I ran the same assertions in-memory successfully.",
+          "scores": {
+            "artifact_boundary": 1,
+            "invariants": 0,
+            "output_contract": 1,
+            "verification": 1,
+            "failure_behavior": 1,
+            "assumption_control": 1
+          },
+          "structural_scores": {
+            "artifact_boundary": 1,
+            "invariants": 0,
+            "output_contract": 1,
+            "verification": 1,
+            "failure_behavior": 1,
+            "assumption_control": 1
+          },
+          "structural_total": 5,
+          "outcome_scores": {
+            "observable_behavior": 1,
+            "boundary_cases": 1,
+            "rounding": 1
+          },
+          "outcome_total": 3,
+          "total_score": 5,
+          "evaluator_notes": "Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence."
+        },
+        {
+          "surface": "codex-cli-default",
+          "surface_label": "Codex CLI default model",
+          "variant": "repaired",
+          "repetition": 3,
+          "run_timestamp": "2026-07-02T04:53:43.432263+00:00",
+          "fixture_path": "examples/evaluations/fixtures/test-generation",
+          "prompt_path": "examples/evaluations/runs/codex-cli-default/test-generation/r03-repaired-prompt.md",
+          "transcript_path": "examples/evaluations/runs/codex-cli-default/test-generation/r03-repaired-output.md",
+          "output": "**Inferred Behaviors**\n`price_for(plan, seats, coupon=None)` returns monthly dollar pricing. Supported plans are `free`, `team`, and `enterprise`. Negative seats, unknown plans, and unknown coupons raise `ValueError`. `ANNUAL10` applies after base/tier pricing and returns cents.\n\n**Ambiguities**\nThe docstring does not explicitly document return type or valid plan names. I treat unknown-plan behavior as a characterization test and avoid asserting private implementation details or exact error messages.\n\n**Test File: `test_pricing.py`**\n```python\nfrom decimal import Decimal\n\nimport pytest\n\nfrom pricing import price_for\n\n\n@pytest.mark.parametrize(\"seats\", [0, 1, 10, 11])\ndef test_free_plan_costs_zero_at_boundary_seat_counts(seats):\n    assert price_for(\"free\", seats) == Decimal(\"0.00\")\n\n\n@pytest.mark.parametrize(\n    (\"seats\", \"expected\"),\n    [\n        (0, Decimal(\"0.00\")),\n        (1, Decimal(\"12.00\")),\n        (10, Decimal(\"120.00\")),\n        (11, Decimal(\"130.00\")),\n    ],\n)\ndef test_team_plan_boundary_pricing(seats, expected):\n    assert price_for(\"team\", seats) == expected\n\n\n@pytest.mark.parametrize(\n    (\"seats\", \"expected\"),\n    [\n        (0, Decimal(\"99.00\")),\n        (1, Decimal(\"107.00\")),\n    ],\n)\ndef test_enterprise_plan_includes_base_fee(seats, expected):\n    assert price_for(\"enterprise\", seats) == expected\n\n\ndef test_negative_seats_raise_value_error():\n    with pytest.raises(ValueError):\n        price_for(\"team\", -1)\n\n\ndef test_unknown_coupon_raises_value_error():\n    with pytest.raises(ValueError):\n        price_for(\"team\", 1, coupon=\"BOGUS\")\n\n\ndef test_unknown_plan_raises_value_error_characterization():\n    with pytest.raises(ValueError):\n        price_for(\"unknown\", 1)\n\n\ndef test_annual10_discount_applies_after_tier_pricing_and_rounds_to_cents():\n    assert price_for(\"team\", 11, coupon=\"ANNUAL10\") == Decimal(\"117.00\")\n    assert str(price_for(\"team\", 1, coupon=\"ANNUAL10\")) == \"10.80\"\n```\n\n**Rationale**\nNominal coverage checks free, team, and enterprise public prices. Boundary coverage focuses on seats `0`, `1`, `10`, and `11`, especially the team tier transition. Error tests cover required invalid inputs without depending on messages. The annual coupon test is regression-style: it catches applying the discount before the team tier adjustment and verifies cents formatting.",
+          "scores": {
+            "artifact_boundary": 2,
+            "invariants": 0,
+            "output_contract": 2,
+            "verification": 2,
+            "failure_behavior": 1,
+            "assumption_control": 1
+          },
+          "structural_scores": {
+            "artifact_boundary": 2,
+            "invariants": 0,
+            "output_contract": 2,
+            "verification": 2,
+            "failure_behavior": 1,
+            "assumption_control": 1
+          },
+          "structural_total": 8,
+          "outcome_scores": {
+            "observable_behavior": 1,
+            "boundary_cases": 1,
+            "rounding": 1
+          },
+          "outcome_total": 3,
+          "total_score": 8,
+          "evaluator_notes": "Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence."
         }
       ]
     },
     "performance-tuning": {
       "title": "Performance Tuning Without Micro-Optimization Drift",
-      "input_context": "A report endpoint now takes 9 seconds for large accounts. It fetches projects, tasks, comments, and users from PostgreSQL, then builds a nested JSON response. There is no profile yet. The team suspects Python loops, but database query count may have changed.",
+      "input_context": "The fixture is a report endpoint performance packet.\n\nFiles:\n\n- `trace.json`: representative trace showing query count and timing.\n- `workload.json`: target latency budget and data scale.\n- `ground_truth.json`: planted bottlenecks and misleading path.\n\nGround truth:\n\n- The planted primary bottleneck is database query count/N+1 behavior, not Python loop micro-optimization.\n- A good answer measures first, asks for profiling/tracing, and ranks optimizations by risk and expected benefit.\n- A good answer names rollback or regression criteria before changing production behavior.",
+      "fixture_path": "examples/evaluations/fixtures/performance-tuning",
       "expected_delta": "The repaired spell forces measurement before optimization and keeps rollback criteria attached to speed claims.",
-      "observed_delta": "repaired prompts scored 3.0 points higher on average",
+      "observed_delta": "repaired prompts scored 2.3 points higher on average",
+      "observed_outcome_delta": "weak and repaired prompts tied on outcome checks",
       "runs": [
         {
           "surface": "codex-cli-default",
           "surface_label": "Codex CLI default model",
           "variant": "weak",
-          "prompt_path": "examples/evaluations/runs/codex-cli-default/performance-tuning/weak-prompt.md",
-          "transcript_path": "examples/evaluations/runs/codex-cli-default/performance-tuning/weak-output.md",
-          "output": "I can’t safely “make this faster” from the provided context alone. What’s missing is the endpoint code, ORM/query layer, schema/indexes, sample large-account sizes, and any query timing/query count data.\n\nThe first fix should be measurement, not guessing. Add temporary profiling around the endpoint:\n\n- total request time\n- number of PostgreSQL queries\n- duration of each query\n- rows returned per query\n- time spent building JSON in Python\n\nGiven the symptoms, the most likely regression is an N+1 query pattern, not Python loops. The target shape should be something like:\n\n1. Fetch all projects for the account.\n2. Fetch all tasks for those project IDs in one query.\n3. Fetch all comments for those task IDs in one query.\n4. Fetch all referenced users in one query.\n5. Build lookup maps in Python: `project_id -> tasks`, `task_id -> comments`, `user_id -> user`.\n\nThat keeps the endpoint at roughly 4 database queries instead of growing with project/task/comment count.\n\nAlso verify indexes exist on the foreign keys used by those batched queries:\n\n- `projects.account_id`\n- `tasks.project_id`\n- `comments.task_id`\n- any user reference column used by comments/tasks\n\nIf profiling shows JSON assembly is the bottleneck after query batching, optimize the nested build with dictionaries/lists and avoid repeated scans. But don’t start there until query count and SQL timings are known.\n\nTo actually implement this, I need the report endpoint file, the database models/query code, and permission to edit the workspace.",
+          "repetition": 1,
+          "run_timestamp": "2026-07-02T04:54:18.031389+00:00",
+          "fixture_path": "examples/evaluations/fixtures/performance-tuning",
+          "prompt_path": "examples/evaluations/runs/codex-cli-default/performance-tuning/r01-weak-prompt.md",
+          "transcript_path": "examples/evaluations/runs/codex-cli-default/performance-tuning/r01-weak-output.md",
+          "output": "I can’t directly patch the endpoint from this packet: only the fixture data is provided, and this workspace is read-only. Based on [trace.json](</Users/corbensorenson/Documents/software grimoire/examples/evaluations/fixtures/performance-tuning/trace.json:1>), the bottleneck is clearly DB query count/N+1 behavior.\n\nCurrent state:\n\n- p95 is `9000ms`; target is `1500ms`.\n- DB time is `8110ms`; Python assembly is only `430ms`.\n- Query count is `1842`.\n- Repeated patterns: tasks by project `620` calls, comments by task `1100` calls, users by id `122` calls.\n\nI would not start by micro-optimizing Python loops. The ranked fix plan is:\n\n1. Replace N+1 queries with batched/eager loads.\n   - Fetch tasks for all project IDs in one query.\n   - Fetch comments for all task IDs in one query.\n   - Fetch users for all referenced user IDs in one query.\n   - Reassemble in memory using maps keyed by IDs.\n\n2. Push summary work into SQL where appropriate.\n   - If the report only needs counts/totals/recent metadata, query aggregates instead of loading every comment/task row.\n\n3. Verify indexes after query shape is fixed.\n   - Check indexes on `tasks.project_id`, `comments.task_id`, and `users.id`.\n   - Use `EXPLAIN`/query plans before adding indexes.\n\n4. Consider caching only after query count is controlled.\n   - Cache account-summary results if freshness rules allow it.\n\nBenchmark plan:\n\n- Capture before/after traces for large accounts: `120` projects and `6200` tasks from [workload.json](</Users/corbensorenson/Documents/software grimoire/examples/evaluations/fixtures/performance-tuning/workload.json:1>).\n- Track p50/p95, DB time, Python assembly time, query count, rows read, and memory.\n- Acceptance target: p95 <= `1500ms`, query count reduced from `1842` to low double digits or fewer.\n\nRollback/regression criteria before production change:\n\n- Roll back if p95 worsens, query count rises materially, memory spikes beyond agreed limits, or report output differs from current results.\n- Add regression coverage asserting bounded query count for a large-account fixture.",
           "scores": {
-            "artifact_boundary": 2,
+            "artifact_boundary": 1,
             "invariants": 0,
-            "output_contract": 1,
+            "output_contract": 2,
             "verification": 2,
-            "failure_behavior": 1,
-            "assumption_control": 1
+            "failure_behavior": 2,
+            "assumption_control": 0
           },
+          "structural_scores": {
+            "artifact_boundary": 1,
+            "invariants": 0,
+            "output_contract": 2,
+            "verification": 2,
+            "failure_behavior": 2,
+            "assumption_control": 0
+          },
+          "structural_total": 7,
+          "outcome_scores": {
+            "measure_first": 1,
+            "database_path": 1,
+            "rollback_budget": 1
+          },
+          "outcome_total": 3,
           "total_score": 7,
-          "run_timestamp": "2026-07-02T03:10:50.994905+00:00",
-          "evaluator_notes": "Auto-scored with the structural rubric; transcript remains the primary evidence."
+          "evaluator_notes": "Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence."
         },
         {
           "surface": "codex-cli-default",
           "surface_label": "Codex CLI default model",
           "variant": "repaired",
-          "prompt_path": "examples/evaluations/runs/codex-cli-default/performance-tuning/repaired-prompt.md",
-          "transcript_path": "examples/evaluations/runs/codex-cli-default/performance-tuning/repaired-output.md",
-          "output": "**Evidence Gap**\n\nDo not change code yet beyond instrumentation. Needed data: endpoint trace with per-stage timing, SQL query count, per-query duration, `EXPLAIN ANALYZE` for slow queries, payload size, Python CPU profile, allocation profile, DB connection-pool wait time, and p50/p95/p99 latency under representative large accounts.\n\n**Bottleneck Hypotheses**\n\n1. **Database round trips / N+1 queries**\n   Query count may have changed. Fetching projects, tasks, comments, and users separately can become many queries or repeated lookups.\n\n2. **Slow SQL plans or missing indexes**\n   Large-account filters, joins, ordering, or comment lookups may now scan too many rows.\n\n3. **Row explosion / over-fetching**\n   Joining nested entities can multiply rows, increasing DB work, network transfer, Python allocation, and JSON size.\n\n4. **Python assembly complexity**\n   Nested loops may be `O(projects * tasks * comments)` instead of using keyed maps/grouping.\n\n5. **Serialization and memory pressure**\n   Building one large nested object before encoding can cause high allocation, GC pressure, and latency spikes.\n\n6. **Connection-pool or DB saturation**\n   Under load, throughput may be limited by pool waits, DB CPU, I/O, or lock contention.\n\n**What To Measure**\n\n- Request latency split: DB time, Python build time, JSON serialization time, network response time.\n- Query count per request and duplicate query signatures.\n- Slowest queries with row counts and plans.\n- Response size and number of projects/tasks/comments/users.\n- CPU profile and allocation profile during report generation.\n- DB CPU, I/O, buffer cache hit rate, locks, and pool wait time.\n- p50/p95/p99 latency and max RSS under concurrent load.\n\n**Ranked Optimization Options**\n\n1. **Add tracing and query instrumentation**\n   Highest benefit-to-risk. Required to separate DB, CPU, allocation, and network effects.\n\n2. **Eliminate N+1 queries and duplicate user/comment/project fetches**\n   High benefit, moderate risk. Batch by IDs, use bounded eager loading, or consolidate queries carefully.\n\n3. **Tune SQL plans and indexes**\n   High benefit, moderate risk. Add/adjust composite indexes around account ID, project/task/comment foreign keys, and sort/filter columns.\n\n4. **Reduce over-fetching and row explosion**\n   High benefit, moderate risk. Fetch only required columns, avoid multiplicative joins, batch child records and group in memory.\n\n5. **Fix Python assembly algorithm**\n   Medium-to-high benefit, low-to-moderate risk. Build dictionaries keyed by IDs and append children in linear time.\n\n6. **Optimize serialization/allocation**\n   Medium benefit, moderate risk. Stream JSON or use a faster encoder only after DB and algorithmic costs are understood.\n\n7. **Caching or precomputed reports**\n   Potentially high benefit, higher product risk. Requires freshness rules and invalidation strategy.\n\n**Benchmark Plan**\n\nCreate a representative large-account fixture. Capture baseline p50/p95/p99, query count, DB time, CPU time, memory, and payload size. Test each optimization independently and under realistic concurrency. Verify byte-level or schema-level response equivalence.\n\n**Rollback Criteria**\n\nRollback if p95/p99 worsens, DB load increases materially, memory grows, connection-pool waits increase, error rate rises, or report JSON changes unexpectedly.\n\n**Success Measures**\n\nSuccess means the endpoint meets the strict latency budget on large accounts, reduces query count or DB time if DB-bound, reduces CPU/allocation if Python-bound, and does not regress correctness, throughput, memory, or DB health.",
+          "repetition": 1,
+          "run_timestamp": "2026-07-02T04:54:53.523965+00:00",
+          "fixture_path": "examples/evaluations/fixtures/performance-tuning",
+          "prompt_path": "examples/evaluations/runs/codex-cli-default/performance-tuning/r01-repaired-prompt.md",
+          "transcript_path": "examples/evaluations/runs/codex-cli-default/performance-tuning/r01-repaired-output.md",
+          "output": "**Bottleneck Hypotheses**\n\nPrimary: N+1 database access on `/reports/account-summary`.\n\nEvidence: p95 is `9000ms` against a `1500ms` budget. DB time is `8110ms`, while Python assembly is only `430ms`. Query count is `1842`, dominated by repeated calls:\n\n- `tasks where project_id=$1`: `620` calls\n- `comments where task_id=$1`: `1100` calls\n- `users where id=$1`: `122` calls\n\nThis points to per-project/per-task/per-user fetching, not Python loop cost. Python micro-optimization should wait until DB/query behavior is isolated.\n\n**What To Measure**\n\n- Full trace by request size: query count, DB time, Python time, serialization time.\n- Per-query latency, rows returned, and total bytes returned.\n- `EXPLAIN ANALYZE` for the task, comment, and user queries.\n- DB CPU, I/O wait, lock wait, connection pool wait, cache hit rate.\n- Request p50/p95/p99 under accounts near `120` projects and `6200` tasks.\n- Result correctness before and after query-shape changes.\n\n**Ranked Optimization Options**\n\n1. **Batch/eager-load report data**\n   Highest benefit, moderate risk. Replace per-project task queries and per-task comment queries with bounded batch queries: fetch tasks for all project IDs, comments for all task IDs, users for all referenced IDs. Expected to collapse query count from `1842` toward a small fixed number.\n\n2. **Aggregate in SQL where report shape allows**\n   High benefit, moderate-to-high risk. If the endpoint only needs counts/summaries, avoid loading every comment/task row. Use grouped aggregates by account/project/task as appropriate. Risk is semantic drift in report calculations.\n\n3. **Add or verify indexes**\n   Medium-to-high benefit, lower risk if missing. Check indexes on `tasks.project_id`, `comments.task_id`, and `users.id`. Validate with query plans before adding.\n\n4. **Cache stable report subcomponents**\n   Medium benefit, moderate risk. Useful if reports are frequently requested and tolerate staleness. Only after query shape is fixed.\n\n5. **Python assembly optimization**\n   Low expected benefit now. `430ms` is not the dominant cost and should be revisited only after DB time is reduced.\n\n**Benchmark Plan**\n\nCreate a representative benchmark using the large-account shape: `120` projects, `6200` tasks. Capture baseline p50/p95/p99, query count, DB ms, Python ms, errors, and result checksum. Run each optimization behind a flag/canary and compare against baseline under commodity cloud conditions.\n\n**Success And Rollback Criteria**\n\nSuccess: p95 under `1500ms`, query count reduced materially from `1842`, DB time no longer dominates, and report output matches baseline.\n\nRollback if p95/p99 worsens, errors/timeouts increase, DB CPU/I/O spikes, query count regresses, memory rises materially, or report totals differ from baseline.",
           "scores": {
             "artifact_boundary": 2,
             "invariants": 1,
-            "output_contract": 1,
+            "output_contract": 2,
             "verification": 2,
             "failure_behavior": 2,
             "assumption_control": 2
           },
+          "structural_scores": {
+            "artifact_boundary": 2,
+            "invariants": 1,
+            "output_contract": 2,
+            "verification": 2,
+            "failure_behavior": 2,
+            "assumption_control": 2
+          },
+          "structural_total": 11,
+          "outcome_scores": {
+            "measure_first": 1,
+            "database_path": 1,
+            "rollback_budget": 1
+          },
+          "outcome_total": 3,
+          "total_score": 11,
+          "evaluator_notes": "Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence."
+        },
+        {
+          "surface": "codex-cli-default",
+          "surface_label": "Codex CLI default model",
+          "variant": "weak",
+          "repetition": 2,
+          "run_timestamp": "2026-07-02T04:55:28.317199+00:00",
+          "fixture_path": "examples/evaluations/fixtures/performance-tuning",
+          "prompt_path": "examples/evaluations/runs/codex-cli-default/performance-tuning/r02-weak-prompt.md",
+          "transcript_path": "examples/evaluations/runs/codex-cli-default/performance-tuning/r02-weak-output.md",
+          "output": "I can’t safely patch this from the packet alone: the endpoint code, ORM/query layer, schema, indexes, and test harness are missing. Based on the trace, though, the target fix is clear.\n\nCurrent baseline for `/reports/account-summary`:\n\n- p95: `9000ms`\n- budget: `1500ms`\n- DB time: `8110ms`\n- Python assembly: `430ms`\n- query count: `1842`\n\nThe bottleneck is database query count/N+1 behavior, not Python loop work.\n\nRanked fix plan:\n\n1. Eliminate N+1 queries first.\n   - Replace per-project task fetches: `620` calls to `select * from tasks where project_id=$1`\n   - Replace per-task comment fetches: `1100` calls to `select * from comments where task_id=$1`\n   - Replace per-user fetches: `122` calls to `select * from users where id=$1`\n   - Use batched `WHERE project_id IN (...)`, `WHERE task_id IN (...)`, and `WHERE id IN (...)`, or ORM eager loading with bounded prefetches.\n\n2. Keep result shape unchanged.\n   - Batch fetch rows, group them in memory by `project_id`, `task_id`, and `user_id`.\n   - Python grouping is acceptable here: `430ms` is not the main cost.\n\n3. Verify indexes before rollout.\n   - Need indexes on `tasks.project_id`, `comments.task_id`, and `users.id`.\n   - If missing, add them separately with normal migration safety.\n\nBenchmark plan:\n\n- Re-run the same representative large-account workload: `120` projects, `6200` tasks.\n- Capture p50/p95, DB time, query count, and endpoint output equivalence.\n- Success target: p95 below `1500ms`, query count reduced from `1842` to a small bounded number, ideally single digits to low tens.\n\nRollback/regression criteria:\n\n- Roll back if output differs from the old endpoint for sampled accounts.\n- Roll back if p95 exceeds budget, DB CPU/load spikes materially, memory use grows beyond acceptable limits, or query count regresses above the agreed ceiling.\n- Add a regression test/assertion around maximum query count for the large-account fixture.",
+          "scores": {
+            "artifact_boundary": 2,
+            "invariants": 1,
+            "output_contract": 2,
+            "verification": 2,
+            "failure_behavior": 2,
+            "assumption_control": 1
+          },
+          "structural_scores": {
+            "artifact_boundary": 2,
+            "invariants": 1,
+            "output_contract": 2,
+            "verification": 2,
+            "failure_behavior": 2,
+            "assumption_control": 1
+          },
+          "structural_total": 10,
+          "outcome_scores": {
+            "measure_first": 1,
+            "database_path": 1,
+            "rollback_budget": 1
+          },
+          "outcome_total": 3,
           "total_score": 10,
-          "run_timestamp": "2026-07-02T03:11:19.975600+00:00",
-          "evaluator_notes": "Auto-scored with the structural rubric; transcript remains the primary evidence."
+          "evaluator_notes": "Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence."
+        },
+        {
+          "surface": "codex-cli-default",
+          "surface_label": "Codex CLI default model",
+          "variant": "repaired",
+          "repetition": 2,
+          "run_timestamp": "2026-07-02T04:56:12.068308+00:00",
+          "fixture_path": "examples/evaluations/fixtures/performance-tuning",
+          "prompt_path": "examples/evaluations/runs/codex-cli-default/performance-tuning/r02-repaired-prompt.md",
+          "transcript_path": "examples/evaluations/runs/codex-cli-default/performance-tuning/r02-repaired-output.md",
+          "output": "Based on the fixture, the likely bottleneck is database I/O from N+1 query behavior.\n\n**Bottleneck Hypotheses**\n- Primary: N+1 database access. Trace shows `/reports/account-summary` at `p95=9000ms` against a `1500ms` budget, with `8110ms` in DB time and `1842` queries.\n- Query patterns strongly indicate fanout:\n  - `tasks where project_id=$1`: `620` calls\n  - `comments where task_id=$1`: `1100` calls\n  - `users where id=$1`: `122` calls\n- Secondary: Python assembly is only `430ms`, so loop micro-optimization should wait until DB, network, allocation, and algorithmic effects are separated.\n\n**What To Measure First**\n- Full trace by account size: query count, DB time, row counts, payload bytes, connection pool wait, and endpoint p50/p95/p99.\n- `EXPLAIN ANALYZE` for repeated task/comment/user queries.\n- DB CPU, I/O, lock waits, cache hit rate, and network round trips.\n- Python CPU/allocation profile only after DB query count is reduced.\n\n**Ranked Optimization Options**\n1. **Collapse N+1 queries into batched/set-based queries**\n   Expected benefit: very high. Risk: medium.\n   Fetch tasks with `WHERE project_id IN (...)`, comments with `WHERE task_id IN (...)`, and users with `WHERE id IN (...)`. Preserve ordering and authorization semantics.\n\n2. **Move report aggregation into SQL or pre-aggregated summaries**\n   Expected benefit: high. Risk: medium-high.\n   Avoid loading full comment/task graphs if the report only needs counts, statuses, or totals.\n\n3. **Add/verify indexes on join/filter columns**\n   Expected benefit: medium if missing. Risk: low-medium.\n   Check `tasks(project_id)`, `comments(task_id)`, and relevant user/account foreign keys.\n\n4. **Cache or materialize account report snapshots**\n   Expected benefit: high for repeated reads. Risk: medium-high due staleness/invalidation.\n   Only after correctness and freshness requirements are explicit.\n\n5. **Optimize Python assembly**\n   Expected benefit: low until DB is fixed. Risk: low.\n   Current assembly time is not the budget breaker.\n\n**Benchmark Plan**\n- Baseline current endpoint on representative large account: `120` projects, `6200` tasks.\n- Record p50/p95/p99, throughput, query count, DB time, app CPU, memory, and correctness output.\n- Test each optimization behind a flag against identical data and concurrency on commodity cloud hardware.\n- Success: p95 below `1500ms`, query count reduced by orders of magnitude, DB time no longer dominant, output unchanged.\n\n**Rollback / Regression Criteria**\n- Roll back if p95/p99 exceeds budget, error rate rises, report output differs, query count regresses, DB CPU/I/O saturates, pool wait increases, memory spikes, or cache/materialized data becomes stale beyond accepted limits.",
+          "scores": {
+            "artifact_boundary": 2,
+            "invariants": 2,
+            "output_contract": 2,
+            "verification": 2,
+            "failure_behavior": 2,
+            "assumption_control": 1
+          },
+          "structural_scores": {
+            "artifact_boundary": 2,
+            "invariants": 2,
+            "output_contract": 2,
+            "verification": 2,
+            "failure_behavior": 2,
+            "assumption_control": 1
+          },
+          "structural_total": 11,
+          "outcome_scores": {
+            "measure_first": 1,
+            "database_path": 1,
+            "rollback_budget": 1
+          },
+          "outcome_total": 3,
+          "total_score": 11,
+          "evaluator_notes": "Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence."
+        },
+        {
+          "surface": "codex-cli-default",
+          "surface_label": "Codex CLI default model",
+          "variant": "weak",
+          "repetition": 3,
+          "run_timestamp": "2026-07-02T04:57:12.061858+00:00",
+          "fixture_path": "examples/evaluations/fixtures/performance-tuning",
+          "prompt_path": "examples/evaluations/runs/codex-cli-default/performance-tuning/r03-weak-prompt.md",
+          "transcript_path": "examples/evaluations/runs/codex-cli-default/performance-tuning/r03-weak-output.md",
+          "output": "I can’t patch the endpoint from this packet alone; the implementation, ORM/query code, schema, and indexes are missing. The trace is enough to rank the likely fix.\n\nBaseline:\n\n- `/reports/account-summary` p95: `9000 ms`\n- Target p95: `1500 ms`\n- DB time: `8110 ms`\n- Python assembly: `430 ms`\n- Queries: `1842`\n\nThe primary bottleneck is N+1 database access, not Python loop speed.\n\nRecommended order:\n\n1. Instrument first: capture query count, normalized SQL, DB time, account size, and p95 for this endpoint in staging/prod.\n2. Remove N+1 queries:\n   - Replace per-project `tasks where project_id=$1` calls with one batched query over project IDs.\n   - Replace per-task `comments where task_id=$1` calls with one batched query over task IDs.\n   - Batch user lookup by unique user IDs instead of `users where id=$1` repeatedly.\n3. Verify indexes after query shape is known:\n   - `tasks.project_id`\n   - `comments.task_id`\n   - user lookup should already use primary key; confirm with `EXPLAIN`.\n4. Only after DB query count is fixed, consider Python assembly tuning. It is currently about 5% of p95, so it cannot close the gap alone.\n\nBenchmark plan:\n\n- Re-run against the large-account workload: `120` projects, `6200` tasks.\n- Compare p95, DB time, total query count, and response correctness.\n- Success criteria: p95 at or below `1500 ms`, query count no longer scales linearly with projects/tasks, and output matches baseline.\n\nRollback/regression criteria before release:\n\n- Roll back if response data differs from baseline.\n- Roll back if p95 remains above budget or worsens versus current baseline.\n- Roll back if query count still grows with project/task count.\n- Ship behind a flag or canary so the old query path can be restored quickly.",
+          "scores": {
+            "artifact_boundary": 1,
+            "invariants": 1,
+            "output_contract": 2,
+            "verification": 2,
+            "failure_behavior": 2,
+            "assumption_control": 1
+          },
+          "structural_scores": {
+            "artifact_boundary": 1,
+            "invariants": 1,
+            "output_contract": 2,
+            "verification": 2,
+            "failure_behavior": 2,
+            "assumption_control": 1
+          },
+          "structural_total": 9,
+          "outcome_scores": {
+            "measure_first": 1,
+            "database_path": 1,
+            "rollback_budget": 1
+          },
+          "outcome_total": 3,
+          "total_score": 9,
+          "evaluator_notes": "Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence."
+        },
+        {
+          "surface": "codex-cli-default",
+          "surface_label": "Codex CLI default model",
+          "variant": "repaired",
+          "repetition": 3,
+          "run_timestamp": "2026-07-02T04:57:57.406948+00:00",
+          "fixture_path": "examples/evaluations/fixtures/performance-tuning",
+          "prompt_path": "examples/evaluations/runs/codex-cli-default/performance-tuning/r03-repaired-prompt.md",
+          "transcript_path": "examples/evaluations/runs/codex-cli-default/performance-tuning/r03-repaired-output.md",
+          "output": "**Bottleneck Hypotheses**\n\nPrimary: N+1 database access. Current trace shows `/reports/account-summary` at `p95=9000ms` against a `1500ms` budget, with `8110ms` in DB time and `1842` queries. The largest patterns are repeated task, comment, and user lookups: `620`, `1100`, and `122` calls.\n\nSecondary: inefficient query shapes or missing indexes may appear after batching. Python assembly is only `430ms`, so loop micro-optimization should wait until DB, I/O, allocation, and network effects are separated.\n\n**What To Measure**\n\nTrack per-request `p50/p95/p99`, query count, duplicate query fingerprints, DB execution time versus connection wait time, rows scanned/returned, payload size, Python assembly time, memory allocation, DB CPU/I/O, connection pool saturation, and network RTT. Capture `EXPLAIN ANALYZE` for the repeated query patterns and benchmark against the large account scale: `120` projects and `6200` tasks.\n\n**Ranked Optimizations**\n\n1. Replace N+1 lookups with set-based loading: joins, eager loading, or `WHERE id IN (...)` batches. Highest expected benefit, medium risk around duplicate rows, ordering, and authorization filters.\n2. Push report aggregation into fewer DB queries instead of hydrating all objects. High benefit, medium-high risk if business logic currently lives in Python.\n3. Add request-scope memoization for repeated user/project/task lookups. Medium benefit, lower risk, but not a substitute for removing N+1.\n4. Add or adjust indexes after validating query plans. Medium benefit, low-to-medium risk from write overhead and migration impact.\n5. Consider cached/precomputed summaries or pagination if the report does not need fully fresh complete detail. High benefit, higher product/behavior risk.\n6. Optimize Python assembly only after DB query count and DB time are reduced; current evidence does not justify starting there.\n\n**Benchmark Plan**\n\nBaseline the current endpoint with tracing enabled on representative large accounts. Then test each optimization independently on commodity-like hardware with cold and warm cache runs. Compare query count, DB time, total latency, throughput, correctness, DB CPU/I/O, connection pool wait, and memory. Run concurrency tests until p95 crosses the `1500ms` budget.\n\n**Rollback Criteria**\n\nRoll back or disable behind a feature flag if p95 exceeds budget, query count rises materially, DB CPU/I/O or connection wait worsens, error rate increases, report results differ from baseline, memory grows unexpectedly, or stale/incomplete report data appears.\n\nSuccess means p95 under `1500ms`, materially lower query count, lower DB time, stable correctness, and no throughput regression under target load.",
+          "scores": {
+            "artifact_boundary": 2,
+            "invariants": 1,
+            "output_contract": 2,
+            "verification": 2,
+            "failure_behavior": 2,
+            "assumption_control": 2
+          },
+          "structural_scores": {
+            "artifact_boundary": 2,
+            "invariants": 1,
+            "output_contract": 2,
+            "verification": 2,
+            "failure_behavior": 2,
+            "assumption_control": 2
+          },
+          "structural_total": 11,
+          "outcome_scores": {
+            "measure_first": 1,
+            "database_path": 1,
+            "rollback_budget": 1
+          },
+          "outcome_total": 3,
+          "total_score": 11,
+          "evaluator_notes": "Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence."
         }
       ]
     }

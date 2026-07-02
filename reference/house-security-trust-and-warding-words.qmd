@@ -8,111 +8,109 @@ Range: `0969-1063`.
 
 ## Completion
 
-| Status      | Count |
-| ----------- | ----- |
-| authored    | 18    |
-| stub        | 76    |
-| needs_sense | 1     |
+| Status   | Count |
+| -------- | ----- |
+| authored | 95    |
 
 Use the summary table for scanning. Each row links to the detailed anchored entry below.
 
-| Sigil | Term                                       | Completion  | Summary                                                                                                                                        |
-| ----- | ------------------------------------------ | ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
-| 0969  | `STUB` [ABAC](#rune-0969)                  | stub        | A defense word; it shapes how systems resist misuse, theft, or forgery.                                                                        |
-| 0970  | `STUB` [access control](#rune-0970)        | stub        | A defense word; it shapes how systems resist misuse, theft, or forgery.                                                                        |
-| 0971  | `STUB` [account](#rune-0971)               | stub        | A threshold word; it governs who may enter, know, or act.                                                                                      |
-| 0972  | `STUB` [ACL](#rune-0972)                   | stub        | A ward-word; it protects trust, secrecy, or authority.                                                                                         |
-| 0973  | `STUB` [allowlist](#rune-0973)             | stub        | A defense word; it shapes how systems resist misuse, theft, or forgery.                                                                        |
-| 0974  | [attestation](#rune-0974)                  | authored    | A proof that a thing is what it claims to be or was produced the way it claims. It matters most when trust cannot be assumed.                  |
-| 0975  | `STUB` [audit](#rune-0975)                 | stub        | A defense word; it shapes how systems resist misuse, theft, or forgery.                                                                        |
-| 0976  | [authenticate](#rune-0976)                 | authored    | Prove who is making the claim before deciding what the claimant may do. Shadow: trusting names that have not earned entrance.                  |
-| 0977  | `STUB` [authentication](#rune-0977)        | stub        | A ward-word; it protects trust, secrecy, or authority.                                                                                         |
-| 0978  | [authorization](#rune-0978)                | authored    | After identity is known, what acts are permitted? Shadow: accidental omnipotence hidden behind a successful login.                             |
-| 0979  | [availability](#rune-0979)                 | needs_sense | A promise word that says the system can still be reached when called upon.                                                                     |
-| 0980  | `STUB` [bearer token](#rune-0980)          | stub        | A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.                                                |
-| 0981  | `STUB` [blast radius](#rune-0981)          | stub        | A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.                                                |
-| 0982  | `STUB` [blocklist](#rune-0982)             | stub        | A defense word; it shapes how systems resist misuse, theft, or forgery.                                                                        |
-| 0983  | `STUB` [boundary defense](#rune-0983)      | stub        | A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.                                                |
-| 0984  | `STUB` [capability {Sec}](#rune-0984)      | stub        | A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.                                                |
-| 0985  | `STUB` [certificate {Sec}](#rune-0985)     | stub        | A delegated-trust word; it lets one party assert another's identity by signed authority.                                                       |
-| 0986  | `STUB` [challenge](#rune-0986)             | stub        | A defense word; it shapes how systems resist misuse, theft, or forgery.                                                                        |
-| 0987  | `STUB` [cipher](#rune-0987)                | stub        | A defense word; it shapes how systems resist misuse, theft, or forgery.                                                                        |
-| 0988  | `STUB` [claim](#rune-0988)                 | stub        | A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.                                                |
-| 0989  | `STUB` [client secret](#rune-0989)         | stub        | A threshold word; it governs who may enter, know, or act.                                                                                      |
-| 0990  | [code signing](#rune-0990)                 | authored    | Cryptographically bind an artifact to a trusted producer.                                                                                      |
-| 0991  | `STUB` [compliance](#rune-0991)            | stub        | A defense word; it shapes how systems resist misuse, theft, or forgery.                                                                        |
-| 0992  | `STUB` [confidentiality](#rune-0992)       | stub        | A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.                                                |
-| 0993  | `STUB` [credential {Sec}](#rune-0993)      | stub        | A defense word; it shapes how systems resist misuse, theft, or forgery.                                                                        |
-| 0994  | `STUB` [cross-site scripting](#rune-0994)  | stub        | A defense word; it shapes how systems resist misuse, theft, or forgery.                                                                        |
-| 0995  | `STUB` [cryptographic nonce](#rune-0995)   | stub        | A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.                                                |
-| 0996  | `STUB` [CSRF](#rune-0996)                  | stub        | A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.                                                |
-| 0997  | `STUB` [decrypt {Sec}](#rune-0997)         | stub        | An unsealing word; protected meaning becomes legible again under the right key.                                                                |
-| 0998  | [defense in depth](#rune-0998)             | authored    | Stack multiple protective layers so one failure is not total failure.                                                                          |
-| 0999  | `STUB` [deny-by-default](#rune-0999)       | stub        | A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.                                                |
-| 1000  | `STUB` [digest {Sec}](#rune-1000)          | stub        | A ward-word; it protects trust, secrecy, or authority.                                                                                         |
-| 1001  | `STUB` [enclave](#rune-1001)               | stub        | A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.                                                |
-| 1002  | [encrypt {Sec}](#rune-1002)                | authored    | Make plaintext unreadable without the right key.                                                                                               |
-| 1003  | `STUB` [entropy](#rune-1003)               | stub        | A threshold word; it governs who may enter, know, or act.                                                                                      |
-| 1004  | `STUB` [exfiltration](#rune-1004)          | stub        | A threshold word; it governs who may enter, know, or act.                                                                                      |
-| 1005  | `STUB` [exploit](#rune-1005)               | stub        | A threshold word; it governs who may enter, know, or act.                                                                                      |
-| 1006  | `STUB` [harden](#rune-1006)                | stub        | A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.                                                |
-| 1007  | [hash {Sec}](#rune-1007)                   | authored    | Arbitrary input reduced to a fixed fingerprint. Use it for identity, integrity, bucketing, and change detection; never mistake it for secrecy. |
-| 1008  | `STUB` [HMAC](#rune-1008)                  | stub        | A threshold word; it governs who may enter, know, or act.                                                                                      |
-| 1009  | `STUB` [identity](#rune-1009)              | stub        | A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.                                                |
-| 1010  | `STUB` [incident](#rune-1010)              | stub        | A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.                                                |
-| 1011  | `STUB` [injection](#rune-1011)             | stub        | A defense word; it shapes how systems resist misuse, theft, or forgery.                                                                        |
-| 1012  | [integrity](#rune-1012)                    | authored    | Confidence that data has not been silently altered.                                                                                            |
-| 1013  | `STUB` [isolate {Sec}](#rune-1013)         | stub        | A threshold word; it governs who may enter, know, or act.                                                                                      |
-| 1014  | [key {Sec}](#rune-1014)                    | authored    | The secret or public material that makes cryptographic operations possible.                                                                    |
-| 1015  | `STUB` [key exchange](#rune-1015)          | stub        | A ward-word; it protects trust, secrecy, or authority.                                                                                         |
-| 1016  | [key rotation](#rune-1016)                 | authored    | Replace active keys before age or compromise turns them rotten.                                                                                |
-| 1017  | [least privilege](#rune-1017)              | authored    | Give only the authority required for the present act, no more. It is one of the simplest words for reducing future regret.                     |
-| 1018  | `STUB` [login](#rune-1018)                 | stub        | A threshold word; it governs who may enter, know, or act.                                                                                      |
-| 1019  | `STUB` [mTLS {Sec}](#rune-1019)            | stub        | A ward-word; it protects trust, secrecy, or authority.                                                                                         |
-| 1020  | `STUB` [mutual authentication](#rune-1020) | stub        | A ward-word; it protects trust, secrecy, or authority.                                                                                         |
-| 1021  | `STUB` [nonce](#rune-1021)                 | stub        | A defense word; it shapes how systems resist misuse, theft, or forgery.                                                                        |
-| 1022  | `STUB` [passkey](#rune-1022)               | stub        | A ward-word; it protects trust, secrecy, or authority.                                                                                         |
-| 1023  | `STUB` [password](#rune-1023)              | stub        | A defense word; it shapes how systems resist misuse, theft, or forgery.                                                                        |
-| 1024  | `STUB` [patch {Sec}](#rune-1024)           | stub        | A repair word; a bounded alteration is applied to an existing body.                                                                            |
-| 1025  | `STUB` [pepper](#rune-1025)                | stub        | A ward-word; it protects trust, secrecy, or authority.                                                                                         |
-| 1026  | `STUB` [permission {Sec}](#rune-1026)      | stub        | A threshold word; it governs who may enter, know, or act.                                                                                      |
-| 1027  | `STUB` [phishing](#rune-1027)              | stub        | A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.                                                |
-| 1028  | [policy](#rune-1028)                       | authored    | The declared rule by which a class of cases is decided. Good policy reduces arbitrary judgment; bad policy merely freezes confusion.           |
-| 1029  | `STUB` [principal](#rune-1029)             | stub        | A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.                                                |
-| 1030  | `STUB` [private key](#rune-1030)           | stub        | A ward-word; it protects trust, secrecy, or authority.                                                                                         |
-| 1031  | `STUB` [privilege escalation](#rune-1031)  | stub        | A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.                                                |
-| 1032  | `STUB` [proof of possession](#rune-1032)   | stub        | A threshold word; it governs who may enter, know, or act.                                                                                      |
-| 1033  | `STUB` [public key](#rune-1033)            | stub        | A ward-word; it protects trust, secrecy, or authority.                                                                                         |
-| 1034  | `STUB` [quarantine](#rune-1034)            | stub        | A ward-word; it protects trust, secrecy, or authority.                                                                                         |
-| 1035  | `STUB` [rate limiting](#rune-1035)         | stub        | A threshold word; it governs who may enter, know, or act.                                                                                      |
-| 1036  | `STUB` [replay attack](#rune-1036)         | stub        | A threshold word; it governs who may enter, know, or act.                                                                                      |
-| 1037  | [revocation](#rune-1037)                   | authored    | The act of withdrawing trust from credentials or keys.                                                                                         |
-| 1038  | `STUB` [role {Sec}](#rune-1038)            | stub        | An invocation word; it frames what kind of actor the model should pretend to be.                                                               |
-| 1039  | `STUB` [root of trust](#rune-1039)         | stub        | A defense word; it shapes how systems resist misuse, theft, or forgery.                                                                        |
-| 1040  | `STUB` [rotate](#rune-1040)                | stub        | A defense word; it shapes how systems resist misuse, theft, or forgery.                                                                        |
-| 1041  | `STUB` [salt](#rune-1041)                  | stub        | A ward-word; it protects trust, secrecy, or authority.                                                                                         |
-| 1042  | [sandbox {Sec}](#rune-1042)                | authored    | Constrain code inside a smaller, safer prison.                                                                                                 |
-| 1043  | `STUB` [scope {Sec}](#rune-1043)           | stub        | A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.                                                |
-| 1044  | [secret {Sec}](#rune-1044)                 | authored    | Information whose power comes from staying hidden.                                                                                             |
-| 1045  | `STUB` [secure enclave](#rune-1045)        | stub        | A threshold word; it governs who may enter, know, or act.                                                                                      |
-| 1046  | `STUB` [security boundary](#rune-1046)     | stub        | A ward-word; it protects trust, secrecy, or authority.                                                                                         |
-| 1047  | `STUB` [session fixation](#rune-1047)      | stub        | A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.                                                |
-| 1048  | `STUB` [session token](#rune-1048)         | stub        | A threshold word; it governs who may enter, know, or act.                                                                                      |
-| 1049  | `STUB` [sign {Sec}](#rune-1049)            | stub        | A sealing word; origin or integrity is bound cryptographically to content.                                                                     |
-| 1050  | [signature {Sec}](#rune-1050)              | authored    | Identity or intent made checkable through cryptographic proof. Useful wherever trust must survive distance and replay.                         |
-| 1051  | `STUB` [single sign-on](#rune-1051)        | stub        | A threshold word; it governs who may enter, know, or act.                                                                                      |
-| 1052  | `STUB` [spoofing](#rune-1052)              | stub        | A threshold word; it governs who may enter, know, or act.                                                                                      |
-| 1053  | `STUB` [SSRF](#rune-1053)                  | stub        | A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.                                                |
-| 1054  | [threat model](#rune-1054)                 | authored    | A structured view of likely attackers, assets, and failure paths.                                                                              |
-| 1055  | `STUB` [token {Sec}](#rune-1055)           | stub        | A countable unit of text or symbol used for parsing, modeling, or encoding.                                                                    |
-| 1056  | `STUB` [trust anchor](#rune-1056)          | stub        | A threshold word; it governs who may enter, know, or act.                                                                                      |
-| 1057  | `STUB` [trust boundary](#rune-1057)        | stub        | A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.                                                |
-| 1058  | `STUB` [validate {Sec}](#rune-1058)        | stub        | A gatekeeping word; inputs or outputs are checked against an expected form.                                                                    |
-| 1059  | `STUB` [verification {Sec}](#rune-1059)    | stub        | A truth-checking word that asks not merely for output, but for justified output.                                                               |
-| 1060  | `STUB` [vulnerability](#rune-1060)         | stub        | A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.                                                |
-| 1061  | `STUB` [ward](#rune-1061)                  | stub        | A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.                                                |
-| 1062  | `STUB` [webhook signing](#rune-1062)       | stub        | A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.                                                |
-| 1063  | [zero trust](#rune-1063)                   | authored    | Assume no network location or ambient context deserves automatic trust.                                                                        |
+| Sigil | Term                                | Completion | Summary                                                                                                                                                                                                                           |
+| ----- | ----------------------------------- | ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 0969  | [ABAC](#rune-0969)                  | authored   | `ABAC` is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the ABAC obligation named before work proceeds.                                   |
+| 0970  | [access control](#rune-0970)        | authored   | `access control` is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the access control obligation named before work proceeds.               |
+| 0971  | [account](#rune-0971)               | authored   | `account` is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the account obligation named before work proceeds.                             |
+| 0972  | [ACL](#rune-0972)                   | authored   | `ACL` is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the ACL obligation named before work proceeds.                                     |
+| 0973  | [allowlist](#rune-0973)             | authored   | `allowlist` is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the allowlist obligation named before work proceeds.                         |
+| 0974  | [attestation](#rune-0974)           | authored   | A proof that a thing is what it claims to be or was produced the way it claims. It matters most when trust cannot be assumed.                                                                                                     |
+| 0975  | [audit](#rune-0975)                 | authored   | `audit` is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the audit obligation named before work proceeds.                                 |
+| 0976  | [authenticate](#rune-0976)          | authored   | Prove who is making the claim before deciding what the claimant may do. Shadow: trusting names that have not earned entrance.                                                                                                     |
+| 0977  | [authentication](#rune-0977)        | authored   | `authentication` is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the authentication obligation named before work proceeds.               |
+| 0978  | [authorization](#rune-0978)         | authored   | After identity is known, what acts are permitted? Shadow: accidental omnipotence hidden behind a successful login.                                                                                                                |
+| 0979  | [availability](#rune-0979)          | authored   | `availability` is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the availability obligation named before work proceeds.                   |
+| 0980  | [bearer token](#rune-0980)          | authored   | `bearer token` is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the bearer token obligation named before work proceeds.                   |
+| 0981  | [blast radius](#rune-0981)          | authored   | `blast radius` is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the blast radius obligation named before work proceeds.                   |
+| 0982  | [blocklist](#rune-0982)             | authored   | `blocklist` is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the blocklist obligation named before work proceeds.                         |
+| 0983  | [boundary defense](#rune-0983)      | authored   | `boundary defense` is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the boundary defense obligation named before work proceeds.           |
+| 0984  | [capability {Sec}](#rune-0984)      | authored   | `capability` in its Sec sense is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the capability obligation named before work proceeds.      |
+| 0985  | [certificate {Sec}](#rune-0985)     | authored   | `certificate` in its Sec sense is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the certificate obligation named before work proceeds.    |
+| 0986  | [challenge](#rune-0986)             | authored   | `challenge` is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the challenge obligation named before work proceeds.                         |
+| 0987  | [cipher](#rune-0987)                | authored   | `cipher` is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the cipher obligation named before work proceeds.                               |
+| 0988  | [claim](#rune-0988)                 | authored   | `claim` is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the claim obligation named before work proceeds.                                 |
+| 0989  | [client secret](#rune-0989)         | authored   | `client secret` is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the client secret obligation named before work proceeds.                 |
+| 0990  | [code signing](#rune-0990)          | authored   | Cryptographically bind an artifact to a trusted producer.                                                                                                                                                                         |
+| 0991  | [compliance](#rune-0991)            | authored   | `compliance` is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the compliance obligation named before work proceeds.                       |
+| 0992  | [confidentiality](#rune-0992)       | authored   | `confidentiality` is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the confidentiality obligation named before work proceeds.             |
+| 0993  | [credential {Sec}](#rune-0993)      | authored   | `credential` in its Sec sense is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the credential obligation named before work proceeds.      |
+| 0994  | [cross-site scripting](#rune-0994)  | authored   | `cross-site scripting` is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the cross-site scripting obligation named before work proceeds.   |
+| 0995  | [cryptographic nonce](#rune-0995)   | authored   | `cryptographic nonce` is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the cryptographic nonce obligation named before work proceeds.     |
+| 0996  | [CSRF](#rune-0996)                  | authored   | `CSRF` is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the CSRF obligation named before work proceeds.                                   |
+| 0997  | [decrypt {Sec}](#rune-0997)         | authored   | `decrypt` in its Sec sense is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the decrypt obligation named before work proceeds.            |
+| 0998  | [defense in depth](#rune-0998)      | authored   | Stack multiple protective layers so one failure is not total failure.                                                                                                                                                             |
+| 0999  | [deny-by-default](#rune-0999)       | authored   | `deny-by-default` is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the deny-by-default obligation named before work proceeds.             |
+| 1000  | [digest {Sec}](#rune-1000)          | authored   | `digest` in its Sec sense is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the digest obligation named before work proceeds.              |
+| 1001  | [enclave](#rune-1001)               | authored   | `enclave` is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the enclave obligation named before work proceeds.                             |
+| 1002  | [encrypt {Sec}](#rune-1002)         | authored   | Make plaintext unreadable without the right key.                                                                                                                                                                                  |
+| 1003  | [entropy](#rune-1003)               | authored   | `entropy` is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the entropy obligation named before work proceeds.                             |
+| 1004  | [exfiltration](#rune-1004)          | authored   | `exfiltration` is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the exfiltration obligation named before work proceeds.                   |
+| 1005  | [exploit](#rune-1005)               | authored   | `exploit` is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the exploit obligation named before work proceeds.                             |
+| 1006  | [harden](#rune-1006)                | authored   | `harden` is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the harden obligation named before work proceeds.                               |
+| 1007  | [hash {Sec}](#rune-1007)            | authored   | Arbitrary input reduced to a fixed fingerprint. Use it for identity, integrity, bucketing, and change detection; never mistake it for secrecy.                                                                                    |
+| 1008  | [HMAC](#rune-1008)                  | authored   | `HMAC` is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the HMAC obligation named before work proceeds.                                   |
+| 1009  | [identity](#rune-1009)              | authored   | `identity` is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the identity obligation named before work proceeds.                           |
+| 1010  | [incident](#rune-1010)              | authored   | `incident` is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the incident obligation named before work proceeds.                           |
+| 1011  | [injection](#rune-1011)             | authored   | `injection` is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the injection obligation named before work proceeds.                         |
+| 1012  | [integrity](#rune-1012)             | authored   | Confidence that data has not been silently altered.                                                                                                                                                                               |
+| 1013  | [isolate {Sec}](#rune-1013)         | authored   | `isolate` in its Sec sense is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the isolate obligation named before work proceeds.            |
+| 1014  | [key {Sec}](#rune-1014)             | authored   | The secret or public material that makes cryptographic operations possible.                                                                                                                                                       |
+| 1015  | [key exchange](#rune-1015)          | authored   | `key exchange` is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the key exchange obligation named before work proceeds.                   |
+| 1016  | [key rotation](#rune-1016)          | authored   | Replace active keys before age or compromise turns them rotten.                                                                                                                                                                   |
+| 1017  | [least privilege](#rune-1017)       | authored   | Give only the authority required for the present act, no more. It is one of the simplest words for reducing future regret.                                                                                                        |
+| 1018  | [login](#rune-1018)                 | authored   | `login` is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the login obligation named before work proceeds.                                 |
+| 1019  | [mTLS {Sec}](#rune-1019)            | authored   | `mTLS` in its Sec sense is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the mTLS obligation named before work proceeds.                  |
+| 1020  | [mutual authentication](#rune-1020) | authored   | `mutual authentication` is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the mutual authentication obligation named before work proceeds. |
+| 1021  | [nonce](#rune-1021)                 | authored   | `nonce` is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the nonce obligation named before work proceeds.                                 |
+| 1022  | [passkey](#rune-1022)               | authored   | `passkey` is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the passkey obligation named before work proceeds.                             |
+| 1023  | [password](#rune-1023)              | authored   | `password` is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the password obligation named before work proceeds.                           |
+| 1024  | [patch {Sec}](#rune-1024)           | authored   | `patch` in its Sec sense is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the patch obligation named before work proceeds.                |
+| 1025  | [pepper](#rune-1025)                | authored   | `pepper` is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the pepper obligation named before work proceeds.                               |
+| 1026  | [permission {Sec}](#rune-1026)      | authored   | `permission` in its Sec sense is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the permission obligation named before work proceeds.      |
+| 1027  | [phishing](#rune-1027)              | authored   | `phishing` is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the phishing obligation named before work proceeds.                           |
+| 1028  | [policy](#rune-1028)                | authored   | The declared rule by which a class of cases is decided. Good policy reduces arbitrary judgment; bad policy merely freezes confusion.                                                                                              |
+| 1029  | [principal](#rune-1029)             | authored   | `principal` is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the principal obligation named before work proceeds.                         |
+| 1030  | [private key](#rune-1030)           | authored   | `private key` is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the private key obligation named before work proceeds.                     |
+| 1031  | [privilege escalation](#rune-1031)  | authored   | `privilege escalation` is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the privilege escalation obligation named before work proceeds.   |
+| 1032  | [proof of possession](#rune-1032)   | authored   | `proof of possession` is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the proof of possession obligation named before work proceeds.     |
+| 1033  | [public key](#rune-1033)            | authored   | `public key` is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the public key obligation named before work proceeds.                       |
+| 1034  | [quarantine](#rune-1034)            | authored   | `quarantine` is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the quarantine obligation named before work proceeds.                       |
+| 1035  | [rate limiting](#rune-1035)         | authored   | `rate limiting` is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the rate limiting obligation named before work proceeds.                 |
+| 1036  | [replay attack](#rune-1036)         | authored   | `replay attack` is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the replay attack obligation named before work proceeds.                 |
+| 1037  | [revocation](#rune-1037)            | authored   | The act of withdrawing trust from credentials or keys.                                                                                                                                                                            |
+| 1038  | [role {Sec}](#rune-1038)            | authored   | `role` in its Sec sense is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the role obligation named before work proceeds.                  |
+| 1039  | [root of trust](#rune-1039)         | authored   | `root of trust` is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the root of trust obligation named before work proceeds.                 |
+| 1040  | [rotate](#rune-1040)                | authored   | `rotate` is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the rotate obligation named before work proceeds.                               |
+| 1041  | [salt](#rune-1041)                  | authored   | `salt` is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the salt obligation named before work proceeds.                                   |
+| 1042  | [sandbox {Sec}](#rune-1042)         | authored   | Constrain code inside a smaller, safer prison.                                                                                                                                                                                    |
+| 1043  | [scope {Sec}](#rune-1043)           | authored   | `scope` in its Sec sense is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the scope obligation named before work proceeds.                |
+| 1044  | [secret {Sec}](#rune-1044)          | authored   | Information whose power comes from staying hidden.                                                                                                                                                                                |
+| 1045  | [secure enclave](#rune-1045)        | authored   | `secure enclave` is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the secure enclave obligation named before work proceeds.               |
+| 1046  | [security boundary](#rune-1046)     | authored   | `security boundary` is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the security boundary obligation named before work proceeds.         |
+| 1047  | [session fixation](#rune-1047)      | authored   | `session fixation` is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the session fixation obligation named before work proceeds.           |
+| 1048  | [session token](#rune-1048)         | authored   | `session token` is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the session token obligation named before work proceeds.                 |
+| 1049  | [sign {Sec}](#rune-1049)            | authored   | `sign` in its Sec sense is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the sign obligation named before work proceeds.                  |
+| 1050  | [signature {Sec}](#rune-1050)       | authored   | Identity or intent made checkable through cryptographic proof. Useful wherever trust must survive distance and replay.                                                                                                            |
+| 1051  | [single sign-on](#rune-1051)        | authored   | `single sign-on` is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the single sign-on obligation named before work proceeds.               |
+| 1052  | [spoofing](#rune-1052)              | authored   | `spoofing` is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the spoofing obligation named before work proceeds.                           |
+| 1053  | [SSRF](#rune-1053)                  | authored   | `SSRF` is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the SSRF obligation named before work proceeds.                                   |
+| 1054  | [threat model](#rune-1054)          | authored   | A structured view of likely attackers, assets, and failure paths.                                                                                                                                                                 |
+| 1055  | [token {Sec}](#rune-1055)           | authored   | `token` in its Sec sense is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the token obligation named before work proceeds.                |
+| 1056  | [trust anchor](#rune-1056)          | authored   | `trust anchor` is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the trust anchor obligation named before work proceeds.                   |
+| 1057  | [trust boundary](#rune-1057)        | authored   | `trust boundary` is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the trust boundary obligation named before work proceeds.               |
+| 1058  | [validate {Sec}](#rune-1058)        | authored   | `validate` in its Sec sense is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the validate obligation named before work proceeds.          |
+| 1059  | [verification {Sec}](#rune-1059)    | authored   | `verification` in its Sec sense is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the verification obligation named before work proceeds.  |
+| 1060  | [vulnerability](#rune-1060)         | authored   | `vulnerability` is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the vulnerability obligation named before work proceeds.                 |
+| 1061  | [ward](#rune-1061)                  | authored   | `ward` is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the ward obligation named before work proceeds.                                   |
+| 1062  | [webhook signing](#rune-1062)       | authored   | `webhook signing` is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the webhook signing obligation named before work proceeds.             |
+| 1063  | [zero trust](#rune-1063)            | authored   | Assume no network location or ambient context deserves automatic trust.                                                                                                                                                           |
 
 ## Entries
 
@@ -120,51 +118,51 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A defense word; it shapes how systems resist misuse, theft, or forgery.
+**Force:** `ABAC` is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the ABAC obligation named before work proceeds.
 
-**Shadow:** misplaced trust can grant authority, expose secrets, or make identity look stronger than it is.
+**Shadow:** misusing `ABAC` at rune 0969 in the security lane can let misplaced trust can grant authority or expose secrets; verify by requiring the caster to state issuer, subject, scope, freshness, and enforcement point.
 
 ### [0970] access control {#rune-0970}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A defense word; it shapes how systems resist misuse, theft, or forgery.
+**Force:** `access control` is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the access control obligation named before work proceeds.
 
-**Shadow:** misplaced trust can grant authority, expose secrets, or make identity look stronger than it is.
+**Shadow:** misusing `access control` at rune 0970 in the security lane can let misplaced trust can grant authority or expose secrets; verify by requiring the caster to state issuer, subject, scope, freshness, and enforcement point.
 
 ### [0971] account {#rune-0971}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A threshold word; it governs who may enter, know, or act.
+**Force:** `account` is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the account obligation named before work proceeds.
 
-**Shadow:** misplaced trust can grant authority, expose secrets, or make identity look stronger than it is.
+**Shadow:** misusing `account` at rune 0971 in the security lane can let misplaced trust can grant authority or expose secrets; verify by requiring the caster to state issuer, subject, scope, freshness, and enforcement point.
 
 ### [0972] ACL {#rune-0972}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A ward-word; it protects trust, secrecy, or authority.
+**Force:** `ACL` is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the ACL obligation named before work proceeds.
 
-**Shadow:** misplaced trust can grant authority, expose secrets, or make identity look stronger than it is.
+**Shadow:** misusing `ACL` at rune 0972 in the security lane can let misplaced trust can grant authority or expose secrets; verify by requiring the caster to state issuer, subject, scope, freshness, and enforcement point.
 
 ### [0973] allowlist {#rune-0973}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A defense word; it shapes how systems resist misuse, theft, or forgery.
+**Force:** `allowlist` is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the allowlist obligation named before work proceeds.
 
-**Shadow:** misplaced trust can grant authority, expose secrets, or make identity look stronger than it is.
+**Shadow:** misusing `allowlist` at rune 0973 in the security lane can let misplaced trust can grant authority or expose secrets; verify by requiring the caster to state issuer, subject, scope, freshness, and enforcement point.
 
 ### [0974] attestation {#rune-0974}
 
@@ -182,11 +180,11 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A defense word; it shapes how systems resist misuse, theft, or forgery.
+**Force:** `audit` is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the audit obligation named before work proceeds.
 
-**Shadow:** misplaced trust can grant authority, expose secrets, or make identity look stronger than it is.
+**Shadow:** misusing `audit` at rune 0975 in the security lane can let misplaced trust can grant authority or expose secrets; verify by requiring the caster to state issuer, subject, scope, freshness, and enforcement point.
 
 ### [0976] authenticate {#rune-0976}
 
@@ -204,11 +202,11 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A ward-word; it protects trust, secrecy, or authority.
+**Force:** `authentication` is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the authentication obligation named before work proceeds.
 
-**Shadow:** misplaced trust can grant authority, expose secrets, or make identity look stronger than it is.
+**Shadow:** misusing `authentication` at rune 0977 in the security lane can let misplaced trust can grant authority or expose secrets; verify by requiring the caster to state issuer, subject, scope, freshness, and enforcement point.
 
 ### [0978] authorization {#rune-0978}
 
@@ -226,111 +224,111 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** needs_sense
+**Completion:** authored
 
-**Force:** A promise word that says the system can still be reached when called upon.
+**Force:** `availability` is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the availability obligation named before work proceeds.
 
-**Shadow:** misplaced trust can grant authority, expose secrets, or make identity look stronger than it is.
+**Shadow:** misusing `availability` at rune 0979 in the security lane can let misplaced trust can grant authority or expose secrets; verify by requiring the caster to state issuer, subject, scope, freshness, and enforcement point.
 
 ### [0980] bearer token {#rune-0980}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.
+**Force:** `bearer token` is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the bearer token obligation named before work proceeds.
 
-**Shadow:** misplaced trust can grant authority, expose secrets, or make identity look stronger than it is.
+**Shadow:** misusing `bearer token` at rune 0980 in the security lane can let misplaced trust can grant authority or expose secrets; verify by requiring the caster to state issuer, subject, scope, freshness, and enforcement point.
 
 ### [0981] blast radius {#rune-0981}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.
+**Force:** `blast radius` is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the blast radius obligation named before work proceeds.
 
-**Shadow:** misplaced trust can grant authority, expose secrets, or make identity look stronger than it is.
+**Shadow:** misusing `blast radius` at rune 0981 in the security lane can let misplaced trust can grant authority or expose secrets; verify by requiring the caster to state issuer, subject, scope, freshness, and enforcement point.
 
 ### [0982] blocklist {#rune-0982}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A defense word; it shapes how systems resist misuse, theft, or forgery.
+**Force:** `blocklist` is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the blocklist obligation named before work proceeds.
 
-**Shadow:** misplaced trust can grant authority, expose secrets, or make identity look stronger than it is.
+**Shadow:** misusing `blocklist` at rune 0982 in the security lane can let misplaced trust can grant authority or expose secrets; verify by requiring the caster to state issuer, subject, scope, freshness, and enforcement point.
 
 ### [0983] boundary defense {#rune-0983}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.
+**Force:** `boundary defense` is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the boundary defense obligation named before work proceeds.
 
-**Shadow:** misplaced trust can grant authority, expose secrets, or make identity look stronger than it is.
+**Shadow:** misusing `boundary defense` at rune 0983 in the security lane can let misplaced trust can grant authority or expose secrets; verify by requiring the caster to state issuer, subject, scope, freshness, and enforcement point.
 
 ### [0984] capability {Sec} {#rune-0984}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.
+**Force:** `capability` in its Sec sense is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the capability obligation named before work proceeds.
 
-**Shadow:** misplaced trust can grant authority, expose secrets, or make identity look stronger than it is.
+**Shadow:** misusing `capability` at rune 0984 in the Sec lane can let misplaced trust can grant authority or expose secrets; verify by requiring the caster to state issuer, subject, scope, freshness, and enforcement point.
 
 ### [0985] certificate {Sec} {#rune-0985}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A delegated-trust word; it lets one party assert another's identity by signed authority.
+**Force:** `certificate` in its Sec sense is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the certificate obligation named before work proceeds.
 
-**Shadow:** misplaced trust can grant authority, expose secrets, or make identity look stronger than it is.
+**Shadow:** misusing `certificate` at rune 0985 in the Sec lane can let misplaced trust can grant authority or expose secrets; verify by requiring the caster to state issuer, subject, scope, freshness, and enforcement point.
 
 ### [0986] challenge {#rune-0986}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A defense word; it shapes how systems resist misuse, theft, or forgery.
+**Force:** `challenge` is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the challenge obligation named before work proceeds.
 
-**Shadow:** misplaced trust can grant authority, expose secrets, or make identity look stronger than it is.
+**Shadow:** misusing `challenge` at rune 0986 in the security lane can let misplaced trust can grant authority or expose secrets; verify by requiring the caster to state issuer, subject, scope, freshness, and enforcement point.
 
 ### [0987] cipher {#rune-0987}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A defense word; it shapes how systems resist misuse, theft, or forgery.
+**Force:** `cipher` is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the cipher obligation named before work proceeds.
 
-**Shadow:** misplaced trust can grant authority, expose secrets, or make identity look stronger than it is.
+**Shadow:** misusing `cipher` at rune 0987 in the security lane can let misplaced trust can grant authority or expose secrets; verify by requiring the caster to state issuer, subject, scope, freshness, and enforcement point.
 
 ### [0988] claim {#rune-0988}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.
+**Force:** `claim` is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the claim obligation named before work proceeds.
 
-**Shadow:** misplaced trust can grant authority, expose secrets, or make identity look stronger than it is.
+**Shadow:** misusing `claim` at rune 0988 in the security lane can let misplaced trust can grant authority or expose secrets; verify by requiring the caster to state issuer, subject, scope, freshness, and enforcement point.
 
 ### [0989] client secret {#rune-0989}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A threshold word; it governs who may enter, know, or act.
+**Force:** `client secret` is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the client secret obligation named before work proceeds.
 
-**Shadow:** misplaced trust can grant authority, expose secrets, or make identity look stronger than it is.
+**Shadow:** misusing `client secret` at rune 0989 in the security lane can let misplaced trust can grant authority or expose secrets; verify by requiring the caster to state issuer, subject, scope, freshness, and enforcement point.
 
 ### [0990] code signing {#rune-0990}
 
@@ -340,7 +338,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** Cryptographically bind an artifact to a trusted producer.
 
-**Shadow:** misplaced trust can grant authority, expose secrets, or make identity look stronger than it is.
+**Shadow:** misusing `code signing` at rune 0990 in the security lane can let misplaced trust can grant authority or expose secrets; verify by requiring the caster to state issuer, subject, scope, freshness, and enforcement point.
 
 **Pocket gloss:** Cryptographically bind an artifact to a trusted producer.
 
@@ -348,71 +346,71 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A defense word; it shapes how systems resist misuse, theft, or forgery.
+**Force:** `compliance` is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the compliance obligation named before work proceeds.
 
-**Shadow:** misplaced trust can grant authority, expose secrets, or make identity look stronger than it is.
+**Shadow:** misusing `compliance` at rune 0991 in the security lane can let misplaced trust can grant authority or expose secrets; verify by requiring the caster to state issuer, subject, scope, freshness, and enforcement point.
 
 ### [0992] confidentiality {#rune-0992}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.
+**Force:** `confidentiality` is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the confidentiality obligation named before work proceeds.
 
-**Shadow:** misplaced trust can grant authority, expose secrets, or make identity look stronger than it is.
+**Shadow:** misusing `confidentiality` at rune 0992 in the security lane can let misplaced trust can grant authority or expose secrets; verify by requiring the caster to state issuer, subject, scope, freshness, and enforcement point.
 
 ### [0993] credential {Sec} {#rune-0993}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A defense word; it shapes how systems resist misuse, theft, or forgery.
+**Force:** `credential` in its Sec sense is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the credential obligation named before work proceeds.
 
-**Shadow:** misplaced trust can grant authority, expose secrets, or make identity look stronger than it is.
+**Shadow:** misusing `credential` at rune 0993 in the Sec lane can let misplaced trust can grant authority or expose secrets; verify by requiring the caster to state issuer, subject, scope, freshness, and enforcement point.
 
 ### [0994] cross-site scripting {#rune-0994}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A defense word; it shapes how systems resist misuse, theft, or forgery.
+**Force:** `cross-site scripting` is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the cross-site scripting obligation named before work proceeds.
 
-**Shadow:** misplaced trust can grant authority, expose secrets, or make identity look stronger than it is.
+**Shadow:** misusing `cross-site scripting` at rune 0994 in the security lane can let misplaced trust can grant authority or expose secrets; verify by requiring the caster to state issuer, subject, scope, freshness, and enforcement point.
 
 ### [0995] cryptographic nonce {#rune-0995}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.
+**Force:** `cryptographic nonce` is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the cryptographic nonce obligation named before work proceeds.
 
-**Shadow:** misplaced trust can grant authority, expose secrets, or make identity look stronger than it is.
+**Shadow:** misusing `cryptographic nonce` at rune 0995 in the security lane can let misplaced trust can grant authority or expose secrets; verify by requiring the caster to state issuer, subject, scope, freshness, and enforcement point.
 
 ### [0996] CSRF {#rune-0996}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.
+**Force:** `CSRF` is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the CSRF obligation named before work proceeds.
 
-**Shadow:** misplaced trust can grant authority, expose secrets, or make identity look stronger than it is.
+**Shadow:** misusing `CSRF` at rune 0996 in the security lane can let misplaced trust can grant authority or expose secrets; verify by requiring the caster to state issuer, subject, scope, freshness, and enforcement point.
 
 ### [0997] decrypt {Sec} {#rune-0997}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** An unsealing word; protected meaning becomes legible again under the right key.
+**Force:** `decrypt` in its Sec sense is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the decrypt obligation named before work proceeds.
 
-**Shadow:** misplaced trust can grant authority, expose secrets, or make identity look stronger than it is.
+**Shadow:** misusing `decrypt` at rune 0997 in the Sec lane can let misplaced trust can grant authority or expose secrets; verify by requiring the caster to state issuer, subject, scope, freshness, and enforcement point.
 
 ### [0998] defense in depth {#rune-0998}
 
@@ -422,7 +420,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** Stack multiple protective layers so one failure is not total failure.
 
-**Shadow:** misplaced trust can grant authority, expose secrets, or make identity look stronger than it is.
+**Shadow:** misusing `defense in depth` at rune 0998 in the security lane can let misplaced trust can grant authority or expose secrets; verify by requiring the caster to state issuer, subject, scope, freshness, and enforcement point.
 
 **Pocket gloss:** Stack multiple protective layers so one failure is not total failure.
 
@@ -430,31 +428,31 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.
+**Force:** `deny-by-default` is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the deny-by-default obligation named before work proceeds.
 
-**Shadow:** misplaced trust can grant authority, expose secrets, or make identity look stronger than it is.
+**Shadow:** misusing `deny-by-default` at rune 0999 in the security lane can let misplaced trust can grant authority or expose secrets; verify by requiring the caster to state issuer, subject, scope, freshness, and enforcement point.
 
 ### [1000] digest {Sec} {#rune-1000}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A ward-word; it protects trust, secrecy, or authority.
+**Force:** `digest` in its Sec sense is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the digest obligation named before work proceeds.
 
-**Shadow:** misplaced trust can grant authority, expose secrets, or make identity look stronger than it is.
+**Shadow:** misusing `digest` at rune 1000 in the Sec lane can let misplaced trust can grant authority or expose secrets; verify by requiring the caster to state issuer, subject, scope, freshness, and enforcement point.
 
 ### [1001] enclave {#rune-1001}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.
+**Force:** `enclave` is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the enclave obligation named before work proceeds.
 
-**Shadow:** misplaced trust can grant authority, expose secrets, or make identity look stronger than it is.
+**Shadow:** misusing `enclave` at rune 1001 in the security lane can let misplaced trust can grant authority or expose secrets; verify by requiring the caster to state issuer, subject, scope, freshness, and enforcement point.
 
 ### [1002] encrypt {Sec} {#rune-1002}
 
@@ -464,7 +462,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** Make plaintext unreadable without the right key.
 
-**Shadow:** misplaced trust can grant authority, expose secrets, or make identity look stronger than it is.
+**Shadow:** misusing `encrypt` at rune 1002 in the Sec lane can let misplaced trust can grant authority or expose secrets; verify by requiring the caster to state issuer, subject, scope, freshness, and enforcement point.
 
 **Pocket gloss:** Make plaintext unreadable without the right key.
 
@@ -472,41 +470,41 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A threshold word; it governs who may enter, know, or act.
+**Force:** `entropy` is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the entropy obligation named before work proceeds.
 
-**Shadow:** misplaced trust can grant authority, expose secrets, or make identity look stronger than it is.
+**Shadow:** misusing `entropy` at rune 1003 in the security lane can let misplaced trust can grant authority or expose secrets; verify by requiring the caster to state issuer, subject, scope, freshness, and enforcement point.
 
 ### [1004] exfiltration {#rune-1004}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A threshold word; it governs who may enter, know, or act.
+**Force:** `exfiltration` is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the exfiltration obligation named before work proceeds.
 
-**Shadow:** misplaced trust can grant authority, expose secrets, or make identity look stronger than it is.
+**Shadow:** misusing `exfiltration` at rune 1004 in the security lane can let misplaced trust can grant authority or expose secrets; verify by requiring the caster to state issuer, subject, scope, freshness, and enforcement point.
 
 ### [1005] exploit {#rune-1005}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A threshold word; it governs who may enter, know, or act.
+**Force:** `exploit` is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the exploit obligation named before work proceeds.
 
-**Shadow:** misplaced trust can grant authority, expose secrets, or make identity look stronger than it is.
+**Shadow:** misusing `exploit` at rune 1005 in the security lane can let misplaced trust can grant authority or expose secrets; verify by requiring the caster to state issuer, subject, scope, freshness, and enforcement point.
 
 ### [1006] harden {#rune-1006}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.
+**Force:** `harden` is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the harden obligation named before work proceeds.
 
-**Shadow:** misplaced trust can grant authority, expose secrets, or make identity look stronger than it is.
+**Shadow:** misusing `harden` at rune 1006 in the security lane can let misplaced trust can grant authority or expose secrets; verify by requiring the caster to state issuer, subject, scope, freshness, and enforcement point.
 
 ### [1007] hash {Sec} {#rune-1007}
 
@@ -524,41 +522,41 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A threshold word; it governs who may enter, know, or act.
+**Force:** `HMAC` is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the HMAC obligation named before work proceeds.
 
-**Shadow:** misplaced trust can grant authority, expose secrets, or make identity look stronger than it is.
+**Shadow:** misusing `HMAC` at rune 1008 in the security lane can let misplaced trust can grant authority or expose secrets; verify by requiring the caster to state issuer, subject, scope, freshness, and enforcement point.
 
 ### [1009] identity {#rune-1009}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.
+**Force:** `identity` is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the identity obligation named before work proceeds.
 
-**Shadow:** misplaced trust can grant authority, expose secrets, or make identity look stronger than it is.
+**Shadow:** misusing `identity` at rune 1009 in the security lane can let misplaced trust can grant authority or expose secrets; verify by requiring the caster to state issuer, subject, scope, freshness, and enforcement point.
 
 ### [1010] incident {#rune-1010}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.
+**Force:** `incident` is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the incident obligation named before work proceeds.
 
-**Shadow:** misplaced trust can grant authority, expose secrets, or make identity look stronger than it is.
+**Shadow:** misusing `incident` at rune 1010 in the security lane can let misplaced trust can grant authority or expose secrets; verify by requiring the caster to state issuer, subject, scope, freshness, and enforcement point.
 
 ### [1011] injection {#rune-1011}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A defense word; it shapes how systems resist misuse, theft, or forgery.
+**Force:** `injection` is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the injection obligation named before work proceeds.
 
-**Shadow:** misplaced trust can grant authority, expose secrets, or make identity look stronger than it is.
+**Shadow:** misusing `injection` at rune 1011 in the security lane can let misplaced trust can grant authority or expose secrets; verify by requiring the caster to state issuer, subject, scope, freshness, and enforcement point.
 
 ### [1012] integrity {#rune-1012}
 
@@ -568,7 +566,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** Confidence that data has not been silently altered.
 
-**Shadow:** misplaced trust can grant authority, expose secrets, or make identity look stronger than it is.
+**Shadow:** misusing `integrity` at rune 1012 in the security lane can let misplaced trust can grant authority or expose secrets; verify by requiring the caster to state issuer, subject, scope, freshness, and enforcement point.
 
 **Pocket gloss:** Confidence that data has not been silently altered.
 
@@ -576,11 +574,11 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A threshold word; it governs who may enter, know, or act.
+**Force:** `isolate` in its Sec sense is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the isolate obligation named before work proceeds.
 
-**Shadow:** misplaced trust can grant authority, expose secrets, or make identity look stronger than it is.
+**Shadow:** misusing `isolate` at rune 1013 in the Sec lane can let misplaced trust can grant authority or expose secrets; verify by requiring the caster to state issuer, subject, scope, freshness, and enforcement point.
 
 ### [1014] key {Sec} {#rune-1014}
 
@@ -590,7 +588,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** The secret or public material that makes cryptographic operations possible.
 
-**Shadow:** misplaced trust can grant authority, expose secrets, or make identity look stronger than it is.
+**Shadow:** misusing `key` at rune 1014 in the Sec lane can let misplaced trust can grant authority or expose secrets; verify by requiring the caster to state issuer, subject, scope, freshness, and enforcement point.
 
 **Pocket gloss:** The secret or public material that makes cryptographic operations possible.
 
@@ -598,11 +596,11 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A ward-word; it protects trust, secrecy, or authority.
+**Force:** `key exchange` is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the key exchange obligation named before work proceeds.
 
-**Shadow:** misplaced trust can grant authority, expose secrets, or make identity look stronger than it is.
+**Shadow:** misusing `key exchange` at rune 1015 in the security lane can let misplaced trust can grant authority or expose secrets; verify by requiring the caster to state issuer, subject, scope, freshness, and enforcement point.
 
 ### [1016] key rotation {#rune-1016}
 
@@ -612,7 +610,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** Replace active keys before age or compromise turns them rotten.
 
-**Shadow:** misplaced trust can grant authority, expose secrets, or make identity look stronger than it is.
+**Shadow:** misusing `key rotation` at rune 1016 in the security lane can let misplaced trust can grant authority or expose secrets; verify by requiring the caster to state issuer, subject, scope, freshness, and enforcement point.
 
 **Pocket gloss:** Replace active keys before age or compromise turns them rotten.
 
@@ -632,101 +630,101 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A threshold word; it governs who may enter, know, or act.
+**Force:** `login` is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the login obligation named before work proceeds.
 
-**Shadow:** misplaced trust can grant authority, expose secrets, or make identity look stronger than it is.
+**Shadow:** misusing `login` at rune 1018 in the security lane can let misplaced trust can grant authority or expose secrets; verify by requiring the caster to state issuer, subject, scope, freshness, and enforcement point.
 
 ### [1019] mTLS {Sec} {#rune-1019}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A ward-word; it protects trust, secrecy, or authority.
+**Force:** `mTLS` in its Sec sense is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the mTLS obligation named before work proceeds.
 
-**Shadow:** misplaced trust can grant authority, expose secrets, or make identity look stronger than it is.
+**Shadow:** misusing `mTLS` at rune 1019 in the Sec lane can let misplaced trust can grant authority or expose secrets; verify by requiring the caster to state issuer, subject, scope, freshness, and enforcement point.
 
 ### [1020] mutual authentication {#rune-1020}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A ward-word; it protects trust, secrecy, or authority.
+**Force:** `mutual authentication` is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the mutual authentication obligation named before work proceeds.
 
-**Shadow:** misplaced trust can grant authority, expose secrets, or make identity look stronger than it is.
+**Shadow:** misusing `mutual authentication` at rune 1020 in the security lane can let misplaced trust can grant authority or expose secrets; verify by requiring the caster to state issuer, subject, scope, freshness, and enforcement point.
 
 ### [1021] nonce {#rune-1021}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A defense word; it shapes how systems resist misuse, theft, or forgery.
+**Force:** `nonce` is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the nonce obligation named before work proceeds.
 
-**Shadow:** misplaced trust can grant authority, expose secrets, or make identity look stronger than it is.
+**Shadow:** misusing `nonce` at rune 1021 in the security lane can let misplaced trust can grant authority or expose secrets; verify by requiring the caster to state issuer, subject, scope, freshness, and enforcement point.
 
 ### [1022] passkey {#rune-1022}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A ward-word; it protects trust, secrecy, or authority.
+**Force:** `passkey` is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the passkey obligation named before work proceeds.
 
-**Shadow:** misplaced trust can grant authority, expose secrets, or make identity look stronger than it is.
+**Shadow:** misusing `passkey` at rune 1022 in the security lane can let misplaced trust can grant authority or expose secrets; verify by requiring the caster to state issuer, subject, scope, freshness, and enforcement point.
 
 ### [1023] password {#rune-1023}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A defense word; it shapes how systems resist misuse, theft, or forgery.
+**Force:** `password` is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the password obligation named before work proceeds.
 
-**Shadow:** misplaced trust can grant authority, expose secrets, or make identity look stronger than it is.
+**Shadow:** misusing `password` at rune 1023 in the security lane can let misplaced trust can grant authority or expose secrets; verify by requiring the caster to state issuer, subject, scope, freshness, and enforcement point.
 
 ### [1024] patch {Sec} {#rune-1024}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A repair word; a bounded alteration is applied to an existing body.
+**Force:** `patch` in its Sec sense is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the patch obligation named before work proceeds.
 
-**Shadow:** misplaced trust can grant authority, expose secrets, or make identity look stronger than it is.
+**Shadow:** misusing `patch` at rune 1024 in the Sec lane can let misplaced trust can grant authority or expose secrets; verify by requiring the caster to state issuer, subject, scope, freshness, and enforcement point.
 
 ### [1025] pepper {#rune-1025}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A ward-word; it protects trust, secrecy, or authority.
+**Force:** `pepper` is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the pepper obligation named before work proceeds.
 
-**Shadow:** misplaced trust can grant authority, expose secrets, or make identity look stronger than it is.
+**Shadow:** misusing `pepper` at rune 1025 in the security lane can let misplaced trust can grant authority or expose secrets; verify by requiring the caster to state issuer, subject, scope, freshness, and enforcement point.
 
 ### [1026] permission {Sec} {#rune-1026}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A threshold word; it governs who may enter, know, or act.
+**Force:** `permission` in its Sec sense is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the permission obligation named before work proceeds.
 
-**Shadow:** misplaced trust can grant authority, expose secrets, or make identity look stronger than it is.
+**Shadow:** misusing `permission` at rune 1026 in the Sec lane can let misplaced trust can grant authority or expose secrets; verify by requiring the caster to state issuer, subject, scope, freshness, and enforcement point.
 
 ### [1027] phishing {#rune-1027}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.
+**Force:** `phishing` is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the phishing obligation named before work proceeds.
 
-**Shadow:** misplaced trust can grant authority, expose secrets, or make identity look stronger than it is.
+**Shadow:** misusing `phishing` at rune 1027 in the security lane can let misplaced trust can grant authority or expose secrets; verify by requiring the caster to state issuer, subject, scope, freshness, and enforcement point.
 
 ### [1028] policy {#rune-1028}
 
@@ -744,81 +742,81 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.
+**Force:** `principal` is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the principal obligation named before work proceeds.
 
-**Shadow:** misplaced trust can grant authority, expose secrets, or make identity look stronger than it is.
+**Shadow:** misusing `principal` at rune 1029 in the security lane can let misplaced trust can grant authority or expose secrets; verify by requiring the caster to state issuer, subject, scope, freshness, and enforcement point.
 
 ### [1030] private key {#rune-1030}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A ward-word; it protects trust, secrecy, or authority.
+**Force:** `private key` is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the private key obligation named before work proceeds.
 
-**Shadow:** misplaced trust can grant authority, expose secrets, or make identity look stronger than it is.
+**Shadow:** misusing `private key` at rune 1030 in the security lane can let misplaced trust can grant authority or expose secrets; verify by requiring the caster to state issuer, subject, scope, freshness, and enforcement point.
 
 ### [1031] privilege escalation {#rune-1031}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.
+**Force:** `privilege escalation` is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the privilege escalation obligation named before work proceeds.
 
-**Shadow:** misplaced trust can grant authority, expose secrets, or make identity look stronger than it is.
+**Shadow:** misusing `privilege escalation` at rune 1031 in the security lane can let misplaced trust can grant authority or expose secrets; verify by requiring the caster to state issuer, subject, scope, freshness, and enforcement point.
 
 ### [1032] proof of possession {#rune-1032}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A threshold word; it governs who may enter, know, or act.
+**Force:** `proof of possession` is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the proof of possession obligation named before work proceeds.
 
-**Shadow:** misplaced trust can grant authority, expose secrets, or make identity look stronger than it is.
+**Shadow:** misusing `proof of possession` at rune 1032 in the security lane can let misplaced trust can grant authority or expose secrets; verify by requiring the caster to state issuer, subject, scope, freshness, and enforcement point.
 
 ### [1033] public key {#rune-1033}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A ward-word; it protects trust, secrecy, or authority.
+**Force:** `public key` is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the public key obligation named before work proceeds.
 
-**Shadow:** misplaced trust can grant authority, expose secrets, or make identity look stronger than it is.
+**Shadow:** misusing `public key` at rune 1033 in the security lane can let misplaced trust can grant authority or expose secrets; verify by requiring the caster to state issuer, subject, scope, freshness, and enforcement point.
 
 ### [1034] quarantine {#rune-1034}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A ward-word; it protects trust, secrecy, or authority.
+**Force:** `quarantine` is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the quarantine obligation named before work proceeds.
 
-**Shadow:** misplaced trust can grant authority, expose secrets, or make identity look stronger than it is.
+**Shadow:** misusing `quarantine` at rune 1034 in the security lane can let misplaced trust can grant authority or expose secrets; verify by requiring the caster to state issuer, subject, scope, freshness, and enforcement point.
 
 ### [1035] rate limiting {#rune-1035}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A threshold word; it governs who may enter, know, or act.
+**Force:** `rate limiting` is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the rate limiting obligation named before work proceeds.
 
-**Shadow:** misplaced trust can grant authority, expose secrets, or make identity look stronger than it is.
+**Shadow:** misusing `rate limiting` at rune 1035 in the security lane can let misplaced trust can grant authority or expose secrets; verify by requiring the caster to state issuer, subject, scope, freshness, and enforcement point.
 
 ### [1036] replay attack {#rune-1036}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A threshold word; it governs who may enter, know, or act.
+**Force:** `replay attack` is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the replay attack obligation named before work proceeds.
 
-**Shadow:** misplaced trust can grant authority, expose secrets, or make identity look stronger than it is.
+**Shadow:** misusing `replay attack` at rune 1036 in the security lane can let misplaced trust can grant authority or expose secrets; verify by requiring the caster to state issuer, subject, scope, freshness, and enforcement point.
 
 ### [1037] revocation {#rune-1037}
 
@@ -828,7 +826,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** The act of withdrawing trust from credentials or keys.
 
-**Shadow:** misplaced trust can grant authority, expose secrets, or make identity look stronger than it is.
+**Shadow:** misusing `revocation` at rune 1037 in the security lane can let misplaced trust can grant authority or expose secrets; verify by requiring the caster to state issuer, subject, scope, freshness, and enforcement point.
 
 **Pocket gloss:** The act of withdrawing trust from credentials or keys.
 
@@ -836,41 +834,41 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** An invocation word; it frames what kind of actor the model should pretend to be.
+**Force:** `role` in its Sec sense is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the role obligation named before work proceeds.
 
-**Shadow:** misplaced trust can grant authority, expose secrets, or make identity look stronger than it is.
+**Shadow:** misusing `role` at rune 1038 in the Sec lane can let misplaced trust can grant authority or expose secrets; verify by requiring the caster to state issuer, subject, scope, freshness, and enforcement point.
 
 ### [1039] root of trust {#rune-1039}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A defense word; it shapes how systems resist misuse, theft, or forgery.
+**Force:** `root of trust` is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the root of trust obligation named before work proceeds.
 
-**Shadow:** misplaced trust can grant authority, expose secrets, or make identity look stronger than it is.
+**Shadow:** misusing `root of trust` at rune 1039 in the security lane can let misplaced trust can grant authority or expose secrets; verify by requiring the caster to state issuer, subject, scope, freshness, and enforcement point.
 
 ### [1040] rotate {#rune-1040}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A defense word; it shapes how systems resist misuse, theft, or forgery.
+**Force:** `rotate` is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the rotate obligation named before work proceeds.
 
-**Shadow:** misplaced trust can grant authority, expose secrets, or make identity look stronger than it is.
+**Shadow:** misusing `rotate` at rune 1040 in the security lane can let misplaced trust can grant authority or expose secrets; verify by requiring the caster to state issuer, subject, scope, freshness, and enforcement point.
 
 ### [1041] salt {#rune-1041}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A ward-word; it protects trust, secrecy, or authority.
+**Force:** `salt` is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the salt obligation named before work proceeds.
 
-**Shadow:** misplaced trust can grant authority, expose secrets, or make identity look stronger than it is.
+**Shadow:** misusing `salt` at rune 1041 in the security lane can let misplaced trust can grant authority or expose secrets; verify by requiring the caster to state issuer, subject, scope, freshness, and enforcement point.
 
 ### [1042] sandbox {Sec} {#rune-1042}
 
@@ -880,7 +878,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** Constrain code inside a smaller, safer prison.
 
-**Shadow:** misplaced trust can grant authority, expose secrets, or make identity look stronger than it is.
+**Shadow:** misusing `sandbox` at rune 1042 in the Sec lane can let misplaced trust can grant authority or expose secrets; verify by requiring the caster to state issuer, subject, scope, freshness, and enforcement point.
 
 **Pocket gloss:** Constrain code inside a smaller, safer prison.
 
@@ -888,11 +886,11 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.
+**Force:** `scope` in its Sec sense is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the scope obligation named before work proceeds.
 
-**Shadow:** misplaced trust can grant authority, expose secrets, or make identity look stronger than it is.
+**Shadow:** misusing `scope` at rune 1043 in the Sec lane can let misplaced trust can grant authority or expose secrets; verify by requiring the caster to state issuer, subject, scope, freshness, and enforcement point.
 
 ### [1044] secret {Sec} {#rune-1044}
 
@@ -902,7 +900,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** Information whose power comes from staying hidden.
 
-**Shadow:** misplaced trust can grant authority, expose secrets, or make identity look stronger than it is.
+**Shadow:** misusing `secret` at rune 1044 in the Sec lane can let misplaced trust can grant authority or expose secrets; verify by requiring the caster to state issuer, subject, scope, freshness, and enforcement point.
 
 **Pocket gloss:** Information whose power comes from staying hidden.
 
@@ -910,51 +908,51 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A threshold word; it governs who may enter, know, or act.
+**Force:** `secure enclave` is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the secure enclave obligation named before work proceeds.
 
-**Shadow:** misplaced trust can grant authority, expose secrets, or make identity look stronger than it is.
+**Shadow:** misusing `secure enclave` at rune 1045 in the security lane can let misplaced trust can grant authority or expose secrets; verify by requiring the caster to state issuer, subject, scope, freshness, and enforcement point.
 
 ### [1046] security boundary {#rune-1046}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A ward-word; it protects trust, secrecy, or authority.
+**Force:** `security boundary` is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the security boundary obligation named before work proceeds.
 
-**Shadow:** misplaced trust can grant authority, expose secrets, or make identity look stronger than it is.
+**Shadow:** misusing `security boundary` at rune 1046 in the security lane can let misplaced trust can grant authority or expose secrets; verify by requiring the caster to state issuer, subject, scope, freshness, and enforcement point.
 
 ### [1047] session fixation {#rune-1047}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.
+**Force:** `session fixation` is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the session fixation obligation named before work proceeds.
 
-**Shadow:** misplaced trust can grant authority, expose secrets, or make identity look stronger than it is.
+**Shadow:** misusing `session fixation` at rune 1047 in the security lane can let misplaced trust can grant authority or expose secrets; verify by requiring the caster to state issuer, subject, scope, freshness, and enforcement point.
 
 ### [1048] session token {#rune-1048}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A threshold word; it governs who may enter, know, or act.
+**Force:** `session token` is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the session token obligation named before work proceeds.
 
-**Shadow:** misplaced trust can grant authority, expose secrets, or make identity look stronger than it is.
+**Shadow:** misusing `session token` at rune 1048 in the security lane can let misplaced trust can grant authority or expose secrets; verify by requiring the caster to state issuer, subject, scope, freshness, and enforcement point.
 
 ### [1049] sign {Sec} {#rune-1049}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A sealing word; origin or integrity is bound cryptographically to content.
+**Force:** `sign` in its Sec sense is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the sign obligation named before work proceeds.
 
-**Shadow:** misplaced trust can grant authority, expose secrets, or make identity look stronger than it is.
+**Shadow:** misusing `sign` at rune 1049 in the Sec lane can let misplaced trust can grant authority or expose secrets; verify by requiring the caster to state issuer, subject, scope, freshness, and enforcement point.
 
 ### [1050] signature {Sec} {#rune-1050}
 
@@ -972,31 +970,31 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A threshold word; it governs who may enter, know, or act.
+**Force:** `single sign-on` is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the single sign-on obligation named before work proceeds.
 
-**Shadow:** misplaced trust can grant authority, expose secrets, or make identity look stronger than it is.
+**Shadow:** misusing `single sign-on` at rune 1051 in the security lane can let misplaced trust can grant authority or expose secrets; verify by requiring the caster to state issuer, subject, scope, freshness, and enforcement point.
 
 ### [1052] spoofing {#rune-1052}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A threshold word; it governs who may enter, know, or act.
+**Force:** `spoofing` is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the spoofing obligation named before work proceeds.
 
-**Shadow:** misplaced trust can grant authority, expose secrets, or make identity look stronger than it is.
+**Shadow:** misusing `spoofing` at rune 1052 in the security lane can let misplaced trust can grant authority or expose secrets; verify by requiring the caster to state issuer, subject, scope, freshness, and enforcement point.
 
 ### [1053] SSRF {#rune-1053}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.
+**Force:** `SSRF` is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the SSRF obligation named before work proceeds.
 
-**Shadow:** misplaced trust can grant authority, expose secrets, or make identity look stronger than it is.
+**Shadow:** misusing `SSRF` at rune 1053 in the security lane can let misplaced trust can grant authority or expose secrets; verify by requiring the caster to state issuer, subject, scope, freshness, and enforcement point.
 
 ### [1054] threat model {#rune-1054}
 
@@ -1006,7 +1004,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** A structured view of likely attackers, assets, and failure paths.
 
-**Shadow:** misplaced trust can grant authority, expose secrets, or make identity look stronger than it is.
+**Shadow:** misusing `threat model` at rune 1054 in the security lane can let misplaced trust can grant authority or expose secrets; verify by requiring the caster to state issuer, subject, scope, freshness, and enforcement point.
 
 **Pocket gloss:** A structured view of likely attackers, assets, and failure paths.
 
@@ -1014,81 +1012,81 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A countable unit of text or symbol used for parsing, modeling, or encoding.
+**Force:** `token` in its Sec sense is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the token obligation named before work proceeds.
 
-**Shadow:** misplaced trust can grant authority, expose secrets, or make identity look stronger than it is.
+**Shadow:** misusing `token` at rune 1055 in the Sec lane can let misplaced trust can grant authority or expose secrets; verify by requiring the caster to state issuer, subject, scope, freshness, and enforcement point.
 
 ### [1056] trust anchor {#rune-1056}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A threshold word; it governs who may enter, know, or act.
+**Force:** `trust anchor` is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the trust anchor obligation named before work proceeds.
 
-**Shadow:** misplaced trust can grant authority, expose secrets, or make identity look stronger than it is.
+**Shadow:** misusing `trust anchor` at rune 1056 in the security lane can let misplaced trust can grant authority or expose secrets; verify by requiring the caster to state issuer, subject, scope, freshness, and enforcement point.
 
 ### [1057] trust boundary {#rune-1057}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.
+**Force:** `trust boundary` is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the trust boundary obligation named before work proceeds.
 
-**Shadow:** misplaced trust can grant authority, expose secrets, or make identity look stronger than it is.
+**Shadow:** misusing `trust boundary` at rune 1057 in the security lane can let misplaced trust can grant authority or expose secrets; verify by requiring the caster to state issuer, subject, scope, freshness, and enforcement point.
 
 ### [1058] validate {Sec} {#rune-1058}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A gatekeeping word; inputs or outputs are checked against an expected form.
+**Force:** `validate` in its Sec sense is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the validate obligation named before work proceeds.
 
-**Shadow:** misplaced trust can grant authority, expose secrets, or make identity look stronger than it is.
+**Shadow:** misusing `validate` at rune 1058 in the Sec lane can let misplaced trust can grant authority or expose secrets; verify by requiring the caster to state issuer, subject, scope, freshness, and enforcement point.
 
 ### [1059] verification {Sec} {#rune-1059}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A truth-checking word that asks not merely for output, but for justified output.
+**Force:** `verification` in its Sec sense is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the verification obligation named before work proceeds.
 
-**Shadow:** misplaced trust can grant authority, expose secrets, or make identity look stronger than it is.
+**Shadow:** misusing `verification` at rune 1059 in the Sec lane can let misplaced trust can grant authority or expose secrets; verify by requiring the caster to state issuer, subject, scope, freshness, and enforcement point.
 
 ### [1060] vulnerability {#rune-1060}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.
+**Force:** `vulnerability` is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the vulnerability obligation named before work proceeds.
 
-**Shadow:** misplaced trust can grant authority, expose secrets, or make identity look stronger than it is.
+**Shadow:** misusing `vulnerability` at rune 1060 in the security lane can let misplaced trust can grant authority or expose secrets; verify by requiring the caster to state issuer, subject, scope, freshness, and enforcement point.
 
 ### [1061] ward {#rune-1061}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.
+**Force:** `ward` is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the ward obligation named before work proceeds.
 
-**Shadow:** misplaced trust can grant authority, expose secrets, or make identity look stronger than it is.
+**Shadow:** misusing `ward` at rune 1061 in the security lane can let misplaced trust can grant authority or expose secrets; verify by requiring the caster to state issuer, subject, scope, freshness, and enforcement point.
 
 ### [1062] webhook signing {#rune-1062}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.
+**Force:** `webhook signing` is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the webhook signing obligation named before work proceeds.
 
-**Shadow:** misplaced trust can grant authority, expose secrets, or make identity look stronger than it is.
+**Shadow:** misusing `webhook signing` at rune 1062 in the security lane can let misplaced trust can grant authority or expose secrets; verify by requiring the caster to state issuer, subject, scope, freshness, and enforcement point.
 
 ### [1063] zero trust {#rune-1063}
 
@@ -1098,6 +1096,6 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** Assume no network location or ambient context deserves automatic trust.
 
-**Shadow:** misplaced trust can grant authority, expose secrets, or make identity look stronger than it is.
+**Shadow:** misusing `zero trust` at rune 1063 in the security lane can let misplaced trust can grant authority or expose secrets; verify by requiring the caster to state issuer, subject, scope, freshness, and enforcement point.
 
 **Pocket gloss:** Assume no network location or ambient context deserves automatic trust.

@@ -1,0 +1,12 @@
+{
+  "resources": ["invoices", "payment_attempts", "refunds", "account_credits"],
+  "clients": ["web", "ios", "android", "internal_automation"],
+  "auth": "OAuth scopes",
+  "requirements": [
+    "safe retries for payment attempts",
+    "slow mobile client upgrades",
+    "stable JSON error schema",
+    "pagination for list endpoints",
+    "backward-compatible versioning"
+  ]
+}

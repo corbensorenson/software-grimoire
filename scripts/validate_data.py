@@ -12,6 +12,19 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 COMPLETION_STATUSES = {"authored", "stub", "needs_shadow", "needs_sense"}
 FORCE_SOURCES = {"major-canon", "pocket-canon", "master-lexicon"}
+GENERIC_LEXICON_PATTERNS = [
+    "a shape-of-state word;",
+    "an interface word;",
+    "a release/tooling word;",
+    "a verification word;",
+    "a systems word;",
+    "a network/distributed systems word;",
+    "a security word;",
+    "a failure word;",
+    "a promptcraft word;",
+    "a quality word;",
+    "a hardware/performance word;",
+]
 
 
 def load(name: str):
@@ -44,6 +57,7 @@ def validate_lexicon(errors: list[str], houses: list[dict]) -> list[dict]:
     lexicon = load("lexicon.json")
     house_by_id = {h["id"]: h for h in houses}
     ids = set()
+    shadows = []
     for entry in lexicon:
         required = [
             "id",
@@ -84,14 +98,23 @@ def validate_lexicon(errors: list[str], houses: list[dict]) -> list[dict]:
             fail(errors, f"Bad page for lexicon id {ident}: {entry['page']}")
         if entry["completion_status"] not in COMPLETION_STATUSES:
             fail(errors, f"Bad completion_status for lexicon id {ident}: {entry['completion_status']}")
+        if entry["completion_status"] != "authored":
+            fail(errors, f"Lexicon entry is not fully authored: {ident} ({entry['completion_status']})")
         if entry["force_source"] not in FORCE_SOURCES:
             fail(errors, f"Bad force_source for lexicon id {ident}: {entry['force_source']}")
-        if entry["is_stub"] != (entry["completion_status"] == "stub"):
-            fail(errors, f"Bad is_stub flag for lexicon id {ident}")
-        if entry["completion_status"] == "authored" and not entry.get("shadow"):
+        if entry["is_stub"]:
+            fail(errors, f"Lexicon entry still marked stub: {ident}")
+        if not entry.get("shadow"):
             fail(errors, f"Authored lexicon entry missing shadow: {ident}")
+        else:
+            shadows.append(entry["shadow"])
         if entry.get("shadow", "").strip().lower().startswith("shadow:"):
             fail(errors, f"Lexicon entry has doubled shadow label: {ident}")
+        summary_lower = entry.get("summary", "").strip().lower()
+        force_lower = entry.get("force", "").strip().lower()
+        for pattern in GENERIC_LEXICON_PATTERNS:
+            if summary_lower.startswith(pattern) or force_lower.startswith(pattern):
+                fail(errors, f"Lexicon entry retains generic boilerplate: {ident}")
         if entry.get("major") and entry["completion_status"] != "authored":
             fail(errors, f"Major canon entry is not authored: {ident}")
         if entry.get("pocket") and entry["completion_status"] != "authored":
@@ -111,6 +134,8 @@ def validate_lexicon(errors: list[str], houses: list[dict]) -> list[dict]:
         fail(errors, f"Expected 1645 lexicon entries, found {len(lexicon)}")
     if len(ids) != len(lexicon):
         fail(errors, "Lexicon ids are not unique")
+    if len(shadows) != len(set(shadows)):
+        fail(errors, "Lexicon shadows must be unique across the full canon")
     return lexicon
 
 
@@ -163,6 +188,8 @@ def validate_canon_quality(errors: list[str], lexicon: list[dict]) -> None:
         if summary.get(key) != value:
             fail(errors, f"Canon quality summary mismatch for {key}: {summary.get(key)} != {value}")
     authored_layer = report.get("authored_layer", {})
+    if summary.get("authored_entries") != len(lexicon) or summary.get("stub_entries") != 0:
+        fail(errors, "Canon quality report must show the full lexicon authored with zero stubs")
     if authored_layer.get("doubled_shadow_labels") != 0:
         fail(errors, "Canon quality report found doubled shadow labels")
     major_canon = report.get("major_canon", {})

@@ -5,6 +5,9 @@ project:
     - .nojekyll
     - data/*.json
     - prompts/**
+    - exports/**
+    - examples/evaluations/fixtures/**
+    - examples/release-gate/**
 
 lang: en-US
 
@@ -71,6 +74,7 @@ book:
     - part: "Adoption Kit"
       chapters:
         - adoption/index.qmd
+        - adoption/installable-library.qmd
         - adoption/external-walkthrough.qmd
     - part: "Reference"
       chapters:
@@ -86,7 +90,7 @@ book:
         - reference/pocket-canon.qmd
         - reference/pocket-field-guide.qmd
         - reference/term-index.qmd
-    - part: "Partially Authored Master Lexicon"
+    - part: "Master Lexicon"
       chapters:
         - reference/lexicon.qmd
         - reference/house-architecture-abstraction-and-design.qmd

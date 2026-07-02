@@ -6,128 +6,137 @@ title: "Online Migration Without Data Loss"
 
 **Expected delta:** The repaired spell turns one risky command into a reversible campaign with validation and dirty-data handling.
 
-**Input context:** A production PostgreSQL `users` table has `birthdate_text VARCHAR`. Values include `1990-04-12`, `04/12/1990`, `unknown`, empty strings, and nulls. The app has old and new versions live during deploy. The table has 40 million rows and receives writes all day.
+**Fixture:** [examples/evaluations/fixtures/migration-without-data-loss](https://github.com/corbensorenson/software-grimoire/tree/main/examples/evaluations/fixtures/migration-without-data-loss)
+
+**Observed outcome delta:** weak and repaired prompts tied on outcome checks
+
+**Observed structural delta:** repaired prompts scored 0.7 points higher on average
+
+**Input context:** The fixture is a live PostgreSQL migration packet for `users.birthdate_text`.
+
+Files:
+
+- `schema.sql`: starting schema.
+- `dirty_rows.csv`: representative dirty values.
+- `checks.sql`: validation queries expected in a safe answer.
+- `ground_truth.json`: planted traps.
+
+Ground truth:
+
+- Direct destructive type conversion is unsafe.
+- The safe path is expand-and-contract with dual write or compatibility triggers.
+- Dirty rows such as `unknown`, empty strings, nulls, and ambiguous formats need quarantine or explicit business handling.
+- Rollback must remain possible until parity and dirty-data handling are verified.
 
 ## Scores
 
-| Surface           | Variant  | Artifact | Invariant | Output | Verify | Failure | Assumptions | Total |
-| ----------------- | -------- | -------- | --------- | ------ | ------ | ------- | ----------- | ----- |
-| codex-cli-default | weak     | 2        | 1         | 2      | 1      | 2       | 2           | 10    |
-| codex-cli-default | repaired | 2        | 0         | 2      | 1      | 2       | 1           | 8     |
+| Surface           | Variant  | Rep | Artifact | Invariant | Output | Verify | Failure | Assumptions | Structural | Outcome |
+| ----------------- | -------- | --- | -------- | --------- | ------ | ------ | ------- | ----------- | ---------- | ------- |
+| codex-cli-default | weak     | 1   | 2        | 1         | 2      | 1      | 2       | 2           | 10         | 3       |
+| codex-cli-default | repaired | 1   | 2        | 1         | 2      | 0      | 2       | 2           | 9          | 3       |
+| codex-cli-default | weak     | 2   | 1        | 1         | 2      | 0      | 1       | 2           | 7          | 3       |
+| codex-cli-default | repaired | 2   | 2        | 1         | 2      | 0      | 2       | 2           | 9          | 3       |
+| codex-cli-default | weak     | 3   | 2        | 1         | 2      | 1      | 2       | 1           | 9          | 3       |
+| codex-cli-default | repaired | 3   | 2        | 2         | 2      | 0      | 2       | 2           | 10         | 3       |
 
 ## Transcripts
 
-### codex-cli-default - weak
+### codex-cli-default - weak r1
 
 - Surface label: Codex CLI default model
-- Run timestamp: `2026-07-02T03:07:40.631592+00:00`
-- Prompt file: [examples/evaluations/runs/codex-cli-default/migration-without-data-loss/weak-prompt.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/migration-without-data-loss/weak-prompt.md)
-- Transcript file: [examples/evaluations/runs/codex-cli-default/migration-without-data-loss/weak-output.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/migration-without-data-loss/weak-output.md)
-- Evaluator notes: Auto-scored with the structural rubric; transcript remains the primary evidence.
+- Run timestamp: `2026-07-02T04:41:31.162383+00:00`
+- Prompt file: [examples/evaluations/runs/codex-cli-default/migration-without-data-loss/r01-weak-prompt.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/migration-without-data-loss/r01-weak-prompt.md)
+- Transcript file: [examples/evaluations/runs/codex-cli-default/migration-without-data-loss/r01-weak-output.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/migration-without-data-loss/r01-weak-output.md)
+- Structural total: 10
+- Outcome total: 3
+- Evaluator notes: Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence.
 
 ```text
-Do this as an expand/contract migration. Do **not** directly `ALTER birthdate_text TYPE date`; on 40M live rows that risks long locks/table rewrites and breaks mixed old/new app versions.
-
-Missing decisions: how to treat invalid strings like `unknown`, whether to preserve the original text forever, and whether all write paths can be updated to dual-write.
-
-**Plan**
-
-1. Add the new nullable column:
+Do not run `ALTER COLUMN birthdate_text TYPE DATE`. This needs expand-and-contract.
 
 ```sql
 ALTER TABLE users ADD COLUMN birthdate DATE;
+
+CREATE TABLE user_birthdate_quarantine (
+  user_id BIGINT PRIMARY KEY,
+  birthdate_text TEXT,
+  reason TEXT NOT NULL,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
 ```
 
-2. Add safe parsing logic. Invalid, empty, and `unknown` should become `NULL` unless product requirements say otherwise.
+Backfill in batches. Only auto-parse unambiguous ISO dates; quarantine everything else requiring policy.
 
 ```sql
-CREATE OR REPLACE FUNCTION try_parse_birthdate(value text)
-RETURNS date
-LANGUAGE plpgsql
-AS $$
+UPDATE users
+SET birthdate = birthdate_text::date
+WHERE birthdate IS NULL
+  AND birthdate_text ~ '^\d{4}-\d{2}-\d{2}$';
+
+INSERT INTO user_birthdate_quarantine (user_id, birthdate_text, reason)
+SELECT id, birthdate_text,
+       CASE
+         WHEN birthdate_text IS NULL OR btrim(birthdate_text) = '' THEN 'blank_or_null'
+         WHEN lower(btrim(birthdate_text)) = 'unknown' THEN 'unknown'
+         ELSE 'ambiguous_or_invalid'
+       END
+FROM users
+WHERE birthdate_text IS NULL
+   OR btrim(birthdate_text) = ''
+   OR lower(btrim(birthdate_text)) = 'unknown'
+   OR birthdate IS NULL
+ON CONFLICT (user_id) DO NOTHING;
+```
+
+`04/12/1990` is ambiguous and `31/02/1990` is invalid, so the missing requirement is the business rule for non-ISO dates. Until that is defined, quarantine them.
+
+Add dual-write in the application, or a compatibility trigger during rollout:
+
+```sql
+CREATE OR REPLACE FUNCTION sync_users_birthdate()
+RETURNS trigger LANGUAGE plpgsql AS $$
 BEGIN
-  IF value IS NULL OR btrim(value) = '' OR lower(btrim(value)) = 'unknown' THEN
-    RETURN NULL;
+  IF NEW.birthdate IS NOT NULL THEN
+    NEW.birthdate_text := NEW.birthdate::text;
   END IF;
+  RETURN NEW;
+END $$;
 
-  IF value ~ '^\d{4}-\d{2}-\d{2}$' THEN
-    RETURN to_date(value, 'YYYY-MM-DD');
-  END IF;
-
-  IF value ~ '^\d{2}/\d{2}/\d{4}$' THEN
-    RETURN to_date(value, 'MM/DD/YYYY');
-  END IF;
-
-  RETURN NULL;
-EXCEPTION WHEN others THEN
-  RETURN NULL;
-END;
-$$;
+CREATE TRIGGER users_birthdate_sync
+BEFORE INSERT OR UPDATE ON users
+FOR EACH ROW EXECUTE FUNCTION sync_users_birthdate();
 ```
 
-3. Deploy app version A that is backward-compatible:
-   - Reads from `birthdate` if present, otherwise falls back to `birthdate_text`.
-   - On writes, writes both columns.
-   - New writes should normalize to `DATE`.
-
-4. Backfill in small batches during normal traffic. Use primary-key ranges or `FOR UPDATE SKIP LOCKED`; do not run one huge update.
-
-Example batch shape:
+Before cutover, run the required checks:
 
 ```sql
-WITH batch AS (
-  SELECT id
-  FROM users
-  WHERE birthdate IS NULL
-    AND birthdate_text IS NOT NULL
-  ORDER BY id
-  LIMIT 10000
-)
-UPDATE users u
-SET birthdate = try_parse_birthdate(u.birthdate_text)
-FROM batch
-WHERE u.id = batch.id;
-```
-
-Run repeatedly from a worker/job, with throttling, monitoring lock waits, replication lag, dead tuples, and write latency.
-
-5. Validate:
-
-```sql
-SELECT count(*) FROM users
+SELECT count(*) AS dirty_birthdate_text
+FROM users
 WHERE birthdate_text IS NOT NULL
   AND btrim(birthdate_text) <> ''
   AND lower(btrim(birthdate_text)) <> 'unknown'
   AND birthdate IS NULL;
+
+SELECT count(*) AS parsed_rows
+FROM users
+WHERE birthdate IS NOT NULL;
 ```
 
-Also sample parsed rows manually, especially around ambiguous `MM/DD/YYYY` values.
-
-6. Deploy app version B:
-   - Reads only `birthdate`.
-   - Continues writing `birthdate`.
-   - Stops depending on `birthdate_text`.
-
-7. After old app versions are fully gone, contract:
-
-```sql
-ALTER TABLE users DROP COLUMN birthdate_text;
-DROP FUNCTION try_parse_birthdate(text);
+Only after parity is verified and dirty rows are resolved should readers switch to `birthdate`. Keep `birthdate_text` and the trigger until rollback is no longer needed, then drop the trigger and old column in a later cleanup migration.
 ```
 
-Only add `NOT NULL` or constraints after confirming business rules, since existing `unknown`, empty, and null values imply nullable data today.
-```
-
-### codex-cli-default - repaired
+### codex-cli-default - repaired r1
 
 - Surface label: Codex CLI default model
-- Run timestamp: `2026-07-02T03:08:11.902540+00:00`
-- Prompt file: [examples/evaluations/runs/codex-cli-default/migration-without-data-loss/repaired-prompt.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/migration-without-data-loss/repaired-prompt.md)
-- Transcript file: [examples/evaluations/runs/codex-cli-default/migration-without-data-loss/repaired-output.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/migration-without-data-loss/repaired-output.md)
-- Evaluator notes: Auto-scored with the structural rubric; transcript remains the primary evidence.
+- Run timestamp: `2026-07-02T04:42:02.913222+00:00`
+- Prompt file: [examples/evaluations/runs/codex-cli-default/migration-without-data-loss/r01-repaired-prompt.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/migration-without-data-loss/r01-repaired-prompt.md)
+- Transcript file: [examples/evaluations/runs/codex-cli-default/migration-without-data-loss/r01-repaired-output.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/migration-without-data-loss/r01-repaired-output.md)
+- Structural total: 9
+- Outcome total: 3
+- Evaluator notes: Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence.
 
 ```text
-Assumption: `users.id` exists. Replace with the real stable primary key if not.
+Missing: exact primary key and final column names. SQL below assumes `users.id`, source `users.birthdate_text`, and target `users.birthdate`.
 
 **1. Schema Expand**
 
@@ -136,40 +145,239 @@ ALTER TABLE users ADD COLUMN birthdate DATE;
 
 CREATE TABLE users_birthdate_quarantine (
   user_id BIGINT PRIMARY KEY,
-  birthdate_text VARCHAR,
+  raw_birthdate_text TEXT,
   reason TEXT NOT NULL,
-  recorded_at TIMESTAMPTZ NOT NULL DEFAULT now()
+  quarantined_at TIMESTAMPTZ NOT NULL DEFAULT now()
 );
 ```
 
-Create a safe parser:
+**2. App Deploy 1: Dual Write**
+
+Application writes both:
+
+- `birthdate_text`: legacy value for rollback/read compatibility
+- `birthdate`: parsed `DATE` only when business rules say the value is valid
+- invalid, partial, ambiguous, empty, or `unknown` values go to quarantine/manual handling
+
+Optional compatibility trigger for legacy writers:
 
 ```sql
-CREATE OR REPLACE FUNCTION parse_user_birthdate(v TEXT)
-RETURNS DATE
-LANGUAGE plpgsql
-AS $$
-DECLARE d DATE;
+CREATE OR REPLACE FUNCTION sync_users_birthdate()
+RETURNS trigger LANGUAGE plpgsql AS $$
 BEGIN
-  IF v IS NULL OR btrim(v) = '' THEN
-    RETURN NULL;
+  IF NEW.birthdate_text IS NULL THEN
+    NEW.birthdate := NULL;
+
+  ELSIF btrim(NEW.birthdate_text) ~ '^\d{4}-\d{2}-\d{2}$'
+    AND to_char(to_date(btrim(NEW.birthdate_text), 'YYYY-MM-DD'), 'YYYY-MM-DD')
+        = btrim(NEW.birthdate_text)
+  THEN
+    NEW.birthdate := to_date(btrim(NEW.birthdate_text), 'YYYY-MM-DD');
+    DELETE FROM users_birthdate_quarantine WHERE user_id = NEW.id;
+
+  ELSE
+    NEW.birthdate := NULL;
+    INSERT INTO users_birthdate_quarantine (user_id, raw_birthdate_text, reason)
+    VALUES (NEW.id, NEW.birthdate_text, 'invalid_or_ambiguous_birthdate')
+    ON CONFLICT (user_id) DO UPDATE
+      SET raw_birthdate_text = EXCLUDED.raw_birthdate_text,
+          reason = EXCLUDED.reason,
+          quarantined_at = now();
   END IF;
 
-  IF v ~ '^\d{4}-\d{2}-\d{2}$' THEN
-    d := to_date(v, 'YYYY-MM-DD');
-    IF to_char(d, 'YYYY-MM-DD') = v THEN RETURN d; END IF;
-  END IF;
-
-  IF v ~ '^\d{2}/\d{2}/\d{4}$' THEN
-    d := to_date(v, 'MM/DD/YYYY');
-    IF to_char(d, 'MM/DD/YYYY') = v THEN RETURN d; END IF;
-  END IF;
-
-  RETURN NULL;
+  RETURN NEW;
 END $$;
+
+CREATE TRIGGER trg_sync_users_birthdate
+BEFORE INSERT OR UPDATE OF birthdate_text ON users
+FOR EACH ROW EXECUTE FUNCTION sync_users_birthdate();
 ```
 
-Add trigger so old app writes still populate the new column:
+**3. Backfill**
+
+```sql
+UPDATE users
+SET birthdate = to_date(btrim(birthdate_text), 'YYYY-MM-DD')
+WHERE birthdate_text IS NOT NULL
+  AND btrim(birthdate_text) ~ '^\d{4}-\d{2}-\d{2}$'
+  AND to_char(to_date(btrim(birthdate_text), 'YYYY-MM-DD'), 'YYYY-MM-DD')
+      = btrim(birthdate_text)
+  AND birthdate IS NULL;
+
+INSERT INTO users_birthdate_quarantine (user_id, raw_birthdate_text, reason)
+SELECT id, birthdate_text, 'invalid_or_ambiguous_birthdate'
+FROM users
+WHERE birthdate_text IS NOT NULL
+  AND btrim(birthdate_text) <> ''
+  AND NOT (
+    btrim(birthdate_text) ~ '^\d{4}-\d{2}-\d{2}$'
+    AND to_char(to_date(btrim(birthdate_text), 'YYYY-MM-DD'), 'YYYY-MM-DD')
+        = btrim(birthdate_text)
+  )
+ON CONFLICT (user_id) DO NOTHING;
+```
+
+**4. Validation Queries**
+
+```sql
+-- invalid rows
+SELECT * FROM users_birthdate_quarantine ORDER BY quarantined_at DESC;
+
+-- null behavior
+SELECT count(*) FROM users
+WHERE birthdate_text IS NULL AND birthdate IS NOT NULL;
+
+-- row-count parity for valid source rows
+SELECT
+  count(*) FILTER (WHERE birthdate IS NOT NULL) AS date_rows,
+  count(*) FILTER (
+    WHERE birthdate_text IS NOT NULL
+      AND btrim(birthdate_text) ~ '^\d{4}-\d{2}-\d{2}$'
+  ) AS parse_candidate_rows
+FROM users;
+
+-- post-cutover consistency
+SELECT id, birthdate_text, birthdate
+FROM users
+WHERE birthdate_text IS NOT NULL
+  AND btrim(birthdate_text) ~ '^\d{4}-\d{2}-\d{2}$'
+  AND birthdate IS DISTINCT FROM to_date(btrim(birthdate_text), 'YYYY-MM-DD');
+```
+
+**5. App Deploy 2: Read Switch**
+
+Switch reads to `users.birthdate`. Keep dual write and old column until quarantine is empty or explicitly accepted.
+
+If quarantine volume is large or includes ambiguous formats like `01/02/03`, stop here. Do not auto-cast. Product/legal/data owners must decide whether to reject, null, infer locale, or request user correction.
+
+**6. Cleanup**
+
+Only after parity and dirty-data handling are verified:
+
+```sql
+DROP TRIGGER trg_sync_users_birthdate ON users;
+DROP FUNCTION sync_users_birthdate();
+
+ALTER TABLE users DROP COLUMN birthdate_text;
+```
+
+**Rollback**
+
+Before cleanup, rollback is app-only: switch reads back to `birthdate_text`; writes still populate both columns. Do not drop `birthdate_text` until rollback is no longer required.
+```
+
+### codex-cli-default - weak r2
+
+- Surface label: Codex CLI default model
+- Run timestamp: `2026-07-02T04:42:57.739918+00:00`
+- Prompt file: [examples/evaluations/runs/codex-cli-default/migration-without-data-loss/r02-weak-prompt.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/migration-without-data-loss/r02-weak-prompt.md)
+- Transcript file: [examples/evaluations/runs/codex-cli-default/migration-without-data-loss/r02-weak-output.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/migration-without-data-loss/r02-weak-output.md)
+- Structural total: 7
+- Outcome total: 3
+- Evaluator notes: Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence.
+
+```text
+Do not run `ALTER TABLE users ALTER COLUMN birthdate_text TYPE DATE`; it is destructive and will fail or silently encode bad assumptions.
+
+Use expand-and-contract:
+
+```sql
+-- 1. Expand
+ALTER TABLE users ADD COLUMN birthdate DATE;
+
+CREATE TABLE users_birthdate_quarantine (
+  user_id BIGINT PRIMARY KEY,
+  birthdate_text TEXT,
+  reason TEXT NOT NULL,
+  quarantined_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+```
+
+Backfill only values with an explicit accepted format. For this fixture, ISO `YYYY-MM-DD` is safe; `04/12/1990` is ambiguous, `unknown`/empty/null need business handling, and `31/02/1990` is invalid.
+
+```sql
+-- Safe ISO backfill, preferably batched by id ranges in production.
+UPDATE users
+SET birthdate = birthdate_text::date
+WHERE birthdate_text ~ '^\d{4}-\d{2}-\d{2}$'
+  AND birthdate IS NULL;
+
+-- Quarantine unresolved non-empty values.
+INSERT INTO users_birthdate_quarantine (user_id, birthdate_text, reason)
+SELECT id, birthdate_text, 'unparsed_or_ambiguous_birthdate'
+FROM users
+WHERE birthdate_text IS NOT NULL
+  AND btrim(birthdate_text) <> ''
+  AND lower(btrim(birthdate_text)) <> 'unknown'
+  AND birthdate IS NULL
+ON CONFLICT (user_id) DO NOTHING;
+```
+
+Deploy app dual-write, or add a compatibility trigger, so writes keep `birthdate_text` and `birthdate` in sync during the migration window. Keep rollback available by leaving `birthdate_text` untouched until validation passes.
+
+Required validation before cutover:
+
+```sql
+SELECT count(*) AS dirty_birthdate_text
+FROM users
+WHERE birthdate_text IS NOT NULL
+  AND btrim(birthdate_text) <> ''
+  AND lower(btrim(birthdate_text)) <> 'unknown'
+  AND birthdate IS NULL;
+
+SELECT count(*) AS parsed_rows
+FROM users
+WHERE birthdate IS NOT NULL;
+```
+
+Cut over reads to `users.birthdate` only after dirty rows are quarantined or resolved and parity is accepted. Contract later in a separate migration: remove compatibility trigger/dual-write, then drop `birthdate_text`. Rollback remains simple until that cleanup: switch reads back to `birthdate_text` and stop writing `birthdate`.
+```
+
+### codex-cli-default - repaired r2
+
+- Surface label: Codex CLI default model
+- Run timestamp: `2026-07-02T04:43:41.668491+00:00`
+- Prompt file: [examples/evaluations/runs/codex-cli-default/migration-without-data-loss/r02-repaired-prompt.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/migration-without-data-loss/r02-repaired-prompt.md)
+- Transcript file: [examples/evaluations/runs/codex-cli-default/migration-without-data-loss/r02-repaired-output.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/migration-without-data-loss/r02-repaired-output.md)
+- Structural total: 9
+- Outcome total: 3
+- Evaluator notes: Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence.
+
+```text
+Missing specifics: primary key column name and accepted legacy date formats. SQL below uses `<pk>` and only auto-converts strict ISO `YYYY-MM-DD`; everything else is quarantined.
+
+**1. Schema Expand**
+
+```sql
+ALTER TABLE users ADD COLUMN birthdate_date date;
+
+CREATE TABLE users_birthdate_quarantine (
+  user_pk bigint,
+  birthdate_text text,
+  reason text,
+  captured_at timestamptz DEFAULT now()
+);
+
+CREATE OR REPLACE FUNCTION parse_birthdate_iso(v text)
+RETURNS date
+LANGUAGE sql
+IMMUTABLE
+AS $$
+  SELECT CASE
+    WHEN v IS NULL OR btrim(v) = '' THEN NULL
+    WHEN v ~ '^\d{4}-\d{2}-\d{2}$'
+     AND to_char(to_date(v, 'YYYY-MM-DD'), 'YYYY-MM-DD') = v
+      THEN to_date(v, 'YYYY-MM-DD')
+    ELSE NULL
+  END
+$$;
+```
+
+**2. Deploy 1: Dual Write**
+
+Application writes both columns. For new/updated rows, write canonical `birthdate_date`; keep `birthdate_text` populated for rollback/read compatibility.
+
+Optional compatibility trigger:
 
 ```sql
 CREATE OR REPLACE FUNCTION users_birthdate_dual_write()
@@ -177,128 +385,364 @@ RETURNS trigger
 LANGUAGE plpgsql
 AS $$
 BEGIN
-  IF NEW.birthdate IS NULL THEN
-    NEW.birthdate := parse_user_birthdate(NEW.birthdate_text);
+  IF NEW.birthdate_date IS NULL THEN
+    NEW.birthdate_date := parse_birthdate_iso(NEW.birthdate_text);
+  END IF;
+
+  IF NEW.birthdate_date IS NOT NULL THEN
+    NEW.birthdate_text := NEW.birthdate_date::text;
+  END IF;
+
+  RETURN NEW;
+END;
+$$;
+
+CREATE TRIGGER users_birthdate_dual_write_trg
+BEFORE INSERT OR UPDATE OF birthdate_text, birthdate_date ON users
+FOR EACH ROW EXECUTE FUNCTION users_birthdate_dual_write();
+```
+
+**3. Backfill + Quarantine**
+
+Run in batches by `<pk>` range.
+
+```sql
+UPDATE users
+SET birthdate_date = parse_birthdate_iso(birthdate_text)
+WHERE birthdate_date IS NULL
+  AND birthdate_text IS NOT NULL
+  AND btrim(birthdate_text) <> ''
+  AND parse_birthdate_iso(birthdate_text) IS NOT NULL;
+
+INSERT INTO users_birthdate_quarantine (user_pk, birthdate_text, reason)
+SELECT <pk>, birthdate_text, 'invalid_or_ambiguous'
+FROM users
+WHERE birthdate_text IS NOT NULL
+  AND btrim(birthdate_text) <> ''
+  AND parse_birthdate_iso(birthdate_text) IS NULL;
+```
+
+If quarantine volume is too large, stop here. Manual decision boundary: define accepted formats, partial-date policy, invalid-value policy, and whether unknown/empty means `NULL`.
+
+**4. Validation Queries**
+
+```sql
+-- Invalid non-empty rows
+SELECT count(*) FROM users
+WHERE birthdate_text IS NOT NULL
+  AND btrim(birthdate_text) <> ''
+  AND parse_birthdate_iso(birthdate_text) IS NULL;
+
+-- Null behavior
+SELECT
+  count(*) FILTER (WHERE birthdate_text IS NULL) AS text_nulls,
+  count(*) FILTER (WHERE btrim(coalesce(birthdate_text, '')) = '') AS blank_or_null_text,
+  count(*) FILTER (WHERE birthdate_date IS NULL) AS date_nulls
+FROM users;
+
+-- Row-count parity
+SELECT
+  (SELECT count(*) FROM users) AS users_count,
+  (SELECT count(*) FROM users WHERE birthdate_date IS NOT NULL) AS converted_count;
+
+-- Post-cutover consistency
+SELECT count(*)
+FROM users
+WHERE birthdate_date IS DISTINCT FROM parse_birthdate_iso(birthdate_text)
+  AND birthdate_text IS NOT NULL
+  AND btrim(birthdate_text) <> '';
+```
+
+**5. Deploy 2: Read Switch**
+
+Switch reads to `birthdate_date`. Keep dual writes and old column until validation passes.
+
+**6. Cleanup**
+
+```sql
+DROP TRIGGER users_birthdate_dual_write_trg ON users;
+DROP FUNCTION users_birthdate_dual_write();
+
+ALTER TABLE users RENAME COLUMN birthdate_text TO birthdate_text_legacy;
+ALTER TABLE users RENAME COLUMN birthdate_date TO birthdate;
+```
+
+Drop legacy only after a retention window.
+
+**7. Rollback**
+
+Before cleanup: switch reads back to `birthdate_text`; keep writes dual. After cleanup, rollback requires renaming `birthdate` back or restoring from `birthdate_text_legacy`.
+```
+
+### codex-cli-default - weak r3
+
+- Surface label: Codex CLI default model
+- Run timestamp: `2026-07-02T04:45:08.305585+00:00`
+- Prompt file: [examples/evaluations/runs/codex-cli-default/migration-without-data-loss/r03-weak-prompt.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/migration-without-data-loss/r03-weak-prompt.md)
+- Transcript file: [examples/evaluations/runs/codex-cli-default/migration-without-data-loss/r03-weak-output.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/migration-without-data-loss/r03-weak-output.md)
+- Structural total: 9
+- Outcome total: 3
+- Evaluator notes: Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence.
+
+```text
+Assuming the current string column is `users.birthdate_text`, do not directly cast it to `DATE`. Use expand-and-contract.
+
+```sql
+-- Expand
+ALTER TABLE users ADD COLUMN birthdate DATE;
+
+CREATE TABLE users_birthdate_quarantine (
+  user_id BIGINT PRIMARY KEY REFERENCES users(id),
+  birthdate_text VARCHAR,
+  reason TEXT NOT NULL,
+  quarantined_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+
+CREATE OR REPLACE FUNCTION try_parse_birthdate(v TEXT)
+RETURNS DATE LANGUAGE plpgsql IMMUTABLE AS $$
+DECLARE s TEXT := btrim(v);
+BEGIN
+  IF s IS NULL OR s = '' OR lower(s) IN ('unknown', 'null') THEN
+    RETURN NULL;
+  END IF;
+
+  -- Only accept unambiguous ISO dates. Formats like 04/12/1990 require business rules.
+  IF s ~ '^\d{4}-\d{2}-\d{2}$' THEN
+    RETURN s::DATE;
+  END IF;
+
+  RETURN NULL;
+EXCEPTION WHEN others THEN
+  RETURN NULL;
+END $$;
+```
+
+Backfill in batches:
+
+```sql
+WITH batch AS (
+  SELECT id, try_parse_birthdate(birthdate_text) AS parsed
+  FROM users
+  WHERE birthdate IS NULL
+  ORDER BY id
+  LIMIT 10000
+)
+UPDATE users u
+SET birthdate = batch.parsed
+FROM batch
+WHERE u.id = batch.id
+  AND batch.parsed IS NOT NULL;
+```
+
+Quarantine unresolved values before cutover:
+
+```sql
+INSERT INTO users_birthdate_quarantine (user_id, birthdate_text, reason)
+SELECT id, birthdate_text,
+  CASE
+    WHEN birthdate_text IS NULL THEN 'null'
+    WHEN btrim(birthdate_text) = '' THEN 'empty'
+    WHEN lower(btrim(birthdate_text)) = 'unknown' THEN 'unknown'
+    ELSE 'unparsed_or_ambiguous'
+  END
+FROM users
+WHERE birthdate IS NULL
+ON CONFLICT (user_id) DO UPDATE
+SET birthdate_text = EXCLUDED.birthdate_text,
+    reason = EXCLUDED.reason;
+```
+
+Add dual-write compatibility during rollout:
+
+```sql
+CREATE OR REPLACE FUNCTION sync_users_birthdate()
+RETURNS trigger LANGUAGE plpgsql AS $$
+BEGIN
+  IF TG_OP = 'INSERT' THEN
+    IF NEW.birthdate IS NOT NULL THEN
+      NEW.birthdate_text := to_char(NEW.birthdate, 'YYYY-MM-DD');
+    ELSE
+      NEW.birthdate := try_parse_birthdate(NEW.birthdate_text);
+    END IF;
+  ELSIF NEW.birthdate IS DISTINCT FROM OLD.birthdate THEN
+    NEW.birthdate_text := CASE
+      WHEN NEW.birthdate IS NULL THEN NULL
+      ELSE to_char(NEW.birthdate, 'YYYY-MM-DD')
+    END;
+  ELSIF NEW.birthdate_text IS DISTINCT FROM OLD.birthdate_text THEN
+    NEW.birthdate := try_parse_birthdate(NEW.birthdate_text);
+  END IF;
+
+  RETURN NEW;
+END $$;
+
+CREATE TRIGGER users_birthdate_dual_write
+BEFORE INSERT OR UPDATE ON users
+FOR EACH ROW EXECUTE FUNCTION sync_users_birthdate();
+```
+
+Before dropping `birthdate_text`, run the provided checks:
+
+```sql
+SELECT count(*) AS dirty_birthdate_text
+FROM users
+WHERE birthdate_text IS NOT NULL
+  AND btrim(birthdate_text) <> ''
+  AND lower(btrim(birthdate_text)) <> 'unknown'
+  AND birthdate IS NULL;
+
+SELECT count(*) AS parsed_rows
+FROM users
+WHERE birthdate IS NOT NULL;
+```
+
+Only contract after parity is verified and dirty values have explicit business handling. Rollback remains possible by reading/writing `birthdate_text` until the cleanup migration drops the trigger, helper function, and legacy column.
+```
+
+### codex-cli-default - repaired r3
+
+- Surface label: Codex CLI default model
+- Run timestamp: `2026-07-02T04:45:42.422141+00:00`
+- Prompt file: [examples/evaluations/runs/codex-cli-default/migration-without-data-loss/r03-repaired-prompt.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/migration-without-data-loss/r03-repaired-prompt.md)
+- Transcript file: [examples/evaluations/runs/codex-cli-default/migration-without-data-loss/r03-repaired-output.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/migration-without-data-loss/r03-repaired-output.md)
+- Structural total: 10
+- Outcome total: 3
+- Evaluator notes: Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence.
+
+```text
+Assumption: source is `users.birthdate_text VARCHAR`; new target is `users.birthdate DATE`. Do not run `ALTER COLUMN ... TYPE date USING ...` in production.
+
+**1. Schema Expand**
+
+```sql
+ALTER TABLE users ADD COLUMN birthdate date;
+
+CREATE TABLE users_birthdate_quarantine (
+  user_id bigint PRIMARY KEY,
+  birthdate_text text,
+  reason text NOT NULL,
+  quarantined_at timestamptz NOT NULL DEFAULT now()
+);
+
+CREATE OR REPLACE FUNCTION safe_birthdate(v text)
+RETURNS date LANGUAGE plpgsql AS $$
+BEGIN
+  IF v IS NULL THEN
+    RETURN NULL;
+  END IF;
+
+  IF v !~ '^\d{4}-\d{2}-\d{2}$' THEN
+    RETURN NULL;
+  END IF;
+
+  RETURN v::date;
+EXCEPTION WHEN others THEN
+  RETURN NULL;
+END $$;
+```
+
+**2. App Deploy 1: Dual Write**
+
+Application writes both columns:
+
+```text
+birthdate_text = original submitted value, if still needed for compatibility
+birthdate = parsed ISO date only when valid
+```
+
+If input is empty string, `unknown`, partial date, or ambiguous format, either reject it or write `birthdate_text` and leave `birthdate` null pending business decision.
+
+Optional compatibility trigger if not all writers can deploy together:
+
+```sql
+CREATE OR REPLACE FUNCTION users_birthdate_dual_write()
+RETURNS trigger LANGUAGE plpgsql AS $$
+BEGIN
+  IF NEW.birthdate IS NULL AND NEW.birthdate_text IS NOT NULL THEN
+    NEW.birthdate := safe_birthdate(NEW.birthdate_text);
   END IF;
   RETURN NEW;
 END $$;
 
 CREATE TRIGGER users_birthdate_dual_write_trg
 BEFORE INSERT OR UPDATE OF birthdate_text, birthdate ON users
-FOR EACH ROW
-EXECUTE FUNCTION users_birthdate_dual_write();
+FOR EACH ROW EXECUTE FUNCTION users_birthdate_dual_write();
 ```
-
-**2. App Deploy 1: Dual Write**
-
-New app writes both:
-
-```text
-birthdate_text = original submitted string or canonical YYYY-MM-DD
-birthdate = validated DATE or NULL
-```
-
-Reads still use `birthdate_text`.
-
-Old app versions remain safe because the trigger handles their writes.
 
 **3. Backfill In Batches**
 
-Do not run one 40M-row transaction.
-
 ```sql
-UPDATE users
-SET birthdate = parse_user_birthdate(birthdate_text)
-WHERE id BETWEEN :start_id AND :end_id
-  AND birthdate IS NULL;
+WITH batch AS (
+  SELECT id, birthdate_text, safe_birthdate(birthdate_text) AS parsed
+  FROM users
+  WHERE birthdate IS NULL
+  ORDER BY id
+  LIMIT 10000
+)
+UPDATE users u
+SET birthdate = b.parsed
+FROM batch b
+WHERE u.id = b.id
+  AND b.parsed IS NOT NULL;
 ```
 
-Quarantine invalid non-empty values:
+Quarantine invalid/non-null rows:
 
 ```sql
 INSERT INTO users_birthdate_quarantine (user_id, birthdate_text, reason)
-SELECT id, birthdate_text, 'unparseable birthdate_text'
+SELECT id, birthdate_text, 'invalid_or_ambiguous_birthdate'
 FROM users
 WHERE birthdate_text IS NOT NULL
-  AND btrim(birthdate_text) <> ''
-  AND parse_user_birthdate(birthdate_text) IS NULL
+  AND safe_birthdate(birthdate_text) IS NULL
 ON CONFLICT (user_id) DO UPDATE
 SET birthdate_text = EXCLUDED.birthdate_text,
     reason = EXCLUDED.reason,
-    recorded_at = now();
+    quarantined_at = now();
 ```
 
-If quarantine volume is too large for business tolerance, stop here. Manual decision boundary: decide whether invalid/partial dates become `NULL`, require user remediation, get corrected from another source, or block the cutover.
+If quarantine volume is large or includes meaningful partial/ambiguous values, stop here. Do not infer formats automatically; require a business rule such as reject, map to null, manually correct, or locale-specific parse.
 
-**4. Validation**
-
-Invalid rows:
+**4. Validation Queries**
 
 ```sql
+-- Invalid rows
 SELECT count(*) FROM users_birthdate_quarantine;
-```
 
-Null behavior:
-
-```sql
+-- Null behavior
 SELECT
-  count(*) FILTER (WHERE birthdate_text IS NULL) AS old_nulls,
-  count(*) FILTER (WHERE btrim(birthdate_text) = '') AS old_empty_strings,
-  count(*) FILTER (WHERE birthdate IS NULL) AS new_nulls
+  count(*) FILTER (WHERE birthdate_text IS NULL) AS source_nulls,
+  count(*) FILTER (WHERE birthdate_text IS NULL AND birthdate IS NULL) AS target_nulls_preserved
 FROM users;
-```
 
-Row-count parity:
-
-```sql
+-- Row-count parity
 SELECT
   (SELECT count(*) FROM users) AS users_count,
-  (SELECT count(*) FROM users WHERE birthdate IS NOT NULL) AS parsed_count,
-  (SELECT count(*) FROM users_birthdate_quarantine) AS invalid_count;
-```
+  (SELECT count(*) FROM users WHERE birthdate IS NOT NULL OR birthdate_text IS NULL) AS covered_count;
 
-Expected:
-
-```text
-users_count = parsed_count + invalid_count + null_or_empty_count
+-- Post-backfill consistency
+SELECT id, birthdate_text, birthdate
+FROM users
+WHERE birthdate_text ~ '^\d{4}-\d{2}-\d{2}$'
+  AND safe_birthdate(birthdate_text) IS DISTINCT FROM birthdate
+LIMIT 100;
 ```
 
 **5. App Deploy 2: Read Switch**
 
-Switch reads to `users.birthdate`.
+Switch reads to `users.birthdate`. Keep dual writes and old column during the observation window.
 
-Keep writing both columns. Keep trigger and `birthdate_text` for rollback.
+**6. Cleanup / Contract**
 
-Post-cutover consistency:
-
-```sql
-SELECT count(*)
-FROM users
-WHERE birthdate IS DISTINCT FROM parse_user_birthdate(birthdate_text)
-  AND birthdate_text IS NOT NULL
-  AND btrim(birthdate_text) <> '';
-```
-
-**6. Rollback Plan**
-
-If app issues occur, redeploy reads back to `birthdate_text`. No data loss because old text remains and dual writes continued.
-
-If data issues occur, keep app on old reads, fix quarantine, rerun targeted backfill.
-
-**7. Cleanup**
-
-Only after validated production stability:
+Only after parity, quarantine resolution, and post-cutover consistency pass:
 
 ```sql
-DROP TRIGGER users_birthdate_dual_write_trg ON users;
-DROP FUNCTION users_birthdate_dual_write();
+DROP TRIGGER IF EXISTS users_birthdate_dual_write_trg ON users;
+DROP FUNCTION IF EXISTS users_birthdate_dual_write();
 
 ALTER TABLE users DROP COLUMN birthdate_text;
 ```
 
-Optionally rename:
+**7. Rollback Plan**
 
-```sql
-ALTER TABLE users RENAME COLUMN birthdate TO birthdate_date;
-```
+Before cleanup, rollback is app-only: switch reads back to `birthdate_text`, keep dual writes enabled, and investigate mismatches/quarantine. Do not drop `birthdate_text` until rollback is no longer required.
 ```

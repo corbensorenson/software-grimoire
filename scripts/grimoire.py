@@ -105,6 +105,26 @@ def write_new_spell(path: Path | None) -> int:
     return 0
 
 
+def export_assets(target: str) -> int:
+    targets = {
+        "markdown": ROOT / "exports" / "markdown",
+        "codex": ROOT / "exports" / "codex",
+        "cursor": ROOT / "exports" / "cursor" / "rules",
+        "all": ROOT / "exports",
+    }
+    base = targets[target]
+    if not base.exists():
+        print(f"Missing generated exports for target {target!r}; run `grimoire generate` first.", file=sys.stderr)
+        return 1
+    files = sorted(path for path in base.rglob("*") if path.is_file())
+    if not files:
+        print(f"No export files found for target {target!r}", file=sys.stderr)
+        return 1
+    for path in files:
+        print(path.relative_to(ROOT))
+    return 0
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(prog="grimoire", description="Software Grimoire maintenance CLI")
     sub = parser.add_subparsers(dest="command", required=True)
@@ -117,6 +137,8 @@ def main(argv: list[str] | None = None) -> int:
     new_sub = new_parser.add_subparsers(dest="kind", required=True)
     new_spell = new_sub.add_parser("spell", help="create a spell JSON skeleton")
     new_spell.add_argument("path", nargs="?", help="optional output path")
+    export_parser = sub.add_parser("export", help="list generated installable exports")
+    export_parser.add_argument("--target", choices=["all", "markdown", "codex", "cursor"], default="all")
     sub.add_parser("seals", help="regenerate seal summary data")
     sub.add_parser("render", help="render the Quarto site")
     sub.add_parser("test", help="run repository tests")
@@ -135,6 +157,8 @@ def main(argv: list[str] | None = None) -> int:
         if args.kind == "spell":
             return write_new_spell(Path(args.path) if args.path else None)
         return 2
+    if args.command == "export":
+        return export_assets(args.target)
     if args.command == "seals":
         return run([sys.executable, "scripts/generate_seals.py"])
     if args.command == "render":

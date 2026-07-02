@@ -8,92 +8,90 @@ Range: `0609-0684`.
 
 ## Completion
 
-| Status      | Count |
-| ----------- | ----- |
-| authored    | 14    |
-| stub        | 60    |
-| needs_sense | 2     |
+| Status   | Count |
+| -------- | ----- |
+| authored | 76    |
 
 Use the summary table for scanning. Each row links to the detailed anchored entry below.
 
-| Sigil | Term                                      | Completion  | Summary                                                                                                                                    |
-| ----- | ----------------------------------------- | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
-| 0609  | `STUB` [address space](#rune-0609)        | stub        | A vessel-word; it shapes how memory and execution are physically arranged.                                                                 |
-| 0610  | `STUB` [aliasing](#rune-0610)             | stub        | An embodiment-word; it concerns where computation resides and how it is reclaimed.                                                         |
-| 0611  | [allocation](#rune-0611)                  | authored    | Reserve memory for something that is about to live.                                                                                        |
-| 0612  | `STUB` [allocator](#rune-0612)            | stub        | A living-system word; it describes the program while it is actually in motion.                                                             |
-| 0613  | `STUB` [arena](#rune-0613)                | stub        | A runtime-law word; it constrains performance, allocation, or safety at execution time.                                                    |
-| 0614  | `STUB` [borrow {Run}](#rune-0614)         | stub        | A runtime-law word; it constrains performance, allocation, or safety at execution time.                                                    |
-| 0615  | [cache {Run}](#rune-0615)                 | authored    | Keep likely things close so future cost falls. Shadow: stale truth delivered at machine speed.                                             |
-| 0616  | `STUB` [cache line {Run}](#rune-0616)     | stub        | An embodiment-word; it concerns where computation resides and how it is reclaimed.                                                         |
-| 0617  | `STUB` [call frame](#rune-0617)           | stub        | A runtime-law word; it constrains performance, allocation, or safety at execution time.                                                    |
-| 0618  | `STUB` [call stack](#rune-0618)           | stub        | A vessel-word; it shapes how memory and execution are physically arranged.                                                                 |
-| 0619  | `STUB` [closure environment](#rune-0619)  | stub        | A vessel-word; it shapes how memory and execution are physically arranged.                                                                 |
-| 0620  | `STUB` [compaction {Run}](#rune-0620)     | stub        | A living-system word; it describes the program while it is actually in motion.                                                             |
-| 0621  | [copy-on-write {Run}](#rune-0621)         | authored    | Share until mutation forces a real duplicate.                                                                                              |
-| 0622  | `STUB` [core dump {Run}](#rune-0622)      | stub        | A runtime-law word; it constrains performance, allocation, or safety at execution time.                                                    |
-| 0623  | `STUB` [deallocation](#rune-0623)         | stub        | A runtime-law word; it constrains performance, allocation, or safety at execution time.                                                    |
-| 0624  | `STUB` [destructor {Run}](#rune-0624)     | stub        | A runtime-law word; it constrains performance, allocation, or safety at execution time.                                                    |
-| 0625  | `STUB` [dynamic allocation](#rune-0625)   | stub        | A runtime-law word; it constrains performance, allocation, or safety at execution time.                                                    |
-| 0626  | `STUB` [eager evaluation](#rune-0626)     | stub        | An embodiment-word; it concerns where computation resides and how it is reclaimed.                                                         |
-| 0627  | `STUB` [escape analysis](#rune-0627)      | stub        | A living-system word; it describes the program while it is actually in motion.                                                             |
-| 0628  | `STUB` [execution context](#rune-0628)    | stub        | A living-system word; it describes the program while it is actually in motion.                                                             |
-| 0629  | `STUB` [finalizer](#rune-0629)            | stub        | An embodiment-word; it concerns where computation resides and how it is reclaimed.                                                         |
-| 0630  | `STUB` [frame pointer](#rune-0630)        | stub        | An embodiment-word; it concerns where computation resides and how it is reclaimed.                                                         |
-| 0631  | [garbage collection](#rune-0631)          | authored    | Automatic reclamation of memory no longer reachable.                                                                                       |
-| 0632  | `STUB` [generation](#rune-0632)           | stub        | An embodiment-word; it concerns where computation resides and how it is reclaimed.                                                         |
-| 0633  | `STUB` [handle {Run}](#rune-0633)         | stub        | An embodiment-word; it concerns where computation resides and how it is reclaimed.                                                         |
-| 0634  | [heap](#rune-0634)                        | authored    | Region for dynamically allocated objects.                                                                                                  |
-| 0635  | `STUB` [heap object](#rune-0635)          | stub        | A living-system word; it describes the program while it is actually in motion.                                                             |
-| 0636  | [hot path {Run}](#rune-0636)              | authored    | The path where small inefficiencies burn real time.                                                                                        |
-| 0637  | `STUB` [inline cache](#rune-0637)         | stub        | A runtime-law word; it constrains performance, allocation, or safety at execution time.                                                    |
-| 0638  | `STUB` [interpreter loop](#rune-0638)     | stub        | A vessel-word; it shapes how memory and execution are physically arranged.                                                                 |
-| 0639  | [JIT](#rune-0639)                         | needs_sense | A just-in-time word; translation happens at runtime rather than earlier in the forge.                                                      |
-| 0640  | `STUB` [layout {Run}](#rune-0640)         | stub        | A vessel-word; it shapes how memory and execution are physically arranged.                                                                 |
-| 0641  | `STUB` [lazy evaluation](#rune-0641)      | stub        | An embodiment-word; it concerns where computation resides and how it is reclaimed.                                                         |
-| 0642  | `STUB` [leak {Run}](#rune-0642)           | stub        | A living-system word; it describes the program while it is actually in motion.                                                             |
-| 0643  | [lifetime {Run}](#rune-0643)              | authored    | How long a value may legally remain alive.                                                                                                 |
-| 0644  | `STUB` [live set](#rune-0644)             | stub        | An embodiment-word; it concerns where computation resides and how it is reclaimed.                                                         |
-| 0645  | [locality](#rune-0645)                    | authored    | The performance dividend from keeping related data physically close.                                                                       |
-| 0646  | `STUB` [lock-free {Run}](#rune-0646)      | stub        | A progress word; some thread always moves forward without a lock.                                                                          |
-| 0647  | `STUB` [mark phase](#rune-0647)           | stub        | An embodiment-word; it concerns where computation resides and how it is reclaimed.                                                         |
-| 0648  | `STUB` [memory {Run}](#rune-0648)         | stub        | A living-system word; it describes the program while it is actually in motion.                                                             |
-| 0649  | [memory barrier](#rune-0649)              | authored    | An ordering fence for memory effects across threads or cores.                                                                              |
-| 0650  | `STUB` [memory map](#rune-0650)           | stub        | A runtime-law word; it constrains performance, allocation, or safety at execution time.                                                    |
-| 0651  | `STUB` [memory pool](#rune-0651)          | stub        | A runtime-law word; it constrains performance, allocation, or safety at execution time.                                                    |
-| 0652  | [memory safety](#rune-0652)               | authored    | Protection against illegal memory access and corruption.                                                                                   |
-| 0653  | `STUB` [move semantics](#rune-0653)       | stub        | A vessel-word; it shapes how memory and execution are physically arranged.                                                                 |
-| 0654  | `STUB` [object header](#rune-0654)        | stub        | An embodiment-word; it concerns where computation resides and how it is reclaimed.                                                         |
-| 0655  | `STUB` [page {Run}](#rune-0655)           | stub        | A living-system word; it describes the program while it is actually in motion.                                                             |
-| 0656  | `STUB` [page fault](#rune-0656)           | stub        | A living-system word; it describes the program while it is actually in motion.                                                             |
-| 0657  | [pinning](#rune-0657)                     | authored    | Keep an object fixed in place so other machinery can safely refer to it.                                                                   |
-| 0658  | `STUB` [pointer {Run}](#rune-0658)        | stub        | A location word; it does not hold the thing, but where the thing may be found.                                                             |
-| 0659  | `STUB` [pool allocator](#rune-0659)       | stub        | A runtime-law word; it constrains performance, allocation, or safety at execution time.                                                    |
-| 0660  | `STUB` [prefetch](#rune-0660)             | stub        | A living-system word; it describes the program while it is actually in motion.                                                             |
-| 0661  | `STUB` [quiescence](#rune-0661)           | stub        | A living-system word; it describes the program while it is actually in motion.                                                             |
-| 0662  | `STUB` [reclaim](#rune-0662)              | stub        | A living-system word; it describes the program while it is actually in motion.                                                             |
-| 0663  | [reference count](#rune-0663)             | authored    | Ownership tracked by counting how many references remain.                                                                                  |
-| 0664  | `STUB` [register allocation](#rune-0664)  | stub        | A runtime-law word; it constrains performance, allocation, or safety at execution time.                                                    |
-| 0665  | `STUB` [root set](#rune-0665)             | stub        | An embodiment-word; it concerns where computation resides and how it is reclaimed.                                                         |
-| 0666  | [runtime](#rune-0666)                     | needs_sense | A living word; the conditions under which the program presently exists and executes.                                                       |
-| 0667  | `STUB` [sandbox {Run}](#rune-0667)        | stub        | A confinement word; actions are permitted only within a restricted space.                                                                  |
-| 0668  | `STUB` [shadow stack](#rune-0668)         | stub        | An embodiment-word; it concerns where computation resides and how it is reclaimed.                                                         |
-| 0669  | `STUB` [slab allocator](#rune-0669)       | stub        | A runtime-law word; it constrains performance, allocation, or safety at execution time.                                                    |
-| 0670  | [stack {Run}](#rune-0670)                 | authored    | Region for call frames and short-lived local state.                                                                                        |
-| 0671  | `STUB` [stack frame](#rune-0671)          | stub        | A living-system word; it describes the program while it is actually in motion.                                                             |
-| 0672  | `STUB` [stop-the-world](#rune-0672)       | stub        | A living-system word; it describes the program while it is actually in motion.                                                             |
-| 0673  | `STUB` [sweep phase](#rune-0673)          | stub        | A living-system word; it describes the program while it is actually in motion.                                                             |
-| 0674  | `STUB` [tail call](#rune-0674)            | stub        | A vessel-word; it shapes how memory and execution are physically arranged.                                                                 |
-| 0675  | `STUB` [thread-local storage](#rune-0675) | stub        | A living-system word; it describes the program while it is actually in motion.                                                             |
-| 0676  | `STUB` [TLB](#rune-0676)                  | stub        | A vessel-word; it shapes how memory and execution are physically arranged.                                                                 |
-| 0677  | `STUB` [tracing collector](#rune-0677)    | stub        | A runtime-law word; it constrains performance, allocation, or safety at execution time.                                                    |
-| 0678  | `STUB` [unbox](#rune-0678)                | stub        | An embodiment-word; it concerns where computation resides and how it is reclaimed.                                                         |
-| 0679  | `STUB` [user heap](#rune-0679)            | stub        | A living-system word; it describes the program while it is actually in motion.                                                             |
-| 0680  | `STUB` [virtual memory](#rune-0680)       | stub        | An embodiment-word; it concerns where computation resides and how it is reclaimed.                                                         |
-| 0681  | `STUB` [VM](#rune-0681)                   | stub        | A runtime-law word; it constrains performance, allocation, or safety at execution time.                                                    |
-| 0682  | `STUB` [wait-free {Run}](#rune-0682)      | stub        | An embodiment-word; it concerns where computation resides and how it is reclaimed.                                                         |
-| 0683  | `STUB` [write barrier](#rune-0683)        | stub        | A vessel-word; it shapes how memory and execution are physically arranged.                                                                 |
-| 0684  | [zero-copy {Run}](#rune-0684)             | authored    | Data movement stripped down to the minimum number of duplications. Use it when the bottleneck is physical movement rather than arithmetic. |
+| Sigil | Term                               | Completion | Summary                                                                                                                                                                                                              |
+| ----- | ---------------------------------- | ---------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 0609  | [address space](#rune-0609)        | authored   | `address space` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the address space obligation named before work proceeds.               |
+| 0610  | [aliasing](#rune-0610)             | authored   | `aliasing` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the aliasing obligation named before work proceeds.                         |
+| 0611  | [allocation](#rune-0611)           | authored   | Reserve memory for something that is about to live.                                                                                                                                                                  |
+| 0612  | [allocator](#rune-0612)            | authored   | `allocator` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the allocator obligation named before work proceeds.                       |
+| 0613  | [arena](#rune-0613)                | authored   | `arena` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the arena obligation named before work proceeds.                               |
+| 0614  | [borrow {Run}](#rune-0614)         | authored   | `borrow` in its Run sense is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the borrow obligation named before work proceeds.            |
+| 0615  | [cache {Run}](#rune-0615)          | authored   | Keep likely things close so future cost falls. Shadow: stale truth delivered at machine speed.                                                                                                                       |
+| 0616  | [cache line {Run}](#rune-0616)     | authored   | `cache line` in its Run sense is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the cache line obligation named before work proceeds.    |
+| 0617  | [call frame](#rune-0617)           | authored   | `call frame` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the call frame obligation named before work proceeds.                     |
+| 0618  | [call stack](#rune-0618)           | authored   | `call stack` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the call stack obligation named before work proceeds.                     |
+| 0619  | [closure environment](#rune-0619)  | authored   | `closure environment` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the closure environment obligation named before work proceeds.   |
+| 0620  | [compaction {Run}](#rune-0620)     | authored   | `compaction` in its Run sense is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the compaction obligation named before work proceeds.    |
+| 0621  | [copy-on-write {Run}](#rune-0621)  | authored   | Share until mutation forces a real duplicate.                                                                                                                                                                        |
+| 0622  | [core dump {Run}](#rune-0622)      | authored   | `core dump` in its Run sense is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the core dump obligation named before work proceeds.      |
+| 0623  | [deallocation](#rune-0623)         | authored   | `deallocation` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the deallocation obligation named before work proceeds.                 |
+| 0624  | [destructor {Run}](#rune-0624)     | authored   | `destructor` in its Run sense is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the destructor obligation named before work proceeds.    |
+| 0625  | [dynamic allocation](#rune-0625)   | authored   | `dynamic allocation` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the dynamic allocation obligation named before work proceeds.     |
+| 0626  | [eager evaluation](#rune-0626)     | authored   | `eager evaluation` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the eager evaluation obligation named before work proceeds.         |
+| 0627  | [escape analysis](#rune-0627)      | authored   | `escape analysis` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the escape analysis obligation named before work proceeds.           |
+| 0628  | [execution context](#rune-0628)    | authored   | `execution context` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the execution context obligation named before work proceeds.       |
+| 0629  | [finalizer](#rune-0629)            | authored   | `finalizer` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the finalizer obligation named before work proceeds.                       |
+| 0630  | [frame pointer](#rune-0630)        | authored   | `frame pointer` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the frame pointer obligation named before work proceeds.               |
+| 0631  | [garbage collection](#rune-0631)   | authored   | Automatic reclamation of memory no longer reachable.                                                                                                                                                                 |
+| 0632  | [generation](#rune-0632)           | authored   | `generation` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the generation obligation named before work proceeds.                     |
+| 0633  | [handle {Run}](#rune-0633)         | authored   | `handle` in its Run sense is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the handle obligation named before work proceeds.            |
+| 0634  | [heap](#rune-0634)                 | authored   | Region for dynamically allocated objects.                                                                                                                                                                            |
+| 0635  | [heap object](#rune-0635)          | authored   | `heap object` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the heap object obligation named before work proceeds.                   |
+| 0636  | [hot path {Run}](#rune-0636)       | authored   | The path where small inefficiencies burn real time.                                                                                                                                                                  |
+| 0637  | [inline cache](#rune-0637)         | authored   | `inline cache` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the inline cache obligation named before work proceeds.                 |
+| 0638  | [interpreter loop](#rune-0638)     | authored   | `interpreter loop` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the interpreter loop obligation named before work proceeds.         |
+| 0639  | [JIT](#rune-0639)                  | authored   | `JIT` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the JIT obligation named before work proceeds.                                   |
+| 0640  | [layout {Run}](#rune-0640)         | authored   | `layout` in its Run sense is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the layout obligation named before work proceeds.            |
+| 0641  | [lazy evaluation](#rune-0641)      | authored   | `lazy evaluation` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the lazy evaluation obligation named before work proceeds.           |
+| 0642  | [leak {Run}](#rune-0642)           | authored   | `leak` in its Run sense is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the leak obligation named before work proceeds.                |
+| 0643  | [lifetime {Run}](#rune-0643)       | authored   | How long a value may legally remain alive.                                                                                                                                                                           |
+| 0644  | [live set](#rune-0644)             | authored   | `live set` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the live set obligation named before work proceeds.                         |
+| 0645  | [locality](#rune-0645)             | authored   | The performance dividend from keeping related data physically close.                                                                                                                                                 |
+| 0646  | [lock-free {Run}](#rune-0646)      | authored   | `lock-free` in its Run sense is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the lock-free obligation named before work proceeds.      |
+| 0647  | [mark phase](#rune-0647)           | authored   | `mark phase` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the mark phase obligation named before work proceeds.                     |
+| 0648  | [memory {Run}](#rune-0648)         | authored   | `memory` in its Run sense is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the memory obligation named before work proceeds.            |
+| 0649  | [memory barrier](#rune-0649)       | authored   | An ordering fence for memory effects across threads or cores.                                                                                                                                                        |
+| 0650  | [memory map](#rune-0650)           | authored   | `memory map` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the memory map obligation named before work proceeds.                     |
+| 0651  | [memory pool](#rune-0651)          | authored   | `memory pool` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the memory pool obligation named before work proceeds.                   |
+| 0652  | [memory safety](#rune-0652)        | authored   | Protection against illegal memory access and corruption.                                                                                                                                                             |
+| 0653  | [move semantics](#rune-0653)       | authored   | `move semantics` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the move semantics obligation named before work proceeds.             |
+| 0654  | [object header](#rune-0654)        | authored   | `object header` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the object header obligation named before work proceeds.               |
+| 0655  | [page {Run}](#rune-0655)           | authored   | `page` in its Run sense is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the page obligation named before work proceeds.                |
+| 0656  | [page fault](#rune-0656)           | authored   | `page fault` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the page fault obligation named before work proceeds.                     |
+| 0657  | [pinning](#rune-0657)              | authored   | Keep an object fixed in place so other machinery can safely refer to it.                                                                                                                                             |
+| 0658  | [pointer {Run}](#rune-0658)        | authored   | `pointer` in its Run sense is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the pointer obligation named before work proceeds.          |
+| 0659  | [pool allocator](#rune-0659)       | authored   | `pool allocator` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the pool allocator obligation named before work proceeds.             |
+| 0660  | [prefetch](#rune-0660)             | authored   | `prefetch` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the prefetch obligation named before work proceeds.                         |
+| 0661  | [quiescence](#rune-0661)           | authored   | `quiescence` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the quiescence obligation named before work proceeds.                     |
+| 0662  | [reclaim](#rune-0662)              | authored   | `reclaim` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the reclaim obligation named before work proceeds.                           |
+| 0663  | [reference count](#rune-0663)      | authored   | Ownership tracked by counting how many references remain.                                                                                                                                                            |
+| 0664  | [register allocation](#rune-0664)  | authored   | `register allocation` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the register allocation obligation named before work proceeds.   |
+| 0665  | [root set](#rune-0665)             | authored   | `root set` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the root set obligation named before work proceeds.                         |
+| 0666  | [runtime](#rune-0666)              | authored   | `runtime` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the runtime obligation named before work proceeds.                           |
+| 0667  | [sandbox {Run}](#rune-0667)        | authored   | `sandbox` in its Run sense is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the sandbox obligation named before work proceeds.          |
+| 0668  | [shadow stack](#rune-0668)         | authored   | `shadow stack` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the shadow stack obligation named before work proceeds.                 |
+| 0669  | [slab allocator](#rune-0669)       | authored   | `slab allocator` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the slab allocator obligation named before work proceeds.             |
+| 0670  | [stack {Run}](#rune-0670)          | authored   | Region for call frames and short-lived local state.                                                                                                                                                                  |
+| 0671  | [stack frame](#rune-0671)          | authored   | `stack frame` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the stack frame obligation named before work proceeds.                   |
+| 0672  | [stop-the-world](#rune-0672)       | authored   | `stop-the-world` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the stop-the-world obligation named before work proceeds.             |
+| 0673  | [sweep phase](#rune-0673)          | authored   | `sweep phase` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the sweep phase obligation named before work proceeds.                   |
+| 0674  | [tail call](#rune-0674)            | authored   | `tail call` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the tail call obligation named before work proceeds.                       |
+| 0675  | [thread-local storage](#rune-0675) | authored   | `thread-local storage` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the thread-local storage obligation named before work proceeds. |
+| 0676  | [TLB](#rune-0676)                  | authored   | `TLB` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the TLB obligation named before work proceeds.                                   |
+| 0677  | [tracing collector](#rune-0677)    | authored   | `tracing collector` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the tracing collector obligation named before work proceeds.       |
+| 0678  | [unbox](#rune-0678)                | authored   | `unbox` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the unbox obligation named before work proceeds.                               |
+| 0679  | [user heap](#rune-0679)            | authored   | `user heap` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the user heap obligation named before work proceeds.                       |
+| 0680  | [virtual memory](#rune-0680)       | authored   | `virtual memory` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the virtual memory obligation named before work proceeds.             |
+| 0681  | [VM](#rune-0681)                   | authored   | `VM` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the VM obligation named before work proceeds.                                     |
+| 0682  | [wait-free {Run}](#rune-0682)      | authored   | `wait-free` in its Run sense is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the wait-free obligation named before work proceeds.      |
+| 0683  | [write barrier](#rune-0683)        | authored   | `write barrier` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the write barrier obligation named before work proceeds.               |
+| 0684  | [zero-copy {Run}](#rune-0684)      | authored   | Data movement stripped down to the minimum number of duplications. Use it when the bottleneck is physical movement rather than arithmetic.                                                                           |
 
 ## Entries
 
@@ -101,21 +99,21 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A vessel-word; it shapes how memory and execution are physically arranged.
+**Force:** `address space` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the address space obligation named before work proceeds.
 
-**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
+**Shadow:** misusing `address space` at rune 0609 in the runtime lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
 
 ### [0610] aliasing {#rune-0610}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** An embodiment-word; it concerns where computation resides and how it is reclaimed.
+**Force:** `aliasing` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the aliasing obligation named before work proceeds.
 
-**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
+**Shadow:** misusing `aliasing` at rune 0610 in the runtime lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
 
 ### [0611] allocation {#rune-0611}
 
@@ -125,7 +123,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** Reserve memory for something that is about to live.
 
-**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
+**Shadow:** misusing `allocation` at rune 0611 in the runtime lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
 
 **Pocket gloss:** Reserve memory for something that is about to live.
 
@@ -133,31 +131,31 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A living-system word; it describes the program while it is actually in motion.
+**Force:** `allocator` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the allocator obligation named before work proceeds.
 
-**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
+**Shadow:** misusing `allocator` at rune 0612 in the runtime lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
 
 ### [0613] arena {#rune-0613}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A runtime-law word; it constrains performance, allocation, or safety at execution time.
+**Force:** `arena` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the arena obligation named before work proceeds.
 
-**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
+**Shadow:** misusing `arena` at rune 0613 in the runtime lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
 
 ### [0614] borrow {Run} {#rune-0614}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A runtime-law word; it constrains performance, allocation, or safety at execution time.
+**Force:** `borrow` in its Run sense is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the borrow obligation named before work proceeds.
 
-**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
+**Shadow:** misusing `borrow` at rune 0614 in the Run lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
 
 ### [0615] cache {Run} {#rune-0615}
 
@@ -175,51 +173,51 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** An embodiment-word; it concerns where computation resides and how it is reclaimed.
+**Force:** `cache line` in its Run sense is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the cache line obligation named before work proceeds.
 
-**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
+**Shadow:** misusing `cache line` at rune 0616 in the Run lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
 
 ### [0617] call frame {#rune-0617}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A runtime-law word; it constrains performance, allocation, or safety at execution time.
+**Force:** `call frame` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the call frame obligation named before work proceeds.
 
-**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
+**Shadow:** misusing `call frame` at rune 0617 in the runtime lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
 
 ### [0618] call stack {#rune-0618}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A vessel-word; it shapes how memory and execution are physically arranged.
+**Force:** `call stack` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the call stack obligation named before work proceeds.
 
-**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
+**Shadow:** misusing `call stack` at rune 0618 in the runtime lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
 
 ### [0619] closure environment {#rune-0619}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A vessel-word; it shapes how memory and execution are physically arranged.
+**Force:** `closure environment` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the closure environment obligation named before work proceeds.
 
-**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
+**Shadow:** misusing `closure environment` at rune 0619 in the runtime lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
 
 ### [0620] compaction {Run} {#rune-0620}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A living-system word; it describes the program while it is actually in motion.
+**Force:** `compaction` in its Run sense is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the compaction obligation named before work proceeds.
 
-**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
+**Shadow:** misusing `compaction` at rune 0620 in the Run lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
 
 ### [0621] copy-on-write {Run} {#rune-0621}
 
@@ -229,7 +227,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** Share until mutation forces a real duplicate.
 
-**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
+**Shadow:** misusing `copy-on-write` at rune 0621 in the Run lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
 
 **Pocket gloss:** Share until mutation forces a real duplicate.
 
@@ -237,91 +235,91 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A runtime-law word; it constrains performance, allocation, or safety at execution time.
+**Force:** `core dump` in its Run sense is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the core dump obligation named before work proceeds.
 
-**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
+**Shadow:** misusing `core dump` at rune 0622 in the Run lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
 
 ### [0623] deallocation {#rune-0623}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A runtime-law word; it constrains performance, allocation, or safety at execution time.
+**Force:** `deallocation` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the deallocation obligation named before work proceeds.
 
-**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
+**Shadow:** misusing `deallocation` at rune 0623 in the runtime lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
 
 ### [0624] destructor {Run} {#rune-0624}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A runtime-law word; it constrains performance, allocation, or safety at execution time.
+**Force:** `destructor` in its Run sense is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the destructor obligation named before work proceeds.
 
-**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
+**Shadow:** misusing `destructor` at rune 0624 in the Run lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
 
 ### [0625] dynamic allocation {#rune-0625}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A runtime-law word; it constrains performance, allocation, or safety at execution time.
+**Force:** `dynamic allocation` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the dynamic allocation obligation named before work proceeds.
 
-**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
+**Shadow:** misusing `dynamic allocation` at rune 0625 in the runtime lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
 
 ### [0626] eager evaluation {#rune-0626}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** An embodiment-word; it concerns where computation resides and how it is reclaimed.
+**Force:** `eager evaluation` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the eager evaluation obligation named before work proceeds.
 
-**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
+**Shadow:** misusing `eager evaluation` at rune 0626 in the runtime lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
 
 ### [0627] escape analysis {#rune-0627}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A living-system word; it describes the program while it is actually in motion.
+**Force:** `escape analysis` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the escape analysis obligation named before work proceeds.
 
-**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
+**Shadow:** misusing `escape analysis` at rune 0627 in the runtime lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
 
 ### [0628] execution context {#rune-0628}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A living-system word; it describes the program while it is actually in motion.
+**Force:** `execution context` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the execution context obligation named before work proceeds.
 
-**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
+**Shadow:** misusing `execution context` at rune 0628 in the runtime lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
 
 ### [0629] finalizer {#rune-0629}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** An embodiment-word; it concerns where computation resides and how it is reclaimed.
+**Force:** `finalizer` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the finalizer obligation named before work proceeds.
 
-**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
+**Shadow:** misusing `finalizer` at rune 0629 in the runtime lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
 
 ### [0630] frame pointer {#rune-0630}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** An embodiment-word; it concerns where computation resides and how it is reclaimed.
+**Force:** `frame pointer` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the frame pointer obligation named before work proceeds.
 
-**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
+**Shadow:** misusing `frame pointer` at rune 0630 in the runtime lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
 
 ### [0631] garbage collection {#rune-0631}
 
@@ -331,7 +329,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** Automatic reclamation of memory no longer reachable.
 
-**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
+**Shadow:** misusing `garbage collection` at rune 0631 in the runtime lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
 
 **Pocket gloss:** Automatic reclamation of memory no longer reachable.
 
@@ -339,21 +337,21 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** An embodiment-word; it concerns where computation resides and how it is reclaimed.
+**Force:** `generation` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the generation obligation named before work proceeds.
 
-**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
+**Shadow:** misusing `generation` at rune 0632 in the runtime lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
 
 ### [0633] handle {Run} {#rune-0633}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** An embodiment-word; it concerns where computation resides and how it is reclaimed.
+**Force:** `handle` in its Run sense is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the handle obligation named before work proceeds.
 
-**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
+**Shadow:** misusing `handle` at rune 0633 in the Run lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
 
 ### [0634] heap {#rune-0634}
 
@@ -363,7 +361,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** Region for dynamically allocated objects.
 
-**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
+**Shadow:** misusing `heap` at rune 0634 in the runtime lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
 
 **Pocket gloss:** Region for dynamically allocated objects.
 
@@ -371,11 +369,11 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A living-system word; it describes the program while it is actually in motion.
+**Force:** `heap object` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the heap object obligation named before work proceeds.
 
-**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
+**Shadow:** misusing `heap object` at rune 0635 in the runtime lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
 
 ### [0636] hot path {Run} {#rune-0636}
 
@@ -385,7 +383,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** The path where small inefficiencies burn real time.
 
-**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
+**Shadow:** misusing `hot path` at rune 0636 in the Run lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
 
 **Pocket gloss:** The path where small inefficiencies burn real time.
 
@@ -393,61 +391,61 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A runtime-law word; it constrains performance, allocation, or safety at execution time.
+**Force:** `inline cache` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the inline cache obligation named before work proceeds.
 
-**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
+**Shadow:** misusing `inline cache` at rune 0637 in the runtime lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
 
 ### [0638] interpreter loop {#rune-0638}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A vessel-word; it shapes how memory and execution are physically arranged.
+**Force:** `interpreter loop` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the interpreter loop obligation named before work proceeds.
 
-**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
+**Shadow:** misusing `interpreter loop` at rune 0638 in the runtime lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
 
 ### [0639] JIT {#rune-0639}
 
 **Status:** canonical
 
-**Completion:** needs_sense
+**Completion:** authored
 
-**Force:** A just-in-time word; translation happens at runtime rather than earlier in the forge.
+**Force:** `JIT` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the JIT obligation named before work proceeds.
 
-**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
+**Shadow:** misusing `JIT` at rune 0639 in the runtime lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
 
 ### [0640] layout {Run} {#rune-0640}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A vessel-word; it shapes how memory and execution are physically arranged.
+**Force:** `layout` in its Run sense is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the layout obligation named before work proceeds.
 
-**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
+**Shadow:** misusing `layout` at rune 0640 in the Run lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
 
 ### [0641] lazy evaluation {#rune-0641}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** An embodiment-word; it concerns where computation resides and how it is reclaimed.
+**Force:** `lazy evaluation` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the lazy evaluation obligation named before work proceeds.
 
-**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
+**Shadow:** misusing `lazy evaluation` at rune 0641 in the runtime lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
 
 ### [0642] leak {Run} {#rune-0642}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A living-system word; it describes the program while it is actually in motion.
+**Force:** `leak` in its Run sense is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the leak obligation named before work proceeds.
 
-**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
+**Shadow:** misusing `leak` at rune 0642 in the Run lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
 
 ### [0643] lifetime {Run} {#rune-0643}
 
@@ -457,7 +455,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** How long a value may legally remain alive.
 
-**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
+**Shadow:** misusing `lifetime` at rune 0643 in the Run lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
 
 **Pocket gloss:** How long a value may legally remain alive.
 
@@ -465,11 +463,11 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** An embodiment-word; it concerns where computation resides and how it is reclaimed.
+**Force:** `live set` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the live set obligation named before work proceeds.
 
-**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
+**Shadow:** misusing `live set` at rune 0644 in the runtime lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
 
 ### [0645] locality {#rune-0645}
 
@@ -479,7 +477,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** The performance dividend from keeping related data physically close.
 
-**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
+**Shadow:** misusing `locality` at rune 0645 in the runtime lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
 
 **Pocket gloss:** The performance dividend from keeping related data physically close.
 
@@ -487,31 +485,31 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A progress word; some thread always moves forward without a lock.
+**Force:** `lock-free` in its Run sense is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the lock-free obligation named before work proceeds.
 
-**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
+**Shadow:** misusing `lock-free` at rune 0646 in the Run lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
 
 ### [0647] mark phase {#rune-0647}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** An embodiment-word; it concerns where computation resides and how it is reclaimed.
+**Force:** `mark phase` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the mark phase obligation named before work proceeds.
 
-**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
+**Shadow:** misusing `mark phase` at rune 0647 in the runtime lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
 
 ### [0648] memory {Run} {#rune-0648}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A living-system word; it describes the program while it is actually in motion.
+**Force:** `memory` in its Run sense is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the memory obligation named before work proceeds.
 
-**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
+**Shadow:** misusing `memory` at rune 0648 in the Run lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
 
 ### [0649] memory barrier {#rune-0649}
 
@@ -521,7 +519,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** An ordering fence for memory effects across threads or cores.
 
-**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
+**Shadow:** misusing `memory barrier` at rune 0649 in the runtime lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
 
 **Pocket gloss:** An ordering fence for memory effects across threads or cores.
 
@@ -529,21 +527,21 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A runtime-law word; it constrains performance, allocation, or safety at execution time.
+**Force:** `memory map` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the memory map obligation named before work proceeds.
 
-**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
+**Shadow:** misusing `memory map` at rune 0650 in the runtime lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
 
 ### [0651] memory pool {#rune-0651}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A runtime-law word; it constrains performance, allocation, or safety at execution time.
+**Force:** `memory pool` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the memory pool obligation named before work proceeds.
 
-**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
+**Shadow:** misusing `memory pool` at rune 0651 in the runtime lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
 
 ### [0652] memory safety {#rune-0652}
 
@@ -553,7 +551,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** Protection against illegal memory access and corruption.
 
-**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
+**Shadow:** misusing `memory safety` at rune 0652 in the runtime lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
 
 **Pocket gloss:** Protection against illegal memory access and corruption.
 
@@ -561,41 +559,41 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A vessel-word; it shapes how memory and execution are physically arranged.
+**Force:** `move semantics` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the move semantics obligation named before work proceeds.
 
-**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
+**Shadow:** misusing `move semantics` at rune 0653 in the runtime lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
 
 ### [0654] object header {#rune-0654}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** An embodiment-word; it concerns where computation resides and how it is reclaimed.
+**Force:** `object header` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the object header obligation named before work proceeds.
 
-**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
+**Shadow:** misusing `object header` at rune 0654 in the runtime lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
 
 ### [0655] page {Run} {#rune-0655}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A living-system word; it describes the program while it is actually in motion.
+**Force:** `page` in its Run sense is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the page obligation named before work proceeds.
 
-**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
+**Shadow:** misusing `page` at rune 0655 in the Run lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
 
 ### [0656] page fault {#rune-0656}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A living-system word; it describes the program while it is actually in motion.
+**Force:** `page fault` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the page fault obligation named before work proceeds.
 
-**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
+**Shadow:** misusing `page fault` at rune 0656 in the runtime lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
 
 ### [0657] pinning {#rune-0657}
 
@@ -605,7 +603,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** Keep an object fixed in place so other machinery can safely refer to it.
 
-**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
+**Shadow:** misusing `pinning` at rune 0657 in the runtime lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
 
 **Pocket gloss:** Keep an object fixed in place so other machinery can safely refer to it.
 
@@ -613,51 +611,51 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A location word; it does not hold the thing, but where the thing may be found.
+**Force:** `pointer` in its Run sense is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the pointer obligation named before work proceeds.
 
-**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
+**Shadow:** misusing `pointer` at rune 0658 in the Run lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
 
 ### [0659] pool allocator {#rune-0659}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A runtime-law word; it constrains performance, allocation, or safety at execution time.
+**Force:** `pool allocator` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the pool allocator obligation named before work proceeds.
 
-**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
+**Shadow:** misusing `pool allocator` at rune 0659 in the runtime lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
 
 ### [0660] prefetch {#rune-0660}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A living-system word; it describes the program while it is actually in motion.
+**Force:** `prefetch` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the prefetch obligation named before work proceeds.
 
-**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
+**Shadow:** misusing `prefetch` at rune 0660 in the runtime lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
 
 ### [0661] quiescence {#rune-0661}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A living-system word; it describes the program while it is actually in motion.
+**Force:** `quiescence` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the quiescence obligation named before work proceeds.
 
-**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
+**Shadow:** misusing `quiescence` at rune 0661 in the runtime lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
 
 ### [0662] reclaim {#rune-0662}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A living-system word; it describes the program while it is actually in motion.
+**Force:** `reclaim` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the reclaim obligation named before work proceeds.
 
-**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
+**Shadow:** misusing `reclaim` at rune 0662 in the runtime lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
 
 ### [0663] reference count {#rune-0663}
 
@@ -667,7 +665,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** Ownership tracked by counting how many references remain.
 
-**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
+**Shadow:** misusing `reference count` at rune 0663 in the runtime lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
 
 **Pocket gloss:** Ownership tracked by counting how many references remain.
 
@@ -675,61 +673,61 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A runtime-law word; it constrains performance, allocation, or safety at execution time.
+**Force:** `register allocation` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the register allocation obligation named before work proceeds.
 
-**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
+**Shadow:** misusing `register allocation` at rune 0664 in the runtime lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
 
 ### [0665] root set {#rune-0665}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** An embodiment-word; it concerns where computation resides and how it is reclaimed.
+**Force:** `root set` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the root set obligation named before work proceeds.
 
-**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
+**Shadow:** misusing `root set` at rune 0665 in the runtime lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
 
 ### [0666] runtime {#rune-0666}
 
 **Status:** canonical
 
-**Completion:** needs_sense
+**Completion:** authored
 
-**Force:** A living word; the conditions under which the program presently exists and executes.
+**Force:** `runtime` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the runtime obligation named before work proceeds.
 
-**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
+**Shadow:** misusing `runtime` at rune 0666 in the runtime lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
 
 ### [0667] sandbox {Run} {#rune-0667}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A confinement word; actions are permitted only within a restricted space.
+**Force:** `sandbox` in its Run sense is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the sandbox obligation named before work proceeds.
 
-**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
+**Shadow:** misusing `sandbox` at rune 0667 in the Run lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
 
 ### [0668] shadow stack {#rune-0668}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** An embodiment-word; it concerns where computation resides and how it is reclaimed.
+**Force:** `shadow stack` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the shadow stack obligation named before work proceeds.
 
-**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
+**Shadow:** misusing `shadow stack` at rune 0668 in the runtime lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
 
 ### [0669] slab allocator {#rune-0669}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A runtime-law word; it constrains performance, allocation, or safety at execution time.
+**Force:** `slab allocator` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the slab allocator obligation named before work proceeds.
 
-**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
+**Shadow:** misusing `slab allocator` at rune 0669 in the runtime lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
 
 ### [0670] stack {Run} {#rune-0670}
 
@@ -739,7 +737,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** Region for call frames and short-lived local state.
 
-**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
+**Shadow:** misusing `stack` at rune 0670 in the Run lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
 
 **Pocket gloss:** Region for call frames and short-lived local state.
 
@@ -747,131 +745,131 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A living-system word; it describes the program while it is actually in motion.
+**Force:** `stack frame` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the stack frame obligation named before work proceeds.
 
-**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
+**Shadow:** misusing `stack frame` at rune 0671 in the runtime lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
 
 ### [0672] stop-the-world {#rune-0672}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A living-system word; it describes the program while it is actually in motion.
+**Force:** `stop-the-world` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the stop-the-world obligation named before work proceeds.
 
-**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
+**Shadow:** misusing `stop-the-world` at rune 0672 in the runtime lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
 
 ### [0673] sweep phase {#rune-0673}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A living-system word; it describes the program while it is actually in motion.
+**Force:** `sweep phase` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the sweep phase obligation named before work proceeds.
 
-**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
+**Shadow:** misusing `sweep phase` at rune 0673 in the runtime lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
 
 ### [0674] tail call {#rune-0674}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A vessel-word; it shapes how memory and execution are physically arranged.
+**Force:** `tail call` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the tail call obligation named before work proceeds.
 
-**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
+**Shadow:** misusing `tail call` at rune 0674 in the runtime lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
 
 ### [0675] thread-local storage {#rune-0675}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A living-system word; it describes the program while it is actually in motion.
+**Force:** `thread-local storage` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the thread-local storage obligation named before work proceeds.
 
-**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
+**Shadow:** misusing `thread-local storage` at rune 0675 in the runtime lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
 
 ### [0676] TLB {#rune-0676}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A vessel-word; it shapes how memory and execution are physically arranged.
+**Force:** `TLB` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the TLB obligation named before work proceeds.
 
-**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
+**Shadow:** misusing `TLB` at rune 0676 in the runtime lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
 
 ### [0677] tracing collector {#rune-0677}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A runtime-law word; it constrains performance, allocation, or safety at execution time.
+**Force:** `tracing collector` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the tracing collector obligation named before work proceeds.
 
-**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
+**Shadow:** misusing `tracing collector` at rune 0677 in the runtime lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
 
 ### [0678] unbox {#rune-0678}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** An embodiment-word; it concerns where computation resides and how it is reclaimed.
+**Force:** `unbox` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the unbox obligation named before work proceeds.
 
-**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
+**Shadow:** misusing `unbox` at rune 0678 in the runtime lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
 
 ### [0679] user heap {#rune-0679}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A living-system word; it describes the program while it is actually in motion.
+**Force:** `user heap` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the user heap obligation named before work proceeds.
 
-**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
+**Shadow:** misusing `user heap` at rune 0679 in the runtime lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
 
 ### [0680] virtual memory {#rune-0680}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** An embodiment-word; it concerns where computation resides and how it is reclaimed.
+**Force:** `virtual memory` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the virtual memory obligation named before work proceeds.
 
-**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
+**Shadow:** misusing `virtual memory` at rune 0680 in the runtime lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
 
 ### [0681] VM {#rune-0681}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A runtime-law word; it constrains performance, allocation, or safety at execution time.
+**Force:** `VM` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the VM obligation named before work proceeds.
 
-**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
+**Shadow:** misusing `VM` at rune 0681 in the runtime lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
 
 ### [0682] wait-free {Run} {#rune-0682}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** An embodiment-word; it concerns where computation resides and how it is reclaimed.
+**Force:** `wait-free` in its Run sense is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the wait-free obligation named before work proceeds.
 
-**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
+**Shadow:** misusing `wait-free` at rune 0682 in the Run lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
 
 ### [0683] write barrier {#rune-0683}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A vessel-word; it shapes how memory and execution are physically arranged.
+**Force:** `write barrier` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the write barrier obligation named before work proceeds.
 
-**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
+**Shadow:** misusing `write barrier` at rune 0683 in the runtime lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
 
 ### [0684] zero-copy {Run} {#rune-0684}
 

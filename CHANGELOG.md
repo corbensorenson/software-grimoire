@@ -1,5 +1,33 @@
 # Changelog
 
+## v1.3.0-full-roadmap-release
+
+- Completed the full 1,645-entry master lexicon: 1,645 authored entries, zero
+  stubs, 1,645 unique summaries, 1,645 unique shadows, and real senses for all
+  overloaded terms.
+- Hardened lexicon validation so stubs, generic boilerplate, missing shadows,
+  duplicated shadows, and doubled `Shadow:` labels fail validation.
+- Added executable benchmark fixtures with planted ground truth for all six
+  field-spell evaluation cases.
+- Re-ran the measured evaluation bench on the project-owned Codex surface with
+  three weak/repaired repetitions per case, preserving 36 prompt/transcript
+  runs.
+- Added outcome scoring alongside the secondary structural rubric and disclosed
+  the prompt-echo limitation of keyword-based structural scoring.
+- Replaced Codex-exclusive evidence tests with surface-agnostic integrity tests
+  that require prompt files, transcript files, fixture paths, timestamps,
+  structural scores, outcome scores, and notes.
+- Added generated installable exports for Markdown spells, Markdown stacks,
+  Codex task templates, and Cursor rules.
+- Added `grimoire export --target ...` for local inspection of generated
+  installable assets.
+- Added an installable-library adoption page and Pages resources for exports and
+  evaluation fixtures.
+- Added a release-gate stack dogfood record tied to the public GitHub Pages
+  publish workflow.
+- Updated the roadmap away from scope contraction and toward full completion.
+- Rendered site size is now 76 Quarto pages.
+
 ## v1.0.0-canonical-field-release
 
 - Rebuilt the homepage around the practical engineering payoff, with a weak

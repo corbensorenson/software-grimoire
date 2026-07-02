@@ -8,153 +8,151 @@ Range: `0113-0249`.
 
 ## Completion
 
-| Status      | Count |
-| ----------- | ----- |
-| authored    | 20    |
-| stub        | 114   |
-| needs_sense | 3     |
+| Status   | Count |
+| -------- | ----- |
+| authored | 137   |
 
 Use the summary table for scanning. Each row links to the detailed anchored entry below.
 
-| Sigil | Term                                          | Completion  | Summary                                                                             |
-| ----- | --------------------------------------------- | ----------- | ----------------------------------------------------------------------------------- |
-| 0113  | `STUB` [abstract class](#rune-0113)           | stub        | A semantics word; it alters what symbols are allowed to mean in practice.           |
-| 0114  | `STUB` [alias](#rune-0114)                    | stub        | A semantics word; it alters what symbols are allowed to mean in practice.           |
-| 0115  | `STUB` [annotation](#rune-0115)               | stub        | A shape-of-thought word; it influences how programs are written and reasoned about. |
-| 0116  | `STUB` [argument](#rune-0116)                 | stub        | A shape-of-thought word; it influences how programs are written and reasoned about. |
-| 0117  | `STUB` [arity](#rune-0117)                    | stub        | A law-of-form word; it changes what the language can guarantee.                     |
-| 0118  | `STUB` [assembly](#rune-0118)                 | stub        | A grammar-word; it shapes how meaning is expressed to humans and machines.          |
-| 0119  | `STUB` [assertion {Lang}](#rune-0119)         | stub        | A grammar-word; it shapes how meaning is expressed to humans and machines.          |
-| 0120  | [AST](#rune-0120)                             | authored    | The tree form of parsed program structure.                                          |
-| 0121  | `STUB` [attribute](#rune-0121)                | stub        | A grammar-word; it shapes how meaning is expressed to humans and machines.          |
-| 0122  | `STUB` [binding](#rune-0122)                  | stub        | A shape-of-thought word; it influences how programs are written and reasoned about. |
-| 0123  | `STUB` [borrow {Lang}](#rune-0123)            | stub        | A shape-of-thought word; it influences how programs are written and reasoned about. |
-| 0124  | [borrow checker](#rune-0124)                  | authored    | A checker that enforces safe borrowing and lifetime law before runtime.             |
-| 0125  | `STUB` [bytecode](#rune-0125)                 | stub        | A shape-of-thought word; it influences how programs are written and reasoned about. |
-| 0126  | `STUB` [capture](#rune-0126)                  | stub        | A grammar-word; it shapes how meaning is expressed to humans and machines.          |
-| 0127  | `STUB` [cast](#rune-0127)                     | stub        | A shape-of-thought word; it influences how programs are written and reasoned about. |
-| 0128  | [class](#rune-0128)                           | needs_sense | A shape word for bundled state and behavior.                                        |
-| 0129  | [closure](#rune-0129)                         | needs_sense | A capture word; it carries surrounding bindings forward with executable intent.     |
-| 0130  | `STUB` [coercion](#rune-0130)                 | stub        | A semantics word; it alters what symbols are allowed to mean in practice.           |
-| 0131  | `STUB` [comment](#rune-0131)                  | stub        | A shape-of-thought word; it influences how programs are written and reasoned about. |
-| 0132  | [compile-time](#rune-0132)                    | authored    | Known and fixed before execution begins.                                            |
-| 0133  | [compiler](#rune-0133)                        | authored    | The translator from source language to lower-level executable form.                 |
-| 0134  | `STUB` [constant](#rune-0134)                 | stub        | A semantics word; it alters what symbols are allowed to mean in practice.           |
-| 0135  | `STUB` [constraint {Lang}](#rune-0135)        | stub        | A bounding word; it removes degrees of freedom in order to improve correctness.     |
-| 0136  | `STUB` [constructor](#rune-0136)              | stub        | A semantics word; it alters what symbols are allowed to mean in practice.           |
-| 0137  | `STUB` [contravariance](#rune-0137)           | stub        | A grammar-word; it shapes how meaning is expressed to humans and machines.          |
-| 0138  | `STUB` [covariance](#rune-0138)               | stub        | A shape-of-thought word; it influences how programs are written and reasoned about. |
-| 0139  | `STUB` [currying](#rune-0139)                 | stub        | A shape-of-thought word; it influences how programs are written and reasoned about. |
-| 0140  | `STUB` [declaration](#rune-0140)              | stub        | A semantics word; it alters what symbols are allowed to mean in practice.           |
-| 0141  | `STUB` [decorator {Lang}](#rune-0141)         | stub        | A shape-of-thought word; it influences how programs are written and reasoned about. |
-| 0142  | `STUB` [default](#rune-0142)                  | stub        | A law-of-form word; it changes what the language can guarantee.                     |
-| 0143  | `STUB` [definition](#rune-0143)               | stub        | A law-of-form word; it changes what the language can guarantee.                     |
-| 0144  | `STUB` [denotation](#rune-0144)               | stub        | A law-of-form word; it changes what the language can guarantee.                     |
-| 0145  | `STUB` [destructor {Lang}](#rune-0145)        | stub        | A shape-of-thought word; it influences how programs are written and reasoned about. |
-| 0146  | `STUB` [dispatch {Lang}](#rune-0146)          | stub        | A grammar-word; it shapes how meaning is expressed to humans and machines.          |
-| 0147  | `STUB` [domain-specific language](#rune-0147) | stub        | A shape-of-thought word; it influences how programs are written and reasoned about. |
-| 0148  | `STUB` [dynamic scope](#rune-0148)            | stub        | A shape-of-thought word; it influences how programs are written and reasoned about. |
-| 0149  | `STUB` [effect](#rune-0149)                   | stub        | A law-of-form word; it changes what the language can guarantee.                     |
-| 0150  | `STUB` [enum](#rune-0150)                     | stub        | A law-of-form word; it changes what the language can guarantee.                     |
-| 0151  | `STUB` [evaluation {Lang}](#rune-0151)        | stub        | A grammar-word; it shapes how meaning is expressed to humans and machines.          |
-| 0152  | `STUB` [export {Lang}](#rune-0152)            | stub        | A semantics word; it alters what symbols are allowed to mean in practice.           |
-| 0153  | `STUB` [expression](#rune-0153)               | stub        | A grammar-word; it shapes how meaning is expressed to humans and machines.          |
-| 0154  | `STUB` [extern](#rune-0154)                   | stub        | A semantics word; it alters what symbols are allowed to mean in practice.           |
-| 0155  | `STUB` [field {Lang}](#rune-0155)             | stub        | A grammar-word; it shapes how meaning is expressed to humans and machines.          |
-| 0156  | `STUB` [final](#rune-0156)                    | stub        | A semantics word; it alters what symbols are allowed to mean in practice.           |
-| 0157  | [function](#rune-0157)                        | needs_sense | A callable word; given inputs, it yields outputs by a named rule.                   |
-| 0158  | [generic {Lang}](#rune-0158)                  | authored    | One definition parameterized over many concrete types or cases.                     |
-| 0159  | [grammar](#rune-0159)                         | authored    | The rules that say what strings count as well-formed structure.                     |
-| 0160  | `STUB` [higher-order function](#rune-0160)    | stub        | A semantics word; it alters what symbols are allowed to mean in practice.           |
-| 0161  | `STUB` [identifier](#rune-0161)               | stub        | A shape-of-thought word; it influences how programs are written and reasoned about. |
-| 0162  | `STUB` [impl](#rune-0162)                     | stub        | A semantics word; it alters what symbols are allowed to mean in practice.           |
-| 0163  | `STUB` [implementation {Lang}](#rune-0163)    | stub        | A semantics word; it alters what symbols are allowed to mean in practice.           |
-| 0164  | `STUB` [import](#rune-0164)                   | stub        | A shape-of-thought word; it influences how programs are written and reasoned about. |
-| 0165  | `STUB` [include](#rune-0165)                  | stub        | A grammar-word; it shapes how meaning is expressed to humans and machines.          |
-| 0166  | [inference](#rune-0166)                       | authored    | Recovering missing type or shape information from surrounding evidence.             |
-| 0167  | `STUB` [inheritance](#rune-0167)              | stub        | A semantics word; it alters what symbols are allowed to mean in practice.           |
-| 0168  | `STUB` [inline {Lang}](#rune-0168)            | stub        | A shape-of-thought word; it influences how programs are written and reasoned about. |
-| 0169  | `STUB` [instruction {Lang}](#rune-0169)       | stub        | A semantics word; it alters what symbols are allowed to mean in practice.           |
-| 0170  | [interface {Lang}](#rune-0170)                | authored    | A boundary word; it lets different bodies touch through a disciplined seam.         |
-| 0171  | [interpreter {Lang}](#rune-0171)              | authored    | A runtime that executes a representation rather than precompiling it away.          |
-| 0172  | [IR](#rune-0172)                              | authored    | An internal representation built for analysis and transformation.                   |
-| 0173  | `STUB` [keyword](#rune-0173)                  | stub        | A law-of-form word; it changes what the language can guarantee.                     |
-| 0174  | `STUB` [lambda](#rune-0174)                   | stub        | A law-of-form word; it changes what the language can guarantee.                     |
-| 0175  | `STUB` [lexical scope](#rune-0175)            | stub        | A grammar-word; it shapes how meaning is expressed to humans and machines.          |
-| 0176  | `STUB` [lifetime {Lang}](#rune-0176)          | stub        | A shape-of-thought word; it influences how programs are written and reasoned about. |
-| 0177  | [linker](#rune-0177)                          | authored    | The binder that turns compiled pieces into one loadable whole.                      |
-| 0178  | `STUB` [literal](#rune-0178)                  | stub        | A law-of-form word; it changes what the language can guarantee.                     |
-| 0179  | `STUB` [loader](#rune-0179)                   | stub        | A shape-of-thought word; it influences how programs are written and reasoned about. |
-| 0180  | [macro](#rune-0180)                           | authored    | Code that writes or reshapes code.                                                  |
-| 0181  | `STUB` [metaprogramming](#rune-0181)          | stub        | A semantics word; it alters what symbols are allowed to mean in practice.           |
-| 0182  | `STUB` [method](#rune-0182)                   | stub        | A law-of-form word; it changes what the language can guarantee.                     |
-| 0183  | `STUB` [mixin](#rune-0183)                    | stub        | A law-of-form word; it changes what the language can guarantee.                     |
-| 0184  | `STUB` [module {Lang}](#rune-0184)            | stub        | A containment word; related definitions are packaged as one coherent unit.          |
-| 0185  | `STUB` [monomorphization](#rune-0185)         | stub        | A law-of-form word; it changes what the language can guarantee.                     |
-| 0186  | `STUB` [mutability](#rune-0186)               | stub        | A grammar-word; it shapes how meaning is expressed to humans and machines.          |
-| 0187  | `STUB` [name resolution](#rune-0187)          | stub        | A law-of-form word; it changes what the language can guarantee.                     |
-| 0188  | [namespace {Lang}](#rune-0188)                | authored    | A naming region that prevents collisions and clarifies ownership.                   |
-| 0189  | `STUB` [object](#rune-0189)                   | stub        | A shape-of-thought word; it influences how programs are written and reasoned about. |
-| 0190  | `STUB` [opcode {Lang}](#rune-0190)            | stub        | A semantics word; it alters what symbols are allowed to mean in practice.           |
-| 0191  | `STUB` [overload](#rune-0191)                 | stub        | A grammar-word; it shapes how meaning is expressed to humans and machines.          |
-| 0192  | `STUB` [override](#rune-0192)                 | stub        | A grammar-word; it shapes how meaning is expressed to humans and machines.          |
-| 0193  | `STUB` [ownership](#rune-0193)                | stub        | A shape-of-thought word; it influences how programs are written and reasoned about. |
-| 0194  | `STUB` [package {Lang}](#rune-0194)           | stub        | A grammar-word; it shapes how meaning is expressed to humans and machines.          |
-| 0195  | `STUB` [parameter](#rune-0195)                | stub        | A law-of-form word; it changes what the language can guarantee.                     |
-| 0196  | `STUB` [parametric polymorphism](#rune-0196)  | stub        | A shape-of-thought word; it influences how programs are written and reasoned about. |
-| 0197  | [parser](#rune-0197)                          | authored    | The mechanism that turns surface text into structured meaning.                      |
-| 0198  | `STUB` [pattern](#rune-0198)                  | stub        | A semantics word; it alters what symbols are allowed to mean in practice.           |
-| 0199  | `STUB` [pattern matching](#rune-0199)         | stub        | A law-of-form word; it changes what the language can guarantee.                     |
-| 0200  | [polymorphism](#rune-0200)                    | authored    | One interface, many concrete behaviors.                                             |
-| 0201  | `STUB` [procedure {Lang}](#rune-0201)         | stub        | A method word; not just what to do, but in what order to do it.                     |
-| 0202  | `STUB` [program](#rune-0202)                  | stub        | A grammar-word; it shapes how meaning is expressed to humans and machines.          |
-| 0203  | `STUB` [property {Lang}](#rune-0203)          | stub        | A law-of-form word; it changes what the language can guarantee.                     |
-| 0204  | `STUB` [protected](#rune-0204)                | stub        | A semantics word; it alters what symbols are allowed to mean in practice.           |
-| 0205  | `STUB` [public](#rune-0205)                   | stub        | A shape-of-thought word; it influences how programs are written and reasoned about. |
-| 0206  | `STUB` [purity](#rune-0206)                   | stub        | A law-of-form word; it changes what the language can guarantee.                     |
-| 0207  | `STUB` [qualified name](#rune-0207)           | stub        | A law-of-form word; it changes what the language can guarantee.                     |
-| 0208  | `STUB` [readonly](#rune-0208)                 | stub        | A semantics word; it alters what symbols are allowed to mean in practice.           |
-| 0209  | `STUB` [record {Lang}](#rune-0209)            | stub        | A shape-of-thought word; it influences how programs are written and reasoned about. |
-| 0210  | `STUB` [reference {Lang}](#rune-0210)         | stub        | A shape-of-thought word; it influences how programs are written and reasoned about. |
-| 0211  | `STUB` [referential transparency](#rune-0211) | stub        | A shape-of-thought word; it influences how programs are written and reasoned about. |
-| 0212  | `STUB` [reflection](#rune-0212)               | stub        | A shape-of-thought word; it influences how programs are written and reasoned about. |
-| 0213  | `STUB` [resolution](#rune-0213)               | stub        | A grammar-word; it shapes how meaning is expressed to humans and machines.          |
-| 0214  | `STUB` [return type](#rune-0214)              | stub        | A semantics word; it alters what symbols are allowed to mean in practice.           |
-| 0215  | `STUB` [runtime type](#rune-0215)             | stub        | A semantics word; it alters what symbols are allowed to mean in practice.           |
-| 0216  | `STUB` [scope {Lang}](#rune-0216)             | stub        | A semantics word; it alters what symbols are allowed to mean in practice.           |
-| 0217  | `STUB` [sealed](#rune-0217)                   | stub        | A semantics word; it alters what symbols are allowed to mean in practice.           |
-| 0218  | [semantics](#rune-0218)                       | authored    | What a program means, not just how it is spelled.                                   |
-| 0219  | [signature {Lang}](#rune-0219)                | authored    | A proving word; identity or contract is made checkable.                             |
-| 0220  | `STUB` [source code](#rune-0220)              | stub        | A grammar-word; it shapes how meaning is expressed to humans and machines.          |
-| 0221  | `STUB` [specialization](#rune-0221)           | stub        | A shape-of-thought word; it influences how programs are written and reasoned about. |
-| 0222  | `STUB` [statement](#rune-0222)                | stub        | A law-of-form word; it changes what the language can guarantee.                     |
-| 0223  | `STUB` [static dispatch](#rune-0223)          | stub        | A grammar-word; it shapes how meaning is expressed to humans and machines.          |
-| 0224  | `STUB` [strictness](#rune-0224)               | stub        | A semantics word; it alters what symbols are allowed to mean in practice.           |
-| 0225  | `STUB` [struct {Lang}](#rune-0225)            | stub        | A law-of-form word; it changes what the language can guarantee.                     |
-| 0226  | `STUB` [subtype](#rune-0226)                  | stub        | A grammar-word; it shapes how meaning is expressed to humans and machines.          |
-| 0227  | `STUB` [supertype](#rune-0227)                | stub        | A law-of-form word; it changes what the language can guarantee.                     |
-| 0228  | `STUB` [symbol](#rune-0228)                   | stub        | A semantics word; it alters what symbols are allowed to mean in practice.           |
-| 0229  | [syntax](#rune-0229)                          | authored    | The legal surface form of the language.                                             |
-| 0230  | `STUB` [template {Lang}](#rune-0230)          | stub        | A grammar-word; it shapes how meaning is expressed to humans and machines.          |
-| 0231  | `STUB` [theorem {Lang}](#rune-0231)           | stub        | A grammar-word; it shapes how meaning is expressed to humans and machines.          |
-| 0232  | `STUB` [token {Lang}](#rune-0232)             | stub        | A countable unit of text or symbol used for parsing, modeling, or encoding.         |
-| 0233  | `STUB` [trait](#rune-0233)                    | stub        | A grammar-word; it shapes how meaning is expressed to humans and machines.          |
-| 0234  | `STUB` [transpiler](#rune-0234)               | stub        | A grammar-word; it shapes how meaning is expressed to humans and machines.          |
-| 0235  | `STUB` [tuple {Lang}](#rune-0235)             | stub        | A semantics word; it alters what symbols are allowed to mean in practice.           |
-| 0236  | [type](#rune-0236)                            | authored    | A declared or inferred class of values and allowed operations.                      |
-| 0237  | `STUB` [type alias](#rune-0237)               | stub        | A grammar-word; it shapes how meaning is expressed to humans and machines.          |
-| 0238  | `STUB` [type inference](#rune-0238)           | stub        | A law-of-form word; it changes what the language can guarantee.                     |
-| 0239  | `STUB` [type system](#rune-0239)              | stub        | A shape-of-thought word; it influences how programs are written and reasoned about. |
-| 0240  | [typechecker](#rune-0240)                     | authored    | The checker that enforces type law before execution.                                |
-| 0241  | `STUB` [typeclass](#rune-0241)                | stub        | A grammar-word; it shapes how meaning is expressed to humans and machines.          |
-| 0242  | `STUB` [unification](#rune-0242)              | stub        | A law-of-form word; it changes what the language can guarantee.                     |
-| 0243  | `STUB` [union](#rune-0243)                    | stub        | A law-of-form word; it changes what the language can guarantee.                     |
-| 0244  | `STUB` [value](#rune-0244)                    | stub        | A law-of-form word; it changes what the language can guarantee.                     |
-| 0245  | `STUB` [variance](#rune-0245)                 | stub        | A law-of-form word; it changes what the language can guarantee.                     |
-| 0246  | `STUB` [virtual](#rune-0246)                  | stub        | A shape-of-thought word; it influences how programs are written and reasoned about. |
-| 0247  | `STUB` [visibility](#rune-0247)               | stub        | A grammar-word; it shapes how meaning is expressed to humans and machines.          |
-| 0248  | `STUB` [visitor](#rune-0248)                  | stub        | A grammar-word; it shapes how meaning is expressed to humans and machines.          |
-| 0249  | `STUB` [where-clause](#rune-0249)             | stub        | A law-of-form word; it changes what the language can guarantee.                     |
+| Sigil | Term                                   | Completion | Summary                                                                                                                                                                                                                        |
+| ----- | -------------------------------------- | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| 0113  | [abstract class](#rune-0113)           | authored   | `abstract class` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the abstract class obligation named before work proceeds.                     |
+| 0114  | [alias](#rune-0114)                    | authored   | `alias` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the alias obligation named before work proceeds.                                       |
+| 0115  | [annotation](#rune-0115)               | authored   | `annotation` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the annotation obligation named before work proceeds.                             |
+| 0116  | [argument](#rune-0116)                 | authored   | `argument` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the argument obligation named before work proceeds.                                 |
+| 0117  | [arity](#rune-0117)                    | authored   | `arity` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the arity obligation named before work proceeds.                                       |
+| 0118  | [assembly](#rune-0118)                 | authored   | `assembly` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the assembly obligation named before work proceeds.                                 |
+| 0119  | [assertion {Lang}](#rune-0119)         | authored   | `assertion` in its Lang sense is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the assertion obligation named before work proceeds.             |
+| 0120  | [AST](#rune-0120)                      | authored   | The tree form of parsed program structure.                                                                                                                                                                                     |
+| 0121  | [attribute](#rune-0121)                | authored   | `attribute` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the attribute obligation named before work proceeds.                               |
+| 0122  | [binding](#rune-0122)                  | authored   | `binding` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the binding obligation named before work proceeds.                                   |
+| 0123  | [borrow {Lang}](#rune-0123)            | authored   | `borrow` in its Lang sense is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the borrow obligation named before work proceeds.                   |
+| 0124  | [borrow checker](#rune-0124)           | authored   | A checker that enforces safe borrowing and lifetime law before runtime.                                                                                                                                                        |
+| 0125  | [bytecode](#rune-0125)                 | authored   | `bytecode` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the bytecode obligation named before work proceeds.                                 |
+| 0126  | [capture](#rune-0126)                  | authored   | `capture` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the capture obligation named before work proceeds.                                   |
+| 0127  | [cast](#rune-0127)                     | authored   | `cast` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the cast obligation named before work proceeds.                                         |
+| 0128  | [class](#rune-0128)                    | authored   | `class` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the class obligation named before work proceeds.                                       |
+| 0129  | [closure](#rune-0129)                  | authored   | `closure` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the closure obligation named before work proceeds.                                   |
+| 0130  | [coercion](#rune-0130)                 | authored   | `coercion` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the coercion obligation named before work proceeds.                                 |
+| 0131  | [comment](#rune-0131)                  | authored   | `comment` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the comment obligation named before work proceeds.                                   |
+| 0132  | [compile-time](#rune-0132)             | authored   | Known and fixed before execution begins.                                                                                                                                                                                       |
+| 0133  | [compiler](#rune-0133)                 | authored   | The translator from source language to lower-level executable form.                                                                                                                                                            |
+| 0134  | [constant](#rune-0134)                 | authored   | `constant` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the constant obligation named before work proceeds.                                 |
+| 0135  | [constraint {Lang}](#rune-0135)        | authored   | `constraint` in its Lang sense is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the constraint obligation named before work proceeds.           |
+| 0136  | [constructor](#rune-0136)              | authored   | `constructor` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the constructor obligation named before work proceeds.                           |
+| 0137  | [contravariance](#rune-0137)           | authored   | `contravariance` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the contravariance obligation named before work proceeds.                     |
+| 0138  | [covariance](#rune-0138)               | authored   | `covariance` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the covariance obligation named before work proceeds.                             |
+| 0139  | [currying](#rune-0139)                 | authored   | `currying` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the currying obligation named before work proceeds.                                 |
+| 0140  | [declaration](#rune-0140)              | authored   | `declaration` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the declaration obligation named before work proceeds.                           |
+| 0141  | [decorator {Lang}](#rune-0141)         | authored   | `decorator` in its Lang sense is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the decorator obligation named before work proceeds.             |
+| 0142  | [default](#rune-0142)                  | authored   | `default` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the default obligation named before work proceeds.                                   |
+| 0143  | [definition](#rune-0143)               | authored   | `definition` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the definition obligation named before work proceeds.                             |
+| 0144  | [denotation](#rune-0144)               | authored   | `denotation` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the denotation obligation named before work proceeds.                             |
+| 0145  | [destructor {Lang}](#rune-0145)        | authored   | `destructor` in its Lang sense is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the destructor obligation named before work proceeds.           |
+| 0146  | [dispatch {Lang}](#rune-0146)          | authored   | `dispatch` in its Lang sense is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the dispatch obligation named before work proceeds.               |
+| 0147  | [domain-specific language](#rune-0147) | authored   | `domain-specific language` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the domain-specific language obligation named before work proceeds. |
+| 0148  | [dynamic scope](#rune-0148)            | authored   | `dynamic scope` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the dynamic scope obligation named before work proceeds.                       |
+| 0149  | [effect](#rune-0149)                   | authored   | `effect` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the effect obligation named before work proceeds.                                     |
+| 0150  | [enum](#rune-0150)                     | authored   | `enum` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the enum obligation named before work proceeds.                                         |
+| 0151  | [evaluation {Lang}](#rune-0151)        | authored   | `evaluation` in its Lang sense is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the evaluation obligation named before work proceeds.           |
+| 0152  | [export {Lang}](#rune-0152)            | authored   | `export` in its Lang sense is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the export obligation named before work proceeds.                   |
+| 0153  | [expression](#rune-0153)               | authored   | `expression` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the expression obligation named before work proceeds.                             |
+| 0154  | [extern](#rune-0154)                   | authored   | `extern` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the extern obligation named before work proceeds.                                     |
+| 0155  | [field {Lang}](#rune-0155)             | authored   | `field` in its Lang sense is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the field obligation named before work proceeds.                     |
+| 0156  | [final](#rune-0156)                    | authored   | `final` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the final obligation named before work proceeds.                                       |
+| 0157  | [function](#rune-0157)                 | authored   | `function` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the function obligation named before work proceeds.                                 |
+| 0158  | [generic {Lang}](#rune-0158)           | authored   | One definition parameterized over many concrete types or cases.                                                                                                                                                                |
+| 0159  | [grammar](#rune-0159)                  | authored   | The rules that say what strings count as well-formed structure.                                                                                                                                                                |
+| 0160  | [higher-order function](#rune-0160)    | authored   | `higher-order function` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the higher-order function obligation named before work proceeds.       |
+| 0161  | [identifier](#rune-0161)               | authored   | `identifier` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the identifier obligation named before work proceeds.                             |
+| 0162  | [impl](#rune-0162)                     | authored   | `impl` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the impl obligation named before work proceeds.                                         |
+| 0163  | [implementation {Lang}](#rune-0163)    | authored   | `implementation` in its Lang sense is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the implementation obligation named before work proceeds.   |
+| 0164  | [import](#rune-0164)                   | authored   | `import` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the import obligation named before work proceeds.                                     |
+| 0165  | [include](#rune-0165)                  | authored   | `include` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the include obligation named before work proceeds.                                   |
+| 0166  | [inference](#rune-0166)                | authored   | Recovering missing type or shape information from surrounding evidence.                                                                                                                                                        |
+| 0167  | [inheritance](#rune-0167)              | authored   | `inheritance` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the inheritance obligation named before work proceeds.                           |
+| 0168  | [inline {Lang}](#rune-0168)            | authored   | `inline` in its Lang sense is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the inline obligation named before work proceeds.                   |
+| 0169  | [instruction {Lang}](#rune-0169)       | authored   | `instruction` in its Lang sense is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the instruction obligation named before work proceeds.         |
+| 0170  | [interface {Lang}](#rune-0170)         | authored   | `interface` in its Lang sense is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the interface obligation named before work proceeds.             |
+| 0171  | [interpreter {Lang}](#rune-0171)       | authored   | A runtime that executes a representation rather than precompiling it away.                                                                                                                                                     |
+| 0172  | [IR](#rune-0172)                       | authored   | An internal representation built for analysis and transformation.                                                                                                                                                              |
+| 0173  | [keyword](#rune-0173)                  | authored   | `keyword` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the keyword obligation named before work proceeds.                                   |
+| 0174  | [lambda](#rune-0174)                   | authored   | `lambda` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the lambda obligation named before work proceeds.                                     |
+| 0175  | [lexical scope](#rune-0175)            | authored   | `lexical scope` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the lexical scope obligation named before work proceeds.                       |
+| 0176  | [lifetime {Lang}](#rune-0176)          | authored   | `lifetime` in its Lang sense is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the lifetime obligation named before work proceeds.               |
+| 0177  | [linker](#rune-0177)                   | authored   | The binder that turns compiled pieces into one loadable whole.                                                                                                                                                                 |
+| 0178  | [literal](#rune-0178)                  | authored   | `literal` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the literal obligation named before work proceeds.                                   |
+| 0179  | [loader](#rune-0179)                   | authored   | `loader` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the loader obligation named before work proceeds.                                     |
+| 0180  | [macro](#rune-0180)                    | authored   | Code that writes or reshapes code.                                                                                                                                                                                             |
+| 0181  | [metaprogramming](#rune-0181)          | authored   | `metaprogramming` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the metaprogramming obligation named before work proceeds.                   |
+| 0182  | [method](#rune-0182)                   | authored   | `method` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the method obligation named before work proceeds.                                     |
+| 0183  | [mixin](#rune-0183)                    | authored   | `mixin` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the mixin obligation named before work proceeds.                                       |
+| 0184  | [module {Lang}](#rune-0184)            | authored   | `module` in its Lang sense is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the module obligation named before work proceeds.                   |
+| 0185  | [monomorphization](#rune-0185)         | authored   | `monomorphization` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the monomorphization obligation named before work proceeds.                 |
+| 0186  | [mutability](#rune-0186)               | authored   | `mutability` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the mutability obligation named before work proceeds.                             |
+| 0187  | [name resolution](#rune-0187)          | authored   | `name resolution` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the name resolution obligation named before work proceeds.                   |
+| 0188  | [namespace {Lang}](#rune-0188)         | authored   | A naming region that prevents collisions and clarifies ownership.                                                                                                                                                              |
+| 0189  | [object](#rune-0189)                   | authored   | `object` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the object obligation named before work proceeds.                                     |
+| 0190  | [opcode {Lang}](#rune-0190)            | authored   | `opcode` in its Lang sense is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the opcode obligation named before work proceeds.                   |
+| 0191  | [overload](#rune-0191)                 | authored   | `overload` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the overload obligation named before work proceeds.                                 |
+| 0192  | [override](#rune-0192)                 | authored   | `override` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the override obligation named before work proceeds.                                 |
+| 0193  | [ownership](#rune-0193)                | authored   | `ownership` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the ownership obligation named before work proceeds.                               |
+| 0194  | [package {Lang}](#rune-0194)           | authored   | `package` in its Lang sense is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the package obligation named before work proceeds.                 |
+| 0195  | [parameter](#rune-0195)                | authored   | `parameter` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the parameter obligation named before work proceeds.                               |
+| 0196  | [parametric polymorphism](#rune-0196)  | authored   | `parametric polymorphism` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the parametric polymorphism obligation named before work proceeds.   |
+| 0197  | [parser](#rune-0197)                   | authored   | The mechanism that turns surface text into structured meaning.                                                                                                                                                                 |
+| 0198  | [pattern](#rune-0198)                  | authored   | `pattern` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the pattern obligation named before work proceeds.                                   |
+| 0199  | [pattern matching](#rune-0199)         | authored   | `pattern matching` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the pattern matching obligation named before work proceeds.                 |
+| 0200  | [polymorphism](#rune-0200)             | authored   | One interface, many concrete behaviors.                                                                                                                                                                                        |
+| 0201  | [procedure {Lang}](#rune-0201)         | authored   | `procedure` in its Lang sense is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the procedure obligation named before work proceeds.             |
+| 0202  | [program](#rune-0202)                  | authored   | `program` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the program obligation named before work proceeds.                                   |
+| 0203  | [property {Lang}](#rune-0203)          | authored   | `property` in its Lang sense is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the property obligation named before work proceeds.               |
+| 0204  | [protected](#rune-0204)                | authored   | `protected` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the protected obligation named before work proceeds.                               |
+| 0205  | [public](#rune-0205)                   | authored   | `public` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the public obligation named before work proceeds.                                     |
+| 0206  | [purity](#rune-0206)                   | authored   | `purity` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the purity obligation named before work proceeds.                                     |
+| 0207  | [qualified name](#rune-0207)           | authored   | `qualified name` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the qualified name obligation named before work proceeds.                     |
+| 0208  | [readonly](#rune-0208)                 | authored   | `readonly` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the readonly obligation named before work proceeds.                                 |
+| 0209  | [record {Lang}](#rune-0209)            | authored   | `record` in its Lang sense is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the record obligation named before work proceeds.                   |
+| 0210  | [reference {Lang}](#rune-0210)         | authored   | `reference` in its Lang sense is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the reference obligation named before work proceeds.             |
+| 0211  | [referential transparency](#rune-0211) | authored   | `referential transparency` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the referential transparency obligation named before work proceeds. |
+| 0212  | [reflection](#rune-0212)               | authored   | `reflection` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the reflection obligation named before work proceeds.                             |
+| 0213  | [resolution](#rune-0213)               | authored   | `resolution` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the resolution obligation named before work proceeds.                             |
+| 0214  | [return type](#rune-0214)              | authored   | `return type` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the return type obligation named before work proceeds.                           |
+| 0215  | [runtime type](#rune-0215)             | authored   | `runtime type` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the runtime type obligation named before work proceeds.                         |
+| 0216  | [scope {Lang}](#rune-0216)             | authored   | `scope` in its Lang sense is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the scope obligation named before work proceeds.                     |
+| 0217  | [sealed](#rune-0217)                   | authored   | `sealed` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the sealed obligation named before work proceeds.                                     |
+| 0218  | [semantics](#rune-0218)                | authored   | What a program means, not just how it is spelled.                                                                                                                                                                              |
+| 0219  | [signature {Lang}](#rune-0219)         | authored   | `signature` in its Lang sense is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the signature obligation named before work proceeds.             |
+| 0220  | [source code](#rune-0220)              | authored   | `source code` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the source code obligation named before work proceeds.                           |
+| 0221  | [specialization](#rune-0221)           | authored   | `specialization` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the specialization obligation named before work proceeds.                     |
+| 0222  | [statement](#rune-0222)                | authored   | `statement` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the statement obligation named before work proceeds.                               |
+| 0223  | [static dispatch](#rune-0223)          | authored   | `static dispatch` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the static dispatch obligation named before work proceeds.                   |
+| 0224  | [strictness](#rune-0224)               | authored   | `strictness` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the strictness obligation named before work proceeds.                             |
+| 0225  | [struct {Lang}](#rune-0225)            | authored   | `struct` in its Lang sense is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the struct obligation named before work proceeds.                   |
+| 0226  | [subtype](#rune-0226)                  | authored   | `subtype` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the subtype obligation named before work proceeds.                                   |
+| 0227  | [supertype](#rune-0227)                | authored   | `supertype` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the supertype obligation named before work proceeds.                               |
+| 0228  | [symbol](#rune-0228)                   | authored   | `symbol` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the symbol obligation named before work proceeds.                                     |
+| 0229  | [syntax](#rune-0229)                   | authored   | The legal surface form of the language.                                                                                                                                                                                        |
+| 0230  | [template {Lang}](#rune-0230)          | authored   | `template` in its Lang sense is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the template obligation named before work proceeds.               |
+| 0231  | [theorem {Lang}](#rune-0231)           | authored   | `theorem` in its Lang sense is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the theorem obligation named before work proceeds.                 |
+| 0232  | [token {Lang}](#rune-0232)             | authored   | `token` in its Lang sense is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the token obligation named before work proceeds.                     |
+| 0233  | [trait](#rune-0233)                    | authored   | `trait` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the trait obligation named before work proceeds.                                       |
+| 0234  | [transpiler](#rune-0234)               | authored   | `transpiler` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the transpiler obligation named before work proceeds.                             |
+| 0235  | [tuple {Lang}](#rune-0235)             | authored   | `tuple` in its Lang sense is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the tuple obligation named before work proceeds.                     |
+| 0236  | [type](#rune-0236)                     | authored   | A declared or inferred class of values and allowed operations.                                                                                                                                                                 |
+| 0237  | [type alias](#rune-0237)               | authored   | `type alias` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the type alias obligation named before work proceeds.                             |
+| 0238  | [type inference](#rune-0238)           | authored   | `type inference` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the type inference obligation named before work proceeds.                     |
+| 0239  | [type system](#rune-0239)              | authored   | `type system` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the type system obligation named before work proceeds.                           |
+| 0240  | [typechecker](#rune-0240)              | authored   | The checker that enforces type law before execution.                                                                                                                                                                           |
+| 0241  | [typeclass](#rune-0241)                | authored   | `typeclass` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the typeclass obligation named before work proceeds.                               |
+| 0242  | [unification](#rune-0242)              | authored   | `unification` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the unification obligation named before work proceeds.                           |
+| 0243  | [union](#rune-0243)                    | authored   | `union` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the union obligation named before work proceeds.                                       |
+| 0244  | [value](#rune-0244)                    | authored   | `value` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the value obligation named before work proceeds.                                       |
+| 0245  | [variance](#rune-0245)                 | authored   | `variance` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the variance obligation named before work proceeds.                                 |
+| 0246  | [virtual](#rune-0246)                  | authored   | `virtual` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the virtual obligation named before work proceeds.                                   |
+| 0247  | [visibility](#rune-0247)               | authored   | `visibility` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the visibility obligation named before work proceeds.                             |
+| 0248  | [visitor](#rune-0248)                  | authored   | `visitor` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the visitor obligation named before work proceeds.                                   |
+| 0249  | [where-clause](#rune-0249)             | authored   | `where-clause` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the where-clause obligation named before work proceeds.                         |
 
 ## Entries
 
@@ -162,71 +160,71 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A semantics word; it alters what symbols are allowed to mean in practice.
+**Force:** `abstract class` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the abstract class obligation named before work proceeds.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `abstract class` at rune 0113 in the language lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 ### [0114] alias {#rune-0114}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A semantics word; it alters what symbols are allowed to mean in practice.
+**Force:** `alias` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the alias obligation named before work proceeds.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `alias` at rune 0114 in the language lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 ### [0115] annotation {#rune-0115}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A shape-of-thought word; it influences how programs are written and reasoned about.
+**Force:** `annotation` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the annotation obligation named before work proceeds.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `annotation` at rune 0115 in the language lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 ### [0116] argument {#rune-0116}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A shape-of-thought word; it influences how programs are written and reasoned about.
+**Force:** `argument` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the argument obligation named before work proceeds.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `argument` at rune 0116 in the language lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 ### [0117] arity {#rune-0117}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A law-of-form word; it changes what the language can guarantee.
+**Force:** `arity` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the arity obligation named before work proceeds.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `arity` at rune 0117 in the language lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 ### [0118] assembly {#rune-0118}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A grammar-word; it shapes how meaning is expressed to humans and machines.
+**Force:** `assembly` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the assembly obligation named before work proceeds.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `assembly` at rune 0118 in the language lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 ### [0119] assertion {Lang} {#rune-0119}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A grammar-word; it shapes how meaning is expressed to humans and machines.
+**Force:** `assertion` in its Lang sense is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the assertion obligation named before work proceeds.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `assertion` at rune 0119 in the Lang lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 ### [0120] AST {#rune-0120}
 
@@ -236,7 +234,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** The tree form of parsed program structure.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `AST` at rune 0120 in the language lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 **Pocket gloss:** The tree form of parsed program structure.
 
@@ -244,31 +242,31 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A grammar-word; it shapes how meaning is expressed to humans and machines.
+**Force:** `attribute` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the attribute obligation named before work proceeds.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `attribute` at rune 0121 in the language lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 ### [0122] binding {#rune-0122}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A shape-of-thought word; it influences how programs are written and reasoned about.
+**Force:** `binding` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the binding obligation named before work proceeds.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `binding` at rune 0122 in the language lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 ### [0123] borrow {Lang} {#rune-0123}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A shape-of-thought word; it influences how programs are written and reasoned about.
+**Force:** `borrow` in its Lang sense is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the borrow obligation named before work proceeds.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `borrow` at rune 0123 in the Lang lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 ### [0124] borrow checker {#rune-0124}
 
@@ -278,7 +276,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** A checker that enforces safe borrowing and lifetime law before runtime.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `borrow checker` at rune 0124 in the language lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 **Pocket gloss:** A checker that enforces safe borrowing and lifetime law before runtime.
 
@@ -286,71 +284,71 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A shape-of-thought word; it influences how programs are written and reasoned about.
+**Force:** `bytecode` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the bytecode obligation named before work proceeds.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `bytecode` at rune 0125 in the language lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 ### [0126] capture {#rune-0126}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A grammar-word; it shapes how meaning is expressed to humans and machines.
+**Force:** `capture` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the capture obligation named before work proceeds.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `capture` at rune 0126 in the language lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 ### [0127] cast {#rune-0127}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A shape-of-thought word; it influences how programs are written and reasoned about.
+**Force:** `cast` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the cast obligation named before work proceeds.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `cast` at rune 0127 in the language lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 ### [0128] class {#rune-0128}
 
 **Status:** canonical
 
-**Completion:** needs_sense
+**Completion:** authored
 
-**Force:** A shape word for bundled state and behavior.
+**Force:** `class` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the class obligation named before work proceeds.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `class` at rune 0128 in the language lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 ### [0129] closure {#rune-0129}
 
 **Status:** canonical
 
-**Completion:** needs_sense
+**Completion:** authored
 
-**Force:** A capture word; it carries surrounding bindings forward with executable intent.
+**Force:** `closure` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the closure obligation named before work proceeds.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `closure` at rune 0129 in the language lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 ### [0130] coercion {#rune-0130}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A semantics word; it alters what symbols are allowed to mean in practice.
+**Force:** `coercion` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the coercion obligation named before work proceeds.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `coercion` at rune 0130 in the language lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 ### [0131] comment {#rune-0131}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A shape-of-thought word; it influences how programs are written and reasoned about.
+**Force:** `comment` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the comment obligation named before work proceeds.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `comment` at rune 0131 in the language lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 ### [0132] compile-time {#rune-0132}
 
@@ -360,7 +358,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** Known and fixed before execution begins.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `compile-time` at rune 0132 in the language lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 **Pocket gloss:** Known and fixed before execution begins.
 
@@ -372,7 +370,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** The translator from source language to lower-level executable form.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `compiler` at rune 0133 in the language lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 **Pocket gloss:** The translator from source language to lower-level executable form.
 
@@ -380,241 +378,241 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A semantics word; it alters what symbols are allowed to mean in practice.
+**Force:** `constant` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the constant obligation named before work proceeds.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `constant` at rune 0134 in the language lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 ### [0135] constraint {Lang} {#rune-0135}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A bounding word; it removes degrees of freedom in order to improve correctness.
+**Force:** `constraint` in its Lang sense is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the constraint obligation named before work proceeds.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `constraint` at rune 0135 in the Lang lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 ### [0136] constructor {#rune-0136}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A semantics word; it alters what symbols are allowed to mean in practice.
+**Force:** `constructor` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the constructor obligation named before work proceeds.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `constructor` at rune 0136 in the language lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 ### [0137] contravariance {#rune-0137}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A grammar-word; it shapes how meaning is expressed to humans and machines.
+**Force:** `contravariance` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the contravariance obligation named before work proceeds.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `contravariance` at rune 0137 in the language lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 ### [0138] covariance {#rune-0138}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A shape-of-thought word; it influences how programs are written and reasoned about.
+**Force:** `covariance` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the covariance obligation named before work proceeds.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `covariance` at rune 0138 in the language lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 ### [0139] currying {#rune-0139}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A shape-of-thought word; it influences how programs are written and reasoned about.
+**Force:** `currying` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the currying obligation named before work proceeds.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `currying` at rune 0139 in the language lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 ### [0140] declaration {#rune-0140}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A semantics word; it alters what symbols are allowed to mean in practice.
+**Force:** `declaration` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the declaration obligation named before work proceeds.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `declaration` at rune 0140 in the language lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 ### [0141] decorator {Lang} {#rune-0141}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A shape-of-thought word; it influences how programs are written and reasoned about.
+**Force:** `decorator` in its Lang sense is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the decorator obligation named before work proceeds.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `decorator` at rune 0141 in the Lang lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 ### [0142] default {#rune-0142}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A law-of-form word; it changes what the language can guarantee.
+**Force:** `default` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the default obligation named before work proceeds.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `default` at rune 0142 in the language lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 ### [0143] definition {#rune-0143}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A law-of-form word; it changes what the language can guarantee.
+**Force:** `definition` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the definition obligation named before work proceeds.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `definition` at rune 0143 in the language lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 ### [0144] denotation {#rune-0144}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A law-of-form word; it changes what the language can guarantee.
+**Force:** `denotation` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the denotation obligation named before work proceeds.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `denotation` at rune 0144 in the language lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 ### [0145] destructor {Lang} {#rune-0145}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A shape-of-thought word; it influences how programs are written and reasoned about.
+**Force:** `destructor` in its Lang sense is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the destructor obligation named before work proceeds.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `destructor` at rune 0145 in the Lang lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 ### [0146] dispatch {Lang} {#rune-0146}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A grammar-word; it shapes how meaning is expressed to humans and machines.
+**Force:** `dispatch` in its Lang sense is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the dispatch obligation named before work proceeds.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `dispatch` at rune 0146 in the Lang lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 ### [0147] domain-specific language {#rune-0147}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A shape-of-thought word; it influences how programs are written and reasoned about.
+**Force:** `domain-specific language` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the domain-specific language obligation named before work proceeds.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `domain-specific language` at rune 0147 in the language lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 ### [0148] dynamic scope {#rune-0148}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A shape-of-thought word; it influences how programs are written and reasoned about.
+**Force:** `dynamic scope` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the dynamic scope obligation named before work proceeds.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `dynamic scope` at rune 0148 in the language lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 ### [0149] effect {#rune-0149}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A law-of-form word; it changes what the language can guarantee.
+**Force:** `effect` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the effect obligation named before work proceeds.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `effect` at rune 0149 in the language lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 ### [0150] enum {#rune-0150}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A law-of-form word; it changes what the language can guarantee.
+**Force:** `enum` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the enum obligation named before work proceeds.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `enum` at rune 0150 in the language lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 ### [0151] evaluation {Lang} {#rune-0151}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A grammar-word; it shapes how meaning is expressed to humans and machines.
+**Force:** `evaluation` in its Lang sense is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the evaluation obligation named before work proceeds.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `evaluation` at rune 0151 in the Lang lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 ### [0152] export {Lang} {#rune-0152}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A semantics word; it alters what symbols are allowed to mean in practice.
+**Force:** `export` in its Lang sense is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the export obligation named before work proceeds.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `export` at rune 0152 in the Lang lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 ### [0153] expression {#rune-0153}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A grammar-word; it shapes how meaning is expressed to humans and machines.
+**Force:** `expression` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the expression obligation named before work proceeds.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `expression` at rune 0153 in the language lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 ### [0154] extern {#rune-0154}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A semantics word; it alters what symbols are allowed to mean in practice.
+**Force:** `extern` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the extern obligation named before work proceeds.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `extern` at rune 0154 in the language lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 ### [0155] field {Lang} {#rune-0155}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A grammar-word; it shapes how meaning is expressed to humans and machines.
+**Force:** `field` in its Lang sense is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the field obligation named before work proceeds.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `field` at rune 0155 in the Lang lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 ### [0156] final {#rune-0156}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A semantics word; it alters what symbols are allowed to mean in practice.
+**Force:** `final` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the final obligation named before work proceeds.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `final` at rune 0156 in the language lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 ### [0157] function {#rune-0157}
 
 **Status:** canonical
 
-**Completion:** needs_sense
+**Completion:** authored
 
-**Force:** A callable word; given inputs, it yields outputs by a named rule.
+**Force:** `function` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the function obligation named before work proceeds.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `function` at rune 0157 in the language lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 ### [0158] generic {Lang} {#rune-0158}
 
@@ -624,7 +622,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** One definition parameterized over many concrete types or cases.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `generic` at rune 0158 in the Lang lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 **Pocket gloss:** One definition parameterized over many concrete types or cases.
 
@@ -636,7 +634,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** The rules that say what strings count as well-formed structure.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `grammar` at rune 0159 in the language lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 **Pocket gloss:** The rules that say what strings count as well-formed structure.
 
@@ -644,61 +642,61 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A semantics word; it alters what symbols are allowed to mean in practice.
+**Force:** `higher-order function` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the higher-order function obligation named before work proceeds.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `higher-order function` at rune 0160 in the language lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 ### [0161] identifier {#rune-0161}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A shape-of-thought word; it influences how programs are written and reasoned about.
+**Force:** `identifier` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the identifier obligation named before work proceeds.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `identifier` at rune 0161 in the language lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 ### [0162] impl {#rune-0162}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A semantics word; it alters what symbols are allowed to mean in practice.
+**Force:** `impl` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the impl obligation named before work proceeds.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `impl` at rune 0162 in the language lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 ### [0163] implementation {Lang} {#rune-0163}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A semantics word; it alters what symbols are allowed to mean in practice.
+**Force:** `implementation` in its Lang sense is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the implementation obligation named before work proceeds.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `implementation` at rune 0163 in the Lang lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 ### [0164] import {#rune-0164}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A shape-of-thought word; it influences how programs are written and reasoned about.
+**Force:** `import` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the import obligation named before work proceeds.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `import` at rune 0164 in the language lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 ### [0165] include {#rune-0165}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A grammar-word; it shapes how meaning is expressed to humans and machines.
+**Force:** `include` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the include obligation named before work proceeds.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `include` at rune 0165 in the language lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 ### [0166] inference {#rune-0166}
 
@@ -708,7 +706,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** Recovering missing type or shape information from surrounding evidence.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `inference` at rune 0166 in the language lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 **Pocket gloss:** Recovering missing type or shape information from surrounding evidence.
 
@@ -716,31 +714,31 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A semantics word; it alters what symbols are allowed to mean in practice.
+**Force:** `inheritance` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the inheritance obligation named before work proceeds.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `inheritance` at rune 0167 in the language lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 ### [0168] inline {Lang} {#rune-0168}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A shape-of-thought word; it influences how programs are written and reasoned about.
+**Force:** `inline` in its Lang sense is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the inline obligation named before work proceeds.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `inline` at rune 0168 in the Lang lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 ### [0169] instruction {Lang} {#rune-0169}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A semantics word; it alters what symbols are allowed to mean in practice.
+**Force:** `instruction` in its Lang sense is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the instruction obligation named before work proceeds.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `instruction` at rune 0169 in the Lang lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 ### [0170] interface {Lang} {#rune-0170}
 
@@ -748,9 +746,9 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
-**Force:** A boundary word; it lets different bodies touch through a disciplined seam.
+**Force:** `interface` in its Lang sense is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the interface obligation named before work proceeds.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `interface` at rune 0170 in the Lang lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 ### [0171] interpreter {Lang} {#rune-0171}
 
@@ -760,7 +758,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** A runtime that executes a representation rather than precompiling it away.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `interpreter` at rune 0171 in the Lang lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 **Pocket gloss:** A runtime that executes a representation rather than precompiling it away.
 
@@ -772,7 +770,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** An internal representation built for analysis and transformation.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `IR` at rune 0172 in the language lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 **Pocket gloss:** An internal representation built for analysis and transformation.
 
@@ -780,41 +778,41 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A law-of-form word; it changes what the language can guarantee.
+**Force:** `keyword` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the keyword obligation named before work proceeds.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `keyword` at rune 0173 in the language lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 ### [0174] lambda {#rune-0174}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A law-of-form word; it changes what the language can guarantee.
+**Force:** `lambda` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the lambda obligation named before work proceeds.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `lambda` at rune 0174 in the language lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 ### [0175] lexical scope {#rune-0175}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A grammar-word; it shapes how meaning is expressed to humans and machines.
+**Force:** `lexical scope` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the lexical scope obligation named before work proceeds.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `lexical scope` at rune 0175 in the language lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 ### [0176] lifetime {Lang} {#rune-0176}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A shape-of-thought word; it influences how programs are written and reasoned about.
+**Force:** `lifetime` in its Lang sense is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the lifetime obligation named before work proceeds.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `lifetime` at rune 0176 in the Lang lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 ### [0177] linker {#rune-0177}
 
@@ -824,7 +822,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** The binder that turns compiled pieces into one loadable whole.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `linker` at rune 0177 in the language lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 **Pocket gloss:** The binder that turns compiled pieces into one loadable whole.
 
@@ -832,21 +830,21 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A law-of-form word; it changes what the language can guarantee.
+**Force:** `literal` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the literal obligation named before work proceeds.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `literal` at rune 0178 in the language lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 ### [0179] loader {#rune-0179}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A shape-of-thought word; it influences how programs are written and reasoned about.
+**Force:** `loader` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the loader obligation named before work proceeds.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `loader` at rune 0179 in the language lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 ### [0180] macro {#rune-0180}
 
@@ -856,7 +854,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** Code that writes or reshapes code.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `macro` at rune 0180 in the language lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 **Pocket gloss:** Code that writes or reshapes code.
 
@@ -864,71 +862,71 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A semantics word; it alters what symbols are allowed to mean in practice.
+**Force:** `metaprogramming` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the metaprogramming obligation named before work proceeds.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `metaprogramming` at rune 0181 in the language lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 ### [0182] method {#rune-0182}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A law-of-form word; it changes what the language can guarantee.
+**Force:** `method` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the method obligation named before work proceeds.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `method` at rune 0182 in the language lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 ### [0183] mixin {#rune-0183}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A law-of-form word; it changes what the language can guarantee.
+**Force:** `mixin` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the mixin obligation named before work proceeds.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `mixin` at rune 0183 in the language lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 ### [0184] module {Lang} {#rune-0184}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A containment word; related definitions are packaged as one coherent unit.
+**Force:** `module` in its Lang sense is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the module obligation named before work proceeds.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `module` at rune 0184 in the Lang lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 ### [0185] monomorphization {#rune-0185}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A law-of-form word; it changes what the language can guarantee.
+**Force:** `monomorphization` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the monomorphization obligation named before work proceeds.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `monomorphization` at rune 0185 in the language lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 ### [0186] mutability {#rune-0186}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A grammar-word; it shapes how meaning is expressed to humans and machines.
+**Force:** `mutability` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the mutability obligation named before work proceeds.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `mutability` at rune 0186 in the language lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 ### [0187] name resolution {#rune-0187}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A law-of-form word; it changes what the language can guarantee.
+**Force:** `name resolution` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the name resolution obligation named before work proceeds.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `name resolution` at rune 0187 in the language lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 ### [0188] namespace {Lang} {#rune-0188}
 
@@ -938,7 +936,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** A naming region that prevents collisions and clarifies ownership.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `namespace` at rune 0188 in the Lang lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 **Pocket gloss:** A naming region that prevents collisions and clarifies ownership.
 
@@ -946,81 +944,81 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A shape-of-thought word; it influences how programs are written and reasoned about.
+**Force:** `object` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the object obligation named before work proceeds.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `object` at rune 0189 in the language lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 ### [0190] opcode {Lang} {#rune-0190}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A semantics word; it alters what symbols are allowed to mean in practice.
+**Force:** `opcode` in its Lang sense is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the opcode obligation named before work proceeds.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `opcode` at rune 0190 in the Lang lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 ### [0191] overload {#rune-0191}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A grammar-word; it shapes how meaning is expressed to humans and machines.
+**Force:** `overload` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the overload obligation named before work proceeds.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `overload` at rune 0191 in the language lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 ### [0192] override {#rune-0192}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A grammar-word; it shapes how meaning is expressed to humans and machines.
+**Force:** `override` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the override obligation named before work proceeds.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `override` at rune 0192 in the language lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 ### [0193] ownership {#rune-0193}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A shape-of-thought word; it influences how programs are written and reasoned about.
+**Force:** `ownership` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the ownership obligation named before work proceeds.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `ownership` at rune 0193 in the language lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 ### [0194] package {Lang} {#rune-0194}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A grammar-word; it shapes how meaning is expressed to humans and machines.
+**Force:** `package` in its Lang sense is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the package obligation named before work proceeds.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `package` at rune 0194 in the Lang lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 ### [0195] parameter {#rune-0195}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A law-of-form word; it changes what the language can guarantee.
+**Force:** `parameter` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the parameter obligation named before work proceeds.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `parameter` at rune 0195 in the language lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 ### [0196] parametric polymorphism {#rune-0196}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A shape-of-thought word; it influences how programs are written and reasoned about.
+**Force:** `parametric polymorphism` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the parametric polymorphism obligation named before work proceeds.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `parametric polymorphism` at rune 0196 in the language lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 ### [0197] parser {#rune-0197}
 
@@ -1030,7 +1028,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** The mechanism that turns surface text into structured meaning.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `parser` at rune 0197 in the language lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 **Pocket gloss:** The mechanism that turns surface text into structured meaning.
 
@@ -1038,21 +1036,21 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A semantics word; it alters what symbols are allowed to mean in practice.
+**Force:** `pattern` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the pattern obligation named before work proceeds.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `pattern` at rune 0198 in the language lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 ### [0199] pattern matching {#rune-0199}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A law-of-form word; it changes what the language can guarantee.
+**Force:** `pattern matching` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the pattern matching obligation named before work proceeds.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `pattern matching` at rune 0199 in the language lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 ### [0200] polymorphism {#rune-0200}
 
@@ -1062,7 +1060,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** One interface, many concrete behaviors.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `polymorphism` at rune 0200 in the language lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 **Pocket gloss:** One interface, many concrete behaviors.
 
@@ -1070,171 +1068,171 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A method word; not just what to do, but in what order to do it.
+**Force:** `procedure` in its Lang sense is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the procedure obligation named before work proceeds.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `procedure` at rune 0201 in the Lang lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 ### [0202] program {#rune-0202}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A grammar-word; it shapes how meaning is expressed to humans and machines.
+**Force:** `program` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the program obligation named before work proceeds.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `program` at rune 0202 in the language lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 ### [0203] property {Lang} {#rune-0203}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A law-of-form word; it changes what the language can guarantee.
+**Force:** `property` in its Lang sense is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the property obligation named before work proceeds.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `property` at rune 0203 in the Lang lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 ### [0204] protected {#rune-0204}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A semantics word; it alters what symbols are allowed to mean in practice.
+**Force:** `protected` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the protected obligation named before work proceeds.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `protected` at rune 0204 in the language lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 ### [0205] public {#rune-0205}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A shape-of-thought word; it influences how programs are written and reasoned about.
+**Force:** `public` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the public obligation named before work proceeds.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `public` at rune 0205 in the language lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 ### [0206] purity {#rune-0206}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A law-of-form word; it changes what the language can guarantee.
+**Force:** `purity` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the purity obligation named before work proceeds.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `purity` at rune 0206 in the language lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 ### [0207] qualified name {#rune-0207}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A law-of-form word; it changes what the language can guarantee.
+**Force:** `qualified name` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the qualified name obligation named before work proceeds.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `qualified name` at rune 0207 in the language lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 ### [0208] readonly {#rune-0208}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A semantics word; it alters what symbols are allowed to mean in practice.
+**Force:** `readonly` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the readonly obligation named before work proceeds.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `readonly` at rune 0208 in the language lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 ### [0209] record {Lang} {#rune-0209}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A shape-of-thought word; it influences how programs are written and reasoned about.
+**Force:** `record` in its Lang sense is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the record obligation named before work proceeds.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `record` at rune 0209 in the Lang lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 ### [0210] reference {Lang} {#rune-0210}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A shape-of-thought word; it influences how programs are written and reasoned about.
+**Force:** `reference` in its Lang sense is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the reference obligation named before work proceeds.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `reference` at rune 0210 in the Lang lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 ### [0211] referential transparency {#rune-0211}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A shape-of-thought word; it influences how programs are written and reasoned about.
+**Force:** `referential transparency` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the referential transparency obligation named before work proceeds.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `referential transparency` at rune 0211 in the language lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 ### [0212] reflection {#rune-0212}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A shape-of-thought word; it influences how programs are written and reasoned about.
+**Force:** `reflection` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the reflection obligation named before work proceeds.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `reflection` at rune 0212 in the language lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 ### [0213] resolution {#rune-0213}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A grammar-word; it shapes how meaning is expressed to humans and machines.
+**Force:** `resolution` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the resolution obligation named before work proceeds.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `resolution` at rune 0213 in the language lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 ### [0214] return type {#rune-0214}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A semantics word; it alters what symbols are allowed to mean in practice.
+**Force:** `return type` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the return type obligation named before work proceeds.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `return type` at rune 0214 in the language lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 ### [0215] runtime type {#rune-0215}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A semantics word; it alters what symbols are allowed to mean in practice.
+**Force:** `runtime type` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the runtime type obligation named before work proceeds.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `runtime type` at rune 0215 in the language lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 ### [0216] scope {Lang} {#rune-0216}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A semantics word; it alters what symbols are allowed to mean in practice.
+**Force:** `scope` in its Lang sense is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the scope obligation named before work proceeds.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `scope` at rune 0216 in the Lang lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 ### [0217] sealed {#rune-0217}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A semantics word; it alters what symbols are allowed to mean in practice.
+**Force:** `sealed` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the sealed obligation named before work proceeds.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `sealed` at rune 0217 in the language lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 ### [0218] semantics {#rune-0218}
 
@@ -1244,7 +1242,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** What a program means, not just how it is spelled.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `semantics` at rune 0218 in the language lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 **Pocket gloss:** What a program means, not just how it is spelled.
 
@@ -1254,99 +1252,99 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
-**Force:** A proving word; identity or contract is made checkable.
+**Force:** `signature` in its Lang sense is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the signature obligation named before work proceeds.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `signature` at rune 0219 in the Lang lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 ### [0220] source code {#rune-0220}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A grammar-word; it shapes how meaning is expressed to humans and machines.
+**Force:** `source code` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the source code obligation named before work proceeds.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `source code` at rune 0220 in the language lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 ### [0221] specialization {#rune-0221}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A shape-of-thought word; it influences how programs are written and reasoned about.
+**Force:** `specialization` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the specialization obligation named before work proceeds.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `specialization` at rune 0221 in the language lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 ### [0222] statement {#rune-0222}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A law-of-form word; it changes what the language can guarantee.
+**Force:** `statement` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the statement obligation named before work proceeds.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `statement` at rune 0222 in the language lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 ### [0223] static dispatch {#rune-0223}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A grammar-word; it shapes how meaning is expressed to humans and machines.
+**Force:** `static dispatch` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the static dispatch obligation named before work proceeds.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `static dispatch` at rune 0223 in the language lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 ### [0224] strictness {#rune-0224}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A semantics word; it alters what symbols are allowed to mean in practice.
+**Force:** `strictness` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the strictness obligation named before work proceeds.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `strictness` at rune 0224 in the language lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 ### [0225] struct {Lang} {#rune-0225}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A law-of-form word; it changes what the language can guarantee.
+**Force:** `struct` in its Lang sense is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the struct obligation named before work proceeds.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `struct` at rune 0225 in the Lang lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 ### [0226] subtype {#rune-0226}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A grammar-word; it shapes how meaning is expressed to humans and machines.
+**Force:** `subtype` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the subtype obligation named before work proceeds.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `subtype` at rune 0226 in the language lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 ### [0227] supertype {#rune-0227}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A law-of-form word; it changes what the language can guarantee.
+**Force:** `supertype` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the supertype obligation named before work proceeds.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `supertype` at rune 0227 in the language lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 ### [0228] symbol {#rune-0228}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A semantics word; it alters what symbols are allowed to mean in practice.
+**Force:** `symbol` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the symbol obligation named before work proceeds.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `symbol` at rune 0228 in the language lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 ### [0229] syntax {#rune-0229}
 
@@ -1356,7 +1354,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** The legal surface form of the language.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `syntax` at rune 0229 in the language lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 **Pocket gloss:** The legal surface form of the language.
 
@@ -1364,61 +1362,61 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A grammar-word; it shapes how meaning is expressed to humans and machines.
+**Force:** `template` in its Lang sense is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the template obligation named before work proceeds.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `template` at rune 0230 in the Lang lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 ### [0231] theorem {Lang} {#rune-0231}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A grammar-word; it shapes how meaning is expressed to humans and machines.
+**Force:** `theorem` in its Lang sense is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the theorem obligation named before work proceeds.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `theorem` at rune 0231 in the Lang lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 ### [0232] token {Lang} {#rune-0232}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A countable unit of text or symbol used for parsing, modeling, or encoding.
+**Force:** `token` in its Lang sense is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the token obligation named before work proceeds.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `token` at rune 0232 in the Lang lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 ### [0233] trait {#rune-0233}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A grammar-word; it shapes how meaning is expressed to humans and machines.
+**Force:** `trait` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the trait obligation named before work proceeds.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `trait` at rune 0233 in the language lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 ### [0234] transpiler {#rune-0234}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A grammar-word; it shapes how meaning is expressed to humans and machines.
+**Force:** `transpiler` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the transpiler obligation named before work proceeds.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `transpiler` at rune 0234 in the language lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 ### [0235] tuple {Lang} {#rune-0235}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A semantics word; it alters what symbols are allowed to mean in practice.
+**Force:** `tuple` in its Lang sense is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the tuple obligation named before work proceeds.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `tuple` at rune 0235 in the Lang lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 ### [0236] type {#rune-0236}
 
@@ -1428,7 +1426,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** A declared or inferred class of values and allowed operations.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `type` at rune 0236 in the language lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 **Pocket gloss:** A declared or inferred class of values and allowed operations.
 
@@ -1436,31 +1434,31 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A grammar-word; it shapes how meaning is expressed to humans and machines.
+**Force:** `type alias` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the type alias obligation named before work proceeds.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `type alias` at rune 0237 in the language lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 ### [0238] type inference {#rune-0238}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A law-of-form word; it changes what the language can guarantee.
+**Force:** `type inference` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the type inference obligation named before work proceeds.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `type inference` at rune 0238 in the language lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 ### [0239] type system {#rune-0239}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A shape-of-thought word; it influences how programs are written and reasoned about.
+**Force:** `type system` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the type system obligation named before work proceeds.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `type system` at rune 0239 in the language lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 ### [0240] typechecker {#rune-0240}
 
@@ -1470,7 +1468,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** The checker that enforces type law before execution.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `typechecker` at rune 0240 in the language lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 **Pocket gloss:** The checker that enforces type law before execution.
 
@@ -1478,88 +1476,88 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A grammar-word; it shapes how meaning is expressed to humans and machines.
+**Force:** `typeclass` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the typeclass obligation named before work proceeds.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `typeclass` at rune 0241 in the language lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 ### [0242] unification {#rune-0242}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A law-of-form word; it changes what the language can guarantee.
+**Force:** `unification` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the unification obligation named before work proceeds.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `unification` at rune 0242 in the language lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 ### [0243] union {#rune-0243}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A law-of-form word; it changes what the language can guarantee.
+**Force:** `union` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the union obligation named before work proceeds.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `union` at rune 0243 in the language lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 ### [0244] value {#rune-0244}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A law-of-form word; it changes what the language can guarantee.
+**Force:** `value` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the value obligation named before work proceeds.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `value` at rune 0244 in the language lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 ### [0245] variance {#rune-0245}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A law-of-form word; it changes what the language can guarantee.
+**Force:** `variance` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the variance obligation named before work proceeds.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `variance` at rune 0245 in the language lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 ### [0246] virtual {#rune-0246}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A shape-of-thought word; it influences how programs are written and reasoned about.
+**Force:** `virtual` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the virtual obligation named before work proceeds.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `virtual` at rune 0246 in the language lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 ### [0247] visibility {#rune-0247}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A grammar-word; it shapes how meaning is expressed to humans and machines.
+**Force:** `visibility` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the visibility obligation named before work proceeds.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `visibility` at rune 0247 in the language lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 ### [0248] visitor {#rune-0248}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A grammar-word; it shapes how meaning is expressed to humans and machines.
+**Force:** `visitor` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the visitor obligation named before work proceeds.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `visitor` at rune 0248 in the language lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.
 
 ### [0249] where-clause {#rune-0249}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A law-of-form word; it changes what the language can guarantee.
+**Force:** `where-clause` is a language and semantics rune for make meaning, syntax, and interpretation rules inspectable; use it when the artifact needs the where-clause obligation named before work proceeds.
 
-**Shadow:** the form can look precise while still carrying ambiguous or invalid meaning.
+**Shadow:** misusing `where-clause` at rune 0249 in the language lane can let valid-looking form can still carry the wrong meaning; verify by requiring the caster to state the parser, grammar, or semantic rule being relied on.

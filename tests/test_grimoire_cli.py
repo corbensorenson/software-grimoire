@@ -43,3 +43,9 @@ def test_new_spell_validate_and_seal_round_trip(tmp_path: Path) -> None:
     sealed_record = json.loads(sealed.stdout)
     assert sealed_record["working_seal"] == record["working_seal"]
     assert sealed_record["formal_sigil"]["digest"] == record["formal_sigil"]["digest"]
+
+
+def test_export_command_lists_generated_assets() -> None:
+    exported = run_cli("export", "--target", "cursor")
+    assert exported.returncode == 0, exported.stderr
+    assert "exports/cursor/rules/safe-refactoring.mdc" in exported.stdout

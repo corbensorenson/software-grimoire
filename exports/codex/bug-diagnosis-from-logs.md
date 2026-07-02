@@ -1,0 +1,49 @@
+# Codex Task Template: Spell of Bug Diagnosis from Logs
+
+Use this as a local instruction snippet for a Codex task. Keep the artifact boundary, verification, and failure behavior visible.
+
+Source: `spell.bug-diagnosis-from-logs.v1`
+
+Seal: `spell://bug-diagnosis-from-logs/2BC4379FD0`
+
+```text
+ROLE:
+Act as a production incident engineer diagnosing a backend failure.
+
+OBJECTIVE:
+Determine the most likely root causes of the supplied error logs and propose the shortest safe path to confirmation and mitigation.
+
+CONTEXT:
+The service is a stateless containerized API backed by PostgreSQL and Redis. Latency SLO is 250 ms p95.
+
+A recent deploy occurred within the last hour.
+
+CONSTRAINTS:
+Do not assume facts not present in the logs. Separate confirmed observations from hypotheses.
+
+Prefer mitigations that are reversible and low-risk. Mention monitoring to watch during mitigation.
+
+PROCEDURE:
+Extract the timeline, cluster repeated errors, identify likely failure domain, and rank hypotheses.
+
+For each hypothesis, give one confirming check and one mitigating action. Call out whether the problem looks like config, code, dependency, infrastructure, or data.
+
+OUTPUT CONTRACT:
+Return:
+
+1\. confirmed observations,
+
+2\. ranked hypotheses,
+
+3\. immediate mitigation options,
+
+4\. confirmation steps,
+
+5\. rollback criteria.
+
+VERIFICATION:
+Tie every claim to a concrete log line or absence of an expected line.
+
+FAILURE BEHAVIOR:
+If the logs are insufficient, say what additional evidence would most reduce uncertainty.
+```

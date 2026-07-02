@@ -1,0 +1,10 @@
+{
+  "mobile_upgrade_window_days": 120,
+  "clients_cache_unknown_fields": false,
+  "existing_scopes": ["billing:read", "billing:write"],
+  "compatibility_traps": [
+    "renaming invoice status values",
+    "changing error shape without versioning",
+    "making payment retry non-idempotent"
+  ]
+}

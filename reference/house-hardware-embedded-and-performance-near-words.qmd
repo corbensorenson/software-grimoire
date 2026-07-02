@@ -10,93 +10,92 @@ Range: `1211-1290`.
 
 | Status   | Count |
 | -------- | ----- |
-| authored | 15    |
-| stub     | 65    |
+| authored | 80    |
 
 Use the summary table for scanning. Each row links to the detailed anchored entry below.
 
-| Sigil | Term                                           | Completion | Summary                                                                                                                                           |
-| ----- | ---------------------------------------------- | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 1211  | `STUB` [accelerator](#rune-1211)               | stub       | A near-metal word; it matters when abstraction is no longer cheap enough.                                                                         |
-| 1212  | `STUB` [alignment {HW}](#rune-1212)            | stub       | An embodiment word; software here speaks almost directly to silicon or wire.                                                                      |
-| 1213  | `STUB` [ASIC](#rune-1213)                      | stub       | A machine-word; it reaches into clocks, buses, registers, or heat.                                                                                |
-| 1214  | `STUB` [assembly instruction](#rune-1214)      | stub       | A performance-and-physics word; it governs timing, placement, and finite material limits.                                                         |
-| 1215  | [atomic instruction](#rune-1215)               | authored   | An indivisible machine operation at instruction level.                                                                                            |
-| 1216  | `STUB` [bandwidth {HW}](#rune-1216)            | stub       | A near-metal word; it matters when abstraction is no longer cheap enough.                                                                         |
-| 1217  | `STUB` [barrier {HW}](#rune-1217)              | stub       | A rendezvous word; no party crosses until all required parties arrive.                                                                            |
-| 1218  | `STUB` [bit width](#rune-1218)                 | stub       | An embodiment word; software here speaks almost directly to silicon or wire.                                                                      |
-| 1219  | `STUB` [boot ROM](#rune-1219)                  | stub       | A performance-and-physics word; it governs timing, placement, and finite material limits.                                                         |
-| 1220  | `STUB` [branch predictor](#rune-1220)          | stub       | A performance-and-physics word; it governs timing, placement, and finite material limits.                                                         |
-| 1221  | `STUB` [bus {HW}](#rune-1221)                  | stub       | A performance-and-physics word; it governs timing, placement, and finite material limits.                                                         |
-| 1222  | [cache {HW}](#rune-1222)                       | authored   | A nearness word; it keeps likely things close to reduce future cost.                                                                              |
-| 1223  | `STUB` [cache coherence](#rune-1223)           | stub       | A machine-word; it reaches into clocks, buses, registers, or heat.                                                                                |
-| 1224  | [cache line {HW}](#rune-1224)                  | authored   | The coherence-sized chunk of cached memory; too much sharing here hurts.                                                                          |
-| 1225  | `STUB` [clock](#rune-1225)                     | stub       | A machine-word; it reaches into clocks, buses, registers, or heat.                                                                                |
-| 1226  | `STUB` [clock cycle](#rune-1226)               | stub       | A machine-word; it reaches into clocks, buses, registers, or heat.                                                                                |
-| 1227  | `STUB` [co-processor](#rune-1227)              | stub       | An embodiment word; software here speaks almost directly to silicon or wire.                                                                      |
-| 1228  | `STUB` [core {HW}](#rune-1228)                 | stub       | A near-metal word; it matters when abstraction is no longer cheap enough.                                                                         |
-| 1229  | `STUB` [CPU](#rune-1229)                       | stub       | A machine-word; it reaches into clocks, buses, registers, or heat.                                                                                |
-| 1230  | `STUB` [cycle budget](#rune-1230)              | stub       | An embodiment word; software here speaks almost directly to silicon or wire.                                                                      |
-| 1231  | [DMA](#rune-1231)                              | authored   | Direct memory access: device moves bytes without making the CPU do every step.                                                                    |
-| 1232  | `STUB` [DRAM](#rune-1232)                      | stub       | A machine-word; it reaches into clocks, buses, registers, or heat.                                                                                |
-| 1233  | `STUB` [driver interrupt](#rune-1233)          | stub       | A near-metal word; it matters when abstraction is no longer cheap enough.                                                                         |
-| 1234  | `STUB` [EEPROM](#rune-1234)                    | stub       | A machine-word; it reaches into clocks, buses, registers, or heat.                                                                                |
-| 1235  | [endianness](#rune-1235)                       | authored   | The byte order in which multi-byte values are laid out.                                                                                           |
-| 1236  | `STUB` [fence](#rune-1236)                     | stub       | A near-metal word; it matters when abstraction is no longer cheap enough.                                                                         |
-| 1237  | [firmware {HW}](#rune-1237)                    | authored   | Software that is closer to the board than the application.                                                                                        |
-| 1238  | `STUB` [flash](#rune-1238)                     | stub       | A performance-and-physics word; it governs timing, placement, and finite material limits.                                                         |
-| 1239  | `STUB` [FPGA](#rune-1239)                      | stub       | A performance-and-physics word; it governs timing, placement, and finite material limits.                                                         |
-| 1240  | `STUB` [frame budget](#rune-1240)              | stub       | A performance-and-physics word; it governs timing, placement, and finite material limits.                                                         |
-| 1241  | `STUB` [frequency](#rune-1241)                 | stub       | A performance-and-physics word; it governs timing, placement, and finite material limits.                                                         |
-| 1242  | `STUB` [GPIO](#rune-1242)                      | stub       | An embodiment word; software here speaks almost directly to silicon or wire.                                                                      |
-| 1243  | [GPU](#rune-1243)                              | authored   | A massively parallel processor built for throughput-heavy workloads.                                                                              |
-| 1244  | `STUB` [heat budget](#rune-1244)               | stub       | A near-metal word; it matters when abstraction is no longer cheap enough.                                                                         |
-| 1245  | `STUB` [I2C](#rune-1245)                       | stub       | A performance-and-physics word; it governs timing, placement, and finite material limits.                                                         |
-| 1246  | `STUB` [instruction cache](#rune-1246)         | stub       | A performance-and-physics word; it governs timing, placement, and finite material limits.                                                         |
-| 1247  | `STUB` [instruction pointer](#rune-1247)       | stub       | An embodiment word; software here speaks almost directly to silicon or wire.                                                                      |
-| 1248  | `STUB` [interrupt service routine](#rune-1248) | stub       | A machine-word; it reaches into clocks, buses, registers, or heat.                                                                                |
-| 1249  | `STUB` [ioctl boundary](#rune-1249)            | stub       | An embodiment word; software here speaks almost directly to silicon or wire.                                                                      |
-| 1250  | `STUB` [IPC cost](#rune-1250)                  | stub       | A near-metal word; it matters when abstraction is no longer cheap enough.                                                                         |
-| 1251  | [ISA](#rune-1251)                              | authored   | Instruction set architecture: the machine contract visible to software.                                                                           |
-| 1252  | `STUB` [jitter {HW}](#rune-1252)               | stub       | A timing-noise word; repeated operations arrive with unstable spacing.                                                                            |
-| 1253  | `STUB` [JTAG](#rune-1253)                      | stub       | A performance-and-physics word; it governs timing, placement, and finite material limits.                                                         |
-| 1254  | `STUB` [kernel bypass](#rune-1254)             | stub       | An embodiment word; software here speaks almost directly to silicon or wire.                                                                      |
-| 1255  | [latency budget](#rune-1255)                   | authored   | The maximum delay the system is allowed to spend and still remain acceptable.                                                                     |
-| 1256  | `STUB` [memory channel](#rune-1256)            | stub       | A performance-and-physics word; it governs timing, placement, and finite material limits.                                                         |
-| 1257  | `STUB` [memory-mapped I/O](#rune-1257)         | stub       | A machine-word; it reaches into clocks, buses, registers, or heat.                                                                                |
-| 1258  | `STUB` [microcode](#rune-1258)                 | stub       | A near-metal word; it matters when abstraction is no longer cheap enough.                                                                         |
-| 1259  | `STUB` [MMIO](#rune-1259)                      | stub       | A performance-and-physics word; it governs timing, placement, and finite material limits.                                                         |
-| 1260  | `STUB` [NUMA](#rune-1260)                      | stub       | A near-metal word; it matters when abstraction is no longer cheap enough.                                                                         |
-| 1261  | `STUB` [NVRAM](#rune-1261)                     | stub       | A machine-word; it reaches into clocks, buses, registers, or heat.                                                                                |
-| 1262  | `STUB` [opcode {HW}](#rune-1262)               | stub       | A performance-and-physics word; it governs timing, placement, and finite material limits.                                                         |
-| 1263  | `STUB` [out-of-order execution](#rune-1263)    | stub       | An embodiment word; software here speaks almost directly to silicon or wire.                                                                      |
-| 1264  | `STUB` [PCIe](#rune-1264)                      | stub       | A near-metal word; it matters when abstraction is no longer cheap enough.                                                                         |
-| 1265  | `STUB` [pipeline {HW}](#rune-1265)             | stub       | A procession word; work passes through ordered stages.                                                                                            |
-| 1266  | `STUB` [power budget](#rune-1266)              | stub       | A machine-word; it reaches into clocks, buses, registers, or heat.                                                                                |
-| 1267  | `STUB` [prefetcher](#rune-1267)                | stub       | A machine-word; it reaches into clocks, buses, registers, or heat.                                                                                |
-| 1268  | `STUB` [real-time {HW}](#rune-1268)            | stub       | A machine-word; it reaches into clocks, buses, registers, or heat.                                                                                |
-| 1269  | [register](#rune-1269)                         | authored   | A tiny named storage cell inside the processor.                                                                                                   |
-| 1270  | `STUB` [register file](#rune-1270)             | stub       | A near-metal word; it matters when abstraction is no longer cheap enough.                                                                         |
-| 1271  | `STUB` [reset vector](#rune-1271)              | stub       | A performance-and-physics word; it governs timing, placement, and finite material limits.                                                         |
-| 1272  | `STUB` [ROM](#rune-1272)                       | stub       | A performance-and-physics word; it governs timing, placement, and finite material limits.                                                         |
-| 1273  | `STUB` [RTOS](#rune-1273)                      | stub       | A machine-word; it reaches into clocks, buses, registers, or heat.                                                                                |
-| 1274  | `STUB` [runtime budget](#rune-1274)            | stub       | An embodiment word; software here speaks almost directly to silicon or wire.                                                                      |
-| 1275  | `STUB` [sensor loop](#rune-1275)               | stub       | A machine-word; it reaches into clocks, buses, registers, or heat.                                                                                |
-| 1276  | [SIMD](#rune-1276)                             | authored   | One instruction operating across many data lanes at once.                                                                                         |
-| 1277  | `STUB` [SPI](#rune-1277)                       | stub       | A machine-word; it reaches into clocks, buses, registers, or heat.                                                                                |
-| 1278  | `STUB` [SRAM](#rune-1278)                      | stub       | An embodiment word; software here speaks almost directly to silicon or wire.                                                                      |
-| 1279  | `STUB` [superscalar](#rune-1279)               | stub       | A near-metal word; it matters when abstraction is no longer cheap enough.                                                                         |
-| 1280  | `STUB` [thermal throttling](#rune-1280)        | stub       | A machine-word; it reaches into clocks, buses, registers, or heat.                                                                                |
-| 1281  | [throughput](#rune-1281)                       | authored   | How much useful work the system can push through a narrow world in bounded time. Shadow: chasing bulk capacity while tail latency burns the user. |
-| 1282  | `STUB` [timing window](#rune-1282)             | stub       | A machine-word; it reaches into clocks, buses, registers, or heat.                                                                                |
-| 1283  | `STUB` [TPU](#rune-1283)                       | stub       | A near-metal word; it matters when abstraction is no longer cheap enough.                                                                         |
-| 1284  | `STUB` [UART](#rune-1284)                      | stub       | A machine-word; it reaches into clocks, buses, registers, or heat.                                                                                |
-| 1285  | [utilization](#rune-1285)                      | authored   | The fraction of available capacity actually being used.                                                                                           |
-| 1286  | `STUB` [vector unit](#rune-1286)               | stub       | An embodiment word; software here speaks almost directly to silicon or wire.                                                                      |
-| 1287  | [volatile](#rune-1287)                         | authored   | A promise to the compiler that this value may change through unusual means.                                                                       |
-| 1288  | `STUB` [watchdog timer](#rune-1288)            | stub       | A performance-and-physics word; it governs timing, placement, and finite material limits.                                                         |
-| 1289  | `STUB` [wire speed](#rune-1289)                | stub       | A machine-word; it reaches into clocks, buses, registers, or heat.                                                                                |
-| 1290  | [zero-copy {HW}](#rune-1290)                   | authored   | Near-metal data movement without redundant duplication.                                                                                           |
+| Sigil | Term                                    | Completion | Summary                                                                                                                                                                                                                                                    |
+| ----- | --------------------------------------- | ---------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1211  | [accelerator](#rune-1211)               | authored   | `accelerator` is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the accelerator obligation named before work proceeds.                             |
+| 1212  | [alignment {HW}](#rune-1212)            | authored   | `alignment` in its HW sense is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the alignment obligation named before work proceeds.                 |
+| 1213  | [ASIC](#rune-1213)                      | authored   | `ASIC` is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the ASIC obligation named before work proceeds.                                           |
+| 1214  | [assembly instruction](#rune-1214)      | authored   | `assembly instruction` is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the assembly instruction obligation named before work proceeds.           |
+| 1215  | [atomic instruction](#rune-1215)        | authored   | An indivisible machine operation at instruction level.                                                                                                                                                                                                     |
+| 1216  | [bandwidth {HW}](#rune-1216)            | authored   | `bandwidth` in its HW sense is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the bandwidth obligation named before work proceeds.                 |
+| 1217  | [barrier {HW}](#rune-1217)              | authored   | `barrier` in its HW sense is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the barrier obligation named before work proceeds.                     |
+| 1218  | [bit width](#rune-1218)                 | authored   | `bit width` is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the bit width obligation named before work proceeds.                                 |
+| 1219  | [boot ROM](#rune-1219)                  | authored   | `boot ROM` is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the boot ROM obligation named before work proceeds.                                   |
+| 1220  | [branch predictor](#rune-1220)          | authored   | `branch predictor` is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the branch predictor obligation named before work proceeds.                   |
+| 1221  | [bus {HW}](#rune-1221)                  | authored   | `bus` in its HW sense is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the bus obligation named before work proceeds.                             |
+| 1222  | [cache {HW}](#rune-1222)                | authored   | `cache` in its HW sense is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the cache obligation named before work proceeds.                         |
+| 1223  | [cache coherence](#rune-1223)           | authored   | `cache coherence` is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the cache coherence obligation named before work proceeds.                     |
+| 1224  | [cache line {HW}](#rune-1224)           | authored   | The coherence-sized chunk of cached memory; too much sharing here hurts.                                                                                                                                                                                   |
+| 1225  | [clock](#rune-1225)                     | authored   | `clock` is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the clock obligation named before work proceeds.                                         |
+| 1226  | [clock cycle](#rune-1226)               | authored   | `clock cycle` is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the clock cycle obligation named before work proceeds.                             |
+| 1227  | [co-processor](#rune-1227)              | authored   | `co-processor` is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the co-processor obligation named before work proceeds.                           |
+| 1228  | [core {HW}](#rune-1228)                 | authored   | `core` in its HW sense is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the core obligation named before work proceeds.                           |
+| 1229  | [CPU](#rune-1229)                       | authored   | `CPU` is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the CPU obligation named before work proceeds.                                             |
+| 1230  | [cycle budget](#rune-1230)              | authored   | `cycle budget` is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the cycle budget obligation named before work proceeds.                           |
+| 1231  | [DMA](#rune-1231)                       | authored   | Direct memory access: device moves bytes without making the CPU do every step.                                                                                                                                                                             |
+| 1232  | [DRAM](#rune-1232)                      | authored   | `DRAM` is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the DRAM obligation named before work proceeds.                                           |
+| 1233  | [driver interrupt](#rune-1233)          | authored   | `driver interrupt` is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the driver interrupt obligation named before work proceeds.                   |
+| 1234  | [EEPROM](#rune-1234)                    | authored   | `EEPROM` is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the EEPROM obligation named before work proceeds.                                       |
+| 1235  | [endianness](#rune-1235)                | authored   | The byte order in which multi-byte values are laid out.                                                                                                                                                                                                    |
+| 1236  | [fence](#rune-1236)                     | authored   | `fence` is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the fence obligation named before work proceeds.                                         |
+| 1237  | [firmware {HW}](#rune-1237)             | authored   | Software that is closer to the board than the application.                                                                                                                                                                                                 |
+| 1238  | [flash](#rune-1238)                     | authored   | `flash` is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the flash obligation named before work proceeds.                                         |
+| 1239  | [FPGA](#rune-1239)                      | authored   | `FPGA` is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the FPGA obligation named before work proceeds.                                           |
+| 1240  | [frame budget](#rune-1240)              | authored   | `frame budget` is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the frame budget obligation named before work proceeds.                           |
+| 1241  | [frequency](#rune-1241)                 | authored   | `frequency` is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the frequency obligation named before work proceeds.                                 |
+| 1242  | [GPIO](#rune-1242)                      | authored   | `GPIO` is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the GPIO obligation named before work proceeds.                                           |
+| 1243  | [GPU](#rune-1243)                       | authored   | A massively parallel processor built for throughput-heavy workloads.                                                                                                                                                                                       |
+| 1244  | [heat budget](#rune-1244)               | authored   | `heat budget` is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the heat budget obligation named before work proceeds.                             |
+| 1245  | [I2C](#rune-1245)                       | authored   | `I2C` is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the I2C obligation named before work proceeds.                                             |
+| 1246  | [instruction cache](#rune-1246)         | authored   | `instruction cache` is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the instruction cache obligation named before work proceeds.                 |
+| 1247  | [instruction pointer](#rune-1247)       | authored   | `instruction pointer` is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the instruction pointer obligation named before work proceeds.             |
+| 1248  | [interrupt service routine](#rune-1248) | authored   | `interrupt service routine` is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the interrupt service routine obligation named before work proceeds. |
+| 1249  | [ioctl boundary](#rune-1249)            | authored   | `ioctl boundary` is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the ioctl boundary obligation named before work proceeds.                       |
+| 1250  | [IPC cost](#rune-1250)                  | authored   | `IPC cost` is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the IPC cost obligation named before work proceeds.                                   |
+| 1251  | [ISA](#rune-1251)                       | authored   | Instruction set architecture: the machine contract visible to software.                                                                                                                                                                                    |
+| 1252  | [jitter {HW}](#rune-1252)               | authored   | `jitter` in its HW sense is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the jitter obligation named before work proceeds.                       |
+| 1253  | [JTAG](#rune-1253)                      | authored   | `JTAG` is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the JTAG obligation named before work proceeds.                                           |
+| 1254  | [kernel bypass](#rune-1254)             | authored   | `kernel bypass` is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the kernel bypass obligation named before work proceeds.                         |
+| 1255  | [latency budget](#rune-1255)            | authored   | The maximum delay the system is allowed to spend and still remain acceptable.                                                                                                                                                                              |
+| 1256  | [memory channel](#rune-1256)            | authored   | `memory channel` is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the memory channel obligation named before work proceeds.                       |
+| 1257  | [memory-mapped I/O](#rune-1257)         | authored   | `memory-mapped I/O` is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the memory-mapped I/O obligation named before work proceeds.                 |
+| 1258  | [microcode](#rune-1258)                 | authored   | `microcode` is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the microcode obligation named before work proceeds.                                 |
+| 1259  | [MMIO](#rune-1259)                      | authored   | `MMIO` is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the MMIO obligation named before work proceeds.                                           |
+| 1260  | [NUMA](#rune-1260)                      | authored   | `NUMA` is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the NUMA obligation named before work proceeds.                                           |
+| 1261  | [NVRAM](#rune-1261)                     | authored   | `NVRAM` is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the NVRAM obligation named before work proceeds.                                         |
+| 1262  | [opcode {HW}](#rune-1262)               | authored   | `opcode` in its HW sense is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the opcode obligation named before work proceeds.                       |
+| 1263  | [out-of-order execution](#rune-1263)    | authored   | `out-of-order execution` is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the out-of-order execution obligation named before work proceeds.       |
+| 1264  | [PCIe](#rune-1264)                      | authored   | `PCIe` is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the PCIe obligation named before work proceeds.                                           |
+| 1265  | [pipeline {HW}](#rune-1265)             | authored   | `pipeline` in its HW sense is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the pipeline obligation named before work proceeds.                   |
+| 1266  | [power budget](#rune-1266)              | authored   | `power budget` is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the power budget obligation named before work proceeds.                           |
+| 1267  | [prefetcher](#rune-1267)                | authored   | `prefetcher` is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the prefetcher obligation named before work proceeds.                               |
+| 1268  | [real-time {HW}](#rune-1268)            | authored   | `real-time` in its HW sense is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the real-time obligation named before work proceeds.                 |
+| 1269  | [register](#rune-1269)                  | authored   | A tiny named storage cell inside the processor.                                                                                                                                                                                                            |
+| 1270  | [register file](#rune-1270)             | authored   | `register file` is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the register file obligation named before work proceeds.                         |
+| 1271  | [reset vector](#rune-1271)              | authored   | `reset vector` is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the reset vector obligation named before work proceeds.                           |
+| 1272  | [ROM](#rune-1272)                       | authored   | `ROM` is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the ROM obligation named before work proceeds.                                             |
+| 1273  | [RTOS](#rune-1273)                      | authored   | `RTOS` is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the RTOS obligation named before work proceeds.                                           |
+| 1274  | [runtime budget](#rune-1274)            | authored   | `runtime budget` is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the runtime budget obligation named before work proceeds.                       |
+| 1275  | [sensor loop](#rune-1275)               | authored   | `sensor loop` is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the sensor loop obligation named before work proceeds.                             |
+| 1276  | [SIMD](#rune-1276)                      | authored   | One instruction operating across many data lanes at once.                                                                                                                                                                                                  |
+| 1277  | [SPI](#rune-1277)                       | authored   | `SPI` is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the SPI obligation named before work proceeds.                                             |
+| 1278  | [SRAM](#rune-1278)                      | authored   | `SRAM` is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the SRAM obligation named before work proceeds.                                           |
+| 1279  | [superscalar](#rune-1279)               | authored   | `superscalar` is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the superscalar obligation named before work proceeds.                             |
+| 1280  | [thermal throttling](#rune-1280)        | authored   | `thermal throttling` is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the thermal throttling obligation named before work proceeds.               |
+| 1281  | [throughput](#rune-1281)                | authored   | How much useful work the system can push through a narrow world in bounded time. Shadow: chasing bulk capacity while tail latency burns the user.                                                                                                          |
+| 1282  | [timing window](#rune-1282)             | authored   | `timing window` is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the timing window obligation named before work proceeds.                         |
+| 1283  | [TPU](#rune-1283)                       | authored   | `TPU` is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the TPU obligation named before work proceeds.                                             |
+| 1284  | [UART](#rune-1284)                      | authored   | `UART` is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the UART obligation named before work proceeds.                                           |
+| 1285  | [utilization](#rune-1285)               | authored   | The fraction of available capacity actually being used.                                                                                                                                                                                                    |
+| 1286  | [vector unit](#rune-1286)               | authored   | `vector unit` is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the vector unit obligation named before work proceeds.                             |
+| 1287  | [volatile](#rune-1287)                  | authored   | A promise to the compiler that this value may change through unusual means.                                                                                                                                                                                |
+| 1288  | [watchdog timer](#rune-1288)            | authored   | `watchdog timer` is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the watchdog timer obligation named before work proceeds.                       |
+| 1289  | [wire speed](#rune-1289)                | authored   | `wire speed` is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the wire speed obligation named before work proceeds.                               |
+| 1290  | [zero-copy {HW}](#rune-1290)            | authored   | Near-metal data movement without redundant duplication.                                                                                                                                                                                                    |
 
 ## Entries
 
@@ -104,41 +103,41 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A near-metal word; it matters when abstraction is no longer cheap enough.
+**Force:** `accelerator` is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the accelerator obligation named before work proceeds.
 
-**Shadow:** physical constraints can turn clean software assumptions into timing, heat, or bandwidth failures.
+**Shadow:** misusing `accelerator` at rune 1211 in the hardware lane can let clean abstractions can break under physical timing or capacity limits; verify by requiring the caster to state the measured budget, device boundary, and operating envelope.
 
 ### [1212] alignment {HW} {#rune-1212}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** An embodiment word; software here speaks almost directly to silicon or wire.
+**Force:** `alignment` in its HW sense is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the alignment obligation named before work proceeds.
 
-**Shadow:** physical constraints can turn clean software assumptions into timing, heat, or bandwidth failures.
+**Shadow:** misusing `alignment` at rune 1212 in the HW lane can let clean abstractions can break under physical timing or capacity limits; verify by requiring the caster to state the measured budget, device boundary, and operating envelope.
 
 ### [1213] ASIC {#rune-1213}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A machine-word; it reaches into clocks, buses, registers, or heat.
+**Force:** `ASIC` is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the ASIC obligation named before work proceeds.
 
-**Shadow:** physical constraints can turn clean software assumptions into timing, heat, or bandwidth failures.
+**Shadow:** misusing `ASIC` at rune 1213 in the hardware lane can let clean abstractions can break under physical timing or capacity limits; verify by requiring the caster to state the measured budget, device boundary, and operating envelope.
 
 ### [1214] assembly instruction {#rune-1214}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A performance-and-physics word; it governs timing, placement, and finite material limits.
+**Force:** `assembly instruction` is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the assembly instruction obligation named before work proceeds.
 
-**Shadow:** physical constraints can turn clean software assumptions into timing, heat, or bandwidth failures.
+**Shadow:** misusing `assembly instruction` at rune 1214 in the hardware lane can let clean abstractions can break under physical timing or capacity limits; verify by requiring the caster to state the measured budget, device boundary, and operating envelope.
 
 ### [1215] atomic instruction {#rune-1215}
 
@@ -148,7 +147,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** An indivisible machine operation at instruction level.
 
-**Shadow:** physical constraints can turn clean software assumptions into timing, heat, or bandwidth failures.
+**Shadow:** misusing `atomic instruction` at rune 1215 in the hardware lane can let clean abstractions can break under physical timing or capacity limits; verify by requiring the caster to state the measured budget, device boundary, and operating envelope.
 
 **Pocket gloss:** An indivisible machine operation at instruction level.
 
@@ -156,61 +155,61 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A near-metal word; it matters when abstraction is no longer cheap enough.
+**Force:** `bandwidth` in its HW sense is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the bandwidth obligation named before work proceeds.
 
-**Shadow:** physical constraints can turn clean software assumptions into timing, heat, or bandwidth failures.
+**Shadow:** misusing `bandwidth` at rune 1216 in the HW lane can let clean abstractions can break under physical timing or capacity limits; verify by requiring the caster to state the measured budget, device boundary, and operating envelope.
 
 ### [1217] barrier {HW} {#rune-1217}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A rendezvous word; no party crosses until all required parties arrive.
+**Force:** `barrier` in its HW sense is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the barrier obligation named before work proceeds.
 
-**Shadow:** physical constraints can turn clean software assumptions into timing, heat, or bandwidth failures.
+**Shadow:** misusing `barrier` at rune 1217 in the HW lane can let clean abstractions can break under physical timing or capacity limits; verify by requiring the caster to state the measured budget, device boundary, and operating envelope.
 
 ### [1218] bit width {#rune-1218}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** An embodiment word; software here speaks almost directly to silicon or wire.
+**Force:** `bit width` is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the bit width obligation named before work proceeds.
 
-**Shadow:** physical constraints can turn clean software assumptions into timing, heat, or bandwidth failures.
+**Shadow:** misusing `bit width` at rune 1218 in the hardware lane can let clean abstractions can break under physical timing or capacity limits; verify by requiring the caster to state the measured budget, device boundary, and operating envelope.
 
 ### [1219] boot ROM {#rune-1219}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A performance-and-physics word; it governs timing, placement, and finite material limits.
+**Force:** `boot ROM` is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the boot ROM obligation named before work proceeds.
 
-**Shadow:** physical constraints can turn clean software assumptions into timing, heat, or bandwidth failures.
+**Shadow:** misusing `boot ROM` at rune 1219 in the hardware lane can let clean abstractions can break under physical timing or capacity limits; verify by requiring the caster to state the measured budget, device boundary, and operating envelope.
 
 ### [1220] branch predictor {#rune-1220}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A performance-and-physics word; it governs timing, placement, and finite material limits.
+**Force:** `branch predictor` is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the branch predictor obligation named before work proceeds.
 
-**Shadow:** physical constraints can turn clean software assumptions into timing, heat, or bandwidth failures.
+**Shadow:** misusing `branch predictor` at rune 1220 in the hardware lane can let clean abstractions can break under physical timing or capacity limits; verify by requiring the caster to state the measured budget, device boundary, and operating envelope.
 
 ### [1221] bus {HW} {#rune-1221}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A performance-and-physics word; it governs timing, placement, and finite material limits.
+**Force:** `bus` in its HW sense is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the bus obligation named before work proceeds.
 
-**Shadow:** physical constraints can turn clean software assumptions into timing, heat, or bandwidth failures.
+**Shadow:** misusing `bus` at rune 1221 in the HW lane can let clean abstractions can break under physical timing or capacity limits; verify by requiring the caster to state the measured budget, device boundary, and operating envelope.
 
 ### [1222] cache {HW} {#rune-1222}
 
@@ -218,19 +217,19 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
-**Force:** A nearness word; it keeps likely things close to reduce future cost.
+**Force:** `cache` in its HW sense is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the cache obligation named before work proceeds.
 
-**Shadow:** physical constraints can turn clean software assumptions into timing, heat, or bandwidth failures.
+**Shadow:** misusing `cache` at rune 1222 in the HW lane can let clean abstractions can break under physical timing or capacity limits; verify by requiring the caster to state the measured budget, device boundary, and operating envelope.
 
 ### [1223] cache coherence {#rune-1223}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A machine-word; it reaches into clocks, buses, registers, or heat.
+**Force:** `cache coherence` is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the cache coherence obligation named before work proceeds.
 
-**Shadow:** physical constraints can turn clean software assumptions into timing, heat, or bandwidth failures.
+**Shadow:** misusing `cache coherence` at rune 1223 in the hardware lane can let clean abstractions can break under physical timing or capacity limits; verify by requiring the caster to state the measured budget, device boundary, and operating envelope.
 
 ### [1224] cache line {HW} {#rune-1224}
 
@@ -240,7 +239,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** The coherence-sized chunk of cached memory; too much sharing here hurts.
 
-**Shadow:** physical constraints can turn clean software assumptions into timing, heat, or bandwidth failures.
+**Shadow:** misusing `cache line` at rune 1224 in the HW lane can let clean abstractions can break under physical timing or capacity limits; verify by requiring the caster to state the measured budget, device boundary, and operating envelope.
 
 **Pocket gloss:** The coherence-sized chunk of cached memory; too much sharing here hurts.
 
@@ -248,61 +247,61 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A machine-word; it reaches into clocks, buses, registers, or heat.
+**Force:** `clock` is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the clock obligation named before work proceeds.
 
-**Shadow:** physical constraints can turn clean software assumptions into timing, heat, or bandwidth failures.
+**Shadow:** misusing `clock` at rune 1225 in the hardware lane can let clean abstractions can break under physical timing or capacity limits; verify by requiring the caster to state the measured budget, device boundary, and operating envelope.
 
 ### [1226] clock cycle {#rune-1226}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A machine-word; it reaches into clocks, buses, registers, or heat.
+**Force:** `clock cycle` is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the clock cycle obligation named before work proceeds.
 
-**Shadow:** physical constraints can turn clean software assumptions into timing, heat, or bandwidth failures.
+**Shadow:** misusing `clock cycle` at rune 1226 in the hardware lane can let clean abstractions can break under physical timing or capacity limits; verify by requiring the caster to state the measured budget, device boundary, and operating envelope.
 
 ### [1227] co-processor {#rune-1227}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** An embodiment word; software here speaks almost directly to silicon or wire.
+**Force:** `co-processor` is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the co-processor obligation named before work proceeds.
 
-**Shadow:** physical constraints can turn clean software assumptions into timing, heat, or bandwidth failures.
+**Shadow:** misusing `co-processor` at rune 1227 in the hardware lane can let clean abstractions can break under physical timing or capacity limits; verify by requiring the caster to state the measured budget, device boundary, and operating envelope.
 
 ### [1228] core {HW} {#rune-1228}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A near-metal word; it matters when abstraction is no longer cheap enough.
+**Force:** `core` in its HW sense is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the core obligation named before work proceeds.
 
-**Shadow:** physical constraints can turn clean software assumptions into timing, heat, or bandwidth failures.
+**Shadow:** misusing `core` at rune 1228 in the HW lane can let clean abstractions can break under physical timing or capacity limits; verify by requiring the caster to state the measured budget, device boundary, and operating envelope.
 
 ### [1229] CPU {#rune-1229}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A machine-word; it reaches into clocks, buses, registers, or heat.
+**Force:** `CPU` is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the CPU obligation named before work proceeds.
 
-**Shadow:** physical constraints can turn clean software assumptions into timing, heat, or bandwidth failures.
+**Shadow:** misusing `CPU` at rune 1229 in the hardware lane can let clean abstractions can break under physical timing or capacity limits; verify by requiring the caster to state the measured budget, device boundary, and operating envelope.
 
 ### [1230] cycle budget {#rune-1230}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** An embodiment word; software here speaks almost directly to silicon or wire.
+**Force:** `cycle budget` is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the cycle budget obligation named before work proceeds.
 
-**Shadow:** physical constraints can turn clean software assumptions into timing, heat, or bandwidth failures.
+**Shadow:** misusing `cycle budget` at rune 1230 in the hardware lane can let clean abstractions can break under physical timing or capacity limits; verify by requiring the caster to state the measured budget, device boundary, and operating envelope.
 
 ### [1231] DMA {#rune-1231}
 
@@ -312,7 +311,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** Direct memory access: device moves bytes without making the CPU do every step.
 
-**Shadow:** physical constraints can turn clean software assumptions into timing, heat, or bandwidth failures.
+**Shadow:** misusing `DMA` at rune 1231 in the hardware lane can let clean abstractions can break under physical timing or capacity limits; verify by requiring the caster to state the measured budget, device boundary, and operating envelope.
 
 **Pocket gloss:** Direct memory access: device moves bytes without making the CPU do every step.
 
@@ -320,31 +319,31 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A machine-word; it reaches into clocks, buses, registers, or heat.
+**Force:** `DRAM` is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the DRAM obligation named before work proceeds.
 
-**Shadow:** physical constraints can turn clean software assumptions into timing, heat, or bandwidth failures.
+**Shadow:** misusing `DRAM` at rune 1232 in the hardware lane can let clean abstractions can break under physical timing or capacity limits; verify by requiring the caster to state the measured budget, device boundary, and operating envelope.
 
 ### [1233] driver interrupt {#rune-1233}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A near-metal word; it matters when abstraction is no longer cheap enough.
+**Force:** `driver interrupt` is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the driver interrupt obligation named before work proceeds.
 
-**Shadow:** physical constraints can turn clean software assumptions into timing, heat, or bandwidth failures.
+**Shadow:** misusing `driver interrupt` at rune 1233 in the hardware lane can let clean abstractions can break under physical timing or capacity limits; verify by requiring the caster to state the measured budget, device boundary, and operating envelope.
 
 ### [1234] EEPROM {#rune-1234}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A machine-word; it reaches into clocks, buses, registers, or heat.
+**Force:** `EEPROM` is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the EEPROM obligation named before work proceeds.
 
-**Shadow:** physical constraints can turn clean software assumptions into timing, heat, or bandwidth failures.
+**Shadow:** misusing `EEPROM` at rune 1234 in the hardware lane can let clean abstractions can break under physical timing or capacity limits; verify by requiring the caster to state the measured budget, device boundary, and operating envelope.
 
 ### [1235] endianness {#rune-1235}
 
@@ -354,7 +353,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** The byte order in which multi-byte values are laid out.
 
-**Shadow:** physical constraints can turn clean software assumptions into timing, heat, or bandwidth failures.
+**Shadow:** misusing `endianness` at rune 1235 in the hardware lane can let clean abstractions can break under physical timing or capacity limits; verify by requiring the caster to state the measured budget, device boundary, and operating envelope.
 
 **Pocket gloss:** The byte order in which multi-byte values are laid out.
 
@@ -362,11 +361,11 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A near-metal word; it matters when abstraction is no longer cheap enough.
+**Force:** `fence` is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the fence obligation named before work proceeds.
 
-**Shadow:** physical constraints can turn clean software assumptions into timing, heat, or bandwidth failures.
+**Shadow:** misusing `fence` at rune 1236 in the hardware lane can let clean abstractions can break under physical timing or capacity limits; verify by requiring the caster to state the measured budget, device boundary, and operating envelope.
 
 ### [1237] firmware {HW} {#rune-1237}
 
@@ -376,7 +375,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** Software that is closer to the board than the application.
 
-**Shadow:** physical constraints can turn clean software assumptions into timing, heat, or bandwidth failures.
+**Shadow:** misusing `firmware` at rune 1237 in the HW lane can let clean abstractions can break under physical timing or capacity limits; verify by requiring the caster to state the measured budget, device boundary, and operating envelope.
 
 **Pocket gloss:** Software that is closer to the board than the application.
 
@@ -384,51 +383,51 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A performance-and-physics word; it governs timing, placement, and finite material limits.
+**Force:** `flash` is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the flash obligation named before work proceeds.
 
-**Shadow:** physical constraints can turn clean software assumptions into timing, heat, or bandwidth failures.
+**Shadow:** misusing `flash` at rune 1238 in the hardware lane can let clean abstractions can break under physical timing or capacity limits; verify by requiring the caster to state the measured budget, device boundary, and operating envelope.
 
 ### [1239] FPGA {#rune-1239}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A performance-and-physics word; it governs timing, placement, and finite material limits.
+**Force:** `FPGA` is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the FPGA obligation named before work proceeds.
 
-**Shadow:** physical constraints can turn clean software assumptions into timing, heat, or bandwidth failures.
+**Shadow:** misusing `FPGA` at rune 1239 in the hardware lane can let clean abstractions can break under physical timing or capacity limits; verify by requiring the caster to state the measured budget, device boundary, and operating envelope.
 
 ### [1240] frame budget {#rune-1240}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A performance-and-physics word; it governs timing, placement, and finite material limits.
+**Force:** `frame budget` is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the frame budget obligation named before work proceeds.
 
-**Shadow:** physical constraints can turn clean software assumptions into timing, heat, or bandwidth failures.
+**Shadow:** misusing `frame budget` at rune 1240 in the hardware lane can let clean abstractions can break under physical timing or capacity limits; verify by requiring the caster to state the measured budget, device boundary, and operating envelope.
 
 ### [1241] frequency {#rune-1241}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A performance-and-physics word; it governs timing, placement, and finite material limits.
+**Force:** `frequency` is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the frequency obligation named before work proceeds.
 
-**Shadow:** physical constraints can turn clean software assumptions into timing, heat, or bandwidth failures.
+**Shadow:** misusing `frequency` at rune 1241 in the hardware lane can let clean abstractions can break under physical timing or capacity limits; verify by requiring the caster to state the measured budget, device boundary, and operating envelope.
 
 ### [1242] GPIO {#rune-1242}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** An embodiment word; software here speaks almost directly to silicon or wire.
+**Force:** `GPIO` is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the GPIO obligation named before work proceeds.
 
-**Shadow:** physical constraints can turn clean software assumptions into timing, heat, or bandwidth failures.
+**Shadow:** misusing `GPIO` at rune 1242 in the hardware lane can let clean abstractions can break under physical timing or capacity limits; verify by requiring the caster to state the measured budget, device boundary, and operating envelope.
 
 ### [1243] GPU {#rune-1243}
 
@@ -438,7 +437,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** A massively parallel processor built for throughput-heavy workloads.
 
-**Shadow:** physical constraints can turn clean software assumptions into timing, heat, or bandwidth failures.
+**Shadow:** misusing `GPU` at rune 1243 in the hardware lane can let clean abstractions can break under physical timing or capacity limits; verify by requiring the caster to state the measured budget, device boundary, and operating envelope.
 
 **Pocket gloss:** A massively parallel processor built for throughput-heavy workloads.
 
@@ -446,71 +445,71 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A near-metal word; it matters when abstraction is no longer cheap enough.
+**Force:** `heat budget` is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the heat budget obligation named before work proceeds.
 
-**Shadow:** physical constraints can turn clean software assumptions into timing, heat, or bandwidth failures.
+**Shadow:** misusing `heat budget` at rune 1244 in the hardware lane can let clean abstractions can break under physical timing or capacity limits; verify by requiring the caster to state the measured budget, device boundary, and operating envelope.
 
 ### [1245] I2C {#rune-1245}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A performance-and-physics word; it governs timing, placement, and finite material limits.
+**Force:** `I2C` is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the I2C obligation named before work proceeds.
 
-**Shadow:** physical constraints can turn clean software assumptions into timing, heat, or bandwidth failures.
+**Shadow:** misusing `I2C` at rune 1245 in the hardware lane can let clean abstractions can break under physical timing or capacity limits; verify by requiring the caster to state the measured budget, device boundary, and operating envelope.
 
 ### [1246] instruction cache {#rune-1246}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A performance-and-physics word; it governs timing, placement, and finite material limits.
+**Force:** `instruction cache` is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the instruction cache obligation named before work proceeds.
 
-**Shadow:** physical constraints can turn clean software assumptions into timing, heat, or bandwidth failures.
+**Shadow:** misusing `instruction cache` at rune 1246 in the hardware lane can let clean abstractions can break under physical timing or capacity limits; verify by requiring the caster to state the measured budget, device boundary, and operating envelope.
 
 ### [1247] instruction pointer {#rune-1247}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** An embodiment word; software here speaks almost directly to silicon or wire.
+**Force:** `instruction pointer` is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the instruction pointer obligation named before work proceeds.
 
-**Shadow:** physical constraints can turn clean software assumptions into timing, heat, or bandwidth failures.
+**Shadow:** misusing `instruction pointer` at rune 1247 in the hardware lane can let clean abstractions can break under physical timing or capacity limits; verify by requiring the caster to state the measured budget, device boundary, and operating envelope.
 
 ### [1248] interrupt service routine {#rune-1248}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A machine-word; it reaches into clocks, buses, registers, or heat.
+**Force:** `interrupt service routine` is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the interrupt service routine obligation named before work proceeds.
 
-**Shadow:** physical constraints can turn clean software assumptions into timing, heat, or bandwidth failures.
+**Shadow:** misusing `interrupt service routine` at rune 1248 in the hardware lane can let clean abstractions can break under physical timing or capacity limits; verify by requiring the caster to state the measured budget, device boundary, and operating envelope.
 
 ### [1249] ioctl boundary {#rune-1249}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** An embodiment word; software here speaks almost directly to silicon or wire.
+**Force:** `ioctl boundary` is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the ioctl boundary obligation named before work proceeds.
 
-**Shadow:** physical constraints can turn clean software assumptions into timing, heat, or bandwidth failures.
+**Shadow:** misusing `ioctl boundary` at rune 1249 in the hardware lane can let clean abstractions can break under physical timing or capacity limits; verify by requiring the caster to state the measured budget, device boundary, and operating envelope.
 
 ### [1250] IPC cost {#rune-1250}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A near-metal word; it matters when abstraction is no longer cheap enough.
+**Force:** `IPC cost` is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the IPC cost obligation named before work proceeds.
 
-**Shadow:** physical constraints can turn clean software assumptions into timing, heat, or bandwidth failures.
+**Shadow:** misusing `IPC cost` at rune 1250 in the hardware lane can let clean abstractions can break under physical timing or capacity limits; verify by requiring the caster to state the measured budget, device boundary, and operating envelope.
 
 ### [1251] ISA {#rune-1251}
 
@@ -520,7 +519,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** Instruction set architecture: the machine contract visible to software.
 
-**Shadow:** physical constraints can turn clean software assumptions into timing, heat, or bandwidth failures.
+**Shadow:** misusing `ISA` at rune 1251 in the hardware lane can let clean abstractions can break under physical timing or capacity limits; verify by requiring the caster to state the measured budget, device boundary, and operating envelope.
 
 **Pocket gloss:** Instruction set architecture: the machine contract visible to software.
 
@@ -528,31 +527,31 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A timing-noise word; repeated operations arrive with unstable spacing.
+**Force:** `jitter` in its HW sense is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the jitter obligation named before work proceeds.
 
-**Shadow:** physical constraints can turn clean software assumptions into timing, heat, or bandwidth failures.
+**Shadow:** misusing `jitter` at rune 1252 in the HW lane can let clean abstractions can break under physical timing or capacity limits; verify by requiring the caster to state the measured budget, device boundary, and operating envelope.
 
 ### [1253] JTAG {#rune-1253}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A performance-and-physics word; it governs timing, placement, and finite material limits.
+**Force:** `JTAG` is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the JTAG obligation named before work proceeds.
 
-**Shadow:** physical constraints can turn clean software assumptions into timing, heat, or bandwidth failures.
+**Shadow:** misusing `JTAG` at rune 1253 in the hardware lane can let clean abstractions can break under physical timing or capacity limits; verify by requiring the caster to state the measured budget, device boundary, and operating envelope.
 
 ### [1254] kernel bypass {#rune-1254}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** An embodiment word; software here speaks almost directly to silicon or wire.
+**Force:** `kernel bypass` is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the kernel bypass obligation named before work proceeds.
 
-**Shadow:** physical constraints can turn clean software assumptions into timing, heat, or bandwidth failures.
+**Shadow:** misusing `kernel bypass` at rune 1254 in the hardware lane can let clean abstractions can break under physical timing or capacity limits; verify by requiring the caster to state the measured budget, device boundary, and operating envelope.
 
 ### [1255] latency budget {#rune-1255}
 
@@ -562,7 +561,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** The maximum delay the system is allowed to spend and still remain acceptable.
 
-**Shadow:** physical constraints can turn clean software assumptions into timing, heat, or bandwidth failures.
+**Shadow:** misusing `latency budget` at rune 1255 in the hardware lane can let clean abstractions can break under physical timing or capacity limits; verify by requiring the caster to state the measured budget, device boundary, and operating envelope.
 
 **Pocket gloss:** The maximum delay the system is allowed to spend and still remain acceptable.
 
@@ -570,131 +569,131 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A performance-and-physics word; it governs timing, placement, and finite material limits.
+**Force:** `memory channel` is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the memory channel obligation named before work proceeds.
 
-**Shadow:** physical constraints can turn clean software assumptions into timing, heat, or bandwidth failures.
+**Shadow:** misusing `memory channel` at rune 1256 in the hardware lane can let clean abstractions can break under physical timing or capacity limits; verify by requiring the caster to state the measured budget, device boundary, and operating envelope.
 
 ### [1257] memory-mapped I/O {#rune-1257}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A machine-word; it reaches into clocks, buses, registers, or heat.
+**Force:** `memory-mapped I/O` is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the memory-mapped I/O obligation named before work proceeds.
 
-**Shadow:** physical constraints can turn clean software assumptions into timing, heat, or bandwidth failures.
+**Shadow:** misusing `memory-mapped I/O` at rune 1257 in the hardware lane can let clean abstractions can break under physical timing or capacity limits; verify by requiring the caster to state the measured budget, device boundary, and operating envelope.
 
 ### [1258] microcode {#rune-1258}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A near-metal word; it matters when abstraction is no longer cheap enough.
+**Force:** `microcode` is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the microcode obligation named before work proceeds.
 
-**Shadow:** physical constraints can turn clean software assumptions into timing, heat, or bandwidth failures.
+**Shadow:** misusing `microcode` at rune 1258 in the hardware lane can let clean abstractions can break under physical timing or capacity limits; verify by requiring the caster to state the measured budget, device boundary, and operating envelope.
 
 ### [1259] MMIO {#rune-1259}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A performance-and-physics word; it governs timing, placement, and finite material limits.
+**Force:** `MMIO` is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the MMIO obligation named before work proceeds.
 
-**Shadow:** physical constraints can turn clean software assumptions into timing, heat, or bandwidth failures.
+**Shadow:** misusing `MMIO` at rune 1259 in the hardware lane can let clean abstractions can break under physical timing or capacity limits; verify by requiring the caster to state the measured budget, device boundary, and operating envelope.
 
 ### [1260] NUMA {#rune-1260}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A near-metal word; it matters when abstraction is no longer cheap enough.
+**Force:** `NUMA` is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the NUMA obligation named before work proceeds.
 
-**Shadow:** physical constraints can turn clean software assumptions into timing, heat, or bandwidth failures.
+**Shadow:** misusing `NUMA` at rune 1260 in the hardware lane can let clean abstractions can break under physical timing or capacity limits; verify by requiring the caster to state the measured budget, device boundary, and operating envelope.
 
 ### [1261] NVRAM {#rune-1261}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A machine-word; it reaches into clocks, buses, registers, or heat.
+**Force:** `NVRAM` is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the NVRAM obligation named before work proceeds.
 
-**Shadow:** physical constraints can turn clean software assumptions into timing, heat, or bandwidth failures.
+**Shadow:** misusing `NVRAM` at rune 1261 in the hardware lane can let clean abstractions can break under physical timing or capacity limits; verify by requiring the caster to state the measured budget, device boundary, and operating envelope.
 
 ### [1262] opcode {HW} {#rune-1262}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A performance-and-physics word; it governs timing, placement, and finite material limits.
+**Force:** `opcode` in its HW sense is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the opcode obligation named before work proceeds.
 
-**Shadow:** physical constraints can turn clean software assumptions into timing, heat, or bandwidth failures.
+**Shadow:** misusing `opcode` at rune 1262 in the HW lane can let clean abstractions can break under physical timing or capacity limits; verify by requiring the caster to state the measured budget, device boundary, and operating envelope.
 
 ### [1263] out-of-order execution {#rune-1263}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** An embodiment word; software here speaks almost directly to silicon or wire.
+**Force:** `out-of-order execution` is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the out-of-order execution obligation named before work proceeds.
 
-**Shadow:** physical constraints can turn clean software assumptions into timing, heat, or bandwidth failures.
+**Shadow:** misusing `out-of-order execution` at rune 1263 in the hardware lane can let clean abstractions can break under physical timing or capacity limits; verify by requiring the caster to state the measured budget, device boundary, and operating envelope.
 
 ### [1264] PCIe {#rune-1264}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A near-metal word; it matters when abstraction is no longer cheap enough.
+**Force:** `PCIe` is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the PCIe obligation named before work proceeds.
 
-**Shadow:** physical constraints can turn clean software assumptions into timing, heat, or bandwidth failures.
+**Shadow:** misusing `PCIe` at rune 1264 in the hardware lane can let clean abstractions can break under physical timing or capacity limits; verify by requiring the caster to state the measured budget, device boundary, and operating envelope.
 
 ### [1265] pipeline {HW} {#rune-1265}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A procession word; work passes through ordered stages.
+**Force:** `pipeline` in its HW sense is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the pipeline obligation named before work proceeds.
 
-**Shadow:** physical constraints can turn clean software assumptions into timing, heat, or bandwidth failures.
+**Shadow:** misusing `pipeline` at rune 1265 in the HW lane can let clean abstractions can break under physical timing or capacity limits; verify by requiring the caster to state the measured budget, device boundary, and operating envelope.
 
 ### [1266] power budget {#rune-1266}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A machine-word; it reaches into clocks, buses, registers, or heat.
+**Force:** `power budget` is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the power budget obligation named before work proceeds.
 
-**Shadow:** physical constraints can turn clean software assumptions into timing, heat, or bandwidth failures.
+**Shadow:** misusing `power budget` at rune 1266 in the hardware lane can let clean abstractions can break under physical timing or capacity limits; verify by requiring the caster to state the measured budget, device boundary, and operating envelope.
 
 ### [1267] prefetcher {#rune-1267}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A machine-word; it reaches into clocks, buses, registers, or heat.
+**Force:** `prefetcher` is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the prefetcher obligation named before work proceeds.
 
-**Shadow:** physical constraints can turn clean software assumptions into timing, heat, or bandwidth failures.
+**Shadow:** misusing `prefetcher` at rune 1267 in the hardware lane can let clean abstractions can break under physical timing or capacity limits; verify by requiring the caster to state the measured budget, device boundary, and operating envelope.
 
 ### [1268] real-time {HW} {#rune-1268}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A machine-word; it reaches into clocks, buses, registers, or heat.
+**Force:** `real-time` in its HW sense is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the real-time obligation named before work proceeds.
 
-**Shadow:** physical constraints can turn clean software assumptions into timing, heat, or bandwidth failures.
+**Shadow:** misusing `real-time` at rune 1268 in the HW lane can let clean abstractions can break under physical timing or capacity limits; verify by requiring the caster to state the measured budget, device boundary, and operating envelope.
 
 ### [1269] register {#rune-1269}
 
@@ -704,7 +703,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** A tiny named storage cell inside the processor.
 
-**Shadow:** physical constraints can turn clean software assumptions into timing, heat, or bandwidth failures.
+**Shadow:** misusing `register` at rune 1269 in the hardware lane can let clean abstractions can break under physical timing or capacity limits; verify by requiring the caster to state the measured budget, device boundary, and operating envelope.
 
 **Pocket gloss:** A tiny named storage cell inside the processor.
 
@@ -712,61 +711,61 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A near-metal word; it matters when abstraction is no longer cheap enough.
+**Force:** `register file` is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the register file obligation named before work proceeds.
 
-**Shadow:** physical constraints can turn clean software assumptions into timing, heat, or bandwidth failures.
+**Shadow:** misusing `register file` at rune 1270 in the hardware lane can let clean abstractions can break under physical timing or capacity limits; verify by requiring the caster to state the measured budget, device boundary, and operating envelope.
 
 ### [1271] reset vector {#rune-1271}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A performance-and-physics word; it governs timing, placement, and finite material limits.
+**Force:** `reset vector` is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the reset vector obligation named before work proceeds.
 
-**Shadow:** physical constraints can turn clean software assumptions into timing, heat, or bandwidth failures.
+**Shadow:** misusing `reset vector` at rune 1271 in the hardware lane can let clean abstractions can break under physical timing or capacity limits; verify by requiring the caster to state the measured budget, device boundary, and operating envelope.
 
 ### [1272] ROM {#rune-1272}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A performance-and-physics word; it governs timing, placement, and finite material limits.
+**Force:** `ROM` is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the ROM obligation named before work proceeds.
 
-**Shadow:** physical constraints can turn clean software assumptions into timing, heat, or bandwidth failures.
+**Shadow:** misusing `ROM` at rune 1272 in the hardware lane can let clean abstractions can break under physical timing or capacity limits; verify by requiring the caster to state the measured budget, device boundary, and operating envelope.
 
 ### [1273] RTOS {#rune-1273}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A machine-word; it reaches into clocks, buses, registers, or heat.
+**Force:** `RTOS` is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the RTOS obligation named before work proceeds.
 
-**Shadow:** physical constraints can turn clean software assumptions into timing, heat, or bandwidth failures.
+**Shadow:** misusing `RTOS` at rune 1273 in the hardware lane can let clean abstractions can break under physical timing or capacity limits; verify by requiring the caster to state the measured budget, device boundary, and operating envelope.
 
 ### [1274] runtime budget {#rune-1274}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** An embodiment word; software here speaks almost directly to silicon or wire.
+**Force:** `runtime budget` is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the runtime budget obligation named before work proceeds.
 
-**Shadow:** physical constraints can turn clean software assumptions into timing, heat, or bandwidth failures.
+**Shadow:** misusing `runtime budget` at rune 1274 in the hardware lane can let clean abstractions can break under physical timing or capacity limits; verify by requiring the caster to state the measured budget, device boundary, and operating envelope.
 
 ### [1275] sensor loop {#rune-1275}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A machine-word; it reaches into clocks, buses, registers, or heat.
+**Force:** `sensor loop` is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the sensor loop obligation named before work proceeds.
 
-**Shadow:** physical constraints can turn clean software assumptions into timing, heat, or bandwidth failures.
+**Shadow:** misusing `sensor loop` at rune 1275 in the hardware lane can let clean abstractions can break under physical timing or capacity limits; verify by requiring the caster to state the measured budget, device boundary, and operating envelope.
 
 ### [1276] SIMD {#rune-1276}
 
@@ -776,7 +775,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** One instruction operating across many data lanes at once.
 
-**Shadow:** physical constraints can turn clean software assumptions into timing, heat, or bandwidth failures.
+**Shadow:** misusing `SIMD` at rune 1276 in the hardware lane can let clean abstractions can break under physical timing or capacity limits; verify by requiring the caster to state the measured budget, device boundary, and operating envelope.
 
 **Pocket gloss:** One instruction operating across many data lanes at once.
 
@@ -784,41 +783,41 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A machine-word; it reaches into clocks, buses, registers, or heat.
+**Force:** `SPI` is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the SPI obligation named before work proceeds.
 
-**Shadow:** physical constraints can turn clean software assumptions into timing, heat, or bandwidth failures.
+**Shadow:** misusing `SPI` at rune 1277 in the hardware lane can let clean abstractions can break under physical timing or capacity limits; verify by requiring the caster to state the measured budget, device boundary, and operating envelope.
 
 ### [1278] SRAM {#rune-1278}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** An embodiment word; software here speaks almost directly to silicon or wire.
+**Force:** `SRAM` is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the SRAM obligation named before work proceeds.
 
-**Shadow:** physical constraints can turn clean software assumptions into timing, heat, or bandwidth failures.
+**Shadow:** misusing `SRAM` at rune 1278 in the hardware lane can let clean abstractions can break under physical timing or capacity limits; verify by requiring the caster to state the measured budget, device boundary, and operating envelope.
 
 ### [1279] superscalar {#rune-1279}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A near-metal word; it matters when abstraction is no longer cheap enough.
+**Force:** `superscalar` is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the superscalar obligation named before work proceeds.
 
-**Shadow:** physical constraints can turn clean software assumptions into timing, heat, or bandwidth failures.
+**Shadow:** misusing `superscalar` at rune 1279 in the hardware lane can let clean abstractions can break under physical timing or capacity limits; verify by requiring the caster to state the measured budget, device boundary, and operating envelope.
 
 ### [1280] thermal throttling {#rune-1280}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A machine-word; it reaches into clocks, buses, registers, or heat.
+**Force:** `thermal throttling` is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the thermal throttling obligation named before work proceeds.
 
-**Shadow:** physical constraints can turn clean software assumptions into timing, heat, or bandwidth failures.
+**Shadow:** misusing `thermal throttling` at rune 1280 in the hardware lane can let clean abstractions can break under physical timing or capacity limits; verify by requiring the caster to state the measured budget, device boundary, and operating envelope.
 
 ### [1281] throughput {#rune-1281}
 
@@ -836,31 +835,31 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A machine-word; it reaches into clocks, buses, registers, or heat.
+**Force:** `timing window` is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the timing window obligation named before work proceeds.
 
-**Shadow:** physical constraints can turn clean software assumptions into timing, heat, or bandwidth failures.
+**Shadow:** misusing `timing window` at rune 1282 in the hardware lane can let clean abstractions can break under physical timing or capacity limits; verify by requiring the caster to state the measured budget, device boundary, and operating envelope.
 
 ### [1283] TPU {#rune-1283}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A near-metal word; it matters when abstraction is no longer cheap enough.
+**Force:** `TPU` is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the TPU obligation named before work proceeds.
 
-**Shadow:** physical constraints can turn clean software assumptions into timing, heat, or bandwidth failures.
+**Shadow:** misusing `TPU` at rune 1283 in the hardware lane can let clean abstractions can break under physical timing or capacity limits; verify by requiring the caster to state the measured budget, device boundary, and operating envelope.
 
 ### [1284] UART {#rune-1284}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A machine-word; it reaches into clocks, buses, registers, or heat.
+**Force:** `UART` is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the UART obligation named before work proceeds.
 
-**Shadow:** physical constraints can turn clean software assumptions into timing, heat, or bandwidth failures.
+**Shadow:** misusing `UART` at rune 1284 in the hardware lane can let clean abstractions can break under physical timing or capacity limits; verify by requiring the caster to state the measured budget, device boundary, and operating envelope.
 
 ### [1285] utilization {#rune-1285}
 
@@ -870,7 +869,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** The fraction of available capacity actually being used.
 
-**Shadow:** physical constraints can turn clean software assumptions into timing, heat, or bandwidth failures.
+**Shadow:** misusing `utilization` at rune 1285 in the hardware lane can let clean abstractions can break under physical timing or capacity limits; verify by requiring the caster to state the measured budget, device boundary, and operating envelope.
 
 **Pocket gloss:** The fraction of available capacity actually being used.
 
@@ -878,11 +877,11 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** An embodiment word; software here speaks almost directly to silicon or wire.
+**Force:** `vector unit` is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the vector unit obligation named before work proceeds.
 
-**Shadow:** physical constraints can turn clean software assumptions into timing, heat, or bandwidth failures.
+**Shadow:** misusing `vector unit` at rune 1286 in the hardware lane can let clean abstractions can break under physical timing or capacity limits; verify by requiring the caster to state the measured budget, device boundary, and operating envelope.
 
 ### [1287] volatile {#rune-1287}
 
@@ -892,7 +891,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** A promise to the compiler that this value may change through unusual means.
 
-**Shadow:** physical constraints can turn clean software assumptions into timing, heat, or bandwidth failures.
+**Shadow:** misusing `volatile` at rune 1287 in the hardware lane can let clean abstractions can break under physical timing or capacity limits; verify by requiring the caster to state the measured budget, device boundary, and operating envelope.
 
 **Pocket gloss:** A promise to the compiler that this value may change through unusual means.
 
@@ -900,21 +899,21 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A performance-and-physics word; it governs timing, placement, and finite material limits.
+**Force:** `watchdog timer` is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the watchdog timer obligation named before work proceeds.
 
-**Shadow:** physical constraints can turn clean software assumptions into timing, heat, or bandwidth failures.
+**Shadow:** misusing `watchdog timer` at rune 1288 in the hardware lane can let clean abstractions can break under physical timing or capacity limits; verify by requiring the caster to state the measured budget, device boundary, and operating envelope.
 
 ### [1289] wire speed {#rune-1289}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A machine-word; it reaches into clocks, buses, registers, or heat.
+**Force:** `wire speed` is a hardware and performance-near systems rune for connect software choices to physical capacity, latency, and bandwidth; use it when the artifact needs the wire speed obligation named before work proceeds.
 
-**Shadow:** physical constraints can turn clean software assumptions into timing, heat, or bandwidth failures.
+**Shadow:** misusing `wire speed` at rune 1289 in the hardware lane can let clean abstractions can break under physical timing or capacity limits; verify by requiring the caster to state the measured budget, device boundary, and operating envelope.
 
 ### [1290] zero-copy {HW} {#rune-1290}
 
@@ -924,6 +923,6 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** Near-metal data movement without redundant duplication.
 
-**Shadow:** physical constraints can turn clean software assumptions into timing, heat, or bandwidth failures.
+**Shadow:** misusing `zero-copy` at rune 1290 in the HW lane can let clean abstractions can break under physical timing or capacity limits; verify by requiring the caster to state the measured budget, device boundary, and operating envelope.
 
 **Pocket gloss:** Near-metal data movement without redundant duplication.

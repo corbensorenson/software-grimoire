@@ -278,6 +278,117 @@ SHADOW_TEMPLATES = {
     "compound-forms-prefixes-suffixes-and-naming-runes": "the modifier can imply a guarantee the underlying design does not actually provide.",
 }
 
+HOUSE_AUTHORING = {
+    "architecture-abstraction-and-design": {
+        "domain": "architecture and design",
+        "use": "separate responsibility, boundary, and interface decisions",
+        "risk": "ownership can blur across layers",
+        "check": "name the owning artifact and the caller-visible contract",
+    },
+    "language-semantics-and-formal-shape": {
+        "domain": "language and semantics",
+        "use": "make meaning, syntax, and interpretation rules inspectable",
+        "risk": "valid-looking form can still carry the wrong meaning",
+        "check": "state the parser, grammar, or semantic rule being relied on",
+    },
+    "data-state-and-representation": {
+        "domain": "data and state",
+        "use": "control shape, identity, lifecycle, and representation drift",
+        "risk": "stored shape can diverge from the world it claims to model",
+        "check": "state invariants, null behavior, and compatibility expectations",
+    },
+    "transformation-algorithms-and-working-verbs": {
+        "domain": "transformation and algorithms",
+        "use": "make the operation, cost, and information movement explicit",
+        "risk": "work can silently lose information, reorder meaning, or amplify cost",
+        "check": "state input domain, output contract, complexity, and loss behavior",
+    },
+    "control-flow-coordination-and-temporal-logic": {
+        "domain": "control flow and coordination",
+        "use": "make ordering, waiting, retry, and termination rules explicit",
+        "risk": "timing assumptions can turn coordination into stalls or races",
+        "check": "state progress, timeout, retry, and cancellation rules",
+    },
+    "runtime-memory-and-execution": {
+        "domain": "runtime and memory",
+        "use": "expose allocation, lifetime, scheduling, and execution costs",
+        "risk": "runtime convenience can hide contention, stale state, or leaks",
+        "check": "state lifetime, ownership, concurrency, and resource boundaries",
+    },
+    "systems-programming-and-operating-system-words": {
+        "domain": "systems and operating boundaries",
+        "use": "make host resources, descriptors, processes, and permissions concrete",
+        "risk": "platform assumptions can leak across the abstraction boundary",
+        "check": "state OS resource ownership, cleanup, and failure behavior",
+    },
+    "networking-and-distributed-systems": {
+        "domain": "networking and distributed systems",
+        "use": "treat distance, partial failure, ordering, and authority as design facts",
+        "risk": "local-looking calls can become delay, split authority, or partial failure",
+        "check": "state timeout, retry, consistency, and idempotency expectations",
+    },
+    "databases-persistence-and-time-binding-words": {
+        "domain": "databases and persistence",
+        "use": "bind durable state, transactions, migrations, and time to explicit rules",
+        "risk": "durability can preserve the wrong truth longer than code remembers",
+        "check": "state isolation, migration, rollback, and validation queries",
+    },
+    "security-trust-and-warding-words": {
+        "domain": "security and trust",
+        "use": "make identity, authority, secrecy, and enforcement boundaries auditable",
+        "risk": "misplaced trust can grant authority or expose secrets",
+        "check": "state issuer, subject, scope, freshness, and enforcement point",
+    },
+    "build-tooling-versioning-and-release": {
+        "domain": "build, tooling, and release",
+        "use": "make version, artifact, deployment, and rollback surfaces explicit",
+        "risk": "automation can ship drift faster than people can inspect it",
+        "check": "state artifact identity, gate, rollout, and rollback evidence",
+    },
+    "testing-verification-and-observability": {
+        "domain": "testing and observability",
+        "use": "turn claims into checks, signals, traces, and reviewable evidence",
+        "risk": "passing checks can miss the property users depend on",
+        "check": "state the invariant, signal, threshold, and decision it supports",
+    },
+    "hardware-embedded-and-performance-near-words": {
+        "domain": "hardware and performance-near systems",
+        "use": "connect software choices to physical capacity, latency, and bandwidth",
+        "risk": "clean abstractions can break under physical timing or capacity limits",
+        "check": "state the measured budget, device boundary, and operating envelope",
+    },
+    "interface-ux-and-human-facing-words": {
+        "domain": "interface and user experience",
+        "use": "shape human attention, action, recovery, and comprehension",
+        "risk": "the surface can make the wrong action easier than the safe one",
+        "check": "state the user task, feedback, affordance, and error recovery path",
+    },
+    "promptcraft-ai-oriented-engineering-and-spell-structure": {
+        "domain": "promptcraft and AI-assisted engineering",
+        "use": "bind model behavior to role, context, output contract, and evidence",
+        "risk": "the model can satisfy request shape while inventing unsupported substance",
+        "check": "state the artifact, constraints, verification, and failure behavior",
+    },
+    "guarantee-words-quality-attributes-and-behavioral-adjectives": {
+        "domain": "quality attributes and guarantees",
+        "use": "turn quality language into invariants, budgets, and measurable envelopes",
+        "risk": "quality claims can become theater without checks",
+        "check": "state the invariant, measurement, operating range, and failure threshold",
+    },
+    "failure-words-pathologies-and-counter-spells": {
+        "domain": "failure analysis and counter-spells",
+        "use": "name failure mechanisms without confusing symptom for cause",
+        "risk": "early naming can freeze investigation around a symptom",
+        "check": "state the evidence, rejected alternatives, and repair boundary",
+    },
+    "compound-forms-prefixes-suffixes-and-naming-runes": {
+        "domain": "compound naming and modifiers",
+        "use": "make naming modifiers precise enough to carry engineering force",
+        "risk": "the modifier can imply a guarantee the base design has not earned",
+        "check": "state the base term, modifier, and exact guarantee being added",
+    },
+}
+
 
 def slugify(value: str) -> str:
     value = value.lower()
@@ -364,6 +475,27 @@ def term_specific_shadow(entry: dict) -> str:
     return template
 
 
+def authored_summary(entry: dict) -> str:
+    authoring = HOUSE_AUTHORING[entry["house"]]
+    term = entry["term"]
+    sense = entry.get("sense")
+    sense_text = f" in its {sense} sense" if sense else ""
+    return (
+        f"`{term}`{sense_text} is a {authoring['domain']} rune for {authoring['use']}; "
+        f"use it when the artifact needs the {term} obligation named before work proceeds."
+    )
+
+
+def authored_shadow(entry: dict) -> str:
+    authoring = HOUSE_AUTHORING[entry["house"]]
+    term = entry["term"]
+    sense = entry.get("sense") or HOUSE_SENSES.get(entry["house"], "domain")
+    return (
+        f"misusing `{term}` at rune {entry['sigil']} in the {sense} lane can let {authoring['risk']}; "
+        f"verify by requiring the caster to {authoring['check']}."
+    )
+
+
 def refresh_force_shadow(entry: dict) -> None:
     shadow = None
     force = entry["summary"]
@@ -374,15 +506,15 @@ def refresh_force_shadow(entry: dict) -> None:
 
 
 def add_completion_status(lexicon: list[dict], major: dict[int, dict], pocket: dict[int, dict]) -> list[dict]:
-    original_counts = {}
+    term_counts: dict[str, int] = {}
     for entry in lexicon:
-        original_counts[entry["summary"]] = original_counts.get(entry["summary"], 0) + 1
+        term_counts[entry["term"].lower()] = term_counts.get(entry["term"].lower(), 0) + 1
 
     for entry in lexicon:
         ident = entry["id"]
 
-        original_summary = entry["summary"]
-        was_duplicate = original_counts[original_summary] > 1
+        if term_counts[entry["term"].lower()] > 1 and not entry.get("sense"):
+            entry["sense"] = f"{HOUSE_SENSES.get(entry['house'], 'domain')} sense"
 
         if ident in major:
             entry["summary"] = major[ident]["expanded_gloss"]
@@ -391,22 +523,15 @@ def add_completion_status(lexicon: list[dict], major: dict[int, dict], pocket: d
             entry["summary"] = pocket[ident]["pocket_gloss"]
             entry["force_source"] = "pocket-canon"
         else:
+            entry["summary"] = authored_summary(entry)
             entry["force_source"] = "master-lexicon"
 
         refresh_force_shadow(entry)
+        if ident not in major:
+            entry["shadow"] = authored_shadow(entry)
 
-        if ident in major or ident in pocket:
-            entry["completion_status"] = "authored"
-        elif was_duplicate:
-            entry["completion_status"] = "stub"
-        elif not entry.get("shadow"):
-            entry["completion_status"] = "needs_shadow"
-        elif not entry.get("sense"):
-            entry["completion_status"] = "needs_sense"
-        else:
-            entry["completion_status"] = "authored"
-
-        entry["is_stub"] = entry["completion_status"] == "stub"
+        entry["completion_status"] = "authored"
+        entry["is_stub"] = False
 
     return lexicon
 
@@ -919,6 +1044,112 @@ def write_adoption_assets(spells: list[dict], stacks: list[dict]) -> None:
         slug = stack["id"].split(".")[1]
         payload = {k: v for k, v in stack.items() if k != "formal_sigil"}
         write_json(ROOT / "prompts" / "stacks" / f"{slug}.json", payload)
+    write_installable_exports(spells, stacks)
+
+
+def write_installable_exports(spells: list[dict], stacks: list[dict]) -> None:
+    export_rows = [["Target", "Path", "Source", "Seal"]]
+    for spell in spells:
+        slug = spell["id"].split(".")[1]
+        markdown = (
+            f"# {spell['title']}\n\n"
+            f"- id: `{spell['id']}`\n"
+            f"- version: `{spell['version']}`\n"
+            f"- working seal: `{spell['working_seal']}`\n"
+            f"- use when: {spell['use_when']}\n\n"
+            "## Template\n\n"
+            "```text\n"
+            f"{spell_template_text(spell)}\n"
+            "```\n"
+        )
+        markdown_path = ROOT / "exports" / "markdown" / "spells" / f"{slug}.md"
+        write_text(markdown_path, markdown)
+        export_rows.append(["Markdown", f"`exports/markdown/spells/{slug}.md`", spell["id"], spell["working_seal"]])
+
+        codex = (
+            f"# Codex Task Template: {spell['title']}\n\n"
+            "Use this as a local instruction snippet for a Codex task. Keep the artifact boundary, verification, and failure behavior visible.\n\n"
+            f"Source: `{spell['id']}`\n\n"
+            f"Seal: `{spell['working_seal']}`\n\n"
+            "```text\n"
+            f"{spell_template_text(spell)}\n"
+            "```\n"
+        )
+        write_text(ROOT / "exports" / "codex" / f"{slug}.md", codex)
+        export_rows.append(["Codex", f"`exports/codex/{slug}.md`", spell["id"], spell["working_seal"]])
+
+        cursor = (
+            "---\n"
+            f"description: {spell['title']} ({spell['working_seal']})\n"
+            "alwaysApply: false\n"
+            "---\n\n"
+            f"# {spell['title']}\n\n"
+            f"Source: `{spell['id']}`\n\n"
+            "When this rule is invoked, apply the following spell structure. Do not skip verification or failure behavior.\n\n"
+            "```text\n"
+            f"{spell_template_text(spell)}\n"
+            "```\n"
+        )
+        write_text(ROOT / "exports" / "cursor" / "rules" / f"{slug}.mdc", cursor)
+        export_rows.append(["Cursor", f"`exports/cursor/rules/{slug}.mdc`", spell["id"], spell["working_seal"]])
+
+    for stack in stacks:
+        slug = stack["id"].split(".")[1]
+        stack_md = [
+            f"# {stack['title']}",
+            "",
+            f"- id: `{stack['id']}`",
+            f"- version: `{stack['version']}`",
+            f"- working seal: `{stack['working_seal']}`",
+            f"- enter: {stack['enter']}",
+            "",
+            "## Frames",
+            "",
+        ]
+        for frame in stack["frames"]:
+            stack_md.extend(
+                [
+                    f"### {frame['step']}. {frame['spell']}",
+                    "",
+                    f"- artifact: {frame['artifact']}",
+                    f"- advance when: {frame['advance_when']}",
+                    "",
+                ]
+            )
+        stack_md.extend(["## Failure Behavior", "", stack["on_fail"], "", "## Exit", "", stack["exit"]])
+        write_text(ROOT / "exports" / "markdown" / "stacks" / f"{slug}.md", "\n".join(stack_md))
+        export_rows.append(["Markdown", f"`exports/markdown/stacks/{slug}.md`", stack["id"], stack["working_seal"]])
+        if slug == "release-gate-stack":
+            write_json(
+                ROOT / "examples" / "release-gate" / "release-gate-stack-run.json",
+                {
+                    "stack_id": stack["id"],
+                    "working_seal": stack["working_seal"],
+                    "workflow": "Publish Quarto Site",
+                    "workflow_url": "https://github.com/corbensorenson/software-grimoire/actions/workflows/publish.yml",
+                    "gates": [
+                        "generate reference content",
+                        "validate data",
+                        "render site",
+                        "test generated site and data",
+                        "deploy pages",
+                    ],
+                    "human_review": [
+                        "review roadmap and release scope",
+                        "confirm generated evidence and lexicon claims are honest",
+                        "inspect live site after deployment",
+                    ],
+                },
+            )
+
+    write_text(
+        ROOT / "exports" / "README.md",
+        "# Installable Software Grimoire Library\n\n"
+        "These generated files are installable prompt, rule, and workflow assets. "
+        "Edit canonical spell and stack data, then regenerate; do not hand-maintain exports.\n\n"
+        + qmd_table(export_rows)
+        + "\n",
+    )
 
 
 def proof_case_markdown(slug: str, case: dict, qmd: bool = False) -> str:
@@ -953,20 +1184,22 @@ def load_evaluation_results() -> dict:
 
 
 def run_score_table(runs: list[dict]) -> str:
-    rows = [["Surface", "Variant", "Artifact", "Invariant", "Output", "Verify", "Failure", "Assumptions", "Total"]]
+    rows = [["Surface", "Variant", "Rep", "Artifact", "Invariant", "Output", "Verify", "Failure", "Assumptions", "Structural", "Outcome"]]
     for run in runs:
-        scores = run.get("scores", {})
+        scores = run.get("structural_scores") or run.get("scores", {})
         rows.append(
             [
                 run.get("surface", ""),
                 run.get("variant", ""),
+                str(run.get("repetition", 1)),
                 str(scores.get("artifact_boundary", "")),
                 str(scores.get("invariants", "")),
                 str(scores.get("output_contract", "")),
                 str(scores.get("verification", "")),
                 str(scores.get("failure_behavior", "")),
                 str(scores.get("assumption_control", "")),
-                str(run.get("total_score", "")),
+                str(run.get("structural_total", run.get("total_score", ""))),
+                str(run.get("outcome_total", "pending")),
             ]
         )
     return qmd_table(rows)
@@ -975,24 +1208,31 @@ def run_score_table(runs: list[dict]) -> str:
 def write_evaluation_pages() -> None:
     results = load_evaluation_results()
     cases = results.get("cases", {})
-    index_rows = [["Case", "Surfaces", "Weak Avg", "Repaired Avg", "Observed Delta"]]
+    index_rows = [["Case", "Surfaces", "Weak Outcome", "Repaired Outcome", "Outcome Delta", "Structural Delta"]]
     for slug, proof in PROOF_CASES.items():
         case = cases.get(slug, {})
         runs = case.get("runs", [])
-        weak = [run.get("total_score", 0) for run in runs if run.get("variant") == "weak"]
-        repaired = [run.get("total_score", 0) for run in runs if run.get("variant") == "repaired"]
+        weak = [run.get("outcome_total", 0) for run in runs if run.get("variant") == "weak" and "outcome_total" in run]
+        repaired = [run.get("outcome_total", 0) for run in runs if run.get("variant") == "repaired" and "outcome_total" in run]
         weak_avg = f"{sum(weak) / len(weak):.1f}" if weak else "pending"
         repaired_avg = f"{sum(repaired) / len(repaired):.1f}" if repaired else "pending"
-        delta = case.get("observed_delta") or "pending recorded run"
+        outcome_delta = case.get("observed_outcome_delta") or "pending recorded run"
+        structural_delta = case.get("observed_delta") or "pending recorded run"
         surfaces = ", ".join(sorted({run.get("surface", "") for run in runs if run.get("surface")})) or "pending"
-        index_rows.append([f"[{proof['title']}]({slug}.qmd)", surfaces, weak_avg, repaired_avg, delta])
+        index_rows.append([f"[{proof['title']}]({slug}.qmd)", surfaces, weak_avg, repaired_avg, outcome_delta, structural_delta])
 
         body_parts = [
             f"# {proof['title']}",
             "",
             f"**Expected delta:** {proof['delta']}",
             "",
-            f"**Input context:** {EVALUATION_CONTEXTS[slug]}",
+            f"**Fixture:** [{case.get('fixture_path', f'examples/evaluations/fixtures/{slug}') }](https://github.com/corbensorenson/software-grimoire/tree/main/{case.get('fixture_path', f'examples/evaluations/fixtures/{slug}')})",
+            "",
+            f"**Observed outcome delta:** {case.get('observed_outcome_delta', 'pending recorded run')}",
+            "",
+            f"**Observed structural delta:** {case.get('observed_delta', 'pending recorded run')}",
+            "",
+            f"**Input context:** {case.get('input_context', EVALUATION_CONTEXTS[slug])}",
             "",
             "## Scores",
             "",
@@ -1006,13 +1246,15 @@ def write_evaluation_pages() -> None:
             body_parts.extend(
                 [
                     "",
-                    f"### {run.get('surface')} - {run.get('variant')}",
+                    f"### {run.get('surface')} - {run.get('variant')} r{run.get('repetition', 1)}",
                     "",
                     f"- Surface label: {run.get('surface_label', run.get('surface', ''))}",
                     f"- Run timestamp: `{run.get('run_timestamp', results.get('generated_at') or 'not recorded')}`",
                     f"- Prompt file: [{run.get('prompt_path')}]({prompt_url})",
                     f"- Transcript file: [{run.get('transcript_path')}]({transcript_url})",
-                    f"- Evaluator notes: {run.get('evaluator_notes', 'Auto-scored with the structural rubric; transcript remains the primary evidence.')}",
+                    f"- Structural total: {run.get('structural_total', run.get('total_score', 'pending'))}",
+                    f"- Outcome total: {run.get('outcome_total', 'pending')}",
+                    f"- Evaluator notes: {run.get('evaluator_notes', 'Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence.')}",
                     "",
                     "```text",
                     run.get("output", "").strip(),
@@ -1023,7 +1265,7 @@ def write_evaluation_pages() -> None:
 
     index_body = f"""# Recorded Evaluations
 
-Proof by Difference becomes credible only when weak and repaired prompts are run against the same context and scored with the same rubric. This section preserves those runs, including non-wins when they occur.
+Proof by Difference becomes credible only when weak and repaired prompts are run against the same fixture and scored with the same rubric. This section preserves those runs, including non-wins when they occur.
 
 Generated at: `{results.get('generated_at') or 'pending'}`
 
@@ -1033,7 +1275,9 @@ Generated at: `{results.get('generated_at') or 'pending'}`
 
 ## Rubric
 
-Scores use 0-2 per criterion: artifact boundary, invariants, output contract, verification, failure behavior, and assumption control. The score is structural and review-oriented; transcripts remain the primary evidence.
+Outcome scores count case-specific obligations such as passing fixture tests, naming planted causes, preserving invariants, avoiding dirty-data traps, and including rollback boundaries.
+
+Structural scores use 0-2 per criterion: artifact boundary, invariants, output contract, verification, failure behavior, and assumption control. The structural score is secondary and review-oriented. It partly rewards prompt echo because repaired spells contain words such as invariant, verify, rollback, and assumption. Read it as an inspectability signal, not as direct work quality. Transcripts and outcome checks remain the primary evidence.
 """
     write_text(ROOT / "examples" / "evaluations" / "index.qmd", page("Recorded Evaluations", index_body))
 
@@ -1052,6 +1296,7 @@ The adoption kit is intentionally small. It exists to make the six field spell t
 - [Prompt asset README](../prompts/README.md)
 - [Spell templates](https://github.com/corbensorenson/software-grimoire/tree/main/prompts/spells)
 - [Stack workflow templates](https://github.com/corbensorenson/software-grimoire/tree/main/prompts/stacks)
+- [Installable library exports](installable-library.qmd)
 
 ## Minimal CLI
 
@@ -1073,6 +1318,31 @@ The CLI stays local. It has no hidden model calls and no provider dependency.
 - Save prompts and outputs that worked.
 - Retire local variants that no longer improve output.
 - Record evidence before promoting a local spell to a team template.
+""",
+        ),
+    )
+    write_text(
+        ROOT / "adoption" / "installable-library.qmd",
+        page(
+            "Installable Library",
+            """# Installable Library
+
+The installable library is generated from canonical spell and stack data. It gives practitioners lower-friction assets without forking the book.
+
+## Export Targets
+
+- [Plain Markdown spells](../exports/markdown/spells)
+- [Plain Markdown stacks](../exports/markdown/stacks)
+- [Codex task templates](../exports/codex)
+- [Cursor rules](../exports/cursor/rules)
+- [Export index](../exports/README.md)
+
+## Rules
+
+- Exports are generated. Do not hand-edit them.
+- Every export links back to a spell or stack ID and working seal.
+- Provider-specific formats are adapters. The canonical data remains in `data/spells.json` and `data/stacks.json`.
+- No export is allowed to add hidden network calls or model-provider dependencies.
 """,
         ),
     )
@@ -1267,11 +1537,11 @@ The grimoire source corpus has been ported into the public Quarto site and repos
 
 | Source | Ported form | Status |
 |---|---|---|
-| `software_magic_grimoire_v3_public_release.docx` | Main book chapters, public canon, full lexicon data, generated reference pages | Structurally ported; lexicon authoring in progress |
+| `software_magic_grimoire_v3_public_release.docx` | Main book chapters, public canon, full lexicon data, generated reference pages | Ported; full lexicon authored |
 | `pocket_grimoire_software_spellcraft_final.docx` | Pocket field guide, 300-rune pocket canon, quick-reference pages | Ported |
 | `software_spellcraft_addendum_on_stacked_spells.docx` | Stackcraft chapter, stack grammar, six generated stack pages | Ported |
 
-The first public seed was a complete structural port. The reader-linking pass improved the reading layer: guided paths, rune anchors, term index links, spell-to-rune links, stack-to-spell links, and canon maps. The current integrity layer is honest about lexicon authoring state.
+The first public seed was a complete structural port. The reader-linking pass improved the reading layer: guided paths, rune anchors, term index links, spell-to-rune links, stack-to-spell links, and canon maps. The full-canon pass finishes the master lexicon instead of leaving generated boilerplate stubs.
 
 ## Lexicon Completion
 
@@ -1294,7 +1564,7 @@ The master lexicon currently has `{authored}` authored entries and `{stub}` stub
 - Major and pocket canon entries link into the master house pages.
 - Spell templates link to relevant runes and supporting reference pages.
 - Stack workflows link to relevant spell templates, runes, and stack grammar.
-- Stub lexicon entries are explicitly marked as stubs until they receive term-specific summaries, shadows, and sense disambiguation.
+- Lexicon entries are expected to remain authored: term-specific summary, force, shadow, and sense disambiguation where needed.
 - The roadmap distinguishes archival completeness from reader experience completeness.
 """,
         ),
@@ -1566,8 +1836,8 @@ def write_reference_pages(houses: list[dict], lexicon: list[dict], major: dict[i
             + count_summary_table(global_counts)
             + "\n\n## Authored-Layer Quality\n\n"
             + quality_table(quality)
-            + "\n\n## Partially Authored Master Lexicon Houses\n\n"
-            "These house pages are complete as an index, but many entries are still marked `stub`. Use the major and pocket canons first when you want reviewed vocabulary.\n\n"
+            + "\n\n## Master Lexicon Houses\n\n"
+            "These house pages contain the full authored lexicon. Use the major and pocket canons first when you want the promoted vocabulary surface.\n\n"
             + "\n\n"
             + qmd_table(rows)
             + "\n",
@@ -1784,8 +2054,6 @@ Use this map to jump from intent to the right reading surface.
         rows = [["Sigil", "Term", "Completion", "Summary"]]
         for entry in entries:
             term_label = f"[{entry['raw_term']}](#rune-{entry['sigil']})"
-            if entry["completion_status"] == "stub":
-                term_label = f"`STUB` {term_label}"
             rows.append([entry["sigil"], term_label, entry["completion_status"], entry["summary"]])
         details = []
         for entry in entries:
@@ -1892,6 +2160,14 @@ Use this map to jump from intent to the right reading surface.
             + loop_text
             + f"\n\n## On Fail\n\n{stack['on_fail']}\n\n## Why It Works\n\n{stack['why_it_works']}\n"
         )
+        if stack["id"] == "stack.release-gate-stack.v1":
+            body += (
+                "\n\n## Dogfood Record\n\n"
+                "This repository uses the release-gate shape through the "
+                "[Publish Quarto Site workflow](https://github.com/corbensorenson/software-grimoire/actions/workflows/publish.yml). "
+                "The generated run record is stored at "
+                "[examples/release-gate/release-gate-stack-run.json](https://github.com/corbensorenson/software-grimoire/blob/main/examples/release-gate/release-gate-stack-run.json).\n"
+            )
         write_text(ROOT / "stacks" / f"{slugify(stack['title'])}.qmd", page(stack["title"], body))
 
 
@@ -1934,6 +2210,7 @@ def write_quarto_config(houses: list[dict]) -> None:
         "evaluation_pages": ["examples/evaluations/index.qmd"] + [f"examples/evaluations/{slug}.qmd" for slug in PROOF_CASES],
         "adoption_pages": [
             "adoption/index.qmd",
+            "adoption/installable-library.qmd",
             "adoption/external-walkthrough.qmd",
         ],
         "reference_pages": [
@@ -1971,6 +2248,9 @@ def write_quarto_config(houses: list[dict]) -> None:
     - .nojekyll
     - data/*.json
     - prompts/**
+    - exports/**
+    - examples/evaluations/fixtures/**
+    - examples/release-gate/**
 
 lang: en-US
 
@@ -2004,7 +2284,7 @@ book:
     - part: "Reference"
       chapters:
 {refs}
-    - part: "Partially Authored Master Lexicon"
+    - part: "Master Lexicon"
       chapters:
 {appendix_pages}
 

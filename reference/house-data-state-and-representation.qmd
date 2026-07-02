@@ -8,138 +8,136 @@ Range: `0250-0371`.
 
 ## Completion
 
-| Status      | Count |
-| ----------- | ----- |
-| authored    | 18    |
-| stub        | 103   |
-| needs_sense | 1     |
+| Status   | Count |
+| -------- | ----- |
+| authored | 122   |
 
 Use the summary table for scanning. Each row links to the detailed anchored entry below.
 
-| Sigil | Term                                       | Completion  | Summary                                                                                                   |
-| ----- | ------------------------------------------ | ----------- | --------------------------------------------------------------------------------------------------------- |
-| 0250  | `STUB` [address](#rune-0250)               | stub        | A storage-word; it determines how meaning is carried through memory or transport.                         |
-| 0251  | `STUB` [aggregate state](#rune-0251)       | stub        | A matter-word; it names something that can be held, moved, or compared.                                   |
-| 0252  | [array](#rune-0252)                        | authored    | A contiguous ordered collection accessed by position.                                                     |
-| 0253  | `STUB` [bag](#rune-0253)                   | stub        | A storage-word; it determines how meaning is carried through memory or transport.                         |
-| 0254  | `STUB` [binary blob](#rune-0254)           | stub        | A matter-word; it names something that can be held, moved, or compared.                                   |
-| 0255  | `STUB` [bit](#rune-0255)                   | stub        | A shape-of-state word; it influences what later transformations are easy or hard.                         |
-| 0256  | `STUB` [bitmap](#rune-0256)                | stub        | A representation-word; it gives state a vessel or surface.                                                |
-| 0257  | `STUB` [blob](#rune-0257)                  | stub        | A shape-of-state word; it influences what later transformations are easy or hard.                         |
-| 0258  | `STUB` [block {Data}](#rune-0258)          | stub        | A shape-of-state word; it influences what later transformations are easy or hard.                         |
-| 0259  | `STUB` [Bloom filter](#rune-0259)          | stub        | A shape-of-state word; it influences what later transformations are easy or hard.                         |
-| 0260  | `STUB` [body](#rune-0260)                  | stub        | A storage-word; it determines how meaning is carried through memory or transport.                         |
-| 0261  | `STUB` [book-keeping field](#rune-0261)    | stub        | A shape-of-state word; it influences what later transformations are easy or hard.                         |
-| 0262  | `STUB` [bucket {Data}](#rune-0262)         | stub        | A storage-word; it determines how meaning is carried through memory or transport.                         |
-| 0263  | [buffer](#rune-0263)                       | authored    | A temporary holding area used to smooth movement, parsing, or I/O.                                        |
-| 0264  | `STUB` [byte](#rune-0264)                  | stub        | A matter-word; it names something that can be held, moved, or compared.                                   |
-| 0265  | `STUB` [cache entry](#rune-0265)           | stub        | A storage-word; it determines how meaning is carried through memory or transport.                         |
-| 0266  | `STUB` [canonical form {Data}](#rune-0266) | stub        | A normalization word; many possible surfaces are forced into one agreed shape.                            |
-| 0267  | `STUB` [cell](#rune-0267)                  | stub        | A matter-word; it names something that can be held, moved, or compared.                                   |
-| 0268  | [checksum](#rune-0268)                     | authored    | A compact fingerprint used to detect accidental change.                                                   |
-| 0269  | `STUB` [chunk](#rune-0269)                 | stub        | A representation-word; it gives state a vessel or surface.                                                |
-| 0270  | `STUB` [column {Data}](#rune-0270)         | stub        | A storage-word; it determines how meaning is carried through memory or transport.                         |
-| 0271  | `STUB` [composite value](#rune-0271)       | stub        | A matter-word; it names something that can be held, moved, or compared.                                   |
-| 0272  | [config](#rune-0272)                       | authored    | Declared settings that shape behavior without editing code.                                               |
-| 0273  | `STUB` [constant pool](#rune-0273)         | stub        | A matter-word; it names something that can be held, moved, or compared.                                   |
-| 0274  | `STUB` [content](#rune-0274)               | stub        | A shape-of-state word; it influences what later transformations are easy or hard.                         |
-| 0275  | `STUB` [context object](#rune-0275)        | stub        | A matter-word; it names something that can be held, moved, or compared.                                   |
-| 0276  | `STUB` [cookie](#rune-0276)                | stub        | A storage-word; it determines how meaning is carried through memory or transport.                         |
-| 0277  | `STUB` [corpus](#rune-0277)                | stub        | A matter-word; it names something that can be held, moved, or compared.                                   |
-| 0278  | `STUB` [counter {Data}](#rune-0278)        | stub        | A matter-word; it names something that can be held, moved, or compared.                                   |
-| 0279  | `STUB` [credential {Data}](#rune-0279)     | stub        | A shape-of-state word; it influences what later transformations are easy or hard.                         |
-| 0280  | [cursor {Data}](#rune-0280)                | authored    | A movable pointer into a sequence or result set.                                                          |
-| 0281  | `STUB` [data frame](#rune-0281)            | stub        | A representation-word; it gives state a vessel or surface.                                                |
-| 0282  | `STUB` [data point](#rune-0282)            | stub        | A matter-word; it names something that can be held, moved, or compared.                                   |
-| 0283  | `STUB` [dataset](#rune-0283)               | stub        | A storage-word; it determines how meaning is carried through memory or transport.                         |
-| 0284  | `STUB` [datum](#rune-0284)                 | stub        | A shape-of-state word; it influences what later transformations are easy or hard.                         |
-| 0285  | `STUB` [delta](#rune-0285)                 | stub        | A storage-word; it determines how meaning is carried through memory or transport.                         |
-| 0286  | `STUB` [dense vector](#rune-0286)          | stub        | A storage-word; it determines how meaning is carried through memory or transport.                         |
-| 0287  | `STUB` [descriptor](#rune-0287)            | stub        | A shape-of-state word; it influences what later transformations are easy or hard.                         |
-| 0288  | [dictionary](#rune-0288)                   | authored    | Keyed lookup structure for named values.                                                                  |
-| 0289  | `STUB` [digest {Data}](#rune-0289)         | stub        | A matter-word; it names something that can be held, moved, or compared.                                   |
-| 0290  | `STUB` [document](#rune-0290)              | stub        | A shape-of-state word; it influences what later transformations are easy or hard.                         |
-| 0291  | `STUB` [edge {Data}](#rune-0291)           | stub        | A representation-word; it gives state a vessel or surface.                                                |
-| 0292  | `STUB` [element](#rune-0292)               | stub        | A storage-word; it determines how meaning is carried through memory or transport.                         |
-| 0293  | `STUB` [embedding {Data}](#rune-0293)      | stub        | A closeness word; it places meaning into geometry.                                                        |
-| 0294  | [entity](#rune-0294)                       | authored    | A thing with stable identity that the system cares about.                                                 |
-| 0295  | `STUB` [enum value](#rune-0295)            | stub        | A storage-word; it determines how meaning is carried through memory or transport.                         |
-| 0296  | `STUB` [envelope](#rune-0296)              | stub        | A storage-word; it determines how meaning is carried through memory or transport.                         |
-| 0297  | [event](#rune-0297)                        | authored    | A record of something that happened.                                                                      |
-| 0298  | [event log](#rune-0298)                    | authored    | History stored as events instead of overwritten final state.                                              |
-| 0299  | `STUB` [fact](#rune-0299)                  | stub        | A storage-word; it determines how meaning is carried through memory or transport.                         |
-| 0300  | `STUB` [feature](#rune-0300)               | stub        | A matter-word; it names something that can be held, moved, or compared.                                   |
-| 0301  | `STUB` [field {Data}](#rune-0301)          | stub        | A matter-word; it names something that can be held, moved, or compared.                                   |
-| 0302  | `STUB` [fingerprint](#rune-0302)           | stub        | A matter-word; it names something that can be held, moved, or compared.                                   |
-| 0303  | `STUB` [flag](#rune-0303)                  | stub        | A storage-word; it determines how meaning is carried through memory or transport.                         |
-| 0304  | `STUB` [frame {Data}](#rune-0304)          | stub        | A shape-of-state word; it influences what later transformations are easy or hard.                         |
-| 0305  | `STUB` [handle {Data}](#rune-0305)         | stub        | A matter-word; it names something that can be held, moved, or compared.                                   |
-| 0306  | [hash {Data}](#rune-0306)                  | authored    | A condensed fingerprint used for lookup, bucketing, or integrity checks.                                  |
-| 0307  | `STUB` [hash map](#rune-0307)              | stub        | A storage-word; it determines how meaning is carried through memory or transport.                         |
-| 0308  | `STUB` [header](#rune-0308)                | stub        | A representation-word; it gives state a vessel or surface.                                                |
-| 0309  | `STUB` [heap record](#rune-0309)           | stub        | A representation-word; it gives state a vessel or surface.                                                |
-| 0310  | [index {Data}](#rune-0310)                 | authored    | An access structure that trades space and write cost for faster reads.                                    |
-| 0311  | `STUB` [index key](#rune-0311)             | stub        | A representation-word; it gives state a vessel or surface.                                                |
-| 0312  | `STUB` [item](#rune-0312)                  | stub        | A shape-of-state word; it influences what later transformations are easy or hard.                         |
-| 0313  | `STUB` [iterator](#rune-0313)              | stub        | A storage-word; it determines how meaning is carried through memory or transport.                         |
-| 0314  | `STUB` [journal](#rune-0314)               | stub        | A shape-of-state word; it influences what later transformations are easy or hard.                         |
-| 0315  | [key {Data}](#rune-0315)                   | authored    | The field by which something is found or grouped.                                                         |
-| 0316  | `STUB` [key-value pair](#rune-0316)        | stub        | A shape-of-state word; it influences what later transformations are easy or hard.                         |
-| 0317  | `STUB` [ledger](#rune-0317)                | stub        | A shape-of-state word; it influences what later transformations are easy or hard.                         |
-| 0318  | `STUB` [list](#rune-0318)                  | stub        | A matter-word; it names something that can be held, moved, or compared.                                   |
-| 0319  | `STUB` [literal value](#rune-0319)         | stub        | A storage-word; it determines how meaning is carried through memory or transport.                         |
-| 0320  | [map {Data}](#rune-0320)                   | authored    | Associative collection from keys to values.                                                               |
-| 0321  | `STUB` [matrix](#rune-0321)                | stub        | A representation-word; it gives state a vessel or surface.                                                |
-| 0322  | [message](#rune-0322)                      | authored    | A discrete packet of meaning sent between parts.                                                          |
-| 0323  | `STUB` [metadata](#rune-0323)              | stub        | A representation-word; it gives state a vessel or surface.                                                |
-| 0324  | `STUB` [model {Data}](#rune-0324)          | stub        | A representative word; a simplified structure stands in for a larger reality.                             |
-| 0325  | `STUB` [multimap](#rune-0325)              | stub        | A representation-word; it gives state a vessel or surface.                                                |
-| 0326  | `STUB` [node {Data}](#rune-0326)           | stub        | A storage-word; it determines how meaning is carried through memory or transport.                         |
-| 0327  | `STUB` [null](#rune-0327)                  | stub        | A shape-of-state word; it influences what later transformations are easy or hard.                         |
-| 0328  | `STUB` [object state](#rune-0328)          | stub        | A matter-word; it names something that can be held, moved, or compared.                                   |
-| 0329  | `STUB` [offset](#rune-0329)                | stub        | A shape-of-state word; it influences what later transformations are easy or hard.                         |
-| 0330  | `STUB` [page {Data}](#rune-0330)           | stub        | A representation-word; it gives state a vessel or surface.                                                |
-| 0331  | `STUB` [pair](#rune-0331)                  | stub        | A matter-word; it names something that can be held, moved, or compared.                                   |
-| 0332  | `STUB` [payload](#rune-0332)               | stub        | A storage-word; it determines how meaning is carried through memory or transport.                         |
-| 0333  | `STUB` [pointer {Data}](#rune-0333)        | stub        | A location word; it does not hold the thing, but where the thing may be found.                            |
-| 0334  | `STUB` [pool](#rune-0334)                  | stub        | A storage-word; it determines how meaning is carried through memory or transport.                         |
-| 0335  | `STUB` [property {Data}](#rune-0335)       | stub        | A representation-word; it gives state a vessel or surface.                                                |
-| 0336  | `STUB` [queue element](#rune-0336)         | stub        | A shape-of-state word; it influences what later transformations are easy or hard.                         |
-| 0337  | `STUB` [range](#rune-0337)                 | stub        | A representation-word; it gives state a vessel or surface.                                                |
-| 0338  | [record {Data}](#rune-0338)                | authored    | A row-like bundle of named fields describing one thing.                                                   |
-| 0339  | `STUB` [reference {Data}](#rune-0339)      | stub        | A shape-of-state word; it influences what later transformations are easy or hard.                         |
-| 0340  | `STUB` [relation {Data}](#rune-0340)       | stub        | A storage-word; it determines how meaning is carried through memory or transport.                         |
-| 0341  | `STUB` [representation](#rune-0341)        | stub        | A shape-of-state word; it influences what later transformations are easy or hard.                         |
-| 0342  | [resource](#rune-0342)                     | needs_sense | A bounded-thing word; something that must be acquired, used, and released.                                |
-| 0343  | `STUB` [revision {Data}](#rune-0343)       | stub        | A shape-of-state word; it influences what later transformations are easy or hard.                         |
-| 0344  | `STUB` [ring buffer](#rune-0344)           | stub        | A storage-word; it determines how meaning is carried through memory or transport.                         |
-| 0345  | `STUB` [row {Data}](#rune-0345)            | stub        | A matter-word; it names something that can be held, moved, or compared.                                   |
-| 0346  | `STUB` [scalar](#rune-0346)                | stub        | A storage-word; it determines how meaning is carried through memory or transport.                         |
-| 0347  | [schema {Data}](#rune-0347)                | authored    | The declared shape of stored meaning. Shadow: drift, silent coercion, and backward-incompatible surprise. |
-| 0348  | `STUB` [secret {Data}](#rune-0348)         | stub        | A guarded-value word meant to remain hidden except to the few who must know it.                           |
-| 0349  | `STUB` [segment {Data}](#rune-0349)        | stub        | A shape-of-state word; it influences what later transformations are easy or hard.                         |
-| 0350  | `STUB` [sequence](#rune-0350)              | stub        | A representation-word; it gives state a vessel or surface.                                                |
-| 0351  | `STUB` [series](#rune-0351)                | stub        | A shape-of-state word; it influences what later transformations are easy or hard.                         |
-| 0352  | `STUB` [session](#rune-0352)               | stub        | A matter-word; it names something that can be held, moved, or compared.                                   |
-| 0353  | `STUB` [set](#rune-0353)                   | stub        | A matter-word; it names something that can be held, moved, or compared.                                   |
-| 0354  | `STUB` [sketch](#rune-0354)                | stub        | A storage-word; it determines how meaning is carried through memory or transport.                         |
-| 0355  | `STUB` [slice](#rune-0355)                 | stub        | A matter-word; it names something that can be held, moved, or compared.                                   |
-| 0356  | [snapshot](#rune-0356)                     | authored    | A captured view of state at one moment.                                                                   |
-| 0357  | `STUB` [sparse vector](#rune-0357)         | stub        | A representation-word; it gives state a vessel or surface.                                                |
-| 0358  | `STUB` [stack item](#rune-0358)            | stub        | A representation-word; it gives state a vessel or surface.                                                |
-| 0359  | [state](#rune-0359)                        | authored    | The currently true condition of a thing that can change over time.                                        |
-| 0360  | `STUB` [stream item](#rune-0360)           | stub        | A shape-of-state word; it influences what later transformations are easy or hard.                         |
-| 0361  | `STUB` [string](#rune-0361)                | stub        | A shape-of-state word; it influences what later transformations are easy or hard.                         |
-| 0362  | `STUB` [struct {Data}](#rune-0362)         | stub        | A representation-word; it gives state a vessel or surface.                                                |
-| 0363  | `STUB` [table {Data}](#rune-0363)          | stub        | A matter-word; it names something that can be held, moved, or compared.                                   |
-| 0364  | `STUB` [tensor](#rune-0364)                | stub        | A shape-of-state word; it influences what later transformations are easy or hard.                         |
-| 0365  | `STUB` [token {Data}](#rune-0365)          | stub        | A countable unit of text or symbol used for parsing, modeling, or encoding.                               |
-| 0366  | `STUB` [tree node](#rune-0366)             | stub        | A storage-word; it determines how meaning is carried through memory or transport.                         |
-| 0367  | `STUB` [trie](#rune-0367)                  | stub        | A matter-word; it names something that can be held, moved, or compared.                                   |
-| 0368  | `STUB` [tuple {Data}](#rune-0368)          | stub        | A storage-word; it determines how meaning is carried through memory or transport.                         |
-| 0369  | `STUB` [vector](#rune-0369)                | stub        | A shape-of-state word; it influences what later transformations are easy or hard.                         |
-| 0370  | `STUB` [view {Data}](#rune-0370)           | stub        | A shape-of-state word; it influences what later transformations are easy or hard.                         |
-| 0371  | `STUB` [window](#rune-0371)                | stub        | A matter-word; it names something that can be held, moved, or compared.                                   |
+| Sigil | Term                                | Completion | Summary                                                                                                                                                                                                                |
+| ----- | ----------------------------------- | ---------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 0250  | [address](#rune-0250)               | authored   | `address` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the address obligation named before work proceeds.                                 |
+| 0251  | [aggregate state](#rune-0251)       | authored   | `aggregate state` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the aggregate state obligation named before work proceeds.                 |
+| 0252  | [array](#rune-0252)                 | authored   | A contiguous ordered collection accessed by position.                                                                                                                                                                  |
+| 0253  | [bag](#rune-0253)                   | authored   | `bag` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the bag obligation named before work proceeds.                                         |
+| 0254  | [binary blob](#rune-0254)           | authored   | `binary blob` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the binary blob obligation named before work proceeds.                         |
+| 0255  | [bit](#rune-0255)                   | authored   | `bit` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the bit obligation named before work proceeds.                                         |
+| 0256  | [bitmap](#rune-0256)                | authored   | `bitmap` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the bitmap obligation named before work proceeds.                                   |
+| 0257  | [blob](#rune-0257)                  | authored   | `blob` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the blob obligation named before work proceeds.                                       |
+| 0258  | [block {Data}](#rune-0258)          | authored   | `block` in its Data sense is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the block obligation named before work proceeds.                   |
+| 0259  | [Bloom filter](#rune-0259)          | authored   | `Bloom filter` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the Bloom filter obligation named before work proceeds.                       |
+| 0260  | [body](#rune-0260)                  | authored   | `body` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the body obligation named before work proceeds.                                       |
+| 0261  | [book-keeping field](#rune-0261)    | authored   | `book-keeping field` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the book-keeping field obligation named before work proceeds.           |
+| 0262  | [bucket {Data}](#rune-0262)         | authored   | `bucket` in its Data sense is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the bucket obligation named before work proceeds.                 |
+| 0263  | [buffer](#rune-0263)                | authored   | A temporary holding area used to smooth movement, parsing, or I/O.                                                                                                                                                     |
+| 0264  | [byte](#rune-0264)                  | authored   | `byte` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the byte obligation named before work proceeds.                                       |
+| 0265  | [cache entry](#rune-0265)           | authored   | `cache entry` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the cache entry obligation named before work proceeds.                         |
+| 0266  | [canonical form {Data}](#rune-0266) | authored   | `canonical form` in its Data sense is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the canonical form obligation named before work proceeds. |
+| 0267  | [cell](#rune-0267)                  | authored   | `cell` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the cell obligation named before work proceeds.                                       |
+| 0268  | [checksum](#rune-0268)              | authored   | A compact fingerprint used to detect accidental change.                                                                                                                                                                |
+| 0269  | [chunk](#rune-0269)                 | authored   | `chunk` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the chunk obligation named before work proceeds.                                     |
+| 0270  | [column {Data}](#rune-0270)         | authored   | `column` in its Data sense is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the column obligation named before work proceeds.                 |
+| 0271  | [composite value](#rune-0271)       | authored   | `composite value` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the composite value obligation named before work proceeds.                 |
+| 0272  | [config](#rune-0272)                | authored   | Declared settings that shape behavior without editing code.                                                                                                                                                            |
+| 0273  | [constant pool](#rune-0273)         | authored   | `constant pool` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the constant pool obligation named before work proceeds.                     |
+| 0274  | [content](#rune-0274)               | authored   | `content` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the content obligation named before work proceeds.                                 |
+| 0275  | [context object](#rune-0275)        | authored   | `context object` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the context object obligation named before work proceeds.                   |
+| 0276  | [cookie](#rune-0276)                | authored   | `cookie` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the cookie obligation named before work proceeds.                                   |
+| 0277  | [corpus](#rune-0277)                | authored   | `corpus` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the corpus obligation named before work proceeds.                                   |
+| 0278  | [counter {Data}](#rune-0278)        | authored   | `counter` in its Data sense is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the counter obligation named before work proceeds.               |
+| 0279  | [credential {Data}](#rune-0279)     | authored   | `credential` in its Data sense is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the credential obligation named before work proceeds.         |
+| 0280  | [cursor {Data}](#rune-0280)         | authored   | A movable pointer into a sequence or result set.                                                                                                                                                                       |
+| 0281  | [data frame](#rune-0281)            | authored   | `data frame` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the data frame obligation named before work proceeds.                           |
+| 0282  | [data point](#rune-0282)            | authored   | `data point` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the data point obligation named before work proceeds.                           |
+| 0283  | [dataset](#rune-0283)               | authored   | `dataset` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the dataset obligation named before work proceeds.                                 |
+| 0284  | [datum](#rune-0284)                 | authored   | `datum` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the datum obligation named before work proceeds.                                     |
+| 0285  | [delta](#rune-0285)                 | authored   | `delta` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the delta obligation named before work proceeds.                                     |
+| 0286  | [dense vector](#rune-0286)          | authored   | `dense vector` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the dense vector obligation named before work proceeds.                       |
+| 0287  | [descriptor](#rune-0287)            | authored   | `descriptor` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the descriptor obligation named before work proceeds.                           |
+| 0288  | [dictionary](#rune-0288)            | authored   | Keyed lookup structure for named values.                                                                                                                                                                               |
+| 0289  | [digest {Data}](#rune-0289)         | authored   | `digest` in its Data sense is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the digest obligation named before work proceeds.                 |
+| 0290  | [document](#rune-0290)              | authored   | `document` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the document obligation named before work proceeds.                               |
+| 0291  | [edge {Data}](#rune-0291)           | authored   | `edge` in its Data sense is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the edge obligation named before work proceeds.                     |
+| 0292  | [element](#rune-0292)               | authored   | `element` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the element obligation named before work proceeds.                                 |
+| 0293  | [embedding {Data}](#rune-0293)      | authored   | `embedding` in its Data sense is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the embedding obligation named before work proceeds.           |
+| 0294  | [entity](#rune-0294)                | authored   | A thing with stable identity that the system cares about.                                                                                                                                                              |
+| 0295  | [enum value](#rune-0295)            | authored   | `enum value` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the enum value obligation named before work proceeds.                           |
+| 0296  | [envelope](#rune-0296)              | authored   | `envelope` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the envelope obligation named before work proceeds.                               |
+| 0297  | [event](#rune-0297)                 | authored   | A record of something that happened.                                                                                                                                                                                   |
+| 0298  | [event log](#rune-0298)             | authored   | History stored as events instead of overwritten final state.                                                                                                                                                           |
+| 0299  | [fact](#rune-0299)                  | authored   | `fact` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the fact obligation named before work proceeds.                                       |
+| 0300  | [feature](#rune-0300)               | authored   | `feature` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the feature obligation named before work proceeds.                                 |
+| 0301  | [field {Data}](#rune-0301)          | authored   | `field` in its Data sense is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the field obligation named before work proceeds.                   |
+| 0302  | [fingerprint](#rune-0302)           | authored   | `fingerprint` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the fingerprint obligation named before work proceeds.                         |
+| 0303  | [flag](#rune-0303)                  | authored   | `flag` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the flag obligation named before work proceeds.                                       |
+| 0304  | [frame {Data}](#rune-0304)          | authored   | `frame` in its Data sense is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the frame obligation named before work proceeds.                   |
+| 0305  | [handle {Data}](#rune-0305)         | authored   | `handle` in its Data sense is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the handle obligation named before work proceeds.                 |
+| 0306  | [hash {Data}](#rune-0306)           | authored   | A condensed fingerprint used for lookup, bucketing, or integrity checks.                                                                                                                                               |
+| 0307  | [hash map](#rune-0307)              | authored   | `hash map` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the hash map obligation named before work proceeds.                               |
+| 0308  | [header](#rune-0308)                | authored   | `header` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the header obligation named before work proceeds.                                   |
+| 0309  | [heap record](#rune-0309)           | authored   | `heap record` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the heap record obligation named before work proceeds.                         |
+| 0310  | [index {Data}](#rune-0310)          | authored   | An access structure that trades space and write cost for faster reads.                                                                                                                                                 |
+| 0311  | [index key](#rune-0311)             | authored   | `index key` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the index key obligation named before work proceeds.                             |
+| 0312  | [item](#rune-0312)                  | authored   | `item` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the item obligation named before work proceeds.                                       |
+| 0313  | [iterator](#rune-0313)              | authored   | `iterator` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the iterator obligation named before work proceeds.                               |
+| 0314  | [journal](#rune-0314)               | authored   | `journal` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the journal obligation named before work proceeds.                                 |
+| 0315  | [key {Data}](#rune-0315)            | authored   | The field by which something is found or grouped.                                                                                                                                                                      |
+| 0316  | [key-value pair](#rune-0316)        | authored   | `key-value pair` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the key-value pair obligation named before work proceeds.                   |
+| 0317  | [ledger](#rune-0317)                | authored   | `ledger` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the ledger obligation named before work proceeds.                                   |
+| 0318  | [list](#rune-0318)                  | authored   | `list` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the list obligation named before work proceeds.                                       |
+| 0319  | [literal value](#rune-0319)         | authored   | `literal value` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the literal value obligation named before work proceeds.                     |
+| 0320  | [map {Data}](#rune-0320)            | authored   | Associative collection from keys to values.                                                                                                                                                                            |
+| 0321  | [matrix](#rune-0321)                | authored   | `matrix` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the matrix obligation named before work proceeds.                                   |
+| 0322  | [message](#rune-0322)               | authored   | A discrete packet of meaning sent between parts.                                                                                                                                                                       |
+| 0323  | [metadata](#rune-0323)              | authored   | `metadata` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the metadata obligation named before work proceeds.                               |
+| 0324  | [model {Data}](#rune-0324)          | authored   | `model` in its Data sense is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the model obligation named before work proceeds.                   |
+| 0325  | [multimap](#rune-0325)              | authored   | `multimap` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the multimap obligation named before work proceeds.                               |
+| 0326  | [node {Data}](#rune-0326)           | authored   | `node` in its Data sense is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the node obligation named before work proceeds.                     |
+| 0327  | [null](#rune-0327)                  | authored   | `null` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the null obligation named before work proceeds.                                       |
+| 0328  | [object state](#rune-0328)          | authored   | `object state` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the object state obligation named before work proceeds.                       |
+| 0329  | [offset](#rune-0329)                | authored   | `offset` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the offset obligation named before work proceeds.                                   |
+| 0330  | [page {Data}](#rune-0330)           | authored   | `page` in its Data sense is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the page obligation named before work proceeds.                     |
+| 0331  | [pair](#rune-0331)                  | authored   | `pair` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the pair obligation named before work proceeds.                                       |
+| 0332  | [payload](#rune-0332)               | authored   | `payload` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the payload obligation named before work proceeds.                                 |
+| 0333  | [pointer {Data}](#rune-0333)        | authored   | `pointer` in its Data sense is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the pointer obligation named before work proceeds.               |
+| 0334  | [pool](#rune-0334)                  | authored   | `pool` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the pool obligation named before work proceeds.                                       |
+| 0335  | [property {Data}](#rune-0335)       | authored   | `property` in its Data sense is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the property obligation named before work proceeds.             |
+| 0336  | [queue element](#rune-0336)         | authored   | `queue element` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the queue element obligation named before work proceeds.                     |
+| 0337  | [range](#rune-0337)                 | authored   | `range` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the range obligation named before work proceeds.                                     |
+| 0338  | [record {Data}](#rune-0338)         | authored   | A row-like bundle of named fields describing one thing.                                                                                                                                                                |
+| 0339  | [reference {Data}](#rune-0339)      | authored   | `reference` in its Data sense is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the reference obligation named before work proceeds.           |
+| 0340  | [relation {Data}](#rune-0340)       | authored   | `relation` in its Data sense is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the relation obligation named before work proceeds.             |
+| 0341  | [representation](#rune-0341)        | authored   | `representation` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the representation obligation named before work proceeds.                   |
+| 0342  | [resource](#rune-0342)              | authored   | `resource` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the resource obligation named before work proceeds.                               |
+| 0343  | [revision {Data}](#rune-0343)       | authored   | `revision` in its Data sense is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the revision obligation named before work proceeds.             |
+| 0344  | [ring buffer](#rune-0344)           | authored   | `ring buffer` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the ring buffer obligation named before work proceeds.                         |
+| 0345  | [row {Data}](#rune-0345)            | authored   | `row` in its Data sense is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the row obligation named before work proceeds.                       |
+| 0346  | [scalar](#rune-0346)                | authored   | `scalar` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the scalar obligation named before work proceeds.                                   |
+| 0347  | [schema {Data}](#rune-0347)         | authored   | The declared shape of stored meaning. Shadow: drift, silent coercion, and backward-incompatible surprise.                                                                                                              |
+| 0348  | [secret {Data}](#rune-0348)         | authored   | `secret` in its Data sense is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the secret obligation named before work proceeds.                 |
+| 0349  | [segment {Data}](#rune-0349)        | authored   | `segment` in its Data sense is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the segment obligation named before work proceeds.               |
+| 0350  | [sequence](#rune-0350)              | authored   | `sequence` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the sequence obligation named before work proceeds.                               |
+| 0351  | [series](#rune-0351)                | authored   | `series` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the series obligation named before work proceeds.                                   |
+| 0352  | [session](#rune-0352)               | authored   | `session` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the session obligation named before work proceeds.                                 |
+| 0353  | [set](#rune-0353)                   | authored   | `set` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the set obligation named before work proceeds.                                         |
+| 0354  | [sketch](#rune-0354)                | authored   | `sketch` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the sketch obligation named before work proceeds.                                   |
+| 0355  | [slice](#rune-0355)                 | authored   | `slice` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the slice obligation named before work proceeds.                                     |
+| 0356  | [snapshot](#rune-0356)              | authored   | A captured view of state at one moment.                                                                                                                                                                                |
+| 0357  | [sparse vector](#rune-0357)         | authored   | `sparse vector` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the sparse vector obligation named before work proceeds.                     |
+| 0358  | [stack item](#rune-0358)            | authored   | `stack item` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the stack item obligation named before work proceeds.                           |
+| 0359  | [state](#rune-0359)                 | authored   | The currently true condition of a thing that can change over time.                                                                                                                                                     |
+| 0360  | [stream item](#rune-0360)           | authored   | `stream item` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the stream item obligation named before work proceeds.                         |
+| 0361  | [string](#rune-0361)                | authored   | `string` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the string obligation named before work proceeds.                                   |
+| 0362  | [struct {Data}](#rune-0362)         | authored   | `struct` in its Data sense is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the struct obligation named before work proceeds.                 |
+| 0363  | [table {Data}](#rune-0363)          | authored   | `table` in its Data sense is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the table obligation named before work proceeds.                   |
+| 0364  | [tensor](#rune-0364)                | authored   | `tensor` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the tensor obligation named before work proceeds.                                   |
+| 0365  | [token {Data}](#rune-0365)          | authored   | `token` in its Data sense is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the token obligation named before work proceeds.                   |
+| 0366  | [tree node](#rune-0366)             | authored   | `tree node` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the tree node obligation named before work proceeds.                             |
+| 0367  | [trie](#rune-0367)                  | authored   | `trie` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the trie obligation named before work proceeds.                                       |
+| 0368  | [tuple {Data}](#rune-0368)          | authored   | `tuple` in its Data sense is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the tuple obligation named before work proceeds.                   |
+| 0369  | [vector](#rune-0369)                | authored   | `vector` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the vector obligation named before work proceeds.                                   |
+| 0370  | [view {Data}](#rune-0370)           | authored   | `view` in its Data sense is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the view obligation named before work proceeds.                     |
+| 0371  | [window](#rune-0371)                | authored   | `window` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the window obligation named before work proceeds.                                   |
 
 ## Entries
 
@@ -147,21 +145,21 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A storage-word; it determines how meaning is carried through memory or transport.
+**Force:** `address` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the address obligation named before work proceeds.
 
-**Shadow:** stored or transported shape can drift from the world the code thinks it is reading.
+**Shadow:** misusing `address` at rune 0250 in the data lane can let stored shape can diverge from the world it claims to model; verify by requiring the caster to state invariants, null behavior, and compatibility expectations.
 
 ### [0251] aggregate state {#rune-0251}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A matter-word; it names something that can be held, moved, or compared.
+**Force:** `aggregate state` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the aggregate state obligation named before work proceeds.
 
-**Shadow:** stored or transported shape can drift from the world the code thinks it is reading.
+**Shadow:** misusing `aggregate state` at rune 0251 in the data lane can let stored shape can diverge from the world it claims to model; verify by requiring the caster to state invariants, null behavior, and compatibility expectations.
 
 ### [0252] array {#rune-0252}
 
@@ -171,7 +169,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** A contiguous ordered collection accessed by position.
 
-**Shadow:** stored or transported shape can drift from the world the code thinks it is reading.
+**Shadow:** misusing `array` at rune 0252 in the data lane can let stored shape can diverge from the world it claims to model; verify by requiring the caster to state invariants, null behavior, and compatibility expectations.
 
 **Pocket gloss:** A contiguous ordered collection accessed by position.
 
@@ -179,101 +177,101 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A storage-word; it determines how meaning is carried through memory or transport.
+**Force:** `bag` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the bag obligation named before work proceeds.
 
-**Shadow:** stored or transported shape can drift from the world the code thinks it is reading.
+**Shadow:** misusing `bag` at rune 0253 in the data lane can let stored shape can diverge from the world it claims to model; verify by requiring the caster to state invariants, null behavior, and compatibility expectations.
 
 ### [0254] binary blob {#rune-0254}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A matter-word; it names something that can be held, moved, or compared.
+**Force:** `binary blob` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the binary blob obligation named before work proceeds.
 
-**Shadow:** stored or transported shape can drift from the world the code thinks it is reading.
+**Shadow:** misusing `binary blob` at rune 0254 in the data lane can let stored shape can diverge from the world it claims to model; verify by requiring the caster to state invariants, null behavior, and compatibility expectations.
 
 ### [0255] bit {#rune-0255}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A shape-of-state word; it influences what later transformations are easy or hard.
+**Force:** `bit` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the bit obligation named before work proceeds.
 
-**Shadow:** stored or transported shape can drift from the world the code thinks it is reading.
+**Shadow:** misusing `bit` at rune 0255 in the data lane can let stored shape can diverge from the world it claims to model; verify by requiring the caster to state invariants, null behavior, and compatibility expectations.
 
 ### [0256] bitmap {#rune-0256}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A representation-word; it gives state a vessel or surface.
+**Force:** `bitmap` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the bitmap obligation named before work proceeds.
 
-**Shadow:** stored or transported shape can drift from the world the code thinks it is reading.
+**Shadow:** misusing `bitmap` at rune 0256 in the data lane can let stored shape can diverge from the world it claims to model; verify by requiring the caster to state invariants, null behavior, and compatibility expectations.
 
 ### [0257] blob {#rune-0257}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A shape-of-state word; it influences what later transformations are easy or hard.
+**Force:** `blob` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the blob obligation named before work proceeds.
 
-**Shadow:** stored or transported shape can drift from the world the code thinks it is reading.
+**Shadow:** misusing `blob` at rune 0257 in the data lane can let stored shape can diverge from the world it claims to model; verify by requiring the caster to state invariants, null behavior, and compatibility expectations.
 
 ### [0258] block {Data} {#rune-0258}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A shape-of-state word; it influences what later transformations are easy or hard.
+**Force:** `block` in its Data sense is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the block obligation named before work proceeds.
 
-**Shadow:** stored or transported shape can drift from the world the code thinks it is reading.
+**Shadow:** misusing `block` at rune 0258 in the Data lane can let stored shape can diverge from the world it claims to model; verify by requiring the caster to state invariants, null behavior, and compatibility expectations.
 
 ### [0259] Bloom filter {#rune-0259}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A shape-of-state word; it influences what later transformations are easy or hard.
+**Force:** `Bloom filter` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the Bloom filter obligation named before work proceeds.
 
-**Shadow:** stored or transported shape can drift from the world the code thinks it is reading.
+**Shadow:** misusing `Bloom filter` at rune 0259 in the data lane can let stored shape can diverge from the world it claims to model; verify by requiring the caster to state invariants, null behavior, and compatibility expectations.
 
 ### [0260] body {#rune-0260}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A storage-word; it determines how meaning is carried through memory or transport.
+**Force:** `body` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the body obligation named before work proceeds.
 
-**Shadow:** stored or transported shape can drift from the world the code thinks it is reading.
+**Shadow:** misusing `body` at rune 0260 in the data lane can let stored shape can diverge from the world it claims to model; verify by requiring the caster to state invariants, null behavior, and compatibility expectations.
 
 ### [0261] book-keeping field {#rune-0261}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A shape-of-state word; it influences what later transformations are easy or hard.
+**Force:** `book-keeping field` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the book-keeping field obligation named before work proceeds.
 
-**Shadow:** stored or transported shape can drift from the world the code thinks it is reading.
+**Shadow:** misusing `book-keeping field` at rune 0261 in the data lane can let stored shape can diverge from the world it claims to model; verify by requiring the caster to state invariants, null behavior, and compatibility expectations.
 
 ### [0262] bucket {Data} {#rune-0262}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A storage-word; it determines how meaning is carried through memory or transport.
+**Force:** `bucket` in its Data sense is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the bucket obligation named before work proceeds.
 
-**Shadow:** stored or transported shape can drift from the world the code thinks it is reading.
+**Shadow:** misusing `bucket` at rune 0262 in the Data lane can let stored shape can diverge from the world it claims to model; verify by requiring the caster to state invariants, null behavior, and compatibility expectations.
 
 ### [0263] buffer {#rune-0263}
 
@@ -283,7 +281,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** A temporary holding area used to smooth movement, parsing, or I/O.
 
-**Shadow:** stored or transported shape can drift from the world the code thinks it is reading.
+**Shadow:** misusing `buffer` at rune 0263 in the data lane can let stored shape can diverge from the world it claims to model; verify by requiring the caster to state invariants, null behavior, and compatibility expectations.
 
 **Pocket gloss:** A temporary holding area used to smooth movement, parsing, or I/O.
 
@@ -291,41 +289,41 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A matter-word; it names something that can be held, moved, or compared.
+**Force:** `byte` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the byte obligation named before work proceeds.
 
-**Shadow:** stored or transported shape can drift from the world the code thinks it is reading.
+**Shadow:** misusing `byte` at rune 0264 in the data lane can let stored shape can diverge from the world it claims to model; verify by requiring the caster to state invariants, null behavior, and compatibility expectations.
 
 ### [0265] cache entry {#rune-0265}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A storage-word; it determines how meaning is carried through memory or transport.
+**Force:** `cache entry` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the cache entry obligation named before work proceeds.
 
-**Shadow:** stored or transported shape can drift from the world the code thinks it is reading.
+**Shadow:** misusing `cache entry` at rune 0265 in the data lane can let stored shape can diverge from the world it claims to model; verify by requiring the caster to state invariants, null behavior, and compatibility expectations.
 
 ### [0266] canonical form {Data} {#rune-0266}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A normalization word; many possible surfaces are forced into one agreed shape.
+**Force:** `canonical form` in its Data sense is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the canonical form obligation named before work proceeds.
 
-**Shadow:** stored or transported shape can drift from the world the code thinks it is reading.
+**Shadow:** misusing `canonical form` at rune 0266 in the Data lane can let stored shape can diverge from the world it claims to model; verify by requiring the caster to state invariants, null behavior, and compatibility expectations.
 
 ### [0267] cell {#rune-0267}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A matter-word; it names something that can be held, moved, or compared.
+**Force:** `cell` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the cell obligation named before work proceeds.
 
-**Shadow:** stored or transported shape can drift from the world the code thinks it is reading.
+**Shadow:** misusing `cell` at rune 0267 in the data lane can let stored shape can diverge from the world it claims to model; verify by requiring the caster to state invariants, null behavior, and compatibility expectations.
 
 ### [0268] checksum {#rune-0268}
 
@@ -335,7 +333,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** A compact fingerprint used to detect accidental change.
 
-**Shadow:** stored or transported shape can drift from the world the code thinks it is reading.
+**Shadow:** misusing `checksum` at rune 0268 in the data lane can let stored shape can diverge from the world it claims to model; verify by requiring the caster to state invariants, null behavior, and compatibility expectations.
 
 **Pocket gloss:** A compact fingerprint used to detect accidental change.
 
@@ -343,31 +341,31 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A representation-word; it gives state a vessel or surface.
+**Force:** `chunk` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the chunk obligation named before work proceeds.
 
-**Shadow:** stored or transported shape can drift from the world the code thinks it is reading.
+**Shadow:** misusing `chunk` at rune 0269 in the data lane can let stored shape can diverge from the world it claims to model; verify by requiring the caster to state invariants, null behavior, and compatibility expectations.
 
 ### [0270] column {Data} {#rune-0270}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A storage-word; it determines how meaning is carried through memory or transport.
+**Force:** `column` in its Data sense is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the column obligation named before work proceeds.
 
-**Shadow:** stored or transported shape can drift from the world the code thinks it is reading.
+**Shadow:** misusing `column` at rune 0270 in the Data lane can let stored shape can diverge from the world it claims to model; verify by requiring the caster to state invariants, null behavior, and compatibility expectations.
 
 ### [0271] composite value {#rune-0271}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A matter-word; it names something that can be held, moved, or compared.
+**Force:** `composite value` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the composite value obligation named before work proceeds.
 
-**Shadow:** stored or transported shape can drift from the world the code thinks it is reading.
+**Shadow:** misusing `composite value` at rune 0271 in the data lane can let stored shape can diverge from the world it claims to model; verify by requiring the caster to state invariants, null behavior, and compatibility expectations.
 
 ### [0272] config {#rune-0272}
 
@@ -377,7 +375,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** Declared settings that shape behavior without editing code.
 
-**Shadow:** stored or transported shape can drift from the world the code thinks it is reading.
+**Shadow:** misusing `config` at rune 0272 in the data lane can let stored shape can diverge from the world it claims to model; verify by requiring the caster to state invariants, null behavior, and compatibility expectations.
 
 **Pocket gloss:** Declared settings that shape behavior without editing code.
 
@@ -385,71 +383,71 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A matter-word; it names something that can be held, moved, or compared.
+**Force:** `constant pool` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the constant pool obligation named before work proceeds.
 
-**Shadow:** stored or transported shape can drift from the world the code thinks it is reading.
+**Shadow:** misusing `constant pool` at rune 0273 in the data lane can let stored shape can diverge from the world it claims to model; verify by requiring the caster to state invariants, null behavior, and compatibility expectations.
 
 ### [0274] content {#rune-0274}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A shape-of-state word; it influences what later transformations are easy or hard.
+**Force:** `content` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the content obligation named before work proceeds.
 
-**Shadow:** stored or transported shape can drift from the world the code thinks it is reading.
+**Shadow:** misusing `content` at rune 0274 in the data lane can let stored shape can diverge from the world it claims to model; verify by requiring the caster to state invariants, null behavior, and compatibility expectations.
 
 ### [0275] context object {#rune-0275}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A matter-word; it names something that can be held, moved, or compared.
+**Force:** `context object` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the context object obligation named before work proceeds.
 
-**Shadow:** stored or transported shape can drift from the world the code thinks it is reading.
+**Shadow:** misusing `context object` at rune 0275 in the data lane can let stored shape can diverge from the world it claims to model; verify by requiring the caster to state invariants, null behavior, and compatibility expectations.
 
 ### [0276] cookie {#rune-0276}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A storage-word; it determines how meaning is carried through memory or transport.
+**Force:** `cookie` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the cookie obligation named before work proceeds.
 
-**Shadow:** stored or transported shape can drift from the world the code thinks it is reading.
+**Shadow:** misusing `cookie` at rune 0276 in the data lane can let stored shape can diverge from the world it claims to model; verify by requiring the caster to state invariants, null behavior, and compatibility expectations.
 
 ### [0277] corpus {#rune-0277}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A matter-word; it names something that can be held, moved, or compared.
+**Force:** `corpus` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the corpus obligation named before work proceeds.
 
-**Shadow:** stored or transported shape can drift from the world the code thinks it is reading.
+**Shadow:** misusing `corpus` at rune 0277 in the data lane can let stored shape can diverge from the world it claims to model; verify by requiring the caster to state invariants, null behavior, and compatibility expectations.
 
 ### [0278] counter {Data} {#rune-0278}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A matter-word; it names something that can be held, moved, or compared.
+**Force:** `counter` in its Data sense is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the counter obligation named before work proceeds.
 
-**Shadow:** stored or transported shape can drift from the world the code thinks it is reading.
+**Shadow:** misusing `counter` at rune 0278 in the Data lane can let stored shape can diverge from the world it claims to model; verify by requiring the caster to state invariants, null behavior, and compatibility expectations.
 
 ### [0279] credential {Data} {#rune-0279}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A shape-of-state word; it influences what later transformations are easy or hard.
+**Force:** `credential` in its Data sense is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the credential obligation named before work proceeds.
 
-**Shadow:** stored or transported shape can drift from the world the code thinks it is reading.
+**Shadow:** misusing `credential` at rune 0279 in the Data lane can let stored shape can diverge from the world it claims to model; verify by requiring the caster to state invariants, null behavior, and compatibility expectations.
 
 ### [0280] cursor {Data} {#rune-0280}
 
@@ -459,7 +457,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** A movable pointer into a sequence or result set.
 
-**Shadow:** stored or transported shape can drift from the world the code thinks it is reading.
+**Shadow:** misusing `cursor` at rune 0280 in the Data lane can let stored shape can diverge from the world it claims to model; verify by requiring the caster to state invariants, null behavior, and compatibility expectations.
 
 **Pocket gloss:** A movable pointer into a sequence or result set.
 
@@ -467,71 +465,71 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A representation-word; it gives state a vessel or surface.
+**Force:** `data frame` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the data frame obligation named before work proceeds.
 
-**Shadow:** stored or transported shape can drift from the world the code thinks it is reading.
+**Shadow:** misusing `data frame` at rune 0281 in the data lane can let stored shape can diverge from the world it claims to model; verify by requiring the caster to state invariants, null behavior, and compatibility expectations.
 
 ### [0282] data point {#rune-0282}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A matter-word; it names something that can be held, moved, or compared.
+**Force:** `data point` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the data point obligation named before work proceeds.
 
-**Shadow:** stored or transported shape can drift from the world the code thinks it is reading.
+**Shadow:** misusing `data point` at rune 0282 in the data lane can let stored shape can diverge from the world it claims to model; verify by requiring the caster to state invariants, null behavior, and compatibility expectations.
 
 ### [0283] dataset {#rune-0283}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A storage-word; it determines how meaning is carried through memory or transport.
+**Force:** `dataset` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the dataset obligation named before work proceeds.
 
-**Shadow:** stored or transported shape can drift from the world the code thinks it is reading.
+**Shadow:** misusing `dataset` at rune 0283 in the data lane can let stored shape can diverge from the world it claims to model; verify by requiring the caster to state invariants, null behavior, and compatibility expectations.
 
 ### [0284] datum {#rune-0284}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A shape-of-state word; it influences what later transformations are easy or hard.
+**Force:** `datum` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the datum obligation named before work proceeds.
 
-**Shadow:** stored or transported shape can drift from the world the code thinks it is reading.
+**Shadow:** misusing `datum` at rune 0284 in the data lane can let stored shape can diverge from the world it claims to model; verify by requiring the caster to state invariants, null behavior, and compatibility expectations.
 
 ### [0285] delta {#rune-0285}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A storage-word; it determines how meaning is carried through memory or transport.
+**Force:** `delta` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the delta obligation named before work proceeds.
 
-**Shadow:** stored or transported shape can drift from the world the code thinks it is reading.
+**Shadow:** misusing `delta` at rune 0285 in the data lane can let stored shape can diverge from the world it claims to model; verify by requiring the caster to state invariants, null behavior, and compatibility expectations.
 
 ### [0286] dense vector {#rune-0286}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A storage-word; it determines how meaning is carried through memory or transport.
+**Force:** `dense vector` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the dense vector obligation named before work proceeds.
 
-**Shadow:** stored or transported shape can drift from the world the code thinks it is reading.
+**Shadow:** misusing `dense vector` at rune 0286 in the data lane can let stored shape can diverge from the world it claims to model; verify by requiring the caster to state invariants, null behavior, and compatibility expectations.
 
 ### [0287] descriptor {#rune-0287}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A shape-of-state word; it influences what later transformations are easy or hard.
+**Force:** `descriptor` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the descriptor obligation named before work proceeds.
 
-**Shadow:** stored or transported shape can drift from the world the code thinks it is reading.
+**Shadow:** misusing `descriptor` at rune 0287 in the data lane can let stored shape can diverge from the world it claims to model; verify by requiring the caster to state invariants, null behavior, and compatibility expectations.
 
 ### [0288] dictionary {#rune-0288}
 
@@ -541,7 +539,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** Keyed lookup structure for named values.
 
-**Shadow:** stored or transported shape can drift from the world the code thinks it is reading.
+**Shadow:** misusing `dictionary` at rune 0288 in the data lane can let stored shape can diverge from the world it claims to model; verify by requiring the caster to state invariants, null behavior, and compatibility expectations.
 
 **Pocket gloss:** Keyed lookup structure for named values.
 
@@ -549,51 +547,51 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A matter-word; it names something that can be held, moved, or compared.
+**Force:** `digest` in its Data sense is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the digest obligation named before work proceeds.
 
-**Shadow:** stored or transported shape can drift from the world the code thinks it is reading.
+**Shadow:** misusing `digest` at rune 0289 in the Data lane can let stored shape can diverge from the world it claims to model; verify by requiring the caster to state invariants, null behavior, and compatibility expectations.
 
 ### [0290] document {#rune-0290}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A shape-of-state word; it influences what later transformations are easy or hard.
+**Force:** `document` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the document obligation named before work proceeds.
 
-**Shadow:** stored or transported shape can drift from the world the code thinks it is reading.
+**Shadow:** misusing `document` at rune 0290 in the data lane can let stored shape can diverge from the world it claims to model; verify by requiring the caster to state invariants, null behavior, and compatibility expectations.
 
 ### [0291] edge {Data} {#rune-0291}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A representation-word; it gives state a vessel or surface.
+**Force:** `edge` in its Data sense is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the edge obligation named before work proceeds.
 
-**Shadow:** stored or transported shape can drift from the world the code thinks it is reading.
+**Shadow:** misusing `edge` at rune 0291 in the Data lane can let stored shape can diverge from the world it claims to model; verify by requiring the caster to state invariants, null behavior, and compatibility expectations.
 
 ### [0292] element {#rune-0292}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A storage-word; it determines how meaning is carried through memory or transport.
+**Force:** `element` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the element obligation named before work proceeds.
 
-**Shadow:** stored or transported shape can drift from the world the code thinks it is reading.
+**Shadow:** misusing `element` at rune 0292 in the data lane can let stored shape can diverge from the world it claims to model; verify by requiring the caster to state invariants, null behavior, and compatibility expectations.
 
 ### [0293] embedding {Data} {#rune-0293}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A closeness word; it places meaning into geometry.
+**Force:** `embedding` in its Data sense is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the embedding obligation named before work proceeds.
 
-**Shadow:** stored or transported shape can drift from the world the code thinks it is reading.
+**Shadow:** misusing `embedding` at rune 0293 in the Data lane can let stored shape can diverge from the world it claims to model; verify by requiring the caster to state invariants, null behavior, and compatibility expectations.
 
 ### [0294] entity {#rune-0294}
 
@@ -603,7 +601,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** A thing with stable identity that the system cares about.
 
-**Shadow:** stored or transported shape can drift from the world the code thinks it is reading.
+**Shadow:** misusing `entity` at rune 0294 in the data lane can let stored shape can diverge from the world it claims to model; verify by requiring the caster to state invariants, null behavior, and compatibility expectations.
 
 **Pocket gloss:** A thing with stable identity that the system cares about.
 
@@ -611,21 +609,21 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A storage-word; it determines how meaning is carried through memory or transport.
+**Force:** `enum value` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the enum value obligation named before work proceeds.
 
-**Shadow:** stored or transported shape can drift from the world the code thinks it is reading.
+**Shadow:** misusing `enum value` at rune 0295 in the data lane can let stored shape can diverge from the world it claims to model; verify by requiring the caster to state invariants, null behavior, and compatibility expectations.
 
 ### [0296] envelope {#rune-0296}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A storage-word; it determines how meaning is carried through memory or transport.
+**Force:** `envelope` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the envelope obligation named before work proceeds.
 
-**Shadow:** stored or transported shape can drift from the world the code thinks it is reading.
+**Shadow:** misusing `envelope` at rune 0296 in the data lane can let stored shape can diverge from the world it claims to model; verify by requiring the caster to state invariants, null behavior, and compatibility expectations.
 
 ### [0297] event {#rune-0297}
 
@@ -635,7 +633,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** A record of something that happened.
 
-**Shadow:** stored or transported shape can drift from the world the code thinks it is reading.
+**Shadow:** misusing `event` at rune 0297 in the data lane can let stored shape can diverge from the world it claims to model; verify by requiring the caster to state invariants, null behavior, and compatibility expectations.
 
 **Pocket gloss:** A record of something that happened.
 
@@ -647,7 +645,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** History stored as events instead of overwritten final state.
 
-**Shadow:** stored or transported shape can drift from the world the code thinks it is reading.
+**Shadow:** misusing `event log` at rune 0298 in the data lane can let stored shape can diverge from the world it claims to model; verify by requiring the caster to state invariants, null behavior, and compatibility expectations.
 
 **Pocket gloss:** History stored as events instead of overwritten final state.
 
@@ -655,71 +653,71 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A storage-word; it determines how meaning is carried through memory or transport.
+**Force:** `fact` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the fact obligation named before work proceeds.
 
-**Shadow:** stored or transported shape can drift from the world the code thinks it is reading.
+**Shadow:** misusing `fact` at rune 0299 in the data lane can let stored shape can diverge from the world it claims to model; verify by requiring the caster to state invariants, null behavior, and compatibility expectations.
 
 ### [0300] feature {#rune-0300}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A matter-word; it names something that can be held, moved, or compared.
+**Force:** `feature` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the feature obligation named before work proceeds.
 
-**Shadow:** stored or transported shape can drift from the world the code thinks it is reading.
+**Shadow:** misusing `feature` at rune 0300 in the data lane can let stored shape can diverge from the world it claims to model; verify by requiring the caster to state invariants, null behavior, and compatibility expectations.
 
 ### [0301] field {Data} {#rune-0301}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A matter-word; it names something that can be held, moved, or compared.
+**Force:** `field` in its Data sense is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the field obligation named before work proceeds.
 
-**Shadow:** stored or transported shape can drift from the world the code thinks it is reading.
+**Shadow:** misusing `field` at rune 0301 in the Data lane can let stored shape can diverge from the world it claims to model; verify by requiring the caster to state invariants, null behavior, and compatibility expectations.
 
 ### [0302] fingerprint {#rune-0302}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A matter-word; it names something that can be held, moved, or compared.
+**Force:** `fingerprint` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the fingerprint obligation named before work proceeds.
 
-**Shadow:** stored or transported shape can drift from the world the code thinks it is reading.
+**Shadow:** misusing `fingerprint` at rune 0302 in the data lane can let stored shape can diverge from the world it claims to model; verify by requiring the caster to state invariants, null behavior, and compatibility expectations.
 
 ### [0303] flag {#rune-0303}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A storage-word; it determines how meaning is carried through memory or transport.
+**Force:** `flag` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the flag obligation named before work proceeds.
 
-**Shadow:** stored or transported shape can drift from the world the code thinks it is reading.
+**Shadow:** misusing `flag` at rune 0303 in the data lane can let stored shape can diverge from the world it claims to model; verify by requiring the caster to state invariants, null behavior, and compatibility expectations.
 
 ### [0304] frame {Data} {#rune-0304}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A shape-of-state word; it influences what later transformations are easy or hard.
+**Force:** `frame` in its Data sense is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the frame obligation named before work proceeds.
 
-**Shadow:** stored or transported shape can drift from the world the code thinks it is reading.
+**Shadow:** misusing `frame` at rune 0304 in the Data lane can let stored shape can diverge from the world it claims to model; verify by requiring the caster to state invariants, null behavior, and compatibility expectations.
 
 ### [0305] handle {Data} {#rune-0305}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A matter-word; it names something that can be held, moved, or compared.
+**Force:** `handle` in its Data sense is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the handle obligation named before work proceeds.
 
-**Shadow:** stored or transported shape can drift from the world the code thinks it is reading.
+**Shadow:** misusing `handle` at rune 0305 in the Data lane can let stored shape can diverge from the world it claims to model; verify by requiring the caster to state invariants, null behavior, and compatibility expectations.
 
 ### [0306] hash {Data} {#rune-0306}
 
@@ -729,7 +727,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** A condensed fingerprint used for lookup, bucketing, or integrity checks.
 
-**Shadow:** stored or transported shape can drift from the world the code thinks it is reading.
+**Shadow:** misusing `hash` at rune 0306 in the Data lane can let stored shape can diverge from the world it claims to model; verify by requiring the caster to state invariants, null behavior, and compatibility expectations.
 
 **Pocket gloss:** A condensed fingerprint used for lookup, bucketing, or integrity checks.
 
@@ -737,31 +735,31 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A storage-word; it determines how meaning is carried through memory or transport.
+**Force:** `hash map` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the hash map obligation named before work proceeds.
 
-**Shadow:** stored or transported shape can drift from the world the code thinks it is reading.
+**Shadow:** misusing `hash map` at rune 0307 in the data lane can let stored shape can diverge from the world it claims to model; verify by requiring the caster to state invariants, null behavior, and compatibility expectations.
 
 ### [0308] header {#rune-0308}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A representation-word; it gives state a vessel or surface.
+**Force:** `header` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the header obligation named before work proceeds.
 
-**Shadow:** stored or transported shape can drift from the world the code thinks it is reading.
+**Shadow:** misusing `header` at rune 0308 in the data lane can let stored shape can diverge from the world it claims to model; verify by requiring the caster to state invariants, null behavior, and compatibility expectations.
 
 ### [0309] heap record {#rune-0309}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A representation-word; it gives state a vessel or surface.
+**Force:** `heap record` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the heap record obligation named before work proceeds.
 
-**Shadow:** stored or transported shape can drift from the world the code thinks it is reading.
+**Shadow:** misusing `heap record` at rune 0309 in the data lane can let stored shape can diverge from the world it claims to model; verify by requiring the caster to state invariants, null behavior, and compatibility expectations.
 
 ### [0310] index {Data} {#rune-0310}
 
@@ -771,7 +769,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** An access structure that trades space and write cost for faster reads.
 
-**Shadow:** stored or transported shape can drift from the world the code thinks it is reading.
+**Shadow:** misusing `index` at rune 0310 in the Data lane can let stored shape can diverge from the world it claims to model; verify by requiring the caster to state invariants, null behavior, and compatibility expectations.
 
 **Pocket gloss:** An access structure that trades space and write cost for faster reads.
 
@@ -779,41 +777,41 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A representation-word; it gives state a vessel or surface.
+**Force:** `index key` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the index key obligation named before work proceeds.
 
-**Shadow:** stored or transported shape can drift from the world the code thinks it is reading.
+**Shadow:** misusing `index key` at rune 0311 in the data lane can let stored shape can diverge from the world it claims to model; verify by requiring the caster to state invariants, null behavior, and compatibility expectations.
 
 ### [0312] item {#rune-0312}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A shape-of-state word; it influences what later transformations are easy or hard.
+**Force:** `item` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the item obligation named before work proceeds.
 
-**Shadow:** stored or transported shape can drift from the world the code thinks it is reading.
+**Shadow:** misusing `item` at rune 0312 in the data lane can let stored shape can diverge from the world it claims to model; verify by requiring the caster to state invariants, null behavior, and compatibility expectations.
 
 ### [0313] iterator {#rune-0313}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A storage-word; it determines how meaning is carried through memory or transport.
+**Force:** `iterator` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the iterator obligation named before work proceeds.
 
-**Shadow:** stored or transported shape can drift from the world the code thinks it is reading.
+**Shadow:** misusing `iterator` at rune 0313 in the data lane can let stored shape can diverge from the world it claims to model; verify by requiring the caster to state invariants, null behavior, and compatibility expectations.
 
 ### [0314] journal {#rune-0314}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A shape-of-state word; it influences what later transformations are easy or hard.
+**Force:** `journal` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the journal obligation named before work proceeds.
 
-**Shadow:** stored or transported shape can drift from the world the code thinks it is reading.
+**Shadow:** misusing `journal` at rune 0314 in the data lane can let stored shape can diverge from the world it claims to model; verify by requiring the caster to state invariants, null behavior, and compatibility expectations.
 
 ### [0315] key {Data} {#rune-0315}
 
@@ -823,7 +821,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** The field by which something is found or grouped.
 
-**Shadow:** stored or transported shape can drift from the world the code thinks it is reading.
+**Shadow:** misusing `key` at rune 0315 in the Data lane can let stored shape can diverge from the world it claims to model; verify by requiring the caster to state invariants, null behavior, and compatibility expectations.
 
 **Pocket gloss:** The field by which something is found or grouped.
 
@@ -831,41 +829,41 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A shape-of-state word; it influences what later transformations are easy or hard.
+**Force:** `key-value pair` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the key-value pair obligation named before work proceeds.
 
-**Shadow:** stored or transported shape can drift from the world the code thinks it is reading.
+**Shadow:** misusing `key-value pair` at rune 0316 in the data lane can let stored shape can diverge from the world it claims to model; verify by requiring the caster to state invariants, null behavior, and compatibility expectations.
 
 ### [0317] ledger {#rune-0317}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A shape-of-state word; it influences what later transformations are easy or hard.
+**Force:** `ledger` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the ledger obligation named before work proceeds.
 
-**Shadow:** stored or transported shape can drift from the world the code thinks it is reading.
+**Shadow:** misusing `ledger` at rune 0317 in the data lane can let stored shape can diverge from the world it claims to model; verify by requiring the caster to state invariants, null behavior, and compatibility expectations.
 
 ### [0318] list {#rune-0318}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A matter-word; it names something that can be held, moved, or compared.
+**Force:** `list` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the list obligation named before work proceeds.
 
-**Shadow:** stored or transported shape can drift from the world the code thinks it is reading.
+**Shadow:** misusing `list` at rune 0318 in the data lane can let stored shape can diverge from the world it claims to model; verify by requiring the caster to state invariants, null behavior, and compatibility expectations.
 
 ### [0319] literal value {#rune-0319}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A storage-word; it determines how meaning is carried through memory or transport.
+**Force:** `literal value` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the literal value obligation named before work proceeds.
 
-**Shadow:** stored or transported shape can drift from the world the code thinks it is reading.
+**Shadow:** misusing `literal value` at rune 0319 in the data lane can let stored shape can diverge from the world it claims to model; verify by requiring the caster to state invariants, null behavior, and compatibility expectations.
 
 ### [0320] map {Data} {#rune-0320}
 
@@ -875,7 +873,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** Associative collection from keys to values.
 
-**Shadow:** stored or transported shape can drift from the world the code thinks it is reading.
+**Shadow:** misusing `map` at rune 0320 in the Data lane can let stored shape can diverge from the world it claims to model; verify by requiring the caster to state invariants, null behavior, and compatibility expectations.
 
 **Pocket gloss:** Associative collection from keys to values.
 
@@ -883,11 +881,11 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A representation-word; it gives state a vessel or surface.
+**Force:** `matrix` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the matrix obligation named before work proceeds.
 
-**Shadow:** stored or transported shape can drift from the world the code thinks it is reading.
+**Shadow:** misusing `matrix` at rune 0321 in the data lane can let stored shape can diverge from the world it claims to model; verify by requiring the caster to state invariants, null behavior, and compatibility expectations.
 
 ### [0322] message {#rune-0322}
 
@@ -897,7 +895,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** A discrete packet of meaning sent between parts.
 
-**Shadow:** stored or transported shape can drift from the world the code thinks it is reading.
+**Shadow:** misusing `message` at rune 0322 in the data lane can let stored shape can diverge from the world it claims to model; verify by requiring the caster to state invariants, null behavior, and compatibility expectations.
 
 **Pocket gloss:** A discrete packet of meaning sent between parts.
 
@@ -905,151 +903,151 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A representation-word; it gives state a vessel or surface.
+**Force:** `metadata` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the metadata obligation named before work proceeds.
 
-**Shadow:** stored or transported shape can drift from the world the code thinks it is reading.
+**Shadow:** misusing `metadata` at rune 0323 in the data lane can let stored shape can diverge from the world it claims to model; verify by requiring the caster to state invariants, null behavior, and compatibility expectations.
 
 ### [0324] model {Data} {#rune-0324}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A representative word; a simplified structure stands in for a larger reality.
+**Force:** `model` in its Data sense is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the model obligation named before work proceeds.
 
-**Shadow:** stored or transported shape can drift from the world the code thinks it is reading.
+**Shadow:** misusing `model` at rune 0324 in the Data lane can let stored shape can diverge from the world it claims to model; verify by requiring the caster to state invariants, null behavior, and compatibility expectations.
 
 ### [0325] multimap {#rune-0325}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A representation-word; it gives state a vessel or surface.
+**Force:** `multimap` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the multimap obligation named before work proceeds.
 
-**Shadow:** stored or transported shape can drift from the world the code thinks it is reading.
+**Shadow:** misusing `multimap` at rune 0325 in the data lane can let stored shape can diverge from the world it claims to model; verify by requiring the caster to state invariants, null behavior, and compatibility expectations.
 
 ### [0326] node {Data} {#rune-0326}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A storage-word; it determines how meaning is carried through memory or transport.
+**Force:** `node` in its Data sense is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the node obligation named before work proceeds.
 
-**Shadow:** stored or transported shape can drift from the world the code thinks it is reading.
+**Shadow:** misusing `node` at rune 0326 in the Data lane can let stored shape can diverge from the world it claims to model; verify by requiring the caster to state invariants, null behavior, and compatibility expectations.
 
 ### [0327] null {#rune-0327}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A shape-of-state word; it influences what later transformations are easy or hard.
+**Force:** `null` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the null obligation named before work proceeds.
 
-**Shadow:** stored or transported shape can drift from the world the code thinks it is reading.
+**Shadow:** misusing `null` at rune 0327 in the data lane can let stored shape can diverge from the world it claims to model; verify by requiring the caster to state invariants, null behavior, and compatibility expectations.
 
 ### [0328] object state {#rune-0328}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A matter-word; it names something that can be held, moved, or compared.
+**Force:** `object state` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the object state obligation named before work proceeds.
 
-**Shadow:** stored or transported shape can drift from the world the code thinks it is reading.
+**Shadow:** misusing `object state` at rune 0328 in the data lane can let stored shape can diverge from the world it claims to model; verify by requiring the caster to state invariants, null behavior, and compatibility expectations.
 
 ### [0329] offset {#rune-0329}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A shape-of-state word; it influences what later transformations are easy or hard.
+**Force:** `offset` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the offset obligation named before work proceeds.
 
-**Shadow:** stored or transported shape can drift from the world the code thinks it is reading.
+**Shadow:** misusing `offset` at rune 0329 in the data lane can let stored shape can diverge from the world it claims to model; verify by requiring the caster to state invariants, null behavior, and compatibility expectations.
 
 ### [0330] page {Data} {#rune-0330}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A representation-word; it gives state a vessel or surface.
+**Force:** `page` in its Data sense is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the page obligation named before work proceeds.
 
-**Shadow:** stored or transported shape can drift from the world the code thinks it is reading.
+**Shadow:** misusing `page` at rune 0330 in the Data lane can let stored shape can diverge from the world it claims to model; verify by requiring the caster to state invariants, null behavior, and compatibility expectations.
 
 ### [0331] pair {#rune-0331}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A matter-word; it names something that can be held, moved, or compared.
+**Force:** `pair` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the pair obligation named before work proceeds.
 
-**Shadow:** stored or transported shape can drift from the world the code thinks it is reading.
+**Shadow:** misusing `pair` at rune 0331 in the data lane can let stored shape can diverge from the world it claims to model; verify by requiring the caster to state invariants, null behavior, and compatibility expectations.
 
 ### [0332] payload {#rune-0332}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A storage-word; it determines how meaning is carried through memory or transport.
+**Force:** `payload` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the payload obligation named before work proceeds.
 
-**Shadow:** stored or transported shape can drift from the world the code thinks it is reading.
+**Shadow:** misusing `payload` at rune 0332 in the data lane can let stored shape can diverge from the world it claims to model; verify by requiring the caster to state invariants, null behavior, and compatibility expectations.
 
 ### [0333] pointer {Data} {#rune-0333}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A location word; it does not hold the thing, but where the thing may be found.
+**Force:** `pointer` in its Data sense is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the pointer obligation named before work proceeds.
 
-**Shadow:** stored or transported shape can drift from the world the code thinks it is reading.
+**Shadow:** misusing `pointer` at rune 0333 in the Data lane can let stored shape can diverge from the world it claims to model; verify by requiring the caster to state invariants, null behavior, and compatibility expectations.
 
 ### [0334] pool {#rune-0334}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A storage-word; it determines how meaning is carried through memory or transport.
+**Force:** `pool` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the pool obligation named before work proceeds.
 
-**Shadow:** stored or transported shape can drift from the world the code thinks it is reading.
+**Shadow:** misusing `pool` at rune 0334 in the data lane can let stored shape can diverge from the world it claims to model; verify by requiring the caster to state invariants, null behavior, and compatibility expectations.
 
 ### [0335] property {Data} {#rune-0335}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A representation-word; it gives state a vessel or surface.
+**Force:** `property` in its Data sense is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the property obligation named before work proceeds.
 
-**Shadow:** stored or transported shape can drift from the world the code thinks it is reading.
+**Shadow:** misusing `property` at rune 0335 in the Data lane can let stored shape can diverge from the world it claims to model; verify by requiring the caster to state invariants, null behavior, and compatibility expectations.
 
 ### [0336] queue element {#rune-0336}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A shape-of-state word; it influences what later transformations are easy or hard.
+**Force:** `queue element` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the queue element obligation named before work proceeds.
 
-**Shadow:** stored or transported shape can drift from the world the code thinks it is reading.
+**Shadow:** misusing `queue element` at rune 0336 in the data lane can let stored shape can diverge from the world it claims to model; verify by requiring the caster to state invariants, null behavior, and compatibility expectations.
 
 ### [0337] range {#rune-0337}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A representation-word; it gives state a vessel or surface.
+**Force:** `range` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the range obligation named before work proceeds.
 
-**Shadow:** stored or transported shape can drift from the world the code thinks it is reading.
+**Shadow:** misusing `range` at rune 0337 in the data lane can let stored shape can diverge from the world it claims to model; verify by requiring the caster to state invariants, null behavior, and compatibility expectations.
 
 ### [0338] record {Data} {#rune-0338}
 
@@ -1059,7 +1057,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** A row-like bundle of named fields describing one thing.
 
-**Shadow:** stored or transported shape can drift from the world the code thinks it is reading.
+**Shadow:** misusing `record` at rune 0338 in the Data lane can let stored shape can diverge from the world it claims to model; verify by requiring the caster to state invariants, null behavior, and compatibility expectations.
 
 **Pocket gloss:** A row-like bundle of named fields describing one thing.
 
@@ -1067,81 +1065,81 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A shape-of-state word; it influences what later transformations are easy or hard.
+**Force:** `reference` in its Data sense is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the reference obligation named before work proceeds.
 
-**Shadow:** stored or transported shape can drift from the world the code thinks it is reading.
+**Shadow:** misusing `reference` at rune 0339 in the Data lane can let stored shape can diverge from the world it claims to model; verify by requiring the caster to state invariants, null behavior, and compatibility expectations.
 
 ### [0340] relation {Data} {#rune-0340}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A storage-word; it determines how meaning is carried through memory or transport.
+**Force:** `relation` in its Data sense is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the relation obligation named before work proceeds.
 
-**Shadow:** stored or transported shape can drift from the world the code thinks it is reading.
+**Shadow:** misusing `relation` at rune 0340 in the Data lane can let stored shape can diverge from the world it claims to model; verify by requiring the caster to state invariants, null behavior, and compatibility expectations.
 
 ### [0341] representation {#rune-0341}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A shape-of-state word; it influences what later transformations are easy or hard.
+**Force:** `representation` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the representation obligation named before work proceeds.
 
-**Shadow:** stored or transported shape can drift from the world the code thinks it is reading.
+**Shadow:** misusing `representation` at rune 0341 in the data lane can let stored shape can diverge from the world it claims to model; verify by requiring the caster to state invariants, null behavior, and compatibility expectations.
 
 ### [0342] resource {#rune-0342}
 
 **Status:** canonical
 
-**Completion:** needs_sense
+**Completion:** authored
 
-**Force:** A bounded-thing word; something that must be acquired, used, and released.
+**Force:** `resource` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the resource obligation named before work proceeds.
 
-**Shadow:** stored or transported shape can drift from the world the code thinks it is reading.
+**Shadow:** misusing `resource` at rune 0342 in the data lane can let stored shape can diverge from the world it claims to model; verify by requiring the caster to state invariants, null behavior, and compatibility expectations.
 
 ### [0343] revision {Data} {#rune-0343}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A shape-of-state word; it influences what later transformations are easy or hard.
+**Force:** `revision` in its Data sense is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the revision obligation named before work proceeds.
 
-**Shadow:** stored or transported shape can drift from the world the code thinks it is reading.
+**Shadow:** misusing `revision` at rune 0343 in the Data lane can let stored shape can diverge from the world it claims to model; verify by requiring the caster to state invariants, null behavior, and compatibility expectations.
 
 ### [0344] ring buffer {#rune-0344}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A storage-word; it determines how meaning is carried through memory or transport.
+**Force:** `ring buffer` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the ring buffer obligation named before work proceeds.
 
-**Shadow:** stored or transported shape can drift from the world the code thinks it is reading.
+**Shadow:** misusing `ring buffer` at rune 0344 in the data lane can let stored shape can diverge from the world it claims to model; verify by requiring the caster to state invariants, null behavior, and compatibility expectations.
 
 ### [0345] row {Data} {#rune-0345}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A matter-word; it names something that can be held, moved, or compared.
+**Force:** `row` in its Data sense is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the row obligation named before work proceeds.
 
-**Shadow:** stored or transported shape can drift from the world the code thinks it is reading.
+**Shadow:** misusing `row` at rune 0345 in the Data lane can let stored shape can diverge from the world it claims to model; verify by requiring the caster to state invariants, null behavior, and compatibility expectations.
 
 ### [0346] scalar {#rune-0346}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A storage-word; it determines how meaning is carried through memory or transport.
+**Force:** `scalar` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the scalar obligation named before work proceeds.
 
-**Shadow:** stored or transported shape can drift from the world the code thinks it is reading.
+**Shadow:** misusing `scalar` at rune 0346 in the data lane can let stored shape can diverge from the world it claims to model; verify by requiring the caster to state invariants, null behavior, and compatibility expectations.
 
 ### [0347] schema {Data} {#rune-0347}
 
@@ -1159,81 +1157,81 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A guarded-value word meant to remain hidden except to the few who must know it.
+**Force:** `secret` in its Data sense is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the secret obligation named before work proceeds.
 
-**Shadow:** stored or transported shape can drift from the world the code thinks it is reading.
+**Shadow:** misusing `secret` at rune 0348 in the Data lane can let stored shape can diverge from the world it claims to model; verify by requiring the caster to state invariants, null behavior, and compatibility expectations.
 
 ### [0349] segment {Data} {#rune-0349}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A shape-of-state word; it influences what later transformations are easy or hard.
+**Force:** `segment` in its Data sense is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the segment obligation named before work proceeds.
 
-**Shadow:** stored or transported shape can drift from the world the code thinks it is reading.
+**Shadow:** misusing `segment` at rune 0349 in the Data lane can let stored shape can diverge from the world it claims to model; verify by requiring the caster to state invariants, null behavior, and compatibility expectations.
 
 ### [0350] sequence {#rune-0350}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A representation-word; it gives state a vessel or surface.
+**Force:** `sequence` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the sequence obligation named before work proceeds.
 
-**Shadow:** stored or transported shape can drift from the world the code thinks it is reading.
+**Shadow:** misusing `sequence` at rune 0350 in the data lane can let stored shape can diverge from the world it claims to model; verify by requiring the caster to state invariants, null behavior, and compatibility expectations.
 
 ### [0351] series {#rune-0351}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A shape-of-state word; it influences what later transformations are easy or hard.
+**Force:** `series` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the series obligation named before work proceeds.
 
-**Shadow:** stored or transported shape can drift from the world the code thinks it is reading.
+**Shadow:** misusing `series` at rune 0351 in the data lane can let stored shape can diverge from the world it claims to model; verify by requiring the caster to state invariants, null behavior, and compatibility expectations.
 
 ### [0352] session {#rune-0352}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A matter-word; it names something that can be held, moved, or compared.
+**Force:** `session` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the session obligation named before work proceeds.
 
-**Shadow:** stored or transported shape can drift from the world the code thinks it is reading.
+**Shadow:** misusing `session` at rune 0352 in the data lane can let stored shape can diverge from the world it claims to model; verify by requiring the caster to state invariants, null behavior, and compatibility expectations.
 
 ### [0353] set {#rune-0353}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A matter-word; it names something that can be held, moved, or compared.
+**Force:** `set` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the set obligation named before work proceeds.
 
-**Shadow:** stored or transported shape can drift from the world the code thinks it is reading.
+**Shadow:** misusing `set` at rune 0353 in the data lane can let stored shape can diverge from the world it claims to model; verify by requiring the caster to state invariants, null behavior, and compatibility expectations.
 
 ### [0354] sketch {#rune-0354}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A storage-word; it determines how meaning is carried through memory or transport.
+**Force:** `sketch` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the sketch obligation named before work proceeds.
 
-**Shadow:** stored or transported shape can drift from the world the code thinks it is reading.
+**Shadow:** misusing `sketch` at rune 0354 in the data lane can let stored shape can diverge from the world it claims to model; verify by requiring the caster to state invariants, null behavior, and compatibility expectations.
 
 ### [0355] slice {#rune-0355}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A matter-word; it names something that can be held, moved, or compared.
+**Force:** `slice` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the slice obligation named before work proceeds.
 
-**Shadow:** stored or transported shape can drift from the world the code thinks it is reading.
+**Shadow:** misusing `slice` at rune 0355 in the data lane can let stored shape can diverge from the world it claims to model; verify by requiring the caster to state invariants, null behavior, and compatibility expectations.
 
 ### [0356] snapshot {#rune-0356}
 
@@ -1243,7 +1241,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** A captured view of state at one moment.
 
-**Shadow:** stored or transported shape can drift from the world the code thinks it is reading.
+**Shadow:** misusing `snapshot` at rune 0356 in the data lane can let stored shape can diverge from the world it claims to model; verify by requiring the caster to state invariants, null behavior, and compatibility expectations.
 
 **Pocket gloss:** A captured view of state at one moment.
 
@@ -1251,21 +1249,21 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A representation-word; it gives state a vessel or surface.
+**Force:** `sparse vector` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the sparse vector obligation named before work proceeds.
 
-**Shadow:** stored or transported shape can drift from the world the code thinks it is reading.
+**Shadow:** misusing `sparse vector` at rune 0357 in the data lane can let stored shape can diverge from the world it claims to model; verify by requiring the caster to state invariants, null behavior, and compatibility expectations.
 
 ### [0358] stack item {#rune-0358}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A representation-word; it gives state a vessel or surface.
+**Force:** `stack item` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the stack item obligation named before work proceeds.
 
-**Shadow:** stored or transported shape can drift from the world the code thinks it is reading.
+**Shadow:** misusing `stack item` at rune 0358 in the data lane can let stored shape can diverge from the world it claims to model; verify by requiring the caster to state invariants, null behavior, and compatibility expectations.
 
 ### [0359] state {#rune-0359}
 
@@ -1275,7 +1273,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** The currently true condition of a thing that can change over time.
 
-**Shadow:** stored or transported shape can drift from the world the code thinks it is reading.
+**Shadow:** misusing `state` at rune 0359 in the data lane can let stored shape can diverge from the world it claims to model; verify by requiring the caster to state invariants, null behavior, and compatibility expectations.
 
 **Pocket gloss:** The currently true condition of a thing that can change over time.
 
@@ -1283,118 +1281,118 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A shape-of-state word; it influences what later transformations are easy or hard.
+**Force:** `stream item` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the stream item obligation named before work proceeds.
 
-**Shadow:** stored or transported shape can drift from the world the code thinks it is reading.
+**Shadow:** misusing `stream item` at rune 0360 in the data lane can let stored shape can diverge from the world it claims to model; verify by requiring the caster to state invariants, null behavior, and compatibility expectations.
 
 ### [0361] string {#rune-0361}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A shape-of-state word; it influences what later transformations are easy or hard.
+**Force:** `string` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the string obligation named before work proceeds.
 
-**Shadow:** stored or transported shape can drift from the world the code thinks it is reading.
+**Shadow:** misusing `string` at rune 0361 in the data lane can let stored shape can diverge from the world it claims to model; verify by requiring the caster to state invariants, null behavior, and compatibility expectations.
 
 ### [0362] struct {Data} {#rune-0362}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A representation-word; it gives state a vessel or surface.
+**Force:** `struct` in its Data sense is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the struct obligation named before work proceeds.
 
-**Shadow:** stored or transported shape can drift from the world the code thinks it is reading.
+**Shadow:** misusing `struct` at rune 0362 in the Data lane can let stored shape can diverge from the world it claims to model; verify by requiring the caster to state invariants, null behavior, and compatibility expectations.
 
 ### [0363] table {Data} {#rune-0363}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A matter-word; it names something that can be held, moved, or compared.
+**Force:** `table` in its Data sense is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the table obligation named before work proceeds.
 
-**Shadow:** stored or transported shape can drift from the world the code thinks it is reading.
+**Shadow:** misusing `table` at rune 0363 in the Data lane can let stored shape can diverge from the world it claims to model; verify by requiring the caster to state invariants, null behavior, and compatibility expectations.
 
 ### [0364] tensor {#rune-0364}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A shape-of-state word; it influences what later transformations are easy or hard.
+**Force:** `tensor` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the tensor obligation named before work proceeds.
 
-**Shadow:** stored or transported shape can drift from the world the code thinks it is reading.
+**Shadow:** misusing `tensor` at rune 0364 in the data lane can let stored shape can diverge from the world it claims to model; verify by requiring the caster to state invariants, null behavior, and compatibility expectations.
 
 ### [0365] token {Data} {#rune-0365}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A countable unit of text or symbol used for parsing, modeling, or encoding.
+**Force:** `token` in its Data sense is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the token obligation named before work proceeds.
 
-**Shadow:** stored or transported shape can drift from the world the code thinks it is reading.
+**Shadow:** misusing `token` at rune 0365 in the Data lane can let stored shape can diverge from the world it claims to model; verify by requiring the caster to state invariants, null behavior, and compatibility expectations.
 
 ### [0366] tree node {#rune-0366}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A storage-word; it determines how meaning is carried through memory or transport.
+**Force:** `tree node` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the tree node obligation named before work proceeds.
 
-**Shadow:** stored or transported shape can drift from the world the code thinks it is reading.
+**Shadow:** misusing `tree node` at rune 0366 in the data lane can let stored shape can diverge from the world it claims to model; verify by requiring the caster to state invariants, null behavior, and compatibility expectations.
 
 ### [0367] trie {#rune-0367}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A matter-word; it names something that can be held, moved, or compared.
+**Force:** `trie` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the trie obligation named before work proceeds.
 
-**Shadow:** stored or transported shape can drift from the world the code thinks it is reading.
+**Shadow:** misusing `trie` at rune 0367 in the data lane can let stored shape can diverge from the world it claims to model; verify by requiring the caster to state invariants, null behavior, and compatibility expectations.
 
 ### [0368] tuple {Data} {#rune-0368}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A storage-word; it determines how meaning is carried through memory or transport.
+**Force:** `tuple` in its Data sense is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the tuple obligation named before work proceeds.
 
-**Shadow:** stored or transported shape can drift from the world the code thinks it is reading.
+**Shadow:** misusing `tuple` at rune 0368 in the Data lane can let stored shape can diverge from the world it claims to model; verify by requiring the caster to state invariants, null behavior, and compatibility expectations.
 
 ### [0369] vector {#rune-0369}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A shape-of-state word; it influences what later transformations are easy or hard.
+**Force:** `vector` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the vector obligation named before work proceeds.
 
-**Shadow:** stored or transported shape can drift from the world the code thinks it is reading.
+**Shadow:** misusing `vector` at rune 0369 in the data lane can let stored shape can diverge from the world it claims to model; verify by requiring the caster to state invariants, null behavior, and compatibility expectations.
 
 ### [0370] view {Data} {#rune-0370}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A shape-of-state word; it influences what later transformations are easy or hard.
+**Force:** `view` in its Data sense is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the view obligation named before work proceeds.
 
-**Shadow:** stored or transported shape can drift from the world the code thinks it is reading.
+**Shadow:** misusing `view` at rune 0370 in the Data lane can let stored shape can diverge from the world it claims to model; verify by requiring the caster to state invariants, null behavior, and compatibility expectations.
 
 ### [0371] window {#rune-0371}
 
 **Status:** canonical
 
-**Completion:** stub
+**Completion:** authored
 
-**Force:** A matter-word; it names something that can be held, moved, or compared.
+**Force:** `window` is a data and state rune for control shape, identity, lifecycle, and representation drift; use it when the artifact needs the window obligation named before work proceeds.
 
-**Shadow:** stored or transported shape can drift from the world the code thinks it is reading.
+**Shadow:** misusing `window` at rune 0371 in the data lane can let stored shape can diverge from the world it claims to model; verify by requiring the caster to state invariants, null behavior, and compatibility expectations.
