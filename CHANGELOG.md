@@ -63,6 +63,10 @@
   `scripts/import_hardness_model_run.py`, `grimoire bench hardness-import`,
   schema/template docs, package entry point, and fixture-local execution checks
   for future reviewer-supplied or non-Codex surface bundles.
+- Added a logical-conclusion status ledger that maps all 90 roadmap acceptance
+  criteria to evidence, explicit blockers, schema validation, public smoke
+  coverage, and a reference page while keeping human, package-index, and
+  external-adoption gates out of the proven bucket.
 - Normalized pytest duration text in hardness-ladder execution ledgers so
   repeated deterministic bench runs do not churn committed evidence on timing
   noise alone.

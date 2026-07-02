@@ -140,6 +140,15 @@ def test_evidence_index_matches_schema() -> None:
     assert not errors, "\n".join(errors[:25])
 
 
+def test_logical_conclusion_status_matches_schema() -> None:
+    errors = collect_errors(
+        "schemas/logical-conclusion-status.schema.json",
+        [load_json("data/logical_conclusion_status.json")],
+        "logical_conclusion_status",
+    )
+    assert not errors, "\n".join(errors[:25])
+
+
 def test_canon_audit_matches_schema() -> None:
     errors = collect_errors("schemas/canon-audit.schema.json", [load_json("data/canon_audit.json")], "canon_audit")
     assert not errors, "\n".join(errors[:25])

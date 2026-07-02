@@ -8,7 +8,7 @@ The evidence browser is the project ledger. It separates calibration materials f
 
 ## Summary
 
-- Available artifacts: `13/13`
+- Available artifacts: `14/14`
 - Project-owned model surfaces: `claude-code-safe, claude-code-safe:baseline, claude-code-safe:warded, codex-cli-default, codex-cli-default:baseline, codex-cli-default:warded`
 - Recorded model runs: `266`
 - Deterministic execution runs: `80`
@@ -29,21 +29,23 @@ The evidence browser is the project ledger. It separates calibration materials f
 | Ward Science Seed                      | local_deterministic_control   | 6    | local-ward-limb-control                                                                                  | present | [examples/jailbreak-resilience/ward-science-results.json](../examples/jailbreak-resilience/ward-science-results.json)         |
 | Real Surface Warded A/B Runs           | project_owned_model_run       | 96   | claude-code-safe:baseline, claude-code-safe:warded, codex-cli-default:baseline, codex-cli-default:warded | present | [examples/jailbreak-resilience/ab-results.json](../examples/jailbreak-resilience/ab-results.json)                             |
 | Canon Review Queue                     | human_audit_pending           | 19   | -                                                                                                        | present | [data/canon_review_queue.json](../data/canon_review_queue.json)                                                               |
+| Logical Conclusion Status              | roadmap_acceptance_status     | 90   | -                                                                                                        | present | [data/logical_conclusion_status.json](../data/logical_conclusion_status.json)                                                 |
 | Public Package Build and Install Check | packaging_or_release_check    | 10   | -                                                                                                        | present | [examples/adoption/package-check.json](../examples/adoption/package-check.json)                                               |
 | Package-Index Release Plan             | packaging_or_release_check    | 9    | -                                                                                                        | present | [examples/adoption/package-index-release-plan.json](../examples/adoption/package-index-release-plan.json)                     |
-| Public Site Smoke Check                | packaging_or_release_check    | 22   | -                                                                                                        | present | [examples/release-gate/public-smoke-check.json](../examples/release-gate/public-smoke-check.json)                             |
+| Public Site Smoke Check                | packaging_or_release_check    | 24   | -                                                                                                        | present | [examples/release-gate/public-smoke-check.json](../examples/release-gate/public-smoke-check.json)                             |
 
 ## Evidence Classes
 
-| Evidence Class                | Claim Power                                                                                             | Examples                                                                |
-| ----------------------------- | ------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------- |
-| calibration_fixture           | teaches the method and exposes expected failure modes; does not prove model performance                 | weak-vs-repaired cases; trap-tier fixture contexts                      |
-| project_owned_model_run       | evidence about the named local model/tool surface under the recorded prompt, fixture, and date          | Codex CLI transcripts; Claude Code safe-mode transcripts                |
-| reviewer_supplied_model_run   | external or reviewer evidence only after provenance, redaction, and transcript paths are supplied       | manual import template records                                          |
-| local_deterministic_execution | evidence that a saved artifact satisfies a fixture-local executable check                               | safe-refactoring pytest fixture; model-produced artifact pytest runs    |
-| local_deterministic_control   | project-owned control evidence for baseline/ward comparisons, not independent model evidence            | defanged local warded baseline matrix                                   |
-| packaging_or_release_check    | evidence that public artifacts can be rendered, installed, or fetched through declared release surfaces | wheel install checks; Quarto render checks; GitHub Pages smoke checks   |
-| human_audit_pending           | records what still requires a named human maintainer before canonical status can be claimed             | canon audit queue; reviewed-to-canonical blockers                       |
-| adoption_report               | evidence that a practitioner used the grimoire and reported success, friction, or failure               | project-owned dogfood; reviewer-supplied reports; external-user reports |
+| Evidence Class                | Claim Power                                                                                                               | Examples                                                                |
+| ----------------------------- | ------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------- |
+| calibration_fixture           | teaches the method and exposes expected failure modes; does not prove model performance                                   | weak-vs-repaired cases; trap-tier fixture contexts                      |
+| project_owned_model_run       | evidence about the named local model/tool surface under the recorded prompt, fixture, and date                            | Codex CLI transcripts; Claude Code safe-mode transcripts                |
+| reviewer_supplied_model_run   | external or reviewer evidence only after provenance, redaction, and transcript paths are supplied                         | manual import template records                                          |
+| local_deterministic_execution | evidence that a saved artifact satisfies a fixture-local executable check                                                 | safe-refactoring pytest fixture; model-produced artifact pytest runs    |
+| local_deterministic_control   | project-owned control evidence for baseline/ward comparisons, not independent model evidence                              | defanged local warded baseline matrix                                   |
+| packaging_or_release_check    | evidence that public artifacts can be rendered, installed, or fetched through declared release surfaces                   | wheel install checks; Quarto render checks; GitHub Pages smoke checks   |
+| human_audit_pending           | records what still requires a named human maintainer before canonical status can be claimed                               | canon audit queue; reviewed-to-canonical blockers                       |
+| roadmap_acceptance_status     | maps roadmap acceptance criteria to current evidence and explicit blockers; does not prove claims beyond linked artifacts | logical-conclusion status ledger; external-reality gate blockers        |
+| adoption_report               | evidence that a practitioner used the grimoire and reported success, friction, or failure                                 | project-owned dogfood; reviewer-supplied reports; external-user reports |
 
 Raw data: [evidence_index.json](../data/evidence_index.json) and [evidence_taxonomy.json](../data/evidence_taxonomy.json)

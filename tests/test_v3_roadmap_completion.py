@@ -100,12 +100,14 @@ def test_package_and_smoke_checks_pass() -> None:
         "reference/ward-science.html",
         "reference/canon-review-queue.html",
         "reference/methods-structure-reviewability-warding.html",
+        "reference/logical-conclusion-status.html",
         "reference/package-index-release.html",
         "exports/library-manifest.json",
     } <= {check["target"] for check in smoke["checks"]}
     assert "examples/evaluations/hardness-v4/results.json" in {check["target"] for check in smoke["checks"]}
     assert "examples/evaluations/hardness-v4/model-surface-results.json" in {check["target"] for check in smoke["checks"]}
     assert "examples/evaluations/hardness-v4/manual-import-template.json" in {check["target"] for check in smoke["checks"]}
+    assert "data/logical_conclusion_status.json" in {check["target"] for check in smoke["checks"]}
     assert "examples/adoption/package-index-release-plan.json" in {check["target"] for check in smoke["checks"]}
     assert "examples/jailbreak-resilience/ward-science-results.json" in {check["target"] for check in smoke["checks"]}
     assert "data/canon_review_queue.json" in {check["target"] for check in smoke["checks"]}

@@ -1,0 +1,123 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://corbensorenson.github.io/software-grimoire/schemas/logical-conclusion-status.schema.json",
+  "title": "Software Grimoire Logical Conclusion Status",
+  "type": "object",
+  "required": ["version", "generated_at", "policy", "summary", "status_definitions", "open_gates", "criteria"],
+  "additionalProperties": false,
+  "properties": {
+    "version": {"type": "string", "pattern": "^4\\.0\\.0-logical-conclusion-status$"},
+    "generated_at": {"type": "string"},
+    "policy": {"type": "string", "minLength": 20},
+    "summary": {
+      "type": "object",
+      "required": [
+        "criteria_total",
+        "proven",
+        "partial",
+        "pending_human",
+        "pending_package_index",
+        "pending_external",
+        "pending_total",
+        "external_claims_fabricated"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "criteria_total": {"type": "integer", "minimum": 1},
+        "proven": {"type": "integer", "minimum": 0},
+        "partial": {"type": "integer", "minimum": 0},
+        "pending_human": {"type": "integer", "minimum": 0},
+        "pending_package_index": {"type": "integer", "minimum": 0},
+        "pending_external": {"type": "integer", "minimum": 0},
+        "pending_total": {"type": "integer", "minimum": 0},
+        "external_claims_fabricated": {"const": false}
+      }
+    },
+    "status_definitions": {
+      "type": "object",
+      "required": ["proven", "partial", "pending_human", "pending_package_index", "pending_external"],
+      "additionalProperties": {"type": "string"}
+    },
+    "open_gates": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "#/$defs/open_gate"}
+    },
+    "criteria": {
+      "type": "array",
+      "minItems": 90,
+      "maxItems": 90,
+      "items": {"$ref": "#/$defs/criterion"}
+    }
+  },
+  "$defs": {
+    "evidence": {
+      "type": "object",
+      "required": ["kind", "target"],
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "type": "string",
+          "enum": ["path", "github_release", "external_url"]
+        },
+        "target": {"type": "string", "minLength": 1},
+        "note": {"type": "string"}
+      }
+    },
+    "status": {
+      "type": "string",
+      "enum": ["proven", "partial", "pending_human", "pending_package_index", "pending_external"]
+    },
+    "criterion": {
+      "type": "object",
+      "required": ["id", "status", "label", "evidence"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {"type": "integer", "minimum": 1, "maximum": 90},
+        "status": {"$ref": "#/$defs/status"},
+        "label": {"type": "string", "minLength": 10},
+        "evidence": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"$ref": "#/$defs/evidence"}
+        },
+        "blockers": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"type": "string", "minLength": 10}
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {"enum": ["partial", "pending_human", "pending_package_index", "pending_external"]}
+            },
+            "required": ["status"]
+          },
+          "then": {"required": ["blockers"]}
+        }
+      ]
+    },
+    "open_gate": {
+      "type": "object",
+      "required": ["id", "criteria", "status", "blocker", "evidence"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {"type": "string", "pattern": "^[a-z0-9-]+$"},
+        "criteria": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"type": "integer", "minimum": 1, "maximum": 90}
+        },
+        "status": {"$ref": "#/$defs/status"},
+        "blocker": {"type": "string", "minLength": 10},
+        "evidence": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"$ref": "#/$defs/evidence"}
+        }
+      }
+    }
+  }
+}

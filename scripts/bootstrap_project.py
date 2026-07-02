@@ -515,6 +515,10 @@ EVIDENCE_TAXONOMY_DATA = {
             "claim_power": "records what still requires a named human maintainer before canonical status can be claimed",
             "examples": ["canon audit queue", "reviewed-to-canonical blockers"],
         },
+        "roadmap_acceptance_status": {
+            "claim_power": "maps roadmap acceptance criteria to current evidence and explicit blockers; does not prove claims beyond linked artifacts",
+            "examples": ["logical-conclusion status ledger", "external-reality gate blockers"],
+        },
         "adoption_report": {
             "claim_power": "evidence that a practitioner used the grimoire and reported success, friction, or failure",
             "examples": ["project-owned dogfood", "reviewer-supplied reports", "external-user reports"],
@@ -2547,6 +2551,7 @@ def evidence_index_data() -> dict:
     package_check = load_runtime_json("examples/adoption/package-check.json", {"steps": [], "passed": False})
     package_index_plan = load_runtime_json("examples/adoption/package-index-release-plan.json", {"preflight_checks": [], "build_commands": []})
     canon_review_queue = load_runtime_json("data/canon_review_queue.json", {"summary": {"queued_candidates": 0}, "batches": []})
+    logical_conclusion = load_runtime_json("data/logical_conclusion_status.json", {"criteria": [], "summary": {}})
     smoke = load_runtime_json("examples/release-gate/public-smoke-check.json", {"checks": [], "passed": False})
 
     artifacts = [
@@ -2648,6 +2653,20 @@ def evidence_index_data() -> dict:
             "surfaces": [],
             "run_count": canon_review_queue.get("summary", {}).get("queued_candidates", 0),
             "passed": canon_review_queue.get("summary", {}).get("human_signoff_status") == "complete",
+        },
+        {
+            "id": "logical-conclusion-status",
+            "title": "Logical Conclusion Status",
+            "path": "data/logical_conclusion_status.json",
+            "exists": (ROOT / "data/logical_conclusion_status.json").exists(),
+            "bytes": (ROOT / "data/logical_conclusion_status.json").stat().st_size if (ROOT / "data/logical_conclusion_status.json").exists() else 0,
+            "evidence_class": "roadmap_acceptance_status",
+            "calibration_role": "release_readiness",
+            "claim_scope": "All 90 roadmap acceptance criteria are mapped to evidence, explicit blockers, and non-fabrication gates.",
+            "generated_at": logical_conclusion.get("generated_at"),
+            "surfaces": [],
+            "run_count": logical_conclusion.get("summary", {}).get("criteria_total", len(logical_conclusion.get("criteria", []))),
+            "passed": logical_conclusion.get("summary", {}).get("pending_total", 0) == 0,
         },
         {
             "id": "package-check",
@@ -5338,6 +5357,7 @@ def write_reference_pages(houses: list[dict], lexicon: list[dict], major: dict[i
             "- [Usage-Earned Canon](usage-earned-canon.qmd)\n"
             "- [Canon Review Queue](canon-review-queue.qmd)\n"
             "- [Methods Write-Up](methods-structure-reviewability-warding.qmd)\n"
+            "- [Logical Conclusion Status](logical-conclusion-status.qmd)\n"
             "- [Public Smoke Checks](public-smoke-checks.qmd)\n"
             "- [Package-Index Release Plan](package-index-release.qmd)\n"
             "- [Generator Architecture](generator-architecture.qmd)\n"
@@ -5850,6 +5870,7 @@ def write_quarto_config(houses: list[dict]) -> None:
             "reference/usage-earned-canon.qmd",
             "reference/canon-review-queue.qmd",
             "reference/methods-structure-reviewability-warding.qmd",
+            "reference/logical-conclusion-status.qmd",
             "reference/public-smoke-checks.qmd",
             "reference/package-index-release.qmd",
             "reference/generator-architecture.qmd",

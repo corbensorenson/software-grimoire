@@ -20,6 +20,7 @@ LOCAL_REQUIRED = [
     "reference/ward-science.html",
     "reference/canon-review-queue.html",
     "reference/methods-structure-reviewability-warding.html",
+    "reference/logical-conclusion-status.html",
     "reference/package-index-release.html",
     "examples/evaluations/index.html",
     "examples/jailbreak-resilience/index.html",
@@ -27,6 +28,7 @@ LOCAL_REQUIRED = [
 RESOURCE_REQUIRED = [
     "data/evidence_taxonomy.json",
     "data/evidence_index.json",
+    "data/logical_conclusion_status.json",
     "data/canon_review_queue.json",
     "examples/evaluations/model-execution-results.json",
     "examples/evaluations/hardness-v4/results.json",

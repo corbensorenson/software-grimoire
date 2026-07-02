@@ -3,8 +3,8 @@
   "generated_at": "2026-07-02T00:00:00Z",
   "policy": "Calibration fixtures, project-owned model runs, local deterministic checks, reviewer imports, human audit, and adoption reports must remain separately labeled.",
   "summary": {
-    "artifact_count": 13,
-    "available_artifacts": 13,
+    "artifact_count": 14,
+    "available_artifacts": 14,
     "project_owned_model_surfaces": [
       "claude-code-safe",
       "claude-code-safe:baseline",
@@ -176,6 +176,20 @@
       "passed": false
     },
     {
+      "id": "logical-conclusion-status",
+      "title": "Logical Conclusion Status",
+      "path": "data/logical_conclusion_status.json",
+      "exists": true,
+      "bytes": 26513,
+      "evidence_class": "roadmap_acceptance_status",
+      "calibration_role": "release_readiness",
+      "claim_scope": "All 90 roadmap acceptance criteria are mapped to evidence, explicit blockers, and non-fabrication gates.",
+      "generated_at": "2026-07-02T00:00:00Z",
+      "surfaces": [],
+      "run_count": 90,
+      "passed": false
+    },
+    {
       "id": "package-check",
       "title": "Public Package Build and Install Check",
       "path": "examples/adoption/package-check.json",
@@ -184,7 +198,7 @@
       "evidence_class": "packaging_or_release_check",
       "calibration_role": "release_evidence",
       "claim_scope": "The wheel/sdist build, temporary install, and console scripts work in the current environment.",
-      "generated_at": "2026-07-02T15:30:36.698311+00:00",
+      "generated_at": "2026-07-02T17:17:36.080845+00:00",
       "surfaces": [],
       "run_count": 10,
       "passed": true
@@ -208,13 +222,13 @@
       "title": "Public Site Smoke Check",
       "path": "examples/release-gate/public-smoke-check.json",
       "exists": true,
-      "bytes": 2794,
+      "bytes": 3037,
       "evidence_class": "packaging_or_release_check",
       "calibration_role": "release_evidence",
       "claim_scope": "Rendered local site resources and optionally live GitHub Pages URLs resolve.",
-      "generated_at": "2026-07-02T15:30:36.800611+00:00",
+      "generated_at": "2026-07-02T17:27:06.982277+00:00",
       "surfaces": [],
-      "run_count": 22,
+      "run_count": 24,
       "passed": true
     }
   ]

@@ -740,6 +740,7 @@ def validate_v3_evidence_layer(errors: list[str]) -> None:
         "local_deterministic_control",
         "packaging_or_release_check",
         "human_audit_pending",
+        "roadmap_acceptance_status",
         "adoption_report",
     ]:
         if evidence_class not in taxonomy.get("evidence_classes", {}):
@@ -758,6 +759,7 @@ def validate_v3_evidence_layer(errors: list[str]) -> None:
         "local-warded-baseline",
         "real-warded-ab",
         "package-check",
+        "logical-conclusion-status",
         "public-smoke-check",
     ]:
         artifact = artifacts.get(artifact_id)
@@ -961,6 +963,90 @@ def validate_public_package_and_smoke(errors: list[str]) -> None:
                 fail(errors, f"Public smoke check missing target: {expected}")
 
 
+def validate_logical_conclusion_status(errors: list[str]) -> None:
+    path = ROOT / "data" / "logical_conclusion_status.json"
+    if not path.exists():
+        fail(errors, "Missing data/logical_conclusion_status.json")
+        return
+    status = json.loads(path.read_text(encoding="utf-8"))
+    criteria = status.get("criteria", [])
+    summary = status.get("summary", {})
+    if len(criteria) != 90:
+        fail(errors, f"Logical conclusion status must track 90 criteria, found {len(criteria)}")
+        return
+    ids = [item.get("id") for item in criteria]
+    if sorted(ids) != list(range(1, 91)):
+        fail(errors, "Logical conclusion criteria ids must be exactly 1..90")
+    allowed_statuses = {"proven", "partial", "pending_human", "pending_package_index", "pending_external"}
+    counts = {key: 0 for key in allowed_statuses}
+    criteria_by_id = {}
+    for item in criteria:
+        ident = item.get("id")
+        criteria_by_id[ident] = item
+        item_status = item.get("status")
+        if item_status not in allowed_statuses:
+            fail(errors, f"Logical conclusion criterion {ident} has invalid status: {item_status}")
+            continue
+        counts[item_status] += 1
+        if item_status != "proven" and not item.get("blockers"):
+            fail(errors, f"Logical conclusion criterion {ident} is not proven but has no blocker")
+        if item_status == "proven" and item.get("blockers"):
+            fail(errors, f"Logical conclusion criterion {ident} is proven but still lists blockers")
+        for evidence in item.get("evidence", []):
+            if evidence.get("kind") == "path" and not (ROOT / evidence.get("target", "")).exists():
+                fail(errors, f"Logical conclusion criterion {ident} evidence path missing: {evidence.get('target')}")
+    expected_summary = {
+        "criteria_total": len(criteria),
+        "proven": counts["proven"],
+        "partial": counts["partial"],
+        "pending_human": counts["pending_human"],
+        "pending_package_index": counts["pending_package_index"],
+        "pending_external": counts["pending_external"],
+        "pending_total": counts["partial"] + counts["pending_human"] + counts["pending_package_index"] + counts["pending_external"],
+    }
+    for key, value in expected_summary.items():
+        if summary.get(key) != value:
+            fail(errors, f"Logical conclusion summary {key}={summary.get(key)} does not match computed {value}")
+    if summary.get("external_claims_fabricated") is not False:
+        fail(errors, "Logical conclusion status must not fabricate external claims")
+
+    hard_gates = {
+        69: "pending_human",
+        70: "pending_human",
+        72: "pending_package_index",
+        74: "pending_external",
+        79: "pending_external",
+        88: "partial",
+    }
+    for ident, required_status in hard_gates.items():
+        actual = criteria_by_id.get(ident, {}).get("status")
+        if actual != required_status:
+            fail(errors, f"Logical conclusion criterion {ident} must remain {required_status}, found {actual}")
+
+    adoption = load("adoption_evidence.json")
+    if adoption.get("external_status", {}).get("external_reports_published") == 0 and criteria_by_id[74]["status"] == "proven":
+        fail(errors, "External adoption criterion cannot be proven while external_reports_published is 0")
+    audit = load("canon_audit.json")
+    if audit.get("status") == "pending-human-maintainer-signoff":
+        for ident in [69, 70]:
+            if criteria_by_id[ident]["status"] == "proven":
+                fail(errors, f"Human canon criterion {ident} cannot be proven while canon audit is pending")
+    model = json.loads((ROOT / "examples" / "evaluations" / "hardness-v4" / "model-surface-results.json").read_text(encoding="utf-8"))
+    if set(model.get("surfaces", {})) == {"codex-cli-default"} and criteria_by_id[79]["status"] == "proven":
+        fail(errors, "Bench v4 cross-surface criterion cannot be proven with only codex-cli-default accepted")
+    for gate in status.get("open_gates", []):
+        if not gate.get("criteria"):
+            fail(errors, f"Logical conclusion open gate has no criteria: {gate.get('id')}")
+        if gate.get("status") == "proven":
+            fail(errors, f"Logical conclusion open gate cannot be proven: {gate.get('id')}")
+        for ident in gate.get("criteria", []):
+            if ident not in criteria_by_id:
+                fail(errors, f"Logical conclusion open gate references missing criterion {ident}")
+        for evidence in gate.get("evidence", []):
+            if evidence.get("kind") == "path" and not (ROOT / evidence.get("target", "")).exists():
+                fail(errors, f"Logical conclusion open gate evidence path missing: {evidence.get('target')}")
+
+
 def main() -> int:
     errors: list[str] = []
     houses = validate_houses(errors)
@@ -984,6 +1070,7 @@ def main() -> int:
     validate_real_warded_ab(errors)
     validate_hardness_model_surface(errors)
     validate_public_package_and_smoke(errors)
+    validate_logical_conclusion_status(errors)
     validate_v3_evidence_layer(errors)
 
     if errors:

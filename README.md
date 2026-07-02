@@ -98,6 +98,10 @@ Implemented:
   non-Codex surface bundles, including schema checks, repo-local path checks,
   artifact filename checks, provenance consistency, and fixture-local execution
   without automatically publishing the run.
+- Logical-conclusion status ledger for all 90 roadmap acceptance criteria,
+  with evidence links and explicit blockers for human canon signoff, public
+  package-index upload, non-maintainer adoption, and non-Codex/reviewer
+  hardness evidence.
 - JSON schemas, validation tooling, seal-stability tests, and rendered
   internal-link audit.
 - Working seal generation for spells and stacks, plus a local CLI for

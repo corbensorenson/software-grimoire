@@ -1,0 +1,130 @@
+---
+title: "Logical Conclusion Status"
+---
+
+# Logical Conclusion Status
+
+This page is the machine-readable release ledger for the roadmap's 90
+acceptance criteria. It does not redefine completion around what is already
+easy to prove: human canon signoff, public package-index upload,
+non-maintainer adoption, and non-Codex/reviewer hardness evidence remain
+explicitly pending until recorded evidence exists.
+
+Raw data: [logical_conclusion_status.json](../data/logical_conclusion_status.json)
+
+## Summary
+
+| Status | Count |
+| --- | ---: |
+| Proven | 84 |
+| Partial | 1 |
+| Pending human | 2 |
+| Pending package index | 1 |
+| Pending external | 2 |
+| Total criteria | 90 |
+
+External claims fabricated: `false`
+
+## Open Gates
+
+| Gate | Criteria | Status | Blocker |
+| --- | --- | --- | --- |
+| Human canon audit | 69, 70 | pending human | Named maintainer review, date, decision, and correction outcome must be recorded before human audit or canonical promotion can be claimed. |
+| Public package index | 72, 88 | pending package index | TestPyPI/PyPI upload must be performed by a named maintainer before public package-index smoke checks can run. |
+| External adoption | 74 | pending external | At least three non-maintainer reports must be accepted and published with friction/failure fields intact. |
+| Non-Codex hardness surface | 79 | pending external | At least one additional non-Codex or reviewer-supplied hardness surface must be validated and accepted before cross-surface Bench v4 hardness claims are complete. |
+
+## Criteria Ledger
+
+| # | Status | Criterion |
+| ---: | --- | --- |
+| 1 | proven | Public site teaches the theory clearly. |
+| 2 | proven | Main book is readable and coherent. |
+| 3 | proven | Pocket guide is useful as a daily reference. |
+| 4 | proven | Stacked-spells system is integrated and validated. |
+| 5 | proven | Full lexicon is structured, navigable, and semantically reviewed. |
+| 6 | proven | Six initial spells are reusable templates. |
+| 7 | proven | Six initial stacks are reusable workflows. |
+| 8 | proven | Spells and stacks have schemas. |
+| 9 | proven | Validation, tests, render, and link audit run in CI. |
+| 10 | proven | Quarto publication is automated. |
+| 11 | proven | Executable fixtures demonstrate Proof by Difference for field spells. |
+| 12 | proven | Recorded runs show weak-vs-repaired deltas, scores, variance, and non-wins. |
+| 13 | proven | Project can accept contributions without losing structure. |
+| 14 | proven | Project has versioned releases. |
+| 15 | proven | User can move from vague request to structured spell to verified result. |
+| 16 | proven | Team can move from one-off prompt to reusable stack to versioned practice. |
+| 17 | proven | Homepage demonstrates practical value before jargon. |
+| 18 | proven | Every field spell has copyable and raw template forms. |
+| 19 | proven | Fifty major canon entries are authored and reviewed. |
+| 20 | proven | Three hundred pocket canon entries are authored and reviewed. |
+| 21 | proven | All 1,645 lexicon entries have authored fields and sense guidance where needed. |
+| 22 | proven | Master-lexicon house pages are complete and navigable. |
+| 23 | proven | Tool-native exports are generated and link to seals. |
+| 24 | proven | Release-gate stack is instantiated by the repository release process. |
+| 25 | proven | Seal stability is tested and seal changes are documented. |
+| 26 | proven | Jailbreaks and prompt injection are covered defensively. |
+| 27 | proven | Warded-spell trust-boundary schema extension exists. |
+| 28 | proven | Jailbreak-resilience spell and AI red-team stack exist. |
+| 29 | proven | Jailbreak-resilience bench has harmless fixtures, scoring, transcripts, and utility scoring. |
+| 30 | proven | No operational external jailbreak corpus is vendored by default. |
+| 31 | proven | Lexicon distinguishes generated draft text from reviewed semantic canon. |
+| 32 | proven | Template-shaped lexicon prose cannot pass as reviewed or canonical. |
+| 33 | proven | Major and pocket runes have reviewed force, shadow, examples, and prompt-use guidance. |
+| 34 | proven | Benchmark layer supports declared surfaces and manual imports. |
+| 35 | proven | Benchmark results include deterministic checks, metadata, variance, and limitations. |
+| 36 | proven | Adversarial harness covers mediation, retrieval taint, scope creep, drift, canary redaction, and overrefusal. |
+| 37 | proven | Exported assets ship with manifest, checksums, schema versions, source IDs, and seals. |
+| 38 | proven | CLI/package can validate and seal user-owned spells outside source data. |
+| 39 | proven | Generator is split into maintainable modules with deterministic tests. |
+| 40 | proven | Diagram placeholders are replaced by generated visual instruments. |
+| 41 | proven | Task chooser maps real work to spell, stack, template, and verification path. |
+| 42 | proven | Adoption, canon correction, and reviewer-run import paths are published without fabricating evidence. |
+| 43 | proven | Field-spell evaluation includes clean and trap tiers. |
+| 44 | proven | Execution-graded cases preserve command, streams, exit code, timeout, and grader version. |
+| 45 | proven | Benchmark pages separate reviewability, outcome, execution, variance, and limitations. |
+| 46 | proven | At least two model/tool surfaces are recorded or imported for field-spell bench. |
+| 47 | proven | Every jailbreak-resilience case has baseline and warded variants. |
+| 48 | proven | Adversarial matrix includes baseline failure and warded resistance/utility/audit reporting. |
+| 49 | proven | Surface comparison pages show deltas without hiding ties, losses, or failures. |
+| 50 | proven | Semantic canon has a validated promotion ladder. |
+| 51 | proven | Per-house semantic progress board exists and two houses are reviewed. |
+| 52 | proven | Reviewed lexicon count is at least 450. |
+| 53 | proven | Claude Code exports are generated, validated, checksummed, bundled, and installable. |
+| 54 | proven | Spell and stack diagrams are data-driven and non-placeholder. |
+| 55 | proven | Release bundles are produced and attached to GitHub Releases. |
+| 56 | proven | Calibration artifacts are separated from model-run evidence. |
+| 57 | proven | Every evidence row carries evidence class and provenance. |
+| 58 | proven | Calibration rows cannot count as independent model/tool surfaces. |
+| 59 | proven | Field-spell bench includes a real second model/tool surface beyond original Codex. |
+| 60 | proven | Surface adapters share normalized metadata contract. |
+| 61 | proven | Model artifacts can be extracted, sandboxed, and execution-graded safely. |
+| 62 | proven | Trap-tier field-spell cases include real model outputs and preserved transcripts. |
+| 63 | proven | At least two field-spell cases grade model-produced artifacts by execution. |
+| 64 | proven | Jailbreak-resilience A/B comparisons include real model runs. |
+| 65 | proven | At least one adversarial baseline failure is model-produced. |
+| 66 | proven | Evidence dashboard links from summaries to prompts, transcripts, artifacts, fixtures, scores, and limitations. |
+| 67 | proven | Live-site smoke checks verify high-value pages and downloads after deployment. |
+| 68 | proven | Release assets are downloadable and checksum-verifiable after publication. |
+| 69 | pending human | First two reviewed lexicon houses have human audit records and correction outcomes. |
+| 70 | pending human | Canonical rune promotion is backed by usage evidence and reviewer signoff. |
+| 71 | proven | Usage graph links runes to spells, stacks, benchmarks, adoption reports, and accepted evidence. |
+| 72 | pending package index | CLI is installable from a public package index and passes package-install smoke tests. |
+| 73 | proven | Public package versioning is tied to evidence milestones. |
+| 74 | pending external | At least three non-maintainer adoption or reviewer reports are accepted and published. |
+| 75 | proven | Project preserves ties, losses, overrefusals, failures, and null results. |
+| 76 | proven | Evaluation pages report deltas per surface, tier, variant, and repetition cell. |
+| 77 | proven | Structural rubric is renamed to reviewability score. |
+| 78 | proven | Bench v4 includes five named hardness rungs. |
+| 79 | pending external | At least two hardness rungs include executable fixtures, artifacts, and cross-surface results. |
+| 80 | proven | Ward-science pages include real baseline/warded A/B on both primary surfaces for original attack shapes. |
+| 81 | proven | At least one ward-limb ablation is published with effect/non-effect attribution. |
+| 82 | proven | Additional defanged attack shapes cover six named morphologies. |
+| 83 | proven | Resistance-versus-utility reporting prevents blanket refusal from scoring as complete success. |
+| 84 | proven | Canon-review queue is generated from usage evidence and bounded for human review. |
+| 85 | proven | Canonical entries require reviewed status, usage evidence, no blocker, and named signoff. |
+| 86 | proven | One-step local installs exist for Claude Code and Cursor and are tested under repo-local tmp. |
+| 87 | proven | Adoption-report generation produces schema-valid records without counting dogfood as external adoption. |
+| 88 | partial | Package-index release materials are ready and package-index smoke checks are added once upload exists. |
+| 89 | proven | Scratch output policy keeps project commands, docs, tests, and examples under repo-local tmp. |
+| 90 | proven | Methods write-up is generated from recorded evidence and foregrounds null/tie/task-dependent results. |

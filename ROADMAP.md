@@ -546,6 +546,11 @@ Absorption status:
   is Claude Code standard warded jailbreak-resilience runs, additional
   non-Codex or reviewer-supplied hardness-ladder surfaces, human package
   upload, human canon signoff, and accepted external adoption reports.
+- `data/logical_conclusion_status.json` now maps all 90 logical-conclusion
+  acceptance criteria to current evidence, blockers, and status counts. It
+  records 84 proven criteria, one partial package-index criterion, and five
+  pending human/package/external criteria without treating those pending gates
+  as completed work.
 
 ## 1. End State
 
