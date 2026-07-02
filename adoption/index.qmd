@@ -4,7 +4,7 @@ title: "Adoption Kit"
 
 # Adoption Kit
 
-The adoption kit is intentionally small. It exists to make the six field spell templates and six stack workflows usable outside this repository.
+The adoption kit is intentionally small. It exists to make the field spell templates, stack workflows, and defensive jailbreak-resilience assets usable outside this repository.
 
 ## Raw Prompt Assets
 
@@ -12,6 +12,7 @@ The adoption kit is intentionally small. It exists to make the six field spell t
 - [Spell templates](https://github.com/corbensorenson/software-grimoire/tree/main/prompts/spells)
 - [Stack workflow templates](https://github.com/corbensorenson/software-grimoire/tree/main/prompts/stacks)
 - [Installable library exports](installable-library.qmd)
+- [Jailbreak-resilience reference](../reference/jailbreak-resilience.qmd)
 
 ## Minimal CLI
 
@@ -25,6 +26,10 @@ python3 scripts/grimoire.py seal /tmp/my-spell.json
 ```
 
 The CLI stays local. It has no hidden model calls and no provider dependency.
+
+## Defensive Use
+
+The jailbreak-resilience assets are defensive red-team materials. They use harmless fixtures and canaries to test trust boundaries, prompt-injection handling, leakage resistance, tool scope, and audit quality. They do not include operational jailbreak prompts.
 
 ## Use Policy
 

@@ -12,6 +12,17 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 COMPLETION_STATUSES = {"authored", "stub", "needs_shadow", "needs_sense"}
 FORCE_SOURCES = {"major-canon", "pocket-canon", "master-lexicon"}
+EXPECTED_SPELL_COUNT = 7
+EXPECTED_STACK_COUNT = 7
+JAILBREAK_WARD_FIELDS = [
+    "trust_boundary",
+    "untrusted_inputs",
+    "allowed_tools",
+    "forbidden_outputs",
+    "secret_handling",
+    "refusal_contract",
+    "audit_log",
+]
 GENERIC_LEXICON_PATTERNS = [
     "a shape-of-state word;",
     "an interface word;",
@@ -244,8 +255,18 @@ def validate_spells(errors: list[str], lexicon: list[dict]) -> list[dict]:
         for ident in spell.get("runes", []):
             if ident not in lex_ids:
                 fail(errors, f"Spell {spell['id']} references missing rune {ident}")
-    if len(spells) != 6:
-        fail(errors, f"Expected 6 spells, found {len(spells)}")
+        if spell["id"] == "spell.jailbreak-resilience-review.v1":
+            for key in JAILBREAK_WARD_FIELDS:
+                if key not in spell or spell[key] in ("", None, [], {}):
+                    fail(errors, f"Warded spell missing {key}")
+            boundary = spell.get("trust_boundary", {})
+            if not boundary.get("trusted") or not boundary.get("untrusted"):
+                fail(errors, "Warded spell trust_boundary must include trusted and untrusted lists")
+            refusal = spell.get("refusal_contract", {})
+            if not refusal.get("refuse_when") or not refusal.get("preserve_utility"):
+                fail(errors, "Warded spell refusal_contract must include refuse_when and preserve_utility")
+    if len(spells) != EXPECTED_SPELL_COUNT:
+        fail(errors, f"Expected {EXPECTED_SPELL_COUNT} spells, found {len(spells)}")
     return spells
 
 
@@ -304,9 +325,59 @@ def validate_stacks(errors: list[str], lexicon: list[dict], spells: list[dict]) 
         for slug in stack.get("related_spells", []):
             if slug not in spell_slugs:
                 fail(errors, f"Stack {stack['id']} references missing spell slug {slug}")
-    if len(stacks) != 6:
-        fail(errors, f"Expected 6 stacks, found {len(stacks)}")
+    if len(stacks) != EXPECTED_STACK_COUNT:
+        fail(errors, f"Expected {EXPECTED_STACK_COUNT} stacks, found {len(stacks)}")
     return stacks
+
+
+def validate_jailbreak_resilience(errors: list[str]) -> None:
+    path = ROOT / "data" / "jailbreak_resilience.json"
+    if not path.exists():
+        fail(errors, "Missing data/jailbreak_resilience.json")
+        return
+    data = json.loads(path.read_text(encoding="utf-8"))
+    if data.get("payload_policy") != "defanged-fixtures-only":
+        fail(errors, "Jailbreak resilience payload_policy must be defanged-fixtures-only")
+    if len(data.get("sources", [])) < 8:
+        fail(errors, "Jailbreak resilience source map is too small")
+    axes = data.get("scoring_axes", {})
+    for axis in ["attack_resistance", "utility_preservation", "audit_quality"]:
+        if not axes.get(axis):
+            fail(errors, f"Missing jailbreak scoring axis: {axis}")
+    cases = data.get("cases", {})
+    if len(cases) != 8:
+        fail(errors, f"Expected 8 jailbreak-resilience cases, found {len(cases)}")
+    for slug, case in cases.items():
+        for key in [
+            "title",
+            "attack_shape",
+            "fixture_path",
+            "benign_task",
+            "expected_behavior",
+            "utility_keywords",
+            "resistance_keywords",
+            "audit_keywords",
+            "forbidden_strings",
+            "forbidden_tools",
+        ]:
+            if key not in case or case[key] in ("", None, []):
+                if key == "forbidden_tools" and case.get(key) == []:
+                    continue
+                fail(errors, f"Jailbreak case {slug} missing {key}")
+        fixture_dir = ROOT / case.get("fixture_path", "")
+        if not fixture_dir.is_dir():
+            fail(errors, f"Missing jailbreak fixture directory: {slug}")
+            continue
+        for fixture_file in ["context.md", "ground_truth.json"]:
+            if not (fixture_dir / fixture_file).exists():
+                fail(errors, f"Jailbreak fixture {slug} missing {fixture_file}")
+        ground_truth_path = fixture_dir / "ground_truth.json"
+        if ground_truth_path.exists():
+            ground_truth = json.loads(ground_truth_path.read_text(encoding="utf-8"))
+            if ground_truth.get("attack_shape") != case.get("attack_shape"):
+                fail(errors, f"Jailbreak fixture {slug} attack_shape mismatch")
+            if ground_truth.get("payload_policy") != "defanged":
+                fail(errors, f"Jailbreak fixture {slug} must be defanged")
 
 
 def main() -> int:
@@ -317,6 +388,7 @@ def main() -> int:
     validate_canon_quality(errors, lexicon)
     spells = validate_spells(errors, lexicon)
     validate_stacks(errors, lexicon, spells)
+    validate_jailbreak_resilience(errors)
 
     if errors:
         for error in errors:

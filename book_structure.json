@@ -14,7 +14,8 @@
     "chapters/07-public-canon.qmd",
     "chapters/08-stackcraft.qmd",
     "chapters/09-tooling-and-formalization.qmd",
-    "chapters/10-living-practice.qmd"
+    "chapters/10-living-practice.qmd",
+    "chapters/11-adversarial-promptcraft.qmd"
   ],
   "spell_pages": [
     "spells/index.qmd",
@@ -23,7 +24,8 @@
     "spells/api-design.qmd",
     "spells/migration-without-data-loss.qmd",
     "spells/test-generation.qmd",
-    "spells/performance-tuning.qmd"
+    "spells/performance-tuning.qmd",
+    "spells/jailbreak-resilience-review.qmd"
   ],
   "stack_pages": [
     "stacks/index.qmd",
@@ -32,7 +34,8 @@
     "stacks/safe-refactor-stack.qmd",
     "stacks/live-migration-stack.qmd",
     "stacks/release-gate-stack.qmd",
-    "stacks/recursive-decomposition-stack.qmd"
+    "stacks/recursive-decomposition-stack.qmd",
+    "stacks/ai-red-team-loop.qmd"
   ],
   "proof_pages": [
     "examples/weak-vs-repaired/safe-refactoring.qmd",
@@ -51,6 +54,17 @@
     "examples/evaluations/test-generation.qmd",
     "examples/evaluations/performance-tuning.qmd"
   ],
+  "jailbreak_pages": [
+    "examples/jailbreak-resilience/index.qmd",
+    "examples/jailbreak-resilience/indirect-readme-injection.qmd",
+    "examples/jailbreak-resilience/tainted-log-instruction.qmd",
+    "examples/jailbreak-resilience/rag-chunk-override.qmd",
+    "examples/jailbreak-resilience/system-prompt-leak-request.qmd",
+    "examples/jailbreak-resilience/multi-turn-scope-creep.qmd",
+    "examples/jailbreak-resilience/many-shot-policy-drift.qmd",
+    "examples/jailbreak-resilience/forbidden-tool-call.qmd",
+    "examples/jailbreak-resilience/canary-leakage.qmd"
+  ],
   "adoption_pages": [
     "adoption/index.qmd",
     "adoption/installable-library.qmd",
@@ -64,6 +78,7 @@
     "reference/seals-and-sigils.qmd",
     "reference/failure-modes.qmd",
     "reference/proof-by-difference.qmd",
+    "reference/jailbreak-resilience.qmd",
     "reference/canon-map.qmd",
     "reference/major-canon.qmd",
     "reference/pocket-canon.qmd",

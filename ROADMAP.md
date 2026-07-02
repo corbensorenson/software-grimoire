@@ -44,21 +44,25 @@ Current public-site status:
 - The pocket edition is ported into the pocket field guide and 300-rune pocket
   canon.
 - The stacked-spells addendum is ported into the Stackcraft chapter, stack
-  grammar reference, and six generated stack pages.
+  grammar reference, generated stack pages, and the v1.4 AI red-team stack.
 - The structured canon includes 18 houses, 1,645 lexicon entries, 50 major canon
-  entries, 300 pocket runes, six spell templates, and six stack workflows.
+  entries, 300 pocket runes, seven spell templates, and seven stack workflows.
 - The repository includes schemas, validation, seal generation, CI, GitHub Pages
   publishing, pull-request checks, contribution templates, examples, and public
   releases.
-- The rendered Quarto site currently contains 76 pages, including six
+- The rendered Quarto site currently contains 89 pages, including six
   Proof-by-Difference cases, six recorded evaluation result pages, a dedicated
-  Proof by Difference reference page, and an installable-library page.
+  Proof by Difference reference page, an installable-library page, and a
+  jailbreak-resilience bench.
 - The recorded evaluation layer has moved past the seed state: all six field
   spells now have executable fixtures, planted ground truth, structural scores,
   outcome scores, preserved transcripts, and repeated Codex-owned runs.
 - The full 1,645-entry lexicon is now authored with zero stubs. Future canon
   work is correction, refinement, expansion, and reviewer-driven improvement,
   not completion-status recovery.
+- The v1.4 defensive red-team layer is implemented with an adversarial
+  promptcraft chapter, jailbreak-resilience reference, warded spell, AI red-team
+  stack, eight harmless fixtures, and 24 preserved Codex-owned bench runs.
 
 Reader-experience requirements:
 
@@ -2446,6 +2450,13 @@ Recommended release:
 
 - `v1.4.0-jailbreak-resilience`
 
+Implementation status:
+
+- Completed in `v1.4.0-jailbreak-resilience` with a defensive adversarial
+  promptcraft chapter, source-mapped reference page, canonical warded spell,
+  canonical AI red-team stack, eight harmless fixtures, 24 recorded Codex-owned
+  bench runs, generated exports, validation, tests, and published site pages.
+
 Goal:
 
 Add a serious section on jailbreaks, prompt injection, and adversarial
@@ -2986,27 +2997,25 @@ The project is complete in the strong sense when:
 
 ## 15. Immediate Next Move
 
-The roadmap through `v1.3.0-full-roadmap-release` is implemented. The next
-substantive expansion should be `v1.4.0-jailbreak-resilience`:
+The roadmap through `v1.4.0-jailbreak-resilience` is implemented. The next work
+is review, use, and maintenance:
 
-1. Add `chapters/11-adversarial-promptcraft.qmd`.
-2. Add `reference/jailbreak-resilience.qmd`.
-3. Add warded-spell fields to the spell schema and generator.
-4. Add `spell.jailbreak-resilience-review.v1`.
-5. Add `stack.ai-red-team-loop.v1`.
-6. Add eight harmless jailbreak-resilience fixtures.
-7. Add outcome scoring for attack resistance, utility preservation, and audit
-   quality.
-8. Add CI integrity tests for warded spells and adversarial fixtures.
-9. Add generated exports for the new defensive spell and stack.
-10. Update README, changelog, adoption pages, and site navigation.
-11. Invite external review of the new section's safety boundary before release.
-12. Repeat the existing benchmark when important model/tool versions change.
+1. Invite external review of the jailbreak-resilience safety boundary and source
+   map.
+2. Add reviewer-supplied adversarial fixtures only when they are harmless,
+   defanged, scored for utility preservation, and transcript-preserving.
+3. Add reviewer-supplied evaluation surfaces only when they preserve prompts,
+   transcripts, fixture paths, timestamps, outcome scores, structural scores,
+   and notes.
+4. Accept lexicon corrections without allowing any entry to regress to stub
+   status.
+5. Repeat both benches when important model/tool versions change.
+6. Add new spells or stacks only after repeated real use produces evidence.
 
 The project has moved past the "make it public and navigable" phase, the first
 integrity hardening pass, the practical front-door pass, the initial recorded
 evidence pass, the measured benchmark pass, the installable-library pass, and
-the full-canon pass. The next frontier is defensive adversarial promptcraft. The
-standing standard remains measured trust: every major claim should come with an
+the full-canon pass, and the defensive jailbreak-resilience pass. The standing
+standard remains measured trust: every major claim should come with an
 executable fixture, a reusable artifact, a validation check, a safety boundary,
 or a preserved evaluation record.

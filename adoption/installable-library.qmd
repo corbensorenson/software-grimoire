@@ -20,3 +20,4 @@ The installable library is generated from canonical spell and stack data. It giv
 - Every export links back to a spell or stack ID and working seal.
 - Provider-specific formats are adapters. The canonical data remains in `data/spells.json` and `data/stacks.json`.
 - No export is allowed to add hidden network calls or model-provider dependencies.
+- Defensive jailbreak-resilience exports must preserve the dual-use safety scope and avoid operational bypass payloads.

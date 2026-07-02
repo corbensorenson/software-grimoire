@@ -16,6 +16,7 @@ EXPECTED_SPELL_SEALS = {
     "spell.migration-without-data-loss.v1": "spell://migration-without-data-loss/AD15B25ECB",
     "spell.test-generation.v1": "spell://test-generation/16A7DCF9E2",
     "spell.performance-tuning.v1": "spell://performance-tuning/75981D9E3F",
+    "spell.jailbreak-resilience-review.v1": "spell://jailbreak-resilience-review/36B797783D",
 }
 
 EXPECTED_STACK_SEALS = {
@@ -25,6 +26,7 @@ EXPECTED_STACK_SEALS = {
     "stack.live-migration-stack.v1": "stack://live-migration-stack/23AA56B454",
     "stack.release-gate-stack.v1": "stack://release-gate-stack/5798FD1FC7",
     "stack.recursive-decomposition-stack.v1": "stack://recursive-decomposition-stack/9E9D03E9C0",
+    "stack.ai-red-team-loop.v1": "stack://ai-red-team-loop/6CF8F7698D",
 }
 
 

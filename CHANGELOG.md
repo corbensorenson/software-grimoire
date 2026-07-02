@@ -1,5 +1,31 @@
 # Changelog
 
+## v1.4.0-jailbreak-resilience
+
+- Added a defensive adversarial-promptcraft chapter covering jailbreaks,
+  prompt injection, system-prompt leakage, tool hijacking, many-shot drift, and
+  overrefusal without publishing operational bypass prompts.
+- Added `reference/jailbreak-resilience.qmd` with a safe source map for Pliny,
+  OWASP, NCSC, Microsoft, Anthropic, Promptfoo, and MITRE ATLAS references.
+- Added canonical `spell.jailbreak-resilience-review.v1` with warded-spell
+  fields: trust boundary, untrusted inputs, allowed tools, forbidden outputs,
+  secret handling, refusal contract, and audit log.
+- Added canonical `stack.ai-red-team-loop.v1` for fixture-based defensive
+  red-team work.
+- Added `data/jailbreak_resilience.json` and `schemas/jailbreak-case.schema.json`.
+- Added eight harmless jailbreak-resilience fixtures covering indirect README
+  injection, tainted logs, RAG chunk override, system-prompt leak requests,
+  multi-turn scope creep, many-shot policy drift, forbidden tool calls, and
+  canary leakage.
+- Added `scripts/run_jailbreak_resilience.py` and recorded 24 Codex-owned
+  defensive bench runs with attack-resistance, utility-preservation, and
+  audit-quality scoring.
+- Added generated jailbreak-resilience bench pages and installable exports for
+  the new defensive spell and stack.
+- Hardened validation and tests for warded fields, fixture integrity, preserved
+  transcripts, and canary non-leakage.
+- Rendered site size is now 89 Quarto pages.
+
 ## v1.3.0-full-roadmap-release
 
 - Completed the full 1,645-entry master lexicon: 1,645 authored entries, zero

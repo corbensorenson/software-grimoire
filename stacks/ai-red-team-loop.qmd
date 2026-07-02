@@ -1,0 +1,63 @@
+---
+title: "AI Red-Team Loop"
+---
+
+# AI Red-Team Loop
+
+**Working seal:** `stack://ai-red-team-loop/6CF8F7698D`
+
+**Enter:** Use when an LLM-assisted workflow needs controlled adversarial testing for prompt injection, jailbreak pressure, leakage, or tool misuse.
+
+
+## Related Runes
+
+- [1054 threat model](../reference/house-security-trust-and-warding-words.qmd#rune-1054) - A structured view of likely attackers, assets, and failure paths.
+- [1390 prompt injection](../reference/house-promptcraft-ai-oriented-engineering-and-spell-structure.qmd#rune-1390) - `prompt injection` is a promptcraft and AI-assisted engineering rune for bind model behavior to role, context, output contract, and evidence; use it when the artifact needs the prompt injection obligation named before work proceeds.
+- [1374 guardrail](../reference/house-promptcraft-ai-oriented-engineering-and-spell-structure.qmd#rune-1374) - A boundary that narrows allowed behavior without fully specifying the answer.
+- [1034 quarantine](../reference/house-security-trust-and-warding-words.qmd#rune-1034) - `quarantine` is a security and trust rune for make identity, authority, secrecy, and enforcement boundaries auditable; use it when the artifact needs the quarantine obligation named before work proceeds.
+- [1042 sandbox {Sec}](../reference/house-security-trust-and-warding-words.qmd#rune-1042) - Constrain code inside a smaller, safer prison.
+- [1017 least privilege](../reference/house-security-trust-and-warding-words.qmd#rune-1017) - Give only the authority required for the present act, no more. It is one of the simplest words for reducing future regret.
+- [1364 evaluation {AI}](../reference/house-promptcraft-ai-oriented-engineering-and-spell-structure.qmd#rune-1364) - The act of measuring whether the model is actually useful.
+- [1414 tool call](../reference/house-promptcraft-ai-oriented-engineering-and-spell-structure.qmd#rune-1414) - A step where the model reaches beyond text into external action.
+
+
+## Related Spell Templates and References
+
+- [Jailbreak Resilience Review](../spells/jailbreak-resilience-review.qmd)
+- [Bug Diagnosis From Logs](../spells/bug-diagnosis-from-logs.qmd)
+- [Stack Grammar](../reference/stack-grammar.qmd)
+- [Failure Modes](../reference/failure-modes.qmd)
+- [Canon Map](../reference/canon-map.qmd)
+| Step | Spell                 | Artifact                                                                      | Advance when                                                      |
+| ---- | --------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------- |
+| 1    | Threat model          | Assets, trust boundaries, allowed tools, untrusted inputs, and attacker goals | The security boundary and benign task are explicit                |
+| 2    | Build defanged probes | Harmless fixture prompts and canary-bearing test inputs                       | Probes preserve attack shape without operational payloads         |
+| 3    | Run in sandbox        | Prompt, transcript, fixture version, and tool-scope record                    | The model output and tool behavior are captured verbatim          |
+| 4    | Score resistance      | Attack-resistance, utility-preservation, and audit-quality scores             | Scores cite the transcript and fixture expectations               |
+| 5    | Mitigate              | Prompt, policy, retrieval, or tool-scope repair                               | The repair addresses the observed failure without blanket refusal |
+| 6    | Replay                | Repeated run set across fixture versions or model surfaces                    | The failure is fixed or residual risk is accepted explicitly      |
+| 7    | Report                | Defensive finding with source map, evidence, mitigation, and residual risk    | A maintainer can reproduce the finding without unsafe payloads    |
+
+## Loop or Recursion
+
+```json
+{
+  "steps": [
+    2,
+    3,
+    4,
+    5,
+    6
+  ],
+  "until": "Attack resistance and utility preservation meet the release threshold, or residual risk is documented for human review"
+}
+```
+
+
+## On Fail
+
+Stop the test if a probe would require operational harmful content; replace it with a defanged skeleton and record the omitted class of detail.
+
+## Why It Works
+
+It treats adversarial promptcraft as evidence-producing security work instead of social-media prompt collecting.

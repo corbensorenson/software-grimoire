@@ -1,0 +1,81 @@
+---
+title: "Adversarial Promptcraft"
+---
+
+# Adversarial Promptcraft
+
+Spellcraft has a shadow. The same forces that make a cooperative prompt useful--role, context, placement, examples, output contract, and tool authority--can be turned against a model or agent when hostile text tries to seize the task. A jailbreak is not magic. It is adversarial operative language aimed at the instruction hierarchy, the safety boundary, or the tool surface.
+
+This chapter treats jailbreaks as defensive security material. It documents structure, not working bypass payloads. The project uses defanged fixtures, harmless canaries, and transcript-preserving tests so a team can learn how AI workflows fail without turning the grimoire into a prompt-bypass collection.
+
+## Distinctions That Matter
+
+| Term | Practical meaning | Defensive question |
+|---|---|---|
+| Direct prompt injection | User-supplied text tries to rewrite the task or policy. | Does the model treat the user text as lower authority than system/developer instructions? |
+| Indirect prompt injection | Retrieved, attached, browsed, or logged content carries hostile instructions. | Does the workflow label external content as untrusted data? |
+| Jailbreak | A prompt pattern tries to bypass safety or behavior boundaries. | Does the model preserve the intended policy and task frame? |
+| System-prompt leakage | The attacker asks for hidden instructions or policy text. | Are hidden instructions treated as sensitive operational material? |
+| Tool hijacking | Text tries to make the model invoke a tool outside the user's authority. | Are tools scoped by permission rather than by model fluency? |
+| Many-shot drift | Long-context examples normalize the wrong behavior. | Does the workflow separate examples from policy? |
+| Overrefusal | The defense says no to harmless work. | Can the system refuse narrowly and still complete safe work? |
+
+## Why This Is Not SQL Injection
+
+Classic injection defenses rely on a clear boundary between commands and data. LLM prompts do not naturally enforce that boundary. A retrieved document, a log line, or a support ticket can be placed in the same context window as the actual instruction. The defensive move is not "write a stronger incantation." The defensive move is system design: trust labels, least privilege, tool gates, retrieval quarantine, secret handling, transcript logging, and repeatable tests.
+
+## Jailbreaks As Shadow Spellcraft
+
+Cooperative spells compress intent into bounded work. Jailbreaks try to dissolve that boundary. They commonly attack:
+
+- **Role:** impersonate a higher authority or invent a special mode.
+- **Context:** smuggle hostile instructions through files, tickets, web pages, logs, or chunks.
+- **Constraints:** relabel forbidden behavior as research, translation, testing, or fiction.
+- **Procedure:** push the model through multi-turn agreement before the unsafe request appears.
+- **Output contract:** demand hidden policy text, canaries, tool output, or unreviewed actions.
+- **Verification:** replace evidence with confidence or ask the model to self-certify.
+- **Failure behavior:** punish refusal or demand the model continue after uncertainty.
+
+The counter-spell is not a single phrase. It is an explicit trust boundary plus a refusal contract that preserves utility.
+
+## Warded Spell Anatomy
+
+A warded spell extends the normal eight limbs with security fields:
+
+- `trust_boundary`: which inputs and instructions are trusted.
+- `untrusted_inputs`: files, chunks, logs, tickets, or turns that must be treated as data.
+- `allowed_tools`: tools the model may use.
+- `forbidden_outputs`: secrets, hidden instructions, canaries, or unsafe payloads that must not be emitted.
+- `secret_handling`: how to report presence without disclosure.
+- `refusal_contract`: when to refuse and what safe utility to preserve.
+- `audit_log`: what evidence must be kept for review.
+
+These fields matter most for RAG systems, coding agents, browser agents, support assistants, security review assistants, and any workflow that mixes untrusted text with tools.
+
+## Defensive Workflow
+
+1. Threat model the workflow.
+2. Identify trusted and untrusted sources.
+3. Add harmless adversarial fixtures.
+4. Run the workflow in a sandbox or read-only mode.
+5. Score attack resistance, utility preservation, and audit quality.
+6. Mitigate by tightening trust labels, tool permissions, retrieval handling, or refusal contracts.
+7. Replay and preserve transcripts.
+
+## Source Discipline
+
+Public jailbreak corpora are useful signals. They show morphology, target diversity, update cadence, special-token pressure, multi-turn pressure, system-prompt extraction pressure, and model-specific adaptation. They are not copied into this repository. The grimoire links to public sources in the [Jailbreak Resilience](../reference/jailbreak-resilience.qmd) source map and uses safe fixtures of its own.
+
+## Working Surfaces
+
+- Use [Spell of Jailbreak-Resilience Review](../spells/jailbreak-resilience-review.qmd) for a bounded defensive review.
+- Use [AI Red-Team Loop](../stacks/ai-red-team-loop.qmd) when adversarial testing needs repeated runs, scoring, mitigation, and reporting.
+- Use [Jailbreak-Resilience Bench](../examples/jailbreak-resilience/index.qmd) to inspect the harmless fixture suite and preserved transcripts.
+
+
+## Related Pages
+
+- [Jailbreak Resilience](../reference/jailbreak-resilience.qmd)
+- [Spell of Jailbreak-Resilience Review](../spells/jailbreak-resilience-review.qmd)
+- [AI Red-Team Loop](../stacks/ai-red-team-loop.qmd)
+- [Jailbreak-Resilience Bench](../examples/jailbreak-resilience/index.qmd)

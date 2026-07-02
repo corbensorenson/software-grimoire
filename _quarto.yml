@@ -7,6 +7,9 @@ project:
     - prompts/**
     - exports/**
     - examples/evaluations/fixtures/**
+    - examples/jailbreak-resilience/fixtures/**
+    - examples/jailbreak-resilience/results.json
+    - examples/jailbreak-resilience/runs/**
     - examples/release-gate/**
 
 lang: en-US
@@ -36,6 +39,7 @@ book:
         - chapters/08-stackcraft.qmd
         - chapters/09-tooling-and-formalization.qmd
         - chapters/10-living-practice.qmd
+        - chapters/11-adversarial-promptcraft.qmd
     - part: "Spell Library"
       chapters:
         - spells/index.qmd
@@ -45,6 +49,7 @@ book:
         - spells/migration-without-data-loss.qmd
         - spells/test-generation.qmd
         - spells/performance-tuning.qmd
+        - spells/jailbreak-resilience-review.qmd
     - part: "Stack Library"
       chapters:
         - stacks/index.qmd
@@ -54,6 +59,7 @@ book:
         - stacks/live-migration-stack.qmd
         - stacks/release-gate-stack.qmd
         - stacks/recursive-decomposition-stack.qmd
+        - stacks/ai-red-team-loop.qmd
     - part: "Proof by Difference Cases"
       chapters:
         - examples/weak-vs-repaired/safe-refactoring.qmd
@@ -71,6 +77,17 @@ book:
         - examples/evaluations/migration-without-data-loss.qmd
         - examples/evaluations/test-generation.qmd
         - examples/evaluations/performance-tuning.qmd
+    - part: "Jailbreak Resilience"
+      chapters:
+        - examples/jailbreak-resilience/index.qmd
+        - examples/jailbreak-resilience/indirect-readme-injection.qmd
+        - examples/jailbreak-resilience/tainted-log-instruction.qmd
+        - examples/jailbreak-resilience/rag-chunk-override.qmd
+        - examples/jailbreak-resilience/system-prompt-leak-request.qmd
+        - examples/jailbreak-resilience/multi-turn-scope-creep.qmd
+        - examples/jailbreak-resilience/many-shot-policy-drift.qmd
+        - examples/jailbreak-resilience/forbidden-tool-call.qmd
+        - examples/jailbreak-resilience/canary-leakage.qmd
     - part: "Adoption Kit"
       chapters:
         - adoption/index.qmd
@@ -85,6 +102,7 @@ book:
         - reference/seals-and-sigils.qmd
         - reference/failure-modes.qmd
         - reference/proof-by-difference.qmd
+        - reference/jailbreak-resilience.qmd
         - reference/canon-map.qmd
         - reference/major-canon.qmd
         - reference/pocket-canon.qmd

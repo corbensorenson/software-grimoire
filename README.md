@@ -6,16 +6,17 @@
 Operative vocabulary, prompt-spells, and stackcraft for AI-assisted software
 engineering.
 
-This repository is the full roadmap release of the Software Grimoire: a
+This repository is the v1.4 defensive-roadmap release of the Software Grimoire: a
 public Quarto site, structured reference canon, reusable spell and stack
-templates, measured evaluation bench, installable prompt/rule exports, and
-local validation tooling. The core claim is practical: better language produces
-better software work when it names the artifact, invariant, output contract,
-verification method, and failure behavior clearly enough to inspect.
+templates, measured evaluation bench, jailbreak-resilience bench, installable
+prompt/rule exports, and local validation tooling. The core claim is practical:
+better language produces better software work when it names the artifact,
+invariant, output contract, verification method, failure behavior, and trust
+boundary clearly enough to inspect.
 
 ## Current Status
 
-This is the public full-roadmap release generated from the three source DOCX
+This is the public v1.4 release generated from the three source DOCX
 manuscripts in `source_docs/` and their Markdown extracts in
 `source_extracts/`.
 
@@ -26,7 +27,8 @@ Implemented:
 - Manuscript chapters generated from the long public release and stacked-spells
   addendum.
 - Structured JSON data for lexicon houses, full 1,645-entry lexicon, 50-entry
-  major canon, 300-entry pocket canon, six field spells, and six worked stacks.
+  major canon, 300-entry pocket canon, seven canonical spells, seven worked
+  stacks, and the jailbreak-resilience source map/case set.
 - Full lexicon completion metadata: all 1,645 entries authored, 0 stubs,
   1,645 unique summaries, 1,645 unique shadows, and overloaded terms with real
   senses.
@@ -39,7 +41,10 @@ Implemented:
 - Codex-owned measured weak-vs-repaired evaluation runs for all six field
   spells: executable fixtures, planted ground truth, outcome scores, structural
   scores, and three repetitions per variant.
-- Raw prompt assets in `prompts/` for the six field spells and six stack
+- Defensive jailbreak-resilience layer: adversarial promptcraft chapter,
+  source-mapped reference page, warded spell fields, AI red-team loop, eight
+  harmless fixtures, and 24 preserved Codex-owned bench runs.
+- Raw prompt assets in `prompts/` for the seven spells and seven stack
   workflows.
 - Installable generated exports in `exports/` for Markdown, Codex task
   templates, Cursor rules, and stack workflows.
@@ -76,7 +81,7 @@ python3 scripts/grimoire.py all
 
 The generated site is written to `_site/`.
 
-Current render size: 76 Quarto pages.
+Current render size: 89 Quarto pages.
 
 ## Repository Map
 

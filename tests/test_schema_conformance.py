@@ -57,3 +57,9 @@ def test_seals_match_schema() -> None:
 def test_canon_quality_matches_schema() -> None:
     errors = collect_errors("schemas/canon-quality.schema.json", [load_json("data/canon_quality.json")], "canon_quality")
     assert not errors, "\n".join(errors[:25])
+
+
+def test_jailbreak_cases_match_schema() -> None:
+    data = load_json("data/jailbreak_resilience.json")
+    errors = collect_errors("schemas/jailbreak-case.schema.json", list(data["cases"].values()), "jailbreak_case")
+    assert not errors, "\n".join(errors[:25])
