@@ -11,7 +11,10 @@ from pathlib import Path
 
 import jsonschema
 
-from bootstrap_project import seal_for
+try:
+    from bootstrap_project import seal_for
+except ModuleNotFoundError:
+    from scripts.bootstrap_project import seal_for
 
 
 ROOT = Path(__file__).resolve().parents[1]

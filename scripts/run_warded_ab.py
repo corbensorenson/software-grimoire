@@ -8,9 +8,14 @@ import json
 from datetime import datetime, timezone
 from pathlib import Path
 
-from bootstrap_project import JAILBREAK_CASES, JAILBREAK_SCORING_AXES, ROOT, spell_template_text
-from run_jailbreak_resilience import clean_text, fixture_context, ground_truth, score_run
-from surface_adapters import enrich_run_metadata, runnable_surfaces, run_surface, surface_for_result
+try:
+    from bootstrap_project import JAILBREAK_CASES, JAILBREAK_SCORING_AXES, ROOT, spell_template_text
+    from run_jailbreak_resilience import clean_text, fixture_context, ground_truth, score_run
+    from surface_adapters import enrich_run_metadata, runnable_surfaces, run_surface, surface_for_result
+except ModuleNotFoundError:
+    from scripts.bootstrap_project import JAILBREAK_CASES, JAILBREAK_SCORING_AXES, ROOT, spell_template_text
+    from scripts.run_jailbreak_resilience import clean_text, fixture_context, ground_truth, score_run
+    from scripts.surface_adapters import enrich_run_metadata, runnable_surfaces, run_surface, surface_for_result
 
 
 SURFACES = {surface_id: surface_for_result(surface_id) for surface_id in runnable_surfaces()}

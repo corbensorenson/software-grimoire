@@ -13,9 +13,14 @@ import tempfile
 from datetime import datetime, timezone
 from pathlib import Path
 
-from bootstrap_project import PROOF_CASES, ROOT
-from run_evaluations import build_prompt
-from surface_adapters import enrich_run_metadata, runnable_surfaces, run_surface, surface_for_result
+try:
+    from bootstrap_project import PROOF_CASES, ROOT
+    from run_evaluations import build_prompt
+    from surface_adapters import enrich_run_metadata, runnable_surfaces, run_surface, surface_for_result
+except ModuleNotFoundError:
+    from scripts.bootstrap_project import PROOF_CASES, ROOT
+    from scripts.run_evaluations import build_prompt
+    from scripts.surface_adapters import enrich_run_metadata, runnable_surfaces, run_surface, surface_for_result
 
 
 SURFACES = {surface_id: surface_for_result(surface_id) for surface_id in runnable_surfaces()}

@@ -10,7 +10,10 @@ import sys
 import tempfile
 from pathlib import Path
 
-from bootstrap_project import EXECUTION_BENCH_DATA, PROOF_CASES, SURFACE_COMPARISON_DATA, execution_run_record
+try:
+    from bootstrap_project import EXECUTION_BENCH_DATA, PROOF_CASES, SURFACE_COMPARISON_DATA, execution_run_record
+except ModuleNotFoundError:
+    from scripts.bootstrap_project import EXECUTION_BENCH_DATA, PROOF_CASES, SURFACE_COMPARISON_DATA, execution_run_record
 
 
 ROOT = Path(__file__).resolve().parents[1]
