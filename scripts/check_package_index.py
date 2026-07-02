@@ -179,6 +179,8 @@ def main() -> int:
                 [str(venv / "bin" / "grimoire"), "--help"],
                 [str(venv / "bin" / "grimoire-check-package-index"), "--help"],
                 [str(venv / "bin" / "grimoire-create-adoption-report"), "--help"],
+                [str(venv / "bin" / "grimoire-check-adoption-intake"), "--help"],
+                [str(venv / "bin" / "grimoire-check-canon-decision"), "--help"],
                 [str(venv / "bin" / "grimoire-install-assets"), "--help"],
                 [str(venv / "bin" / "grimoire-import-hardness-run"), "--help"],
             ]:

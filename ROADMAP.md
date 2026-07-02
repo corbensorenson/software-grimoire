@@ -111,6 +111,11 @@ Current public-site status:
 - The external-reality workstream now has a standalone adoption-report
   generator that creates schema-valid report drafts while keeping publication,
   external-adoption counts, and reviewer acceptance separate from generation.
+- External adoption now also has a schema-backed intake decision path: a
+  pending decision template, validator, package/CLI entry point, generated
+  adoption-page instructions, smoke coverage, and evidence-index entry. It does
+  not count until a named maintainer accepts and publishes a real non-maintainer
+  report.
 - Package-index release materials are prepared for human TestPyPI/PyPI upload:
   preflight checks, build commands, post-upload package-index smoke tooling,
   evidence rules, schema, generated reference page, and evidence-index entry
@@ -544,12 +549,13 @@ Absorption status:
   scratch hygiene, explicit reviewability-score fields, per-surface/per-tier
   delta reporting, all five local hardness seed rungs, ward-science seed data,
   package-index release materials, one-step installs, adoption-report
-  generation, bounded canon-review queue, canon-audit decision intake, methods
-  write-up, Codex trap-tier field-spell runs, Codex real warded A/B runs, and
-  Codex Bench v4 model-surface hardness-ladder runs are implemented. The
-  remaining open work is Claude Code standard warded jailbreak-resilience runs,
-  additional non-Codex or reviewer-supplied hardness-ladder surfaces, human
-  package upload, human canon signoff, and accepted external adoption reports.
+  generation, adoption intake decisions, bounded canon-review queue,
+  canon-audit decision intake, methods write-up, Codex trap-tier field-spell
+  runs, Codex real warded A/B runs, and Codex Bench v4 model-surface
+  hardness-ladder runs are implemented. The remaining open work is Claude Code
+  standard warded jailbreak-resilience runs, additional non-Codex or
+  reviewer-supplied hardness-ladder surfaces, human package upload, human canon
+  signoff, and accepted external adoption reports.
 - `data/logical_conclusion_status.json` now maps all 90 logical-conclusion
   acceptance criteria to current evidence, blockers, and status counts. It
   records 84 proven criteria, one partial package-index criterion, and five
@@ -4763,7 +4769,9 @@ Implementation note as of July 2, 2026: the standalone adoption-report
 generator is implemented with schema validation, repo-local output guardrails,
 CLI/package entry points, tests, and documentation. It creates report drafts
 only; it does not publish them or increment external adoption counts. The
-one-step `grimoire install` wrapper is also implemented over the dry-run-first
+adoption intake decision validator is also implemented, so a future maintainer
+can validate acceptance/publication decisions without counting pending drafts.
+The one-step `grimoire install` wrapper is implemented over the dry-run-first
 asset installer, with tests covering repo-local `tmp/` destinations. The
 package-index release plan is prepared as structured release material, but
 actual TestPyPI/PyPI upload remains pending human action. The post-upload
@@ -4802,7 +4810,12 @@ baseline/warded model-surface A/B expansion remains open.
    - marks project-owned, reviewer-supplied, and external-user reports
      separately;
    - never counts project-owned dogfood as external adoption.
-5. Methods artifact is implemented from recorded evidence:
+5. Add `grimoire adoption decision`:
+   - validates a submitted adoption report and maintainer decision record;
+   - requires accepted non-maintainer reports to be published before they count;
+   - keeps pending or unpublished reports blocked from external adoption credit;
+   - writes normalized validation artifacts only under repo-local paths.
+6. Methods artifact is implemented from recorded evidence:
    - title around the honest finding, not a marketing claim;
    - source every number from evidence JSON;
    - foreground at least one null, tie, or task-dependent result;
@@ -5471,7 +5484,9 @@ The project is complete in the strong sense when:
 73. Public package versioning is tied to evidence milestones, not only internal
     generator changes.
 74. At least three non-maintainer adoption or reviewer reports are accepted and
-    published with friction/failure fields intact.
+    published with friction/failure fields intact. A pending intake decision
+    validator exists, but this criterion remains open until real accepted
+    reports are published.
 75. The project preserves an explicit record of where prompt structure ties,
     loses, over-refuses, or fails, not only where it wins.
 76. Evaluation pages report deltas per surface, tier, variant, and repetition

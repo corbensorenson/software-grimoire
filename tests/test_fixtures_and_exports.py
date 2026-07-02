@@ -258,6 +258,10 @@ def test_adoption_evidence_contract_and_template_exist() -> None:
     for field in evidence["report_template"]["required_fields"]:
         assert template[field]
     assert template["provenance"] in evidence["report_template"]["provenance_values"]
+    intake = json.loads((ROOT / "examples" / "adoption" / "adoption-intake-decision-template.json").read_text(encoding="utf-8"))
+    assert intake["status"] == "pending-maintainer"
+    assert intake["counts_as_external_adoption"] is False
+    assert intake["blocks_external_adoption_credit"] is True
     assert (ROOT / "adoption" / "evidence.qmd").exists()
 
 

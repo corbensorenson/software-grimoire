@@ -25,6 +25,7 @@ Issues = "https://github.com/corbensorenson/software-grimoire/issues"
 [project.scripts]
 grimoire = "grimoire:main"
 grimoire-create-adoption-report = "create_adoption_report:main"
+grimoire-check-adoption-intake = "check_adoption_intake:main"
 grimoire-install-assets = "install_assets:main"
 grimoire-run-bench = "run_bench:main"
 grimoire-run-execution-bench = "run_execution_bench:main"
@@ -42,6 +43,7 @@ grimoire-smoke-public-site = "smoke_public_site:main"
 package-dir = {"" = "scripts"}
 py-modules = [
   "bootstrap_project",
+  "check_adoption_intake",
   "create_adoption_report",
   "generate_seals",
   "grimoire",

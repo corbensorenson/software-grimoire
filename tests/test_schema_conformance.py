@@ -125,6 +125,15 @@ def test_adoption_report_template_matches_schema() -> None:
     assert not errors, "\n".join(errors[:25])
 
 
+def test_adoption_intake_decision_template_matches_schema() -> None:
+    errors = collect_errors(
+        "schemas/adoption-intake-decision.schema.json",
+        [load_json("examples/adoption/adoption-intake-decision-template.json")],
+        "adoption_intake_decision",
+    )
+    assert not errors, "\n".join(errors[:25])
+
+
 def test_package_index_release_plan_matches_schema() -> None:
     errors = collect_errors("schemas/package-index-release-plan.schema.json", [load_json("examples/adoption/package-index-release-plan.json")], "package_index_release")
     assert not errors, "\n".join(errors[:25])

@@ -710,6 +710,7 @@ def validate_adoption_evidence(errors: list[str]) -> None:
     if status.get("external_reports_published", 0) == 0 and "Do not fabricate external adoption" not in policy:
         fail(errors, "Adoption evidence must state the no-fabricated-external-adoption policy")
     template_path = ROOT / "examples" / "adoption" / "adoption-report-template.json"
+    intake_path = ROOT / "examples" / "adoption" / "adoption-intake-decision-template.json"
     if not template_path.exists():
         fail(errors, "Missing examples/adoption/adoption-report-template.json")
         return
@@ -719,6 +720,20 @@ def validate_adoption_evidence(errors: list[str]) -> None:
             fail(errors, f"Adoption report template missing {field}")
     if template.get("provenance") not in provenance_values:
         fail(errors, "Adoption report template provenance is not allowed")
+    if not intake_path.exists():
+        fail(errors, "Missing examples/adoption/adoption-intake-decision-template.json")
+    else:
+        intake = json.loads(intake_path.read_text(encoding="utf-8"))
+        if intake.get("status") != "pending-maintainer":
+            fail(errors, "Adoption intake decision template must remain pending-maintainer")
+        if intake.get("decision") != "pending":
+            fail(errors, "Adoption intake decision template must not contain a real decision")
+        if intake.get("counts_as_external_adoption") is not False:
+            fail(errors, "Adoption intake decision template cannot count as external adoption")
+        if intake.get("blocks_external_adoption_credit") is not True:
+            fail(errors, "Adoption intake decision template must block external adoption credit")
+        if intake.get("report_path") != "examples/adoption/adoption-report-template.json":
+            fail(errors, "Adoption intake decision template must reference the adoption report template")
 
 
 def validate_v3_evidence_layer(errors: list[str]) -> None:
@@ -758,6 +773,7 @@ def validate_v3_evidence_layer(errors: list[str]) -> None:
         "jailbreak-resilience-model-runs",
         "local-warded-baseline",
         "real-warded-ab",
+        "adoption-intake-decision-template",
         "canon-audit-decision-template",
         "package-check",
         "package-index-smoke-template",
@@ -973,6 +989,8 @@ def validate_public_package_and_smoke(errors: list[str]) -> None:
                 fail(errors, f"Package check missing step: {expected}")
         if not any("grimoire-check-package-index --help" in step.get("name", "") for step in package.get("steps", [])):
             fail(errors, "Package check must verify grimoire-check-package-index entry point")
+        if not any("grimoire-check-adoption-intake --help" in step.get("name", "") for step in package.get("steps", [])):
+            fail(errors, "Package check must verify grimoire-check-adoption-intake entry point")
         if not any("grimoire-check-canon-decision --help" in step.get("name", "") for step in package.get("steps", [])):
             fail(errors, "Package check must verify grimoire-check-canon-decision entry point")
     if not package_index_plan_path.exists():
@@ -1005,6 +1023,8 @@ def validate_public_package_and_smoke(errors: list[str]) -> None:
                 fail(errors, f"Public smoke check missing target: {expected}")
         if "examples/canon/canon-audit-decision-template.json" not in targets:
             fail(errors, "Public smoke check missing canon audit decision template")
+        if "examples/adoption/adoption-intake-decision-template.json" not in targets:
+            fail(errors, "Public smoke check missing adoption intake decision template")
         if "examples/adoption/package-index-smoke-template.json" not in targets:
             fail(errors, "Public smoke check missing package-index smoke template")
 

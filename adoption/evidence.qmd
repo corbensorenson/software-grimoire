@@ -40,6 +40,21 @@ The generator validates one standalone report. It does not add the report to
 published evidence or increment external adoption counts; maintainer review is
 still required.
 
+## Intake Decision
+
+Use the pending intake decision template and validator when a maintainer is
+ready to review a submitted report:
+
+```bash
+python3 scripts/check_adoption_intake.py validate examples/adoption/adoption-intake-decision-template.json
+```
+
+The pending template is not adoption evidence. A report counts only after a
+named maintainer accepts a reviewer-supplied or external-user report and the
+accepted report is published.
+
+Pending intake template: [adoption-intake-decision-template.json](../examples/adoption/adoption-intake-decision-template.json)
+
 ## Project-Owned Dogfood Reports
 
 | Report                             | Provenance    | Spell or Stack                                                             | Verification                                                                                         | Reuse Decision                                          |

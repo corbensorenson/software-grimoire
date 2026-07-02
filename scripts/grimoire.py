@@ -156,6 +156,9 @@ def main(argv: list[str] | None = None) -> int:
     adoption_sub = adoption_parser.add_subparsers(dest="adoption_command", required=True)
     adoption_report = adoption_sub.add_parser("report", help="create a standalone adoption evidence report")
     adoption_report.add_argument("args", nargs=argparse.REMAINDER, help="arguments forwarded to create_adoption_report.py")
+    adoption_decision = adoption_sub.add_parser("decision", help="validate an adoption intake decision record")
+    adoption_decision.add_argument("path", help="adoption intake decision JSON path")
+    adoption_decision.add_argument("args", nargs=argparse.REMAINDER, help="arguments forwarded to check_adoption_intake.py")
     canon_parser = sub.add_parser("canon", help="canon governance utilities")
     canon_sub = canon_parser.add_subparsers(dest="canon_command", required=True)
     canon_decision = canon_sub.add_parser("decision", help="validate a human canon-audit decision record")
@@ -209,6 +212,8 @@ def main(argv: list[str] | None = None) -> int:
     if args.command == "adoption":
         if args.adoption_command == "report":
             return run([sys.executable, "scripts/create_adoption_report.py", *forwarded_args(args.args)])
+        if args.adoption_command == "decision":
+            return run([sys.executable, "scripts/check_adoption_intake.py", "validate", args.path, *forwarded_args(args.args)])
         return 2
     if args.command == "canon":
         if args.canon_command == "decision":

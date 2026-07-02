@@ -79,6 +79,9 @@ Implemented:
 - Standalone adoption-report generator for schema-valid project-owned,
   reviewer-supplied, or external-user report drafts without automatically
   counting them as external adoption.
+- Adoption intake decision template, validator, and CLI route for accepting
+  and publishing future non-maintainer reports without counting pending drafts
+  as external adoption.
 - Evidence taxonomy, calibration separation, real Claude Code second-surface
   runs, model-produced artifact execution, real cross-surface warded A/B runs,
   evidence browser pages, public smoke checks, package install checks, and
@@ -140,6 +143,7 @@ python3 scripts/grimoire.py bench hardness-model -- --surface codex-cli-default 
 python3 scripts/grimoire.py bench import examples/evaluations/manual-import-template.json
 python3 scripts/grimoire.py bench hardness-import examples/evaluations/hardness-v4/manual-import-template.json
 python3 scripts/grimoire.py canon decision examples/canon/canon-audit-decision-template.json
+python3 scripts/grimoire.py adoption decision examples/adoption/adoption-intake-decision-template.json
 python3 scripts/grimoire.py adoption report -- --id adoption.example-review.v1 --title "Example Review" --provenance reviewer-supplied --task "Describe the real task." --spell-or-stack-used spell.safe-refactoring.v1 --surface "Reviewer workflow" --artifact-produced "Patch or review artifact." --verification-performed "Tests or review checks." --time-cost "Low" --failure-or-friction "Record friction honestly." --reuse-decision reuse --write-report tmp/adoption-report.json
 python3 scripts/grimoire.py install --target cursor --dest tmp/grimoire-assets
 python3 scripts/grimoire.py install --target claude-code --dest tmp/grimoire-assets --write

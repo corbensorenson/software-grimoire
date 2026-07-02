@@ -26,6 +26,7 @@ TRACKED_GENERATED = [
     "data/execution_bench.json",
     "data/adversarial_harness.json",
     "data/generator_architecture.json",
+    "examples/adoption/adoption-intake-decision-template.json",
     "examples/evaluations/execution-results.json",
     "examples/evaluations/surface-comparison.json",
     "examples/evaluations/hardness-v4/results.json",

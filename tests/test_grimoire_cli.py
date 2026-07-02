@@ -126,6 +126,13 @@ def test_bench_hardness_import_command_validates_template() -> None:
     assert "Hardness import record is valid" in imported.stdout
 
 
+def test_adoption_decision_command_validates_template() -> None:
+    decided = run_cli("adoption", "decision", "examples/adoption/adoption-intake-decision-template.json")
+    assert decided.returncode == 0, decided.stderr
+    assert "Adoption intake decision record is valid" in decided.stdout
+    assert "Maintainer decision remains pending" in decided.stdout
+
+
 def test_canon_decision_command_validates_template() -> None:
     decided = run_cli("canon", "decision", "examples/canon/canon-audit-decision-template.json")
     assert decided.returncode == 0, decided.stderr

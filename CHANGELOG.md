@@ -75,6 +75,10 @@
   canon decision` wrapper, package entry point, public issue form, smoke
   coverage, and evidence-index wiring so human signoff can be recorded later
   without treating a pending template as reviewer evidence.
+- Added an adoption intake decision schema, pending template, validator,
+  `grimoire adoption decision` wrapper, package entry point, smoke coverage,
+  and evidence-index wiring so accepted non-maintainer reports can be recorded
+  later without counting unpublished drafts as external adoption.
 - Normalized pytest duration text in hardness-ladder execution ledgers so
   repeated deterministic bench runs do not churn committed evidence on timing
   noise alone.

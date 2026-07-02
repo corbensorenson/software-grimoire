@@ -444,6 +444,39 @@ ADOPTION_EVIDENCE_DATA = {
     },
 }
 
+ADOPTION_INTAKE_DECISION_TEMPLATE = {
+    "schema_version": "4.0.0-adoption-intake-decision",
+    "decision_id": "adoption-intake.example-reviewer-run-template.v1",
+    "generated_at": "pending-maintainer",
+    "status": "pending-maintainer",
+    "policy": "This template validates adoption-report intake structure. It does not count as external adoption until a named maintainer accepts and publishes a reviewer-supplied or external-user report.",
+    "report_path": "examples/adoption/adoption-report-template.json",
+    "report_id": "adoption.example-reviewer-run.v1",
+    "provenance": "reviewer-supplied",
+    "maintainer": "",
+    "review_date": "",
+    "decision": "pending",
+    "evidence_checked": [
+        {
+            "kind": "report",
+            "path_or_url": "examples/adoption/adoption-report-template.json",
+            "notes": "Schema-valid report template only; replace with a real non-maintainer report before acceptance.",
+        },
+        {
+            "kind": "artifact",
+            "path_or_url": "data/adoption_evidence.json",
+            "notes": "Current adoption ledger and external-count policy.",
+        },
+    ],
+    "publication": {
+        "status": "not-published",
+        "url_or_path": "",
+    },
+    "acceptance_notes": "Pending maintainer review; this is not external adoption evidence.",
+    "counts_as_external_adoption": False,
+    "blocks_external_adoption_credit": True,
+}
+
 PACKAGE_INDEX_RELEASE_PLAN = {
     "version": "4.0.0-package-index-release-plan",
     "policy": "Codex may prepare package-index materials and checks, but TestPyPI/PyPI uploads require a named human maintainer.",
@@ -2617,6 +2650,7 @@ def evidence_index_data() -> dict:
     package_check = load_runtime_json("examples/adoption/package-check.json", {"steps": [], "passed": False})
     package_index_plan = load_runtime_json("examples/adoption/package-index-release-plan.json", {"preflight_checks": [], "build_commands": []})
     package_index_smoke = load_runtime_json("examples/adoption/package-index-smoke-template.json", {"steps": [], "passed": False})
+    adoption_intake_decision = load_runtime_json("examples/adoption/adoption-intake-decision-template.json", {"status": "pending-maintainer", "evidence_checked": []})
     canon_audit_decision = load_runtime_json("examples/canon/canon-audit-decision-template.json", {"status": "pending-human-maintainer", "evidence_checked": []})
     canon_review_queue = load_runtime_json("data/canon_review_queue.json", {"summary": {"queued_candidates": 0}, "batches": []})
     logical_conclusion = load_runtime_json("data/logical_conclusion_status.json", {"criteria": [], "summary": {}})
@@ -2708,6 +2742,20 @@ def evidence_index_data() -> dict:
             "A/B transcripts comparing unwarded and warded prompts on real local model surfaces with publication redaction.",
             real_ab,
         ),
+        {
+            "id": "adoption-intake-decision-template",
+            "title": "Adoption Intake Decision Template",
+            "path": "examples/adoption/adoption-intake-decision-template.json",
+            "exists": (ROOT / "examples/adoption/adoption-intake-decision-template.json").exists(),
+            "bytes": (ROOT / "examples/adoption/adoption-intake-decision-template.json").stat().st_size if (ROOT / "examples/adoption/adoption-intake-decision-template.json").exists() else 0,
+            "evidence_class": "adoption_report",
+            "calibration_role": "external_adoption_intake",
+            "claim_scope": "Schema-valid pending maintainer decision template for accepting and publishing real non-maintainer adoption reports; does not count as adoption evidence.",
+            "generated_at": adoption_intake_decision.get("generated_at"),
+            "surfaces": [],
+            "run_count": len(adoption_intake_decision.get("evidence_checked", [])),
+            "passed": adoption_intake_decision.get("counts_as_external_adoption") is True,
+        },
         {
             "id": "canon-review-queue",
             "title": "Canon Review Queue",
@@ -4286,6 +4334,7 @@ def write_adoption_evidence_pages() -> None:
     status = data["external_status"]
     template = adoption_report_template()
     write_json(ROOT / "examples" / "adoption" / "adoption-report-template.json", template)
+    write_json(ROOT / "examples" / "adoption" / "adoption-intake-decision-template.json", ADOPTION_INTAKE_DECISION_TEMPLATE)
     body = """# Adoption Evidence
 
 Adoption evidence is the record of where the grimoire helped, where it was too heavy, and what should change before wider use. This page deliberately separates project-owned dogfood from reviewer-supplied and external-user reports.
@@ -4323,6 +4372,21 @@ python3 scripts/create_adoption_report.py \
 The generator validates one standalone report. It does not add the report to
 published evidence or increment external adoption counts; maintainer review is
 still required.
+
+## Intake Decision
+
+Use the pending intake decision template and validator when a maintainer is
+ready to review a submitted report:
+
+```bash
+python3 scripts/check_adoption_intake.py validate examples/adoption/adoption-intake-decision-template.json
+```
+
+The pending template is not adoption evidence. A report counts only after a
+named maintainer accepts a reviewer-supplied or external-user report and the
+accepted report is published.
+
+Pending intake template: [adoption-intake-decision-template.json](../examples/adoption/adoption-intake-decision-template.json)
 
 ## Project-Owned Dogfood Reports
 
