@@ -217,7 +217,7 @@ def run_extracted_artifacts(case_slug: str, artifact_root: Path) -> dict:
             capture_output=True,
             text=True,
             timeout=TIMEOUT_SECONDS,
-            env={**os.environ, "PYTEST_DISABLE_PLUGIN_AUTOLOAD": "1"},
+            env={**os.environ, "PYTEST_DISABLE_PLUGIN_AUTOLOAD": "1", "PYTHONHASHSEED": "0"},
         )
     return {
         "status": "passed" if completed.returncode == 0 else "failed",

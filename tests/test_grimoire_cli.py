@@ -118,3 +118,9 @@ def test_bench_hardness_model_command_is_exposed_without_running_model() -> None
     assert helped.returncode == 0, helped.stderr
     assert "run_hardness_model_surfaces.py" not in helped.stderr
     assert "--surface" in helped.stdout
+
+
+def test_bench_hardness_import_command_validates_template() -> None:
+    imported = run_cli("bench", "hardness-import", "examples/evaluations/hardness-v4/manual-import-template.json")
+    assert imported.returncode == 0, imported.stderr
+    assert "Hardness import record is valid" in imported.stdout

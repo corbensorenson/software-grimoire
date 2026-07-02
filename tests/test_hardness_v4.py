@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import json
+import shutil
 import subprocess
 import sys
 from pathlib import Path
@@ -120,3 +121,41 @@ def classify_account(last_seen_at, disabled_at=None, now=None):
     artifacts, errors = extract_artifacts(output, ["account_status.py"])
     assert set(artifacts) == {"account_status.py"}
     assert any("disallowed path" in error for error in errors)
+
+
+def test_hardness_manual_import_template_validates_and_executes() -> None:
+    completed = subprocess.run(
+        [
+            sys.executable,
+            str(ROOT / "scripts" / "import_hardness_model_run.py"),
+            "validate",
+            "examples/evaluations/hardness-v4/manual-import-template.json",
+        ],
+        cwd=ROOT,
+        check=False,
+        capture_output=True,
+        text=True,
+    )
+    assert completed.returncode == 0, completed.stderr
+    assert "Hardness import record is valid" in completed.stdout
+    assert "Maintainer decision remains pending" in completed.stdout
+
+
+def test_hardness_manual_import_path_guard_rejects_outside_artifacts() -> None:
+    from scripts.import_hardness_model_run import validate_import
+
+    scratch = ROOT / "tmp" / "tests" / "hardness-import"
+    shutil.rmtree(scratch, ignore_errors=True)
+    scratch.mkdir(parents=True, exist_ok=True)
+    bad_record = json.loads((ROOT / "examples" / "evaluations" / "hardness-v4" / "manual-import-template.json").read_text(encoding="utf-8"))
+    bad_record["artifact_root"] = "../outside-hardness-artifacts"
+    bad_path = scratch / "bad-import.json"
+    bad_path.write_text(json.dumps(bad_record, indent=2) + "\n", encoding="utf-8")
+    try:
+        assert validate_import(bad_path) == 1
+    finally:
+        shutil.rmtree(scratch, ignore_errors=True)
+        try:
+            scratch.parent.rmdir()
+        except OSError:
+            pass

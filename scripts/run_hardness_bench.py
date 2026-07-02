@@ -108,7 +108,7 @@ def run_artifact(case_slug: str, variant: str) -> dict:
             capture_output=True,
             text=True,
             timeout=TIMEOUT_SECONDS,
-            env={**os.environ, "PYTEST_DISABLE_PLUGIN_AUTOLOAD": "1"},
+            env={**os.environ, "PYTEST_DISABLE_PLUGIN_AUTOLOAD": "1", "PYTHONHASHSEED": "0"},
         )
     return {
         "status": "passed" if completed.returncode == 0 else "failed",

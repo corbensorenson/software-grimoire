@@ -14,6 +14,11 @@ ROOT = Path(__file__).resolve().parents[1]
 COMPLETION_STATUSES = {"authored", "stub", "needs_shadow", "needs_sense"}
 SEMANTIC_STATUSES = {"generated_draft", "reviewed", "canonical", "deprecated"}
 FORCE_SOURCES = {"major-canon", "pocket-canon", "master-lexicon"}
+PROVENANCE_EVIDENCE_CLASS = {
+    "project-owned": "project_owned_model_run",
+    "reviewer-supplied": "reviewer_supplied_model_run",
+    "external-user": "external_user_model_run",
+}
 EXPECTED_SPELL_COUNT = 7
 EXPECTED_STACK_COUNT = 7
 JAILBREAK_WARD_FIELDS = [
@@ -884,6 +889,51 @@ def validate_hardness_model_surface(errors: list[str]) -> None:
                 fail(errors, f"Bench v4 model-surface {slug} run has no boolean execution result")
             if run.get("extraction_result", {}).get("complete") not in {True, False}:
                 fail(errors, f"Bench v4 model-surface {slug} run has no extraction status")
+    template_path = ROOT / "examples" / "evaluations" / "hardness-v4" / "manual-import-template.json"
+    if not template_path.exists():
+        fail(errors, "Missing examples/evaluations/hardness-v4/manual-import-template.json")
+        return
+    template = json.loads(template_path.read_text(encoding="utf-8"))
+    required_fields = [
+        "schema_version",
+        "surface_id",
+        "surface_label",
+        "surface_kind",
+        "tool_name",
+        "tool_version",
+        "model_name",
+        "provenance",
+        "evidence_class",
+        "redaction_statement",
+        "reviewer_id",
+        "reviewer_date",
+        "benchmark",
+        "case_slug",
+        "variant",
+        "fixture_path",
+        "prompt_path",
+        "transcript_path",
+        "artifact_root",
+        "artifact_files",
+        "execution_command",
+        "safety_statement",
+        "maintainer_decision",
+    ]
+    for field in required_fields:
+        if template.get(field) in ("", None, [], {}):
+            fail(errors, f"Bench v4 manual import template missing {field}")
+    if template.get("schema_version") != "4.0.0-hardness-manual-import":
+        fail(errors, "Bench v4 manual import template schema_version mismatch")
+    if template.get("benchmark") != "hardness-v4-model-surface":
+        fail(errors, "Bench v4 manual import template benchmark mismatch")
+    if template.get("maintainer_decision") != "pending":
+        fail(errors, "Bench v4 manual import template must remain pending")
+    if template.get("evidence_class") != PROVENANCE_EVIDENCE_CLASS.get(template.get("provenance")):
+        fail(errors, "Bench v4 manual import template evidence_class/provenance mismatch")
+    for key in ["fixture_path", "prompt_path", "transcript_path", "artifact_root"]:
+        value = template.get(key)
+        if value and not (ROOT / value).exists():
+            fail(errors, f"Bench v4 manual import template missing path {key}: {value}")
 
 
 def validate_public_package_and_smoke(errors: list[str]) -> None:

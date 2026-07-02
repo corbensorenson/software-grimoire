@@ -32,6 +32,23 @@ These rows are model-produced artifacts, not hand-authored controls. Prompts inc
 | Beta Flag Blast Radius                     | codex-cli-default | 0/5 passed | 0/5 passed | 5                   | 10 | [transcript](../examples/evaluations/hardness-v4/model-runs/codex-cli-default/blast-radius-beta-flag/weak/r01-output.md)          |
 | Agentic Release Handoff                    | codex-cli-default | 1/5 passed | 1/5 passed | 0                   | 10 | [transcript](../examples/evaluations/hardness-v4/model-runs/codex-cli-default/agentic-release-handoff/weak/r01-output.md)         |
 
+## Reviewer Import Contract
+
+Additional non-Codex surfaces can enter through a manual import bundle. The
+validator checks schema fields, repo-local paths, provenance/evidence-class
+consistency, allowed artifact filenames, prompt exclusion of hidden grader
+files, and fixture-local execution against the private Bench v4 grader. It does
+not publish or accept the run; maintainer review remains a separate decision.
+
+Template: [manual-import-template.json](../examples/evaluations/hardness-v4/manual-import-template.json)
+
+Validate a bundle:
+
+```bash
+python3 scripts/import_hardness_model_run.py validate examples/evaluations/hardness-v4/manual-import-template.json
+python3 scripts/grimoire.py bench hardness-import examples/evaluations/hardness-v4/manual-import-template.json
+```
+
 ## Interpretation
 
 - The ambiguity rung tests whether an artifact resolves a stale docstring versus a stronger caller contract.

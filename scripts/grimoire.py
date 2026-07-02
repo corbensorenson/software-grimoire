@@ -166,6 +166,9 @@ def main(argv: list[str] | None = None) -> int:
     bench_hardness.add_argument("args", nargs=argparse.REMAINDER, help="arguments forwarded to run_hardness_bench.py")
     bench_hardness_model = bench_sub.add_parser("hardness-model", help="run Bench v4 hardness ladder on model surfaces")
     bench_hardness_model.add_argument("args", nargs=argparse.REMAINDER, help="arguments forwarded to run_hardness_model_surfaces.py")
+    bench_hardness_import = bench_sub.add_parser("hardness-import", help="validate a manual Bench v4 hardness import record")
+    bench_hardness_import.add_argument("path", help="manual Bench v4 hardness import JSON path")
+    bench_hardness_import.add_argument("args", nargs=argparse.REMAINDER, help="arguments forwarded to import_hardness_model_run.py")
     sub.add_parser("seals", help="regenerate seal summary data")
     sub.add_parser("render", help="render the Quarto site")
     sub.add_parser("test", help="run repository tests")
@@ -206,6 +209,8 @@ def main(argv: list[str] | None = None) -> int:
             return run([sys.executable, "scripts/run_hardness_bench.py", *forwarded_args(args.args)])
         if args.bench_command == "hardness-model":
             return run([sys.executable, "scripts/run_hardness_model_surfaces.py", *forwarded_args(args.args)])
+        if args.bench_command == "hardness-import":
+            return run([sys.executable, "scripts/import_hardness_model_run.py", "validate", args.path, *forwarded_args(args.args)])
         return 2
     if args.command == "seals":
         return run([sys.executable, "scripts/generate_seals.py"])

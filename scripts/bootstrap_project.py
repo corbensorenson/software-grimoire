@@ -10,7 +10,7 @@ import zipfile
 from pathlib import Path
 
 from grimoire_build.architecture import architecture_contract
-from grimoire_build.bench import adoption_report_template, bench_manual_import_template
+from grimoire_build.bench import adoption_report_template, bench_manual_import_template, hardness_manual_import_template
 from grimoire_build.exports import library_asset_roots, library_bundle_specs
 from grimoire_build.lexicon import generated_template_text, semantic_counts
 from grimoire_build.seals import public_seal_records
@@ -3196,6 +3196,8 @@ Raw execution results: [execution-results.json](../examples/evaluations/executio
 def write_hardness_v4_pages() -> None:
     results = load_hardness_results()
     model_results = load_hardness_model_results()
+    import_template = hardness_manual_import_template()
+    write_json(ROOT / "examples" / "evaluations" / "hardness-v4" / "manual-import-template.json", import_template)
     rows = [["Case", "Rung", "Hardness Axis", "Weak", "Repaired", "n", "Fixture"]]
     for slug, case in results.get("cases", {}).items():
         summary = case.get("summary", {})
@@ -3243,6 +3245,23 @@ Bench v4 begins where the v3 field-spell corpus stopped being discriminating eno
 These rows are model-produced artifacts, not hand-authored controls. Prompts include the public task context and starting files, but not the hidden grader or ground-truth JSON. The runner preserves each prompt, transcript, extracted artifact, extraction failure, and fixture-local execution result.
 
 {model_rows}
+
+## Reviewer Import Contract
+
+Additional non-Codex surfaces can enter through a manual import bundle. The
+validator checks schema fields, repo-local paths, provenance/evidence-class
+consistency, allowed artifact filenames, prompt exclusion of hidden grader
+files, and fixture-local execution against the private Bench v4 grader. It does
+not publish or accept the run; maintainer review remains a separate decision.
+
+Template: [manual-import-template.json](../examples/evaluations/hardness-v4/manual-import-template.json)
+
+Validate a bundle:
+
+```bash
+python3 scripts/import_hardness_model_run.py validate examples/evaluations/hardness-v4/manual-import-template.json
+python3 scripts/grimoire.py bench hardness-import examples/evaluations/hardness-v4/manual-import-template.json
+```
 
 ## Interpretation
 
@@ -4632,9 +4651,11 @@ grimoire export --target claude-code
 grimoire install --target cursor --dest tmp/grimoire-assets
 grimoire install --target claude-code --dest tmp/grimoire-assets --write
 grimoire bench import examples/evaluations/manual-import-template.json
+grimoire bench hardness-import examples/evaluations/hardness-v4/manual-import-template.json
 grimoire adoption report -- --id adoption.example-review.v1 --title "Example Review" --provenance reviewer-supplied --task "Describe the real task." --spell-or-stack-used spell.safe-refactoring.v1 --surface "Reviewer workflow" --artifact-produced "Patch or review artifact." --verification-performed "Tests or review checks." --time-cost "Low" --failure-or-friction "Record friction honestly." --reuse-decision reuse --write-report tmp/adoption-report.json
 grimoire-install-assets --target cursor --dest tmp/grimoire-assets --write
 grimoire-install-assets --target claude-code --dest tmp/grimoire-assets --write
+grimoire-import-hardness-run validate examples/evaluations/hardness-v4/manual-import-template.json
 ```
 
 ## Rules

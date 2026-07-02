@@ -31,6 +31,7 @@ RESOURCE_REQUIRED = [
     "examples/evaluations/model-execution-results.json",
     "examples/evaluations/hardness-v4/results.json",
     "examples/evaluations/hardness-v4/model-surface-results.json",
+    "examples/evaluations/hardness-v4/manual-import-template.json",
     "examples/adoption/package-index-release-plan.json",
     "examples/jailbreak-resilience/ab-results.json",
     "examples/jailbreak-resilience/ward-science-results.json",

@@ -174,6 +174,15 @@ def test_hardness_v4_model_results_match_schema() -> None:
     assert not errors, "\n".join(errors[:25])
 
 
+def test_hardness_v4_manual_import_template_matches_schema() -> None:
+    errors = collect_errors(
+        "schemas/hardness-v4-import.schema.json",
+        [load_json("examples/evaluations/hardness-v4/manual-import-template.json")],
+        "hardness_v4_import",
+    )
+    assert not errors, "\n".join(errors[:25])
+
+
 def test_warded_ab_matches_schema() -> None:
     errors = collect_errors("schemas/warded-ab.schema.json", [load_json("examples/jailbreak-resilience/ab-results.json")], "warded_ab")
     assert not errors, "\n".join(errors[:25])

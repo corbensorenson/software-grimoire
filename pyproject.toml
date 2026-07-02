@@ -29,6 +29,7 @@ grimoire-install-assets = "install_assets:main"
 grimoire-run-bench = "run_bench:main"
 grimoire-run-execution-bench = "run_execution_bench:main"
 grimoire-run-hardness-bench = "run_hardness_bench:main"
+grimoire-import-hardness-run = "import_hardness_model_run:main"
 grimoire-run-adversarial-harness = "run_adversarial_harness:main"
 grimoire-run-model-artifacts = "run_model_artifact_execution:main"
 grimoire-run-warded-ab = "run_warded_ab:main"
@@ -43,12 +44,14 @@ py-modules = [
   "generate_seals",
   "grimoire",
   "install_assets",
+  "import_hardness_model_run",
   "check_package",
   "run_adversarial_harness",
   "run_bench",
   "run_execution_bench",
   "run_evaluations",
   "run_hardness_bench",
+  "run_hardness_model_surfaces",
   "run_jailbreak_resilience",
   "run_model_artifact_execution",
   "run_warded_ab",

@@ -43,9 +43,11 @@ grimoire export --target claude-code
 grimoire install --target cursor --dest tmp/grimoire-assets
 grimoire install --target claude-code --dest tmp/grimoire-assets --write
 grimoire bench import examples/evaluations/manual-import-template.json
+grimoire bench hardness-import examples/evaluations/hardness-v4/manual-import-template.json
 grimoire adoption report -- --id adoption.example-review.v1 --title "Example Review" --provenance reviewer-supplied --task "Describe the real task." --spell-or-stack-used spell.safe-refactoring.v1 --surface "Reviewer workflow" --artifact-produced "Patch or review artifact." --verification-performed "Tests or review checks." --time-cost "Low" --failure-or-friction "Record friction honestly." --reuse-decision reuse --write-report tmp/adoption-report.json
 grimoire-install-assets --target cursor --dest tmp/grimoire-assets --write
 grimoire-install-assets --target claude-code --dest tmp/grimoire-assets --write
+grimoire-import-hardness-run validate examples/evaluations/hardness-v4/manual-import-template.json
 ```
 
 ## Rules

@@ -59,6 +59,10 @@
   tables, and 50 Codex CLI default runs across all five hardness rungs. The
   first result is intentionally null-heavy: weak and repaired artifacts each
   passed 1/25 hidden-grader checks, with extraction failures preserved.
+- Added a Bench v4 manual hardness-import validator:
+  `scripts/import_hardness_model_run.py`, `grimoire bench hardness-import`,
+  schema/template docs, package entry point, and fixture-local execution checks
+  for future reviewer-supplied or non-Codex surface bundles.
 - Normalized pytest duration text in hardness-ladder execution ledgers so
   repeated deterministic bench runs do not churn committed evidence on timing
   noise alone.
