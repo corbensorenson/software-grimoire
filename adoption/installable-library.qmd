@@ -13,11 +13,38 @@ The installable library is generated from canonical spell and stack data. It giv
 - [Codex task templates](../exports/codex)
 - [Cursor rules](../exports/cursor/rules)
 - [Export index](../exports/README.md)
+- [Library manifest](../exports/library-manifest.json)
+- [Checksums](../exports/checksums.sha256)
+- [Release bundles](../exports/bundles)
+
+## Local Install
+
+Dry-run first:
+
+```bash
+python3 scripts/install_assets.py --target codex --dest /tmp/grimoire-assets
+```
+
+Copy selected assets:
+
+```bash
+python3 scripts/install_assets.py --target codex --dest /tmp/grimoire-assets --write
+```
+
+Installable console scripts are declared in `pyproject.toml` for editable local use:
+
+```bash
+python3 -m pip install -e .
+grimoire export --target cursor
+grimoire bench import examples/evaluations/manual-import-template.json
+grimoire-install-assets --target cursor --dest /tmp/grimoire-assets --write
+```
 
 ## Rules
 
 - Exports are generated. Do not hand-edit them.
 - Every export links back to a spell or stack ID and working seal.
+- Every release bundle includes a bundle-local manifest and the global manifest records SHA-256 checksums.
 - Provider-specific formats are adapters. The canonical data remains in `data/spells.json` and `data/stacks.json`.
 - No export is allowed to add hidden network calls or model-provider dependencies.
 - Defensive jailbreak-resilience exports must preserve the dual-use safety scope and avoid operational bypass payloads.

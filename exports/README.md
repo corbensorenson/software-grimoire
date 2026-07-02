@@ -2,6 +2,10 @@
 
 These generated files are installable prompt, rule, and workflow assets. Edit canonical spell and stack data, then regenerate; do not hand-maintain exports.
 
+Package metadata lives in [`library-manifest.json`](library-manifest.json), and release bundles live in [`bundles/`](bundles/).
+
+Dry-run an install with `python3 scripts/install_assets.py --target codex --dest /tmp/grimoire-assets`; add `--write` to copy files.
+
 | Target   | Path                                                         | Source                                   | Seal                                               |
 | -------- | ------------------------------------------------------------ | ---------------------------------------- | -------------------------------------------------- |
 | Markdown | `exports/markdown/spells/safe-refactoring.md`                | spell.safe-refactoring.v1                | spell://safe-refactoring/517A86095D                |

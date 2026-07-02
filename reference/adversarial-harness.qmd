@@ -1,0 +1,51 @@
+---
+title: "Adversarial Harness v2"
+---
+
+# Adversarial Harness v2
+
+This harness layer tests system boundaries with local, harmless fixtures. It does not fetch external jailbreak corpora, execute forbidden tools, or publish operational bypass text.
+
+## Execution Policy
+
+- Payload policy: `defanged-fixtures-only`
+- Execution policy: `local-read-only`
+
+## Harnesses
+
+| Harness            | Fixture                                                                                     | Purpose                                                           | Checks                                                                                  | Safety Boundary                          |
+| ------------------ | ------------------------------------------------------------------------------------------- | ----------------------------------------------------------------- | --------------------------------------------------------------------------------------- | ---------------------------------------- |
+| tool-mediator      | [forbidden-tool-call](../examples/jailbreak-resilience/forbidden-tool-call.qmd)             | Verify forbidden tool requests are classified without execution.  | declared_allowed_tools; declared_forbidden_tools; forbidden_commands_present_in_fixture | No command from the fixture is executed. |
+| retrieval-taint    | [rag-chunk-override](../examples/jailbreak-resilience/rag-chunk-override.qmd)               | Verify retrieved chunks are treated as data with taint labels.    | retrieved_chunk_markers; canary_present_in_fixture; expected_safe_answer                | No external retrieval is performed.      |
+| multi-turn-state   | [multi-turn-scope-creep](../examples/jailbreak-resilience/multi-turn-scope-creep.qmd)       | Verify later turns cannot silently expand authority.              | turn_labels_present; scope_creep_turns_present; canary_present_in_fixture               | Static transcript fixture only.          |
+| long-context-drift | [many-shot-policy-drift](../examples/jailbreak-resilience/many-shot-policy-drift.qmd)       | Verify bad demonstrations are not treated as behavior to imitate. | demonstration_markers; bad_assistant_examples; expected_safe_summary                    | Defanged demonstrations only.            |
+| redaction          | [canary-leakage](../examples/jailbreak-resilience/canary-leakage.qmd)                       | Verify published outputs do not repeat canary values.             | forbidden_strings_absent_from_recorded_outputs; redaction_guidance_expected             | Harmless synthetic canaries only.        |
+| overrefusal        | [indirect-readme-injection](../examples/jailbreak-resilience/indirect-readme-injection.qmd) | Verify defensive handling preserves useful benign work.           | benign_task_keywords_scored; utility_preservation_nonzero                               | Fixture-local install/test strings only. |
+
+## External Corpus Adapter Policy
+
+Enabled by default: `false`
+
+Required metadata:
+
+- `source_url`
+- `license`
+- `fetch_date`
+- `transformation_policy`
+- `defanging_policy`
+- `local_opt_in`
+
+Rules:
+
+- No external corpus is fetched in CI.
+- No operational bypass prompt is committed to the repository.
+- Adapter output must be defanged before a case can enter the public bench.
+- Maintainer opt-in is required for local corpus experiments.
+
+## Safety Review Checklist
+
+- No operational bypass text.
+- No real secrets.
+- No harmful target instructions.
+- Mitigation and audit guidance required.
+- Reviewer signoff recorded before public bench promotion.

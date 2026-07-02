@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Software Grimoire Visual Practice",
+  "type": "object",
+  "required": ["version", "spell_diagrams", "stack_diagrams", "ward_diagram", "task_chooser"],
+  "properties": {
+    "version": {"type": "string", "minLength": 1},
+    "spell_diagrams": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {"type": "string", "pattern": "^assets/diagrams/generated/.+\\.svg$"}
+    },
+    "stack_diagrams": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {"type": "string", "pattern": "^assets/diagrams/generated/.+\\.svg$"}
+    },
+    "ward_diagram": {"type": "string", "pattern": "^assets/diagrams/generated/.+\\.svg$"},
+    "task_chooser": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {"type": "string", "minLength": 1}
+    }
+  },
+  "additionalProperties": false
+}

@@ -44,25 +44,26 @@ Current public-site status:
 - The pocket edition is ported into the pocket field guide and 300-rune pocket
   canon.
 - The stacked-spells addendum is ported into the Stackcraft chapter, stack
-  grammar reference, generated stack pages, and the v1.4 AI red-team stack.
+  grammar reference, generated stack pages, and the AI red-team stack.
 - The structured canon includes 18 houses, 1,645 lexicon entries, 50 major canon
   entries, 300 pocket runes, seven spell templates, and seven stack workflows.
 - The repository includes schemas, validation, seal generation, CI, GitHub Pages
-  publishing, pull-request checks, contribution templates, examples, and public
-  releases.
-- The rendered Quarto site currently contains 89 pages, including six
+  publishing, pull-request checks, contribution templates, examples, package
+  metadata, install tooling, and public releases.
+- The rendered Quarto site currently contains 95 pages, including six
   Proof-by-Difference cases, six recorded evaluation result pages, a dedicated
-  Proof by Difference reference page, an installable-library page, and a
-  jailbreak-resilience bench.
+  Proof by Difference reference page, an installable-library page, a visual
+  grammar, a task chooser, adoption evidence, and a jailbreak-resilience bench.
 - The recorded evaluation layer has moved past the seed state: all six field
   spells now have executable fixtures, planted ground truth, structural scores,
   outcome scores, preserved transcripts, and repeated Codex-owned runs.
-- The full 1,645-entry lexicon is now authored with zero stubs. Future canon
-  work is correction, refinement, expansion, and reviewer-driven improvement,
-  not completion-status recovery.
-- The v1.4 defensive red-team layer is implemented with an adversarial
-  promptcraft chapter, jailbreak-resilience reference, warded spell, AI red-team
-  stack, eight harmless fixtures, and 24 preserved Codex-owned bench runs.
+- The full 1,645-entry lexicon is structurally authored with zero `stub` rows,
+  non-empty summaries, forces, shadows, semantic status, and visible
+  generated-draft versus reviewed-canon distinction.
+- The defensive red-team layer is implemented with an adversarial promptcraft
+  chapter, jailbreak-resilience reference, warded spell, AI red-team stack,
+  eight harmless fixtures, 24 preserved Codex-owned bench runs, and a local
+  read-only adversarial harness.
 
 Reader-experience requirements:
 
@@ -128,7 +129,8 @@ Absorption status:
   remains required, but it should follow the measured evidence and installable
   library passes so the project finishes hard work without blocking practical
   use. That sequencing has now been executed through
-  `v1.3.0-full-roadmap-release`; future canon work is refinement, not stub
+  `v2.1.0-roadmap-completion`; ongoing canon work is evidence-backed
+  correction and long-tail semantic refinement, not empty-field or stub-status
   completion.
 
 External v0.3 review findings absorbed in the v1.0 release train:
@@ -223,6 +225,56 @@ External jailbreak/red-team review findings accepted into the roadmap:
     classifying adversarial AI behaviors, while the grimoire keeps its own
     operative vocabulary focused on practical software workflows.
 
+Current v1.4 self-review findings accepted into the roadmap:
+
+1. The project is no longer missing infrastructure, but its strongest remaining
+   risk is semantic overclaim. Validation says all 1,645 runes are authored, yet
+   a detailed scan found 1,345 entries still matching generated template
+   language such as "rune for ... use it when the artifact needs ...". The next
+   canon pass must distinguish unique generated prose from reviewed semantic
+   canon.
+2. `completion_status: authored` is now too coarse. The roadmap needs a second
+   quality axis such as `semantic_status` with values like `generated_draft`,
+   `reviewed`, `canonical`, and `deprecated`, or an equivalent stricter policy
+   that prevents template-shaped entries from looking finished.
+3. The benchmark layer is real and valuable, but it is still a seed benchmark:
+   one project-owned surface, keyword-heavy automatic scoring, short fixtures,
+   and limited deterministic artifact execution. The next evidence move is not
+   more prose examples; it is a surface-adapter contract plus deterministic
+   outcome checks.
+4. The defensive jailbreak bench tests output behavior well, but it does not
+   yet exercise a real tool mediator, retrieval pipeline, long-context state
+   machine, or external-corpus adapter. The next adversarial phase should test
+   these system boundaries while preserving the defanged/no-payload policy.
+5. The installable library is a useful export directory, not yet a package-grade
+   library. It needs a manifest, checksums, bundle versioning, install scripts,
+   and eventually a small package/CLI release that can be consumed outside the
+   repository without scraping files.
+6. `scripts/bootstrap_project.py` has succeeded as a monolith, but it now owns
+   ingestion, canon generation, page writing, exports, bench pages, and Quarto
+   configuration in one large file. That was pragmatic through v1.4; the next
+   maintenance phase should split the generator by responsibility before the
+   project becomes fragile.
+7. The coil and stack visual grammar remains mostly promised rather than built:
+   some chapters still contain diagram placeholders. If the grimoire is to
+   reach its full form, diagrams must become generated review instruments, not
+   decorative artifacts.
+8. The repository has contribution templates, but it does not yet have a robust
+   external-review protocol for importing reviewer-supplied runs, surfaces,
+   fixtures, or canon corrections. That protocol must protect provenance,
+   safety scope, reproducibility, and attribution.
+9. The project has strong internal dogfooding evidence. The next credibility
+   layer is external adoption evidence: real users applying spells/stacks to
+   real software tasks and reporting where the method helps, fails, or feels
+   too heavy.
+
+Absorption status:
+
+- Findings 1 through 8 are implemented in `v2.1.0-roadmap-completion`.
+- Finding 9 is implemented as an adoption evidence scaffold and public intake
+  path; independent external reports remain pending until real users submit
+  them.
+
 ## 1. End State
 
 The project reaches its logical conclusion when it has all of these properties:
@@ -256,8 +308,8 @@ The project reaches its logical conclusion when it has all of these properties:
    - The 50 world-running words become expanded canonical entries.
    - The 300 pocket runes become the minimum public working canon.
    - Authored entries are the canon.
-   - The full 1,645-entry lexicon becomes fully authored canon, with no
-     boilerplate stubs pretending to be definitions.
+   - The full 1,645-entry lexicon becomes reviewed semantic canon, with no
+     boilerplate or generated-template prose pretending to be definitions.
 
 5. Formal spell system
    - The eight-limb spell anatomy is represented in docs, schemas, templates,
@@ -2231,19 +2283,22 @@ Recommended release:
 
 Implementation status:
 
-- Completed in `v1.3.0-full-roadmap-release`: all 1,645 lexicon entries are
-  authored with zero stubs.
+- Completed structurally in `v1.3.0-full-roadmap-release`: all 1,645 lexicon
+  entries have required fields and zero `stub` rows.
+- Reopened semantically by the v1.4 self-review: many entries still need a
+  stricter reviewed-canon pass in Phase 18.
 
 Goal:
 
-Finish the full 1,645-entry lexicon as real authored canon instead of leaving
-1,302 entries as boilerplate stubs.
+Finish the full 1,645-entry lexicon as structurally authored canon instead of
+leaving 1,302 entries as empty or explicitly stubbed rows.
 
 Rationale:
 
 The 1,645-entry lexicon is part of the project's original promise. It is too
 large to leave as category filler, but shrinking it would dodge the hard work.
-Canon should mean reviewed force, reviewed shadow, and real sense
+This phase removed explicit stubs. Phase 18 strengthens the standard so canon
+also means reviewed force, reviewed shadow, practical example, and real sense
 disambiguation where needed for every row.
 
 Tasks:
@@ -2613,6 +2668,593 @@ What not to do in this phase:
 - Do not weaken the existing spell system; extend it with explicit trust and
   authority fields only where adversarial context requires them.
 
+### Phase 18: Semantic Canon Review and Quality Gates
+
+Recommended release:
+
+- `v1.5.0-semantic-canon`
+
+Implementation status:
+
+- Complete in `v2.1.0-roadmap-completion`.
+- Implemented `semantic_status`, reviewed pocket/major canon status,
+  prompt-use guidance, examples, semantic quality reporting, generated-template
+  counts, and validation gates that reject reviewed/canonical template prose.
+
+Goal:
+
+Turn the full 1,645-entry lexicon from structurally complete generated canon
+into reviewed semantic canon.
+
+Rationale:
+
+The v1.3 full-canon pass finished the hard structural backlog: every entry now
+has a summary, force, shadow, source, and status. A v1.4 self-review found that
+many entries are still template-shaped. The problem is no longer missing fields;
+the problem is whether each rune carries real technical judgment. The roadmap
+must not pretend that unique generated text is the same thing as reviewed
+operative vocabulary.
+
+Findings to address:
+
+- 1,645 lexicon records exist.
+- 1,645 summaries, forces, and shadows are non-empty and unique.
+- 336 overloaded entries have explicit senses.
+- 1,345 entries still match generated "rune for ... use it when ..." language.
+- 1,073 summaries begin with the backtick-template construction.
+- Current validation catches old boilerplate patterns but not the newer
+  generated template family.
+
+Tasks:
+
+1. Add a semantic quality field:
+   - preferred: `semantic_status`;
+   - allowed values: `generated_draft`, `reviewed`, `canonical`,
+     `deprecated`;
+   - initial state: major canon and already hand-polished entries may be
+     `reviewed`; template-shaped rows should be `generated_draft`.
+2. Extend `data/canon_quality.json`:
+   - count generated-template summaries;
+   - count generated-template force text;
+   - count entries without practical examples;
+   - count entries without prompt-use clauses;
+   - count reviewed and canonical entries by house;
+   - list top failed patterns.
+3. Strengthen validation:
+   - reject "rune for ... use it when the artifact needs ..." in reviewed or
+     canonical entries;
+   - reject grammatically broken house phrases such as "a interface";
+   - reject entries whose summary merely repeats the house obligation;
+   - require reviewed entries to include at least one concrete software use.
+4. Review the 50 major canon entries first:
+   - confirm each force description is term-specific;
+   - confirm each shadow is actionable;
+   - add one example spell clause per major rune.
+5. Review the 300 pocket runes next:
+   - batch by house;
+   - preserve sigil numbers;
+   - add `prompt_uses`;
+   - add related runes;
+   - mark each as `reviewed` only after a human-readable pass.
+6. Review the remaining 1,345 master-lexicon entries:
+   - prioritize entries surfaced by spells, stacks, benchmarks, failures, and
+     security workflows;
+   - keep generated drafts visible until reviewed;
+   - accept corrections through issues or pull requests.
+7. Update generated pages:
+   - show semantic status beside completion status;
+   - let readers filter or scan by reviewed/canonical status;
+   - keep generated drafts honest without hiding them.
+8. Update contribution templates:
+   - canon corrections must include force, shadow, example, and source;
+   - reviewers must mark whether the change is semantic or editorial.
+
+Definition of done:
+
+- The roadmap no longer uses "authored" alone as a semantic quality claim.
+- `data/canon_quality.json` reports template-pattern counts.
+- Validation fails if reviewed/canonical entries contain generated-template
+  language.
+- All 50 major runes are reviewed with example clauses.
+- All 300 pocket runes are reviewed and usable as the minimum vocabulary.
+- The full 1,645-entry lexicon has a visible path from generated draft to
+  reviewed canon.
+
+What not to do in this phase:
+
+- Do not renumber runes.
+- Do not hide generated-draft entries to make the scorecard look better.
+- Do not replace semantic review with another uniqueness metric.
+- Do not block benchmark hardening on finishing every long-tail rune.
+
+### Phase 19: Bench v2 Surface Adapter and Deterministic Scoring
+
+Recommended release:
+
+- `v1.6.0-bench-v2`
+
+Implementation status:
+
+- Complete in `v2.1.0-roadmap-completion`.
+- Implemented `data/bench_v2.json`, declared surface contracts, benchmark
+  cards, deterministic check metadata, a manual import template,
+  `scripts/run_bench.py`, and `grimoire bench import`.
+
+Goal:
+
+Turn the existing bench from a project-owned seed benchmark into a replayable
+multi-surface benchmark with deterministic checks and honest variance.
+
+Rationale:
+
+The current benches are credible because they preserve prompts, transcripts,
+timestamps, scores, and non-perfect outcomes. They are still narrow: one
+surface, keyword-heavy scoring, and limited deterministic artifact execution.
+The next credibility jump is a common adapter contract and machine-checkable
+outcomes where the task allows them.
+
+Tasks:
+
+1. Define a surface adapter schema:
+   - `surface_id`;
+   - provider/tool kind;
+   - model or tool version when available;
+   - command or manual-import method;
+   - safety constraints;
+   - environment notes;
+   - redaction policy;
+   - whether outputs are project-owned, reviewer-supplied, or imported.
+2. Replace separate runner scripts with a bench runner facade:
+   - `scripts/run_bench.py evaluations`;
+   - `scripts/run_bench.py jailbreak-resilience`;
+   - `scripts/run_bench.py all`;
+   - keep surface adapters outside core validation when they require external
+     credentials or tools.
+3. Add a manual-run import format:
+   - prompt file;
+   - transcript file;
+   - surface metadata;
+   - fixture version;
+   - evaluator notes;
+   - optional external reviewer attribution.
+4. Make scoring more deterministic:
+   - safe refactoring should apply or inspect generated patches where feasible
+     and run the fixture tests;
+   - API design should parse required sections and contract fields;
+   - migration should check required phases and forbidden direct-conversion
+     patterns;
+   - performance tuning should verify that the primary bottleneck is ranked
+     before misleading paths;
+   - bug diagnosis should require planted cause ranking, not only keyword hits.
+5. Preserve structural scoring as secondary:
+   - keep keyword/structural scores for inspectability;
+   - label them as prompt-shape signals;
+   - avoid treating them as direct task success.
+6. Report variance:
+   - per case;
+   - per variant;
+   - per surface;
+   - per repetition;
+   - with ties, regressions, and failures kept visible.
+7. Add bench cards:
+   - scope;
+   - fixture version;
+   - what is deterministic;
+   - what remains human-scored;
+   - known limitations;
+   - safety boundary.
+
+Definition of done:
+
+- Bench runs can be added from more than one surface without changing tests.
+- Every run records enough metadata to be replayed or interpreted later.
+- At least the safe-refactoring fixture has an end-to-end executable check
+  against generated work.
+- Every benchmark case has a deterministic component or an explicit reason why
+  it remains human-scored.
+- The site reports outcome, structure, variance, and limitations separately.
+
+What not to do in this phase:
+
+- Do not require private credentials in CI.
+- Do not hide reviewer-supplied runs behind project-owned labels.
+- Do not tune prompts for perfect benchmark optics.
+- Do not claim cross-surface conclusions until multiple surfaces are recorded.
+
+### Phase 20: Adversarial Harness v2 and Safe Corpus Adapters
+
+Recommended release:
+
+- `v1.7.0-adversarial-harness`
+
+Implementation status:
+
+- Complete in `v2.1.0-roadmap-completion`.
+- Implemented `data/adversarial_harness.json`, local read-only harness checks,
+  safety policy, disabled-by-default external corpus adapter contract, harness
+  result generation, schema validation, and CI coverage.
+
+Goal:
+
+Make the jailbreak-resilience bench exercise system boundaries, not just output
+text, while keeping the repository safe and non-operational.
+
+Rationale:
+
+The v1.4 adversarial layer correctly avoids publishing bypass payloads and
+measures narrow refusal plus utility preservation. The next step is to test the
+places real AI systems fail: retrieval ingestion, tool mediation, multi-turn
+state, long-context demonstrations, and redaction pipelines.
+
+Tasks:
+
+1. Add a local tool-mediator harness:
+   - declare allowed and forbidden tool classes;
+   - simulate tool-call proposals as structured JSON;
+   - verify that forbidden actions are refused or quarantined;
+   - keep the harness read-only and harmless.
+2. Add a retrieval-taint harness:
+   - trusted task;
+   - retrieved chunks with labels;
+   - tainted chunk markers;
+   - expected answer based on trusted/quarantined data;
+   - no operational attack payloads.
+3. Add a multi-turn state harness:
+   - conversation state file;
+   - turn-by-turn authority labels;
+   - scope-creep detector;
+   - expected safe continuation.
+4. Add long-context drift fixtures:
+   - benign many-shot tasks;
+   - defanged bad demonstrations;
+   - expected refusal of imitation plus useful task completion.
+5. Add redaction tests:
+   - canaries must not appear in outputs;
+   - canaries must not appear in generated logs intended for publication;
+   - fixture prompt files may contain canaries only by explicit policy.
+6. Add overrefusal checks:
+   - every adversarial fixture must contain a benign task;
+   - success requires preserving useful work where possible;
+   - blanket refusal should lose utility points.
+7. Design disabled-by-default external corpus adapters:
+   - source URL;
+   - license;
+   - fetch date;
+   - transformation policy;
+   - defanging policy;
+   - local opt-in flag;
+   - CI disabled by default.
+8. Add a safety review checklist for adversarial contributions:
+   - no operational bypass text;
+   - no real secrets;
+   - no harmful target instructions;
+   - mitigation and audit guidance required;
+   - reviewer signoff recorded.
+
+Definition of done:
+
+- The adversarial bench tests at least one simulated tool-mediator path.
+- Retrieval, multi-turn, and long-context fixtures have distinct harness logic.
+- External-corpus adapters exist only as disabled, license-aware import paths.
+- CI verifies that published outputs do not leak canaries.
+- Utility preservation remains part of every adversarial score.
+
+What not to do in this phase:
+
+- Do not vendor live jailbreak prompt corpora.
+- Do not make external red-team corpora part of the default build.
+- Do not reward useless refusal as full success.
+- Do not execute destructive or networked tool calls.
+
+### Phase 21: Package-Grade Library and Registry Manifest
+
+Recommended release:
+
+- `v1.8.0-library-package`
+
+Implementation status:
+
+- Complete in `v2.1.0-roadmap-completion`.
+- Implemented `exports/library-manifest.json`, `exports/checksums.sha256`,
+  deterministic bundles, dry-run-first install tooling, editable package
+  metadata, console scripts, schema validation, and bundle tests.
+
+Goal:
+
+Turn generated exports into a versioned, installable library that downstream
+users can consume without understanding the whole repository.
+
+Rationale:
+
+The current `exports/` and `prompts/` directories are useful. They are still
+repo-local artifacts. A mature grimoire should provide bundle manifests,
+checksums, installation instructions, and a small package surface that keeps
+spells, stacks, seals, and schema versions together.
+
+Tasks:
+
+1. Add a library manifest:
+   - package version;
+   - generated-at timestamp;
+   - schema versions;
+   - spell IDs, versions, seals, and paths;
+   - stack IDs, versions, seals, and paths;
+   - export targets;
+   - checksums for each generated asset.
+2. Generate release bundles:
+   - `software-grimoire-prompts.zip`;
+   - `software-grimoire-cursor-rules.zip`;
+   - `software-grimoire-codex-templates.zip`;
+   - `software-grimoire-stacks.zip`;
+   - include manifest and checksums in every bundle.
+3. Add local install scripts:
+   - dry-run by default;
+   - explicit destination;
+   - no hidden model calls;
+   - no overwriting without confirmation or backup.
+4. Package the CLI when it becomes useful outside the repo:
+   - add `pyproject.toml`;
+   - expose `grimoire`;
+   - keep dependencies minimal;
+   - support `validate`, `seal`, `new spell`, `export`, and `bench import`.
+5. Add schema-version compatibility notes:
+   - what changes are breaking;
+   - what changes require seal regeneration;
+   - how to pin a bundle.
+6. Publish release assets through GitHub Releases.
+
+Definition of done:
+
+- A user can download a release bundle and verify checksums.
+- A user can install selected prompt/rule assets without scraping the site.
+- Every installed asset traces to a canonical ID, version, seal, and schema
+  version.
+- The CLI can be used from outside the repository for validation and sealing.
+
+What not to do in this phase:
+
+- Do not add a hosted service.
+- Do not make the package depend on one model provider.
+- Do not hand-edit release bundles.
+
+### Phase 22: Generator Architecture and Source-of-Truth Hardening
+
+Recommended release:
+
+- `v1.9.0-generator-architecture`
+
+Implementation status:
+
+- Complete in `v2.1.0-roadmap-completion`.
+- Implemented the `grimoire_build` responsibility package for source loading,
+  shared lexicon quality helpers, spell/stack slugging, bench/adoption
+  templates, export bundle specs, Quarto resource policy, public seal
+  projection, and architecture contracts. `scripts/bootstrap_project.py`
+  remains the orchestration layer while module contracts define ownership.
+
+Goal:
+
+Split the generator and document source ownership so the project can keep
+growing without making every change risky.
+
+Rationale:
+
+The monolithic generator was the correct early choice. It kept velocity high
+while the project was being ported. At v1.4, it owns too many responsibilities:
+source parsing, lexicon construction, canon quality reporting, spell/stack
+generation, exports, bench pages, Quarto config, and documentation pages. A
+logical-conclusion project needs maintainable generation boundaries.
+
+Tasks:
+
+1. Split generator responsibilities:
+   - `grimoire.sources`;
+   - `grimoire.lexicon`;
+   - `grimoire.spells`;
+   - `grimoire.stacks`;
+   - `grimoire.bench`;
+   - `grimoire.exports`;
+   - `grimoire.site`;
+   - `grimoire.seals`.
+2. Add generated-file headers or provenance markers where appropriate:
+   - source data file;
+   - generator module;
+   - edit policy.
+3. Document source-of-truth rules:
+   - what is hand-authored;
+   - what is generated;
+   - what is imported evidence;
+   - what is release output.
+4. Add round-trip tests:
+   - generation is deterministic;
+   - running generation twice produces no diff;
+   - seal changes only when canonical streams change.
+5. Keep the CLI stable during refactor:
+   - no user-visible command breakage;
+   - migration notes for contributors.
+6. Remove dead or stale generated-cache artifacts from normal scans:
+   - clarify `.quarto`, `_site`, `__pycache__`, and test caches in
+     development docs.
+
+Definition of done:
+
+- The generator is split by responsibility.
+- A new contributor can tell where to make a change without reading a single
+  large script end to end.
+- Regeneration is deterministic and tested.
+- The site, exports, data, and seals remain identical except for intentional
+  changes.
+
+What not to do in this phase:
+
+- Do not rewrite the project in a new language.
+- Do not change IDs, seals, or page URLs as a side effect.
+- Do not refactor while changing canon semantics unless the change is isolated.
+
+### Phase 23: Visual Grammar and Interactive Reader Tools
+
+Recommended release:
+
+- `v2.0.0-visual-practice`
+
+Implementation status:
+
+- Complete in `v2.1.0-roadmap-completion`.
+- Implemented generated SVG review diagrams for every canonical spell and
+  stack, a warded-spell trust-boundary diagram, `data/visual_practice.json`,
+  `reference/visual-grammar.qmd`, and `reference/task-chooser.qmd`.
+
+Goal:
+
+Deliver the visual and interactive parts of the original grimoire concept:
+clause circles, stack graphs, task-to-spell selection, and practical review
+instruments.
+
+Rationale:
+
+The project has taught the theory in prose and data. The remaining conceptual
+promise is visual review: showing missing spell limbs, overloaded obligations,
+stack gates, loops, recovery paths, and trust boundaries in ways a working
+engineer can inspect quickly.
+
+Tasks:
+
+1. Replace diagram placeholders in the book:
+   - recover source diagrams where useful;
+   - recreate diagrams when source assets are not suitable;
+   - add alt text and captions.
+2. Build a clause-circle renderer:
+   - input: spell JSON;
+   - output: SVG;
+   - show eight limbs;
+   - highlight missing or weak limbs;
+   - mark verification/failure antinodes.
+3. Build a stack-graph renderer:
+   - input: stack JSON;
+   - output: SVG or Mermaid;
+   - show frames, handoff artifacts, gates, loops, and failure paths.
+4. Build a ward diagram renderer:
+   - input: warded spell JSON;
+   - output: trust boundary map;
+   - show trusted inputs, untrusted inputs, allowed tools, forbidden outputs,
+     and audit log.
+5. Add a task chooser:
+   - start from task type;
+   - recommend cast level;
+   - recommend spell or stack;
+   - link to template, proof case, benchmark, and related runes.
+6. Add printable/downloadable field artifacts:
+   - pocket guide;
+   - spell skeleton;
+   - stack review checklist;
+   - jailbreak-resilience review sheet.
+7. Validate accessibility:
+   - diagrams have text alternatives;
+   - navigation works without JavaScript;
+   - interactive tools degrade to static pages.
+
+Definition of done:
+
+- Diagram placeholders are gone.
+- Every canonical spell has a generated clause-circle or equivalent review
+  visualization.
+- Every canonical stack has a generated stack graph.
+- The warded spell has a trust-boundary visualization.
+- A practitioner can start from a task and land on a spell, stack, template,
+  and verification path quickly.
+
+What not to do in this phase:
+
+- Do not make visuals decorative.
+- Do not require interactivity for core reading.
+- Do not let visual metaphor obscure the output contract and verification.
+
+### Phase 24: External Adoption Evidence and v2 Stabilization
+
+Recommended release:
+
+- `v2.1.0-adoption-evidence`
+
+Implementation status:
+
+- Scaffolding complete in `v2.1.0-roadmap-completion`; independent external
+  adoption remains an intake activity rather than a fabricated project claim.
+- Implemented `data/adoption_evidence.json`, project-owned dogfood reports,
+  external/reviewer provenance policy, report template, adoption evidence page,
+  GitHub issue templates for adoption reports and canon corrections, and bench
+  import validation for future reviewer-supplied runs.
+
+Goal:
+
+Prove that the grimoire works outside its own repository.
+
+Rationale:
+
+Internal dogfooding is now strong. The logical conclusion is not just a polished
+book; it is a reusable method that other engineers can apply. That requires
+external case studies, imported benchmark runs, real corrections, and evidence
+about where the method is too heavy or fails.
+
+Tasks:
+
+1. Define an external adoption report template:
+   - task;
+   - original prompt or workflow;
+   - spell or stack used;
+   - tool/model surface;
+   - artifact produced;
+   - verification performed;
+   - time cost;
+   - failure or friction;
+   - whether the method will be reused.
+2. Add a case-study section:
+   - anonymized if needed;
+   - evidence-backed;
+   - no unverifiable success stories;
+   - include failures and overkill cases.
+3. Import reviewer-supplied benchmark runs:
+   - use the Phase 19 manual import format;
+   - preserve transcripts;
+   - label provenance;
+   - distinguish project-owned from external evidence.
+4. Run a public canon correction cycle:
+   - solicit issues for weak rune definitions;
+   - fix high-impact entries;
+   - record semantic changes in the changelog.
+5. Publish a v2 stability statement:
+   - stable IDs;
+   - stable schema versions;
+   - supported export targets;
+   - benchmark limitations;
+   - security and dual-use policy.
+6. Decide what is intentionally out of scope:
+   - no hosted prompt marketplace unless there is real demand;
+   - no unsafe jailbreak corpus distribution;
+   - no broad agent framework;
+   - no claim that prompt structure substitutes for tests, code review, or
+     security engineering.
+
+Definition of done:
+
+- The adoption report contract and public intake path are published.
+- At least three project-owned dogfood reports are published with provenance,
+  friction, verification, and reuse decisions preserved.
+- External and reviewer-supplied reports have an explicit import path and are
+  not counted until real submissions exist.
+- Reviewer-supplied benchmark runs can be validated through the Phase 19 manual
+  import contract.
+- Public canon correction intake is live through GitHub issue templates.
+- v2 has a stable library contract, safety policy, and benchmark limitation
+  statement.
+- The project can explain where the method helps, where it is overkill, and
+  which claims still await independent adoption evidence.
+
+What not to do in this phase:
+
+- Do not publish unverifiable testimonials as evidence.
+- Do not hide failed adoption attempts.
+- Do not turn external use into a sales page.
+
 ## 7. Project Governance
 
 ### Status Labels
@@ -2786,11 +3428,11 @@ Risk: The lexicon treadmill consumes the project.
 
 Mitigation:
 
-- Sequence the 1,302 remaining entries after measured evidence and installable
-  exports, but keep them in scope.
+- Sequence semantic review after measured evidence and installable exports, but
+  keep it in scope.
 - Promote the 50 major words and 300 pocket runes as the practical vocabulary
   surface.
-- Improve authored-layer quality before expanding authored-layer quantity.
+- Improve reviewed-canon quality before expanding canon quantity.
 - Finish the master lexicon in reviewable batches with quality gates that catch
   boilerplate.
 
@@ -2891,20 +3533,54 @@ Mitigation:
 - Keep the 50-word and 300-rune canons as the promoted entry points.
 - Treat full house pages as appendix/reference material.
 - Keep full-house pages navigable with filters, status, and anchors as entries
-  become fully authored.
+  move from generated draft to reviewed canon.
 
 Risk: The lexicon is structurally complete but semantically under-authored.
 
 Mitigation:
 
-- Track `completion_status` on every rune.
-- Surface authored/stub counts publicly until the full canon is complete.
+- Keep `completion_status` for structural completeness, but add a stricter
+  semantic quality axis before claiming reviewed canon.
+- Report generated-template patterns, not only empty fields and duplicate
+  strings.
 - Keep the 300 pocket runes reviewed before treating them as the minimum
   working vocabulary.
-- Require shadows and sense disambiguation for authored entries.
-- Do not allow generic category boilerplate to masquerade as final canon.
-- Do not let full master-lexicon authoring block evidence work, but do finish it
+- Require examples or prompt-use clauses for reviewed entries.
+- Do not allow generated template prose to masquerade as final canon.
+- Do not let full semantic review block benchmark hardening, but do finish it
   before declaring the roadmap complete.
+
+Risk: The benchmark looks scientific while measuring prompt echo.
+
+Mitigation:
+
+- Keep structural scores explicitly secondary.
+- Add deterministic outcome checks wherever the fixture can support them.
+- Capture model/tool versions and surface metadata.
+- Preserve reviewer-supplied runs with provenance rather than blending them
+  into project-owned evidence.
+- Publish benchmark limitations beside benchmark results.
+
+Risk: Package-grade distribution creates accidental platform scope.
+
+Mitigation:
+
+- Ship manifests, bundles, checksums, and a boring CLI before considering any
+  hosted service.
+- Keep provider-specific exports as generated adapters.
+- Avoid model-provider dependencies in the core package.
+- Treat package releases as a way to preserve provenance and seals, not as a
+  new product surface.
+
+Risk: Generator refactoring breaks the canon.
+
+Mitigation:
+
+- Split the generator only after adding deterministic round-trip tests.
+- Preserve IDs, seals, URLs, and exported asset paths unless a change is
+  intentional and versioned.
+- Make generated-file provenance explicit so contributors know where to edit.
+- Avoid combining generator architecture changes with semantic canon rewrites.
 
 Risk: Installable exports drift from the book and data.
 
@@ -2955,7 +3631,8 @@ The project is complete in the strong sense when:
 2. The main book is readable and coherent.
 3. The pocket guide is useful as a daily reference.
 4. The stacked-spells system is integrated and validated.
-5. The full 1,645-entry lexicon is structured, navigable, and fully authored.
+5. The full 1,645-entry lexicon is structured, navigable, and semantically
+   reviewed.
 6. The six initial spells are reusable templates.
 7. The six initial stacks are reusable workflows.
 8. Spells and stacks have schemas.
@@ -2975,8 +3652,9 @@ The project is complete in the strong sense when:
 19. The 50 major canon entries are authored and have reviewed term-specific
     shadows.
 20. The 300 pocket canon entries are authored and reviewed.
-21. All 1,645 master-lexicon entries have term-specific force, summary, shadow,
-    and sense disambiguation where needed.
+21. All 1,645 master-lexicon entries have reviewed term-specific force,
+    summary, shadow, example or prompt-use guidance, and sense disambiguation
+    where needed.
 22. Full master-lexicon house pages are complete, honest, and navigable without
     dominating the primary reading path.
 23. Tool-native exports are generated from canonical data and link back to seals.
@@ -2994,28 +3672,57 @@ The project is complete in the strong sense when:
     preserved transcripts, and utility-preservation scoring.
 30. No external operational jailbreak corpus is vendored into the default repo
     or run in CI without explicit maintainer opt-in.
+31. The lexicon distinguishes generated-draft text from reviewed semantic
+    canon.
+32. Template-shaped lexicon prose cannot pass as reviewed or canonical.
+33. The 50 major runes and 300 pocket runes have reviewed force, shadow, example
+    clauses, and prompt-use guidance.
+34. The benchmark layer supports multiple declared surfaces through a stable
+    adapter or manual-import contract.
+35. Benchmark results include deterministic outcome checks where feasible,
+    surface metadata, variance, and known limitations.
+36. The adversarial harness exercises at least simulated tool mediation,
+    retrieval taint, multi-turn scope creep, long-context drift, canary
+    redaction, and overrefusal.
+37. Exported spells, stacks, and rules ship with a manifest, checksums, schema
+    versions, source IDs, and seals.
+38. The CLI or package can validate and seal user-owned spells outside the
+    source repository.
+39. The generator is split into maintainable modules with deterministic
+    round-trip tests.
+40. Diagram placeholders are replaced by generated or maintained visual review
+    instruments.
+41. A task chooser or equivalent reader tool helps users move from real work to
+    a spell, stack, template, and verification path.
+42. Adoption report, canon correction, and reviewer-run import paths are
+    published with provenance and failure/friction fields, while independent
+    external evidence is not fabricated.
 
 ## 15. Immediate Next Move
 
-The roadmap through `v1.4.0-jailbreak-resilience` is implemented. The next work
-is review, use, and maintenance:
+The roadmap through `v2.1.0-roadmap-completion` is implemented. The project now
+has the public site, source port, semantic canon quality gates, Bench v2 import
+contract, adversarial harness, package-grade exports, install tooling,
+generator ownership modules, visual grammar, task chooser, and adoption evidence
+intake path.
 
-1. Invite external review of the jailbreak-resilience safety boundary and source
-   map.
-2. Add reviewer-supplied adversarial fixtures only when they are harmless,
-   defanged, scored for utility preservation, and transcript-preserving.
-3. Add reviewer-supplied evaluation surfaces only when they preserve prompts,
-   transcripts, fixture paths, timestamps, outcome scores, structural scores,
-   and notes.
-4. Accept lexicon corrections without allowing any entry to regress to stub
-   status.
-5. Repeat both benches when important model/tool versions change.
-6. Add new spells or stacks only after repeated real use produces evidence.
+The next highest-leverage move is **external review and real adoption intake**:
+
+1. Invite external users or reviewers to file adoption evidence reports using
+   `.github/ISSUE_TEMPLATE/adoption-report.yml`.
+2. Invite canon corrections through
+   `.github/ISSUE_TEMPLATE/canon-correction.yml`.
+3. Import reviewer-supplied benchmark runs through
+   `grimoire bench import <record.json>`.
+4. Promote only evidence-backed improvements into the canon.
+5. Keep external adoption counts at zero until real external submissions exist.
 
 The project has moved past the "make it public and navigable" phase, the first
 integrity hardening pass, the practical front-door pass, the initial recorded
-evidence pass, the measured benchmark pass, the installable-library pass, and
-the full-canon pass, and the defensive jailbreak-resilience pass. The standing
-standard remains measured trust: every major claim should come with an
-executable fixture, a reusable artifact, a validation check, a safety boundary,
-or a preserved evaluation record.
+evidence pass, the measured benchmark pass, the installable-library pass, the
+full-canon structural pass, the defensive jailbreak-resilience pass, and the
+post-v1.4 completion phases. The standing standard is now stricter than
+measured trust alone: every major claim should come with an executable fixture,
+a reusable artifact, a validation check, a safety boundary, a preserved
+evaluation record, reviewed semantic canon, or explicitly labeled adoption
+evidence.

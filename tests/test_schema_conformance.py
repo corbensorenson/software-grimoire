@@ -63,3 +63,33 @@ def test_jailbreak_cases_match_schema() -> None:
     data = load_json("data/jailbreak_resilience.json")
     errors = collect_errors("schemas/jailbreak-case.schema.json", list(data["cases"].values()), "jailbreak_case")
     assert not errors, "\n".join(errors[:25])
+
+
+def test_bench_v2_matches_schema() -> None:
+    errors = collect_errors("schemas/bench-v2.schema.json", [load_json("data/bench_v2.json")], "bench_v2")
+    assert not errors, "\n".join(errors[:25])
+
+
+def test_adversarial_harness_matches_schema() -> None:
+    errors = collect_errors("schemas/adversarial-harness.schema.json", [load_json("data/adversarial_harness.json")], "adversarial_harness")
+    assert not errors, "\n".join(errors[:25])
+
+
+def test_library_manifest_matches_schema() -> None:
+    errors = collect_errors("schemas/library-manifest.schema.json", [load_json("exports/library-manifest.json")], "library_manifest")
+    assert not errors, "\n".join(errors[:25])
+
+
+def test_generator_architecture_matches_schema() -> None:
+    errors = collect_errors("schemas/generator-architecture.schema.json", [load_json("data/generator_architecture.json")], "generator_architecture")
+    assert not errors, "\n".join(errors[:25])
+
+
+def test_visual_practice_matches_schema() -> None:
+    errors = collect_errors("schemas/visual-practice.schema.json", [load_json("data/visual_practice.json")], "visual_practice")
+    assert not errors, "\n".join(errors[:25])
+
+
+def test_adoption_evidence_matches_schema() -> None:
+    errors = collect_errors("schemas/adoption-evidence.schema.json", [load_json("data/adoption_evidence.json")], "adoption_evidence")
+    assert not errors, "\n".join(errors[:25])

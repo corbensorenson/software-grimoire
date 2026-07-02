@@ -1,0 +1,53 @@
+---
+title: "Adoption Evidence"
+---
+
+# Adoption Evidence
+
+Adoption evidence is the record of where the grimoire helped, where it was too heavy, and what should change before wider use. This page deliberately separates project-owned dogfood from reviewer-supplied and external-user reports.
+
+## Report Contract
+
+Required fields:
+
+- `id`
+- `title`
+- `provenance`
+- `task`
+- `spell_or_stack_used`
+- `surface`
+- `artifact_produced`
+- `verification_performed`
+- `time_cost`
+- `failure_or_friction`
+- `reuse_decision`
+
+Allowed provenance values:
+
+- `project-owned`
+- `reviewer-supplied`
+- `external-user`
+
+Template: [adoption-report-template.json](../examples/adoption/adoption-report-template.json)
+
+## Project-Owned Dogfood Reports
+
+| Report                             | Provenance    | Spell or Stack                                                             | Verification                                                                                         | Reuse Decision                                          |
+| ---------------------------------- | ------------- | -------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ------------------------------------------------------- |
+| Release Gate Stack Dogfood         | project-owned | stack.release-gate-stack.v1                                                | Local validation, Quarto render, pytest, GitHub Pages workflow, and live URL checks.                 | Reuse for public releases and major roadmap phases.     |
+| Jailbreak-Resilience Bench Dogfood | project-owned | spell.jailbreak-resilience-review.v1; stack.ai-red-team-loop.v1            | Canary non-leakage checks, utility-preservation scores, fixture validation, and internal-link audit. | Reuse for AI workflow security reviews.                 |
+| Semantic Canon Self-Review         | project-owned | spell.safe-refactoring.v1 as a review discipline; canon quality validation | Pattern scan found 1,345 generated-template summaries despite zero stub rows.                        | Reuse for future canon corrections and release reviews. |
+
+## External Status
+
+- External reports published: `0`
+- Reviewer-supplied runs imported: `0`
+- Policy: Do not fabricate external adoption. Project-owned dogfood is useful but labeled separately.
+- Next request: Invite external users or reviewers to submit reports using the template.
+
+## Rules
+
+- Do not count project-owned dogfood as independent adoption.
+- Do not remove failed or awkward reports; those are product evidence.
+- Do not include secrets, proprietary code, or private customer data.
+- Record the verification path before claiming the spell or stack worked.

@@ -1,0 +1,56 @@
+---
+title: "Bench v2"
+---
+
+# Bench v2
+
+Bench v2 is the replay contract for the grimoire's evidence layer. It keeps model/tool surfaces explicit, separates project-owned runs from reviewer-supplied evidence, and records which parts of a score are deterministic versus human-scored.
+
+## Surfaces
+
+| Surface                | Kind          | Ownership         | Execution                | Credentials | Redaction                                                                                                                   |
+| ---------------------- | ------------- | ----------------- | ------------------------ | ----------- | --------------------------------------------------------------------------------------------------------------------------- |
+| codex-cli-default      | codex         | project-owned     | local-codex-cli          | no          | No real secrets; harmless canaries may appear only in fixture prompts and ground truth.                                     |
+| manual-reviewer-import | manual-import | reviewer-supplied | manual transcript import | no          | Reviewer must redact private data and declare model/tool surface, fixture version, prompt path, transcript path, and notes. |
+
+## Manual Import Contract
+
+Required fields:
+
+- `surface_id`
+- `benchmark`
+- `case_slug`
+- `variant`
+- `fixture_path`
+- `prompt_path`
+- `transcript_path`
+- `run_timestamp`
+- `evaluator_notes`
+- `provenance`
+
+Rules:
+
+- Do not relabel reviewer-supplied runs as project-owned.
+- Preserve prompts and transcripts as files, not only summary text.
+- Record fixture path and benchmark version for replay.
+- Keep safety redactions explicit.
+
+Template: [manual-import-template.json](../examples/evaluations/manual-import-template.json)
+
+## Deterministic Checks
+
+| Case                        | Check Kind                             | Success Condition                                                                                                                         |
+| --------------------------- | -------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| safe-refactoring            | executable-fixture                     | Generated or proposed work must preserve public behavior, including falsy unknown values.                                                 |
+| bug-diagnosis-from-logs     | ranked-ground-truth                    | Redis connection-pool saturation after profile_cache_v2 must be ranked above PostgreSQL as the planted primary cause.                     |
+| api-design                  | contract-field-presence                | Answer must include endpoints/resources, OAuth scopes, idempotency, pagination, stable error schema, and versioning.                      |
+| migration-without-data-loss | forbidden-pattern-plus-required-phases | Answer must avoid direct destructive ALTER and include expand/contract, backfill, dirty-data quarantine, parity validation, and rollback. |
+| test-generation             | behavior-obligation-presence           | Tests must cover public behavior, boundary seats, negative seats, invalid coupon, and rounding.                                           |
+| performance-tuning          | ranked-bottleneck                      | N+1/query-count bottleneck must be ranked before Python loop micro-optimization.                                                          |
+
+## Benchmark Cards
+
+| Bench                   | Scope                                                                                | Deterministic Parts                                                                        | Limitations                                                                                             | Safety Boundary                                        |
+| ----------------------- | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------ |
+| field-spell-evaluations | Weak-vs-repaired field spell benchmark across six software tasks.                    | safe-refactoring executable fixture; planted ground-truth checks; forbidden-pattern checks | Current project-owned evidence uses one surface.; Some outcomes remain text-judgment checks.            | No private code, credentials, or destructive commands. |
+| jailbreak-resilience    | Defensive prompt-injection and jailbreak-resilience behavior with harmless canaries. | canary leak checks; forbidden string checks; fixture file presence                         | No live external jailbreak corpus in default build.; Tool calls are not yet mediated by a real harness. | Defanged fixtures only; no operational bypass prompts. |

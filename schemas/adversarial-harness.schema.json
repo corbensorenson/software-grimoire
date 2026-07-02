@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Software Grimoire Adversarial Harness",
+  "type": "object",
+  "required": ["version", "payload_policy", "execution_policy", "harnesses", "external_corpus_adapters", "safety_review_checklist"],
+  "properties": {
+    "version": {"type": "string", "minLength": 1},
+    "payload_policy": {"const": "defanged-fixtures-only"},
+    "execution_policy": {"const": "local-read-only"},
+    "harnesses": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+        "type": "object",
+        "required": ["fixture", "purpose", "checks", "safety_boundary"],
+        "properties": {
+          "fixture": {"type": "string", "minLength": 1},
+          "purpose": {"type": "string", "minLength": 1},
+          "checks": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+          "safety_boundary": {"type": "string", "minLength": 1}
+        },
+        "additionalProperties": false
+      }
+    },
+    "external_corpus_adapters": {
+      "type": "object",
+      "required": ["enabled_by_default", "required_metadata", "rules"],
+      "properties": {
+        "enabled_by_default": {"const": false},
+        "required_metadata": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+        "rules": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}}
+      }
+    },
+    "safety_review_checklist": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"type": "string", "minLength": 1}
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Software Grimoire Library Manifest",
+  "type": "object",
+  "required": ["schema", "package_version", "schema_versions", "spells", "stacks", "assets", "bundles"],
+  "properties": {
+    "schema": {"const": "software-grimoire-library-v1"},
+    "package_version": {"type": "string", "minLength": 1},
+    "schema_versions": {
+      "type": "object",
+      "required": ["spell", "stack", "bench"],
+      "properties": {
+        "spell": {"type": "string", "minLength": 1},
+        "stack": {"type": "string", "minLength": 1},
+        "bench": {"type": "string", "minLength": 1}
+      }
+    },
+    "spells": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "version", "working_seal"],
+        "properties": {
+          "id": {"type": "string", "pattern": "^spell\\."},
+          "version": {"type": "integer", "minimum": 1},
+          "working_seal": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    "stacks": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "version", "working_seal"],
+        "properties": {
+          "id": {"type": "string", "pattern": "^stack\\."},
+          "version": {"type": "integer", "minimum": 1},
+          "working_seal": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    "assets": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "#/$defs/file"}
+    },
+    "bundles": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "#/$defs/file"}
+    }
+  },
+  "$defs": {
+    "file": {
+      "type": "object",
+      "required": ["path", "sha256", "bytes"],
+      "properties": {
+        "path": {"type": "string", "minLength": 1},
+        "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+        "bytes": {"type": "integer", "minimum": 1}
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

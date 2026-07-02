@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "Software Grimoire Canon Quality Report",
   "type": "object",
-  "required": ["summary", "authored_layer", "major_canon", "overloaded_terms"],
+  "required": ["summary", "semantic_layer", "authored_layer", "major_canon", "overloaded_terms"],
   "properties": {
     "summary": {
       "type": "object",
@@ -13,6 +13,43 @@
         "stub_entries": {"type": "integer", "minimum": 0},
         "major_entries": {"type": "integer", "minimum": 0},
         "pocket_entries": {"type": "integer", "minimum": 0}
+      }
+    },
+    "semantic_layer": {
+      "type": "object",
+      "required": [
+        "generated_draft_entries",
+        "reviewed_entries",
+        "canonical_entries",
+        "deprecated_entries",
+        "generated_template_summaries",
+        "generated_template_forces",
+        "reviewed_entries_with_prompt_uses",
+        "reviewed_entries_with_examples",
+        "failed_pattern_samples"
+      ],
+      "properties": {
+        "generated_draft_entries": {"type": "integer", "minimum": 0},
+        "reviewed_entries": {"type": "integer", "minimum": 0},
+        "canonical_entries": {"type": "integer", "minimum": 0},
+        "deprecated_entries": {"type": "integer", "minimum": 0},
+        "generated_template_summaries": {"type": "integer", "minimum": 0},
+        "generated_template_forces": {"type": "integer", "minimum": 0},
+        "reviewed_entries_with_prompt_uses": {"type": "integer", "minimum": 0},
+        "reviewed_entries_with_examples": {"type": "integer", "minimum": 0},
+        "failed_pattern_samples": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["id", "term", "pattern"],
+            "properties": {
+              "id": {"type": "integer", "minimum": 1},
+              "term": {"type": "string", "minLength": 1},
+              "pattern": {"type": "string", "minLength": 1}
+            },
+            "additionalProperties": false
+          }
+        }
       }
     },
     "authored_layer": {

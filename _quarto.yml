@@ -6,9 +6,15 @@ project:
     - data/*.json
     - prompts/**
     - exports/**
+    - assets/diagrams/generated/**
+    - examples/evaluations/manual-import-template.json
+    - examples/evaluations/results.json
     - examples/evaluations/fixtures/**
+    - examples/evaluations/runs/**
+    - examples/adoption/**
     - examples/jailbreak-resilience/fixtures/**
     - examples/jailbreak-resilience/results.json
+    - examples/jailbreak-resilience/harness-results.json
     - examples/jailbreak-resilience/runs/**
     - examples/release-gate/**
 
@@ -92,6 +98,7 @@ book:
       chapters:
         - adoption/index.qmd
         - adoption/installable-library.qmd
+        - adoption/evidence.qmd
         - adoption/external-walkthrough.qmd
     - part: "Reference"
       chapters:
@@ -102,7 +109,12 @@ book:
         - reference/seals-and-sigils.qmd
         - reference/failure-modes.qmd
         - reference/proof-by-difference.qmd
+        - reference/bench-v2.qmd
         - reference/jailbreak-resilience.qmd
+        - reference/adversarial-harness.qmd
+        - reference/generator-architecture.qmd
+        - reference/visual-grammar.qmd
+        - reference/task-chooser.qmd
         - reference/canon-map.qmd
         - reference/major-canon.qmd
         - reference/pocket-canon.qmd

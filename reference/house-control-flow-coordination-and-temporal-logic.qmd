@@ -14,105 +14,105 @@ Range: `0512-0608`.
 
 Use the summary table for scanning. Each row links to the detailed anchored entry below.
 
-| Sigil | Term                           | Completion | Summary                                                                                                                                                                                                                      |
-| ----- | ------------------------------ | ---------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 0512  | [abort](#rune-0512)            | authored   | `abort` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the abort obligation named before work proceeds.                           |
-| 0513  | [acknowledge](#rune-0513)      | authored   | `acknowledge` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the acknowledge obligation named before work proceeds.               |
-| 0514  | [async](#rune-0514)            | authored   | Work may proceed without immediate blocking at the call site.                                                                                                                                                                |
-| 0515  | [await](#rune-0515)            | authored   | Pause until an asynchronous result becomes ready.                                                                                                                                                                            |
-| 0516  | [backoff {Ctrl}](#rune-0516)   | authored   | Wait longer between retries so recovery does not become attack.                                                                                                                                                              |
-| 0517  | [barrier {Ctrl}](#rune-0517)   | authored   | A synchronization point no participant may cross early.                                                                                                                                                                      |
-| 0518  | [block {Ctrl}](#rune-0518)     | authored   | `block` in its Ctrl sense is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the block obligation named before work proceeds.         |
-| 0519  | [branch {Ctrl}](#rune-0519)    | authored   | `branch` in its Ctrl sense is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the branch obligation named before work proceeds.       |
-| 0520  | [break](#rune-0520)            | authored   | `break` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the break obligation named before work proceeds.                           |
-| 0521  | [callback](#rune-0521)         | authored   | `callback` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the callback obligation named before work proceeds.                     |
-| 0522  | [cancel](#rune-0522)           | authored   | `cancel` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the cancel obligation named before work proceeds.                         |
-| 0523  | [case](#rune-0523)             | authored   | `case` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the case obligation named before work proceeds.                             |
-| 0524  | [catch](#rune-0524)            | authored   | `catch` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the catch obligation named before work proceeds.                           |
-| 0525  | [chain](#rune-0525)            | authored   | `chain` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the chain obligation named before work proceeds.                           |
-| 0526  | [choose](#rune-0526)           | authored   | `choose` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the choose obligation named before work proceeds.                         |
-| 0527  | [circuit breaker](#rune-0527)  | authored   | Trip open after repeated failure to prevent repeated harm.                                                                                                                                                                   |
-| 0528  | [clause](#rune-0528)           | authored   | `clause` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the clause obligation named before work proceeds.                         |
-| 0529  | [continue](#rune-0529)         | authored   | `continue` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the continue obligation named before work proceeds.                     |
-| 0530  | [coroutine](#rune-0530)        | authored   | A suspendable routine that can yield and later resume.                                                                                                                                                                       |
-| 0531  | [countdown](#rune-0531)        | authored   | `countdown` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the countdown obligation named before work proceeds.                   |
-| 0532  | [cycle](#rune-0532)            | authored   | `cycle` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the cycle obligation named before work proceeds.                           |
-| 0533  | [debounce](#rune-0533)         | authored   | `debounce` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the debounce obligation named before work proceeds.                     |
-| 0534  | [defer {Ctrl}](#rune-0534)     | authored   | `defer` in its Ctrl sense is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the defer obligation named before work proceeds.         |
-| 0535  | [delay](#rune-0535)            | authored   | `delay` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the delay obligation named before work proceeds.                           |
-| 0536  | [dispatch {Ctrl}](#rune-0536)  | authored   | `dispatch` in its Ctrl sense is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the dispatch obligation named before work proceeds.   |
-| 0537  | [do](#rune-0537)               | authored   | `do` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the do obligation named before work proceeds.                                 |
-| 0538  | [else](#rune-0538)             | authored   | `else` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the else obligation named before work proceeds.                             |
-| 0539  | [enqueue](#rune-0539)          | authored   | Place work onto a queue for later handling.                                                                                                                                                                                  |
-| 0540  | [event loop](#rune-0540)       | authored   | The scheduler that drives nonblocking tasks and callbacks.                                                                                                                                                                   |
-| 0541  | [fallback {Ctrl}](#rune-0541)  | authored   | `fallback` in its Ctrl sense is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the fallback obligation named before work proceeds.   |
-| 0542  | [fan-in](#rune-0542)           | authored   | `fan-in` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the fan-in obligation named before work proceeds.                         |
-| 0543  | [fan-out {Ctrl}](#rune-0543)   | authored   | `fan-out` in its Ctrl sense is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the fan-out obligation named before work proceeds.     |
-| 0544  | [finally](#rune-0544)          | authored   | `finally` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the finally obligation named before work proceeds.                       |
-| 0545  | [fire-and-forget](#rune-0545)  | authored   | `fire-and-forget` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the fire-and-forget obligation named before work proceeds.       |
-| 0546  | [flow control](#rune-0546)     | authored   | Mechanisms that keep producers from outrunning consumers.                                                                                                                                                                    |
-| 0547  | [for](#rune-0547)              | authored   | `for` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the for obligation named before work proceeds.                               |
-| 0548  | [fork {Ctrl}](#rune-0548)      | authored   | `fork` in its Ctrl sense is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the fork obligation named before work proceeds.           |
-| 0549  | [future](#rune-0549)           | authored   | A placeholder for a value that will exist later.                                                                                                                                                                             |
-| 0550  | [gate](#rune-0550)             | authored   | `gate` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the gate obligation named before work proceeds.                             |
-| 0551  | [guard](#rune-0551)            | authored   | `guard` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the guard obligation named before work proceeds.                           |
-| 0552  | [halt](#rune-0552)             | authored   | `halt` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the halt obligation named before work proceeds.                             |
-| 0553  | [heartbeat {Ctrl}](#rune-0553) | authored   | `heartbeat` in its Ctrl sense is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the heartbeat obligation named before work proceeds. |
-| 0554  | [if](#rune-0554)               | authored   | `if` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the if obligation named before work proceeds.                                 |
-| 0555  | [iterate](#rune-0555)          | authored   | `iterate` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the iterate obligation named before work proceeds.                       |
-| 0556  | [join {Ctrl}](#rune-0556)      | authored   | `join` in its Ctrl sense is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the join obligation named before work proceeds.           |
-| 0557  | [jump](#rune-0557)             | authored   | `jump` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the jump obligation named before work proceeds.                             |
-| 0558  | [latch](#rune-0558)            | authored   | `latch` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the latch obligation named before work proceeds.                           |
-| 0559  | [loop](#rune-0559)             | authored   | `loop` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the loop obligation named before work proceeds.                             |
-| 0560  | [match](#rune-0560)            | authored   | `match` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the match obligation named before work proceeds.                           |
-| 0561  | [mutex](#rune-0561)            | authored   | Mutual exclusion for one critical region at a time.                                                                                                                                                                          |
-| 0562  | [notify](#rune-0562)           | authored   | `notify` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the notify obligation named before work proceeds.                         |
-| 0563  | [once](#rune-0563)             | authored   | `once` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the once obligation named before work proceeds.                             |
-| 0564  | [parallel {Ctrl}](#rune-0564)  | authored   | `parallel` in its Ctrl sense is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the parallel obligation named before work proceeds.   |
-| 0565  | [pause](#rune-0565)            | authored   | `pause` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the pause obligation named before work proceeds.                           |
-| 0566  | [poll {Ctrl}](#rune-0566)      | authored   | `poll` in its Ctrl sense is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the poll obligation named before work proceeds.           |
-| 0567  | [preempt](#rune-0567)          | authored   | `preempt` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the preempt obligation named before work proceeds.                       |
-| 0568  | [priority](#rune-0568)         | authored   | `priority` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the priority obligation named before work proceeds.                     |
-| 0569  | [process {Ctrl}](#rune-0569)   | authored   | `process` in its Ctrl sense is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the process obligation named before work proceeds.     |
-| 0570  | [promise](#rune-0570)          | authored   | `promise` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the promise obligation named before work proceeds.                       |
-| 0571  | [queue {Ctrl}](#rune-0571)     | authored   | Ordered holding area that decouples production from consumption.                                                                                                                                                             |
-| 0572  | [race window](#rune-0572)      | authored   | `race window` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the race window obligation named before work proceeds.               |
-| 0573  | [recurse](#rune-0573)          | authored   | `recurse` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the recurse obligation named before work proceeds.                       |
-| 0574  | [repeat](#rune-0574)           | authored   | `repeat` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the repeat obligation named before work proceeds.                         |
-| 0575  | [reserve](#rune-0575)          | authored   | `reserve` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the reserve obligation named before work proceeds.                       |
-| 0576  | [retry {Ctrl}](#rune-0576)     | authored   | Failure does not necessarily end the ritual; policy may permit another attempt. Shadow: blind repetition against a broken precondition.                                                                                      |
-| 0577  | [return](#rune-0577)           | authored   | `return` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the return obligation named before work proceeds.                         |
-| 0578  | [round-robin](#rune-0578)      | authored   | `round-robin` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the round-robin obligation named before work proceeds.               |
-| 0579  | [schedule {Ctrl}](#rune-0579)  | authored   | Assign work to time, order, or execution slots.                                                                                                                                                                              |
-| 0580  | [select {Ctrl}](#rune-0580)    | authored   | `select` in its Ctrl sense is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the select obligation named before work proceeds.       |
-| 0581  | [semaphore](#rune-0581)        | authored   | A counted gate controlling concurrent access to limited capacity.                                                                                                                                                            |
-| 0582  | [sequence point](#rune-0582)   | authored   | `sequence point` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the sequence point obligation named before work proceeds.         |
-| 0583  | [serialize access](#rune-0583) | authored   | `serialize access` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the serialize access obligation named before work proceeds.     |
-| 0584  | [signal {Ctrl}](#rune-0584)    | authored   | Emit a condition change another task may respond to.                                                                                                                                                                         |
-| 0585  | [sleep](#rune-0585)            | authored   | `sleep` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the sleep obligation named before work proceeds.                           |
-| 0586  | [spawn {Ctrl}](#rune-0586)     | authored   | `spawn` in its Ctrl sense is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the spawn obligation named before work proceeds.         |
-| 0587  | [step](#rune-0587)             | authored   | `step` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the step obligation named before work proceeds.                             |
-| 0588  | [stop](#rune-0588)             | authored   | `stop` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the stop obligation named before work proceeds.                             |
-| 0589  | [suspend](#rune-0589)          | authored   | `suspend` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the suspend obligation named before work proceeds.                       |
-| 0590  | [switch](#rune-0590)           | authored   | `switch` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the switch obligation named before work proceeds.                         |
-| 0591  | [sync](#rune-0591)             | authored   | `sync` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the sync obligation named before work proceeds.                             |
-| 0592  | [synchronize](#rune-0592)      | authored   | `synchronize` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the synchronize obligation named before work proceeds.               |
-| 0593  | [task](#rune-0593)             | authored   | `task` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the task obligation named before work proceeds.                             |
-| 0594  | [terminate](#rune-0594)        | authored   | `terminate` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the terminate obligation named before work proceeds.                   |
-| 0595  | [then](#rune-0595)             | authored   | `then` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the then obligation named before work proceeds.                             |
-| 0596  | [throttle](#rune-0596)         | authored   | `throttle` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the throttle obligation named before work proceeds.                     |
-| 0597  | [tick](#rune-0597)             | authored   | `tick` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the tick obligation named before work proceeds.                             |
-| 0598  | [timeout {Ctrl}](#rune-0598)   | authored   | Waiting is not free and patience must have a boundary. A timeout is a contract with reality about how long uncertainty is allowed to persist.                                                                                |
-| 0599  | [timeslice](#rune-0599)        | authored   | `timeslice` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the timeslice obligation named before work proceeds.                   |
-| 0600  | [trigger](#rune-0600)          | authored   | `trigger` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the trigger obligation named before work proceeds.                       |
-| 0601  | [try](#rune-0601)              | authored   | `try` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the try obligation named before work proceeds.                               |
-| 0602  | [unblock](#rune-0602)          | authored   | `unblock` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the unblock obligation named before work proceeds.                       |
-| 0603  | [until](#rune-0603)            | authored   | `until` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the until obligation named before work proceeds.                           |
-| 0604  | [wait](#rune-0604)             | authored   | `wait` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the wait obligation named before work proceeds.                             |
-| 0605  | [wake](#rune-0605)             | authored   | `wake` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the wake obligation named before work proceeds.                             |
-| 0606  | [when](#rune-0606)             | authored   | `when` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the when obligation named before work proceeds.                             |
-| 0607  | [while](#rune-0607)            | authored   | `while` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the while obligation named before work proceeds.                           |
-| 0608  | [yield](#rune-0608)            | authored   | Give up control now so another act may proceed.                                                                                                                                                                              |
+| Sigil | Term                           | Completion | Semantic        | Summary                                                                                                                                                                                                                      |
+| ----- | ------------------------------ | ---------- | --------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 0512  | [abort](#rune-0512)            | authored   | generated_draft | `abort` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the abort obligation named before work proceeds.                           |
+| 0513  | [acknowledge](#rune-0513)      | authored   | generated_draft | `acknowledge` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the acknowledge obligation named before work proceeds.               |
+| 0514  | [async](#rune-0514)            | authored   | reviewed        | Work may proceed without immediate blocking at the call site.                                                                                                                                                                |
+| 0515  | [await](#rune-0515)            | authored   | reviewed        | Pause until an asynchronous result becomes ready.                                                                                                                                                                            |
+| 0516  | [backoff {Ctrl}](#rune-0516)   | authored   | reviewed        | Wait longer between retries so recovery does not become attack.                                                                                                                                                              |
+| 0517  | [barrier {Ctrl}](#rune-0517)   | authored   | reviewed        | A synchronization point no participant may cross early.                                                                                                                                                                      |
+| 0518  | [block {Ctrl}](#rune-0518)     | authored   | generated_draft | `block` in its Ctrl sense is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the block obligation named before work proceeds.         |
+| 0519  | [branch {Ctrl}](#rune-0519)    | authored   | generated_draft | `branch` in its Ctrl sense is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the branch obligation named before work proceeds.       |
+| 0520  | [break](#rune-0520)            | authored   | generated_draft | `break` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the break obligation named before work proceeds.                           |
+| 0521  | [callback](#rune-0521)         | authored   | generated_draft | `callback` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the callback obligation named before work proceeds.                     |
+| 0522  | [cancel](#rune-0522)           | authored   | generated_draft | `cancel` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the cancel obligation named before work proceeds.                         |
+| 0523  | [case](#rune-0523)             | authored   | generated_draft | `case` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the case obligation named before work proceeds.                             |
+| 0524  | [catch](#rune-0524)            | authored   | generated_draft | `catch` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the catch obligation named before work proceeds.                           |
+| 0525  | [chain](#rune-0525)            | authored   | generated_draft | `chain` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the chain obligation named before work proceeds.                           |
+| 0526  | [choose](#rune-0526)           | authored   | generated_draft | `choose` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the choose obligation named before work proceeds.                         |
+| 0527  | [circuit breaker](#rune-0527)  | authored   | reviewed        | Trip open after repeated failure to prevent repeated harm.                                                                                                                                                                   |
+| 0528  | [clause](#rune-0528)           | authored   | generated_draft | `clause` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the clause obligation named before work proceeds.                         |
+| 0529  | [continue](#rune-0529)         | authored   | generated_draft | `continue` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the continue obligation named before work proceeds.                     |
+| 0530  | [coroutine](#rune-0530)        | authored   | reviewed        | A suspendable routine that can yield and later resume.                                                                                                                                                                       |
+| 0531  | [countdown](#rune-0531)        | authored   | generated_draft | `countdown` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the countdown obligation named before work proceeds.                   |
+| 0532  | [cycle](#rune-0532)            | authored   | generated_draft | `cycle` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the cycle obligation named before work proceeds.                           |
+| 0533  | [debounce](#rune-0533)         | authored   | generated_draft | `debounce` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the debounce obligation named before work proceeds.                     |
+| 0534  | [defer {Ctrl}](#rune-0534)     | authored   | generated_draft | `defer` in its Ctrl sense is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the defer obligation named before work proceeds.         |
+| 0535  | [delay](#rune-0535)            | authored   | generated_draft | `delay` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the delay obligation named before work proceeds.                           |
+| 0536  | [dispatch {Ctrl}](#rune-0536)  | authored   | generated_draft | `dispatch` in its Ctrl sense is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the dispatch obligation named before work proceeds.   |
+| 0537  | [do](#rune-0537)               | authored   | generated_draft | `do` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the do obligation named before work proceeds.                                 |
+| 0538  | [else](#rune-0538)             | authored   | generated_draft | `else` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the else obligation named before work proceeds.                             |
+| 0539  | [enqueue](#rune-0539)          | authored   | reviewed        | Place work onto a queue for later handling.                                                                                                                                                                                  |
+| 0540  | [event loop](#rune-0540)       | authored   | reviewed        | The scheduler that drives nonblocking tasks and callbacks.                                                                                                                                                                   |
+| 0541  | [fallback {Ctrl}](#rune-0541)  | authored   | generated_draft | `fallback` in its Ctrl sense is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the fallback obligation named before work proceeds.   |
+| 0542  | [fan-in](#rune-0542)           | authored   | generated_draft | `fan-in` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the fan-in obligation named before work proceeds.                         |
+| 0543  | [fan-out {Ctrl}](#rune-0543)   | authored   | generated_draft | `fan-out` in its Ctrl sense is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the fan-out obligation named before work proceeds.     |
+| 0544  | [finally](#rune-0544)          | authored   | generated_draft | `finally` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the finally obligation named before work proceeds.                       |
+| 0545  | [fire-and-forget](#rune-0545)  | authored   | generated_draft | `fire-and-forget` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the fire-and-forget obligation named before work proceeds.       |
+| 0546  | [flow control](#rune-0546)     | authored   | reviewed        | Mechanisms that keep producers from outrunning consumers.                                                                                                                                                                    |
+| 0547  | [for](#rune-0547)              | authored   | generated_draft | `for` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the for obligation named before work proceeds.                               |
+| 0548  | [fork {Ctrl}](#rune-0548)      | authored   | generated_draft | `fork` in its Ctrl sense is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the fork obligation named before work proceeds.           |
+| 0549  | [future](#rune-0549)           | authored   | reviewed        | A placeholder for a value that will exist later.                                                                                                                                                                             |
+| 0550  | [gate](#rune-0550)             | authored   | generated_draft | `gate` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the gate obligation named before work proceeds.                             |
+| 0551  | [guard](#rune-0551)            | authored   | generated_draft | `guard` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the guard obligation named before work proceeds.                           |
+| 0552  | [halt](#rune-0552)             | authored   | generated_draft | `halt` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the halt obligation named before work proceeds.                             |
+| 0553  | [heartbeat {Ctrl}](#rune-0553) | authored   | generated_draft | `heartbeat` in its Ctrl sense is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the heartbeat obligation named before work proceeds. |
+| 0554  | [if](#rune-0554)               | authored   | generated_draft | `if` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the if obligation named before work proceeds.                                 |
+| 0555  | [iterate](#rune-0555)          | authored   | generated_draft | `iterate` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the iterate obligation named before work proceeds.                       |
+| 0556  | [join {Ctrl}](#rune-0556)      | authored   | generated_draft | `join` in its Ctrl sense is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the join obligation named before work proceeds.           |
+| 0557  | [jump](#rune-0557)             | authored   | generated_draft | `jump` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the jump obligation named before work proceeds.                             |
+| 0558  | [latch](#rune-0558)            | authored   | generated_draft | `latch` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the latch obligation named before work proceeds.                           |
+| 0559  | [loop](#rune-0559)             | authored   | generated_draft | `loop` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the loop obligation named before work proceeds.                             |
+| 0560  | [match](#rune-0560)            | authored   | generated_draft | `match` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the match obligation named before work proceeds.                           |
+| 0561  | [mutex](#rune-0561)            | authored   | reviewed        | Mutual exclusion for one critical region at a time.                                                                                                                                                                          |
+| 0562  | [notify](#rune-0562)           | authored   | generated_draft | `notify` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the notify obligation named before work proceeds.                         |
+| 0563  | [once](#rune-0563)             | authored   | generated_draft | `once` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the once obligation named before work proceeds.                             |
+| 0564  | [parallel {Ctrl}](#rune-0564)  | authored   | generated_draft | `parallel` in its Ctrl sense is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the parallel obligation named before work proceeds.   |
+| 0565  | [pause](#rune-0565)            | authored   | generated_draft | `pause` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the pause obligation named before work proceeds.                           |
+| 0566  | [poll {Ctrl}](#rune-0566)      | authored   | generated_draft | `poll` in its Ctrl sense is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the poll obligation named before work proceeds.           |
+| 0567  | [preempt](#rune-0567)          | authored   | generated_draft | `preempt` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the preempt obligation named before work proceeds.                       |
+| 0568  | [priority](#rune-0568)         | authored   | generated_draft | `priority` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the priority obligation named before work proceeds.                     |
+| 0569  | [process {Ctrl}](#rune-0569)   | authored   | generated_draft | `process` in its Ctrl sense is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the process obligation named before work proceeds.     |
+| 0570  | [promise](#rune-0570)          | authored   | generated_draft | `promise` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the promise obligation named before work proceeds.                       |
+| 0571  | [queue {Ctrl}](#rune-0571)     | authored   | reviewed        | Ordered holding area that decouples production from consumption.                                                                                                                                                             |
+| 0572  | [race window](#rune-0572)      | authored   | generated_draft | `race window` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the race window obligation named before work proceeds.               |
+| 0573  | [recurse](#rune-0573)          | authored   | generated_draft | `recurse` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the recurse obligation named before work proceeds.                       |
+| 0574  | [repeat](#rune-0574)           | authored   | generated_draft | `repeat` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the repeat obligation named before work proceeds.                         |
+| 0575  | [reserve](#rune-0575)          | authored   | generated_draft | `reserve` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the reserve obligation named before work proceeds.                       |
+| 0576  | [retry {Ctrl}](#rune-0576)     | authored   | reviewed        | Failure does not necessarily end the ritual; policy may permit another attempt. Shadow: blind repetition against a broken precondition.                                                                                      |
+| 0577  | [return](#rune-0577)           | authored   | generated_draft | `return` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the return obligation named before work proceeds.                         |
+| 0578  | [round-robin](#rune-0578)      | authored   | generated_draft | `round-robin` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the round-robin obligation named before work proceeds.               |
+| 0579  | [schedule {Ctrl}](#rune-0579)  | authored   | reviewed        | Assign work to time, order, or execution slots.                                                                                                                                                                              |
+| 0580  | [select {Ctrl}](#rune-0580)    | authored   | generated_draft | `select` in its Ctrl sense is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the select obligation named before work proceeds.       |
+| 0581  | [semaphore](#rune-0581)        | authored   | reviewed        | A counted gate controlling concurrent access to limited capacity.                                                                                                                                                            |
+| 0582  | [sequence point](#rune-0582)   | authored   | generated_draft | `sequence point` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the sequence point obligation named before work proceeds.         |
+| 0583  | [serialize access](#rune-0583) | authored   | generated_draft | `serialize access` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the serialize access obligation named before work proceeds.     |
+| 0584  | [signal {Ctrl}](#rune-0584)    | authored   | reviewed        | Emit a condition change another task may respond to.                                                                                                                                                                         |
+| 0585  | [sleep](#rune-0585)            | authored   | generated_draft | `sleep` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the sleep obligation named before work proceeds.                           |
+| 0586  | [spawn {Ctrl}](#rune-0586)     | authored   | generated_draft | `spawn` in its Ctrl sense is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the spawn obligation named before work proceeds.         |
+| 0587  | [step](#rune-0587)             | authored   | generated_draft | `step` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the step obligation named before work proceeds.                             |
+| 0588  | [stop](#rune-0588)             | authored   | generated_draft | `stop` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the stop obligation named before work proceeds.                             |
+| 0589  | [suspend](#rune-0589)          | authored   | generated_draft | `suspend` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the suspend obligation named before work proceeds.                       |
+| 0590  | [switch](#rune-0590)           | authored   | generated_draft | `switch` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the switch obligation named before work proceeds.                         |
+| 0591  | [sync](#rune-0591)             | authored   | generated_draft | `sync` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the sync obligation named before work proceeds.                             |
+| 0592  | [synchronize](#rune-0592)      | authored   | generated_draft | `synchronize` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the synchronize obligation named before work proceeds.               |
+| 0593  | [task](#rune-0593)             | authored   | generated_draft | `task` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the task obligation named before work proceeds.                             |
+| 0594  | [terminate](#rune-0594)        | authored   | generated_draft | `terminate` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the terminate obligation named before work proceeds.                   |
+| 0595  | [then](#rune-0595)             | authored   | generated_draft | `then` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the then obligation named before work proceeds.                             |
+| 0596  | [throttle](#rune-0596)         | authored   | generated_draft | `throttle` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the throttle obligation named before work proceeds.                     |
+| 0597  | [tick](#rune-0597)             | authored   | generated_draft | `tick` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the tick obligation named before work proceeds.                             |
+| 0598  | [timeout {Ctrl}](#rune-0598)   | authored   | reviewed        | Waiting is not free and patience must have a boundary. A timeout is a contract with reality about how long uncertainty is allowed to persist.                                                                                |
+| 0599  | [timeslice](#rune-0599)        | authored   | generated_draft | `timeslice` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the timeslice obligation named before work proceeds.                   |
+| 0600  | [trigger](#rune-0600)          | authored   | generated_draft | `trigger` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the trigger obligation named before work proceeds.                       |
+| 0601  | [try](#rune-0601)              | authored   | generated_draft | `try` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the try obligation named before work proceeds.                               |
+| 0602  | [unblock](#rune-0602)          | authored   | generated_draft | `unblock` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the unblock obligation named before work proceeds.                       |
+| 0603  | [until](#rune-0603)            | authored   | generated_draft | `until` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the until obligation named before work proceeds.                           |
+| 0604  | [wait](#rune-0604)             | authored   | generated_draft | `wait` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the wait obligation named before work proceeds.                             |
+| 0605  | [wake](#rune-0605)             | authored   | generated_draft | `wake` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the wake obligation named before work proceeds.                             |
+| 0606  | [when](#rune-0606)             | authored   | generated_draft | `when` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the when obligation named before work proceeds.                             |
+| 0607  | [while](#rune-0607)            | authored   | generated_draft | `while` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the while obligation named before work proceeds.                           |
+| 0608  | [yield](#rune-0608)            | authored   | reviewed        | Give up control now so another act may proceed.                                                                                                                                                                              |
 
 ## Entries
 
@@ -122,9 +122,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `abort` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the abort obligation named before work proceeds.
 
 **Shadow:** misusing `abort` at rune 0512 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
+
+**Prompt uses:**
+
+- Name `abort` when the prompt needs this obligation made explicit: `abort` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the abort obligation named before work proceeds.
+- Ask the assistant to state the `abort` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `abort` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0513] acknowledge {#rune-0513}
 
@@ -132,9 +143,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `acknowledge` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the acknowledge obligation named before work proceeds.
 
 **Shadow:** misusing `acknowledge` at rune 0513 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
+
+**Prompt uses:**
+
+- Name `acknowledge` when the prompt needs this obligation made explicit: `acknowledge` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the acknowledge obligation named before work proceeds.
+- Ask the assistant to state the `acknowledge` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `acknowledge` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0514] async {#rune-0514}
 
@@ -142,9 +164,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** reviewed
+
 **Force:** Work may proceed without immediate blocking at the call site.
 
 **Shadow:** misusing `async` at rune 0514 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
+
+**Prompt uses:**
+
+- Name `async` when the prompt needs this obligation made explicit: Work may proceed without immediate blocking at the call site.
+- Ask the assistant to state the `async` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `async` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 **Pocket gloss:** Work may proceed without immediate blocking at the call site.
 
@@ -154,9 +187,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** reviewed
+
 **Force:** Pause until an asynchronous result becomes ready.
 
 **Shadow:** misusing `await` at rune 0515 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
+
+**Prompt uses:**
+
+- Name `await` when the prompt needs this obligation made explicit: Pause until an asynchronous result becomes ready.
+- Ask the assistant to state the `await` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `await` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 **Pocket gloss:** Pause until an asynchronous result becomes ready.
 
@@ -166,9 +210,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** reviewed
+
 **Force:** Wait longer between retries so recovery does not become attack.
 
 **Shadow:** misusing `backoff` at rune 0516 in the Ctrl lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
+
+**Prompt uses:**
+
+- Name `backoff` when the prompt needs this obligation made explicit: Wait longer between retries so recovery does not become attack.
+- Ask the assistant to state the `backoff` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `backoff` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 **Pocket gloss:** Wait longer between retries so recovery does not become attack.
 
@@ -178,9 +233,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** reviewed
+
 **Force:** A synchronization point no participant may cross early.
 
 **Shadow:** misusing `barrier` at rune 0517 in the Ctrl lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
+
+**Prompt uses:**
+
+- Name `barrier` when the prompt needs this obligation made explicit: A synchronization point no participant may cross early.
+- Ask the assistant to state the `barrier` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `barrier` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 **Pocket gloss:** A synchronization point no participant may cross early.
 
@@ -190,9 +256,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `block` in its Ctrl sense is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the block obligation named before work proceeds.
 
 **Shadow:** misusing `block` at rune 0518 in the Ctrl lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
+
+**Prompt uses:**
+
+- Name `block` when the prompt needs this obligation made explicit: `block` in its Ctrl sense is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the block obligation named before work proceeds.
+- Ask the assistant to state the `block` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `block` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0519] branch {Ctrl} {#rune-0519}
 
@@ -200,9 +277,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `branch` in its Ctrl sense is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the branch obligation named before work proceeds.
 
 **Shadow:** misusing `branch` at rune 0519 in the Ctrl lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
+
+**Prompt uses:**
+
+- Name `branch` when the prompt needs this obligation made explicit: `branch` in its Ctrl sense is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the branch obligation named before work proceeds.
+- Ask the assistant to state the `branch` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `branch` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0520] break {#rune-0520}
 
@@ -210,9 +298,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `break` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the break obligation named before work proceeds.
 
 **Shadow:** misusing `break` at rune 0520 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
+
+**Prompt uses:**
+
+- Name `break` when the prompt needs this obligation made explicit: `break` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the break obligation named before work proceeds.
+- Ask the assistant to state the `break` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `break` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0521] callback {#rune-0521}
 
@@ -220,9 +319,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `callback` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the callback obligation named before work proceeds.
 
 **Shadow:** misusing `callback` at rune 0521 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
+
+**Prompt uses:**
+
+- Name `callback` when the prompt needs this obligation made explicit: `callback` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the callback obligation named before work proceeds.
+- Ask the assistant to state the `callback` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `callback` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0522] cancel {#rune-0522}
 
@@ -230,9 +340,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `cancel` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the cancel obligation named before work proceeds.
 
 **Shadow:** misusing `cancel` at rune 0522 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
+
+**Prompt uses:**
+
+- Name `cancel` when the prompt needs this obligation made explicit: `cancel` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the cancel obligation named before work proceeds.
+- Ask the assistant to state the `cancel` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `cancel` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0523] case {#rune-0523}
 
@@ -240,9 +361,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `case` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the case obligation named before work proceeds.
 
 **Shadow:** misusing `case` at rune 0523 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
+
+**Prompt uses:**
+
+- Name `case` when the prompt needs this obligation made explicit: `case` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the case obligation named before work proceeds.
+- Ask the assistant to state the `case` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `case` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0524] catch {#rune-0524}
 
@@ -250,9 +382,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `catch` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the catch obligation named before work proceeds.
 
 **Shadow:** misusing `catch` at rune 0524 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
+
+**Prompt uses:**
+
+- Name `catch` when the prompt needs this obligation made explicit: `catch` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the catch obligation named before work proceeds.
+- Ask the assistant to state the `catch` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `catch` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0525] chain {#rune-0525}
 
@@ -260,9 +403,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `chain` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the chain obligation named before work proceeds.
 
 **Shadow:** misusing `chain` at rune 0525 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
+
+**Prompt uses:**
+
+- Name `chain` when the prompt needs this obligation made explicit: `chain` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the chain obligation named before work proceeds.
+- Ask the assistant to state the `chain` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `chain` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0526] choose {#rune-0526}
 
@@ -270,9 +424,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `choose` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the choose obligation named before work proceeds.
 
 **Shadow:** misusing `choose` at rune 0526 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
+
+**Prompt uses:**
+
+- Name `choose` when the prompt needs this obligation made explicit: `choose` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the choose obligation named before work proceeds.
+- Ask the assistant to state the `choose` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `choose` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0527] circuit breaker {#rune-0527}
 
@@ -280,9 +445,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** reviewed
+
 **Force:** Trip open after repeated failure to prevent repeated harm.
 
 **Shadow:** misusing `circuit breaker` at rune 0527 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
+
+**Prompt uses:**
+
+- Name `circuit breaker` when the prompt needs this obligation made explicit: Trip open after repeated failure to prevent repeated harm.
+- Ask the assistant to state the `circuit breaker` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `circuit breaker` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 **Pocket gloss:** Trip open after repeated failure to prevent repeated harm.
 
@@ -292,9 +468,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `clause` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the clause obligation named before work proceeds.
 
 **Shadow:** misusing `clause` at rune 0528 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
+
+**Prompt uses:**
+
+- Name `clause` when the prompt needs this obligation made explicit: `clause` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the clause obligation named before work proceeds.
+- Ask the assistant to state the `clause` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `clause` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0529] continue {#rune-0529}
 
@@ -302,9 +489,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `continue` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the continue obligation named before work proceeds.
 
 **Shadow:** misusing `continue` at rune 0529 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
+
+**Prompt uses:**
+
+- Name `continue` when the prompt needs this obligation made explicit: `continue` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the continue obligation named before work proceeds.
+- Ask the assistant to state the `continue` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `continue` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0530] coroutine {#rune-0530}
 
@@ -312,9 +510,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** reviewed
+
 **Force:** A suspendable routine that can yield and later resume.
 
 **Shadow:** misusing `coroutine` at rune 0530 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
+
+**Prompt uses:**
+
+- Name `coroutine` when the prompt needs this obligation made explicit: A suspendable routine that can yield and later resume.
+- Ask the assistant to state the `coroutine` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `coroutine` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 **Pocket gloss:** A suspendable routine that can yield and later resume.
 
@@ -324,9 +533,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `countdown` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the countdown obligation named before work proceeds.
 
 **Shadow:** misusing `countdown` at rune 0531 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
+
+**Prompt uses:**
+
+- Name `countdown` when the prompt needs this obligation made explicit: `countdown` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the countdown obligation named before work proceeds.
+- Ask the assistant to state the `countdown` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `countdown` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0532] cycle {#rune-0532}
 
@@ -334,9 +554,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `cycle` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the cycle obligation named before work proceeds.
 
 **Shadow:** misusing `cycle` at rune 0532 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
+
+**Prompt uses:**
+
+- Name `cycle` when the prompt needs this obligation made explicit: `cycle` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the cycle obligation named before work proceeds.
+- Ask the assistant to state the `cycle` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `cycle` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0533] debounce {#rune-0533}
 
@@ -344,9 +575,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `debounce` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the debounce obligation named before work proceeds.
 
 **Shadow:** misusing `debounce` at rune 0533 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
+
+**Prompt uses:**
+
+- Name `debounce` when the prompt needs this obligation made explicit: `debounce` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the debounce obligation named before work proceeds.
+- Ask the assistant to state the `debounce` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `debounce` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0534] defer {Ctrl} {#rune-0534}
 
@@ -354,9 +596,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `defer` in its Ctrl sense is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the defer obligation named before work proceeds.
 
 **Shadow:** misusing `defer` at rune 0534 in the Ctrl lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
+
+**Prompt uses:**
+
+- Name `defer` when the prompt needs this obligation made explicit: `defer` in its Ctrl sense is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the defer obligation named before work proceeds.
+- Ask the assistant to state the `defer` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `defer` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0535] delay {#rune-0535}
 
@@ -364,9 +617,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `delay` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the delay obligation named before work proceeds.
 
 **Shadow:** misusing `delay` at rune 0535 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
+
+**Prompt uses:**
+
+- Name `delay` when the prompt needs this obligation made explicit: `delay` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the delay obligation named before work proceeds.
+- Ask the assistant to state the `delay` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `delay` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0536] dispatch {Ctrl} {#rune-0536}
 
@@ -374,9 +638,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `dispatch` in its Ctrl sense is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the dispatch obligation named before work proceeds.
 
 **Shadow:** misusing `dispatch` at rune 0536 in the Ctrl lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
+
+**Prompt uses:**
+
+- Name `dispatch` when the prompt needs this obligation made explicit: `dispatch` in its Ctrl sense is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the dispatch obligation named before work proceeds.
+- Ask the assistant to state the `dispatch` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `dispatch` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0537] do {#rune-0537}
 
@@ -384,9 +659,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `do` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the do obligation named before work proceeds.
 
 **Shadow:** misusing `do` at rune 0537 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
+
+**Prompt uses:**
+
+- Name `do` when the prompt needs this obligation made explicit: `do` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the do obligation named before work proceeds.
+- Ask the assistant to state the `do` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `do` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0538] else {#rune-0538}
 
@@ -394,9 +680,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `else` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the else obligation named before work proceeds.
 
 **Shadow:** misusing `else` at rune 0538 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
+
+**Prompt uses:**
+
+- Name `else` when the prompt needs this obligation made explicit: `else` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the else obligation named before work proceeds.
+- Ask the assistant to state the `else` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `else` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0539] enqueue {#rune-0539}
 
@@ -404,9 +701,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** reviewed
+
 **Force:** Place work onto a queue for later handling.
 
 **Shadow:** misusing `enqueue` at rune 0539 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
+
+**Prompt uses:**
+
+- Name `enqueue` when the prompt needs this obligation made explicit: Place work onto a queue for later handling.
+- Ask the assistant to state the `enqueue` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `enqueue` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 **Pocket gloss:** Place work onto a queue for later handling.
 
@@ -416,9 +724,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** reviewed
+
 **Force:** The scheduler that drives nonblocking tasks and callbacks.
 
 **Shadow:** misusing `event loop` at rune 0540 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
+
+**Prompt uses:**
+
+- Name `event loop` when the prompt needs this obligation made explicit: The scheduler that drives nonblocking tasks and callbacks.
+- Ask the assistant to state the `event loop` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `event loop` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 **Pocket gloss:** The scheduler that drives nonblocking tasks and callbacks.
 
@@ -428,9 +747,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `fallback` in its Ctrl sense is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the fallback obligation named before work proceeds.
 
 **Shadow:** misusing `fallback` at rune 0541 in the Ctrl lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
+
+**Prompt uses:**
+
+- Name `fallback` when the prompt needs this obligation made explicit: `fallback` in its Ctrl sense is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the fallback obligation named before work proceeds.
+- Ask the assistant to state the `fallback` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `fallback` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0542] fan-in {#rune-0542}
 
@@ -438,9 +768,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `fan-in` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the fan-in obligation named before work proceeds.
 
 **Shadow:** misusing `fan-in` at rune 0542 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
+
+**Prompt uses:**
+
+- Name `fan-in` when the prompt needs this obligation made explicit: `fan-in` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the fan-in obligation named before work proceeds.
+- Ask the assistant to state the `fan-in` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `fan-in` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0543] fan-out {Ctrl} {#rune-0543}
 
@@ -448,9 +789,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `fan-out` in its Ctrl sense is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the fan-out obligation named before work proceeds.
 
 **Shadow:** misusing `fan-out` at rune 0543 in the Ctrl lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
+
+**Prompt uses:**
+
+- Name `fan-out` when the prompt needs this obligation made explicit: `fan-out` in its Ctrl sense is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the fan-out obligation named before work proceeds.
+- Ask the assistant to state the `fan-out` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `fan-out` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0544] finally {#rune-0544}
 
@@ -458,9 +810,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `finally` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the finally obligation named before work proceeds.
 
 **Shadow:** misusing `finally` at rune 0544 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
+
+**Prompt uses:**
+
+- Name `finally` when the prompt needs this obligation made explicit: `finally` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the finally obligation named before work proceeds.
+- Ask the assistant to state the `finally` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `finally` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0545] fire-and-forget {#rune-0545}
 
@@ -468,9 +831,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `fire-and-forget` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the fire-and-forget obligation named before work proceeds.
 
 **Shadow:** misusing `fire-and-forget` at rune 0545 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
+
+**Prompt uses:**
+
+- Name `fire-and-forget` when the prompt needs this obligation made explicit: `fire-and-forget` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the fire-and-forget obligation named before work proceeds.
+- Ask the assistant to state the `fire-and-forget` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `fire-and-forget` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0546] flow control {#rune-0546}
 
@@ -478,9 +852,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** reviewed
+
 **Force:** Mechanisms that keep producers from outrunning consumers.
 
 **Shadow:** misusing `flow control` at rune 0546 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
+
+**Prompt uses:**
+
+- Name `flow control` when the prompt needs this obligation made explicit: Mechanisms that keep producers from outrunning consumers.
+- Ask the assistant to state the `flow control` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `flow control` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 **Pocket gloss:** Mechanisms that keep producers from outrunning consumers.
 
@@ -490,9 +875,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `for` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the for obligation named before work proceeds.
 
 **Shadow:** misusing `for` at rune 0547 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
+
+**Prompt uses:**
+
+- Name `for` when the prompt needs this obligation made explicit: `for` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the for obligation named before work proceeds.
+- Ask the assistant to state the `for` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `for` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0548] fork {Ctrl} {#rune-0548}
 
@@ -500,9 +896,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `fork` in its Ctrl sense is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the fork obligation named before work proceeds.
 
 **Shadow:** misusing `fork` at rune 0548 in the Ctrl lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
+
+**Prompt uses:**
+
+- Name `fork` when the prompt needs this obligation made explicit: `fork` in its Ctrl sense is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the fork obligation named before work proceeds.
+- Ask the assistant to state the `fork` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `fork` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0549] future {#rune-0549}
 
@@ -510,9 +917,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** reviewed
+
 **Force:** A placeholder for a value that will exist later.
 
 **Shadow:** misusing `future` at rune 0549 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
+
+**Prompt uses:**
+
+- Name `future` when the prompt needs this obligation made explicit: A placeholder for a value that will exist later.
+- Ask the assistant to state the `future` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `future` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 **Pocket gloss:** A placeholder for a value that will exist later.
 
@@ -522,9 +940,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `gate` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the gate obligation named before work proceeds.
 
 **Shadow:** misusing `gate` at rune 0550 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
+
+**Prompt uses:**
+
+- Name `gate` when the prompt needs this obligation made explicit: `gate` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the gate obligation named before work proceeds.
+- Ask the assistant to state the `gate` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `gate` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0551] guard {#rune-0551}
 
@@ -532,9 +961,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `guard` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the guard obligation named before work proceeds.
 
 **Shadow:** misusing `guard` at rune 0551 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
+
+**Prompt uses:**
+
+- Name `guard` when the prompt needs this obligation made explicit: `guard` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the guard obligation named before work proceeds.
+- Ask the assistant to state the `guard` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `guard` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0552] halt {#rune-0552}
 
@@ -542,9 +982,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `halt` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the halt obligation named before work proceeds.
 
 **Shadow:** misusing `halt` at rune 0552 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
+
+**Prompt uses:**
+
+- Name `halt` when the prompt needs this obligation made explicit: `halt` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the halt obligation named before work proceeds.
+- Ask the assistant to state the `halt` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `halt` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0553] heartbeat {Ctrl} {#rune-0553}
 
@@ -552,9 +1003,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `heartbeat` in its Ctrl sense is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the heartbeat obligation named before work proceeds.
 
 **Shadow:** misusing `heartbeat` at rune 0553 in the Ctrl lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
+
+**Prompt uses:**
+
+- Name `heartbeat` when the prompt needs this obligation made explicit: `heartbeat` in its Ctrl sense is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the heartbeat obligation named before work proceeds.
+- Ask the assistant to state the `heartbeat` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `heartbeat` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0554] if {#rune-0554}
 
@@ -562,9 +1024,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `if` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the if obligation named before work proceeds.
 
 **Shadow:** misusing `if` at rune 0554 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
+
+**Prompt uses:**
+
+- Name `if` when the prompt needs this obligation made explicit: `if` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the if obligation named before work proceeds.
+- Ask the assistant to state the `if` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `if` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0555] iterate {#rune-0555}
 
@@ -572,9 +1045,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `iterate` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the iterate obligation named before work proceeds.
 
 **Shadow:** misusing `iterate` at rune 0555 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
+
+**Prompt uses:**
+
+- Name `iterate` when the prompt needs this obligation made explicit: `iterate` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the iterate obligation named before work proceeds.
+- Ask the assistant to state the `iterate` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `iterate` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0556] join {Ctrl} {#rune-0556}
 
@@ -582,9 +1066,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `join` in its Ctrl sense is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the join obligation named before work proceeds.
 
 **Shadow:** misusing `join` at rune 0556 in the Ctrl lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
+
+**Prompt uses:**
+
+- Name `join` when the prompt needs this obligation made explicit: `join` in its Ctrl sense is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the join obligation named before work proceeds.
+- Ask the assistant to state the `join` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `join` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0557] jump {#rune-0557}
 
@@ -592,9 +1087,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `jump` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the jump obligation named before work proceeds.
 
 **Shadow:** misusing `jump` at rune 0557 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
+
+**Prompt uses:**
+
+- Name `jump` when the prompt needs this obligation made explicit: `jump` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the jump obligation named before work proceeds.
+- Ask the assistant to state the `jump` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `jump` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0558] latch {#rune-0558}
 
@@ -602,9 +1108,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `latch` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the latch obligation named before work proceeds.
 
 **Shadow:** misusing `latch` at rune 0558 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
+
+**Prompt uses:**
+
+- Name `latch` when the prompt needs this obligation made explicit: `latch` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the latch obligation named before work proceeds.
+- Ask the assistant to state the `latch` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `latch` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0559] loop {#rune-0559}
 
@@ -612,9 +1129,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `loop` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the loop obligation named before work proceeds.
 
 **Shadow:** misusing `loop` at rune 0559 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
+
+**Prompt uses:**
+
+- Name `loop` when the prompt needs this obligation made explicit: `loop` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the loop obligation named before work proceeds.
+- Ask the assistant to state the `loop` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `loop` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0560] match {#rune-0560}
 
@@ -622,9 +1150,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `match` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the match obligation named before work proceeds.
 
 **Shadow:** misusing `match` at rune 0560 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
+
+**Prompt uses:**
+
+- Name `match` when the prompt needs this obligation made explicit: `match` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the match obligation named before work proceeds.
+- Ask the assistant to state the `match` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `match` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0561] mutex {#rune-0561}
 
@@ -632,9 +1171,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** reviewed
+
 **Force:** Mutual exclusion for one critical region at a time.
 
 **Shadow:** misusing `mutex` at rune 0561 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
+
+**Prompt uses:**
+
+- Name `mutex` when the prompt needs this obligation made explicit: Mutual exclusion for one critical region at a time.
+- Ask the assistant to state the `mutex` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `mutex` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 **Pocket gloss:** Mutual exclusion for one critical region at a time.
 
@@ -644,9 +1194,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `notify` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the notify obligation named before work proceeds.
 
 **Shadow:** misusing `notify` at rune 0562 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
+
+**Prompt uses:**
+
+- Name `notify` when the prompt needs this obligation made explicit: `notify` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the notify obligation named before work proceeds.
+- Ask the assistant to state the `notify` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `notify` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0563] once {#rune-0563}
 
@@ -654,9 +1215,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `once` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the once obligation named before work proceeds.
 
 **Shadow:** misusing `once` at rune 0563 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
+
+**Prompt uses:**
+
+- Name `once` when the prompt needs this obligation made explicit: `once` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the once obligation named before work proceeds.
+- Ask the assistant to state the `once` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `once` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0564] parallel {Ctrl} {#rune-0564}
 
@@ -664,9 +1236,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `parallel` in its Ctrl sense is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the parallel obligation named before work proceeds.
 
 **Shadow:** misusing `parallel` at rune 0564 in the Ctrl lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
+
+**Prompt uses:**
+
+- Name `parallel` when the prompt needs this obligation made explicit: `parallel` in its Ctrl sense is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the parallel obligation named before work proceeds.
+- Ask the assistant to state the `parallel` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `parallel` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0565] pause {#rune-0565}
 
@@ -674,9 +1257,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `pause` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the pause obligation named before work proceeds.
 
 **Shadow:** misusing `pause` at rune 0565 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
+
+**Prompt uses:**
+
+- Name `pause` when the prompt needs this obligation made explicit: `pause` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the pause obligation named before work proceeds.
+- Ask the assistant to state the `pause` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `pause` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0566] poll {Ctrl} {#rune-0566}
 
@@ -684,9 +1278,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `poll` in its Ctrl sense is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the poll obligation named before work proceeds.
 
 **Shadow:** misusing `poll` at rune 0566 in the Ctrl lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
+
+**Prompt uses:**
+
+- Name `poll` when the prompt needs this obligation made explicit: `poll` in its Ctrl sense is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the poll obligation named before work proceeds.
+- Ask the assistant to state the `poll` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `poll` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0567] preempt {#rune-0567}
 
@@ -694,9 +1299,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `preempt` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the preempt obligation named before work proceeds.
 
 **Shadow:** misusing `preempt` at rune 0567 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
+
+**Prompt uses:**
+
+- Name `preempt` when the prompt needs this obligation made explicit: `preempt` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the preempt obligation named before work proceeds.
+- Ask the assistant to state the `preempt` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `preempt` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0568] priority {#rune-0568}
 
@@ -704,9 +1320,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `priority` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the priority obligation named before work proceeds.
 
 **Shadow:** misusing `priority` at rune 0568 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
+
+**Prompt uses:**
+
+- Name `priority` when the prompt needs this obligation made explicit: `priority` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the priority obligation named before work proceeds.
+- Ask the assistant to state the `priority` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `priority` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0569] process {Ctrl} {#rune-0569}
 
@@ -714,9 +1341,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `process` in its Ctrl sense is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the process obligation named before work proceeds.
 
 **Shadow:** misusing `process` at rune 0569 in the Ctrl lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
+
+**Prompt uses:**
+
+- Name `process` when the prompt needs this obligation made explicit: `process` in its Ctrl sense is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the process obligation named before work proceeds.
+- Ask the assistant to state the `process` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `process` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0570] promise {#rune-0570}
 
@@ -724,9 +1362,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `promise` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the promise obligation named before work proceeds.
 
 **Shadow:** misusing `promise` at rune 0570 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
+
+**Prompt uses:**
+
+- Name `promise` when the prompt needs this obligation made explicit: `promise` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the promise obligation named before work proceeds.
+- Ask the assistant to state the `promise` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `promise` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0571] queue {Ctrl} {#rune-0571}
 
@@ -734,9 +1383,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** reviewed
+
 **Force:** Ordered holding area that decouples production from consumption.
 
 **Shadow:** misusing `queue` at rune 0571 in the Ctrl lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
+
+**Prompt uses:**
+
+- Name `queue` when the prompt needs this obligation made explicit: Ordered holding area that decouples production from consumption.
+- Ask the assistant to state the `queue` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `queue` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 **Pocket gloss:** Ordered holding area that decouples production from consumption.
 
@@ -746,9 +1406,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `race window` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the race window obligation named before work proceeds.
 
 **Shadow:** misusing `race window` at rune 0572 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
+
+**Prompt uses:**
+
+- Name `race window` when the prompt needs this obligation made explicit: `race window` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the race window obligation named before work proceeds.
+- Ask the assistant to state the `race window` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `race window` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0573] recurse {#rune-0573}
 
@@ -756,9 +1427,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `recurse` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the recurse obligation named before work proceeds.
 
 **Shadow:** misusing `recurse` at rune 0573 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
+
+**Prompt uses:**
+
+- Name `recurse` when the prompt needs this obligation made explicit: `recurse` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the recurse obligation named before work proceeds.
+- Ask the assistant to state the `recurse` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `recurse` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0574] repeat {#rune-0574}
 
@@ -766,9 +1448,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `repeat` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the repeat obligation named before work proceeds.
 
 **Shadow:** misusing `repeat` at rune 0574 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
+
+**Prompt uses:**
+
+- Name `repeat` when the prompt needs this obligation made explicit: `repeat` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the repeat obligation named before work proceeds.
+- Ask the assistant to state the `repeat` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `repeat` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0575] reserve {#rune-0575}
 
@@ -776,9 +1469,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `reserve` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the reserve obligation named before work proceeds.
 
 **Shadow:** misusing `reserve` at rune 0575 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
+
+**Prompt uses:**
+
+- Name `reserve` when the prompt needs this obligation made explicit: `reserve` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the reserve obligation named before work proceeds.
+- Ask the assistant to state the `reserve` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `reserve` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0576] retry {Ctrl} {#rune-0576}
 
@@ -786,9 +1490,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** reviewed
+
 **Force:** Failure does not necessarily end the ritual; policy may permit another attempt.
 
 **Shadow:** blind repetition against a broken precondition.
+
+**Prompt uses:**
+
+- Name `retry` when the prompt needs this obligation made explicit: Failure does not necessarily end the ritual; policy may permit another attempt.
+- Ask the assistant to state the `retry` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `retry` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 **Pocket gloss:** Try again under policy rather than treating one failure as final.
 
@@ -798,9 +1513,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `return` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the return obligation named before work proceeds.
 
 **Shadow:** misusing `return` at rune 0577 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
+
+**Prompt uses:**
+
+- Name `return` when the prompt needs this obligation made explicit: `return` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the return obligation named before work proceeds.
+- Ask the assistant to state the `return` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `return` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0578] round-robin {#rune-0578}
 
@@ -808,9 +1534,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `round-robin` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the round-robin obligation named before work proceeds.
 
 **Shadow:** misusing `round-robin` at rune 0578 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
+
+**Prompt uses:**
+
+- Name `round-robin` when the prompt needs this obligation made explicit: `round-robin` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the round-robin obligation named before work proceeds.
+- Ask the assistant to state the `round-robin` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `round-robin` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0579] schedule {Ctrl} {#rune-0579}
 
@@ -818,9 +1555,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** reviewed
+
 **Force:** Assign work to time, order, or execution slots.
 
 **Shadow:** misusing `schedule` at rune 0579 in the Ctrl lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
+
+**Prompt uses:**
+
+- Name `schedule` when the prompt needs this obligation made explicit: Assign work to time, order, or execution slots.
+- Ask the assistant to state the `schedule` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `schedule` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 **Pocket gloss:** Assign work to time, order, or execution slots.
 
@@ -830,9 +1578,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `select` in its Ctrl sense is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the select obligation named before work proceeds.
 
 **Shadow:** misusing `select` at rune 0580 in the Ctrl lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
+
+**Prompt uses:**
+
+- Name `select` when the prompt needs this obligation made explicit: `select` in its Ctrl sense is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the select obligation named before work proceeds.
+- Ask the assistant to state the `select` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `select` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0581] semaphore {#rune-0581}
 
@@ -840,9 +1599,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** reviewed
+
 **Force:** A counted gate controlling concurrent access to limited capacity.
 
 **Shadow:** misusing `semaphore` at rune 0581 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
+
+**Prompt uses:**
+
+- Name `semaphore` when the prompt needs this obligation made explicit: A counted gate controlling concurrent access to limited capacity.
+- Ask the assistant to state the `semaphore` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `semaphore` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 **Pocket gloss:** A counted gate controlling concurrent access to limited capacity.
 
@@ -852,9 +1622,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `sequence point` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the sequence point obligation named before work proceeds.
 
 **Shadow:** misusing `sequence point` at rune 0582 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
+
+**Prompt uses:**
+
+- Name `sequence point` when the prompt needs this obligation made explicit: `sequence point` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the sequence point obligation named before work proceeds.
+- Ask the assistant to state the `sequence point` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `sequence point` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0583] serialize access {#rune-0583}
 
@@ -862,9 +1643,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `serialize access` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the serialize access obligation named before work proceeds.
 
 **Shadow:** misusing `serialize access` at rune 0583 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
+
+**Prompt uses:**
+
+- Name `serialize access` when the prompt needs this obligation made explicit: `serialize access` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the serialize access obligation named before work proceeds.
+- Ask the assistant to state the `serialize access` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `serialize access` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0584] signal {Ctrl} {#rune-0584}
 
@@ -872,9 +1664,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** reviewed
+
 **Force:** Emit a condition change another task may respond to.
 
 **Shadow:** misusing `signal` at rune 0584 in the Ctrl lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
+
+**Prompt uses:**
+
+- Name `signal` when the prompt needs this obligation made explicit: Emit a condition change another task may respond to.
+- Ask the assistant to state the `signal` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `signal` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 **Pocket gloss:** Emit a condition change another task may respond to.
 
@@ -884,9 +1687,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `sleep` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the sleep obligation named before work proceeds.
 
 **Shadow:** misusing `sleep` at rune 0585 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
+
+**Prompt uses:**
+
+- Name `sleep` when the prompt needs this obligation made explicit: `sleep` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the sleep obligation named before work proceeds.
+- Ask the assistant to state the `sleep` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `sleep` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0586] spawn {Ctrl} {#rune-0586}
 
@@ -894,9 +1708,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `spawn` in its Ctrl sense is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the spawn obligation named before work proceeds.
 
 **Shadow:** misusing `spawn` at rune 0586 in the Ctrl lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
+
+**Prompt uses:**
+
+- Name `spawn` when the prompt needs this obligation made explicit: `spawn` in its Ctrl sense is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the spawn obligation named before work proceeds.
+- Ask the assistant to state the `spawn` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `spawn` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0587] step {#rune-0587}
 
@@ -904,9 +1729,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `step` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the step obligation named before work proceeds.
 
 **Shadow:** misusing `step` at rune 0587 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
+
+**Prompt uses:**
+
+- Name `step` when the prompt needs this obligation made explicit: `step` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the step obligation named before work proceeds.
+- Ask the assistant to state the `step` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `step` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0588] stop {#rune-0588}
 
@@ -914,9 +1750,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `stop` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the stop obligation named before work proceeds.
 
 **Shadow:** misusing `stop` at rune 0588 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
+
+**Prompt uses:**
+
+- Name `stop` when the prompt needs this obligation made explicit: `stop` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the stop obligation named before work proceeds.
+- Ask the assistant to state the `stop` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `stop` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0589] suspend {#rune-0589}
 
@@ -924,9 +1771,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `suspend` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the suspend obligation named before work proceeds.
 
 **Shadow:** misusing `suspend` at rune 0589 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
+
+**Prompt uses:**
+
+- Name `suspend` when the prompt needs this obligation made explicit: `suspend` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the suspend obligation named before work proceeds.
+- Ask the assistant to state the `suspend` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `suspend` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0590] switch {#rune-0590}
 
@@ -934,9 +1792,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `switch` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the switch obligation named before work proceeds.
 
 **Shadow:** misusing `switch` at rune 0590 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
+
+**Prompt uses:**
+
+- Name `switch` when the prompt needs this obligation made explicit: `switch` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the switch obligation named before work proceeds.
+- Ask the assistant to state the `switch` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `switch` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0591] sync {#rune-0591}
 
@@ -944,9 +1813,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `sync` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the sync obligation named before work proceeds.
 
 **Shadow:** misusing `sync` at rune 0591 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
+
+**Prompt uses:**
+
+- Name `sync` when the prompt needs this obligation made explicit: `sync` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the sync obligation named before work proceeds.
+- Ask the assistant to state the `sync` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `sync` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0592] synchronize {#rune-0592}
 
@@ -954,9 +1834,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `synchronize` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the synchronize obligation named before work proceeds.
 
 **Shadow:** misusing `synchronize` at rune 0592 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
+
+**Prompt uses:**
+
+- Name `synchronize` when the prompt needs this obligation made explicit: `synchronize` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the synchronize obligation named before work proceeds.
+- Ask the assistant to state the `synchronize` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `synchronize` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0593] task {#rune-0593}
 
@@ -964,9 +1855,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `task` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the task obligation named before work proceeds.
 
 **Shadow:** misusing `task` at rune 0593 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
+
+**Prompt uses:**
+
+- Name `task` when the prompt needs this obligation made explicit: `task` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the task obligation named before work proceeds.
+- Ask the assistant to state the `task` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `task` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0594] terminate {#rune-0594}
 
@@ -974,9 +1876,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `terminate` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the terminate obligation named before work proceeds.
 
 **Shadow:** misusing `terminate` at rune 0594 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
+
+**Prompt uses:**
+
+- Name `terminate` when the prompt needs this obligation made explicit: `terminate` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the terminate obligation named before work proceeds.
+- Ask the assistant to state the `terminate` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `terminate` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0595] then {#rune-0595}
 
@@ -984,9 +1897,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `then` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the then obligation named before work proceeds.
 
 **Shadow:** misusing `then` at rune 0595 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
+
+**Prompt uses:**
+
+- Name `then` when the prompt needs this obligation made explicit: `then` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the then obligation named before work proceeds.
+- Ask the assistant to state the `then` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `then` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0596] throttle {#rune-0596}
 
@@ -994,9 +1918,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `throttle` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the throttle obligation named before work proceeds.
 
 **Shadow:** misusing `throttle` at rune 0596 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
+
+**Prompt uses:**
+
+- Name `throttle` when the prompt needs this obligation made explicit: `throttle` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the throttle obligation named before work proceeds.
+- Ask the assistant to state the `throttle` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `throttle` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0597] tick {#rune-0597}
 
@@ -1004,9 +1939,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `tick` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the tick obligation named before work proceeds.
 
 **Shadow:** misusing `tick` at rune 0597 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
+
+**Prompt uses:**
+
+- Name `tick` when the prompt needs this obligation made explicit: `tick` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the tick obligation named before work proceeds.
+- Ask the assistant to state the `tick` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `tick` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0598] timeout {Ctrl} {#rune-0598}
 
@@ -1014,9 +1960,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** reviewed
+
 **Force:** Waiting is not free and patience must have a boundary. A timeout is a contract with reality about how long uncertainty is allowed to persist.
 
 **Shadow:** when a timeout hides whether the operation failed, succeeded late, or is still running.
+
+**Prompt uses:**
+
+- Name `timeout` when the prompt needs this obligation made explicit: Waiting is not free and patience must have a boundary. A timeout is a contract with reality about how long uncertainty is allowed to persist.
+- Ask the assistant to state the `timeout` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `timeout` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 **Pocket gloss:** A declared limit on how long uncertainty may persist.
 
@@ -1026,9 +1983,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `timeslice` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the timeslice obligation named before work proceeds.
 
 **Shadow:** misusing `timeslice` at rune 0599 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
+
+**Prompt uses:**
+
+- Name `timeslice` when the prompt needs this obligation made explicit: `timeslice` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the timeslice obligation named before work proceeds.
+- Ask the assistant to state the `timeslice` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `timeslice` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0600] trigger {#rune-0600}
 
@@ -1036,9 +2004,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `trigger` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the trigger obligation named before work proceeds.
 
 **Shadow:** misusing `trigger` at rune 0600 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
+
+**Prompt uses:**
+
+- Name `trigger` when the prompt needs this obligation made explicit: `trigger` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the trigger obligation named before work proceeds.
+- Ask the assistant to state the `trigger` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `trigger` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0601] try {#rune-0601}
 
@@ -1046,9 +2025,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `try` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the try obligation named before work proceeds.
 
 **Shadow:** misusing `try` at rune 0601 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
+
+**Prompt uses:**
+
+- Name `try` when the prompt needs this obligation made explicit: `try` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the try obligation named before work proceeds.
+- Ask the assistant to state the `try` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `try` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0602] unblock {#rune-0602}
 
@@ -1056,9 +2046,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `unblock` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the unblock obligation named before work proceeds.
 
 **Shadow:** misusing `unblock` at rune 0602 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
+
+**Prompt uses:**
+
+- Name `unblock` when the prompt needs this obligation made explicit: `unblock` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the unblock obligation named before work proceeds.
+- Ask the assistant to state the `unblock` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `unblock` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0603] until {#rune-0603}
 
@@ -1066,9 +2067,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `until` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the until obligation named before work proceeds.
 
 **Shadow:** misusing `until` at rune 0603 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
+
+**Prompt uses:**
+
+- Name `until` when the prompt needs this obligation made explicit: `until` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the until obligation named before work proceeds.
+- Ask the assistant to state the `until` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `until` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0604] wait {#rune-0604}
 
@@ -1076,9 +2088,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `wait` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the wait obligation named before work proceeds.
 
 **Shadow:** misusing `wait` at rune 0604 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
+
+**Prompt uses:**
+
+- Name `wait` when the prompt needs this obligation made explicit: `wait` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the wait obligation named before work proceeds.
+- Ask the assistant to state the `wait` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `wait` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0605] wake {#rune-0605}
 
@@ -1086,9 +2109,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `wake` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the wake obligation named before work proceeds.
 
 **Shadow:** misusing `wake` at rune 0605 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
+
+**Prompt uses:**
+
+- Name `wake` when the prompt needs this obligation made explicit: `wake` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the wake obligation named before work proceeds.
+- Ask the assistant to state the `wake` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `wake` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0606] when {#rune-0606}
 
@@ -1096,9 +2130,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `when` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the when obligation named before work proceeds.
 
 **Shadow:** misusing `when` at rune 0606 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
+
+**Prompt uses:**
+
+- Name `when` when the prompt needs this obligation made explicit: `when` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the when obligation named before work proceeds.
+- Ask the assistant to state the `when` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `when` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0607] while {#rune-0607}
 
@@ -1106,9 +2151,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `while` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the while obligation named before work proceeds.
 
 **Shadow:** misusing `while` at rune 0607 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
+
+**Prompt uses:**
+
+- Name `while` when the prompt needs this obligation made explicit: `while` is a control flow and coordination rune for make ordering, waiting, retry, and termination rules explicit; use it when the artifact needs the while obligation named before work proceeds.
+- Ask the assistant to state the `while` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `while` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0608] yield {#rune-0608}
 
@@ -1116,8 +2172,19 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** reviewed
+
 **Force:** Give up control now so another act may proceed.
 
 **Shadow:** misusing `yield` at rune 0608 in the control lane can let timing assumptions can turn coordination into stalls or races; verify by requiring the caster to state progress, timeout, retry, and cancellation rules.
+
+**Prompt uses:**
+
+- Name `yield` when the prompt needs this obligation made explicit: Give up control now so another act may proceed.
+- Ask the assistant to state the `yield` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `yield` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 **Pocket gloss:** Give up control now so another act may proceed.

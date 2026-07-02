@@ -1,0 +1,71 @@
+{
+  "version": "2.1.0-adoption-evidence",
+  "policy": "Evidence reports must preserve provenance and include failures, friction, or overkill cases when present.",
+  "report_template": {
+    "required_fields": [
+      "id",
+      "title",
+      "provenance",
+      "task",
+      "spell_or_stack_used",
+      "surface",
+      "artifact_produced",
+      "verification_performed",
+      "time_cost",
+      "failure_or_friction",
+      "reuse_decision"
+    ],
+    "provenance_values": [
+      "project-owned",
+      "reviewer-supplied",
+      "external-user"
+    ]
+  },
+  "reports": [
+    {
+      "id": "adoption.release-gate-dogfood.v1",
+      "title": "Release Gate Stack Dogfood",
+      "provenance": "project-owned",
+      "task": "Use the release-gate stack to structure generation, validation, render, test, deployment, and live-site verification.",
+      "spell_or_stack_used": "stack.release-gate-stack.v1",
+      "surface": "GitHub Actions plus local Codex workflow",
+      "artifact_produced": "examples/release-gate/release-gate-stack-run.json and public release checks.",
+      "verification_performed": "Local validation, Quarto render, pytest, GitHub Pages workflow, and live URL checks.",
+      "time_cost": "Moderate; useful for public releases but heavier than needed for typo-only edits.",
+      "failure_or_friction": "Manual inspection remains necessary for release scope and semantic honesty.",
+      "reuse_decision": "Reuse for public releases and major roadmap phases."
+    },
+    {
+      "id": "adoption.jailbreak-resilience-dogfood.v1",
+      "title": "Jailbreak-Resilience Bench Dogfood",
+      "provenance": "project-owned",
+      "task": "Use the warded spell and AI red-team loop to create safe adversarial fixtures and recorded bench runs.",
+      "spell_or_stack_used": "spell.jailbreak-resilience-review.v1; stack.ai-red-team-loop.v1",
+      "surface": "Local Codex CLI and local read-only harness",
+      "artifact_produced": "Eight defanged fixtures, 24 recorded runs, and harness-results.json.",
+      "verification_performed": "Canary non-leakage checks, utility-preservation scores, fixture validation, and internal-link audit.",
+      "time_cost": "High; justified for security-facing workflows.",
+      "failure_or_friction": "The first bench version did not exercise a real tool mediator, which led to the adversarial harness v2 roadmap item.",
+      "reuse_decision": "Reuse for AI workflow security reviews."
+    },
+    {
+      "id": "adoption.semantic-canon-self-review.v1",
+      "title": "Semantic Canon Self-Review",
+      "provenance": "project-owned",
+      "task": "Review whether structural completion of 1,645 lexicon entries actually meant semantic canon quality.",
+      "spell_or_stack_used": "spell.safe-refactoring.v1 as a review discipline; canon quality validation",
+      "surface": "Local repository inspection",
+      "artifact_produced": "Phase 18 semantic-status roadmap and semantic quality gates.",
+      "verification_performed": "Pattern scan found 1,345 generated-template summaries despite zero stub rows.",
+      "time_cost": "Low to moderate; high value because it prevented semantic overclaim.",
+      "failure_or_friction": "The previous validation accepted unique generated prose as authored, so the quality model had to become stricter.",
+      "reuse_decision": "Reuse for future canon corrections and release reviews."
+    }
+  ],
+  "external_status": {
+    "external_reports_published": 0,
+    "reviewer_supplied_runs_imported": 0,
+    "policy": "Do not fabricate external adoption. Project-owned dogfood is useful but labeled separately.",
+    "next_request": "Invite external users or reviewers to submit reports using the template."
+  }
+}

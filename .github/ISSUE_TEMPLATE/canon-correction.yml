@@ -1,0 +1,57 @@
+name: Canon correction
+description: Correct a rune, spell, stack, schema, or generated reference claim.
+title: "[canon correction] "
+labels: ["canon", "correction"]
+body:
+  - type: dropdown
+    id: surface
+    attributes:
+      label: Surface
+      options:
+        - rune
+        - spell
+        - stack
+        - schema
+        - benchmark
+        - documentation
+    validations:
+      required: true
+  - type: input
+    id: identifier
+    attributes:
+      label: Identifier
+      description: Rune id/sigil, spell id, stack id, schema file, benchmark case, or page URL.
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What is wrong, weak, misleading, unsafe, or overclaimed?
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence
+      description: Provide an example, failed use, better wording, fixture result, or source reference.
+    validations:
+      required: true
+  - type: textarea
+    id: correction
+    attributes:
+      label: Proposed correction
+      description: State the smallest correction that would make the canon more accurate.
+    validations:
+      required: true
+  - type: dropdown
+    id: impact
+    attributes:
+      label: Impact type
+      options:
+        - semantic change
+        - editorial change
+        - safety clarification
+        - schema/tooling change
+    validations:
+      required: true

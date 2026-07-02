@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Software Grimoire Bench v2 Contract",
+  "type": "object",
+  "required": ["version", "surfaces", "manual_import_contract", "deterministic_checks", "cards"],
+  "properties": {
+    "version": {"type": "string", "minLength": 1},
+    "surfaces": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+        "type": "object",
+        "required": ["kind", "label", "ownership", "execution", "requires_credentials", "redaction_policy"],
+        "properties": {
+          "kind": {"type": "string", "minLength": 1},
+          "label": {"type": "string", "minLength": 1},
+          "ownership": {"enum": ["project-owned", "reviewer-supplied", "imported"]},
+          "execution": {"type": "string", "minLength": 1},
+          "requires_credentials": {"type": "boolean"},
+          "redaction_policy": {"type": "string", "minLength": 1}
+        },
+        "additionalProperties": true
+      }
+    },
+    "manual_import_contract": {
+      "type": "object",
+      "required": ["required_fields", "provenance_values", "rules"],
+      "properties": {
+        "required_fields": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+        "provenance_values": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+        "rules": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}}
+      }
+    },
+    "deterministic_checks": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+        "type": "object",
+        "required": ["kind", "success"],
+        "properties": {
+          "kind": {"type": "string", "minLength": 1},
+          "command": {"type": "string", "minLength": 1},
+          "success": {"type": "string", "minLength": 1}
+        },
+        "additionalProperties": false
+      }
+    },
+    "cards": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+        "type": "object",
+        "required": ["scope", "fixture_version", "deterministic_parts", "human_scored_parts", "limitations", "safety_boundary"],
+        "properties": {
+          "scope": {"type": "string", "minLength": 1},
+          "fixture_version": {"type": "string", "minLength": 1},
+          "deterministic_parts": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+          "human_scored_parts": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+          "limitations": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+          "safety_boundary": {"type": "string", "minLength": 1}
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

@@ -16,11 +16,14 @@
     "shadow",
     "status",
     "completion_status",
+    "semantic_status",
     "is_stub",
     "major",
     "pocket",
     "source",
-    "force_source"
+    "force_source",
+    "prompt_uses",
+    "examples"
   ],
   "properties": {
     "id": {"type": "integer", "minimum": 1},
@@ -37,11 +40,20 @@
     "shadow": {"type": "string", "minLength": 1},
     "status": {"type": "string", "minLength": 1},
     "completion_status": {"enum": ["authored", "stub", "needs_shadow", "needs_sense"]},
+    "semantic_status": {"enum": ["generated_draft", "reviewed", "canonical", "deprecated"]},
     "is_stub": {"type": "boolean"},
     "major": {"type": "boolean"},
     "pocket": {"type": "boolean"},
     "source": {"type": "string", "minLength": 1},
     "force_source": {"enum": ["major-canon", "pocket-canon", "master-lexicon"]},
+    "prompt_uses": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1}
+    },
+    "examples": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1}
+    },
     "major_cluster": {"type": ["string", "null"]},
     "expanded_gloss": {"type": ["string", "null"]},
     "pocket_gloss": {"type": ["string", "null"]}

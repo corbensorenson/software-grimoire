@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import json
+import hashlib
 import re
 import sys
 from pathlib import Path
@@ -11,6 +12,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 COMPLETION_STATUSES = {"authored", "stub", "needs_shadow", "needs_sense"}
+SEMANTIC_STATUSES = {"generated_draft", "reviewed", "canonical", "deprecated"}
 FORCE_SOURCES = {"major-canon", "pocket-canon", "master-lexicon"}
 EXPECTED_SPELL_COUNT = 7
 EXPECTED_STACK_COUNT = 7
@@ -36,6 +38,13 @@ GENERIC_LEXICON_PATTERNS = [
     "a quality word;",
     "a hardware/performance word;",
 ]
+GENERATED_TEMPLATE_RE = re.compile(r" rune for .*use it when the artifact needs", re.IGNORECASE)
+
+
+def generated_template_text(value: str | None) -> bool:
+    if not value:
+        return False
+    return bool(GENERATED_TEMPLATE_RE.search(value)) or value.strip().startswith("`")
 
 
 def load(name: str):
@@ -84,11 +93,14 @@ def validate_lexicon(errors: list[str], houses: list[dict]) -> list[dict]:
             "shadow",
             "status",
             "completion_status",
+            "semantic_status",
             "is_stub",
             "major",
             "pocket",
             "source",
             "force_source",
+            "prompt_uses",
+            "examples",
         ]
         missing_required = False
         for key in required:
@@ -109,6 +121,8 @@ def validate_lexicon(errors: list[str], houses: list[dict]) -> list[dict]:
             fail(errors, f"Bad page for lexicon id {ident}: {entry['page']}")
         if entry["completion_status"] not in COMPLETION_STATUSES:
             fail(errors, f"Bad completion_status for lexicon id {ident}: {entry['completion_status']}")
+        if entry["semantic_status"] not in SEMANTIC_STATUSES:
+            fail(errors, f"Bad semantic_status for lexicon id {ident}: {entry['semantic_status']}")
         if entry["completion_status"] != "authored":
             fail(errors, f"Lexicon entry is not fully authored: {ident} ({entry['completion_status']})")
         if entry["force_source"] not in FORCE_SOURCES:
@@ -126,6 +140,13 @@ def validate_lexicon(errors: list[str], houses: list[dict]) -> list[dict]:
         for pattern in GENERIC_LEXICON_PATTERNS:
             if summary_lower.startswith(pattern) or force_lower.startswith(pattern):
                 fail(errors, f"Lexicon entry retains generic boilerplate: {ident}")
+        if entry["semantic_status"] in {"reviewed", "canonical"}:
+            if generated_template_text(entry.get("summary")) or generated_template_text(entry.get("force")):
+                fail(errors, f"Reviewed lexicon entry retains generated template language: {ident}")
+            if not entry.get("prompt_uses"):
+                fail(errors, f"Reviewed lexicon entry missing prompt_uses: {ident}")
+            if not entry.get("examples"):
+                fail(errors, f"Reviewed lexicon entry missing examples: {ident}")
         if entry.get("major") and entry["completion_status"] != "authored":
             fail(errors, f"Major canon entry is not authored: {ident}")
         if entry.get("pocket") and entry["completion_status"] != "authored":
@@ -199,8 +220,22 @@ def validate_canon_quality(errors: list[str], lexicon: list[dict]) -> None:
         if summary.get(key) != value:
             fail(errors, f"Canon quality summary mismatch for {key}: {summary.get(key)} != {value}")
     authored_layer = report.get("authored_layer", {})
+    semantic_layer = report.get("semantic_layer", {})
     if summary.get("authored_entries") != len(lexicon) or summary.get("stub_entries") != 0:
         fail(errors, "Canon quality report must show the full lexicon authored with zero stubs")
+    reviewed = sum(1 for entry in lexicon if entry.get("semantic_status") in {"reviewed", "canonical"})
+    generated_draft = sum(1 for entry in lexicon if entry.get("semantic_status") == "generated_draft")
+    generated_template = sum(1 for entry in lexicon if generated_template_text(entry.get("summary")))
+    if semantic_layer.get("reviewed_entries", 0) + semantic_layer.get("canonical_entries", 0) != reviewed:
+        fail(errors, "Canon quality semantic reviewed/canonical count mismatch")
+    if semantic_layer.get("generated_draft_entries") != generated_draft:
+        fail(errors, "Canon quality generated_draft count mismatch")
+    if semantic_layer.get("generated_template_summaries") != generated_template:
+        fail(errors, "Canon quality generated-template summary count mismatch")
+    if semantic_layer.get("reviewed_entries_with_prompt_uses") != reviewed:
+        fail(errors, "Every reviewed/canonical entry must have prompt uses")
+    if semantic_layer.get("reviewed_entries_with_examples") != reviewed:
+        fail(errors, "Every reviewed/canonical entry must have examples")
     if authored_layer.get("doubled_shadow_labels") != 0:
         fail(errors, "Canon quality report found doubled shadow labels")
     major_canon = report.get("major_canon", {})
@@ -380,6 +415,169 @@ def validate_jailbreak_resilience(errors: list[str]) -> None:
                 fail(errors, f"Jailbreak fixture {slug} must be defanged")
 
 
+def validate_bench_v2(errors: list[str]) -> None:
+    path = ROOT / "data" / "bench_v2.json"
+    if not path.exists():
+        fail(errors, "Missing data/bench_v2.json")
+        return
+    data = json.loads(path.read_text(encoding="utf-8"))
+    surfaces = data.get("surfaces", {})
+    if "codex-cli-default" not in surfaces:
+        fail(errors, "Bench v2 must declare codex-cli-default surface")
+    if "manual-reviewer-import" not in surfaces:
+        fail(errors, "Bench v2 must declare manual-reviewer-import surface")
+    required = set(data.get("manual_import_contract", {}).get("required_fields", []))
+    for field in ["surface_id", "benchmark", "case_slug", "prompt_path", "transcript_path", "provenance"]:
+        if field not in required:
+            fail(errors, f"Bench v2 manual import contract missing {field}")
+    checks = data.get("deterministic_checks", {})
+    for slug in [
+        "safe-refactoring",
+        "bug-diagnosis-from-logs",
+        "api-design",
+        "migration-without-data-loss",
+        "test-generation",
+        "performance-tuning",
+    ]:
+        if slug not in checks:
+            fail(errors, f"Bench v2 missing deterministic check for {slug}")
+    safe = checks.get("safe-refactoring", {})
+    if safe.get("kind") != "executable-fixture" or "pytest" not in safe.get("command", ""):
+        fail(errors, "Bench v2 safe-refactoring check must be executable pytest fixture")
+
+
+def validate_adversarial_harness(errors: list[str]) -> None:
+    path = ROOT / "data" / "adversarial_harness.json"
+    if not path.exists():
+        fail(errors, "Missing data/adversarial_harness.json")
+        return
+    data = json.loads(path.read_text(encoding="utf-8"))
+    if data.get("payload_policy") != "defanged-fixtures-only":
+        fail(errors, "Adversarial harness payload_policy must be defanged-fixtures-only")
+    if data.get("execution_policy") != "local-read-only":
+        fail(errors, "Adversarial harness execution_policy must be local-read-only")
+    required = {"tool-mediator", "retrieval-taint", "multi-turn-state", "long-context-drift", "redaction", "overrefusal"}
+    harnesses = data.get("harnesses", {})
+    missing = required - set(harnesses)
+    if missing:
+        fail(errors, f"Adversarial harness missing required harnesses: {sorted(missing)}")
+    for name, harness in harnesses.items():
+        fixture = harness.get("fixture")
+        if fixture and not (ROOT / "examples" / "jailbreak-resilience" / "fixtures" / fixture).is_dir():
+            fail(errors, f"Adversarial harness {name} references missing fixture: {fixture}")
+    adapter = data.get("external_corpus_adapters", {})
+    if adapter.get("enabled_by_default") is not False:
+        fail(errors, "External corpus adapters must be disabled by default")
+    for field in ["source_url", "license", "fetch_date", "transformation_policy", "defanging_policy", "local_opt_in"]:
+        if field not in adapter.get("required_metadata", []):
+            fail(errors, f"External corpus adapter metadata missing {field}")
+
+
+def validate_library_manifest(errors: list[str]) -> None:
+    path = ROOT / "exports" / "library-manifest.json"
+    if not path.exists():
+        fail(errors, "Missing exports/library-manifest.json")
+        return
+    manifest = json.loads(path.read_text(encoding="utf-8"))
+    if manifest.get("schema") != "software-grimoire-library-v1":
+        fail(errors, "Library manifest schema mismatch")
+    for section in ["assets", "bundles"]:
+        for item in manifest.get(section, []):
+            file_path = ROOT / item.get("path", "")
+            if not file_path.exists():
+                fail(errors, f"Library manifest {section} path missing: {item.get('path')}")
+                continue
+            digest = hashlib.sha256(file_path.read_bytes()).hexdigest()
+            if digest != item.get("sha256"):
+                fail(errors, f"Library manifest checksum mismatch: {item.get('path')}")
+            if file_path.stat().st_size != item.get("bytes"):
+                fail(errors, f"Library manifest byte count mismatch: {item.get('path')}")
+    if len(manifest.get("bundles", [])) < 4:
+        fail(errors, "Library manifest must include at least four release bundles")
+
+
+def validate_generator_architecture(errors: list[str]) -> None:
+    path = ROOT / "data" / "generator_architecture.json"
+    if not path.exists():
+        fail(errors, "Missing data/generator_architecture.json")
+        return
+    data = json.loads(path.read_text(encoding="utf-8"))
+    components = {item.get("component") for item in data.get("components", [])}
+    for required in ["sources", "lexicon", "spells", "stacks", "bench", "exports", "site", "seals"]:
+        if required not in components:
+            fail(errors, f"Generator architecture missing component: {required}")
+    if not data.get("determinism_policy"):
+        fail(errors, "Generator architecture missing determinism policy")
+
+
+def validate_visual_practice(errors: list[str]) -> None:
+    path = ROOT / "data" / "visual_practice.json"
+    if not path.exists():
+        fail(errors, "Missing data/visual_practice.json")
+        return
+    data = json.loads(path.read_text(encoding="utf-8"))
+    spells = load("spells.json")
+    stacks = load("stacks.json")
+    if set(data.get("spell_diagrams", {})) != {spell["id"] for spell in spells}:
+        fail(errors, "Visual practice must include one diagram per spell")
+    if set(data.get("stack_diagrams", {})) != {stack["id"] for stack in stacks}:
+        fail(errors, "Visual practice must include one diagram per stack")
+    for diagram in list(data.get("spell_diagrams", {}).values()) + list(data.get("stack_diagrams", {}).values()) + [data.get("ward_diagram", "")]:
+        if diagram and not (ROOT / diagram).exists():
+            fail(errors, f"Visual practice diagram missing: {diagram}")
+
+
+def validate_adoption_evidence(errors: list[str]) -> None:
+    path = ROOT / "data" / "adoption_evidence.json"
+    if not path.exists():
+        fail(errors, "Missing data/adoption_evidence.json")
+        return
+    data = json.loads(path.read_text(encoding="utf-8"))
+    required_fields = set(data.get("report_template", {}).get("required_fields", []))
+    for field in [
+        "id",
+        "title",
+        "provenance",
+        "task",
+        "spell_or_stack_used",
+        "surface",
+        "artifact_produced",
+        "verification_performed",
+        "time_cost",
+        "failure_or_friction",
+        "reuse_decision",
+    ]:
+        if field not in required_fields:
+            fail(errors, f"Adoption evidence template missing required field: {field}")
+    provenance_values = set(data.get("report_template", {}).get("provenance_values", []))
+    for value in ["project-owned", "reviewer-supplied", "external-user"]:
+        if value not in provenance_values:
+            fail(errors, f"Adoption evidence missing provenance value: {value}")
+    reports = data.get("reports", [])
+    if len(reports) < 3:
+        fail(errors, "Adoption evidence must include at least three project-owned dogfood reports")
+    for report in reports:
+        for field in required_fields:
+            if field not in report or report[field] in ("", None):
+                fail(errors, f"Adoption evidence report {report.get('id')} missing {field}")
+        if report.get("provenance") not in provenance_values:
+            fail(errors, f"Adoption evidence report {report.get('id')} has invalid provenance")
+    status = data.get("external_status", {})
+    policy = status.get("policy", "")
+    if status.get("external_reports_published", 0) == 0 and "Do not fabricate external adoption" not in policy:
+        fail(errors, "Adoption evidence must state the no-fabricated-external-adoption policy")
+    template_path = ROOT / "examples" / "adoption" / "adoption-report-template.json"
+    if not template_path.exists():
+        fail(errors, "Missing examples/adoption/adoption-report-template.json")
+        return
+    template = json.loads(template_path.read_text(encoding="utf-8"))
+    for field in required_fields:
+        if field not in template or template[field] in ("", None):
+            fail(errors, f"Adoption report template missing {field}")
+    if template.get("provenance") not in provenance_values:
+        fail(errors, "Adoption report template provenance is not allowed")
+
+
 def main() -> int:
     errors: list[str] = []
     houses = validate_houses(errors)
@@ -389,6 +587,12 @@ def main() -> int:
     spells = validate_spells(errors, lexicon)
     validate_stacks(errors, lexicon, spells)
     validate_jailbreak_resilience(errors)
+    validate_bench_v2(errors)
+    validate_adversarial_harness(errors)
+    validate_library_manifest(errors)
+    validate_generator_architecture(errors)
+    validate_visual_practice(errors)
+    validate_adoption_evidence(errors)
 
     if errors:
         for error in errors:

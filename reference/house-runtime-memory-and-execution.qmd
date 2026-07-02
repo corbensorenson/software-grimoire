@@ -14,84 +14,84 @@ Range: `0609-0684`.
 
 Use the summary table for scanning. Each row links to the detailed anchored entry below.
 
-| Sigil | Term                               | Completion | Summary                                                                                                                                                                                                              |
-| ----- | ---------------------------------- | ---------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 0609  | [address space](#rune-0609)        | authored   | `address space` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the address space obligation named before work proceeds.               |
-| 0610  | [aliasing](#rune-0610)             | authored   | `aliasing` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the aliasing obligation named before work proceeds.                         |
-| 0611  | [allocation](#rune-0611)           | authored   | Reserve memory for something that is about to live.                                                                                                                                                                  |
-| 0612  | [allocator](#rune-0612)            | authored   | `allocator` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the allocator obligation named before work proceeds.                       |
-| 0613  | [arena](#rune-0613)                | authored   | `arena` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the arena obligation named before work proceeds.                               |
-| 0614  | [borrow {Run}](#rune-0614)         | authored   | `borrow` in its Run sense is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the borrow obligation named before work proceeds.            |
-| 0615  | [cache {Run}](#rune-0615)          | authored   | Keep likely things close so future cost falls. Shadow: stale truth delivered at machine speed.                                                                                                                       |
-| 0616  | [cache line {Run}](#rune-0616)     | authored   | `cache line` in its Run sense is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the cache line obligation named before work proceeds.    |
-| 0617  | [call frame](#rune-0617)           | authored   | `call frame` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the call frame obligation named before work proceeds.                     |
-| 0618  | [call stack](#rune-0618)           | authored   | `call stack` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the call stack obligation named before work proceeds.                     |
-| 0619  | [closure environment](#rune-0619)  | authored   | `closure environment` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the closure environment obligation named before work proceeds.   |
-| 0620  | [compaction {Run}](#rune-0620)     | authored   | `compaction` in its Run sense is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the compaction obligation named before work proceeds.    |
-| 0621  | [copy-on-write {Run}](#rune-0621)  | authored   | Share until mutation forces a real duplicate.                                                                                                                                                                        |
-| 0622  | [core dump {Run}](#rune-0622)      | authored   | `core dump` in its Run sense is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the core dump obligation named before work proceeds.      |
-| 0623  | [deallocation](#rune-0623)         | authored   | `deallocation` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the deallocation obligation named before work proceeds.                 |
-| 0624  | [destructor {Run}](#rune-0624)     | authored   | `destructor` in its Run sense is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the destructor obligation named before work proceeds.    |
-| 0625  | [dynamic allocation](#rune-0625)   | authored   | `dynamic allocation` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the dynamic allocation obligation named before work proceeds.     |
-| 0626  | [eager evaluation](#rune-0626)     | authored   | `eager evaluation` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the eager evaluation obligation named before work proceeds.         |
-| 0627  | [escape analysis](#rune-0627)      | authored   | `escape analysis` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the escape analysis obligation named before work proceeds.           |
-| 0628  | [execution context](#rune-0628)    | authored   | `execution context` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the execution context obligation named before work proceeds.       |
-| 0629  | [finalizer](#rune-0629)            | authored   | `finalizer` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the finalizer obligation named before work proceeds.                       |
-| 0630  | [frame pointer](#rune-0630)        | authored   | `frame pointer` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the frame pointer obligation named before work proceeds.               |
-| 0631  | [garbage collection](#rune-0631)   | authored   | Automatic reclamation of memory no longer reachable.                                                                                                                                                                 |
-| 0632  | [generation](#rune-0632)           | authored   | `generation` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the generation obligation named before work proceeds.                     |
-| 0633  | [handle {Run}](#rune-0633)         | authored   | `handle` in its Run sense is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the handle obligation named before work proceeds.            |
-| 0634  | [heap](#rune-0634)                 | authored   | Region for dynamically allocated objects.                                                                                                                                                                            |
-| 0635  | [heap object](#rune-0635)          | authored   | `heap object` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the heap object obligation named before work proceeds.                   |
-| 0636  | [hot path {Run}](#rune-0636)       | authored   | The path where small inefficiencies burn real time.                                                                                                                                                                  |
-| 0637  | [inline cache](#rune-0637)         | authored   | `inline cache` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the inline cache obligation named before work proceeds.                 |
-| 0638  | [interpreter loop](#rune-0638)     | authored   | `interpreter loop` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the interpreter loop obligation named before work proceeds.         |
-| 0639  | [JIT](#rune-0639)                  | authored   | `JIT` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the JIT obligation named before work proceeds.                                   |
-| 0640  | [layout {Run}](#rune-0640)         | authored   | `layout` in its Run sense is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the layout obligation named before work proceeds.            |
-| 0641  | [lazy evaluation](#rune-0641)      | authored   | `lazy evaluation` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the lazy evaluation obligation named before work proceeds.           |
-| 0642  | [leak {Run}](#rune-0642)           | authored   | `leak` in its Run sense is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the leak obligation named before work proceeds.                |
-| 0643  | [lifetime {Run}](#rune-0643)       | authored   | How long a value may legally remain alive.                                                                                                                                                                           |
-| 0644  | [live set](#rune-0644)             | authored   | `live set` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the live set obligation named before work proceeds.                         |
-| 0645  | [locality](#rune-0645)             | authored   | The performance dividend from keeping related data physically close.                                                                                                                                                 |
-| 0646  | [lock-free {Run}](#rune-0646)      | authored   | `lock-free` in its Run sense is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the lock-free obligation named before work proceeds.      |
-| 0647  | [mark phase](#rune-0647)           | authored   | `mark phase` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the mark phase obligation named before work proceeds.                     |
-| 0648  | [memory {Run}](#rune-0648)         | authored   | `memory` in its Run sense is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the memory obligation named before work proceeds.            |
-| 0649  | [memory barrier](#rune-0649)       | authored   | An ordering fence for memory effects across threads or cores.                                                                                                                                                        |
-| 0650  | [memory map](#rune-0650)           | authored   | `memory map` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the memory map obligation named before work proceeds.                     |
-| 0651  | [memory pool](#rune-0651)          | authored   | `memory pool` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the memory pool obligation named before work proceeds.                   |
-| 0652  | [memory safety](#rune-0652)        | authored   | Protection against illegal memory access and corruption.                                                                                                                                                             |
-| 0653  | [move semantics](#rune-0653)       | authored   | `move semantics` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the move semantics obligation named before work proceeds.             |
-| 0654  | [object header](#rune-0654)        | authored   | `object header` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the object header obligation named before work proceeds.               |
-| 0655  | [page {Run}](#rune-0655)           | authored   | `page` in its Run sense is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the page obligation named before work proceeds.                |
-| 0656  | [page fault](#rune-0656)           | authored   | `page fault` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the page fault obligation named before work proceeds.                     |
-| 0657  | [pinning](#rune-0657)              | authored   | Keep an object fixed in place so other machinery can safely refer to it.                                                                                                                                             |
-| 0658  | [pointer {Run}](#rune-0658)        | authored   | `pointer` in its Run sense is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the pointer obligation named before work proceeds.          |
-| 0659  | [pool allocator](#rune-0659)       | authored   | `pool allocator` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the pool allocator obligation named before work proceeds.             |
-| 0660  | [prefetch](#rune-0660)             | authored   | `prefetch` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the prefetch obligation named before work proceeds.                         |
-| 0661  | [quiescence](#rune-0661)           | authored   | `quiescence` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the quiescence obligation named before work proceeds.                     |
-| 0662  | [reclaim](#rune-0662)              | authored   | `reclaim` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the reclaim obligation named before work proceeds.                           |
-| 0663  | [reference count](#rune-0663)      | authored   | Ownership tracked by counting how many references remain.                                                                                                                                                            |
-| 0664  | [register allocation](#rune-0664)  | authored   | `register allocation` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the register allocation obligation named before work proceeds.   |
-| 0665  | [root set](#rune-0665)             | authored   | `root set` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the root set obligation named before work proceeds.                         |
-| 0666  | [runtime](#rune-0666)              | authored   | `runtime` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the runtime obligation named before work proceeds.                           |
-| 0667  | [sandbox {Run}](#rune-0667)        | authored   | `sandbox` in its Run sense is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the sandbox obligation named before work proceeds.          |
-| 0668  | [shadow stack](#rune-0668)         | authored   | `shadow stack` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the shadow stack obligation named before work proceeds.                 |
-| 0669  | [slab allocator](#rune-0669)       | authored   | `slab allocator` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the slab allocator obligation named before work proceeds.             |
-| 0670  | [stack {Run}](#rune-0670)          | authored   | Region for call frames and short-lived local state.                                                                                                                                                                  |
-| 0671  | [stack frame](#rune-0671)          | authored   | `stack frame` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the stack frame obligation named before work proceeds.                   |
-| 0672  | [stop-the-world](#rune-0672)       | authored   | `stop-the-world` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the stop-the-world obligation named before work proceeds.             |
-| 0673  | [sweep phase](#rune-0673)          | authored   | `sweep phase` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the sweep phase obligation named before work proceeds.                   |
-| 0674  | [tail call](#rune-0674)            | authored   | `tail call` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the tail call obligation named before work proceeds.                       |
-| 0675  | [thread-local storage](#rune-0675) | authored   | `thread-local storage` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the thread-local storage obligation named before work proceeds. |
-| 0676  | [TLB](#rune-0676)                  | authored   | `TLB` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the TLB obligation named before work proceeds.                                   |
-| 0677  | [tracing collector](#rune-0677)    | authored   | `tracing collector` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the tracing collector obligation named before work proceeds.       |
-| 0678  | [unbox](#rune-0678)                | authored   | `unbox` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the unbox obligation named before work proceeds.                               |
-| 0679  | [user heap](#rune-0679)            | authored   | `user heap` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the user heap obligation named before work proceeds.                       |
-| 0680  | [virtual memory](#rune-0680)       | authored   | `virtual memory` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the virtual memory obligation named before work proceeds.             |
-| 0681  | [VM](#rune-0681)                   | authored   | `VM` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the VM obligation named before work proceeds.                                     |
-| 0682  | [wait-free {Run}](#rune-0682)      | authored   | `wait-free` in its Run sense is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the wait-free obligation named before work proceeds.      |
-| 0683  | [write barrier](#rune-0683)        | authored   | `write barrier` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the write barrier obligation named before work proceeds.               |
-| 0684  | [zero-copy {Run}](#rune-0684)      | authored   | Data movement stripped down to the minimum number of duplications. Use it when the bottleneck is physical movement rather than arithmetic.                                                                           |
+| Sigil | Term                               | Completion | Semantic        | Summary                                                                                                                                                                                                              |
+| ----- | ---------------------------------- | ---------- | --------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 0609  | [address space](#rune-0609)        | authored   | generated_draft | `address space` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the address space obligation named before work proceeds.               |
+| 0610  | [aliasing](#rune-0610)             | authored   | generated_draft | `aliasing` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the aliasing obligation named before work proceeds.                         |
+| 0611  | [allocation](#rune-0611)           | authored   | reviewed        | Reserve memory for something that is about to live.                                                                                                                                                                  |
+| 0612  | [allocator](#rune-0612)            | authored   | generated_draft | `allocator` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the allocator obligation named before work proceeds.                       |
+| 0613  | [arena](#rune-0613)                | authored   | generated_draft | `arena` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the arena obligation named before work proceeds.                               |
+| 0614  | [borrow {Run}](#rune-0614)         | authored   | generated_draft | `borrow` in its Run sense is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the borrow obligation named before work proceeds.            |
+| 0615  | [cache {Run}](#rune-0615)          | authored   | reviewed        | Keep likely things close so future cost falls. Shadow: stale truth delivered at machine speed.                                                                                                                       |
+| 0616  | [cache line {Run}](#rune-0616)     | authored   | generated_draft | `cache line` in its Run sense is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the cache line obligation named before work proceeds.    |
+| 0617  | [call frame](#rune-0617)           | authored   | generated_draft | `call frame` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the call frame obligation named before work proceeds.                     |
+| 0618  | [call stack](#rune-0618)           | authored   | generated_draft | `call stack` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the call stack obligation named before work proceeds.                     |
+| 0619  | [closure environment](#rune-0619)  | authored   | generated_draft | `closure environment` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the closure environment obligation named before work proceeds.   |
+| 0620  | [compaction {Run}](#rune-0620)     | authored   | generated_draft | `compaction` in its Run sense is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the compaction obligation named before work proceeds.    |
+| 0621  | [copy-on-write {Run}](#rune-0621)  | authored   | reviewed        | Share until mutation forces a real duplicate.                                                                                                                                                                        |
+| 0622  | [core dump {Run}](#rune-0622)      | authored   | generated_draft | `core dump` in its Run sense is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the core dump obligation named before work proceeds.      |
+| 0623  | [deallocation](#rune-0623)         | authored   | generated_draft | `deallocation` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the deallocation obligation named before work proceeds.                 |
+| 0624  | [destructor {Run}](#rune-0624)     | authored   | generated_draft | `destructor` in its Run sense is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the destructor obligation named before work proceeds.    |
+| 0625  | [dynamic allocation](#rune-0625)   | authored   | generated_draft | `dynamic allocation` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the dynamic allocation obligation named before work proceeds.     |
+| 0626  | [eager evaluation](#rune-0626)     | authored   | generated_draft | `eager evaluation` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the eager evaluation obligation named before work proceeds.         |
+| 0627  | [escape analysis](#rune-0627)      | authored   | generated_draft | `escape analysis` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the escape analysis obligation named before work proceeds.           |
+| 0628  | [execution context](#rune-0628)    | authored   | generated_draft | `execution context` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the execution context obligation named before work proceeds.       |
+| 0629  | [finalizer](#rune-0629)            | authored   | generated_draft | `finalizer` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the finalizer obligation named before work proceeds.                       |
+| 0630  | [frame pointer](#rune-0630)        | authored   | generated_draft | `frame pointer` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the frame pointer obligation named before work proceeds.               |
+| 0631  | [garbage collection](#rune-0631)   | authored   | reviewed        | Automatic reclamation of memory no longer reachable.                                                                                                                                                                 |
+| 0632  | [generation](#rune-0632)           | authored   | generated_draft | `generation` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the generation obligation named before work proceeds.                     |
+| 0633  | [handle {Run}](#rune-0633)         | authored   | generated_draft | `handle` in its Run sense is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the handle obligation named before work proceeds.            |
+| 0634  | [heap](#rune-0634)                 | authored   | reviewed        | Region for dynamically allocated objects.                                                                                                                                                                            |
+| 0635  | [heap object](#rune-0635)          | authored   | generated_draft | `heap object` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the heap object obligation named before work proceeds.                   |
+| 0636  | [hot path {Run}](#rune-0636)       | authored   | reviewed        | The path where small inefficiencies burn real time.                                                                                                                                                                  |
+| 0637  | [inline cache](#rune-0637)         | authored   | generated_draft | `inline cache` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the inline cache obligation named before work proceeds.                 |
+| 0638  | [interpreter loop](#rune-0638)     | authored   | generated_draft | `interpreter loop` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the interpreter loop obligation named before work proceeds.         |
+| 0639  | [JIT](#rune-0639)                  | authored   | generated_draft | `JIT` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the JIT obligation named before work proceeds.                                   |
+| 0640  | [layout {Run}](#rune-0640)         | authored   | generated_draft | `layout` in its Run sense is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the layout obligation named before work proceeds.            |
+| 0641  | [lazy evaluation](#rune-0641)      | authored   | generated_draft | `lazy evaluation` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the lazy evaluation obligation named before work proceeds.           |
+| 0642  | [leak {Run}](#rune-0642)           | authored   | generated_draft | `leak` in its Run sense is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the leak obligation named before work proceeds.                |
+| 0643  | [lifetime {Run}](#rune-0643)       | authored   | reviewed        | How long a value may legally remain alive.                                                                                                                                                                           |
+| 0644  | [live set](#rune-0644)             | authored   | generated_draft | `live set` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the live set obligation named before work proceeds.                         |
+| 0645  | [locality](#rune-0645)             | authored   | reviewed        | The performance dividend from keeping related data physically close.                                                                                                                                                 |
+| 0646  | [lock-free {Run}](#rune-0646)      | authored   | generated_draft | `lock-free` in its Run sense is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the lock-free obligation named before work proceeds.      |
+| 0647  | [mark phase](#rune-0647)           | authored   | generated_draft | `mark phase` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the mark phase obligation named before work proceeds.                     |
+| 0648  | [memory {Run}](#rune-0648)         | authored   | generated_draft | `memory` in its Run sense is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the memory obligation named before work proceeds.            |
+| 0649  | [memory barrier](#rune-0649)       | authored   | reviewed        | An ordering fence for memory effects across threads or cores.                                                                                                                                                        |
+| 0650  | [memory map](#rune-0650)           | authored   | generated_draft | `memory map` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the memory map obligation named before work proceeds.                     |
+| 0651  | [memory pool](#rune-0651)          | authored   | generated_draft | `memory pool` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the memory pool obligation named before work proceeds.                   |
+| 0652  | [memory safety](#rune-0652)        | authored   | reviewed        | Protection against illegal memory access and corruption.                                                                                                                                                             |
+| 0653  | [move semantics](#rune-0653)       | authored   | generated_draft | `move semantics` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the move semantics obligation named before work proceeds.             |
+| 0654  | [object header](#rune-0654)        | authored   | generated_draft | `object header` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the object header obligation named before work proceeds.               |
+| 0655  | [page {Run}](#rune-0655)           | authored   | generated_draft | `page` in its Run sense is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the page obligation named before work proceeds.                |
+| 0656  | [page fault](#rune-0656)           | authored   | generated_draft | `page fault` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the page fault obligation named before work proceeds.                     |
+| 0657  | [pinning](#rune-0657)              | authored   | reviewed        | Keep an object fixed in place so other machinery can safely refer to it.                                                                                                                                             |
+| 0658  | [pointer {Run}](#rune-0658)        | authored   | generated_draft | `pointer` in its Run sense is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the pointer obligation named before work proceeds.          |
+| 0659  | [pool allocator](#rune-0659)       | authored   | generated_draft | `pool allocator` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the pool allocator obligation named before work proceeds.             |
+| 0660  | [prefetch](#rune-0660)             | authored   | generated_draft | `prefetch` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the prefetch obligation named before work proceeds.                         |
+| 0661  | [quiescence](#rune-0661)           | authored   | generated_draft | `quiescence` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the quiescence obligation named before work proceeds.                     |
+| 0662  | [reclaim](#rune-0662)              | authored   | generated_draft | `reclaim` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the reclaim obligation named before work proceeds.                           |
+| 0663  | [reference count](#rune-0663)      | authored   | reviewed        | Ownership tracked by counting how many references remain.                                                                                                                                                            |
+| 0664  | [register allocation](#rune-0664)  | authored   | generated_draft | `register allocation` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the register allocation obligation named before work proceeds.   |
+| 0665  | [root set](#rune-0665)             | authored   | generated_draft | `root set` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the root set obligation named before work proceeds.                         |
+| 0666  | [runtime](#rune-0666)              | authored   | generated_draft | `runtime` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the runtime obligation named before work proceeds.                           |
+| 0667  | [sandbox {Run}](#rune-0667)        | authored   | generated_draft | `sandbox` in its Run sense is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the sandbox obligation named before work proceeds.          |
+| 0668  | [shadow stack](#rune-0668)         | authored   | generated_draft | `shadow stack` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the shadow stack obligation named before work proceeds.                 |
+| 0669  | [slab allocator](#rune-0669)       | authored   | generated_draft | `slab allocator` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the slab allocator obligation named before work proceeds.             |
+| 0670  | [stack {Run}](#rune-0670)          | authored   | reviewed        | Region for call frames and short-lived local state.                                                                                                                                                                  |
+| 0671  | [stack frame](#rune-0671)          | authored   | generated_draft | `stack frame` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the stack frame obligation named before work proceeds.                   |
+| 0672  | [stop-the-world](#rune-0672)       | authored   | generated_draft | `stop-the-world` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the stop-the-world obligation named before work proceeds.             |
+| 0673  | [sweep phase](#rune-0673)          | authored   | generated_draft | `sweep phase` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the sweep phase obligation named before work proceeds.                   |
+| 0674  | [tail call](#rune-0674)            | authored   | generated_draft | `tail call` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the tail call obligation named before work proceeds.                       |
+| 0675  | [thread-local storage](#rune-0675) | authored   | generated_draft | `thread-local storage` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the thread-local storage obligation named before work proceeds. |
+| 0676  | [TLB](#rune-0676)                  | authored   | generated_draft | `TLB` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the TLB obligation named before work proceeds.                                   |
+| 0677  | [tracing collector](#rune-0677)    | authored   | generated_draft | `tracing collector` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the tracing collector obligation named before work proceeds.       |
+| 0678  | [unbox](#rune-0678)                | authored   | generated_draft | `unbox` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the unbox obligation named before work proceeds.                               |
+| 0679  | [user heap](#rune-0679)            | authored   | generated_draft | `user heap` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the user heap obligation named before work proceeds.                       |
+| 0680  | [virtual memory](#rune-0680)       | authored   | generated_draft | `virtual memory` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the virtual memory obligation named before work proceeds.             |
+| 0681  | [VM](#rune-0681)                   | authored   | generated_draft | `VM` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the VM obligation named before work proceeds.                                     |
+| 0682  | [wait-free {Run}](#rune-0682)      | authored   | generated_draft | `wait-free` in its Run sense is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the wait-free obligation named before work proceeds.      |
+| 0683  | [write barrier](#rune-0683)        | authored   | generated_draft | `write barrier` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the write barrier obligation named before work proceeds.               |
+| 0684  | [zero-copy {Run}](#rune-0684)      | authored   | reviewed        | Data movement stripped down to the minimum number of duplications. Use it when the bottleneck is physical movement rather than arithmetic.                                                                           |
 
 ## Entries
 
@@ -101,9 +101,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `address space` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the address space obligation named before work proceeds.
 
 **Shadow:** misusing `address space` at rune 0609 in the runtime lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
+
+**Prompt uses:**
+
+- Name `address space` when the prompt needs this obligation made explicit: `address space` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the address space obligation named before work proceeds.
+- Ask the assistant to state the `address space` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `address space` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0610] aliasing {#rune-0610}
 
@@ -111,9 +122,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `aliasing` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the aliasing obligation named before work proceeds.
 
 **Shadow:** misusing `aliasing` at rune 0610 in the runtime lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
+
+**Prompt uses:**
+
+- Name `aliasing` when the prompt needs this obligation made explicit: `aliasing` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the aliasing obligation named before work proceeds.
+- Ask the assistant to state the `aliasing` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `aliasing` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0611] allocation {#rune-0611}
 
@@ -121,9 +143,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** reviewed
+
 **Force:** Reserve memory for something that is about to live.
 
 **Shadow:** misusing `allocation` at rune 0611 in the runtime lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
+
+**Prompt uses:**
+
+- Name `allocation` when the prompt needs this obligation made explicit: Reserve memory for something that is about to live.
+- Ask the assistant to state the `allocation` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `allocation` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 **Pocket gloss:** Reserve memory for something that is about to live.
 
@@ -133,9 +166,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `allocator` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the allocator obligation named before work proceeds.
 
 **Shadow:** misusing `allocator` at rune 0612 in the runtime lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
+
+**Prompt uses:**
+
+- Name `allocator` when the prompt needs this obligation made explicit: `allocator` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the allocator obligation named before work proceeds.
+- Ask the assistant to state the `allocator` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `allocator` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0613] arena {#rune-0613}
 
@@ -143,9 +187,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `arena` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the arena obligation named before work proceeds.
 
 **Shadow:** misusing `arena` at rune 0613 in the runtime lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
+
+**Prompt uses:**
+
+- Name `arena` when the prompt needs this obligation made explicit: `arena` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the arena obligation named before work proceeds.
+- Ask the assistant to state the `arena` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `arena` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0614] borrow {Run} {#rune-0614}
 
@@ -153,9 +208,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `borrow` in its Run sense is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the borrow obligation named before work proceeds.
 
 **Shadow:** misusing `borrow` at rune 0614 in the Run lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
+
+**Prompt uses:**
+
+- Name `borrow` when the prompt needs this obligation made explicit: `borrow` in its Run sense is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the borrow obligation named before work proceeds.
+- Ask the assistant to state the `borrow` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `borrow` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0615] cache {Run} {#rune-0615}
 
@@ -163,9 +229,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** reviewed
+
 **Force:** Keep likely things close so future cost falls.
 
 **Shadow:** stale truth delivered at machine speed.
+
+**Prompt uses:**
+
+- Name `cache` when the prompt needs this obligation made explicit: Keep likely things close so future cost falls.
+- Ask the assistant to state the `cache` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `cache` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 **Pocket gloss:** Keep likely things close so repeated access costs less.
 
@@ -175,9 +252,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `cache line` in its Run sense is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the cache line obligation named before work proceeds.
 
 **Shadow:** misusing `cache line` at rune 0616 in the Run lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
+
+**Prompt uses:**
+
+- Name `cache line` when the prompt needs this obligation made explicit: `cache line` in its Run sense is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the cache line obligation named before work proceeds.
+- Ask the assistant to state the `cache line` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `cache line` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0617] call frame {#rune-0617}
 
@@ -185,9 +273,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `call frame` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the call frame obligation named before work proceeds.
 
 **Shadow:** misusing `call frame` at rune 0617 in the runtime lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
+
+**Prompt uses:**
+
+- Name `call frame` when the prompt needs this obligation made explicit: `call frame` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the call frame obligation named before work proceeds.
+- Ask the assistant to state the `call frame` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `call frame` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0618] call stack {#rune-0618}
 
@@ -195,9 +294,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `call stack` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the call stack obligation named before work proceeds.
 
 **Shadow:** misusing `call stack` at rune 0618 in the runtime lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
+
+**Prompt uses:**
+
+- Name `call stack` when the prompt needs this obligation made explicit: `call stack` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the call stack obligation named before work proceeds.
+- Ask the assistant to state the `call stack` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `call stack` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0619] closure environment {#rune-0619}
 
@@ -205,9 +315,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `closure environment` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the closure environment obligation named before work proceeds.
 
 **Shadow:** misusing `closure environment` at rune 0619 in the runtime lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
+
+**Prompt uses:**
+
+- Name `closure environment` when the prompt needs this obligation made explicit: `closure environment` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the closure environment obligation named before work proceeds.
+- Ask the assistant to state the `closure environment` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `closure environment` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0620] compaction {Run} {#rune-0620}
 
@@ -215,9 +336,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `compaction` in its Run sense is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the compaction obligation named before work proceeds.
 
 **Shadow:** misusing `compaction` at rune 0620 in the Run lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
+
+**Prompt uses:**
+
+- Name `compaction` when the prompt needs this obligation made explicit: `compaction` in its Run sense is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the compaction obligation named before work proceeds.
+- Ask the assistant to state the `compaction` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `compaction` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0621] copy-on-write {Run} {#rune-0621}
 
@@ -225,9 +357,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** reviewed
+
 **Force:** Share until mutation forces a real duplicate.
 
 **Shadow:** misusing `copy-on-write` at rune 0621 in the Run lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
+
+**Prompt uses:**
+
+- Name `copy-on-write` when the prompt needs this obligation made explicit: Share until mutation forces a real duplicate.
+- Ask the assistant to state the `copy-on-write` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `copy-on-write` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 **Pocket gloss:** Share until mutation forces a real duplicate.
 
@@ -237,9 +380,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `core dump` in its Run sense is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the core dump obligation named before work proceeds.
 
 **Shadow:** misusing `core dump` at rune 0622 in the Run lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
+
+**Prompt uses:**
+
+- Name `core dump` when the prompt needs this obligation made explicit: `core dump` in its Run sense is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the core dump obligation named before work proceeds.
+- Ask the assistant to state the `core dump` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `core dump` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0623] deallocation {#rune-0623}
 
@@ -247,9 +401,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `deallocation` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the deallocation obligation named before work proceeds.
 
 **Shadow:** misusing `deallocation` at rune 0623 in the runtime lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
+
+**Prompt uses:**
+
+- Name `deallocation` when the prompt needs this obligation made explicit: `deallocation` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the deallocation obligation named before work proceeds.
+- Ask the assistant to state the `deallocation` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `deallocation` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0624] destructor {Run} {#rune-0624}
 
@@ -257,9 +422,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `destructor` in its Run sense is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the destructor obligation named before work proceeds.
 
 **Shadow:** misusing `destructor` at rune 0624 in the Run lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
+
+**Prompt uses:**
+
+- Name `destructor` when the prompt needs this obligation made explicit: `destructor` in its Run sense is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the destructor obligation named before work proceeds.
+- Ask the assistant to state the `destructor` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `destructor` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0625] dynamic allocation {#rune-0625}
 
@@ -267,9 +443,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `dynamic allocation` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the dynamic allocation obligation named before work proceeds.
 
 **Shadow:** misusing `dynamic allocation` at rune 0625 in the runtime lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
+
+**Prompt uses:**
+
+- Name `dynamic allocation` when the prompt needs this obligation made explicit: `dynamic allocation` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the dynamic allocation obligation named before work proceeds.
+- Ask the assistant to state the `dynamic allocation` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `dynamic allocation` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0626] eager evaluation {#rune-0626}
 
@@ -277,9 +464,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `eager evaluation` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the eager evaluation obligation named before work proceeds.
 
 **Shadow:** misusing `eager evaluation` at rune 0626 in the runtime lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
+
+**Prompt uses:**
+
+- Name `eager evaluation` when the prompt needs this obligation made explicit: `eager evaluation` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the eager evaluation obligation named before work proceeds.
+- Ask the assistant to state the `eager evaluation` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `eager evaluation` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0627] escape analysis {#rune-0627}
 
@@ -287,9 +485,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `escape analysis` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the escape analysis obligation named before work proceeds.
 
 **Shadow:** misusing `escape analysis` at rune 0627 in the runtime lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
+
+**Prompt uses:**
+
+- Name `escape analysis` when the prompt needs this obligation made explicit: `escape analysis` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the escape analysis obligation named before work proceeds.
+- Ask the assistant to state the `escape analysis` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `escape analysis` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0628] execution context {#rune-0628}
 
@@ -297,9 +506,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `execution context` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the execution context obligation named before work proceeds.
 
 **Shadow:** misusing `execution context` at rune 0628 in the runtime lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
+
+**Prompt uses:**
+
+- Name `execution context` when the prompt needs this obligation made explicit: `execution context` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the execution context obligation named before work proceeds.
+- Ask the assistant to state the `execution context` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `execution context` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0629] finalizer {#rune-0629}
 
@@ -307,9 +527,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `finalizer` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the finalizer obligation named before work proceeds.
 
 **Shadow:** misusing `finalizer` at rune 0629 in the runtime lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
+
+**Prompt uses:**
+
+- Name `finalizer` when the prompt needs this obligation made explicit: `finalizer` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the finalizer obligation named before work proceeds.
+- Ask the assistant to state the `finalizer` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `finalizer` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0630] frame pointer {#rune-0630}
 
@@ -317,9 +548,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `frame pointer` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the frame pointer obligation named before work proceeds.
 
 **Shadow:** misusing `frame pointer` at rune 0630 in the runtime lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
+
+**Prompt uses:**
+
+- Name `frame pointer` when the prompt needs this obligation made explicit: `frame pointer` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the frame pointer obligation named before work proceeds.
+- Ask the assistant to state the `frame pointer` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `frame pointer` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0631] garbage collection {#rune-0631}
 
@@ -327,9 +569,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** reviewed
+
 **Force:** Automatic reclamation of memory no longer reachable.
 
 **Shadow:** misusing `garbage collection` at rune 0631 in the runtime lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
+
+**Prompt uses:**
+
+- Name `garbage collection` when the prompt needs this obligation made explicit: Automatic reclamation of memory no longer reachable.
+- Ask the assistant to state the `garbage collection` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `garbage collection` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 **Pocket gloss:** Automatic reclamation of memory no longer reachable.
 
@@ -339,9 +592,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `generation` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the generation obligation named before work proceeds.
 
 **Shadow:** misusing `generation` at rune 0632 in the runtime lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
+
+**Prompt uses:**
+
+- Name `generation` when the prompt needs this obligation made explicit: `generation` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the generation obligation named before work proceeds.
+- Ask the assistant to state the `generation` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `generation` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0633] handle {Run} {#rune-0633}
 
@@ -349,9 +613,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `handle` in its Run sense is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the handle obligation named before work proceeds.
 
 **Shadow:** misusing `handle` at rune 0633 in the Run lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
+
+**Prompt uses:**
+
+- Name `handle` when the prompt needs this obligation made explicit: `handle` in its Run sense is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the handle obligation named before work proceeds.
+- Ask the assistant to state the `handle` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `handle` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0634] heap {#rune-0634}
 
@@ -359,9 +634,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** reviewed
+
 **Force:** Region for dynamically allocated objects.
 
 **Shadow:** misusing `heap` at rune 0634 in the runtime lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
+
+**Prompt uses:**
+
+- Name `heap` when the prompt needs this obligation made explicit: Region for dynamically allocated objects.
+- Ask the assistant to state the `heap` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `heap` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 **Pocket gloss:** Region for dynamically allocated objects.
 
@@ -371,9 +657,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `heap object` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the heap object obligation named before work proceeds.
 
 **Shadow:** misusing `heap object` at rune 0635 in the runtime lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
+
+**Prompt uses:**
+
+- Name `heap object` when the prompt needs this obligation made explicit: `heap object` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the heap object obligation named before work proceeds.
+- Ask the assistant to state the `heap object` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `heap object` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0636] hot path {Run} {#rune-0636}
 
@@ -381,9 +678,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** reviewed
+
 **Force:** The path where small inefficiencies burn real time.
 
 **Shadow:** misusing `hot path` at rune 0636 in the Run lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
+
+**Prompt uses:**
+
+- Name `hot path` when the prompt needs this obligation made explicit: The path where small inefficiencies burn real time.
+- Ask the assistant to state the `hot path` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `hot path` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 **Pocket gloss:** The path where small inefficiencies burn real time.
 
@@ -393,9 +701,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `inline cache` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the inline cache obligation named before work proceeds.
 
 **Shadow:** misusing `inline cache` at rune 0637 in the runtime lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
+
+**Prompt uses:**
+
+- Name `inline cache` when the prompt needs this obligation made explicit: `inline cache` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the inline cache obligation named before work proceeds.
+- Ask the assistant to state the `inline cache` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `inline cache` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0638] interpreter loop {#rune-0638}
 
@@ -403,9 +722,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `interpreter loop` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the interpreter loop obligation named before work proceeds.
 
 **Shadow:** misusing `interpreter loop` at rune 0638 in the runtime lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
+
+**Prompt uses:**
+
+- Name `interpreter loop` when the prompt needs this obligation made explicit: `interpreter loop` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the interpreter loop obligation named before work proceeds.
+- Ask the assistant to state the `interpreter loop` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `interpreter loop` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0639] JIT {#rune-0639}
 
@@ -413,9 +743,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `JIT` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the JIT obligation named before work proceeds.
 
 **Shadow:** misusing `JIT` at rune 0639 in the runtime lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
+
+**Prompt uses:**
+
+- Name `JIT` when the prompt needs this obligation made explicit: `JIT` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the JIT obligation named before work proceeds.
+- Ask the assistant to state the `JIT` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `JIT` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0640] layout {Run} {#rune-0640}
 
@@ -423,9 +764,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `layout` in its Run sense is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the layout obligation named before work proceeds.
 
 **Shadow:** misusing `layout` at rune 0640 in the Run lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
+
+**Prompt uses:**
+
+- Name `layout` when the prompt needs this obligation made explicit: `layout` in its Run sense is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the layout obligation named before work proceeds.
+- Ask the assistant to state the `layout` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `layout` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0641] lazy evaluation {#rune-0641}
 
@@ -433,9 +785,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `lazy evaluation` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the lazy evaluation obligation named before work proceeds.
 
 **Shadow:** misusing `lazy evaluation` at rune 0641 in the runtime lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
+
+**Prompt uses:**
+
+- Name `lazy evaluation` when the prompt needs this obligation made explicit: `lazy evaluation` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the lazy evaluation obligation named before work proceeds.
+- Ask the assistant to state the `lazy evaluation` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `lazy evaluation` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0642] leak {Run} {#rune-0642}
 
@@ -443,9 +806,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `leak` in its Run sense is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the leak obligation named before work proceeds.
 
 **Shadow:** misusing `leak` at rune 0642 in the Run lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
+
+**Prompt uses:**
+
+- Name `leak` when the prompt needs this obligation made explicit: `leak` in its Run sense is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the leak obligation named before work proceeds.
+- Ask the assistant to state the `leak` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `leak` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0643] lifetime {Run} {#rune-0643}
 
@@ -453,9 +827,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** reviewed
+
 **Force:** How long a value may legally remain alive.
 
 **Shadow:** misusing `lifetime` at rune 0643 in the Run lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
+
+**Prompt uses:**
+
+- Name `lifetime` when the prompt needs this obligation made explicit: How long a value may legally remain alive.
+- Ask the assistant to state the `lifetime` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `lifetime` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 **Pocket gloss:** How long a value may legally remain alive.
 
@@ -465,9 +850,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `live set` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the live set obligation named before work proceeds.
 
 **Shadow:** misusing `live set` at rune 0644 in the runtime lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
+
+**Prompt uses:**
+
+- Name `live set` when the prompt needs this obligation made explicit: `live set` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the live set obligation named before work proceeds.
+- Ask the assistant to state the `live set` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `live set` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0645] locality {#rune-0645}
 
@@ -475,9 +871,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** reviewed
+
 **Force:** The performance dividend from keeping related data physically close.
 
 **Shadow:** misusing `locality` at rune 0645 in the runtime lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
+
+**Prompt uses:**
+
+- Name `locality` when the prompt needs this obligation made explicit: The performance dividend from keeping related data physically close.
+- Ask the assistant to state the `locality` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `locality` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 **Pocket gloss:** The performance dividend from keeping related data physically close.
 
@@ -487,9 +894,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `lock-free` in its Run sense is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the lock-free obligation named before work proceeds.
 
 **Shadow:** misusing `lock-free` at rune 0646 in the Run lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
+
+**Prompt uses:**
+
+- Name `lock-free` when the prompt needs this obligation made explicit: `lock-free` in its Run sense is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the lock-free obligation named before work proceeds.
+- Ask the assistant to state the `lock-free` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `lock-free` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0647] mark phase {#rune-0647}
 
@@ -497,9 +915,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `mark phase` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the mark phase obligation named before work proceeds.
 
 **Shadow:** misusing `mark phase` at rune 0647 in the runtime lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
+
+**Prompt uses:**
+
+- Name `mark phase` when the prompt needs this obligation made explicit: `mark phase` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the mark phase obligation named before work proceeds.
+- Ask the assistant to state the `mark phase` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `mark phase` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0648] memory {Run} {#rune-0648}
 
@@ -507,9 +936,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `memory` in its Run sense is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the memory obligation named before work proceeds.
 
 **Shadow:** misusing `memory` at rune 0648 in the Run lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
+
+**Prompt uses:**
+
+- Name `memory` when the prompt needs this obligation made explicit: `memory` in its Run sense is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the memory obligation named before work proceeds.
+- Ask the assistant to state the `memory` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `memory` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0649] memory barrier {#rune-0649}
 
@@ -517,9 +957,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** reviewed
+
 **Force:** An ordering fence for memory effects across threads or cores.
 
 **Shadow:** misusing `memory barrier` at rune 0649 in the runtime lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
+
+**Prompt uses:**
+
+- Name `memory barrier` when the prompt needs this obligation made explicit: An ordering fence for memory effects across threads or cores.
+- Ask the assistant to state the `memory barrier` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `memory barrier` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 **Pocket gloss:** An ordering fence for memory effects across threads or cores.
 
@@ -529,9 +980,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `memory map` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the memory map obligation named before work proceeds.
 
 **Shadow:** misusing `memory map` at rune 0650 in the runtime lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
+
+**Prompt uses:**
+
+- Name `memory map` when the prompt needs this obligation made explicit: `memory map` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the memory map obligation named before work proceeds.
+- Ask the assistant to state the `memory map` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `memory map` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0651] memory pool {#rune-0651}
 
@@ -539,9 +1001,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `memory pool` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the memory pool obligation named before work proceeds.
 
 **Shadow:** misusing `memory pool` at rune 0651 in the runtime lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
+
+**Prompt uses:**
+
+- Name `memory pool` when the prompt needs this obligation made explicit: `memory pool` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the memory pool obligation named before work proceeds.
+- Ask the assistant to state the `memory pool` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `memory pool` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0652] memory safety {#rune-0652}
 
@@ -549,9 +1022,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** reviewed
+
 **Force:** Protection against illegal memory access and corruption.
 
 **Shadow:** misusing `memory safety` at rune 0652 in the runtime lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
+
+**Prompt uses:**
+
+- Name `memory safety` when the prompt needs this obligation made explicit: Protection against illegal memory access and corruption.
+- Ask the assistant to state the `memory safety` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `memory safety` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 **Pocket gloss:** Protection against illegal memory access and corruption.
 
@@ -561,9 +1045,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `move semantics` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the move semantics obligation named before work proceeds.
 
 **Shadow:** misusing `move semantics` at rune 0653 in the runtime lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
+
+**Prompt uses:**
+
+- Name `move semantics` when the prompt needs this obligation made explicit: `move semantics` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the move semantics obligation named before work proceeds.
+- Ask the assistant to state the `move semantics` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `move semantics` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0654] object header {#rune-0654}
 
@@ -571,9 +1066,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `object header` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the object header obligation named before work proceeds.
 
 **Shadow:** misusing `object header` at rune 0654 in the runtime lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
+
+**Prompt uses:**
+
+- Name `object header` when the prompt needs this obligation made explicit: `object header` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the object header obligation named before work proceeds.
+- Ask the assistant to state the `object header` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `object header` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0655] page {Run} {#rune-0655}
 
@@ -581,9 +1087,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `page` in its Run sense is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the page obligation named before work proceeds.
 
 **Shadow:** misusing `page` at rune 0655 in the Run lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
+
+**Prompt uses:**
+
+- Name `page` when the prompt needs this obligation made explicit: `page` in its Run sense is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the page obligation named before work proceeds.
+- Ask the assistant to state the `page` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `page` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0656] page fault {#rune-0656}
 
@@ -591,9 +1108,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `page fault` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the page fault obligation named before work proceeds.
 
 **Shadow:** misusing `page fault` at rune 0656 in the runtime lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
+
+**Prompt uses:**
+
+- Name `page fault` when the prompt needs this obligation made explicit: `page fault` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the page fault obligation named before work proceeds.
+- Ask the assistant to state the `page fault` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `page fault` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0657] pinning {#rune-0657}
 
@@ -601,9 +1129,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** reviewed
+
 **Force:** Keep an object fixed in place so other machinery can safely refer to it.
 
 **Shadow:** misusing `pinning` at rune 0657 in the runtime lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
+
+**Prompt uses:**
+
+- Name `pinning` when the prompt needs this obligation made explicit: Keep an object fixed in place so other machinery can safely refer to it.
+- Ask the assistant to state the `pinning` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `pinning` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 **Pocket gloss:** Keep an object fixed in place so other machinery can safely refer to it.
 
@@ -613,9 +1152,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `pointer` in its Run sense is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the pointer obligation named before work proceeds.
 
 **Shadow:** misusing `pointer` at rune 0658 in the Run lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
+
+**Prompt uses:**
+
+- Name `pointer` when the prompt needs this obligation made explicit: `pointer` in its Run sense is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the pointer obligation named before work proceeds.
+- Ask the assistant to state the `pointer` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `pointer` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0659] pool allocator {#rune-0659}
 
@@ -623,9 +1173,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `pool allocator` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the pool allocator obligation named before work proceeds.
 
 **Shadow:** misusing `pool allocator` at rune 0659 in the runtime lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
+
+**Prompt uses:**
+
+- Name `pool allocator` when the prompt needs this obligation made explicit: `pool allocator` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the pool allocator obligation named before work proceeds.
+- Ask the assistant to state the `pool allocator` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `pool allocator` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0660] prefetch {#rune-0660}
 
@@ -633,9 +1194,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `prefetch` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the prefetch obligation named before work proceeds.
 
 **Shadow:** misusing `prefetch` at rune 0660 in the runtime lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
+
+**Prompt uses:**
+
+- Name `prefetch` when the prompt needs this obligation made explicit: `prefetch` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the prefetch obligation named before work proceeds.
+- Ask the assistant to state the `prefetch` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `prefetch` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0661] quiescence {#rune-0661}
 
@@ -643,9 +1215,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `quiescence` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the quiescence obligation named before work proceeds.
 
 **Shadow:** misusing `quiescence` at rune 0661 in the runtime lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
+
+**Prompt uses:**
+
+- Name `quiescence` when the prompt needs this obligation made explicit: `quiescence` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the quiescence obligation named before work proceeds.
+- Ask the assistant to state the `quiescence` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `quiescence` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0662] reclaim {#rune-0662}
 
@@ -653,9 +1236,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `reclaim` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the reclaim obligation named before work proceeds.
 
 **Shadow:** misusing `reclaim` at rune 0662 in the runtime lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
+
+**Prompt uses:**
+
+- Name `reclaim` when the prompt needs this obligation made explicit: `reclaim` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the reclaim obligation named before work proceeds.
+- Ask the assistant to state the `reclaim` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `reclaim` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0663] reference count {#rune-0663}
 
@@ -663,9 +1257,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** reviewed
+
 **Force:** Ownership tracked by counting how many references remain.
 
 **Shadow:** misusing `reference count` at rune 0663 in the runtime lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
+
+**Prompt uses:**
+
+- Name `reference count` when the prompt needs this obligation made explicit: Ownership tracked by counting how many references remain.
+- Ask the assistant to state the `reference count` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `reference count` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 **Pocket gloss:** Ownership tracked by counting how many references remain.
 
@@ -675,9 +1280,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `register allocation` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the register allocation obligation named before work proceeds.
 
 **Shadow:** misusing `register allocation` at rune 0664 in the runtime lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
+
+**Prompt uses:**
+
+- Name `register allocation` when the prompt needs this obligation made explicit: `register allocation` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the register allocation obligation named before work proceeds.
+- Ask the assistant to state the `register allocation` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `register allocation` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0665] root set {#rune-0665}
 
@@ -685,9 +1301,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `root set` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the root set obligation named before work proceeds.
 
 **Shadow:** misusing `root set` at rune 0665 in the runtime lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
+
+**Prompt uses:**
+
+- Name `root set` when the prompt needs this obligation made explicit: `root set` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the root set obligation named before work proceeds.
+- Ask the assistant to state the `root set` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `root set` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0666] runtime {#rune-0666}
 
@@ -695,9 +1322,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `runtime` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the runtime obligation named before work proceeds.
 
 **Shadow:** misusing `runtime` at rune 0666 in the runtime lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
+
+**Prompt uses:**
+
+- Name `runtime` when the prompt needs this obligation made explicit: `runtime` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the runtime obligation named before work proceeds.
+- Ask the assistant to state the `runtime` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `runtime` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0667] sandbox {Run} {#rune-0667}
 
@@ -705,9 +1343,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `sandbox` in its Run sense is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the sandbox obligation named before work proceeds.
 
 **Shadow:** misusing `sandbox` at rune 0667 in the Run lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
+
+**Prompt uses:**
+
+- Name `sandbox` when the prompt needs this obligation made explicit: `sandbox` in its Run sense is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the sandbox obligation named before work proceeds.
+- Ask the assistant to state the `sandbox` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `sandbox` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0668] shadow stack {#rune-0668}
 
@@ -715,9 +1364,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `shadow stack` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the shadow stack obligation named before work proceeds.
 
 **Shadow:** misusing `shadow stack` at rune 0668 in the runtime lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
+
+**Prompt uses:**
+
+- Name `shadow stack` when the prompt needs this obligation made explicit: `shadow stack` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the shadow stack obligation named before work proceeds.
+- Ask the assistant to state the `shadow stack` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `shadow stack` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0669] slab allocator {#rune-0669}
 
@@ -725,9 +1385,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `slab allocator` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the slab allocator obligation named before work proceeds.
 
 **Shadow:** misusing `slab allocator` at rune 0669 in the runtime lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
+
+**Prompt uses:**
+
+- Name `slab allocator` when the prompt needs this obligation made explicit: `slab allocator` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the slab allocator obligation named before work proceeds.
+- Ask the assistant to state the `slab allocator` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `slab allocator` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0670] stack {Run} {#rune-0670}
 
@@ -735,9 +1406,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** reviewed
+
 **Force:** Region for call frames and short-lived local state.
 
 **Shadow:** misusing `stack` at rune 0670 in the Run lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
+
+**Prompt uses:**
+
+- Name `stack` when the prompt needs this obligation made explicit: Region for call frames and short-lived local state.
+- Ask the assistant to state the `stack` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `stack` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 **Pocket gloss:** Region for call frames and short-lived local state.
 
@@ -747,9 +1429,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `stack frame` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the stack frame obligation named before work proceeds.
 
 **Shadow:** misusing `stack frame` at rune 0671 in the runtime lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
+
+**Prompt uses:**
+
+- Name `stack frame` when the prompt needs this obligation made explicit: `stack frame` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the stack frame obligation named before work proceeds.
+- Ask the assistant to state the `stack frame` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `stack frame` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0672] stop-the-world {#rune-0672}
 
@@ -757,9 +1450,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `stop-the-world` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the stop-the-world obligation named before work proceeds.
 
 **Shadow:** misusing `stop-the-world` at rune 0672 in the runtime lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
+
+**Prompt uses:**
+
+- Name `stop-the-world` when the prompt needs this obligation made explicit: `stop-the-world` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the stop-the-world obligation named before work proceeds.
+- Ask the assistant to state the `stop-the-world` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `stop-the-world` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0673] sweep phase {#rune-0673}
 
@@ -767,9 +1471,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `sweep phase` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the sweep phase obligation named before work proceeds.
 
 **Shadow:** misusing `sweep phase` at rune 0673 in the runtime lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
+
+**Prompt uses:**
+
+- Name `sweep phase` when the prompt needs this obligation made explicit: `sweep phase` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the sweep phase obligation named before work proceeds.
+- Ask the assistant to state the `sweep phase` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `sweep phase` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0674] tail call {#rune-0674}
 
@@ -777,9 +1492,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `tail call` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the tail call obligation named before work proceeds.
 
 **Shadow:** misusing `tail call` at rune 0674 in the runtime lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
+
+**Prompt uses:**
+
+- Name `tail call` when the prompt needs this obligation made explicit: `tail call` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the tail call obligation named before work proceeds.
+- Ask the assistant to state the `tail call` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `tail call` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0675] thread-local storage {#rune-0675}
 
@@ -787,9 +1513,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `thread-local storage` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the thread-local storage obligation named before work proceeds.
 
 **Shadow:** misusing `thread-local storage` at rune 0675 in the runtime lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
+
+**Prompt uses:**
+
+- Name `thread-local storage` when the prompt needs this obligation made explicit: `thread-local storage` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the thread-local storage obligation named before work proceeds.
+- Ask the assistant to state the `thread-local storage` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `thread-local storage` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0676] TLB {#rune-0676}
 
@@ -797,9 +1534,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `TLB` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the TLB obligation named before work proceeds.
 
 **Shadow:** misusing `TLB` at rune 0676 in the runtime lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
+
+**Prompt uses:**
+
+- Name `TLB` when the prompt needs this obligation made explicit: `TLB` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the TLB obligation named before work proceeds.
+- Ask the assistant to state the `TLB` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `TLB` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0677] tracing collector {#rune-0677}
 
@@ -807,9 +1555,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `tracing collector` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the tracing collector obligation named before work proceeds.
 
 **Shadow:** misusing `tracing collector` at rune 0677 in the runtime lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
+
+**Prompt uses:**
+
+- Name `tracing collector` when the prompt needs this obligation made explicit: `tracing collector` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the tracing collector obligation named before work proceeds.
+- Ask the assistant to state the `tracing collector` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `tracing collector` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0678] unbox {#rune-0678}
 
@@ -817,9 +1576,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `unbox` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the unbox obligation named before work proceeds.
 
 **Shadow:** misusing `unbox` at rune 0678 in the runtime lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
+
+**Prompt uses:**
+
+- Name `unbox` when the prompt needs this obligation made explicit: `unbox` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the unbox obligation named before work proceeds.
+- Ask the assistant to state the `unbox` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `unbox` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0679] user heap {#rune-0679}
 
@@ -827,9 +1597,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `user heap` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the user heap obligation named before work proceeds.
 
 **Shadow:** misusing `user heap` at rune 0679 in the runtime lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
+
+**Prompt uses:**
+
+- Name `user heap` when the prompt needs this obligation made explicit: `user heap` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the user heap obligation named before work proceeds.
+- Ask the assistant to state the `user heap` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `user heap` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0680] virtual memory {#rune-0680}
 
@@ -837,9 +1618,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `virtual memory` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the virtual memory obligation named before work proceeds.
 
 **Shadow:** misusing `virtual memory` at rune 0680 in the runtime lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
+
+**Prompt uses:**
+
+- Name `virtual memory` when the prompt needs this obligation made explicit: `virtual memory` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the virtual memory obligation named before work proceeds.
+- Ask the assistant to state the `virtual memory` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `virtual memory` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0681] VM {#rune-0681}
 
@@ -847,9 +1639,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `VM` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the VM obligation named before work proceeds.
 
 **Shadow:** misusing `VM` at rune 0681 in the runtime lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
+
+**Prompt uses:**
+
+- Name `VM` when the prompt needs this obligation made explicit: `VM` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the VM obligation named before work proceeds.
+- Ask the assistant to state the `VM` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `VM` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0682] wait-free {Run} {#rune-0682}
 
@@ -857,9 +1660,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `wait-free` in its Run sense is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the wait-free obligation named before work proceeds.
 
 **Shadow:** misusing `wait-free` at rune 0682 in the Run lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
+
+**Prompt uses:**
+
+- Name `wait-free` when the prompt needs this obligation made explicit: `wait-free` in its Run sense is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the wait-free obligation named before work proceeds.
+- Ask the assistant to state the `wait-free` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `wait-free` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0683] write barrier {#rune-0683}
 
@@ -867,9 +1681,20 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** generated_draft
+
 **Force:** `write barrier` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the write barrier obligation named before work proceeds.
 
 **Shadow:** misusing `write barrier` at rune 0683 in the runtime lane can let runtime convenience can hide contention, stale state, or leaks; verify by requiring the caster to state lifetime, ownership, concurrency, and resource boundaries.
+
+**Prompt uses:**
+
+- Name `write barrier` when the prompt needs this obligation made explicit: `write barrier` is a runtime and memory rune for expose allocation, lifetime, scheduling, and execution costs; use it when the artifact needs the write barrier obligation named before work proceeds.
+- Ask the assistant to state the `write barrier` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `write barrier` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 ### [0684] zero-copy {Run} {#rune-0684}
 
@@ -877,8 +1702,19 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Completion:** authored
 
+**Semantic status:** reviewed
+
 **Force:** Data movement stripped down to the minimum number of duplications. Use it when the bottleneck is physical movement rather than arithmetic.
 
 **Shadow:** when avoiding copies transfers lifetime and mutation hazards to the caller.
+
+**Prompt uses:**
+
+- Name `zero-copy` when the prompt needs this obligation made explicit: Data movement stripped down to the minimum number of duplications. Use it when the bottleneck is physical movement rather than arithmetic.
+- Ask the assistant to state the `zero-copy` shadow before proposing changes.
+
+**Example clause:**
+
+Before editing, state the `zero-copy` obligation, the evidence that satisfies it, and the failure mode if it is missing.
 
 **Pocket gloss:** Move data without making redundant copies.

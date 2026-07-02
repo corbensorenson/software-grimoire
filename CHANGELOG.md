@@ -1,5 +1,29 @@
 # Changelog
 
+## v2.1.0-roadmap-completion
+
+- Added semantic canon status for all 1,645 lexicon entries, including
+  reviewed/canonical quality gates, prompt-use guidance, examples, and
+  generated-template reporting in `data/canon_quality.json`.
+- Added Bench v2 contracts: declared surfaces, deterministic check cards,
+  manual import template, `scripts/run_bench.py`, and `grimoire bench import`.
+- Added Adversarial Harness v2 with local read-only checks for simulated tool
+  mediation, retrieval taint, multi-turn scope creep, long-context drift,
+  canary redaction, and overrefusal.
+- Added package-grade export artifacts: `exports/library-manifest.json`,
+  `exports/checksums.sha256`, deterministic release bundles, dry-run-first
+  asset installer, and editable Python package metadata.
+- Split generator responsibility contracts into `scripts/grimoire_build/` and
+  added deterministic generation tests for core data, exports, and bundles.
+- Added generated visual review diagrams, visual grammar page, and task chooser
+  so users can move from real work to a spell, stack, and verification path.
+- Added adoption evidence scaffolding with project-owned dogfood reports,
+  external/reviewer provenance policy, adoption report template, and GitHub
+  issue templates for adoption evidence and canon corrections.
+- Hardened CI to run data validation, the adversarial harness, bench import
+  validation, Quarto render, and pytest before publishing.
+- Rendered site size is now 95 Quarto pages.
+
 ## v1.4.0-jailbreak-resilience
 
 - Added a defensive adversarial-promptcraft chapter covering jailbreaks,

@@ -35,6 +35,12 @@ jobs:
       - name: Validate data
         run: python scripts/validate_data.py
 
+      - name: Run adversarial harness
+        run: python scripts/run_adversarial_harness.py
+
+      - name: Validate bench import contract
+        run: python scripts/run_bench.py import examples/evaluations/manual-import-template.json
+
       - name: Render site
         run: quarto render
 

@@ -139,6 +139,10 @@ def main(argv: list[str] | None = None) -> int:
     new_spell.add_argument("path", nargs="?", help="optional output path")
     export_parser = sub.add_parser("export", help="list generated installable exports")
     export_parser.add_argument("--target", choices=["all", "markdown", "codex", "cursor"], default="all")
+    bench_parser = sub.add_parser("bench", help="bench utilities")
+    bench_sub = bench_parser.add_subparsers(dest="bench_command", required=True)
+    bench_import = bench_sub.add_parser("import", help="validate a manual benchmark import record")
+    bench_import.add_argument("path", help="manual import JSON path")
     sub.add_parser("seals", help="regenerate seal summary data")
     sub.add_parser("render", help="render the Quarto site")
     sub.add_parser("test", help="run repository tests")
@@ -159,6 +163,10 @@ def main(argv: list[str] | None = None) -> int:
         return 2
     if args.command == "export":
         return export_assets(args.target)
+    if args.command == "bench":
+        if args.bench_command == "import":
+            return run([sys.executable, "scripts/run_bench.py", "import", args.path])
+        return 2
     if args.command == "seals":
         return run([sys.executable, "scripts/generate_seals.py"])
     if args.command == "render":

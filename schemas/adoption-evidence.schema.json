@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Software Grimoire Adoption Evidence",
+  "type": "object",
+  "required": ["version", "policy", "report_template", "reports", "external_status"],
+  "properties": {
+    "version": {"type": "string", "minLength": 1},
+    "policy": {"type": "string", "minLength": 1},
+    "report_template": {
+      "type": "object",
+      "required": ["required_fields", "provenance_values"],
+      "properties": {
+        "required_fields": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"type": "string", "minLength": 1}
+        },
+        "provenance_values": {
+          "type": "array",
+          "minItems": 3,
+          "items": {"enum": ["project-owned", "reviewer-supplied", "external-user"]}
+        }
+      },
+      "additionalProperties": false
+    },
+    "reports": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "title",
+          "provenance",
+          "task",
+          "spell_or_stack_used",
+          "surface",
+          "artifact_produced",
+          "verification_performed",
+          "time_cost",
+          "failure_or_friction",
+          "reuse_decision"
+        ],
+        "properties": {
+          "id": {"type": "string", "minLength": 1},
+          "title": {"type": "string", "minLength": 1},
+          "provenance": {"enum": ["project-owned", "reviewer-supplied", "external-user"]},
+          "task": {"type": "string", "minLength": 1},
+          "spell_or_stack_used": {"type": "string", "minLength": 1},
+          "surface": {"type": "string", "minLength": 1},
+          "artifact_produced": {"type": "string", "minLength": 1},
+          "verification_performed": {"type": "string", "minLength": 1},
+          "time_cost": {"type": "string", "minLength": 1},
+          "failure_or_friction": {"type": "string", "minLength": 1},
+          "reuse_decision": {"type": "string", "minLength": 1}
+        },
+        "additionalProperties": false
+      }
+    },
+    "external_status": {
+      "type": "object",
+      "required": ["external_reports_published", "reviewer_supplied_runs_imported", "policy", "next_request"],
+      "properties": {
+        "external_reports_published": {"type": "integer", "minimum": 0},
+        "reviewer_supplied_runs_imported": {"type": "integer", "minimum": 0},
+        "policy": {"type": "string", "minLength": 1},
+        "next_request": {"type": "string", "minLength": 1}
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

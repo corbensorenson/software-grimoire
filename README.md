@@ -6,17 +6,18 @@
 Operative vocabulary, prompt-spells, and stackcraft for AI-assisted software
 engineering.
 
-This repository is the v1.4 defensive-roadmap release of the Software Grimoire: a
-public Quarto site, structured reference canon, reusable spell and stack
-templates, measured evaluation bench, jailbreak-resilience bench, installable
-prompt/rule exports, and local validation tooling. The core claim is practical:
-better language produces better software work when it names the artifact,
-invariant, output contract, verification method, failure behavior, and trust
-boundary clearly enough to inspect.
+This repository is the v2.1 roadmap-completion release of the Software
+Grimoire: a public Quarto site, structured reference canon, reusable spell and
+stack templates, measured evaluation bench, jailbreak-resilience harness,
+installable prompt/rule exports, package manifests, visual review instruments,
+and local validation tooling. The core claim is practical: better language
+produces better software work when it names the artifact, invariant, output
+contract, verification method, failure behavior, and trust boundary clearly
+enough to inspect.
 
 ## Current Status
 
-This is the public v1.4 release generated from the three source DOCX
+This is the public v2.1 release generated from the three source DOCX
 manuscripts in `source_docs/` and their Markdown extracts in
 `source_extracts/`.
 
@@ -30,25 +31,36 @@ Implemented:
   major canon, 300-entry pocket canon, seven canonical spells, seven worked
   stacks, and the jailbreak-resilience source map/case set.
 - Full lexicon completion metadata: all 1,645 entries authored, 0 stubs,
-  1,645 unique summaries, 1,645 unique shadows, and overloaded terms with real
-  senses.
-- Canon-quality report for authored summaries, shadows, sense disambiguators,
-  overloaded terms, and reviewed major-canon shadows.
+  1,645 unique summaries, 1,645 unique shadows, overloaded terms with real
+  senses, and explicit semantic status.
+- Canon-quality report for authored summaries, semantic review status,
+  generated-template counts, shadows, sense disambiguators, overloaded terms,
+  reviewed major-canon shadows, prompt-use guidance, and examples.
 - Stable rune anchors, term index, canon map, and generated cross-links between
   chapters, spells, stacks, and lexicon entries.
 - Generated spell, stack, Proof by Difference, recorded evaluation, adoption,
-  and reference pages.
+  visual grammar, task chooser, and reference pages.
+- Bench v2 surface contract, deterministic scoring notes, manual import
+  template, and `grimoire bench import` validation.
 - Codex-owned measured weak-vs-repaired evaluation runs for all six field
   spells: executable fixtures, planted ground truth, outcome scores, structural
   scores, and three repetitions per variant.
 - Defensive jailbreak-resilience layer: adversarial promptcraft chapter,
   source-mapped reference page, warded spell fields, AI red-team loop, eight
   harmless fixtures, and 24 preserved Codex-owned bench runs.
+- Adversarial harness v2 for simulated tool mediation, retrieval taint,
+  multi-turn scope creep, long-context drift, canary redaction, and overrefusal.
 - Raw prompt assets in `prompts/` for the seven spells and seven stack
   workflows.
 - Installable generated exports in `exports/` for Markdown, Codex task
-  templates, Cursor rules, and stack workflows.
+  templates, Cursor rules, and stack workflows, with library manifest,
+  checksums, release bundles, and a dry-run-first installer.
+- Python packaging metadata for editable local use of `grimoire`,
+  `grimoire-install-assets`, `grimoire-run-bench`, and
+  `grimoire-run-adversarial-harness`.
 - Release-gate stack dogfood record tied to the public GitHub Pages workflow.
+- Project-owned adoption evidence records, adoption report template, and public
+  GitHub issue templates for adoption evidence and canon corrections.
 - JSON schemas, validation tooling, seal-stability tests, and rendered
   internal-link audit.
 - Working seal generation for spells and stacks, plus a local CLI for
@@ -76,12 +88,15 @@ python3 scripts/grimoire.py new spell /tmp/my-spell.json
 python3 scripts/grimoire.py validate /tmp/my-spell.json
 python3 scripts/grimoire.py seal /tmp/my-spell.json
 python3 scripts/grimoire.py export --target cursor
+python3 scripts/grimoire.py bench import examples/evaluations/manual-import-template.json
+python3 scripts/install_assets.py --target cursor --dest /tmp/grimoire-assets
+python3 scripts/install_assets.py --target cursor --dest /tmp/grimoire-assets --write
 python3 scripts/grimoire.py all
 ```
 
 The generated site is written to `_site/`.
 
-Current render size: 89 Quarto pages.
+Current render size: 95 Quarto pages.
 
 ## Repository Map
 
@@ -92,6 +107,7 @@ Current render size: 89 Quarto pages.
 - `prompts/`: raw spell and stack assets for use in AI tools and prompt
   registries.
 - `exports/`: generated installable Markdown, Codex, Cursor, and stack assets.
+- `assets/diagrams/generated/`: generated visual review diagrams.
 - `data/`: structured canon data.
 - `schemas/`: JSON schemas for validation.
 - `scripts/`: ingestion, generation, validation, and seal tooling.

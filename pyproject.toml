@@ -1,0 +1,45 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "software-grimoire"
+version = "2.1.0"
+description = "Operative vocabulary, prompt-spells, and stackcraft for AI-assisted software engineering."
+readme = "README.md"
+requires-python = ">=3.9"
+license = {text = "MIT"}
+authors = [
+  {name = "Corben Sorenson"}
+]
+dependencies = [
+  "jsonschema>=4.0"
+]
+
+[project.urls]
+Homepage = "https://corbensorenson.github.io/software-grimoire/"
+Repository = "https://github.com/corbensorenson/software-grimoire"
+Issues = "https://github.com/corbensorenson/software-grimoire/issues"
+
+[project.scripts]
+grimoire = "grimoire:main"
+grimoire-install-assets = "install_assets:main"
+grimoire-run-bench = "run_bench:main"
+grimoire-run-adversarial-harness = "run_adversarial_harness:main"
+
+[tool.setuptools]
+package-dir = {"" = "scripts"}
+py-modules = [
+  "bootstrap_project",
+  "generate_seals",
+  "grimoire",
+  "install_assets",
+  "run_adversarial_harness",
+  "run_bench",
+  "sync_scaffold",
+  "validate_data"
+]
+
+[tool.setuptools.packages.find]
+where = ["scripts"]
+include = ["grimoire_build*"]

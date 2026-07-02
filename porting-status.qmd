@@ -8,11 +8,11 @@ The grimoire source corpus has been ported into the public Quarto site and repos
 
 | Source | Ported form | Status |
 |---|---|---|
-| `software_magic_grimoire_v3_public_release.docx` | Main book chapters, public canon, full lexicon data, generated reference pages | Ported; full lexicon authored |
+| `software_magic_grimoire_v3_public_release.docx` | Main book chapters, public canon, full lexicon data, generated reference pages | Ported; full lexicon structurally authored; semantic review in progress |
 | `pocket_grimoire_software_spellcraft_final.docx` | Pocket field guide, 300-rune pocket canon, quick-reference pages | Ported |
 | `software_spellcraft_addendum_on_stacked_spells.docx` | Stackcraft chapter, stack grammar, six generated stack pages | Ported |
 
-The first public seed was a complete structural port. The reader-linking pass improved the reading layer: guided paths, rune anchors, term index links, spell-to-rune links, stack-to-spell links, and canon maps. The full-canon pass finishes the master lexicon instead of leaving generated boilerplate stubs.
+The first public seed was a complete structural port. The reader-linking pass improved the reading layer: guided paths, rune anchors, term index links, spell-to-rune links, stack-to-spell links, and canon maps. The full-canon pass removed explicit stubs. The semantic-canon pass now separates reviewed vocabulary from generated-draft long-tail entries.
 
 ## Lexicon Completion
 
@@ -22,6 +22,15 @@ The master lexicon currently has `1645` authored entries and `0` stub entries.
 | -------- | ----- |
 | authored | 1645  |
 
+## Semantic Review
+
+Structural completion means the record has required fields. Semantic review means the force, shadow, example, and prompt-use guidance have been reviewed as real operative vocabulary.
+
+| Semantic Status | Count |
+| --------------- | ----- |
+| reviewed        | 300   |
+| generated_draft | 1345  |
+
 ## Authored-Layer Quality
 
 | Measure                            | Value   |
@@ -30,6 +39,11 @@ The master lexicon currently has `1645` authored entries and `0` stub entries.
 | Stub entries                       | 0       |
 | Authored unique summaries          | 1645    |
 | Authored unique shadows            | 1645    |
+| Semantic generated drafts          | 1345    |
+| Semantic reviewed entries          | 300     |
+| Generated-template summaries       | 1345    |
+| Reviewed entries with prompt uses  | 300     |
+| Reviewed entries with examples     | 300     |
 | Doubled shadow labels              | 0       |
 | Major-canon reviewed shadows       | 50/50   |
 | Major-canon unique shadows         | 50      |
@@ -37,26 +51,26 @@ The master lexicon currently has `1645` authored entries and `0` stub entries.
 
 ## Completion by House
 
-| House                                                          | Authored | Stub | Needs Shadow | Needs Sense |
-| -------------------------------------------------------------- | -------- | ---- | ------------ | ----------- |
-| Architecture, Abstraction, and Design                          | 112      | 0    | 0            | 0           |
-| Language, Semantics, and Formal Shape                          | 137      | 0    | 0            | 0           |
-| Data, State, and Representation                                | 122      | 0    | 0            | 0           |
-| Transformation, Algorithms, and Working Verbs                  | 140      | 0    | 0            | 0           |
-| Control Flow, Coordination, and Temporal Logic                 | 97       | 0    | 0            | 0           |
-| Runtime, Memory, and Execution                                 | 76       | 0    | 0            | 0           |
-| Systems Programming and Operating-System Words                 | 86       | 0    | 0            | 0           |
-| Networking and Distributed Systems                             | 116      | 0    | 0            | 0           |
-| Databases, Persistence, and Time-Binding Words                 | 82       | 0    | 0            | 0           |
-| Security, Trust, and Warding Words                             | 95       | 0    | 0            | 0           |
-| Build, Tooling, Versioning, and Release                        | 76       | 0    | 0            | 0           |
-| Testing, Verification, and Observability                       | 71       | 0    | 0            | 0           |
-| Hardware, Embedded, and Performance-Near Words                 | 80       | 0    | 0            | 0           |
-| Interface, UX, and Human-Facing Words                          | 60       | 0    | 0            | 0           |
-| Promptcraft, AI-Oriented Engineering, and Spell Structure      | 70       | 0    | 0            | 0           |
-| Guarantee Words, Quality Attributes, and Behavioral Adjectives | 92       | 0    | 0            | 0           |
-| Failure Words, Pathologies, and Counter-Spells                 | 70       | 0    | 0            | 0           |
-| Compound Forms, Prefixes, Suffixes, and Naming Runes           | 63       | 0    | 0            | 0           |
+| House                                                          | Authored | Generated Draft | Reviewed | Canonical |
+| -------------------------------------------------------------- | -------- | --------------- | -------- | --------- |
+| Architecture, Abstraction, and Design                          | 112      | 91              | 21       | 0         |
+| Language, Semantics, and Formal Shape                          | 137      | 119             | 18       | 0         |
+| Data, State, and Representation                                | 122      | 104             | 18       | 0         |
+| Transformation, Algorithms, and Working Verbs                  | 140      | 120             | 20       | 0         |
+| Control Flow, Coordination, and Temporal Logic                 | 97       | 79              | 18       | 0         |
+| Runtime, Memory, and Execution                                 | 76       | 62              | 14       | 0         |
+| Systems Programming and Operating-System Words                 | 86       | 74              | 12       | 0         |
+| Networking and Distributed Systems                             | 116      | 96              | 20       | 0         |
+| Databases, Persistence, and Time-Binding Words                 | 82       | 66              | 16       | 0         |
+| Security, Trust, and Warding Words                             | 95       | 77              | 18       | 0         |
+| Build, Tooling, Versioning, and Release                        | 76       | 60              | 16       | 0         |
+| Testing, Verification, and Observability                       | 71       | 55              | 16       | 0         |
+| Hardware, Embedded, and Performance-Near Words                 | 80       | 66              | 14       | 0         |
+| Interface, UX, and Human-Facing Words                          | 60       | 50              | 10       | 0         |
+| Promptcraft, AI-Oriented Engineering, and Spell Structure      | 70       | 56              | 14       | 0         |
+| Guarantee Words, Quality Attributes, and Behavioral Adjectives | 92       | 73              | 19       | 0         |
+| Failure Words, Pathologies, and Counter-Spells                 | 70       | 50              | 20       | 0         |
+| Compound Forms, Prefixes, Suffixes, and Naming Runes           | 63       | 47              | 16       | 0         |
 
 ## What Counts As Complete
 
