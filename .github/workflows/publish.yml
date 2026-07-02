@@ -6,9 +6,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
-  pages: write
-  id-token: write
+  contents: write
 
 concurrency:
   group: pages
@@ -71,35 +69,20 @@ jobs:
       - name: Test generated site and data
         run: python -m pytest
 
-      - uses: actions/configure-pages@v6
-
-      - name: Archive Pages artifact
-        shell: sh
+      - name: Publish site branch
+        if: github.ref == 'refs/heads/main'
+        shell: bash
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
         run: |
-          tar \
-            --dereference --hard-dereference \
-            --directory "_site" \
-            -cvf "$RUNNER_TEMP/artifact.tar" \
-            --exclude=.git \
-            --exclude=.github \
-            --exclude=".[^/]*" \
-            .
-
-      - uses: actions/upload-artifact@v6
-        with:
-          name: github-pages
-          path: ${{ runner.temp }}/artifact.tar
-          retention-days: 1
-          if-no-files-found: error
-
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - id: deployment
-        uses: actions/deploy-pages@v5
-        with:
-          timeout: 1800000
+          set -euo pipefail
+          publish_dir="$RUNNER_TEMP/software-grimoire-gh-pages"
+          rm -rf "$publish_dir"
+          git init --initial-branch=gh-pages "$publish_dir"
+          git -C "$publish_dir" config user.name "github-actions[bot]"
+          git -C "$publish_dir" config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          rsync -a --delete "_site/" "$publish_dir/"
+          touch "$publish_dir/.nojekyll"
+          git -C "$publish_dir" add -A
+          git -C "$publish_dir" commit -m "Publish site for ${GITHUB_SHA}"
+          git -C "$publish_dir" push --force "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" gh-pages
