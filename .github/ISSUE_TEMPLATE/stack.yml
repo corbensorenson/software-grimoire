@@ -1,0 +1,38 @@
+name: Stack proposal
+description: Propose a reusable spell stack.
+title: "[stack] "
+labels: ["stack", "workflow"]
+body:
+  - type: input
+    id: title
+    attributes:
+      label: Stack title
+    validations:
+      required: true
+  - type: textarea
+    id: entry
+    attributes:
+      label: Entry condition
+    validations:
+      required: true
+  - type: textarea
+    id: frames
+    attributes:
+      label: Frames and handoff artifacts
+      description: List each frame, emitted artifact, and advance rule.
+    validations:
+      required: true
+  - type: textarea
+    id: loop_or_recursion
+    attributes:
+      label: Loop or recursion rules
+      description: Include exit condition, attempt budget, or base case.
+    validations:
+      required: true
+  - type: textarea
+    id: recovery
+    attributes:
+      label: Recovery path
+    validations:
+      required: true
+

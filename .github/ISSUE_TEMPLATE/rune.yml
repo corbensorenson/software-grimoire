@@ -1,0 +1,41 @@
+name: Rune proposal
+description: Propose a new rune or a correction to an existing rune.
+title: "[rune] "
+labels: ["rune", "canon"]
+body:
+  - type: input
+    id: term
+    attributes:
+      label: Term
+      description: The proposed word or word-sense.
+    validations:
+      required: true
+  - type: input
+    id: house
+    attributes:
+      label: House
+      description: Which lexicon house should own this word-sense?
+    validations:
+      required: true
+  - type: textarea
+    id: force
+    attributes:
+      label: Force
+      description: What operational work does this word do?
+    validations:
+      required: true
+  - type: textarea
+    id: shadow
+    attributes:
+      label: Shadow
+      description: What failure mode does this word imply or invite?
+    validations:
+      required: true
+  - type: textarea
+    id: example
+    attributes:
+      label: Example
+      description: Show a prompt, review note, API contract, incident note, or code context where the word matters.
+    validations:
+      required: true
+

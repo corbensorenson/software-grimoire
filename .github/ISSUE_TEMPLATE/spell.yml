@@ -1,0 +1,46 @@
+name: Spell proposal
+description: Propose a reusable spell template.
+title: "[spell] "
+labels: ["spell", "template"]
+body:
+  - type: input
+    id: title
+    attributes:
+      label: Spell title
+    validations:
+      required: true
+  - type: dropdown
+    id: cast_level
+    attributes:
+      label: Cast level
+      options:
+        - quick
+        - working
+        - full
+    validations:
+      required: true
+  - type: textarea
+    id: objective
+    attributes:
+      label: Objective
+    validations:
+      required: true
+  - type: textarea
+    id: output_contract
+    attributes:
+      label: Output contract
+    validations:
+      required: true
+  - type: textarea
+    id: verification
+    attributes:
+      label: Verification
+    validations:
+      required: true
+  - type: textarea
+    id: failure_behavior
+    attributes:
+      label: Failure behavior
+    validations:
+      required: true
+

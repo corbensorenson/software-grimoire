@@ -41,6 +41,8 @@ make generate
 make validate
 make render
 make all
+python3 scripts/grimoire.py validate
+python3 scripts/grimoire.py seals
 ```
 
 The generated site is written to `_site/`.
@@ -56,6 +58,7 @@ The generated site is written to `_site/`.
 - `scripts/`: ingestion, generation, validation, and seal tooling.
 - `source_docs/`: original DOCX source manuscripts.
 - `source_extracts/`: Markdown extracts used by the ingestion pipeline.
+- `examples/`: weak-vs-repaired cases and evaluation scaffolds.
 
 ## Public Site
 
@@ -67,4 +70,3 @@ The intended public site URL is:
 
 Content and code are released under the MIT License unless a future release
 splits code/content licensing more narrowly.
-
