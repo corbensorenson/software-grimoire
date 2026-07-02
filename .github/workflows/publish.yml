@@ -81,11 +81,11 @@ jobs:
           publish_dir="$RUNNER_TEMP/software-grimoire-gh-pages"
           rm -rf "$publish_dir"
           mkdir -p "$publish_dir"
+          rsync -a --delete "_site/" "$publish_dir/"
+          touch "$publish_dir/.nojekyll"
           git -C "$publish_dir" init --initial-branch=gh-pages
           git -C "$publish_dir" config user.name "github-actions[bot]"
           git -C "$publish_dir" config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          rsync -a --delete "_site/" "$publish_dir/"
-          touch "$publish_dir/.nojekyll"
           git -C "$publish_dir" add -A
           git -C "$publish_dir" commit -m "Publish site for ${GITHUB_SHA}"
           git -C "$publish_dir" push --force "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" gh-pages
