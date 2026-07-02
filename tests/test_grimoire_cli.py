@@ -15,6 +15,14 @@ CLI = ROOT / "scripts" / "grimoire.py"
 SCRATCH = ROOT / "tmp" / "tests" / "grimoire-cli"
 
 
+def remove_scratch(path: Path) -> None:
+    shutil.rmtree(path, ignore_errors=True)
+    try:
+        path.parent.rmdir()
+    except OSError:
+        pass
+
+
 def run_cli(*args: str) -> subprocess.CompletedProcess[str]:
     return subprocess.run(
         [sys.executable, str(CLI), *args],
@@ -26,7 +34,7 @@ def run_cli(*args: str) -> subprocess.CompletedProcess[str]:
 
 
 def test_new_spell_validate_and_seal_round_trip() -> None:
-    shutil.rmtree(SCRATCH, ignore_errors=True)
+    remove_scratch(SCRATCH)
     SCRATCH.mkdir(parents=True, exist_ok=True)
     spell_path = SCRATCH / "local-spell.json"
 
@@ -49,7 +57,7 @@ def test_new_spell_validate_and_seal_round_trip() -> None:
         assert sealed_record["working_seal"] == record["working_seal"]
         assert sealed_record["formal_sigil"]["digest"] == record["formal_sigil"]["digest"]
     finally:
-        shutil.rmtree(SCRATCH, ignore_errors=True)
+        remove_scratch(SCRATCH)
 
 
 def test_export_command_lists_generated_assets() -> None:
@@ -64,7 +72,7 @@ def test_export_command_lists_generated_assets() -> None:
 
 def test_install_command_dry_run_and_write() -> None:
     scratch = ROOT / "tmp" / "tests" / "grimoire-install"
-    shutil.rmtree(scratch, ignore_errors=True)
+    remove_scratch(scratch)
     scratch.mkdir(parents=True, exist_ok=True)
     try:
         dry_run = run_cli("install", "--target", "cursor", "--dest", str(scratch))
@@ -76,7 +84,7 @@ def test_install_command_dry_run_and_write() -> None:
         assert written.returncode == 0, written.stderr
         assert (scratch / "exports" / "cursor" / "rules" / "safe-refactoring.mdc").exists()
     finally:
-        shutil.rmtree(scratch, ignore_errors=True)
+        remove_scratch(scratch)
 
 
 def test_bench_import_command_validates_template() -> None:
@@ -93,7 +101,7 @@ def test_bench_execution_command_runs_fixture() -> None:
 
 def test_bench_hardness_command_runs_fixture() -> None:
     scratch = ROOT / "tmp" / "tests" / "grimoire-cli-hardness"
-    shutil.rmtree(scratch, ignore_errors=True)
+    remove_scratch(scratch)
     scratch.mkdir(parents=True, exist_ok=True)
     report = scratch / "grimoire-hardness.json"
     executed = run_cli("bench", "hardness", "--", "--write-report", str(report.relative_to(ROOT)))
@@ -102,4 +110,11 @@ def test_bench_hardness_command_runs_fixture() -> None:
         assert "grimoire-hardness.json" in executed.stdout
         assert report.exists()
     finally:
-        shutil.rmtree(scratch, ignore_errors=True)
+        remove_scratch(scratch)
+
+
+def test_bench_hardness_model_command_is_exposed_without_running_model() -> None:
+    helped = run_cli("bench", "hardness-model", "--", "--help")
+    assert helped.returncode == 0, helped.stderr
+    assert "run_hardness_model_surfaces.py" not in helped.stderr
+    assert "--surface" in helped.stdout

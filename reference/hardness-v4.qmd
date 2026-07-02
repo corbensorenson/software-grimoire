@@ -20,6 +20,18 @@ Bench v4 hardness fixtures run only local deterministic tests inside repo-local 
 | Beta Flag Blast Radius                     | blast-radius       | narrow feature-flag change versus tempting billing overreach       | 0/5 passed | 5/5 passed | 10 | [fixture](https://github.com/corbensorenson/software-grimoire/tree/main/examples/evaluations/hardness-v4/fixtures/blast-radius-beta-flag)          |
 | Agentic Release Handoff                    | agentic            | multi-step stack handoff with repo-local scratch and gate evidence | 0/5 passed | 5/5 passed | 10 | [fixture](https://github.com/corbensorenson/software-grimoire/tree/main/examples/evaluations/hardness-v4/fixtures/agentic-release-handoff)         |
 
+## Model-Surface Artifact Runs
+
+These rows are model-produced artifacts, not hand-authored controls. Prompts include the public task context and starting files, but not the hidden grader or ground-truth JSON. The runner preserves each prompt, transcript, extracted artifact, extraction failure, and fixture-local execution result.
+
+| Case                                       | Surface           | Weak       | Repaired   | Extraction Failures | n  | Example Transcript                                                                                                                |
+| ------------------------------------------ | ----------------- | ---------- | ---------- | ------------------- | -- | --------------------------------------------------------------------------------------------------------------------------------- |
+| Disabled Account Status Ambiguity          | codex-cli-default | 0/5 passed | 0/5 passed | 0                   | 10 | [transcript](../examples/evaluations/hardness-v4/model-runs/codex-cli-default/ambiguity-disabled-status/weak/r01-output.md)       |
+| Event Deduplication Hidden Order Invariant | codex-cli-default | 0/5 passed | 0/5 passed | 0                   | 10 | [transcript](../examples/evaluations/hardness-v4/model-runs/codex-cli-default/hidden-invariant-event-order/weak/r01-output.md)    |
+| Tax Discount Misleading Context            | codex-cli-default | 0/5 passed | 0/5 passed | 0                   | 10 | [transcript](../examples/evaluations/hardness-v4/model-runs/codex-cli-default/misleading-context-tax-discount/weak/r01-output.md) |
+| Beta Flag Blast Radius                     | codex-cli-default | 0/5 passed | 0/5 passed | 5                   | 10 | [transcript](../examples/evaluations/hardness-v4/model-runs/codex-cli-default/blast-radius-beta-flag/weak/r01-output.md)          |
+| Agentic Release Handoff                    | codex-cli-default | 1/5 passed | 1/5 passed | 0                   | 10 | [transcript](../examples/evaluations/hardness-v4/model-runs/codex-cli-default/agentic-release-handoff/weak/r01-output.md)         |
+
 ## Interpretation
 
 - The ambiguity rung tests whether an artifact resolves a stale docstring versus a stronger caller contract.
@@ -28,6 +40,8 @@ Bench v4 hardness fixtures run only local deterministic tests inside repo-local 
 - The blast-radius rung tests whether an artifact keeps a requested change narrow instead of altering adjacent behavior.
 - The agentic rung tests whether a stack-shaped handoff preserves repo-local scratch, allowlists, gates, and human-review boundaries.
 - These are execution checks for seed artifacts. They do not count as independent model-provider evidence, external adoption, or human review.
-- Model-surface runs should be added only as recorded transcripts or extracted artifacts; do not simulate them.
+- Model-surface rows count only when prompts, transcripts, extracted artifacts, and execution results are preserved. They still do not count as external adoption or human review.
 
 Raw results: [results.json](../examples/evaluations/hardness-v4/results.json)
+
+Raw model-surface results: [model-surface-results.json](../examples/evaluations/hardness-v4/model-surface-results.json)

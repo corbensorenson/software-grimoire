@@ -6,6 +6,7 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import re
 import shutil
 import subprocess
 import sys
@@ -17,6 +18,7 @@ ROOT = Path(__file__).resolve().parents[1]
 SCRATCH_DIR = ROOT / "tmp"
 TIMEOUT_SECONDS = 15
 DEFAULT_REPETITIONS = 5
+PYTEST_DURATION_RE = re.compile(r"in \d+\.\d+s")
 
 CASES = {
     "ambiguity-disabled-status": {
@@ -61,6 +63,10 @@ CASES = {
         "test_file": "check_handoff.py",
     },
 }
+
+
+def normalize_pytest_output(text: str) -> str:
+    return PYTEST_DURATION_RE.sub("in <duration>s", text)
 
 
 def artifact_files(case: dict) -> list[str]:
@@ -108,8 +114,8 @@ def run_artifact(case_slug: str, variant: str) -> dict:
         "status": "passed" if completed.returncode == 0 else "failed",
         "passed": completed.returncode == 0,
         "exit_code": completed.returncode,
-        "stdout": completed.stdout.strip()[-4000:],
-        "stderr": completed.stderr.strip()[-4000:],
+        "stdout": normalize_pytest_output(completed.stdout.strip())[-4000:],
+        "stderr": normalize_pytest_output(completed.stderr.strip())[-4000:],
         "timeout_seconds": TIMEOUT_SECONDS,
     }
 

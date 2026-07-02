@@ -1,0 +1,2565 @@
+{
+  "generated_at": "2026-07-02T14:19:12.649306+00:00",
+  "version": "4.0.0-hardness-model-surfaces",
+  "policy": "Bench v4 model-surface hardness runs preserve prompts, transcripts, extracted artifacts, and fixture-local execution results. Hidden graders are not included in prompts. Scratch execution stays under repo-local tmp/.",
+  "surfaces": {
+    "codex-cli-default": {
+      "kind": "codex",
+      "label": "Codex CLI default model",
+      "provenance": "project-owned",
+      "execution": "local read-only CLI",
+      "tool_name": "Codex CLI",
+      "tool_version": "codex-cli 0.142.5",
+      "model_name": "default",
+      "evidence_class": "project_owned_model_run",
+      "limitation": "Model-produced artifacts are graded by fixture-local hidden tests; failures and extraction errors are preserved."
+    }
+  },
+  "cases": {
+    "ambiguity-disabled-status": {
+      "title": "Disabled Account Status Ambiguity",
+      "rung": "ambiguity",
+      "hardness_axis": "conflicting docstring versus caller contract",
+      "fixture_path": "examples/evaluations/hardness-v4/fixtures/ambiguity-disabled-status",
+      "ground_truth_path": "examples/evaluations/hardness-v4/fixtures/ambiguity-disabled-status/ground_truth.json",
+      "artifact": "account_status.py",
+      "artifact_files": [
+        "account_status.py"
+      ],
+      "test_file": "check_account_status.py",
+      "runs": [
+        {
+          "surface": "codex-cli-default",
+          "surface_id": "codex-cli-default",
+          "surface_kind": "codex",
+          "surface_label": "Codex CLI default model",
+          "tool_name": "Codex CLI",
+          "tool_version": "codex-cli 0.142.5",
+          "model_name": "default",
+          "provenance": "project-owned",
+          "evidence_class": "project_owned_model_run",
+          "redaction_policy": "Public fixtures only; no secrets intentionally supplied.",
+          "case_slug": "ambiguity-disabled-status",
+          "title": "Disabled Account Status Ambiguity",
+          "rung": "ambiguity",
+          "hardness_axis": "conflicting docstring versus caller contract",
+          "variant": "weak",
+          "repetition": 1,
+          "run_timestamp": "2026-07-02T14:19:30.086347+00:00",
+          "fixture_path": "examples/evaluations/hardness-v4/fixtures/ambiguity-disabled-status",
+          "ground_truth_path": "examples/evaluations/hardness-v4/fixtures/ambiguity-disabled-status/ground_truth.json",
+          "prompt_path": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/ambiguity-disabled-status/weak/r01-prompt.md",
+          "transcript_path": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/ambiguity-disabled-status/weak/r01-output.md",
+          "artifact_root": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/ambiguity-disabled-status/weak/r01-artifacts",
+          "artifact_paths": [
+            "examples/evaluations/hardness-v4/model-runs/codex-cli-default/ambiguity-disabled-status/weak/r01-artifacts/account_status.py"
+          ],
+          "execution_command": "python -m pytest -q check_account_status.py",
+          "execution_result": {
+            "status": "failed",
+            "passed": false,
+            "exit_code": 1,
+            "stdout": "...F                                                                     [100%]\n=================================== FAILURES ===================================\n________ test_naive_datetimes_are_rejected_instead_of_silently_guessed _________\n\n    def test_naive_datetimes_are_rejected_instead_of_silently_guessed():\n        naive = datetime(2026, 7, 1, 12, 0)\n        try:\n>           classify_account(naive, now=NOW)\n\ncheck_account_status.py:27: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nlast_seen_at = datetime.datetime(2026, 7, 1, 12, 0), disabled_at = None\nnow = datetime.datetime(2026, 7, 2, 12, 0, tzinfo=datetime.timezone.utc)\n\n    def classify_account(last_seen_at, disabled_at=None, now=None):\n        \"\"\"Return disabled, unknown, active, or dormant for an account.\"\"\"\n        if disabled_at is not None:\n            return \"disabled\"\n    \n        if last_seen_at is None:\n            return \"unknown\"\n    \n        if now is None:\n            now = datetime.now(timezone.utc)\n    \n>       return \"active\" if now - last_seen_at <= timedelta(days=30) else \"dormant\"\nE       TypeError: can't subtract offset-naive and offset-aware datetimes\n\naccount_status.py:15: TypeError\n=========================== short test summary info ============================\nFAILED check_account_status.py::test_naive_datetimes_are_rejected_instead_of_silently_guessed\n1 failed, 3 passed in 0.02s",
+            "stderr": "",
+            "timeout_seconds": 15
+          },
+          "extraction_result": {
+            "complete": true,
+            "expected_files": [
+              "account_status.py"
+            ],
+            "extracted_files": [
+              "account_status.py"
+            ],
+            "errors": []
+          },
+          "grader_version": "hardness-v4-model-surface-pytest-v1"
+        },
+        {
+          "surface": "codex-cli-default",
+          "surface_id": "codex-cli-default",
+          "surface_kind": "codex",
+          "surface_label": "Codex CLI default model",
+          "tool_name": "Codex CLI",
+          "tool_version": "codex-cli 0.142.5",
+          "model_name": "default",
+          "provenance": "project-owned",
+          "evidence_class": "project_owned_model_run",
+          "redaction_policy": "Public fixtures only; no secrets intentionally supplied.",
+          "case_slug": "ambiguity-disabled-status",
+          "title": "Disabled Account Status Ambiguity",
+          "rung": "ambiguity",
+          "hardness_axis": "conflicting docstring versus caller contract",
+          "variant": "weak",
+          "repetition": 2,
+          "run_timestamp": "2026-07-02T14:19:45.841567+00:00",
+          "fixture_path": "examples/evaluations/hardness-v4/fixtures/ambiguity-disabled-status",
+          "ground_truth_path": "examples/evaluations/hardness-v4/fixtures/ambiguity-disabled-status/ground_truth.json",
+          "prompt_path": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/ambiguity-disabled-status/weak/r02-prompt.md",
+          "transcript_path": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/ambiguity-disabled-status/weak/r02-output.md",
+          "artifact_root": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/ambiguity-disabled-status/weak/r02-artifacts",
+          "artifact_paths": [
+            "examples/evaluations/hardness-v4/model-runs/codex-cli-default/ambiguity-disabled-status/weak/r02-artifacts/account_status.py"
+          ],
+          "execution_command": "python -m pytest -q check_account_status.py",
+          "execution_result": {
+            "status": "failed",
+            "passed": false,
+            "exit_code": 1,
+            "stdout": "...F                                                                     [100%]\n=================================== FAILURES ===================================\n________ test_naive_datetimes_are_rejected_instead_of_silently_guessed _________\n\n    def test_naive_datetimes_are_rejected_instead_of_silently_guessed():\n        naive = datetime(2026, 7, 1, 12, 0)\n        try:\n            classify_account(naive, now=NOW)\n        except ValueError as exc:\n            assert \"timezone-aware\" in str(exc)\n        else:\n>           raise AssertionError(\"naive datetimes must be rejected\")\nE           AssertionError: naive datetimes must be rejected\n\ncheck_account_status.py:31: AssertionError\n=========================== short test summary info ============================\nFAILED check_account_status.py::test_naive_datetimes_are_rejected_instead_of_silently_guessed\n1 failed, 3 passed in 0.02s",
+            "stderr": "",
+            "timeout_seconds": 15
+          },
+          "extraction_result": {
+            "complete": true,
+            "expected_files": [
+              "account_status.py"
+            ],
+            "extracted_files": [
+              "account_status.py"
+            ],
+            "errors": []
+          },
+          "grader_version": "hardness-v4-model-surface-pytest-v1"
+        },
+        {
+          "surface": "codex-cli-default",
+          "surface_id": "codex-cli-default",
+          "surface_kind": "codex",
+          "surface_label": "Codex CLI default model",
+          "tool_name": "Codex CLI",
+          "tool_version": "codex-cli 0.142.5",
+          "model_name": "default",
+          "provenance": "project-owned",
+          "evidence_class": "project_owned_model_run",
+          "redaction_policy": "Public fixtures only; no secrets intentionally supplied.",
+          "case_slug": "ambiguity-disabled-status",
+          "title": "Disabled Account Status Ambiguity",
+          "rung": "ambiguity",
+          "hardness_axis": "conflicting docstring versus caller contract",
+          "variant": "weak",
+          "repetition": 3,
+          "run_timestamp": "2026-07-02T14:20:07.238875+00:00",
+          "fixture_path": "examples/evaluations/hardness-v4/fixtures/ambiguity-disabled-status",
+          "ground_truth_path": "examples/evaluations/hardness-v4/fixtures/ambiguity-disabled-status/ground_truth.json",
+          "prompt_path": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/ambiguity-disabled-status/weak/r03-prompt.md",
+          "transcript_path": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/ambiguity-disabled-status/weak/r03-output.md",
+          "artifact_root": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/ambiguity-disabled-status/weak/r03-artifacts",
+          "artifact_paths": [
+            "examples/evaluations/hardness-v4/model-runs/codex-cli-default/ambiguity-disabled-status/weak/r03-artifacts/account_status.py"
+          ],
+          "execution_command": "python -m pytest -q check_account_status.py",
+          "execution_result": {
+            "status": "failed",
+            "passed": false,
+            "exit_code": 1,
+            "stdout": "...F                                                                     [100%]\n=================================== FAILURES ===================================\n________ test_naive_datetimes_are_rejected_instead_of_silently_guessed _________\n\n    def test_naive_datetimes_are_rejected_instead_of_silently_guessed():\n        naive = datetime(2026, 7, 1, 12, 0)\n        try:\n>           classify_account(naive, now=NOW)\n\ncheck_account_status.py:27: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nlast_seen_at = datetime.datetime(2026, 7, 1, 12, 0), disabled_at = None\nnow = datetime.datetime(2026, 7, 2, 12, 0, tzinfo=datetime.timezone.utc)\n\n    def classify_account(last_seen_at, disabled_at=None, now=None):\n        \"\"\"Return the caller-visible account status.\"\"\"\n        if disabled_at is not None:\n            return \"disabled\"\n    \n        if last_seen_at is None:\n            return \"unknown\"\n    \n        if now is None:\n            now = datetime.now(timezone.utc)\n    \n>       return \"active\" if last_seen_at >= now - timedelta(days=30) else \"dormant\"\nE       TypeError: can't compare offset-naive and offset-aware datetimes\n\naccount_status.py:15: TypeError\n=========================== short test summary info ============================\nFAILED check_account_status.py::test_naive_datetimes_are_rejected_instead_of_silently_guessed\n1 failed, 3 passed in 0.02s",
+            "stderr": "",
+            "timeout_seconds": 15
+          },
+          "extraction_result": {
+            "complete": true,
+            "expected_files": [
+              "account_status.py"
+            ],
+            "extracted_files": [
+              "account_status.py"
+            ],
+            "errors": []
+          },
+          "grader_version": "hardness-v4-model-surface-pytest-v1"
+        },
+        {
+          "surface": "codex-cli-default",
+          "surface_id": "codex-cli-default",
+          "surface_kind": "codex",
+          "surface_label": "Codex CLI default model",
+          "tool_name": "Codex CLI",
+          "tool_version": "codex-cli 0.142.5",
+          "model_name": "default",
+          "provenance": "project-owned",
+          "evidence_class": "project_owned_model_run",
+          "redaction_policy": "Public fixtures only; no secrets intentionally supplied.",
+          "case_slug": "ambiguity-disabled-status",
+          "title": "Disabled Account Status Ambiguity",
+          "rung": "ambiguity",
+          "hardness_axis": "conflicting docstring versus caller contract",
+          "variant": "weak",
+          "repetition": 4,
+          "run_timestamp": "2026-07-02T14:20:23.771904+00:00",
+          "fixture_path": "examples/evaluations/hardness-v4/fixtures/ambiguity-disabled-status",
+          "ground_truth_path": "examples/evaluations/hardness-v4/fixtures/ambiguity-disabled-status/ground_truth.json",
+          "prompt_path": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/ambiguity-disabled-status/weak/r04-prompt.md",
+          "transcript_path": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/ambiguity-disabled-status/weak/r04-output.md",
+          "artifact_root": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/ambiguity-disabled-status/weak/r04-artifacts",
+          "artifact_paths": [
+            "examples/evaluations/hardness-v4/model-runs/codex-cli-default/ambiguity-disabled-status/weak/r04-artifacts/account_status.py"
+          ],
+          "execution_command": "python -m pytest -q check_account_status.py",
+          "execution_result": {
+            "status": "failed",
+            "passed": false,
+            "exit_code": 1,
+            "stdout": "...F                                                                     [100%]\n=================================== FAILURES ===================================\n________ test_naive_datetimes_are_rejected_instead_of_silently_guessed _________\n\n    def test_naive_datetimes_are_rejected_instead_of_silently_guessed():\n        naive = datetime(2026, 7, 1, 12, 0)\n        try:\n>           classify_account(naive, now=NOW)\n\ncheck_account_status.py:27: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nlast_seen_at = datetime.datetime(2026, 7, 1, 12, 0), disabled_at = None\nnow = datetime.datetime(2026, 7, 2, 12, 0, tzinfo=datetime.timezone.utc)\n\n    def classify_account(last_seen_at, disabled_at=None, now=None):\n        \"\"\"Return disabled, unknown, active, or dormant for an account.\"\"\"\n        if disabled_at is not None:\n            return \"disabled\"\n    \n        if last_seen_at is None:\n            return \"unknown\"\n    \n        if now is None:\n            now = datetime.now(timezone.utc)\n    \n>       return \"active\" if last_seen_at >= now - timedelta(days=30) else \"dormant\"\nE       TypeError: can't compare offset-naive and offset-aware datetimes\n\naccount_status.py:15: TypeError\n=========================== short test summary info ============================\nFAILED check_account_status.py::test_naive_datetimes_are_rejected_instead_of_silently_guessed\n1 failed, 3 passed in 0.02s",
+            "stderr": "",
+            "timeout_seconds": 15
+          },
+          "extraction_result": {
+            "complete": true,
+            "expected_files": [
+              "account_status.py"
+            ],
+            "extracted_files": [
+              "account_status.py"
+            ],
+            "errors": []
+          },
+          "grader_version": "hardness-v4-model-surface-pytest-v1"
+        },
+        {
+          "surface": "codex-cli-default",
+          "surface_id": "codex-cli-default",
+          "surface_kind": "codex",
+          "surface_label": "Codex CLI default model",
+          "tool_name": "Codex CLI",
+          "tool_version": "codex-cli 0.142.5",
+          "model_name": "default",
+          "provenance": "project-owned",
+          "evidence_class": "project_owned_model_run",
+          "redaction_policy": "Public fixtures only; no secrets intentionally supplied.",
+          "case_slug": "ambiguity-disabled-status",
+          "title": "Disabled Account Status Ambiguity",
+          "rung": "ambiguity",
+          "hardness_axis": "conflicting docstring versus caller contract",
+          "variant": "weak",
+          "repetition": 5,
+          "run_timestamp": "2026-07-02T14:20:41.438652+00:00",
+          "fixture_path": "examples/evaluations/hardness-v4/fixtures/ambiguity-disabled-status",
+          "ground_truth_path": "examples/evaluations/hardness-v4/fixtures/ambiguity-disabled-status/ground_truth.json",
+          "prompt_path": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/ambiguity-disabled-status/weak/r05-prompt.md",
+          "transcript_path": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/ambiguity-disabled-status/weak/r05-output.md",
+          "artifact_root": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/ambiguity-disabled-status/weak/r05-artifacts",
+          "artifact_paths": [
+            "examples/evaluations/hardness-v4/model-runs/codex-cli-default/ambiguity-disabled-status/weak/r05-artifacts/account_status.py"
+          ],
+          "execution_command": "python -m pytest -q check_account_status.py",
+          "execution_result": {
+            "status": "failed",
+            "passed": false,
+            "exit_code": 1,
+            "stdout": "...F                                                                     [100%]\n=================================== FAILURES ===================================\n________ test_naive_datetimes_are_rejected_instead_of_silently_guessed _________\n\n    def test_naive_datetimes_are_rejected_instead_of_silently_guessed():\n        naive = datetime(2026, 7, 1, 12, 0)\n        try:\n            classify_account(naive, now=NOW)\n        except ValueError as exc:\n            assert \"timezone-aware\" in str(exc)\n        else:\n>           raise AssertionError(\"naive datetimes must be rejected\")\nE           AssertionError: naive datetimes must be rejected\n\ncheck_account_status.py:31: AssertionError\n=========================== short test summary info ============================\nFAILED check_account_status.py::test_naive_datetimes_are_rejected_instead_of_silently_guessed\n1 failed, 3 passed in 0.02s",
+            "stderr": "",
+            "timeout_seconds": 15
+          },
+          "extraction_result": {
+            "complete": true,
+            "expected_files": [
+              "account_status.py"
+            ],
+            "extracted_files": [
+              "account_status.py"
+            ],
+            "errors": []
+          },
+          "grader_version": "hardness-v4-model-surface-pytest-v1"
+        },
+        {
+          "surface": "codex-cli-default",
+          "surface_id": "codex-cli-default",
+          "surface_kind": "codex",
+          "surface_label": "Codex CLI default model",
+          "tool_name": "Codex CLI",
+          "tool_version": "codex-cli 0.142.5",
+          "model_name": "default",
+          "provenance": "project-owned",
+          "evidence_class": "project_owned_model_run",
+          "redaction_policy": "Public fixtures only; no secrets intentionally supplied.",
+          "case_slug": "ambiguity-disabled-status",
+          "title": "Disabled Account Status Ambiguity",
+          "rung": "ambiguity",
+          "hardness_axis": "conflicting docstring versus caller contract",
+          "variant": "repaired",
+          "repetition": 1,
+          "run_timestamp": "2026-07-02T14:21:01.845566+00:00",
+          "fixture_path": "examples/evaluations/hardness-v4/fixtures/ambiguity-disabled-status",
+          "ground_truth_path": "examples/evaluations/hardness-v4/fixtures/ambiguity-disabled-status/ground_truth.json",
+          "prompt_path": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/ambiguity-disabled-status/repaired/r01-prompt.md",
+          "transcript_path": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/ambiguity-disabled-status/repaired/r01-output.md",
+          "artifact_root": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/ambiguity-disabled-status/repaired/r01-artifacts",
+          "artifact_paths": [
+            "examples/evaluations/hardness-v4/model-runs/codex-cli-default/ambiguity-disabled-status/repaired/r01-artifacts/account_status.py"
+          ],
+          "execution_command": "python -m pytest -q check_account_status.py",
+          "execution_result": {
+            "status": "failed",
+            "passed": false,
+            "exit_code": 1,
+            "stdout": "...F                                                                     [100%]\n=================================== FAILURES ===================================\n________ test_naive_datetimes_are_rejected_instead_of_silently_guessed _________\n\n    def test_naive_datetimes_are_rejected_instead_of_silently_guessed():\n        naive = datetime(2026, 7, 1, 12, 0)\n        try:\n            classify_account(naive, now=NOW)\n        except ValueError as exc:\n            assert \"timezone-aware\" in str(exc)\n        else:\n>           raise AssertionError(\"naive datetimes must be rejected\")\nE           AssertionError: naive datetimes must be rejected\n\ncheck_account_status.py:31: AssertionError\n=========================== short test summary info ============================\nFAILED check_account_status.py::test_naive_datetimes_are_rejected_instead_of_silently_guessed\n1 failed, 3 passed in 0.02s",
+            "stderr": "",
+            "timeout_seconds": 15
+          },
+          "extraction_result": {
+            "complete": true,
+            "expected_files": [
+              "account_status.py"
+            ],
+            "extracted_files": [
+              "account_status.py"
+            ],
+            "errors": []
+          },
+          "grader_version": "hardness-v4-model-surface-pytest-v1"
+        },
+        {
+          "surface": "codex-cli-default",
+          "surface_id": "codex-cli-default",
+          "surface_kind": "codex",
+          "surface_label": "Codex CLI default model",
+          "tool_name": "Codex CLI",
+          "tool_version": "codex-cli 0.142.5",
+          "model_name": "default",
+          "provenance": "project-owned",
+          "evidence_class": "project_owned_model_run",
+          "redaction_policy": "Public fixtures only; no secrets intentionally supplied.",
+          "case_slug": "ambiguity-disabled-status",
+          "title": "Disabled Account Status Ambiguity",
+          "rung": "ambiguity",
+          "hardness_axis": "conflicting docstring versus caller contract",
+          "variant": "repaired",
+          "repetition": 2,
+          "run_timestamp": "2026-07-02T14:21:18.856332+00:00",
+          "fixture_path": "examples/evaluations/hardness-v4/fixtures/ambiguity-disabled-status",
+          "ground_truth_path": "examples/evaluations/hardness-v4/fixtures/ambiguity-disabled-status/ground_truth.json",
+          "prompt_path": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/ambiguity-disabled-status/repaired/r02-prompt.md",
+          "transcript_path": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/ambiguity-disabled-status/repaired/r02-output.md",
+          "artifact_root": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/ambiguity-disabled-status/repaired/r02-artifacts",
+          "artifact_paths": [
+            "examples/evaluations/hardness-v4/model-runs/codex-cli-default/ambiguity-disabled-status/repaired/r02-artifacts/account_status.py"
+          ],
+          "execution_command": "python -m pytest -q check_account_status.py",
+          "execution_result": {
+            "status": "failed",
+            "passed": false,
+            "exit_code": 1,
+            "stdout": "...F                                                                     [100%]\n=================================== FAILURES ===================================\n________ test_naive_datetimes_are_rejected_instead_of_silently_guessed _________\n\n    def test_naive_datetimes_are_rejected_instead_of_silently_guessed():\n        naive = datetime(2026, 7, 1, 12, 0)\n        try:\n            classify_account(naive, now=NOW)\n        except ValueError as exc:\n            assert \"timezone-aware\" in str(exc)\n        else:\n>           raise AssertionError(\"naive datetimes must be rejected\")\nE           AssertionError: naive datetimes must be rejected\n\ncheck_account_status.py:31: AssertionError\n=========================== short test summary info ============================\nFAILED check_account_status.py::test_naive_datetimes_are_rejected_instead_of_silently_guessed\n1 failed, 3 passed in 0.02s",
+            "stderr": "",
+            "timeout_seconds": 15
+          },
+          "extraction_result": {
+            "complete": true,
+            "expected_files": [
+              "account_status.py"
+            ],
+            "extracted_files": [
+              "account_status.py"
+            ],
+            "errors": []
+          },
+          "grader_version": "hardness-v4-model-surface-pytest-v1"
+        },
+        {
+          "surface": "codex-cli-default",
+          "surface_id": "codex-cli-default",
+          "surface_kind": "codex",
+          "surface_label": "Codex CLI default model",
+          "tool_name": "Codex CLI",
+          "tool_version": "codex-cli 0.142.5",
+          "model_name": "default",
+          "provenance": "project-owned",
+          "evidence_class": "project_owned_model_run",
+          "redaction_policy": "Public fixtures only; no secrets intentionally supplied.",
+          "case_slug": "ambiguity-disabled-status",
+          "title": "Disabled Account Status Ambiguity",
+          "rung": "ambiguity",
+          "hardness_axis": "conflicting docstring versus caller contract",
+          "variant": "repaired",
+          "repetition": 3,
+          "run_timestamp": "2026-07-02T14:21:34.801094+00:00",
+          "fixture_path": "examples/evaluations/hardness-v4/fixtures/ambiguity-disabled-status",
+          "ground_truth_path": "examples/evaluations/hardness-v4/fixtures/ambiguity-disabled-status/ground_truth.json",
+          "prompt_path": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/ambiguity-disabled-status/repaired/r03-prompt.md",
+          "transcript_path": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/ambiguity-disabled-status/repaired/r03-output.md",
+          "artifact_root": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/ambiguity-disabled-status/repaired/r03-artifacts",
+          "artifact_paths": [
+            "examples/evaluations/hardness-v4/model-runs/codex-cli-default/ambiguity-disabled-status/repaired/r03-artifacts/account_status.py"
+          ],
+          "execution_command": "python -m pytest -q check_account_status.py",
+          "execution_result": {
+            "status": "failed",
+            "passed": false,
+            "exit_code": 1,
+            "stdout": "...F                                                                     [100%]\n=================================== FAILURES ===================================\n________ test_naive_datetimes_are_rejected_instead_of_silently_guessed _________\n\n    def test_naive_datetimes_are_rejected_instead_of_silently_guessed():\n        naive = datetime(2026, 7, 1, 12, 0)\n        try:\n>           classify_account(naive, now=NOW)\n\ncheck_account_status.py:27: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nlast_seen_at = datetime.datetime(2026, 7, 1, 12, 0), disabled_at = None\nnow = datetime.datetime(2026, 7, 2, 12, 0, tzinfo=datetime.timezone.utc)\n\n    def classify_account(last_seen_at, disabled_at=None, now=None):\n        \"\"\"Classify an account as disabled, unknown, active, or dormant.\"\"\"\n        if disabled_at is not None:\n            return \"disabled\"\n    \n        if last_seen_at is None:\n            return \"unknown\"\n    \n        if now is None:\n            now = datetime.now(timezone.utc)\n    \n>       return \"active\" if now - last_seen_at <= timedelta(days=30) else \"dormant\"\nE       TypeError: can't subtract offset-naive and offset-aware datetimes\n\naccount_status.py:15: TypeError\n=========================== short test summary info ============================\nFAILED check_account_status.py::test_naive_datetimes_are_rejected_instead_of_silently_guessed\n1 failed, 3 passed in 0.02s",
+            "stderr": "",
+            "timeout_seconds": 15
+          },
+          "extraction_result": {
+            "complete": true,
+            "expected_files": [
+              "account_status.py"
+            ],
+            "extracted_files": [
+              "account_status.py"
+            ],
+            "errors": []
+          },
+          "grader_version": "hardness-v4-model-surface-pytest-v1"
+        },
+        {
+          "surface": "codex-cli-default",
+          "surface_id": "codex-cli-default",
+          "surface_kind": "codex",
+          "surface_label": "Codex CLI default model",
+          "tool_name": "Codex CLI",
+          "tool_version": "codex-cli 0.142.5",
+          "model_name": "default",
+          "provenance": "project-owned",
+          "evidence_class": "project_owned_model_run",
+          "redaction_policy": "Public fixtures only; no secrets intentionally supplied.",
+          "case_slug": "ambiguity-disabled-status",
+          "title": "Disabled Account Status Ambiguity",
+          "rung": "ambiguity",
+          "hardness_axis": "conflicting docstring versus caller contract",
+          "variant": "repaired",
+          "repetition": 4,
+          "run_timestamp": "2026-07-02T14:21:51.787107+00:00",
+          "fixture_path": "examples/evaluations/hardness-v4/fixtures/ambiguity-disabled-status",
+          "ground_truth_path": "examples/evaluations/hardness-v4/fixtures/ambiguity-disabled-status/ground_truth.json",
+          "prompt_path": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/ambiguity-disabled-status/repaired/r04-prompt.md",
+          "transcript_path": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/ambiguity-disabled-status/repaired/r04-output.md",
+          "artifact_root": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/ambiguity-disabled-status/repaired/r04-artifacts",
+          "artifact_paths": [
+            "examples/evaluations/hardness-v4/model-runs/codex-cli-default/ambiguity-disabled-status/repaired/r04-artifacts/account_status.py"
+          ],
+          "execution_command": "python -m pytest -q check_account_status.py",
+          "execution_result": {
+            "status": "failed",
+            "passed": false,
+            "exit_code": 1,
+            "stdout": "...F                                                                     [100%]\n=================================== FAILURES ===================================\n________ test_naive_datetimes_are_rejected_instead_of_silently_guessed _________\n\n    def test_naive_datetimes_are_rejected_instead_of_silently_guessed():\n        naive = datetime(2026, 7, 1, 12, 0)\n        try:\n>           classify_account(naive, now=NOW)\n\ncheck_account_status.py:27: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nlast_seen_at = datetime.datetime(2026, 7, 1, 12, 0), disabled_at = None\nnow = datetime.datetime(2026, 7, 2, 12, 0, tzinfo=datetime.timezone.utc)\n\n    def classify_account(last_seen_at, disabled_at=None, now=None):\n        \"\"\"Return the caller-visible account status.\"\"\"\n        if disabled_at is not None:\n            return \"disabled\"\n    \n        if last_seen_at is None:\n            return \"unknown\"\n    \n        if now is None:\n            now = datetime.now(timezone.utc if last_seen_at.tzinfo else None)\n    \n        cutoff = now - timedelta(days=30)\n>       return \"active\" if last_seen_at >= cutoff else \"dormant\"\nE       TypeError: can't compare offset-naive and offset-aware datetimes\n\naccount_status.py:16: TypeError\n=========================== short test summary info ============================\nFAILED check_account_status.py::test_naive_datetimes_are_rejected_instead_of_silently_guessed\n1 failed, 3 passed in 0.02s",
+            "stderr": "",
+            "timeout_seconds": 15
+          },
+          "extraction_result": {
+            "complete": true,
+            "expected_files": [
+              "account_status.py"
+            ],
+            "extracted_files": [
+              "account_status.py"
+            ],
+            "errors": []
+          },
+          "grader_version": "hardness-v4-model-surface-pytest-v1"
+        },
+        {
+          "surface": "codex-cli-default",
+          "surface_id": "codex-cli-default",
+          "surface_kind": "codex",
+          "surface_label": "Codex CLI default model",
+          "tool_name": "Codex CLI",
+          "tool_version": "codex-cli 0.142.5",
+          "model_name": "default",
+          "provenance": "project-owned",
+          "evidence_class": "project_owned_model_run",
+          "redaction_policy": "Public fixtures only; no secrets intentionally supplied.",
+          "case_slug": "ambiguity-disabled-status",
+          "title": "Disabled Account Status Ambiguity",
+          "rung": "ambiguity",
+          "hardness_axis": "conflicting docstring versus caller contract",
+          "variant": "repaired",
+          "repetition": 5,
+          "run_timestamp": "2026-07-02T14:22:08.044704+00:00",
+          "fixture_path": "examples/evaluations/hardness-v4/fixtures/ambiguity-disabled-status",
+          "ground_truth_path": "examples/evaluations/hardness-v4/fixtures/ambiguity-disabled-status/ground_truth.json",
+          "prompt_path": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/ambiguity-disabled-status/repaired/r05-prompt.md",
+          "transcript_path": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/ambiguity-disabled-status/repaired/r05-output.md",
+          "artifact_root": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/ambiguity-disabled-status/repaired/r05-artifacts",
+          "artifact_paths": [
+            "examples/evaluations/hardness-v4/model-runs/codex-cli-default/ambiguity-disabled-status/repaired/r05-artifacts/account_status.py"
+          ],
+          "execution_command": "python -m pytest -q check_account_status.py",
+          "execution_result": {
+            "status": "failed",
+            "passed": false,
+            "exit_code": 1,
+            "stdout": "...F                                                                     [100%]\n=================================== FAILURES ===================================\n________ test_naive_datetimes_are_rejected_instead_of_silently_guessed _________\n\n    def test_naive_datetimes_are_rejected_instead_of_silently_guessed():\n        naive = datetime(2026, 7, 1, 12, 0)\n        try:\n>           classify_account(naive, now=NOW)\n\ncheck_account_status.py:27: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nlast_seen_at = datetime.datetime(2026, 7, 1, 12, 0), disabled_at = None\nnow = datetime.datetime(2026, 7, 2, 12, 0, tzinfo=datetime.timezone.utc)\n\n    def classify_account(last_seen_at, disabled_at=None, now=None):\n        \"\"\"Return active when the account was seen within the last 30 days.\"\"\"\n        if disabled_at is not None:\n            return \"disabled\"\n    \n        if last_seen_at is None:\n            return \"unknown\"\n    \n        if now is None:\n            now = datetime.now(timezone.utc)\n    \n>       return \"active\" if last_seen_at >= now - timedelta(days=30) else \"dormant\"\nE       TypeError: can't compare offset-naive and offset-aware datetimes\n\naccount_status.py:15: TypeError\n=========================== short test summary info ============================\nFAILED check_account_status.py::test_naive_datetimes_are_rejected_instead_of_silently_guessed\n1 failed, 3 passed in 0.02s",
+            "stderr": "",
+            "timeout_seconds": 15
+          },
+          "extraction_result": {
+            "complete": true,
+            "expected_files": [
+              "account_status.py"
+            ],
+            "extracted_files": [
+              "account_status.py"
+            ],
+            "errors": []
+          },
+          "grader_version": "hardness-v4-model-surface-pytest-v1"
+        }
+      ],
+      "summary": {
+        "weak_runs": 5,
+        "repaired_runs": 5,
+        "weak_passes": 0,
+        "repaired_passes": 0,
+        "extraction_failures": 0,
+        "execution_delta": "weak passed 0/5; repaired passed 0/5",
+        "paired_signs": {
+          "repaired_wins": 0,
+          "weak_wins": 0,
+          "ties": 5
+        }
+      }
+    },
+    "hidden-invariant-event-order": {
+      "title": "Event Deduplication Hidden Order Invariant",
+      "rung": "hidden-invariant",
+      "hardness_axis": "order and replay semantics hidden behind simple dedupe wording",
+      "fixture_path": "examples/evaluations/hardness-v4/fixtures/hidden-invariant-event-order",
+      "ground_truth_path": "examples/evaluations/hardness-v4/fixtures/hidden-invariant-event-order/ground_truth.json",
+      "artifact": "events.py",
+      "artifact_files": [
+        "events.py"
+      ],
+      "test_file": "check_events.py",
+      "runs": [
+        {
+          "surface": "codex-cli-default",
+          "surface_id": "codex-cli-default",
+          "surface_kind": "codex",
+          "surface_label": "Codex CLI default model",
+          "tool_name": "Codex CLI",
+          "tool_version": "codex-cli 0.142.5",
+          "model_name": "default",
+          "provenance": "project-owned",
+          "evidence_class": "project_owned_model_run",
+          "redaction_policy": "Public fixtures only; no secrets intentionally supplied.",
+          "case_slug": "hidden-invariant-event-order",
+          "title": "Event Deduplication Hidden Order Invariant",
+          "rung": "hidden-invariant",
+          "hardness_axis": "order and replay semantics hidden behind simple dedupe wording",
+          "variant": "weak",
+          "repetition": 1,
+          "run_timestamp": "2026-07-02T14:22:27.130938+00:00",
+          "fixture_path": "examples/evaluations/hardness-v4/fixtures/hidden-invariant-event-order",
+          "ground_truth_path": "examples/evaluations/hardness-v4/fixtures/hidden-invariant-event-order/ground_truth.json",
+          "prompt_path": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/hidden-invariant-event-order/weak/r01-prompt.md",
+          "transcript_path": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/hidden-invariant-event-order/weak/r01-output.md",
+          "artifact_root": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/hidden-invariant-event-order/weak/r01-artifacts",
+          "artifact_paths": [
+            "examples/evaluations/hardness-v4/model-runs/codex-cli-default/hidden-invariant-event-order/weak/r01-artifacts/events.py"
+          ],
+          "execution_command": "python -m pytest -q check_events.py",
+          "execution_result": {
+            "status": "failed",
+            "passed": false,
+            "exit_code": 1,
+            "stdout": "..F                                                                      [100%]\n=================================== FAILURES ===================================\n___________ test_rejects_missing_id_instead_of_collapsing_into_none ____________\n\n    def test_rejects_missing_id_instead_of_collapsing_into_none():\n        try:\n>           dedupe_events([{\"timestamp\": \"2026-07-02T10:00:00Z\", \"payload\": {}}])\n\ncheck_events.py:30: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nevents = [{'payload': {}, 'timestamp': '2026-07-02T10:00:00Z'}]\n\n    def dedupe_events(events):\n        \"\"\"Return one event per id.\"\"\"\n        deduped = []\n        by_id = {}\n    \n        for event in events:\n>           event_id = event[\"id\"]\nE           KeyError: 'id'\n\nevents.py:10: KeyError\n=========================== short test summary info ============================\nFAILED check_events.py::test_rejects_missing_id_instead_of_collapsing_into_none\n1 failed, 2 passed in 0.02s",
+            "stderr": "",
+            "timeout_seconds": 15
+          },
+          "extraction_result": {
+            "complete": true,
+            "expected_files": [
+              "events.py"
+            ],
+            "extracted_files": [
+              "events.py"
+            ],
+            "errors": []
+          },
+          "grader_version": "hardness-v4-model-surface-pytest-v1"
+        },
+        {
+          "surface": "codex-cli-default",
+          "surface_id": "codex-cli-default",
+          "surface_kind": "codex",
+          "surface_label": "Codex CLI default model",
+          "tool_name": "Codex CLI",
+          "tool_version": "codex-cli 0.142.5",
+          "model_name": "default",
+          "provenance": "project-owned",
+          "evidence_class": "project_owned_model_run",
+          "redaction_policy": "Public fixtures only; no secrets intentionally supplied.",
+          "case_slug": "hidden-invariant-event-order",
+          "title": "Event Deduplication Hidden Order Invariant",
+          "rung": "hidden-invariant",
+          "hardness_axis": "order and replay semantics hidden behind simple dedupe wording",
+          "variant": "weak",
+          "repetition": 2,
+          "run_timestamp": "2026-07-02T14:22:51.324909+00:00",
+          "fixture_path": "examples/evaluations/hardness-v4/fixtures/hidden-invariant-event-order",
+          "ground_truth_path": "examples/evaluations/hardness-v4/fixtures/hidden-invariant-event-order/ground_truth.json",
+          "prompt_path": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/hidden-invariant-event-order/weak/r02-prompt.md",
+          "transcript_path": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/hidden-invariant-event-order/weak/r02-output.md",
+          "artifact_root": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/hidden-invariant-event-order/weak/r02-artifacts",
+          "artifact_paths": [
+            "examples/evaluations/hardness-v4/model-runs/codex-cli-default/hidden-invariant-event-order/weak/r02-artifacts/events.py"
+          ],
+          "execution_command": "python -m pytest -q check_events.py",
+          "execution_result": {
+            "status": "failed",
+            "passed": false,
+            "exit_code": 1,
+            "stdout": "..F                                                                      [100%]\n=================================== FAILURES ===================================\n___________ test_rejects_missing_id_instead_of_collapsing_into_none ____________\n\n    def test_rejects_missing_id_instead_of_collapsing_into_none():\n        try:\n>           dedupe_events([{\"timestamp\": \"2026-07-02T10:00:00Z\", \"payload\": {}}])\n\ncheck_events.py:30: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nevents = [{'payload': {}, 'timestamp': '2026-07-02T10:00:00Z'}]\n\n    def dedupe_events(events):\n        \"\"\"Return one event per id, preserving replay order and merged payload data.\"\"\"\n        deduped = []\n        by_id = {}\n    \n        for event in events:\n>           event_id = event[\"id\"]\nE           KeyError: 'id'\n\nevents.py:7: KeyError\n=========================== short test summary info ============================\nFAILED check_events.py::test_rejects_missing_id_instead_of_collapsing_into_none\n1 failed, 2 passed in 0.05s",
+            "stderr": "",
+            "timeout_seconds": 15
+          },
+          "extraction_result": {
+            "complete": true,
+            "expected_files": [
+              "events.py"
+            ],
+            "extracted_files": [
+              "events.py"
+            ],
+            "errors": []
+          },
+          "grader_version": "hardness-v4-model-surface-pytest-v1"
+        },
+        {
+          "surface": "codex-cli-default",
+          "surface_id": "codex-cli-default",
+          "surface_kind": "codex",
+          "surface_label": "Codex CLI default model",
+          "tool_name": "Codex CLI",
+          "tool_version": "codex-cli 0.142.5",
+          "model_name": "default",
+          "provenance": "project-owned",
+          "evidence_class": "project_owned_model_run",
+          "redaction_policy": "Public fixtures only; no secrets intentionally supplied.",
+          "case_slug": "hidden-invariant-event-order",
+          "title": "Event Deduplication Hidden Order Invariant",
+          "rung": "hidden-invariant",
+          "hardness_axis": "order and replay semantics hidden behind simple dedupe wording",
+          "variant": "weak",
+          "repetition": 3,
+          "run_timestamp": "2026-07-02T14:23:11.808173+00:00",
+          "fixture_path": "examples/evaluations/hardness-v4/fixtures/hidden-invariant-event-order",
+          "ground_truth_path": "examples/evaluations/hardness-v4/fixtures/hidden-invariant-event-order/ground_truth.json",
+          "prompt_path": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/hidden-invariant-event-order/weak/r03-prompt.md",
+          "transcript_path": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/hidden-invariant-event-order/weak/r03-output.md",
+          "artifact_root": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/hidden-invariant-event-order/weak/r03-artifacts",
+          "artifact_paths": [
+            "examples/evaluations/hardness-v4/model-runs/codex-cli-default/hidden-invariant-event-order/weak/r03-artifacts/events.py"
+          ],
+          "execution_command": "python -m pytest -q check_events.py",
+          "execution_result": {
+            "status": "failed",
+            "passed": false,
+            "exit_code": 1,
+            "stdout": "..F                                                                      [100%]\n=================================== FAILURES ===================================\n___________ test_rejects_missing_id_instead_of_collapsing_into_none ____________\n\n    def test_rejects_missing_id_instead_of_collapsing_into_none():\n        try:\n>           dedupe_events([{\"timestamp\": \"2026-07-02T10:00:00Z\", \"payload\": {}}])\n\ncheck_events.py:30: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nevents = [{'payload': {}, 'timestamp': '2026-07-02T10:00:00Z'}]\n\n    def dedupe_events(events):\n        \"\"\"Return one event per id.\"\"\"\n        by_id = {}\n        deduped = []\n    \n        for event in events:\n>           event_id = event[\"id\"]\nE           KeyError: 'id'\n\nevents.py:10: KeyError\n=========================== short test summary info ============================\nFAILED check_events.py::test_rejects_missing_id_instead_of_collapsing_into_none\n1 failed, 2 passed in 0.02s",
+            "stderr": "",
+            "timeout_seconds": 15
+          },
+          "extraction_result": {
+            "complete": true,
+            "expected_files": [
+              "events.py"
+            ],
+            "extracted_files": [
+              "events.py"
+            ],
+            "errors": []
+          },
+          "grader_version": "hardness-v4-model-surface-pytest-v1"
+        },
+        {
+          "surface": "codex-cli-default",
+          "surface_id": "codex-cli-default",
+          "surface_kind": "codex",
+          "surface_label": "Codex CLI default model",
+          "tool_name": "Codex CLI",
+          "tool_version": "codex-cli 0.142.5",
+          "model_name": "default",
+          "provenance": "project-owned",
+          "evidence_class": "project_owned_model_run",
+          "redaction_policy": "Public fixtures only; no secrets intentionally supplied.",
+          "case_slug": "hidden-invariant-event-order",
+          "title": "Event Deduplication Hidden Order Invariant",
+          "rung": "hidden-invariant",
+          "hardness_axis": "order and replay semantics hidden behind simple dedupe wording",
+          "variant": "weak",
+          "repetition": 4,
+          "run_timestamp": "2026-07-02T14:23:28.373684+00:00",
+          "fixture_path": "examples/evaluations/hardness-v4/fixtures/hidden-invariant-event-order",
+          "ground_truth_path": "examples/evaluations/hardness-v4/fixtures/hidden-invariant-event-order/ground_truth.json",
+          "prompt_path": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/hidden-invariant-event-order/weak/r04-prompt.md",
+          "transcript_path": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/hidden-invariant-event-order/weak/r04-output.md",
+          "artifact_root": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/hidden-invariant-event-order/weak/r04-artifacts",
+          "artifact_paths": [
+            "examples/evaluations/hardness-v4/model-runs/codex-cli-default/hidden-invariant-event-order/weak/r04-artifacts/events.py"
+          ],
+          "execution_command": "python -m pytest -q check_events.py",
+          "execution_result": {
+            "status": "failed",
+            "passed": false,
+            "exit_code": 1,
+            "stdout": "..F                                                                      [100%]\n=================================== FAILURES ===================================\n___________ test_rejects_missing_id_instead_of_collapsing_into_none ____________\n\n    def test_rejects_missing_id_instead_of_collapsing_into_none():\n        try:\n>           dedupe_events([{\"timestamp\": \"2026-07-02T10:00:00Z\", \"payload\": {}}])\n\ncheck_events.py:30: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nevents = [{'payload': {}, 'timestamp': '2026-07-02T10:00:00Z'}]\n\n    def dedupe_events(events):\n        \"\"\"Return one event per id.\"\"\"\n        deduped = {}\n        order = []\n    \n        for event in events:\n>           event_id = event[\"id\"]\nE           KeyError: 'id'\n\nevents.py:7: KeyError\n=========================== short test summary info ============================\nFAILED check_events.py::test_rejects_missing_id_instead_of_collapsing_into_none\n1 failed, 2 passed in 0.04s",
+            "stderr": "",
+            "timeout_seconds": 15
+          },
+          "extraction_result": {
+            "complete": true,
+            "expected_files": [
+              "events.py"
+            ],
+            "extracted_files": [
+              "events.py"
+            ],
+            "errors": []
+          },
+          "grader_version": "hardness-v4-model-surface-pytest-v1"
+        },
+        {
+          "surface": "codex-cli-default",
+          "surface_id": "codex-cli-default",
+          "surface_kind": "codex",
+          "surface_label": "Codex CLI default model",
+          "tool_name": "Codex CLI",
+          "tool_version": "codex-cli 0.142.5",
+          "model_name": "default",
+          "provenance": "project-owned",
+          "evidence_class": "project_owned_model_run",
+          "redaction_policy": "Public fixtures only; no secrets intentionally supplied.",
+          "case_slug": "hidden-invariant-event-order",
+          "title": "Event Deduplication Hidden Order Invariant",
+          "rung": "hidden-invariant",
+          "hardness_axis": "order and replay semantics hidden behind simple dedupe wording",
+          "variant": "weak",
+          "repetition": 5,
+          "run_timestamp": "2026-07-02T14:23:45.791349+00:00",
+          "fixture_path": "examples/evaluations/hardness-v4/fixtures/hidden-invariant-event-order",
+          "ground_truth_path": "examples/evaluations/hardness-v4/fixtures/hidden-invariant-event-order/ground_truth.json",
+          "prompt_path": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/hidden-invariant-event-order/weak/r05-prompt.md",
+          "transcript_path": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/hidden-invariant-event-order/weak/r05-output.md",
+          "artifact_root": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/hidden-invariant-event-order/weak/r05-artifacts",
+          "artifact_paths": [
+            "examples/evaluations/hardness-v4/model-runs/codex-cli-default/hidden-invariant-event-order/weak/r05-artifacts/events.py"
+          ],
+          "execution_command": "python -m pytest -q check_events.py",
+          "execution_result": {
+            "status": "failed",
+            "passed": false,
+            "exit_code": 1,
+            "stdout": "..F                                                                      [100%]\n=================================== FAILURES ===================================\n___________ test_rejects_missing_id_instead_of_collapsing_into_none ____________\n\n    def test_rejects_missing_id_instead_of_collapsing_into_none():\n        try:\n>           dedupe_events([{\"timestamp\": \"2026-07-02T10:00:00Z\", \"payload\": {}}])\n\ncheck_events.py:30: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nevents = [{'payload': {}, 'timestamp': '2026-07-02T10:00:00Z'}]\n\n    def dedupe_events(events):\n        \"\"\"Return one event per id, preserving replay order and first timestamps.\"\"\"\n        deduped = {}\n        order = []\n    \n        for event in events:\n>           event_id = event[\"id\"]\nE           KeyError: 'id'\n\nevents.py:7: KeyError\n=========================== short test summary info ============================\nFAILED check_events.py::test_rejects_missing_id_instead_of_collapsing_into_none\n1 failed, 2 passed in 0.05s",
+            "stderr": "",
+            "timeout_seconds": 15
+          },
+          "extraction_result": {
+            "complete": true,
+            "expected_files": [
+              "events.py"
+            ],
+            "extracted_files": [
+              "events.py"
+            ],
+            "errors": []
+          },
+          "grader_version": "hardness-v4-model-surface-pytest-v1"
+        },
+        {
+          "surface": "codex-cli-default",
+          "surface_id": "codex-cli-default",
+          "surface_kind": "codex",
+          "surface_label": "Codex CLI default model",
+          "tool_name": "Codex CLI",
+          "tool_version": "codex-cli 0.142.5",
+          "model_name": "default",
+          "provenance": "project-owned",
+          "evidence_class": "project_owned_model_run",
+          "redaction_policy": "Public fixtures only; no secrets intentionally supplied.",
+          "case_slug": "hidden-invariant-event-order",
+          "title": "Event Deduplication Hidden Order Invariant",
+          "rung": "hidden-invariant",
+          "hardness_axis": "order and replay semantics hidden behind simple dedupe wording",
+          "variant": "repaired",
+          "repetition": 1,
+          "run_timestamp": "2026-07-02T14:24:02.249719+00:00",
+          "fixture_path": "examples/evaluations/hardness-v4/fixtures/hidden-invariant-event-order",
+          "ground_truth_path": "examples/evaluations/hardness-v4/fixtures/hidden-invariant-event-order/ground_truth.json",
+          "prompt_path": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/hidden-invariant-event-order/repaired/r01-prompt.md",
+          "transcript_path": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/hidden-invariant-event-order/repaired/r01-output.md",
+          "artifact_root": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/hidden-invariant-event-order/repaired/r01-artifacts",
+          "artifact_paths": [
+            "examples/evaluations/hardness-v4/model-runs/codex-cli-default/hidden-invariant-event-order/repaired/r01-artifacts/events.py"
+          ],
+          "execution_command": "python -m pytest -q check_events.py",
+          "execution_result": {
+            "status": "failed",
+            "passed": false,
+            "exit_code": 1,
+            "stdout": "..F                                                                      [100%]\n=================================== FAILURES ===================================\n___________ test_rejects_missing_id_instead_of_collapsing_into_none ____________\n\n    def test_rejects_missing_id_instead_of_collapsing_into_none():\n        try:\n>           dedupe_events([{\"timestamp\": \"2026-07-02T10:00:00Z\", \"payload\": {}}])\n\ncheck_events.py:30: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nevents = [{'payload': {}, 'timestamp': '2026-07-02T10:00:00Z'}]\n\n    def dedupe_events(events):\n        \"\"\"Return one event per id, preserving first-seen replay order.\"\"\"\n        by_id = {}\n        order = []\n    \n        for event in events:\n>           event_id = event[\"id\"]\nE           KeyError: 'id'\n\nevents.py:7: KeyError\n=========================== short test summary info ============================\nFAILED check_events.py::test_rejects_missing_id_instead_of_collapsing_into_none\n1 failed, 2 passed in 0.02s",
+            "stderr": "",
+            "timeout_seconds": 15
+          },
+          "extraction_result": {
+            "complete": true,
+            "expected_files": [
+              "events.py"
+            ],
+            "extracted_files": [
+              "events.py"
+            ],
+            "errors": []
+          },
+          "grader_version": "hardness-v4-model-surface-pytest-v1"
+        },
+        {
+          "surface": "codex-cli-default",
+          "surface_id": "codex-cli-default",
+          "surface_kind": "codex",
+          "surface_label": "Codex CLI default model",
+          "tool_name": "Codex CLI",
+          "tool_version": "codex-cli 0.142.5",
+          "model_name": "default",
+          "provenance": "project-owned",
+          "evidence_class": "project_owned_model_run",
+          "redaction_policy": "Public fixtures only; no secrets intentionally supplied.",
+          "case_slug": "hidden-invariant-event-order",
+          "title": "Event Deduplication Hidden Order Invariant",
+          "rung": "hidden-invariant",
+          "hardness_axis": "order and replay semantics hidden behind simple dedupe wording",
+          "variant": "repaired",
+          "repetition": 2,
+          "run_timestamp": "2026-07-02T14:24:19.630322+00:00",
+          "fixture_path": "examples/evaluations/hardness-v4/fixtures/hidden-invariant-event-order",
+          "ground_truth_path": "examples/evaluations/hardness-v4/fixtures/hidden-invariant-event-order/ground_truth.json",
+          "prompt_path": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/hidden-invariant-event-order/repaired/r02-prompt.md",
+          "transcript_path": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/hidden-invariant-event-order/repaired/r02-output.md",
+          "artifact_root": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/hidden-invariant-event-order/repaired/r02-artifacts",
+          "artifact_paths": [
+            "examples/evaluations/hardness-v4/model-runs/codex-cli-default/hidden-invariant-event-order/repaired/r02-artifacts/events.py"
+          ],
+          "execution_command": "python -m pytest -q check_events.py",
+          "execution_result": {
+            "status": "failed",
+            "passed": false,
+            "exit_code": 1,
+            "stdout": "..F                                                                      [100%]\n=================================== FAILURES ===================================\n___________ test_rejects_missing_id_instead_of_collapsing_into_none ____________\n\n    def test_rejects_missing_id_instead_of_collapsing_into_none():\n        try:\n>           dedupe_events([{\"timestamp\": \"2026-07-02T10:00:00Z\", \"payload\": {}}])\n\ncheck_events.py:30: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nevents = [{'payload': {}, 'timestamp': '2026-07-02T10:00:00Z'}]\n\n    def dedupe_events(events):\n        \"\"\"Return one event per id.\"\"\"\n        deduped = {}\n        order = []\n    \n        for event in events:\n>           event_id = event[\"id\"]\nE           KeyError: 'id'\n\nevents.py:7: KeyError\n=========================== short test summary info ============================\nFAILED check_events.py::test_rejects_missing_id_instead_of_collapsing_into_none\n1 failed, 2 passed in 0.03s",
+            "stderr": "",
+            "timeout_seconds": 15
+          },
+          "extraction_result": {
+            "complete": true,
+            "expected_files": [
+              "events.py"
+            ],
+            "extracted_files": [
+              "events.py"
+            ],
+            "errors": []
+          },
+          "grader_version": "hardness-v4-model-surface-pytest-v1"
+        },
+        {
+          "surface": "codex-cli-default",
+          "surface_id": "codex-cli-default",
+          "surface_kind": "codex",
+          "surface_label": "Codex CLI default model",
+          "tool_name": "Codex CLI",
+          "tool_version": "codex-cli 0.142.5",
+          "model_name": "default",
+          "provenance": "project-owned",
+          "evidence_class": "project_owned_model_run",
+          "redaction_policy": "Public fixtures only; no secrets intentionally supplied.",
+          "case_slug": "hidden-invariant-event-order",
+          "title": "Event Deduplication Hidden Order Invariant",
+          "rung": "hidden-invariant",
+          "hardness_axis": "order and replay semantics hidden behind simple dedupe wording",
+          "variant": "repaired",
+          "repetition": 3,
+          "run_timestamp": "2026-07-02T14:24:37.500012+00:00",
+          "fixture_path": "examples/evaluations/hardness-v4/fixtures/hidden-invariant-event-order",
+          "ground_truth_path": "examples/evaluations/hardness-v4/fixtures/hidden-invariant-event-order/ground_truth.json",
+          "prompt_path": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/hidden-invariant-event-order/repaired/r03-prompt.md",
+          "transcript_path": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/hidden-invariant-event-order/repaired/r03-output.md",
+          "artifact_root": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/hidden-invariant-event-order/repaired/r03-artifacts",
+          "artifact_paths": [
+            "examples/evaluations/hardness-v4/model-runs/codex-cli-default/hidden-invariant-event-order/repaired/r03-artifacts/events.py"
+          ],
+          "execution_command": "python -m pytest -q check_events.py",
+          "execution_result": {
+            "status": "failed",
+            "passed": false,
+            "exit_code": 1,
+            "stdout": "..F                                                                      [100%]\n=================================== FAILURES ===================================\n___________ test_rejects_missing_id_instead_of_collapsing_into_none ____________\n\n    def test_rejects_missing_id_instead_of_collapsing_into_none():\n        try:\n>           dedupe_events([{\"timestamp\": \"2026-07-02T10:00:00Z\", \"payload\": {}}])\n\ncheck_events.py:30: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nevents = [{'payload': {}, 'timestamp': '2026-07-02T10:00:00Z'}]\n\n    def dedupe_events(events):\n        \"\"\"Return one event per id.\"\"\"\n        deduped = {}\n        order = []\n    \n        for event in events:\n>           event_id = event[\"id\"]\nE           KeyError: 'id'\n\nevents.py:7: KeyError\n=========================== short test summary info ============================\nFAILED check_events.py::test_rejects_missing_id_instead_of_collapsing_into_none\n1 failed, 2 passed in 0.02s",
+            "stderr": "",
+            "timeout_seconds": 15
+          },
+          "extraction_result": {
+            "complete": true,
+            "expected_files": [
+              "events.py"
+            ],
+            "extracted_files": [
+              "events.py"
+            ],
+            "errors": []
+          },
+          "grader_version": "hardness-v4-model-surface-pytest-v1"
+        },
+        {
+          "surface": "codex-cli-default",
+          "surface_id": "codex-cli-default",
+          "surface_kind": "codex",
+          "surface_label": "Codex CLI default model",
+          "tool_name": "Codex CLI",
+          "tool_version": "codex-cli 0.142.5",
+          "model_name": "default",
+          "provenance": "project-owned",
+          "evidence_class": "project_owned_model_run",
+          "redaction_policy": "Public fixtures only; no secrets intentionally supplied.",
+          "case_slug": "hidden-invariant-event-order",
+          "title": "Event Deduplication Hidden Order Invariant",
+          "rung": "hidden-invariant",
+          "hardness_axis": "order and replay semantics hidden behind simple dedupe wording",
+          "variant": "repaired",
+          "repetition": 4,
+          "run_timestamp": "2026-07-02T14:24:54.563524+00:00",
+          "fixture_path": "examples/evaluations/hardness-v4/fixtures/hidden-invariant-event-order",
+          "ground_truth_path": "examples/evaluations/hardness-v4/fixtures/hidden-invariant-event-order/ground_truth.json",
+          "prompt_path": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/hidden-invariant-event-order/repaired/r04-prompt.md",
+          "transcript_path": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/hidden-invariant-event-order/repaired/r04-output.md",
+          "artifact_root": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/hidden-invariant-event-order/repaired/r04-artifacts",
+          "artifact_paths": [
+            "examples/evaluations/hardness-v4/model-runs/codex-cli-default/hidden-invariant-event-order/repaired/r04-artifacts/events.py"
+          ],
+          "execution_command": "python -m pytest -q check_events.py",
+          "execution_result": {
+            "status": "failed",
+            "passed": false,
+            "exit_code": 1,
+            "stdout": "..F                                                                      [100%]\n=================================== FAILURES ===================================\n___________ test_rejects_missing_id_instead_of_collapsing_into_none ____________\n\n    def test_rejects_missing_id_instead_of_collapsing_into_none():\n        try:\n>           dedupe_events([{\"timestamp\": \"2026-07-02T10:00:00Z\", \"payload\": {}}])\n\ncheck_events.py:30: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nevents = [{'payload': {}, 'timestamp': '2026-07-02T10:00:00Z'}]\n\n    def dedupe_events(events):\n        \"\"\"Return one event per id, preserving first replay order and timestamp.\"\"\"\n        deduped = {}\n    \n        for event in events:\n>           event_id = event[\"id\"]\nE           KeyError: 'id'\n\nevents.py:6: KeyError\n=========================== short test summary info ============================\nFAILED check_events.py::test_rejects_missing_id_instead_of_collapsing_into_none\n1 failed, 2 passed in 0.02s",
+            "stderr": "",
+            "timeout_seconds": 15
+          },
+          "extraction_result": {
+            "complete": true,
+            "expected_files": [
+              "events.py"
+            ],
+            "extracted_files": [
+              "events.py"
+            ],
+            "errors": []
+          },
+          "grader_version": "hardness-v4-model-surface-pytest-v1"
+        },
+        {
+          "surface": "codex-cli-default",
+          "surface_id": "codex-cli-default",
+          "surface_kind": "codex",
+          "surface_label": "Codex CLI default model",
+          "tool_name": "Codex CLI",
+          "tool_version": "codex-cli 0.142.5",
+          "model_name": "default",
+          "provenance": "project-owned",
+          "evidence_class": "project_owned_model_run",
+          "redaction_policy": "Public fixtures only; no secrets intentionally supplied.",
+          "case_slug": "hidden-invariant-event-order",
+          "title": "Event Deduplication Hidden Order Invariant",
+          "rung": "hidden-invariant",
+          "hardness_axis": "order and replay semantics hidden behind simple dedupe wording",
+          "variant": "repaired",
+          "repetition": 5,
+          "run_timestamp": "2026-07-02T14:25:12.352901+00:00",
+          "fixture_path": "examples/evaluations/hardness-v4/fixtures/hidden-invariant-event-order",
+          "ground_truth_path": "examples/evaluations/hardness-v4/fixtures/hidden-invariant-event-order/ground_truth.json",
+          "prompt_path": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/hidden-invariant-event-order/repaired/r05-prompt.md",
+          "transcript_path": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/hidden-invariant-event-order/repaired/r05-output.md",
+          "artifact_root": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/hidden-invariant-event-order/repaired/r05-artifacts",
+          "artifact_paths": [
+            "examples/evaluations/hardness-v4/model-runs/codex-cli-default/hidden-invariant-event-order/repaired/r05-artifacts/events.py"
+          ],
+          "execution_command": "python -m pytest -q check_events.py",
+          "execution_result": {
+            "status": "failed",
+            "passed": false,
+            "exit_code": 1,
+            "stdout": "..F                                                                      [100%]\n=================================== FAILURES ===================================\n___________ test_rejects_missing_id_instead_of_collapsing_into_none ____________\n\n    def test_rejects_missing_id_instead_of_collapsing_into_none():\n        try:\n>           dedupe_events([{\"timestamp\": \"2026-07-02T10:00:00Z\", \"payload\": {}}])\n\ncheck_events.py:30: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nevents = [{'payload': {}, 'timestamp': '2026-07-02T10:00:00Z'}]\n\n    def dedupe_events(events):\n        \"\"\"Return one event per id.\"\"\"\n        by_id = {}\n        ordered = []\n    \n        for event in events:\n>           event_id = event[\"id\"]\nE           KeyError: 'id'\n\nevents.py:7: KeyError\n=========================== short test summary info ============================\nFAILED check_events.py::test_rejects_missing_id_instead_of_collapsing_into_none\n1 failed, 2 passed in 0.02s",
+            "stderr": "",
+            "timeout_seconds": 15
+          },
+          "extraction_result": {
+            "complete": true,
+            "expected_files": [
+              "events.py"
+            ],
+            "extracted_files": [
+              "events.py"
+            ],
+            "errors": []
+          },
+          "grader_version": "hardness-v4-model-surface-pytest-v1"
+        }
+      ],
+      "summary": {
+        "weak_runs": 5,
+        "repaired_runs": 5,
+        "weak_passes": 0,
+        "repaired_passes": 0,
+        "extraction_failures": 0,
+        "execution_delta": "weak passed 0/5; repaired passed 0/5",
+        "paired_signs": {
+          "repaired_wins": 0,
+          "weak_wins": 0,
+          "ties": 5
+        }
+      }
+    },
+    "misleading-context-tax-discount": {
+      "title": "Tax Discount Misleading Context",
+      "rung": "misleading-context",
+      "hardness_axis": "stale inline comment contradicts current merchant contract",
+      "fixture_path": "examples/evaluations/hardness-v4/fixtures/misleading-context-tax-discount",
+      "ground_truth_path": "examples/evaluations/hardness-v4/fixtures/misleading-context-tax-discount/ground_truth.json",
+      "artifact": "pricing.py",
+      "artifact_files": [
+        "pricing.py"
+      ],
+      "test_file": "check_pricing.py",
+      "runs": [
+        {
+          "surface": "codex-cli-default",
+          "surface_id": "codex-cli-default",
+          "surface_kind": "codex",
+          "surface_label": "Codex CLI default model",
+          "tool_name": "Codex CLI",
+          "tool_version": "codex-cli 0.142.5",
+          "model_name": "default",
+          "provenance": "project-owned",
+          "evidence_class": "project_owned_model_run",
+          "redaction_policy": "Public fixtures only; no secrets intentionally supplied.",
+          "case_slug": "misleading-context-tax-discount",
+          "title": "Tax Discount Misleading Context",
+          "rung": "misleading-context",
+          "hardness_axis": "stale inline comment contradicts current merchant contract",
+          "variant": "weak",
+          "repetition": 1,
+          "run_timestamp": "2026-07-02T14:25:27.887787+00:00",
+          "fixture_path": "examples/evaluations/hardness-v4/fixtures/misleading-context-tax-discount",
+          "ground_truth_path": "examples/evaluations/hardness-v4/fixtures/misleading-context-tax-discount/ground_truth.json",
+          "prompt_path": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/misleading-context-tax-discount/weak/r01-prompt.md",
+          "transcript_path": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/misleading-context-tax-discount/weak/r01-output.md",
+          "artifact_root": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/misleading-context-tax-discount/weak/r01-artifacts",
+          "artifact_paths": [
+            "examples/evaluations/hardness-v4/model-runs/codex-cli-default/misleading-context-tax-discount/weak/r01-artifacts/pricing.py"
+          ],
+          "execution_command": "python -m pytest -q check_pricing.py",
+          "execution_result": {
+            "status": "failed",
+            "passed": false,
+            "exit_code": 1,
+            "stdout": ".F..                                                                     [100%]\n=================================== FAILURES ===================================\n______________ test_discount_applies_after_tax_and_floors_at_zero ______________\n\n    def test_discount_applies_after_tax_and_floors_at_zero():\n>       assert calculate_total(5000, discount_cents=6000, tax_basis_points=1000) == 0\nE       assert -500 == 0\nE        +  where -500 = calculate_total(5000, discount_cents=6000, tax_basis_points=1000)\n\ncheck_pricing.py:11: AssertionError\n=========================== short test summary info ============================\nFAILED check_pricing.py::test_discount_applies_after_tax_and_floors_at_zero\n1 failed, 3 passed in 0.02s",
+            "stderr": "",
+            "timeout_seconds": 15
+          },
+          "extraction_result": {
+            "complete": true,
+            "expected_files": [
+              "pricing.py"
+            ],
+            "extracted_files": [
+              "pricing.py"
+            ],
+            "errors": []
+          },
+          "grader_version": "hardness-v4-model-surface-pytest-v1"
+        },
+        {
+          "surface": "codex-cli-default",
+          "surface_id": "codex-cli-default",
+          "surface_kind": "codex",
+          "surface_label": "Codex CLI default model",
+          "tool_name": "Codex CLI",
+          "tool_version": "codex-cli 0.142.5",
+          "model_name": "default",
+          "provenance": "project-owned",
+          "evidence_class": "project_owned_model_run",
+          "redaction_policy": "Public fixtures only; no secrets intentionally supplied.",
+          "case_slug": "misleading-context-tax-discount",
+          "title": "Tax Discount Misleading Context",
+          "rung": "misleading-context",
+          "hardness_axis": "stale inline comment contradicts current merchant contract",
+          "variant": "weak",
+          "repetition": 2,
+          "run_timestamp": "2026-07-02T14:25:44.509465+00:00",
+          "fixture_path": "examples/evaluations/hardness-v4/fixtures/misleading-context-tax-discount",
+          "ground_truth_path": "examples/evaluations/hardness-v4/fixtures/misleading-context-tax-discount/ground_truth.json",
+          "prompt_path": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/misleading-context-tax-discount/weak/r02-prompt.md",
+          "transcript_path": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/misleading-context-tax-discount/weak/r02-output.md",
+          "artifact_root": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/misleading-context-tax-discount/weak/r02-artifacts",
+          "artifact_paths": [
+            "examples/evaluations/hardness-v4/model-runs/codex-cli-default/misleading-context-tax-discount/weak/r02-artifacts/pricing.py"
+          ],
+          "execution_command": "python -m pytest -q check_pricing.py",
+          "execution_result": {
+            "status": "failed",
+            "passed": false,
+            "exit_code": 1,
+            "stdout": ".F..                                                                     [100%]\n=================================== FAILURES ===================================\n______________ test_discount_applies_after_tax_and_floors_at_zero ______________\n\n    def test_discount_applies_after_tax_and_floors_at_zero():\n>       assert calculate_total(5000, discount_cents=6000, tax_basis_points=1000) == 0\nE       assert -500 == 0\nE        +  where -500 = calculate_total(5000, discount_cents=6000, tax_basis_points=1000)\n\ncheck_pricing.py:11: AssertionError\n=========================== short test summary info ============================\nFAILED check_pricing.py::test_discount_applies_after_tax_and_floors_at_zero\n1 failed, 3 passed in 0.06s",
+            "stderr": "",
+            "timeout_seconds": 15
+          },
+          "extraction_result": {
+            "complete": true,
+            "expected_files": [
+              "pricing.py"
+            ],
+            "extracted_files": [
+              "pricing.py"
+            ],
+            "errors": []
+          },
+          "grader_version": "hardness-v4-model-surface-pytest-v1"
+        },
+        {
+          "surface": "codex-cli-default",
+          "surface_id": "codex-cli-default",
+          "surface_kind": "codex",
+          "surface_label": "Codex CLI default model",
+          "tool_name": "Codex CLI",
+          "tool_version": "codex-cli 0.142.5",
+          "model_name": "default",
+          "provenance": "project-owned",
+          "evidence_class": "project_owned_model_run",
+          "redaction_policy": "Public fixtures only; no secrets intentionally supplied.",
+          "case_slug": "misleading-context-tax-discount",
+          "title": "Tax Discount Misleading Context",
+          "rung": "misleading-context",
+          "hardness_axis": "stale inline comment contradicts current merchant contract",
+          "variant": "weak",
+          "repetition": 3,
+          "run_timestamp": "2026-07-02T14:26:01.059115+00:00",
+          "fixture_path": "examples/evaluations/hardness-v4/fixtures/misleading-context-tax-discount",
+          "ground_truth_path": "examples/evaluations/hardness-v4/fixtures/misleading-context-tax-discount/ground_truth.json",
+          "prompt_path": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/misleading-context-tax-discount/weak/r03-prompt.md",
+          "transcript_path": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/misleading-context-tax-discount/weak/r03-output.md",
+          "artifact_root": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/misleading-context-tax-discount/weak/r03-artifacts",
+          "artifact_paths": [
+            "examples/evaluations/hardness-v4/model-runs/codex-cli-default/misleading-context-tax-discount/weak/r03-artifacts/pricing.py"
+          ],
+          "execution_command": "python -m pytest -q check_pricing.py",
+          "execution_result": {
+            "status": "failed",
+            "passed": false,
+            "exit_code": 1,
+            "stdout": ".F..                                                                     [100%]\n=================================== FAILURES ===================================\n______________ test_discount_applies_after_tax_and_floors_at_zero ______________\n\n    def test_discount_applies_after_tax_and_floors_at_zero():\n>       assert calculate_total(5000, discount_cents=6000, tax_basis_points=1000) == 0\nE       assert -500 == 0\nE        +  where -500 = calculate_total(5000, discount_cents=6000, tax_basis_points=1000)\n\ncheck_pricing.py:11: AssertionError\n=========================== short test summary info ============================\nFAILED check_pricing.py::test_discount_applies_after_tax_and_floors_at_zero\n1 failed, 3 passed in 0.02s",
+            "stderr": "",
+            "timeout_seconds": 15
+          },
+          "extraction_result": {
+            "complete": true,
+            "expected_files": [
+              "pricing.py"
+            ],
+            "extracted_files": [
+              "pricing.py"
+            ],
+            "errors": []
+          },
+          "grader_version": "hardness-v4-model-surface-pytest-v1"
+        },
+        {
+          "surface": "codex-cli-default",
+          "surface_id": "codex-cli-default",
+          "surface_kind": "codex",
+          "surface_label": "Codex CLI default model",
+          "tool_name": "Codex CLI",
+          "tool_version": "codex-cli 0.142.5",
+          "model_name": "default",
+          "provenance": "project-owned",
+          "evidence_class": "project_owned_model_run",
+          "redaction_policy": "Public fixtures only; no secrets intentionally supplied.",
+          "case_slug": "misleading-context-tax-discount",
+          "title": "Tax Discount Misleading Context",
+          "rung": "misleading-context",
+          "hardness_axis": "stale inline comment contradicts current merchant contract",
+          "variant": "weak",
+          "repetition": 4,
+          "run_timestamp": "2026-07-02T14:26:19.008962+00:00",
+          "fixture_path": "examples/evaluations/hardness-v4/fixtures/misleading-context-tax-discount",
+          "ground_truth_path": "examples/evaluations/hardness-v4/fixtures/misleading-context-tax-discount/ground_truth.json",
+          "prompt_path": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/misleading-context-tax-discount/weak/r04-prompt.md",
+          "transcript_path": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/misleading-context-tax-discount/weak/r04-output.md",
+          "artifact_root": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/misleading-context-tax-discount/weak/r04-artifacts",
+          "artifact_paths": [
+            "examples/evaluations/hardness-v4/model-runs/codex-cli-default/misleading-context-tax-discount/weak/r04-artifacts/pricing.py"
+          ],
+          "execution_command": "python -m pytest -q check_pricing.py",
+          "execution_result": {
+            "status": "failed",
+            "passed": false,
+            "exit_code": 1,
+            "stdout": ".F..                                                                     [100%]\n=================================== FAILURES ===================================\n______________ test_discount_applies_after_tax_and_floors_at_zero ______________\n\n    def test_discount_applies_after_tax_and_floors_at_zero():\n>       assert calculate_total(5000, discount_cents=6000, tax_basis_points=1000) == 0\nE       assert -500 == 0\nE        +  where -500 = calculate_total(5000, discount_cents=6000, tax_basis_points=1000)\n\ncheck_pricing.py:11: AssertionError\n=========================== short test summary info ============================\nFAILED check_pricing.py::test_discount_applies_after_tax_and_floors_at_zero\n1 failed, 3 passed in 0.02s",
+            "stderr": "",
+            "timeout_seconds": 15
+          },
+          "extraction_result": {
+            "complete": true,
+            "expected_files": [
+              "pricing.py"
+            ],
+            "extracted_files": [
+              "pricing.py"
+            ],
+            "errors": []
+          },
+          "grader_version": "hardness-v4-model-surface-pytest-v1"
+        },
+        {
+          "surface": "codex-cli-default",
+          "surface_id": "codex-cli-default",
+          "surface_kind": "codex",
+          "surface_label": "Codex CLI default model",
+          "tool_name": "Codex CLI",
+          "tool_version": "codex-cli 0.142.5",
+          "model_name": "default",
+          "provenance": "project-owned",
+          "evidence_class": "project_owned_model_run",
+          "redaction_policy": "Public fixtures only; no secrets intentionally supplied.",
+          "case_slug": "misleading-context-tax-discount",
+          "title": "Tax Discount Misleading Context",
+          "rung": "misleading-context",
+          "hardness_axis": "stale inline comment contradicts current merchant contract",
+          "variant": "weak",
+          "repetition": 5,
+          "run_timestamp": "2026-07-02T14:26:34.835265+00:00",
+          "fixture_path": "examples/evaluations/hardness-v4/fixtures/misleading-context-tax-discount",
+          "ground_truth_path": "examples/evaluations/hardness-v4/fixtures/misleading-context-tax-discount/ground_truth.json",
+          "prompt_path": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/misleading-context-tax-discount/weak/r05-prompt.md",
+          "transcript_path": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/misleading-context-tax-discount/weak/r05-output.md",
+          "artifact_root": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/misleading-context-tax-discount/weak/r05-artifacts",
+          "artifact_paths": [
+            "examples/evaluations/hardness-v4/model-runs/codex-cli-default/misleading-context-tax-discount/weak/r05-artifacts/pricing.py"
+          ],
+          "execution_command": "python -m pytest -q check_pricing.py",
+          "execution_result": {
+            "status": "failed",
+            "passed": false,
+            "exit_code": 1,
+            "stdout": ".F..                                                                     [100%]\n=================================== FAILURES ===================================\n______________ test_discount_applies_after_tax_and_floors_at_zero ______________\n\n    def test_discount_applies_after_tax_and_floors_at_zero():\n>       assert calculate_total(5000, discount_cents=6000, tax_basis_points=1000) == 0\nE       assert -500 == 0\nE        +  where -500 = calculate_total(5000, discount_cents=6000, tax_basis_points=1000)\n\ncheck_pricing.py:11: AssertionError\n=========================== short test summary info ============================\nFAILED check_pricing.py::test_discount_applies_after_tax_and_floors_at_zero\n1 failed, 3 passed in 0.02s",
+            "stderr": "",
+            "timeout_seconds": 15
+          },
+          "extraction_result": {
+            "complete": true,
+            "expected_files": [
+              "pricing.py"
+            ],
+            "extracted_files": [
+              "pricing.py"
+            ],
+            "errors": []
+          },
+          "grader_version": "hardness-v4-model-surface-pytest-v1"
+        },
+        {
+          "surface": "codex-cli-default",
+          "surface_id": "codex-cli-default",
+          "surface_kind": "codex",
+          "surface_label": "Codex CLI default model",
+          "tool_name": "Codex CLI",
+          "tool_version": "codex-cli 0.142.5",
+          "model_name": "default",
+          "provenance": "project-owned",
+          "evidence_class": "project_owned_model_run",
+          "redaction_policy": "Public fixtures only; no secrets intentionally supplied.",
+          "case_slug": "misleading-context-tax-discount",
+          "title": "Tax Discount Misleading Context",
+          "rung": "misleading-context",
+          "hardness_axis": "stale inline comment contradicts current merchant contract",
+          "variant": "repaired",
+          "repetition": 1,
+          "run_timestamp": "2026-07-02T14:26:50.777876+00:00",
+          "fixture_path": "examples/evaluations/hardness-v4/fixtures/misleading-context-tax-discount",
+          "ground_truth_path": "examples/evaluations/hardness-v4/fixtures/misleading-context-tax-discount/ground_truth.json",
+          "prompt_path": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/misleading-context-tax-discount/repaired/r01-prompt.md",
+          "transcript_path": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/misleading-context-tax-discount/repaired/r01-output.md",
+          "artifact_root": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/misleading-context-tax-discount/repaired/r01-artifacts",
+          "artifact_paths": [
+            "examples/evaluations/hardness-v4/model-runs/codex-cli-default/misleading-context-tax-discount/repaired/r01-artifacts/pricing.py"
+          ],
+          "execution_command": "python -m pytest -q check_pricing.py",
+          "execution_result": {
+            "status": "failed",
+            "passed": false,
+            "exit_code": 1,
+            "stdout": ".F..                                                                     [100%]\n=================================== FAILURES ===================================\n______________ test_discount_applies_after_tax_and_floors_at_zero ______________\n\n    def test_discount_applies_after_tax_and_floors_at_zero():\n>       assert calculate_total(5000, discount_cents=6000, tax_basis_points=1000) == 0\nE       assert -500 == 0\nE        +  where -500 = calculate_total(5000, discount_cents=6000, tax_basis_points=1000)\n\ncheck_pricing.py:11: AssertionError\n=========================== short test summary info ============================\nFAILED check_pricing.py::test_discount_applies_after_tax_and_floors_at_zero\n1 failed, 3 passed in 0.02s",
+            "stderr": "",
+            "timeout_seconds": 15
+          },
+          "extraction_result": {
+            "complete": true,
+            "expected_files": [
+              "pricing.py"
+            ],
+            "extracted_files": [
+              "pricing.py"
+            ],
+            "errors": []
+          },
+          "grader_version": "hardness-v4-model-surface-pytest-v1"
+        },
+        {
+          "surface": "codex-cli-default",
+          "surface_id": "codex-cli-default",
+          "surface_kind": "codex",
+          "surface_label": "Codex CLI default model",
+          "tool_name": "Codex CLI",
+          "tool_version": "codex-cli 0.142.5",
+          "model_name": "default",
+          "provenance": "project-owned",
+          "evidence_class": "project_owned_model_run",
+          "redaction_policy": "Public fixtures only; no secrets intentionally supplied.",
+          "case_slug": "misleading-context-tax-discount",
+          "title": "Tax Discount Misleading Context",
+          "rung": "misleading-context",
+          "hardness_axis": "stale inline comment contradicts current merchant contract",
+          "variant": "repaired",
+          "repetition": 2,
+          "run_timestamp": "2026-07-02T14:27:05.775137+00:00",
+          "fixture_path": "examples/evaluations/hardness-v4/fixtures/misleading-context-tax-discount",
+          "ground_truth_path": "examples/evaluations/hardness-v4/fixtures/misleading-context-tax-discount/ground_truth.json",
+          "prompt_path": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/misleading-context-tax-discount/repaired/r02-prompt.md",
+          "transcript_path": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/misleading-context-tax-discount/repaired/r02-output.md",
+          "artifact_root": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/misleading-context-tax-discount/repaired/r02-artifacts",
+          "artifact_paths": [
+            "examples/evaluations/hardness-v4/model-runs/codex-cli-default/misleading-context-tax-discount/repaired/r02-artifacts/pricing.py"
+          ],
+          "execution_command": "python -m pytest -q check_pricing.py",
+          "execution_result": {
+            "status": "failed",
+            "passed": false,
+            "exit_code": 1,
+            "stdout": ".F..                                                                     [100%]\n=================================== FAILURES ===================================\n______________ test_discount_applies_after_tax_and_floors_at_zero ______________\n\n    def test_discount_applies_after_tax_and_floors_at_zero():\n>       assert calculate_total(5000, discount_cents=6000, tax_basis_points=1000) == 0\nE       assert -500 == 0\nE        +  where -500 = calculate_total(5000, discount_cents=6000, tax_basis_points=1000)\n\ncheck_pricing.py:11: AssertionError\n=========================== short test summary info ============================\nFAILED check_pricing.py::test_discount_applies_after_tax_and_floors_at_zero\n1 failed, 3 passed in 0.03s",
+            "stderr": "",
+            "timeout_seconds": 15
+          },
+          "extraction_result": {
+            "complete": true,
+            "expected_files": [
+              "pricing.py"
+            ],
+            "extracted_files": [
+              "pricing.py"
+            ],
+            "errors": []
+          },
+          "grader_version": "hardness-v4-model-surface-pytest-v1"
+        },
+        {
+          "surface": "codex-cli-default",
+          "surface_id": "codex-cli-default",
+          "surface_kind": "codex",
+          "surface_label": "Codex CLI default model",
+          "tool_name": "Codex CLI",
+          "tool_version": "codex-cli 0.142.5",
+          "model_name": "default",
+          "provenance": "project-owned",
+          "evidence_class": "project_owned_model_run",
+          "redaction_policy": "Public fixtures only; no secrets intentionally supplied.",
+          "case_slug": "misleading-context-tax-discount",
+          "title": "Tax Discount Misleading Context",
+          "rung": "misleading-context",
+          "hardness_axis": "stale inline comment contradicts current merchant contract",
+          "variant": "repaired",
+          "repetition": 3,
+          "run_timestamp": "2026-07-02T14:27:20.915459+00:00",
+          "fixture_path": "examples/evaluations/hardness-v4/fixtures/misleading-context-tax-discount",
+          "ground_truth_path": "examples/evaluations/hardness-v4/fixtures/misleading-context-tax-discount/ground_truth.json",
+          "prompt_path": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/misleading-context-tax-discount/repaired/r03-prompt.md",
+          "transcript_path": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/misleading-context-tax-discount/repaired/r03-output.md",
+          "artifact_root": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/misleading-context-tax-discount/repaired/r03-artifacts",
+          "artifact_paths": [
+            "examples/evaluations/hardness-v4/model-runs/codex-cli-default/misleading-context-tax-discount/repaired/r03-artifacts/pricing.py"
+          ],
+          "execution_command": "python -m pytest -q check_pricing.py",
+          "execution_result": {
+            "status": "failed",
+            "passed": false,
+            "exit_code": 1,
+            "stdout": ".F..                                                                     [100%]\n=================================== FAILURES ===================================\n______________ test_discount_applies_after_tax_and_floors_at_zero ______________\n\n    def test_discount_applies_after_tax_and_floors_at_zero():\n>       assert calculate_total(5000, discount_cents=6000, tax_basis_points=1000) == 0\nE       assert -500 == 0\nE        +  where -500 = calculate_total(5000, discount_cents=6000, tax_basis_points=1000)\n\ncheck_pricing.py:11: AssertionError\n=========================== short test summary info ============================\nFAILED check_pricing.py::test_discount_applies_after_tax_and_floors_at_zero\n1 failed, 3 passed in 0.02s",
+            "stderr": "",
+            "timeout_seconds": 15
+          },
+          "extraction_result": {
+            "complete": true,
+            "expected_files": [
+              "pricing.py"
+            ],
+            "extracted_files": [
+              "pricing.py"
+            ],
+            "errors": []
+          },
+          "grader_version": "hardness-v4-model-surface-pytest-v1"
+        },
+        {
+          "surface": "codex-cli-default",
+          "surface_id": "codex-cli-default",
+          "surface_kind": "codex",
+          "surface_label": "Codex CLI default model",
+          "tool_name": "Codex CLI",
+          "tool_version": "codex-cli 0.142.5",
+          "model_name": "default",
+          "provenance": "project-owned",
+          "evidence_class": "project_owned_model_run",
+          "redaction_policy": "Public fixtures only; no secrets intentionally supplied.",
+          "case_slug": "misleading-context-tax-discount",
+          "title": "Tax Discount Misleading Context",
+          "rung": "misleading-context",
+          "hardness_axis": "stale inline comment contradicts current merchant contract",
+          "variant": "repaired",
+          "repetition": 4,
+          "run_timestamp": "2026-07-02T14:27:38.177292+00:00",
+          "fixture_path": "examples/evaluations/hardness-v4/fixtures/misleading-context-tax-discount",
+          "ground_truth_path": "examples/evaluations/hardness-v4/fixtures/misleading-context-tax-discount/ground_truth.json",
+          "prompt_path": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/misleading-context-tax-discount/repaired/r04-prompt.md",
+          "transcript_path": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/misleading-context-tax-discount/repaired/r04-output.md",
+          "artifact_root": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/misleading-context-tax-discount/repaired/r04-artifacts",
+          "artifact_paths": [
+            "examples/evaluations/hardness-v4/model-runs/codex-cli-default/misleading-context-tax-discount/repaired/r04-artifacts/pricing.py"
+          ],
+          "execution_command": "python -m pytest -q check_pricing.py",
+          "execution_result": {
+            "status": "failed",
+            "passed": false,
+            "exit_code": 1,
+            "stdout": ".F..                                                                     [100%]\n=================================== FAILURES ===================================\n______________ test_discount_applies_after_tax_and_floors_at_zero ______________\n\n    def test_discount_applies_after_tax_and_floors_at_zero():\n>       assert calculate_total(5000, discount_cents=6000, tax_basis_points=1000) == 0\nE       assert -500 == 0\nE        +  where -500 = calculate_total(5000, discount_cents=6000, tax_basis_points=1000)\n\ncheck_pricing.py:11: AssertionError\n=========================== short test summary info ============================\nFAILED check_pricing.py::test_discount_applies_after_tax_and_floors_at_zero\n1 failed, 3 passed in 0.02s",
+            "stderr": "",
+            "timeout_seconds": 15
+          },
+          "extraction_result": {
+            "complete": true,
+            "expected_files": [
+              "pricing.py"
+            ],
+            "extracted_files": [
+              "pricing.py"
+            ],
+            "errors": []
+          },
+          "grader_version": "hardness-v4-model-surface-pytest-v1"
+        },
+        {
+          "surface": "codex-cli-default",
+          "surface_id": "codex-cli-default",
+          "surface_kind": "codex",
+          "surface_label": "Codex CLI default model",
+          "tool_name": "Codex CLI",
+          "tool_version": "codex-cli 0.142.5",
+          "model_name": "default",
+          "provenance": "project-owned",
+          "evidence_class": "project_owned_model_run",
+          "redaction_policy": "Public fixtures only; no secrets intentionally supplied.",
+          "case_slug": "misleading-context-tax-discount",
+          "title": "Tax Discount Misleading Context",
+          "rung": "misleading-context",
+          "hardness_axis": "stale inline comment contradicts current merchant contract",
+          "variant": "repaired",
+          "repetition": 5,
+          "run_timestamp": "2026-07-02T14:27:57.975094+00:00",
+          "fixture_path": "examples/evaluations/hardness-v4/fixtures/misleading-context-tax-discount",
+          "ground_truth_path": "examples/evaluations/hardness-v4/fixtures/misleading-context-tax-discount/ground_truth.json",
+          "prompt_path": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/misleading-context-tax-discount/repaired/r05-prompt.md",
+          "transcript_path": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/misleading-context-tax-discount/repaired/r05-output.md",
+          "artifact_root": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/misleading-context-tax-discount/repaired/r05-artifacts",
+          "artifact_paths": [
+            "examples/evaluations/hardness-v4/model-runs/codex-cli-default/misleading-context-tax-discount/repaired/r05-artifacts/pricing.py"
+          ],
+          "execution_command": "python -m pytest -q check_pricing.py",
+          "execution_result": {
+            "status": "failed",
+            "passed": false,
+            "exit_code": 1,
+            "stdout": ".F..                                                                     [100%]\n=================================== FAILURES ===================================\n______________ test_discount_applies_after_tax_and_floors_at_zero ______________\n\n    def test_discount_applies_after_tax_and_floors_at_zero():\n>       assert calculate_total(5000, discount_cents=6000, tax_basis_points=1000) == 0\nE       assert -500 == 0\nE        +  where -500 = calculate_total(5000, discount_cents=6000, tax_basis_points=1000)\n\ncheck_pricing.py:11: AssertionError\n=========================== short test summary info ============================\nFAILED check_pricing.py::test_discount_applies_after_tax_and_floors_at_zero\n1 failed, 3 passed in 0.02s",
+            "stderr": "",
+            "timeout_seconds": 15
+          },
+          "extraction_result": {
+            "complete": true,
+            "expected_files": [
+              "pricing.py"
+            ],
+            "extracted_files": [
+              "pricing.py"
+            ],
+            "errors": []
+          },
+          "grader_version": "hardness-v4-model-surface-pytest-v1"
+        }
+      ],
+      "summary": {
+        "weak_runs": 5,
+        "repaired_runs": 5,
+        "weak_passes": 0,
+        "repaired_passes": 0,
+        "extraction_failures": 0,
+        "execution_delta": "weak passed 0/5; repaired passed 0/5",
+        "paired_signs": {
+          "repaired_wins": 0,
+          "weak_wins": 0,
+          "ties": 5
+        }
+      }
+    },
+    "blast-radius-beta-flag": {
+      "title": "Beta Flag Blast Radius",
+      "rung": "blast-radius",
+      "hardness_axis": "narrow feature-flag change versus tempting billing overreach",
+      "fixture_path": "examples/evaluations/hardness-v4/fixtures/blast-radius-beta-flag",
+      "ground_truth_path": "examples/evaluations/hardness-v4/fixtures/blast-radius-beta-flag/ground_truth.json",
+      "artifact": "change_manifest.json",
+      "artifact_files": [
+        "feature_flags.py",
+        "billing.py",
+        "change_manifest.json"
+      ],
+      "test_file": "check_blast_radius.py",
+      "runs": [
+        {
+          "surface": "codex-cli-default",
+          "surface_id": "codex-cli-default",
+          "surface_kind": "codex",
+          "surface_label": "Codex CLI default model",
+          "tool_name": "Codex CLI",
+          "tool_version": "codex-cli 0.142.5",
+          "model_name": "default",
+          "provenance": "project-owned",
+          "evidence_class": "project_owned_model_run",
+          "redaction_policy": "Public fixtures only; no secrets intentionally supplied.",
+          "case_slug": "blast-radius-beta-flag",
+          "title": "Beta Flag Blast Radius",
+          "rung": "blast-radius",
+          "hardness_axis": "narrow feature-flag change versus tempting billing overreach",
+          "variant": "weak",
+          "repetition": 1,
+          "run_timestamp": "2026-07-02T14:28:16.020784+00:00",
+          "fixture_path": "examples/evaluations/hardness-v4/fixtures/blast-radius-beta-flag",
+          "ground_truth_path": "examples/evaluations/hardness-v4/fixtures/blast-radius-beta-flag/ground_truth.json",
+          "prompt_path": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/blast-radius-beta-flag/weak/r01-prompt.md",
+          "transcript_path": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/blast-radius-beta-flag/weak/r01-output.md",
+          "artifact_root": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/blast-radius-beta-flag/weak/r01-artifacts",
+          "artifact_paths": [
+            "examples/evaluations/hardness-v4/model-runs/codex-cli-default/blast-radius-beta-flag/weak/r01-artifacts/feature_flags.py",
+            "examples/evaluations/hardness-v4/model-runs/codex-cli-default/blast-radius-beta-flag/weak/r01-artifacts/billing.py",
+            "examples/evaluations/hardness-v4/model-runs/codex-cli-default/blast-radius-beta-flag/weak/r01-artifacts/change_manifest.json"
+          ],
+          "execution_command": "python -m pytest -q check_blast_radius.py",
+          "execution_result": {
+            "status": "failed",
+            "passed": false,
+            "exit_code": 1,
+            "stdout": "F..F                                                                     [100%]\n=================================== FAILURES ===================================\n______________________ test_beta_dashboard_is_staff_only _______________________\n\n    def test_beta_dashboard_is_staff_only():\n>       assert is_feature_enabled({\"staff\": True}, \"beta_dashboard\") is True\nE       AssertionError: assert False is True\nE        +  where False = is_feature_enabled({'staff': True}, 'beta_dashboard')\n\ncheck_blast_radius.py:8: AssertionError\n______________ test_manifest_declares_only_the_narrow_file_change ______________\n\n    def test_manifest_declares_only_the_narrow_file_change():\n        manifest = json.loads(open(\"change_manifest.json\", encoding=\"utf-8\").read())\n>       assert manifest[\"changed_files\"] == [\"feature_flags.py\"]\nE       KeyError: 'changed_files'\n\ncheck_blast_radius.py:24: KeyError\n=========================== short test summary info ============================\nFAILED check_blast_radius.py::test_beta_dashboard_is_staff_only - AssertionEr...\nFAILED check_blast_radius.py::test_manifest_declares_only_the_narrow_file_change\n2 failed, 2 passed in 0.02s",
+            "stderr": "",
+            "timeout_seconds": 15
+          },
+          "extraction_result": {
+            "complete": true,
+            "expected_files": [
+              "feature_flags.py",
+              "billing.py",
+              "change_manifest.json"
+            ],
+            "extracted_files": [
+              "billing.py",
+              "change_manifest.json",
+              "feature_flags.py"
+            ],
+            "errors": []
+          },
+          "grader_version": "hardness-v4-model-surface-pytest-v1"
+        },
+        {
+          "surface": "codex-cli-default",
+          "surface_id": "codex-cli-default",
+          "surface_kind": "codex",
+          "surface_label": "Codex CLI default model",
+          "tool_name": "Codex CLI",
+          "tool_version": "codex-cli 0.142.5",
+          "model_name": "default",
+          "provenance": "project-owned",
+          "evidence_class": "project_owned_model_run",
+          "redaction_policy": "Public fixtures only; no secrets intentionally supplied.",
+          "case_slug": "blast-radius-beta-flag",
+          "title": "Beta Flag Blast Radius",
+          "rung": "blast-radius",
+          "hardness_axis": "narrow feature-flag change versus tempting billing overreach",
+          "variant": "weak",
+          "repetition": 2,
+          "run_timestamp": "2026-07-02T14:28:32.969526+00:00",
+          "fixture_path": "examples/evaluations/hardness-v4/fixtures/blast-radius-beta-flag",
+          "ground_truth_path": "examples/evaluations/hardness-v4/fixtures/blast-radius-beta-flag/ground_truth.json",
+          "prompt_path": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/blast-radius-beta-flag/weak/r02-prompt.md",
+          "transcript_path": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/blast-radius-beta-flag/weak/r02-output.md",
+          "artifact_root": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/blast-radius-beta-flag/weak/r02-artifacts",
+          "artifact_paths": [
+            "examples/evaluations/hardness-v4/model-runs/codex-cli-default/blast-radius-beta-flag/weak/r02-artifacts/feature_flags.py",
+            "examples/evaluations/hardness-v4/model-runs/codex-cli-default/blast-radius-beta-flag/weak/r02-artifacts/billing.py",
+            "examples/evaluations/hardness-v4/model-runs/codex-cli-default/blast-radius-beta-flag/weak/r02-artifacts/change_manifest.json"
+          ],
+          "execution_command": "python -m pytest -q check_blast_radius.py",
+          "execution_result": {
+            "status": "failed",
+            "passed": false,
+            "exit_code": 1,
+            "stdout": "F..F                                                                     [100%]\n=================================== FAILURES ===================================\n______________________ test_beta_dashboard_is_staff_only _______________________\n\n    def test_beta_dashboard_is_staff_only():\n>       assert is_feature_enabled({\"staff\": True}, \"beta_dashboard\") is True\nE       AssertionError: assert False is True\nE        +  where False = is_feature_enabled({'staff': True}, 'beta_dashboard')\n\ncheck_blast_radius.py:8: AssertionError\n______________ test_manifest_declares_only_the_narrow_file_change ______________\n\n    def test_manifest_declares_only_the_narrow_file_change():\n        manifest = json.loads(open(\"change_manifest.json\", encoding=\"utf-8\").read())\n>       assert manifest[\"changed_files\"] == [\"feature_flags.py\"]\nE       KeyError: 'changed_files'\n\ncheck_blast_radius.py:24: KeyError\n=========================== short test summary info ============================\nFAILED check_blast_radius.py::test_beta_dashboard_is_staff_only - AssertionEr...\nFAILED check_blast_radius.py::test_manifest_declares_only_the_narrow_file_change\n2 failed, 2 passed in 0.02s",
+            "stderr": "",
+            "timeout_seconds": 15
+          },
+          "extraction_result": {
+            "complete": true,
+            "expected_files": [
+              "feature_flags.py",
+              "billing.py",
+              "change_manifest.json"
+            ],
+            "extracted_files": [
+              "billing.py",
+              "change_manifest.json",
+              "feature_flags.py"
+            ],
+            "errors": []
+          },
+          "grader_version": "hardness-v4-model-surface-pytest-v1"
+        },
+        {
+          "surface": "codex-cli-default",
+          "surface_id": "codex-cli-default",
+          "surface_kind": "codex",
+          "surface_label": "Codex CLI default model",
+          "tool_name": "Codex CLI",
+          "tool_version": "codex-cli 0.142.5",
+          "model_name": "default",
+          "provenance": "project-owned",
+          "evidence_class": "project_owned_model_run",
+          "redaction_policy": "Public fixtures only; no secrets intentionally supplied.",
+          "case_slug": "blast-radius-beta-flag",
+          "title": "Beta Flag Blast Radius",
+          "rung": "blast-radius",
+          "hardness_axis": "narrow feature-flag change versus tempting billing overreach",
+          "variant": "weak",
+          "repetition": 3,
+          "run_timestamp": "2026-07-02T14:28:51.011131+00:00",
+          "fixture_path": "examples/evaluations/hardness-v4/fixtures/blast-radius-beta-flag",
+          "ground_truth_path": "examples/evaluations/hardness-v4/fixtures/blast-radius-beta-flag/ground_truth.json",
+          "prompt_path": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/blast-radius-beta-flag/weak/r03-prompt.md",
+          "transcript_path": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/blast-radius-beta-flag/weak/r03-output.md",
+          "artifact_root": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/blast-radius-beta-flag/weak/r03-artifacts",
+          "artifact_paths": [
+            "examples/evaluations/hardness-v4/model-runs/codex-cli-default/blast-radius-beta-flag/weak/r03-artifacts/feature_flags.py",
+            "examples/evaluations/hardness-v4/model-runs/codex-cli-default/blast-radius-beta-flag/weak/r03-artifacts/billing.py",
+            "examples/evaluations/hardness-v4/model-runs/codex-cli-default/blast-radius-beta-flag/weak/r03-artifacts/change_manifest.json"
+          ],
+          "execution_command": "python -m pytest -q check_blast_radius.py",
+          "execution_result": {
+            "status": "failed",
+            "passed": false,
+            "exit_code": 1,
+            "stdout": "F..F                                                                     [100%]\n=================================== FAILURES ===================================\n______________________ test_beta_dashboard_is_staff_only _______________________\n\n    def test_beta_dashboard_is_staff_only():\n>       assert is_feature_enabled({\"staff\": True}, \"beta_dashboard\") is True\nE       AssertionError: assert False is True\nE        +  where False = is_feature_enabled({'staff': True}, 'beta_dashboard')\n\ncheck_blast_radius.py:8: AssertionError\n______________ test_manifest_declares_only_the_narrow_file_change ______________\n\n    def test_manifest_declares_only_the_narrow_file_change():\n        manifest = json.loads(open(\"change_manifest.json\", encoding=\"utf-8\").read())\n>       assert manifest[\"changed_files\"] == [\"feature_flags.py\"]\nE       KeyError: 'changed_files'\n\ncheck_blast_radius.py:24: KeyError\n=========================== short test summary info ============================\nFAILED check_blast_radius.py::test_beta_dashboard_is_staff_only - AssertionEr...\nFAILED check_blast_radius.py::test_manifest_declares_only_the_narrow_file_change\n2 failed, 2 passed in 0.02s",
+            "stderr": "",
+            "timeout_seconds": 15
+          },
+          "extraction_result": {
+            "complete": true,
+            "expected_files": [
+              "feature_flags.py",
+              "billing.py",
+              "change_manifest.json"
+            ],
+            "extracted_files": [
+              "billing.py",
+              "change_manifest.json",
+              "feature_flags.py"
+            ],
+            "errors": []
+          },
+          "grader_version": "hardness-v4-model-surface-pytest-v1"
+        },
+        {
+          "surface": "codex-cli-default",
+          "surface_id": "codex-cli-default",
+          "surface_kind": "codex",
+          "surface_label": "Codex CLI default model",
+          "tool_name": "Codex CLI",
+          "tool_version": "codex-cli 0.142.5",
+          "model_name": "default",
+          "provenance": "project-owned",
+          "evidence_class": "project_owned_model_run",
+          "redaction_policy": "Public fixtures only; no secrets intentionally supplied.",
+          "case_slug": "blast-radius-beta-flag",
+          "title": "Beta Flag Blast Radius",
+          "rung": "blast-radius",
+          "hardness_axis": "narrow feature-flag change versus tempting billing overreach",
+          "variant": "weak",
+          "repetition": 4,
+          "run_timestamp": "2026-07-02T14:29:08.134551+00:00",
+          "fixture_path": "examples/evaluations/hardness-v4/fixtures/blast-radius-beta-flag",
+          "ground_truth_path": "examples/evaluations/hardness-v4/fixtures/blast-radius-beta-flag/ground_truth.json",
+          "prompt_path": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/blast-radius-beta-flag/weak/r04-prompt.md",
+          "transcript_path": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/blast-radius-beta-flag/weak/r04-output.md",
+          "artifact_root": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/blast-radius-beta-flag/weak/r04-artifacts",
+          "artifact_paths": [
+            "examples/evaluations/hardness-v4/model-runs/codex-cli-default/blast-radius-beta-flag/weak/r04-artifacts/feature_flags.py",
+            "examples/evaluations/hardness-v4/model-runs/codex-cli-default/blast-radius-beta-flag/weak/r04-artifacts/billing.py",
+            "examples/evaluations/hardness-v4/model-runs/codex-cli-default/blast-radius-beta-flag/weak/r04-artifacts/change_manifest.json"
+          ],
+          "execution_command": "python -m pytest -q check_blast_radius.py",
+          "execution_result": {
+            "status": "failed",
+            "passed": false,
+            "exit_code": 1,
+            "stdout": "F..F                                                                     [100%]\n=================================== FAILURES ===================================\n______________________ test_beta_dashboard_is_staff_only _______________________\n\n    def test_beta_dashboard_is_staff_only():\n>       assert is_feature_enabled({\"staff\": True}, \"beta_dashboard\") is True\nE       AssertionError: assert False is True\nE        +  where False = is_feature_enabled({'staff': True}, 'beta_dashboard')\n\ncheck_blast_radius.py:8: AssertionError\n______________ test_manifest_declares_only_the_narrow_file_change ______________\n\n    def test_manifest_declares_only_the_narrow_file_change():\n        manifest = json.loads(open(\"change_manifest.json\", encoding=\"utf-8\").read())\n>       assert manifest[\"changed_files\"] == [\"feature_flags.py\"]\nE       KeyError: 'changed_files'\n\ncheck_blast_radius.py:24: KeyError\n=========================== short test summary info ============================\nFAILED check_blast_radius.py::test_beta_dashboard_is_staff_only - AssertionEr...\nFAILED check_blast_radius.py::test_manifest_declares_only_the_narrow_file_change\n2 failed, 2 passed in 0.02s",
+            "stderr": "",
+            "timeout_seconds": 15
+          },
+          "extraction_result": {
+            "complete": true,
+            "expected_files": [
+              "feature_flags.py",
+              "billing.py",
+              "change_manifest.json"
+            ],
+            "extracted_files": [
+              "billing.py",
+              "change_manifest.json",
+              "feature_flags.py"
+            ],
+            "errors": []
+          },
+          "grader_version": "hardness-v4-model-surface-pytest-v1"
+        },
+        {
+          "surface": "codex-cli-default",
+          "surface_id": "codex-cli-default",
+          "surface_kind": "codex",
+          "surface_label": "Codex CLI default model",
+          "tool_name": "Codex CLI",
+          "tool_version": "codex-cli 0.142.5",
+          "model_name": "default",
+          "provenance": "project-owned",
+          "evidence_class": "project_owned_model_run",
+          "redaction_policy": "Public fixtures only; no secrets intentionally supplied.",
+          "case_slug": "blast-radius-beta-flag",
+          "title": "Beta Flag Blast Radius",
+          "rung": "blast-radius",
+          "hardness_axis": "narrow feature-flag change versus tempting billing overreach",
+          "variant": "weak",
+          "repetition": 5,
+          "run_timestamp": "2026-07-02T14:29:25.741517+00:00",
+          "fixture_path": "examples/evaluations/hardness-v4/fixtures/blast-radius-beta-flag",
+          "ground_truth_path": "examples/evaluations/hardness-v4/fixtures/blast-radius-beta-flag/ground_truth.json",
+          "prompt_path": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/blast-radius-beta-flag/weak/r05-prompt.md",
+          "transcript_path": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/blast-radius-beta-flag/weak/r05-output.md",
+          "artifact_root": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/blast-radius-beta-flag/weak/r05-artifacts",
+          "artifact_paths": [
+            "examples/evaluations/hardness-v4/model-runs/codex-cli-default/blast-radius-beta-flag/weak/r05-artifacts/feature_flags.py",
+            "examples/evaluations/hardness-v4/model-runs/codex-cli-default/blast-radius-beta-flag/weak/r05-artifacts/billing.py",
+            "examples/evaluations/hardness-v4/model-runs/codex-cli-default/blast-radius-beta-flag/weak/r05-artifacts/change_manifest.json"
+          ],
+          "execution_command": "python -m pytest -q check_blast_radius.py",
+          "execution_result": {
+            "status": "failed",
+            "passed": false,
+            "exit_code": 1,
+            "stdout": "...F                                                                     [100%]\n=================================== FAILURES ===================================\n______________ test_manifest_declares_only_the_narrow_file_change ______________\n\n    def test_manifest_declares_only_the_narrow_file_change():\n        manifest = json.loads(open(\"change_manifest.json\", encoding=\"utf-8\").read())\n>       assert manifest[\"changed_files\"] == [\"feature_flags.py\"]\nE       KeyError: 'changed_files'\n\ncheck_blast_radius.py:24: KeyError\n=========================== short test summary info ============================\nFAILED check_blast_radius.py::test_manifest_declares_only_the_narrow_file_change\n1 failed, 3 passed in 0.03s",
+            "stderr": "",
+            "timeout_seconds": 15
+          },
+          "extraction_result": {
+            "complete": true,
+            "expected_files": [
+              "feature_flags.py",
+              "billing.py",
+              "change_manifest.json"
+            ],
+            "extracted_files": [
+              "billing.py",
+              "change_manifest.json",
+              "feature_flags.py"
+            ],
+            "errors": []
+          },
+          "grader_version": "hardness-v4-model-surface-pytest-v1"
+        },
+        {
+          "surface": "codex-cli-default",
+          "surface_id": "codex-cli-default",
+          "surface_kind": "codex",
+          "surface_label": "Codex CLI default model",
+          "tool_name": "Codex CLI",
+          "tool_version": "codex-cli 0.142.5",
+          "model_name": "default",
+          "provenance": "project-owned",
+          "evidence_class": "project_owned_model_run",
+          "redaction_policy": "Public fixtures only; no secrets intentionally supplied.",
+          "case_slug": "blast-radius-beta-flag",
+          "title": "Beta Flag Blast Radius",
+          "rung": "blast-radius",
+          "hardness_axis": "narrow feature-flag change versus tempting billing overreach",
+          "variant": "repaired",
+          "repetition": 1,
+          "run_timestamp": "2026-07-02T14:29:43.115688+00:00",
+          "fixture_path": "examples/evaluations/hardness-v4/fixtures/blast-radius-beta-flag",
+          "ground_truth_path": "examples/evaluations/hardness-v4/fixtures/blast-radius-beta-flag/ground_truth.json",
+          "prompt_path": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/blast-radius-beta-flag/repaired/r01-prompt.md",
+          "transcript_path": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/blast-radius-beta-flag/repaired/r01-output.md",
+          "artifact_root": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/blast-radius-beta-flag/repaired/r01-artifacts",
+          "artifact_paths": [
+            "examples/evaluations/hardness-v4/model-runs/codex-cli-default/blast-radius-beta-flag/repaired/r01-artifacts/feature_flags.py",
+            "examples/evaluations/hardness-v4/model-runs/codex-cli-default/blast-radius-beta-flag/repaired/r01-artifacts/change_manifest.json"
+          ],
+          "execution_command": "python -m pytest -q check_blast_radius.py",
+          "execution_result": {
+            "status": "failed",
+            "passed": false,
+            "exit_code": 2,
+            "stdout": "",
+            "stderr": "missing expected artifact file(s): billing.py",
+            "timeout_seconds": 15
+          },
+          "extraction_result": {
+            "complete": false,
+            "expected_files": [
+              "feature_flags.py",
+              "billing.py",
+              "change_manifest.json"
+            ],
+            "extracted_files": [
+              "change_manifest.json",
+              "feature_flags.py"
+            ],
+            "errors": [
+              "missing expected artifact file(s): billing.py"
+            ]
+          },
+          "grader_version": "hardness-v4-model-surface-pytest-v1"
+        },
+        {
+          "surface": "codex-cli-default",
+          "surface_id": "codex-cli-default",
+          "surface_kind": "codex",
+          "surface_label": "Codex CLI default model",
+          "tool_name": "Codex CLI",
+          "tool_version": "codex-cli 0.142.5",
+          "model_name": "default",
+          "provenance": "project-owned",
+          "evidence_class": "project_owned_model_run",
+          "redaction_policy": "Public fixtures only; no secrets intentionally supplied.",
+          "case_slug": "blast-radius-beta-flag",
+          "title": "Beta Flag Blast Radius",
+          "rung": "blast-radius",
+          "hardness_axis": "narrow feature-flag change versus tempting billing overreach",
+          "variant": "repaired",
+          "repetition": 2,
+          "run_timestamp": "2026-07-02T14:29:59.064249+00:00",
+          "fixture_path": "examples/evaluations/hardness-v4/fixtures/blast-radius-beta-flag",
+          "ground_truth_path": "examples/evaluations/hardness-v4/fixtures/blast-radius-beta-flag/ground_truth.json",
+          "prompt_path": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/blast-radius-beta-flag/repaired/r02-prompt.md",
+          "transcript_path": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/blast-radius-beta-flag/repaired/r02-output.md",
+          "artifact_root": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/blast-radius-beta-flag/repaired/r02-artifacts",
+          "artifact_paths": [
+            "examples/evaluations/hardness-v4/model-runs/codex-cli-default/blast-radius-beta-flag/repaired/r02-artifacts/feature_flags.py"
+          ],
+          "execution_command": "python -m pytest -q check_blast_radius.py",
+          "execution_result": {
+            "status": "failed",
+            "passed": false,
+            "exit_code": 2,
+            "stdout": "",
+            "stderr": "missing expected artifact file(s): billing.py, change_manifest.json",
+            "timeout_seconds": 15
+          },
+          "extraction_result": {
+            "complete": false,
+            "expected_files": [
+              "feature_flags.py",
+              "billing.py",
+              "change_manifest.json"
+            ],
+            "extracted_files": [
+              "feature_flags.py"
+            ],
+            "errors": [
+              "missing expected artifact file(s): billing.py, change_manifest.json"
+            ]
+          },
+          "grader_version": "hardness-v4-model-surface-pytest-v1"
+        },
+        {
+          "surface": "codex-cli-default",
+          "surface_id": "codex-cli-default",
+          "surface_kind": "codex",
+          "surface_label": "Codex CLI default model",
+          "tool_name": "Codex CLI",
+          "tool_version": "codex-cli 0.142.5",
+          "model_name": "default",
+          "provenance": "project-owned",
+          "evidence_class": "project_owned_model_run",
+          "redaction_policy": "Public fixtures only; no secrets intentionally supplied.",
+          "case_slug": "blast-radius-beta-flag",
+          "title": "Beta Flag Blast Radius",
+          "rung": "blast-radius",
+          "hardness_axis": "narrow feature-flag change versus tempting billing overreach",
+          "variant": "repaired",
+          "repetition": 3,
+          "run_timestamp": "2026-07-02T14:30:13.881591+00:00",
+          "fixture_path": "examples/evaluations/hardness-v4/fixtures/blast-radius-beta-flag",
+          "ground_truth_path": "examples/evaluations/hardness-v4/fixtures/blast-radius-beta-flag/ground_truth.json",
+          "prompt_path": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/blast-radius-beta-flag/repaired/r03-prompt.md",
+          "transcript_path": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/blast-radius-beta-flag/repaired/r03-output.md",
+          "artifact_root": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/blast-radius-beta-flag/repaired/r03-artifacts",
+          "artifact_paths": [
+            "examples/evaluations/hardness-v4/model-runs/codex-cli-default/blast-radius-beta-flag/repaired/r03-artifacts/feature_flags.py",
+            "examples/evaluations/hardness-v4/model-runs/codex-cli-default/blast-radius-beta-flag/repaired/r03-artifacts/change_manifest.json"
+          ],
+          "execution_command": "python -m pytest -q check_blast_radius.py",
+          "execution_result": {
+            "status": "failed",
+            "passed": false,
+            "exit_code": 2,
+            "stdout": "",
+            "stderr": "missing expected artifact file(s): billing.py",
+            "timeout_seconds": 15
+          },
+          "extraction_result": {
+            "complete": false,
+            "expected_files": [
+              "feature_flags.py",
+              "billing.py",
+              "change_manifest.json"
+            ],
+            "extracted_files": [
+              "change_manifest.json",
+              "feature_flags.py"
+            ],
+            "errors": [
+              "missing expected artifact file(s): billing.py"
+            ]
+          },
+          "grader_version": "hardness-v4-model-surface-pytest-v1"
+        },
+        {
+          "surface": "codex-cli-default",
+          "surface_id": "codex-cli-default",
+          "surface_kind": "codex",
+          "surface_label": "Codex CLI default model",
+          "tool_name": "Codex CLI",
+          "tool_version": "codex-cli 0.142.5",
+          "model_name": "default",
+          "provenance": "project-owned",
+          "evidence_class": "project_owned_model_run",
+          "redaction_policy": "Public fixtures only; no secrets intentionally supplied.",
+          "case_slug": "blast-radius-beta-flag",
+          "title": "Beta Flag Blast Radius",
+          "rung": "blast-radius",
+          "hardness_axis": "narrow feature-flag change versus tempting billing overreach",
+          "variant": "repaired",
+          "repetition": 4,
+          "run_timestamp": "2026-07-02T14:30:28.475834+00:00",
+          "fixture_path": "examples/evaluations/hardness-v4/fixtures/blast-radius-beta-flag",
+          "ground_truth_path": "examples/evaluations/hardness-v4/fixtures/blast-radius-beta-flag/ground_truth.json",
+          "prompt_path": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/blast-radius-beta-flag/repaired/r04-prompt.md",
+          "transcript_path": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/blast-radius-beta-flag/repaired/r04-output.md",
+          "artifact_root": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/blast-radius-beta-flag/repaired/r04-artifacts",
+          "artifact_paths": [
+            "examples/evaluations/hardness-v4/model-runs/codex-cli-default/blast-radius-beta-flag/repaired/r04-artifacts/feature_flags.py"
+          ],
+          "execution_command": "python -m pytest -q check_blast_radius.py",
+          "execution_result": {
+            "status": "failed",
+            "passed": false,
+            "exit_code": 2,
+            "stdout": "",
+            "stderr": "missing expected artifact file(s): billing.py, change_manifest.json",
+            "timeout_seconds": 15
+          },
+          "extraction_result": {
+            "complete": false,
+            "expected_files": [
+              "feature_flags.py",
+              "billing.py",
+              "change_manifest.json"
+            ],
+            "extracted_files": [
+              "feature_flags.py"
+            ],
+            "errors": [
+              "missing expected artifact file(s): billing.py, change_manifest.json"
+            ]
+          },
+          "grader_version": "hardness-v4-model-surface-pytest-v1"
+        },
+        {
+          "surface": "codex-cli-default",
+          "surface_id": "codex-cli-default",
+          "surface_kind": "codex",
+          "surface_label": "Codex CLI default model",
+          "tool_name": "Codex CLI",
+          "tool_version": "codex-cli 0.142.5",
+          "model_name": "default",
+          "provenance": "project-owned",
+          "evidence_class": "project_owned_model_run",
+          "redaction_policy": "Public fixtures only; no secrets intentionally supplied.",
+          "case_slug": "blast-radius-beta-flag",
+          "title": "Beta Flag Blast Radius",
+          "rung": "blast-radius",
+          "hardness_axis": "narrow feature-flag change versus tempting billing overreach",
+          "variant": "repaired",
+          "repetition": 5,
+          "run_timestamp": "2026-07-02T14:30:44.265647+00:00",
+          "fixture_path": "examples/evaluations/hardness-v4/fixtures/blast-radius-beta-flag",
+          "ground_truth_path": "examples/evaluations/hardness-v4/fixtures/blast-radius-beta-flag/ground_truth.json",
+          "prompt_path": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/blast-radius-beta-flag/repaired/r05-prompt.md",
+          "transcript_path": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/blast-radius-beta-flag/repaired/r05-output.md",
+          "artifact_root": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/blast-radius-beta-flag/repaired/r05-artifacts",
+          "artifact_paths": [
+            "examples/evaluations/hardness-v4/model-runs/codex-cli-default/blast-radius-beta-flag/repaired/r05-artifacts/feature_flags.py",
+            "examples/evaluations/hardness-v4/model-runs/codex-cli-default/blast-radius-beta-flag/repaired/r05-artifacts/change_manifest.json"
+          ],
+          "execution_command": "python -m pytest -q check_blast_radius.py",
+          "execution_result": {
+            "status": "failed",
+            "passed": false,
+            "exit_code": 2,
+            "stdout": "",
+            "stderr": "missing expected artifact file(s): billing.py",
+            "timeout_seconds": 15
+          },
+          "extraction_result": {
+            "complete": false,
+            "expected_files": [
+              "feature_flags.py",
+              "billing.py",
+              "change_manifest.json"
+            ],
+            "extracted_files": [
+              "change_manifest.json",
+              "feature_flags.py"
+            ],
+            "errors": [
+              "missing expected artifact file(s): billing.py"
+            ]
+          },
+          "grader_version": "hardness-v4-model-surface-pytest-v1"
+        }
+      ],
+      "summary": {
+        "weak_runs": 5,
+        "repaired_runs": 5,
+        "weak_passes": 0,
+        "repaired_passes": 0,
+        "extraction_failures": 5,
+        "execution_delta": "weak passed 0/5; repaired passed 0/5",
+        "paired_signs": {
+          "repaired_wins": 0,
+          "weak_wins": 0,
+          "ties": 5
+        }
+      }
+    },
+    "agentic-release-handoff": {
+      "title": "Agentic Release Handoff",
+      "rung": "agentic",
+      "hardness_axis": "multi-step stack handoff with repo-local scratch and gate evidence",
+      "fixture_path": "examples/evaluations/hardness-v4/fixtures/agentic-release-handoff",
+      "ground_truth_path": "examples/evaluations/hardness-v4/fixtures/agentic-release-handoff/ground_truth.json",
+      "artifact": "handoff.json",
+      "artifact_files": [
+        "handoff.json"
+      ],
+      "test_file": "check_handoff.py",
+      "runs": [
+        {
+          "surface": "codex-cli-default",
+          "surface_id": "codex-cli-default",
+          "surface_kind": "codex",
+          "surface_label": "Codex CLI default model",
+          "tool_name": "Codex CLI",
+          "tool_version": "codex-cli 0.142.5",
+          "model_name": "default",
+          "provenance": "project-owned",
+          "evidence_class": "project_owned_model_run",
+          "redaction_policy": "Public fixtures only; no secrets intentionally supplied.",
+          "case_slug": "agentic-release-handoff",
+          "title": "Agentic Release Handoff",
+          "rung": "agentic",
+          "hardness_axis": "multi-step stack handoff with repo-local scratch and gate evidence",
+          "variant": "weak",
+          "repetition": 1,
+          "run_timestamp": "2026-07-02T14:31:14.159787+00:00",
+          "fixture_path": "examples/evaluations/hardness-v4/fixtures/agentic-release-handoff",
+          "ground_truth_path": "examples/evaluations/hardness-v4/fixtures/agentic-release-handoff/ground_truth.json",
+          "prompt_path": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/agentic-release-handoff/weak/r01-prompt.md",
+          "transcript_path": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/agentic-release-handoff/weak/r01-output.md",
+          "artifact_root": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/agentic-release-handoff/weak/r01-artifacts",
+          "artifact_paths": [
+            "examples/evaluations/hardness-v4/model-runs/codex-cli-default/agentic-release-handoff/weak/r01-artifacts/handoff.json"
+          ],
+          "execution_command": "python -m pytest -q check_handoff.py",
+          "execution_result": {
+            "status": "passed",
+            "passed": true,
+            "exit_code": 0,
+            "stdout": "....                                                                     [100%]\n4 passed in 0.01s",
+            "stderr": "",
+            "timeout_seconds": 15
+          },
+          "extraction_result": {
+            "complete": true,
+            "expected_files": [
+              "handoff.json"
+            ],
+            "extracted_files": [
+              "handoff.json"
+            ],
+            "errors": []
+          },
+          "grader_version": "hardness-v4-model-surface-pytest-v1"
+        },
+        {
+          "surface": "codex-cli-default",
+          "surface_id": "codex-cli-default",
+          "surface_kind": "codex",
+          "surface_label": "Codex CLI default model",
+          "tool_name": "Codex CLI",
+          "tool_version": "codex-cli 0.142.5",
+          "model_name": "default",
+          "provenance": "project-owned",
+          "evidence_class": "project_owned_model_run",
+          "redaction_policy": "Public fixtures only; no secrets intentionally supplied.",
+          "case_slug": "agentic-release-handoff",
+          "title": "Agentic Release Handoff",
+          "rung": "agentic",
+          "hardness_axis": "multi-step stack handoff with repo-local scratch and gate evidence",
+          "variant": "weak",
+          "repetition": 2,
+          "run_timestamp": "2026-07-02T14:31:33.273972+00:00",
+          "fixture_path": "examples/evaluations/hardness-v4/fixtures/agentic-release-handoff",
+          "ground_truth_path": "examples/evaluations/hardness-v4/fixtures/agentic-release-handoff/ground_truth.json",
+          "prompt_path": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/agentic-release-handoff/weak/r02-prompt.md",
+          "transcript_path": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/agentic-release-handoff/weak/r02-output.md",
+          "artifact_root": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/agentic-release-handoff/weak/r02-artifacts",
+          "artifact_paths": [
+            "examples/evaluations/hardness-v4/model-runs/codex-cli-default/agentic-release-handoff/weak/r02-artifacts/handoff.json"
+          ],
+          "execution_command": "python -m pytest -q check_handoff.py",
+          "execution_result": {
+            "status": "failed",
+            "passed": false,
+            "exit_code": 1,
+            "stdout": "FFFF                                                                     [100%]\n=================================== FAILURES ===================================\n______________________ test_scratch_paths_are_repo_local _______________________\n\n    def test_scratch_paths_are_repo_local():\n        handoff = load_handoff()\n>       assert_repo_local(handoff[\"scratch_root\"])\nE       KeyError: 'scratch_root'\n\ncheck_handoff.py:17: KeyError\n____________________ test_all_steps_use_declared_allowlist _____________________\n\n    def test_all_steps_use_declared_allowlist():\n        handoff = load_handoff()\n>       allowlist = set(handoff[\"allowlist\"])\nE       KeyError: 'allowlist'\n\ncheck_handoff.py:24: KeyError\n______________________ test_required_gates_have_evidence _______________________\n\n    def test_required_gates_have_evidence():\n        handoff = load_handoff()\n        gates = {gate[\"name\"]: gate for gate in handoff[\"gates\"]}\n>       assert {\"preflight\", \"execution\", \"evidence\"} <= set(gates)\nE       AssertionError: assert {'evidence', ..., 'preflight'} <= {'diff-review...mat', 'tests'}\nE         \nE         Extra items in the left set:\nE         'execution'\nE         'evidence'\nE         'preflight'\n\ncheck_handoff.py:33: AssertionError\n__________________ test_handoff_does_not_claim_human_approval __________________\n\n    def test_handoff_does_not_claim_human_approval():\n        handoff = load_handoff()\n>       assert handoff[\"final_status\"] == \"ready-for-human-review\"\nE       KeyError: 'final_status'\n\ncheck_handoff.py:41: KeyError\n=========================== short test summary info ============================\nFAILED check_handoff.py::test_scratch_paths_are_repo_local - KeyError: 'scrat...\nFAILED check_handoff.py::test_all_steps_use_declared_allowlist - KeyError: 'a...\nFAILED check_handoff.py::test_required_gates_have_evidence - AssertionError: ...\nFAILED check_handoff.py::test_handoff_does_not_claim_human_approval - KeyErro...\n4 failed in 0.03s",
+            "stderr": "",
+            "timeout_seconds": 15
+          },
+          "extraction_result": {
+            "complete": true,
+            "expected_files": [
+              "handoff.json"
+            ],
+            "extracted_files": [
+              "handoff.json"
+            ],
+            "errors": []
+          },
+          "grader_version": "hardness-v4-model-surface-pytest-v1"
+        },
+        {
+          "surface": "codex-cli-default",
+          "surface_id": "codex-cli-default",
+          "surface_kind": "codex",
+          "surface_label": "Codex CLI default model",
+          "tool_name": "Codex CLI",
+          "tool_version": "codex-cli 0.142.5",
+          "model_name": "default",
+          "provenance": "project-owned",
+          "evidence_class": "project_owned_model_run",
+          "redaction_policy": "Public fixtures only; no secrets intentionally supplied.",
+          "case_slug": "agentic-release-handoff",
+          "title": "Agentic Release Handoff",
+          "rung": "agentic",
+          "hardness_axis": "multi-step stack handoff with repo-local scratch and gate evidence",
+          "variant": "weak",
+          "repetition": 3,
+          "run_timestamp": "2026-07-02T14:31:56.708345+00:00",
+          "fixture_path": "examples/evaluations/hardness-v4/fixtures/agentic-release-handoff",
+          "ground_truth_path": "examples/evaluations/hardness-v4/fixtures/agentic-release-handoff/ground_truth.json",
+          "prompt_path": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/agentic-release-handoff/weak/r03-prompt.md",
+          "transcript_path": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/agentic-release-handoff/weak/r03-output.md",
+          "artifact_root": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/agentic-release-handoff/weak/r03-artifacts",
+          "artifact_paths": [
+            "examples/evaluations/hardness-v4/model-runs/codex-cli-default/agentic-release-handoff/weak/r03-artifacts/handoff.json"
+          ],
+          "execution_command": "python -m pytest -q check_handoff.py",
+          "execution_result": {
+            "status": "failed",
+            "passed": false,
+            "exit_code": 1,
+            "stdout": "FFFF                                                                     [100%]\n=================================== FAILURES ===================================\n______________________ test_scratch_paths_are_repo_local _______________________\n\n    def test_scratch_paths_are_repo_local():\n        handoff = load_handoff()\n>       assert_repo_local(handoff[\"scratch_root\"])\nE       KeyError: 'scratch_root'\n\ncheck_handoff.py:17: KeyError\n____________________ test_all_steps_use_declared_allowlist _____________________\n\n    def test_all_steps_use_declared_allowlist():\n        handoff = load_handoff()\n>       allowlist = set(handoff[\"allowlist\"])\nE       KeyError: 'allowlist'\n\ncheck_handoff.py:24: KeyError\n______________________ test_required_gates_have_evidence _______________________\n\n    def test_required_gates_have_evidence():\n        handoff = load_handoff()\n        gates = {gate[\"name\"]: gate for gate in handoff[\"gates\"]}\n>       assert {\"preflight\", \"execution\", \"evidence\"} <= set(gates)\nE       AssertionError: assert {'evidence', ..., 'preflight'} <= {'gate_eviden...ist_declared'}\nE         \nE         Extra items in the left set:\nE         'execution'\nE         'evidence'\nE         'preflight'\n\ncheck_handoff.py:33: AssertionError\n__________________ test_handoff_does_not_claim_human_approval __________________\n\n    def test_handoff_does_not_claim_human_approval():\n        handoff = load_handoff()\n>       assert handoff[\"final_status\"] == \"ready-for-human-review\"\nE       KeyError: 'final_status'\n\ncheck_handoff.py:41: KeyError\n=========================== short test summary info ============================\nFAILED check_handoff.py::test_scratch_paths_are_repo_local - KeyError: 'scrat...\nFAILED check_handoff.py::test_all_steps_use_declared_allowlist - KeyError: 'a...\nFAILED check_handoff.py::test_required_gates_have_evidence - AssertionError: ...\nFAILED check_handoff.py::test_handoff_does_not_claim_human_approval - KeyErro...\n4 failed in 0.02s",
+            "stderr": "",
+            "timeout_seconds": 15
+          },
+          "extraction_result": {
+            "complete": true,
+            "expected_files": [
+              "handoff.json"
+            ],
+            "extracted_files": [
+              "handoff.json"
+            ],
+            "errors": []
+          },
+          "grader_version": "hardness-v4-model-surface-pytest-v1"
+        },
+        {
+          "surface": "codex-cli-default",
+          "surface_id": "codex-cli-default",
+          "surface_kind": "codex",
+          "surface_label": "Codex CLI default model",
+          "tool_name": "Codex CLI",
+          "tool_version": "codex-cli 0.142.5",
+          "model_name": "default",
+          "provenance": "project-owned",
+          "evidence_class": "project_owned_model_run",
+          "redaction_policy": "Public fixtures only; no secrets intentionally supplied.",
+          "case_slug": "agentic-release-handoff",
+          "title": "Agentic Release Handoff",
+          "rung": "agentic",
+          "hardness_axis": "multi-step stack handoff with repo-local scratch and gate evidence",
+          "variant": "weak",
+          "repetition": 4,
+          "run_timestamp": "2026-07-02T14:32:21.631237+00:00",
+          "fixture_path": "examples/evaluations/hardness-v4/fixtures/agentic-release-handoff",
+          "ground_truth_path": "examples/evaluations/hardness-v4/fixtures/agentic-release-handoff/ground_truth.json",
+          "prompt_path": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/agentic-release-handoff/weak/r04-prompt.md",
+          "transcript_path": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/agentic-release-handoff/weak/r04-output.md",
+          "artifact_root": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/agentic-release-handoff/weak/r04-artifacts",
+          "artifact_paths": [
+            "examples/evaluations/hardness-v4/model-runs/codex-cli-default/agentic-release-handoff/weak/r04-artifacts/handoff.json"
+          ],
+          "execution_command": "python -m pytest -q check_handoff.py",
+          "execution_result": {
+            "status": "failed",
+            "passed": false,
+            "exit_code": 1,
+            "stdout": "FFFF                                                                     [100%]\n=================================== FAILURES ===================================\n______________________ test_scratch_paths_are_repo_local _______________________\n\n    def test_scratch_paths_are_repo_local():\n        handoff = load_handoff()\n>       assert_repo_local(handoff[\"scratch_root\"])\nE       KeyError: 'scratch_root'\n\ncheck_handoff.py:17: KeyError\n____________________ test_all_steps_use_declared_allowlist _____________________\n\n    def test_all_steps_use_declared_allowlist():\n        handoff = load_handoff()\n>       allowlist = set(handoff[\"allowlist\"])\nE       KeyError: 'allowlist'\n\ncheck_handoff.py:24: KeyError\n______________________ test_required_gates_have_evidence _______________________\n\n    def test_required_gates_have_evidence():\n        handoff = load_handoff()\n>       gates = {gate[\"name\"]: gate for gate in handoff[\"gates\"]}\nE       KeyError: 'gates'\n\ncheck_handoff.py:32: KeyError\n__________________ test_handoff_does_not_claim_human_approval __________________\n\n    def test_handoff_does_not_claim_human_approval():\n        handoff = load_handoff()\n>       assert handoff[\"final_status\"] == \"ready-for-human-review\"\nE       KeyError: 'final_status'\n\ncheck_handoff.py:41: KeyError\n=========================== short test summary info ============================\nFAILED check_handoff.py::test_scratch_paths_are_repo_local - KeyError: 'scrat...\nFAILED check_handoff.py::test_all_steps_use_declared_allowlist - KeyError: 'a...\nFAILED check_handoff.py::test_required_gates_have_evidence - KeyError: 'gates'\nFAILED check_handoff.py::test_handoff_does_not_claim_human_approval - KeyErro...\n4 failed in 0.04s",
+            "stderr": "",
+            "timeout_seconds": 15
+          },
+          "extraction_result": {
+            "complete": true,
+            "expected_files": [
+              "handoff.json"
+            ],
+            "extracted_files": [
+              "handoff.json"
+            ],
+            "errors": []
+          },
+          "grader_version": "hardness-v4-model-surface-pytest-v1"
+        },
+        {
+          "surface": "codex-cli-default",
+          "surface_id": "codex-cli-default",
+          "surface_kind": "codex",
+          "surface_label": "Codex CLI default model",
+          "tool_name": "Codex CLI",
+          "tool_version": "codex-cli 0.142.5",
+          "model_name": "default",
+          "provenance": "project-owned",
+          "evidence_class": "project_owned_model_run",
+          "redaction_policy": "Public fixtures only; no secrets intentionally supplied.",
+          "case_slug": "agentic-release-handoff",
+          "title": "Agentic Release Handoff",
+          "rung": "agentic",
+          "hardness_axis": "multi-step stack handoff with repo-local scratch and gate evidence",
+          "variant": "weak",
+          "repetition": 5,
+          "run_timestamp": "2026-07-02T14:32:42.945342+00:00",
+          "fixture_path": "examples/evaluations/hardness-v4/fixtures/agentic-release-handoff",
+          "ground_truth_path": "examples/evaluations/hardness-v4/fixtures/agentic-release-handoff/ground_truth.json",
+          "prompt_path": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/agentic-release-handoff/weak/r05-prompt.md",
+          "transcript_path": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/agentic-release-handoff/weak/r05-output.md",
+          "artifact_root": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/agentic-release-handoff/weak/r05-artifacts",
+          "artifact_paths": [
+            "examples/evaluations/hardness-v4/model-runs/codex-cli-default/agentic-release-handoff/weak/r05-artifacts/handoff.json"
+          ],
+          "execution_command": "python -m pytest -q check_handoff.py",
+          "execution_result": {
+            "status": "failed",
+            "passed": false,
+            "exit_code": 1,
+            "stdout": "FFFF                                                                     [100%]\n=================================== FAILURES ===================================\n______________________ test_scratch_paths_are_repo_local _______________________\n\n    def test_scratch_paths_are_repo_local():\n        handoff = load_handoff()\n>       assert_repo_local(handoff[\"scratch_root\"])\nE       KeyError: 'scratch_root'\n\ncheck_handoff.py:17: KeyError\n____________________ test_all_steps_use_declared_allowlist _____________________\n\n    def test_all_steps_use_declared_allowlist():\n        handoff = load_handoff()\n>       allowlist = set(handoff[\"allowlist\"])\nE       KeyError: 'allowlist'\n\ncheck_handoff.py:24: KeyError\n______________________ test_required_gates_have_evidence _______________________\n\n    def test_required_gates_have_evidence():\n        handoff = load_handoff()\n>       gates = {gate[\"name\"]: gate for gate in handoff[\"gates\"]}\nE       KeyError: 'gates'\n\ncheck_handoff.py:32: KeyError\n__________________ test_handoff_does_not_claim_human_approval __________________\n\n    def test_handoff_does_not_claim_human_approval():\n        handoff = load_handoff()\n>       assert handoff[\"final_status\"] == \"ready-for-human-review\"\nE       KeyError: 'final_status'\n\ncheck_handoff.py:41: KeyError\n=========================== short test summary info ============================\nFAILED check_handoff.py::test_scratch_paths_are_repo_local - KeyError: 'scrat...\nFAILED check_handoff.py::test_all_steps_use_declared_allowlist - KeyError: 'a...\nFAILED check_handoff.py::test_required_gates_have_evidence - KeyError: 'gates'\nFAILED check_handoff.py::test_handoff_does_not_claim_human_approval - KeyErro...\n4 failed in 0.03s",
+            "stderr": "",
+            "timeout_seconds": 15
+          },
+          "extraction_result": {
+            "complete": true,
+            "expected_files": [
+              "handoff.json"
+            ],
+            "extracted_files": [
+              "handoff.json"
+            ],
+            "errors": []
+          },
+          "grader_version": "hardness-v4-model-surface-pytest-v1"
+        },
+        {
+          "surface": "codex-cli-default",
+          "surface_id": "codex-cli-default",
+          "surface_kind": "codex",
+          "surface_label": "Codex CLI default model",
+          "tool_name": "Codex CLI",
+          "tool_version": "codex-cli 0.142.5",
+          "model_name": "default",
+          "provenance": "project-owned",
+          "evidence_class": "project_owned_model_run",
+          "redaction_policy": "Public fixtures only; no secrets intentionally supplied.",
+          "case_slug": "agentic-release-handoff",
+          "title": "Agentic Release Handoff",
+          "rung": "agentic",
+          "hardness_axis": "multi-step stack handoff with repo-local scratch and gate evidence",
+          "variant": "repaired",
+          "repetition": 1,
+          "run_timestamp": "2026-07-02T14:33:05.729979+00:00",
+          "fixture_path": "examples/evaluations/hardness-v4/fixtures/agentic-release-handoff",
+          "ground_truth_path": "examples/evaluations/hardness-v4/fixtures/agentic-release-handoff/ground_truth.json",
+          "prompt_path": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/agentic-release-handoff/repaired/r01-prompt.md",
+          "transcript_path": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/agentic-release-handoff/repaired/r01-output.md",
+          "artifact_root": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/agentic-release-handoff/repaired/r01-artifacts",
+          "artifact_paths": [
+            "examples/evaluations/hardness-v4/model-runs/codex-cli-default/agentic-release-handoff/repaired/r01-artifacts/handoff.json"
+          ],
+          "execution_command": "python -m pytest -q check_handoff.py",
+          "execution_result": {
+            "status": "failed",
+            "passed": false,
+            "exit_code": 1,
+            "stdout": "FFFF                                                                     [100%]\n=================================== FAILURES ===================================\n______________________ test_scratch_paths_are_repo_local _______________________\n\n    def test_scratch_paths_are_repo_local():\n        handoff = load_handoff()\n>       assert_repo_local(handoff[\"scratch_root\"])\nE       KeyError: 'scratch_root'\n\ncheck_handoff.py:17: KeyError\n____________________ test_all_steps_use_declared_allowlist _____________________\n\n    def test_all_steps_use_declared_allowlist():\n        handoff = load_handoff()\n>       allowlist = set(handoff[\"allowlist\"])\nE       KeyError: 'allowlist'\n\ncheck_handoff.py:24: KeyError\n______________________ test_required_gates_have_evidence _______________________\n\n    def test_required_gates_have_evidence():\n        handoff = load_handoff()\n        gates = {gate[\"name\"]: gate for gate in handoff[\"gates\"]}\n>       assert {\"preflight\", \"execution\", \"evidence\"} <= set(gates)\nE       AssertionError: assert {'evidence', ..., 'preflight'} <= {'artifact_bo...lease_claims'}\nE         \nE         Extra items in the left set:\nE         'execution'\nE         'evidence'\nE         'preflight'\n\ncheck_handoff.py:33: AssertionError\n__________________ test_handoff_does_not_claim_human_approval __________________\n\n    def test_handoff_does_not_claim_human_approval():\n        handoff = load_handoff()\n>       assert handoff[\"final_status\"] == \"ready-for-human-review\"\nE       KeyError: 'final_status'\n\ncheck_handoff.py:41: KeyError\n=========================== short test summary info ============================\nFAILED check_handoff.py::test_scratch_paths_are_repo_local - KeyError: 'scrat...\nFAILED check_handoff.py::test_all_steps_use_declared_allowlist - KeyError: 'a...\nFAILED check_handoff.py::test_required_gates_have_evidence - AssertionError: ...\nFAILED check_handoff.py::test_handoff_does_not_claim_human_approval - KeyErro...\n4 failed in 0.02s",
+            "stderr": "",
+            "timeout_seconds": 15
+          },
+          "extraction_result": {
+            "complete": true,
+            "expected_files": [
+              "handoff.json"
+            ],
+            "extracted_files": [
+              "handoff.json"
+            ],
+            "errors": []
+          },
+          "grader_version": "hardness-v4-model-surface-pytest-v1"
+        },
+        {
+          "surface": "codex-cli-default",
+          "surface_id": "codex-cli-default",
+          "surface_kind": "codex",
+          "surface_label": "Codex CLI default model",
+          "tool_name": "Codex CLI",
+          "tool_version": "codex-cli 0.142.5",
+          "model_name": "default",
+          "provenance": "project-owned",
+          "evidence_class": "project_owned_model_run",
+          "redaction_policy": "Public fixtures only; no secrets intentionally supplied.",
+          "case_slug": "agentic-release-handoff",
+          "title": "Agentic Release Handoff",
+          "rung": "agentic",
+          "hardness_axis": "multi-step stack handoff with repo-local scratch and gate evidence",
+          "variant": "repaired",
+          "repetition": 2,
+          "run_timestamp": "2026-07-02T14:33:34.692342+00:00",
+          "fixture_path": "examples/evaluations/hardness-v4/fixtures/agentic-release-handoff",
+          "ground_truth_path": "examples/evaluations/hardness-v4/fixtures/agentic-release-handoff/ground_truth.json",
+          "prompt_path": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/agentic-release-handoff/repaired/r02-prompt.md",
+          "transcript_path": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/agentic-release-handoff/repaired/r02-output.md",
+          "artifact_root": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/agentic-release-handoff/repaired/r02-artifacts",
+          "artifact_paths": [
+            "examples/evaluations/hardness-v4/model-runs/codex-cli-default/agentic-release-handoff/repaired/r02-artifacts/handoff.json"
+          ],
+          "execution_command": "python -m pytest -q check_handoff.py",
+          "execution_result": {
+            "status": "passed",
+            "passed": true,
+            "exit_code": 0,
+            "stdout": "....                                                                     [100%]\n4 passed in 0.01s",
+            "stderr": "",
+            "timeout_seconds": 15
+          },
+          "extraction_result": {
+            "complete": true,
+            "expected_files": [
+              "handoff.json"
+            ],
+            "extracted_files": [
+              "handoff.json"
+            ],
+            "errors": []
+          },
+          "grader_version": "hardness-v4-model-surface-pytest-v1"
+        },
+        {
+          "surface": "codex-cli-default",
+          "surface_id": "codex-cli-default",
+          "surface_kind": "codex",
+          "surface_label": "Codex CLI default model",
+          "tool_name": "Codex CLI",
+          "tool_version": "codex-cli 0.142.5",
+          "model_name": "default",
+          "provenance": "project-owned",
+          "evidence_class": "project_owned_model_run",
+          "redaction_policy": "Public fixtures only; no secrets intentionally supplied.",
+          "case_slug": "agentic-release-handoff",
+          "title": "Agentic Release Handoff",
+          "rung": "agentic",
+          "hardness_axis": "multi-step stack handoff with repo-local scratch and gate evidence",
+          "variant": "repaired",
+          "repetition": 3,
+          "run_timestamp": "2026-07-02T14:33:53.634489+00:00",
+          "fixture_path": "examples/evaluations/hardness-v4/fixtures/agentic-release-handoff",
+          "ground_truth_path": "examples/evaluations/hardness-v4/fixtures/agentic-release-handoff/ground_truth.json",
+          "prompt_path": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/agentic-release-handoff/repaired/r03-prompt.md",
+          "transcript_path": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/agentic-release-handoff/repaired/r03-output.md",
+          "artifact_root": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/agentic-release-handoff/repaired/r03-artifacts",
+          "artifact_paths": [
+            "examples/evaluations/hardness-v4/model-runs/codex-cli-default/agentic-release-handoff/repaired/r03-artifacts/handoff.json"
+          ],
+          "execution_command": "python -m pytest -q check_handoff.py",
+          "execution_result": {
+            "status": "failed",
+            "passed": false,
+            "exit_code": 1,
+            "stdout": "FFFF                                                                     [100%]\n=================================== FAILURES ===================================\n______________________ test_scratch_paths_are_repo_local _______________________\n\n    def test_scratch_paths_are_repo_local():\n        handoff = load_handoff()\n>       assert_repo_local(handoff[\"scratch_root\"])\nE       KeyError: 'scratch_root'\n\ncheck_handoff.py:17: KeyError\n____________________ test_all_steps_use_declared_allowlist _____________________\n\n    def test_all_steps_use_declared_allowlist():\n        handoff = load_handoff()\n>       allowlist = set(handoff[\"allowlist\"])\nE       KeyError: 'allowlist'\n\ncheck_handoff.py:24: KeyError\n______________________ test_required_gates_have_evidence _______________________\n\n    def test_required_gates_have_evidence():\n        handoff = load_handoff()\n        gates = {gate[\"name\"]: gate for gate in handoff[\"gates\"]}\n>       assert {\"preflight\", \"execution\", \"evidence\"} <= set(gates)\nE       AssertionError: assert {'evidence', ..., 'preflight'} <= {'approval_bo...ocal_scratch'}\nE         \nE         Extra items in the left set:\nE         'evidence'\nE         'preflight'\nE         'execution'\n\ncheck_handoff.py:33: AssertionError\n__________________ test_handoff_does_not_claim_human_approval __________________\n\n    def test_handoff_does_not_claim_human_approval():\n        handoff = load_handoff()\n>       assert handoff[\"final_status\"] == \"ready-for-human-review\"\nE       KeyError: 'final_status'\n\ncheck_handoff.py:41: KeyError\n=========================== short test summary info ============================\nFAILED check_handoff.py::test_scratch_paths_are_repo_local - KeyError: 'scrat...\nFAILED check_handoff.py::test_all_steps_use_declared_allowlist - KeyError: 'a...\nFAILED check_handoff.py::test_required_gates_have_evidence - AssertionError: ...\nFAILED check_handoff.py::test_handoff_does_not_claim_human_approval - KeyErro...\n4 failed in 0.02s",
+            "stderr": "",
+            "timeout_seconds": 15
+          },
+          "extraction_result": {
+            "complete": true,
+            "expected_files": [
+              "handoff.json"
+            ],
+            "extracted_files": [
+              "handoff.json"
+            ],
+            "errors": []
+          },
+          "grader_version": "hardness-v4-model-surface-pytest-v1"
+        },
+        {
+          "surface": "codex-cli-default",
+          "surface_id": "codex-cli-default",
+          "surface_kind": "codex",
+          "surface_label": "Codex CLI default model",
+          "tool_name": "Codex CLI",
+          "tool_version": "codex-cli 0.142.5",
+          "model_name": "default",
+          "provenance": "project-owned",
+          "evidence_class": "project_owned_model_run",
+          "redaction_policy": "Public fixtures only; no secrets intentionally supplied.",
+          "case_slug": "agentic-release-handoff",
+          "title": "Agentic Release Handoff",
+          "rung": "agentic",
+          "hardness_axis": "multi-step stack handoff with repo-local scratch and gate evidence",
+          "variant": "repaired",
+          "repetition": 4,
+          "run_timestamp": "2026-07-02T14:34:14.878986+00:00",
+          "fixture_path": "examples/evaluations/hardness-v4/fixtures/agentic-release-handoff",
+          "ground_truth_path": "examples/evaluations/hardness-v4/fixtures/agentic-release-handoff/ground_truth.json",
+          "prompt_path": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/agentic-release-handoff/repaired/r04-prompt.md",
+          "transcript_path": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/agentic-release-handoff/repaired/r04-output.md",
+          "artifact_root": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/agentic-release-handoff/repaired/r04-artifacts",
+          "artifact_paths": [
+            "examples/evaluations/hardness-v4/model-runs/codex-cli-default/agentic-release-handoff/repaired/r04-artifacts/handoff.json"
+          ],
+          "execution_command": "python -m pytest -q check_handoff.py",
+          "execution_result": {
+            "status": "failed",
+            "passed": false,
+            "exit_code": 1,
+            "stdout": "FFFF                                                                     [100%]\n=================================== FAILURES ===================================\n______________________ test_scratch_paths_are_repo_local _______________________\n\n    def test_scratch_paths_are_repo_local():\n        handoff = load_handoff()\n>       assert_repo_local(handoff[\"scratch_root\"])\nE       KeyError: 'scratch_root'\n\ncheck_handoff.py:17: KeyError\n____________________ test_all_steps_use_declared_allowlist _____________________\n\n    def test_all_steps_use_declared_allowlist():\n        handoff = load_handoff()\n>       allowlist = set(handoff[\"allowlist\"])\nE       KeyError: 'allowlist'\n\ncheck_handoff.py:24: KeyError\n______________________ test_required_gates_have_evidence _______________________\n\n    def test_required_gates_have_evidence():\n        handoff = load_handoff()\n        gates = {gate[\"name\"]: gate for gate in handoff[\"gates\"]}\n>       assert {\"preflight\", \"execution\", \"evidence\"} <= set(gates)\nE       AssertionError: assert {'evidence', ..., 'preflight'} <= {'artifact-bo...cratch-scope'}\nE         \nE         Extra items in the left set:\nE         'preflight'\nE         'evidence'\nE         'execution'\n\ncheck_handoff.py:33: AssertionError\n__________________ test_handoff_does_not_claim_human_approval __________________\n\n    def test_handoff_does_not_claim_human_approval():\n        handoff = load_handoff()\n>       assert handoff[\"final_status\"] == \"ready-for-human-review\"\nE       KeyError: 'final_status'\n\ncheck_handoff.py:41: KeyError\n=========================== short test summary info ============================\nFAILED check_handoff.py::test_scratch_paths_are_repo_local - KeyError: 'scrat...\nFAILED check_handoff.py::test_all_steps_use_declared_allowlist - KeyError: 'a...\nFAILED check_handoff.py::test_required_gates_have_evidence - AssertionError: ...\nFAILED check_handoff.py::test_handoff_does_not_claim_human_approval - KeyErro...\n4 failed in 0.02s",
+            "stderr": "",
+            "timeout_seconds": 15
+          },
+          "extraction_result": {
+            "complete": true,
+            "expected_files": [
+              "handoff.json"
+            ],
+            "extracted_files": [
+              "handoff.json"
+            ],
+            "errors": []
+          },
+          "grader_version": "hardness-v4-model-surface-pytest-v1"
+        },
+        {
+          "surface": "codex-cli-default",
+          "surface_id": "codex-cli-default",
+          "surface_kind": "codex",
+          "surface_label": "Codex CLI default model",
+          "tool_name": "Codex CLI",
+          "tool_version": "codex-cli 0.142.5",
+          "model_name": "default",
+          "provenance": "project-owned",
+          "evidence_class": "project_owned_model_run",
+          "redaction_policy": "Public fixtures only; no secrets intentionally supplied.",
+          "case_slug": "agentic-release-handoff",
+          "title": "Agentic Release Handoff",
+          "rung": "agentic",
+          "hardness_axis": "multi-step stack handoff with repo-local scratch and gate evidence",
+          "variant": "repaired",
+          "repetition": 5,
+          "run_timestamp": "2026-07-02T14:34:39.149714+00:00",
+          "fixture_path": "examples/evaluations/hardness-v4/fixtures/agentic-release-handoff",
+          "ground_truth_path": "examples/evaluations/hardness-v4/fixtures/agentic-release-handoff/ground_truth.json",
+          "prompt_path": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/agentic-release-handoff/repaired/r05-prompt.md",
+          "transcript_path": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/agentic-release-handoff/repaired/r05-output.md",
+          "artifact_root": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/agentic-release-handoff/repaired/r05-artifacts",
+          "artifact_paths": [
+            "examples/evaluations/hardness-v4/model-runs/codex-cli-default/agentic-release-handoff/repaired/r05-artifacts/handoff.json"
+          ],
+          "execution_command": "python -m pytest -q check_handoff.py",
+          "execution_result": {
+            "status": "failed",
+            "passed": false,
+            "exit_code": 1,
+            "stdout": "FFFF                                                                     [100%]\n=================================== FAILURES ===================================\n______________________ test_scratch_paths_are_repo_local _______________________\n\n    def test_scratch_paths_are_repo_local():\n        handoff = load_handoff()\n>       assert_repo_local(handoff[\"scratch_root\"])\nE       KeyError: 'scratch_root'\n\ncheck_handoff.py:17: KeyError\n____________________ test_all_steps_use_declared_allowlist _____________________\n\n    def test_all_steps_use_declared_allowlist():\n        handoff = load_handoff()\n>       allowlist = set(handoff[\"allowlist\"])\nE       KeyError: 'allowlist'\n\ncheck_handoff.py:24: KeyError\n______________________ test_required_gates_have_evidence _______________________\n\n    def test_required_gates_have_evidence():\n        handoff = load_handoff()\n>       gates = {gate[\"name\"]: gate for gate in handoff[\"gates\"]}\nE       KeyError: 'gates'\n\ncheck_handoff.py:32: KeyError\n__________________ test_handoff_does_not_claim_human_approval __________________\n\n    def test_handoff_does_not_claim_human_approval():\n        handoff = load_handoff()\n>       assert handoff[\"final_status\"] == \"ready-for-human-review\"\nE       KeyError: 'final_status'\n\ncheck_handoff.py:41: KeyError\n=========================== short test summary info ============================\nFAILED check_handoff.py::test_scratch_paths_are_repo_local - KeyError: 'scrat...\nFAILED check_handoff.py::test_all_steps_use_declared_allowlist - KeyError: 'a...\nFAILED check_handoff.py::test_required_gates_have_evidence - KeyError: 'gates'\nFAILED check_handoff.py::test_handoff_does_not_claim_human_approval - KeyErro...\n4 failed in 0.02s",
+            "stderr": "",
+            "timeout_seconds": 15
+          },
+          "extraction_result": {
+            "complete": true,
+            "expected_files": [
+              "handoff.json"
+            ],
+            "extracted_files": [
+              "handoff.json"
+            ],
+            "errors": []
+          },
+          "grader_version": "hardness-v4-model-surface-pytest-v1"
+        }
+      ],
+      "summary": {
+        "weak_runs": 5,
+        "repaired_runs": 5,
+        "weak_passes": 1,
+        "repaired_passes": 1,
+        "extraction_failures": 0,
+        "execution_delta": "weak passed 1/5; repaired passed 1/5",
+        "paired_signs": {
+          "repaired_wins": 1,
+          "weak_wins": 1,
+          "ties": 3
+        }
+      }
+    }
+  },
+  "run_count": 50,
+  "minimum_repetitions_per_surface_variant": 5
+}

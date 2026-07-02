@@ -30,6 +30,7 @@ RESOURCE_REQUIRED = [
     "data/canon_review_queue.json",
     "examples/evaluations/model-execution-results.json",
     "examples/evaluations/hardness-v4/results.json",
+    "examples/evaluations/hardness-v4/model-surface-results.json",
     "examples/adoption/package-index-release-plan.json",
     "examples/jailbreak-resilience/ab-results.json",
     "examples/jailbreak-resilience/ward-science-results.json",

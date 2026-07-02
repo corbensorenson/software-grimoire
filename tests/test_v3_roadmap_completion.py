@@ -103,6 +103,7 @@ def test_package_and_smoke_checks_pass() -> None:
         "exports/library-manifest.json",
     } <= {check["target"] for check in smoke["checks"]}
     assert "examples/evaluations/hardness-v4/results.json" in {check["target"] for check in smoke["checks"]}
+    assert "examples/evaluations/hardness-v4/model-surface-results.json" in {check["target"] for check in smoke["checks"]}
     assert "examples/adoption/package-index-release-plan.json" in {check["target"] for check in smoke["checks"]}
     assert "examples/jailbreak-resilience/ward-science-results.json" in {check["target"] for check in smoke["checks"]}
     assert "data/canon_review_queue.json" in {check["target"] for check in smoke["checks"]}

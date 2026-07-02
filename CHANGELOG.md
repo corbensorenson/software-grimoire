@@ -53,6 +53,15 @@
   all eight defanged attack shapes now have three baseline/warded Codex
   repetitions alongside Claude Code safe-mode runs, with publication redaction
   and baseline-only failures preserved.
+- Added Bench v4 model-surface hardness execution:
+  `scripts/run_hardness_model_surfaces.py`, `grimoire bench hardness-model`,
+  a schema-validated raw ledger, public smoke coverage, generated reference
+  tables, and 50 Codex CLI default runs across all five hardness rungs. The
+  first result is intentionally null-heavy: weak and repaired artifacts each
+  passed 1/25 hidden-grader checks, with extraction failures preserved.
+- Normalized pytest duration text in hardness-ladder execution ledgers so
+  repeated deterministic bench runs do not churn committed evidence on timing
+  noise alone.
 - Fixed appended field-spell evaluation repetition numbering so future
   preserved runs advance sequentially.
 - Added append-mode coverage and validation for the real warded A/B runner so

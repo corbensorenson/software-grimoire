@@ -2456,6 +2456,10 @@ def load_hardness_results() -> dict:
     return load_runtime_json("examples/evaluations/hardness-v4/results.json", {"surfaces": {}, "cases": {}})
 
 
+def load_hardness_model_results() -> dict:
+    return load_runtime_json("examples/evaluations/hardness-v4/model-surface-results.json", {"surfaces": {}, "cases": {}})
+
+
 def count_result_runs(data: dict) -> int:
     return sum(len(case.get("runs", [])) for case in data.get("cases", {}).values())
 
@@ -2535,6 +2539,7 @@ def evidence_index_data() -> dict:
     execution = load_runtime_json("examples/evaluations/execution-results.json", {"surfaces": {}, "cases": {}})
     model_execution = load_runtime_json("examples/evaluations/model-execution-results.json", {"surfaces": {}, "cases": {}})
     hardness = load_hardness_results()
+    hardness_model = load_hardness_model_results()
     jailbreak = load_runtime_json("examples/jailbreak-resilience/results.json", {"surfaces": {}, "cases": {}})
     deterministic_baseline = load_runtime_json("examples/jailbreak-resilience/baseline-results.json", {"surfaces": {}, "cases": {}})
     ward_science = load_runtime_json("examples/jailbreak-resilience/ward-science-results.json", {"surfaces": {}, "ablation_case": {"variants": {}}})
@@ -2580,6 +2585,15 @@ def evidence_index_data() -> dict:
             "execution_evidence",
             "Weak/repaired seed artifacts are executed across ambiguity, hidden-invariant, misleading-context, blast-radius, and agentic hardness rungs.",
             hardness,
+        ),
+        evidence_artifact_record(
+            "hardness-v4-model-surfaces",
+            "Bench v4 Model-Surface Hardness Runs",
+            "examples/evaluations/hardness-v4/model-surface-results.json",
+            "project_owned_model_run",
+            "benchmark_evidence",
+            "Model-produced artifacts are extracted from named local model/tool surfaces and graded against hidden Bench v4 fixture checks.",
+            hardness_model,
         ),
         evidence_artifact_record(
             "jailbreak-resilience-model-runs",
@@ -3181,6 +3195,7 @@ Raw execution results: [execution-results.json](../examples/evaluations/executio
 
 def write_hardness_v4_pages() -> None:
     results = load_hardness_results()
+    model_results = load_hardness_model_results()
     rows = [["Case", "Rung", "Hardness Axis", "Weak", "Repaired", "n", "Fixture"]]
     for slug, case in results.get("cases", {}).items():
         summary = case.get("summary", {})
@@ -3193,6 +3208,21 @@ def write_hardness_v4_pages() -> None:
                 f"{summary.get('repaired_passes', 0)}/{summary.get('repaired_runs', 0)} passed",
                 str(summary.get("weak_runs", 0) + summary.get("repaired_runs", 0)),
                 f"[fixture](https://github.com/corbensorenson/software-grimoire/tree/main/{case.get('fixture_path', '')})",
+            ]
+        )
+    model_rows = [["Case", "Surface", "Weak", "Repaired", "Extraction Failures", "n", "Example Transcript"]]
+    for slug, case in model_results.get("cases", {}).items():
+        summary = case.get("summary", {})
+        transcripts = [run.get("transcript_path") for run in case.get("runs", []) if run.get("transcript_path")]
+        model_rows.append(
+            [
+                case.get("title", slug),
+                ", ".join(sorted({run.get("surface", "") for run in case.get("runs", []) if run.get("surface")})),
+                f"{summary.get('weak_passes', 0)}/{summary.get('weak_runs', 0)} passed",
+                f"{summary.get('repaired_passes', 0)}/{summary.get('repaired_runs', 0)} passed",
+                str(summary.get("extraction_failures", 0)),
+                str(summary.get("weak_runs", 0) + summary.get("repaired_runs", 0)),
+                f"[transcript](../{transcripts[0]})" if transcripts else "",
             ]
         )
 
@@ -3208,6 +3238,12 @@ Bench v4 begins where the v3 field-spell corpus stopped being discriminating eno
 
 {rows}
 
+## Model-Surface Artifact Runs
+
+These rows are model-produced artifacts, not hand-authored controls. Prompts include the public task context and starting files, but not the hidden grader or ground-truth JSON. The runner preserves each prompt, transcript, extracted artifact, extraction failure, and fixture-local execution result.
+
+{model_rows}
+
 ## Interpretation
 
 - The ambiguity rung tests whether an artifact resolves a stale docstring versus a stronger caller contract.
@@ -3216,12 +3252,15 @@ Bench v4 begins where the v3 field-spell corpus stopped being discriminating eno
 - The blast-radius rung tests whether an artifact keeps a requested change narrow instead of altering adjacent behavior.
 - The agentic rung tests whether a stack-shaped handoff preserves repo-local scratch, allowlists, gates, and human-review boundaries.
 - These are execution checks for seed artifacts. They do not count as independent model-provider evidence, external adoption, or human review.
-- Model-surface runs should be added only as recorded transcripts or extracted artifacts; do not simulate them.
+- Model-surface rows count only when prompts, transcripts, extracted artifacts, and execution results are preserved. They still do not count as external adoption or human review.
 
 Raw results: [results.json](../examples/evaluations/hardness-v4/results.json)
+
+Raw model-surface results: [model-surface-results.json](../examples/evaluations/hardness-v4/model-surface-results.json)
 """.format(
         policy=results.get("policy", "pending"),
         rows=qmd_table(rows),
+        model_rows=qmd_table(model_rows) if len(model_rows) > 1 else "No model-surface hardness runs have been recorded yet.",
     )
     write_text(ROOT / "reference" / "hardness-v4.qmd", page("Bench v4 Hardness Ladder", body))
 
@@ -3605,6 +3644,7 @@ def write_methods_pages() -> None:
     comparison = load_runtime_json("examples/evaluations/surface-comparison.json", {"field_spell_matrix": {}})
     model_execution = load_runtime_json("examples/evaluations/model-execution-results.json", {"cases": {}})
     hardness = load_hardness_results()
+    hardness_model = load_hardness_model_results()
     warded_ab = load_runtime_json("examples/jailbreak-resilience/ab-results.json", {"cases": {}})
     ward_science = load_runtime_json("examples/jailbreak-resilience/ward-science-results.json", {"ablation_case": {"variants": {}}})
 
@@ -3642,6 +3682,17 @@ def write_methods_pages() -> None:
     hardness_repaired = [run for run in hardness_runs if run.get("variant") == "repaired"]
     hardness_weak_passes = sum(1 for run in hardness_weak if run.get("execution_result", {}).get("passed") is True)
     hardness_repaired_passes = sum(1 for run in hardness_repaired if run.get("execution_result", {}).get("passed") is True)
+    hardness_model_runs = [
+        run
+        for case in hardness_model.get("cases", {}).values()
+        for run in case.get("runs", [])
+    ]
+    hardness_model_weak = [run for run in hardness_model_runs if run.get("variant") == "weak"]
+    hardness_model_repaired = [run for run in hardness_model_runs if run.get("variant") == "repaired"]
+    hardness_model_weak_passes = sum(1 for run in hardness_model_weak if run.get("execution_result", {}).get("passed") is True)
+    hardness_model_repaired_passes = sum(1 for run in hardness_model_repaired if run.get("execution_result", {}).get("passed") is True)
+    hardness_model_extraction_failures = sum(1 for run in hardness_model_runs if run.get("extraction_result", {}).get("complete") is not True)
+    hardness_model_surfaces = ", ".join(f"`{surface}`" for surface in sorted(hardness_model.get("surfaces", {}))) or "no recorded model surfaces"
 
     ab_runs = [
         run
@@ -3692,12 +3743,21 @@ def write_methods_pages() -> None:
             "These are project-authored control artifacts, not model-provider results.",
         ]
     )
+    if hardness_model_runs:
+        rows.append(
+            [
+                "Bench v4 now has model-surface hardness artifacts",
+                f"On {hardness_model_surfaces}, weak model artifacts passed {hardness_model_weak_passes}/{len(hardness_model_weak)} and repaired model artifacts passed {hardness_model_repaired_passes}/{len(hardness_model_repaired)}; extraction failures: {hardness_model_extraction_failures}/{len(hardness_model_runs)}.",
+                "project_owned_model_run plus local deterministic execution",
+                "The hidden grader is fixture-local and the current surface set is still project-operated, not independent external evidence.",
+            ]
+        )
     rows.append(
         [
             "Warding has the strongest measured protective signal so far",
             f"Baseline runs recorded {baseline_failures}/{len(baseline_runs)} guardrail losses; warded runs recorded {warded_guardrail_losses}/{len(warded_runs)} guardrail losses under the same score/redaction rule.",
             "project_owned_model_run",
-            f"Current real A/B evidence covers {ab_surface_summary}; the standard warded jailbreak-resilience suite and hardness ladder still need model-surface expansion.",
+            f"Current real A/B evidence covers {ab_surface_summary}; the standard warded jailbreak-resilience suite and hardness ladder still need additional non-Codex or reviewer-supplied surface runs.",
         ]
     )
     rows.append(
@@ -3725,18 +3785,18 @@ The current evidence supports a narrow thesis: structured prompts reliably impro
 
 - Execution-grade model artifacts currently show no weak-versus-repaired separation on the recorded slice.
 - Outcome-marker scoring includes ties and regressions, not only wins.
-- Bench v4 hardness ladder results are local deterministic controls until model-produced artifacts are recorded against those rungs.
+- Bench v4 now records model-produced artifacts against the hardness ladder, but current runs still need more surfaces and future repetitions before they support broad generalization.
 - The canon-review queue is prepared, but canonical promotion remains pending human maintainer signoff.
 - Package-index release materials are prepared, but public upload remains pending human action.
 
 ## Next Falsification Steps
 
-1. Run the five Bench v4 hardness rungs against real recorded model outputs.
+1. Replay the five Bench v4 hardness rungs on additional non-Codex or reviewer-supplied model surfaces.
 2. Run the Claude Code standard warded jailbreak-resilience suite and replay ward-limb ablations on real model surfaces.
 3. Publish package-index smoke checks only after a human performs the upload.
 4. Record maintainer decisions before promoting any usage-earned rune to canonical.
 
-Raw evidence: [surface-comparison.json](../examples/evaluations/surface-comparison.json), [model-execution-results.json](../examples/evaluations/model-execution-results.json), [hardness-v4 results](../examples/evaluations/hardness-v4/results.json), [ab-results.json](../examples/jailbreak-resilience/ab-results.json), [ward-science-results.json](../examples/jailbreak-resilience/ward-science-results.json)
+Raw evidence: [surface-comparison.json](../examples/evaluations/surface-comparison.json), [model-execution-results.json](../examples/evaluations/model-execution-results.json), [hardness-v4 results](../examples/evaluations/hardness-v4/results.json), [hardness-v4 model-surface results](../examples/evaluations/hardness-v4/model-surface-results.json), [ab-results.json](../examples/jailbreak-resilience/ab-results.json), [ward-science-results.json](../examples/jailbreak-resilience/ward-science-results.json)
 """.format(rows=qmd_table(rows))
     write_text(ROOT / "reference" / "methods-structure-reviewability-warding.qmd", page("Methods: Structure, Reviewability, and Warding", body))
 

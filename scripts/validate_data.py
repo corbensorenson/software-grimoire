@@ -845,6 +845,47 @@ def validate_real_warded_ab(errors: list[str]) -> None:
                 fail(errors, f"Real warded A/B total score mismatch: {slug}")
 
 
+def validate_hardness_model_surface(errors: list[str]) -> None:
+    path = ROOT / "examples" / "evaluations" / "hardness-v4" / "model-surface-results.json"
+    if not path.exists():
+        fail(errors, "Missing examples/evaluations/hardness-v4/model-surface-results.json")
+        return
+    data = json.loads(path.read_text(encoding="utf-8"))
+    if "codex-cli-default" not in data.get("surfaces", {}):
+        fail(errors, "Bench v4 model-surface hardness results must include codex-cli-default")
+    if data.get("minimum_repetitions_per_surface_variant", 0) < 5:
+        fail(errors, "Bench v4 model-surface hardness results need at least 5 repetitions per surface/variant cell")
+    required_rungs = {"ambiguity", "hidden-invariant", "misleading-context", "blast-radius", "agentic"}
+    observed_rungs = {case.get("rung") for case in data.get("cases", {}).values()}
+    if not required_rungs <= observed_rungs:
+        fail(errors, "Bench v4 model-surface hardness results must cover all five hardness rungs")
+    for slug, case in data.get("cases", {}).items():
+        for key in ["fixture_path", "ground_truth_path"]:
+            value = case.get(key)
+            if not value or not (ROOT / value).exists():
+                fail(errors, f"Bench v4 model-surface {slug} missing {key}: {value}")
+        for variant in ["weak", "repaired"]:
+            runs = [
+                run
+                for run in case.get("runs", [])
+                if run.get("surface") == "codex-cli-default" and run.get("variant") == variant
+            ]
+            if len(runs) < 5:
+                fail(errors, f"Bench v4 model-surface {slug} needs at least 5 Codex {variant} runs")
+        for run in case.get("runs", []):
+            for key in ["prompt_path", "transcript_path", "artifact_root"]:
+                value = run.get(key)
+                if not value or not (ROOT / value).exists():
+                    fail(errors, f"Bench v4 model-surface {slug} missing {key}: {value}")
+            for artifact in run.get("artifact_paths", []):
+                if not (ROOT / artifact).exists():
+                    fail(errors, f"Bench v4 model-surface extracted artifact missing: {artifact}")
+            if run.get("execution_result", {}).get("passed") not in {True, False}:
+                fail(errors, f"Bench v4 model-surface {slug} run has no boolean execution result")
+            if run.get("extraction_result", {}).get("complete") not in {True, False}:
+                fail(errors, f"Bench v4 model-surface {slug} run has no extraction status")
+
+
 def validate_public_package_and_smoke(errors: list[str]) -> None:
     package_path = ROOT / "examples" / "adoption" / "package-check.json"
     smoke_path = ROOT / "examples" / "release-gate" / "public-smoke-check.json"
@@ -891,6 +932,7 @@ def main() -> int:
     validate_adoption_evidence(errors)
     validate_model_artifact_execution(errors)
     validate_real_warded_ab(errors)
+    validate_hardness_model_surface(errors)
     validate_public_package_and_smoke(errors)
     validate_v3_evidence_layer(errors)
 

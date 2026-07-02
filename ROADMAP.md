@@ -102,6 +102,12 @@ Current public-site status:
   repetitions alongside Claude Code safe-mode runs, with publication redaction,
   baseline-only failures, and no unredacted fixture canaries or forbidden tool
   strings in published outputs.
+- The first Bench v4 model-surface hardness pass is now recorded: Codex CLI
+  default produced 50 artifacts across all five hardness rungs, five
+  weak/repaired repetitions per rung, with prompts, transcripts, extracted
+  artifacts, extraction failures, and hidden-grader execution outcomes
+  preserved. The result is intentionally null-heavy rather than polished:
+  weak and repaired artifacts each passed 1/25 execution checks.
 - The external-reality workstream now has a standalone adoption-report
   generator that creates schema-valid report drafts while keeping publication,
   external-adoption counts, and reviewer acceptance separate from generation.
@@ -535,10 +541,11 @@ Absorption status:
   delta reporting, all five local hardness seed rungs, ward-science seed data,
   package-index release materials, one-step installs, adoption-report
   generation, bounded canon-review queue, methods write-up, Codex trap-tier
-  field-spell runs, and Codex real warded A/B runs are implemented. The
-  remaining open work is Claude Code standard warded jailbreak-resilience runs,
-  model-surface hardness-ladder results, human package upload, human canon
-  signoff, and accepted external adoption reports.
+  field-spell runs, Codex real warded A/B runs, and Codex Bench v4
+  model-surface hardness-ladder runs are implemented. The remaining open work
+  is Claude Code standard warded jailbreak-resilience runs, additional
+  non-Codex or reviewer-supplied hardness-ladder surfaces, human package
+  upload, human canon signoff, and accepted external adoption reports.
 
 ## 1. End State
 
@@ -4569,8 +4576,11 @@ Recommended release:
 
 Implementation status:
 
-- Newly accepted from the post-v3 review. Not started beyond roadmap capture
-  and scratch-output hygiene.
+- In progress and instrumented. The local hardness ladder, Codex trap-tier
+  field-spell matrix, cross-surface warded A/B matrix, ward-science seed,
+  package/adoption scaffolds, canon-review queue, methods page, and Codex
+  model-surface hardness-ladder ledger are implemented. Human and
+  external-reality gates remain explicitly pending.
 
 Goal:
 
@@ -4609,11 +4619,13 @@ and `reviewability_total` fields while retaining old structural aliases only
 for backward compatibility; project scratch output is routed under repo-local
 `tmp/`. Item A5 now has all five local deterministic seed rungs implemented
 with ambiguity, hidden-invariant, misleading-context, blast-radius, and agentic
-fixtures; model-surface runs over those rungs remain open evidence work.
-Codex trap-tier field-spell runs are now recorded across all six v3 fixtures
-with three weak/repaired repetitions per case. Codex baseline/warded A/B runs
-are also recorded across all eight existing defanged jailbreak-resilience
-fixtures with three repetitions per case/variant.
+fixtures. Codex model-surface hardness runs are now recorded across all five
+rungs with five weak/repaired repetitions per case, preserved prompts,
+transcripts, extracted artifacts, extraction failures, and hidden-grader
+execution results. Codex trap-tier field-spell runs are now recorded across
+all six v3 fixtures with three weak/repaired repetitions per case. Codex
+baseline/warded A/B runs are also recorded across all eight existing defanged
+jailbreak-resilience fixtures with three repetitions per case/variant.
 
 1. Fix current reporting before adding new cases:
    - report deltas by surface, tier, variant, and repetition cell;
@@ -5499,11 +5511,15 @@ Do this first:
    - Codex real warded A/B runs (completed);
    - Claude Code standard warded jailbreak-resilience runs.
 2. Run the five Bench v4 hardness rungs against recorded model outputs:
-   - ambiguity;
-   - hidden invariant;
-   - misleading context;
-   - blast radius;
-   - agentic handoff.
+   - ambiguity (completed for Codex CLI default, five weak/repaired reps);
+   - hidden invariant (completed for Codex CLI default, five weak/repaired
+     reps);
+   - misleading context (completed for Codex CLI default, five weak/repaired
+     reps);
+   - blast radius (completed for Codex CLI default, five weak/repaired reps);
+   - agentic handoff (completed for Codex CLI default, five weak/repaired
+     reps).
+   - Next evidence target: repeat on a non-Codex or reviewer-supplied surface.
 3. Extend ward science beyond the local deterministic seed:
    - complete both-surface A/B for the original eight attack shapes;
    - replay limb ablations on real model surfaces;

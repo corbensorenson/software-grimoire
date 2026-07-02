@@ -41,6 +41,14 @@ EXPECTED_STACKS = {
 }
 
 
+def remove_scratch(path: Path) -> None:
+    shutil.rmtree(path, ignore_errors=True)
+    try:
+        path.parent.rmdir()
+    except OSError:
+        pass
+
+
 def test_all_evaluation_fixtures_exist() -> None:
     for slug in EXPECTED_CASES:
         fixture_dir = ROOT / "examples" / "evaluations" / "fixtures" / slug
@@ -254,62 +262,65 @@ def test_adoption_evidence_contract_and_template_exist() -> None:
 
 
 def test_install_assets_dry_run_and_write() -> None:
-    shutil.rmtree(SCRATCH, ignore_errors=True)
+    remove_scratch(SCRATCH)
     SCRATCH.mkdir(parents=True, exist_ok=True)
-    dry_run = subprocess.run(
-        [
-            sys.executable,
-            str(ROOT / "scripts" / "install_assets.py"),
-            "--target",
-            "codex",
-            "--dest",
-            str(SCRATCH),
-        ],
-        cwd=ROOT,
-        check=False,
-        capture_output=True,
-        text=True,
-    )
-    assert dry_run.returncode == 0, dry_run.stderr
-    assert "dry-run: exports/codex/safe-refactoring.md" in dry_run.stdout
-    assert not (SCRATCH / "exports" / "codex" / "safe-refactoring.md").exists()
+    try:
+        dry_run = subprocess.run(
+            [
+                sys.executable,
+                str(ROOT / "scripts" / "install_assets.py"),
+                "--target",
+                "codex",
+                "--dest",
+                str(SCRATCH),
+            ],
+            cwd=ROOT,
+            check=False,
+            capture_output=True,
+            text=True,
+        )
+        assert dry_run.returncode == 0, dry_run.stderr
+        assert "dry-run: exports/codex/safe-refactoring.md" in dry_run.stdout
+        assert not (SCRATCH / "exports" / "codex" / "safe-refactoring.md").exists()
 
-    written = subprocess.run(
-        [
-            sys.executable,
-            str(ROOT / "scripts" / "install_assets.py"),
-            "--target",
-            "codex",
-            "--dest",
-            str(SCRATCH),
-            "--write",
-        ],
-        cwd=ROOT,
-        check=False,
-        capture_output=True,
-        text=True,
-    )
-    assert written.returncode == 0, written.stderr
-    installed = SCRATCH / "exports" / "codex" / "safe-refactoring.md"
-    assert installed.exists()
-    assert "spell.safe-refactoring.v1" in installed.read_text(encoding="utf-8")
+        written = subprocess.run(
+            [
+                sys.executable,
+                str(ROOT / "scripts" / "install_assets.py"),
+                "--target",
+                "codex",
+                "--dest",
+                str(SCRATCH),
+                "--write",
+            ],
+            cwd=ROOT,
+            check=False,
+            capture_output=True,
+            text=True,
+        )
+        assert written.returncode == 0, written.stderr
+        installed = SCRATCH / "exports" / "codex" / "safe-refactoring.md"
+        assert installed.exists()
+        assert "spell.safe-refactoring.v1" in installed.read_text(encoding="utf-8")
 
-    claude = subprocess.run(
-        [
-            sys.executable,
-            str(ROOT / "scripts" / "install_assets.py"),
-            "--target",
-            "claude-code",
-            "--dest",
-            str(SCRATCH),
-        ],
-        cwd=ROOT,
-        check=False,
-        capture_output=True,
-        text=True,
-    )
-    assert claude.returncode == 0, claude.stderr
-    assert "dry-run: exports/claude-code/skills/safe-refactoring.md" in claude.stdout
+        claude = subprocess.run(
+            [
+                sys.executable,
+                str(ROOT / "scripts" / "install_assets.py"),
+                "--target",
+                "claude-code",
+                "--dest",
+                str(SCRATCH),
+            ],
+            cwd=ROOT,
+            check=False,
+            capture_output=True,
+            text=True,
+        )
+        assert claude.returncode == 0, claude.stderr
+        assert "dry-run: exports/claude-code/skills/safe-refactoring.md" in claude.stdout
+    finally:
+        remove_scratch(SCRATCH)
 
 
 def test_public_intake_issue_templates_exist() -> None:
