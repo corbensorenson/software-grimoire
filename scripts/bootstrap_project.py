@@ -4074,12 +4074,14 @@ Dry-run first:
 
 ```bash
 python3 scripts/install_assets.py --target codex --dest tmp/grimoire-assets
+python3 scripts/grimoire.py install --target cursor --dest tmp/grimoire-assets
 ```
 
 Copy selected assets:
 
 ```bash
 python3 scripts/install_assets.py --target codex --dest tmp/grimoire-assets --write
+python3 scripts/grimoire.py install --target claude-code --dest tmp/grimoire-assets --write
 ```
 
 Installable console scripts are declared in `pyproject.toml` for editable local use:
@@ -4088,6 +4090,8 @@ Installable console scripts are declared in `pyproject.toml` for editable local 
 python3 -m pip install -e .
 grimoire export --target cursor
 grimoire export --target claude-code
+grimoire install --target cursor --dest tmp/grimoire-assets
+grimoire install --target claude-code --dest tmp/grimoire-assets --write
 grimoire bench import examples/evaluations/manual-import-template.json
 grimoire adoption report -- --id adoption.example-review.v1 --title "Example Review" --provenance reviewer-supplied --task "Describe the real task." --spell-or-stack-used spell.safe-refactoring.v1 --surface "Reviewer workflow" --artifact-produced "Patch or review artifact." --verification-performed "Tests or review checks." --time-cost "Low" --failure-or-friction "Record friction honestly." --reuse-decision reuse --write-report tmp/adoption-report.json
 grimoire-install-assets --target cursor --dest tmp/grimoire-assets --write

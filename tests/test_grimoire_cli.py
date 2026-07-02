@@ -62,6 +62,23 @@ def test_export_command_lists_generated_assets() -> None:
     assert "exports/claude-code/skills/safe-refactoring.md" in claude.stdout
 
 
+def test_install_command_dry_run_and_write() -> None:
+    scratch = ROOT / "tmp" / "tests" / "grimoire-install"
+    shutil.rmtree(scratch, ignore_errors=True)
+    scratch.mkdir(parents=True, exist_ok=True)
+    try:
+        dry_run = run_cli("install", "--target", "cursor", "--dest", str(scratch))
+        assert dry_run.returncode == 0, dry_run.stderr
+        assert "dry-run: exports/cursor/rules/safe-refactoring.mdc" in dry_run.stdout
+        assert not (scratch / "exports" / "cursor" / "rules" / "safe-refactoring.mdc").exists()
+
+        written = run_cli("install", "--target", "cursor", "--dest", str(scratch), "--write")
+        assert written.returncode == 0, written.stderr
+        assert (scratch / "exports" / "cursor" / "rules" / "safe-refactoring.mdc").exists()
+    finally:
+        shutil.rmtree(scratch, ignore_errors=True)
+
+
 def test_bench_import_command_validates_template() -> None:
     imported = run_cli("bench", "import", "examples/evaluations/manual-import-template.json")
     assert imported.returncode == 0, imported.stderr

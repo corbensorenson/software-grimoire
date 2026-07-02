@@ -28,6 +28,8 @@
 - Added a standalone adoption-report generator, schema, CLI/console command,
   package smoke coverage, and docs for producing valid report drafts without
   fabricating external adoption.
+- Added `grimoire install` as the one-step dry-run-first wrapper for generated
+  Codex, Cursor, Claude Code, Markdown, prompt, and stack assets.
 
 ## v3.0.0-evidence-package
 

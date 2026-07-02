@@ -144,6 +144,11 @@ def main(argv: list[str] | None = None) -> int:
     new_spell.add_argument("path", nargs="?", help="optional output path")
     export_parser = sub.add_parser("export", help="list generated installable exports")
     export_parser.add_argument("--target", choices=["all", "markdown", "codex", "cursor", "claude-code"], default="all")
+    install_parser = sub.add_parser("install", help="install generated assets to a local destination")
+    install_parser.add_argument("--target", choices=["all", "prompts", "markdown", "codex", "cursor", "claude-code", "stacks"], default="all")
+    install_parser.add_argument("--dest", required=True)
+    install_parser.add_argument("--write", action="store_true")
+    install_parser.add_argument("--force", action="store_true")
     adoption_parser = sub.add_parser("adoption", help="adoption evidence utilities")
     adoption_sub = adoption_parser.add_subparsers(dest="adoption_command", required=True)
     adoption_report = adoption_sub.add_parser("report", help="create a standalone adoption evidence report")
@@ -176,6 +181,13 @@ def main(argv: list[str] | None = None) -> int:
         return 2
     if args.command == "export":
         return export_assets(args.target)
+    if args.command == "install":
+        command = [sys.executable, "scripts/install_assets.py", "--target", args.target, "--dest", args.dest]
+        if args.write:
+            command.append("--write")
+        if args.force:
+            command.append("--force")
+        return run(command)
     if args.command == "adoption":
         if args.adoption_command == "report":
             return run([sys.executable, "scripts/create_adoption_report.py", *forwarded_args(args.args)])

@@ -4694,7 +4694,9 @@ Workstream D: External reality and distribution
 Implementation note as of July 2, 2026: the standalone adoption-report
 generator is implemented with schema validation, repo-local output guardrails,
 CLI/package entry points, tests, and documentation. It creates report drafts
-only; it does not publish them or increment external adoption counts.
+only; it does not publish them or increment external adoption counts. The
+one-step `grimoire install` wrapper is also implemented over the dry-run-first
+asset installer, with tests covering repo-local `tmp/` destinations.
 
 1. Prepare package-index release materials:
    - long description suitable for PyPI;
