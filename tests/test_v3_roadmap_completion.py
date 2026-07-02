@@ -65,3 +65,15 @@ def test_package_and_smoke_checks_pass() -> None:
     assert smoke["passed"] is True
     assert {"build wheel and sdist", "install wheel"} <= {step["name"] for step in package["steps"]}
     assert {"index.html", "reference/evidence-browser.html", "exports/library-manifest.json"} <= {check["target"] for check in smoke["checks"]}
+
+
+def test_public_smoke_report_can_be_written_outside_repo(tmp_path: Path) -> None:
+    from scripts import smoke_public_site
+
+    external = tmp_path / "live-smoke.json"
+    internal = ROOT / "examples" / "release-gate" / "public-smoke-check.json"
+
+    assert smoke_public_site.report_path(str(external)) == external
+    assert smoke_public_site.display_path(external) == str(external)
+    assert smoke_public_site.report_path("examples/release-gate/public-smoke-check.json") == internal
+    assert smoke_public_site.display_path(internal) == "examples/release-gate/public-smoke-check.json"

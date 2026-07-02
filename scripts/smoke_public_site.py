@@ -29,6 +29,18 @@ RESOURCE_REQUIRED = [
 ]
 
 
+def report_path(value: str) -> Path:
+    path = Path(value).expanduser()
+    return path if path.is_absolute() else ROOT / path
+
+
+def display_path(path: Path) -> str:
+    try:
+        return str(path.relative_to(ROOT))
+    except ValueError:
+        return str(path)
+
+
 def fetch(url: str, timeout: int = 20) -> tuple[bool, int | None, str]:
     try:
         with urllib.request.urlopen(url, timeout=timeout) as response:
@@ -67,10 +79,10 @@ def main() -> int:
         "checks": checks,
         "passed": all(item["passed"] for item in checks),
     }
-    out = ROOT / args.write_report
+    out = report_path(args.write_report)
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(json.dumps(report, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
-    print(f"Wrote {out.relative_to(ROOT)}")
+    print(f"Wrote {display_path(out)}")
     return 0 if report["passed"] else 1
 
 
