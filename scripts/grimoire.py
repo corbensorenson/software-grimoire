@@ -144,6 +144,10 @@ def main(argv: list[str] | None = None) -> int:
     new_spell.add_argument("path", nargs="?", help="optional output path")
     export_parser = sub.add_parser("export", help="list generated installable exports")
     export_parser.add_argument("--target", choices=["all", "markdown", "codex", "cursor", "claude-code"], default="all")
+    adoption_parser = sub.add_parser("adoption", help="adoption evidence utilities")
+    adoption_sub = adoption_parser.add_subparsers(dest="adoption_command", required=True)
+    adoption_report = adoption_sub.add_parser("report", help="create a standalone adoption evidence report")
+    adoption_report.add_argument("args", nargs=argparse.REMAINDER, help="arguments forwarded to create_adoption_report.py")
     bench_parser = sub.add_parser("bench", help="bench utilities")
     bench_sub = bench_parser.add_subparsers(dest="bench_command", required=True)
     bench_import = bench_sub.add_parser("import", help="validate a manual benchmark import record")
@@ -172,6 +176,10 @@ def main(argv: list[str] | None = None) -> int:
         return 2
     if args.command == "export":
         return export_assets(args.target)
+    if args.command == "adoption":
+        if args.adoption_command == "report":
+            return run([sys.executable, "scripts/create_adoption_report.py", *forwarded_args(args.args)])
+        return 2
     if args.command == "bench":
         if args.bench_command == "import":
             return run([sys.executable, "scripts/run_bench.py", "import", args.path])

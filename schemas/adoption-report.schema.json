@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Software Grimoire Adoption Evidence Report",
+  "type": "object",
+  "required": [
+    "id",
+    "title",
+    "provenance",
+    "task",
+    "spell_or_stack_used",
+    "surface",
+    "artifact_produced",
+    "verification_performed",
+    "time_cost",
+    "failure_or_friction",
+    "reuse_decision"
+  ],
+  "properties": {
+    "id": {"type": "string", "pattern": "^adoption\\.[a-z0-9][a-z0-9-]*\\.v[0-9]+$"},
+    "title": {"type": "string", "minLength": 1},
+    "provenance": {"enum": ["project-owned", "reviewer-supplied", "external-user"]},
+    "task": {"type": "string", "minLength": 1},
+    "spell_or_stack_used": {"type": "string", "minLength": 1},
+    "surface": {"type": "string", "minLength": 1},
+    "artifact_produced": {"type": "string", "minLength": 1},
+    "verification_performed": {"type": "string", "minLength": 1},
+    "time_cost": {"type": "string", "minLength": 1},
+    "failure_or_friction": {"type": "string", "minLength": 1},
+    "reuse_decision": {"type": "string", "minLength": 1},
+    "notes": {"type": "string"}
+  },
+  "additionalProperties": false
+}

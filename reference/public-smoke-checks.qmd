@@ -10,16 +10,17 @@ This page records release-surface checks that sit outside prompt quality: packag
 
 Passed: `True`
 
-| Step                                 | Passed |
-| ------------------------------------ | ------ |
-| build wheel and sdist                | True   |
-| create venv                          | True   |
-| install wheel                        | True   |
-| python -m pip show software-grimoire | True   |
-| grimoire --help                      | True   |
-| grimoire-install-assets --help       | True   |
-| grimoire-run-bench --help            | True   |
-| grimoire-run-hardness-bench --help   | True   |
+| Step                                   | Passed |
+| -------------------------------------- | ------ |
+| build wheel and sdist                  | True   |
+| create venv                            | True   |
+| install wheel                          | True   |
+| python -m pip show software-grimoire   | True   |
+| grimoire --help                        | True   |
+| grimoire-create-adoption-report --help | True   |
+| grimoire-install-assets --help         | True   |
+| grimoire-run-bench --help              | True   |
+| grimoire-run-hardness-bench --help     | True   |
 
 Raw package report: [package-check.json](../examples/adoption/package-check.json)
 

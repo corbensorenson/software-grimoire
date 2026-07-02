@@ -92,6 +92,9 @@ Current public-site status:
   through five deterministic repetitions each inside repo-local `tmp/`
   sandboxes. These are fixture-contract and local-artifact evidence, not yet
   model-surface outcome evidence.
+- The external-reality workstream now has a standalone adoption-report
+  generator that creates schema-valid report drafts while keeping publication,
+  external-adoption counts, and reviewer acceptance separate from generation.
 
 Reader-experience requirements:
 
@@ -513,7 +516,7 @@ Absorption status:
   rungs now have executable seed fixtures and deterministic local artifact
   results. The remaining open work is the real matrix-completion runs,
   model-surface hardness-ladder results, ward-science ablations, package-index
-  release materials, adoption-report generator, and methods write-up.
+  release materials, accepted external adoption reports, and methods write-up.
 
 ## 1. End State
 
@@ -4688,6 +4691,11 @@ Workstream C: Usage-earned canon and human review
 
 Workstream D: External reality and distribution
 
+Implementation note as of July 2, 2026: the standalone adoption-report
+generator is implemented with schema validation, repo-local output guardrails,
+CLI/package entry points, tests, and documentation. It creates report drafts
+only; it does not publish them or increment external adoption counts.
+
 1. Prepare package-index release materials:
    - long description suitable for PyPI;
    - version policy tied to evidence milestones;
@@ -4706,7 +4714,7 @@ Workstream D: External reality and distribution
    - explicit `--write` required;
    - no writes outside the destination;
    - tests use repo-local `tmp/` destinations.
-4. Add `grimoire adopt-report`:
+4. Add `grimoire adoption report`:
    - generates a schema-valid adoption evidence record;
    - prompts for provenance, task, spell/stack, surface, artifact,
      verification, friction, and reuse decision;

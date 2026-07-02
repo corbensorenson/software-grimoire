@@ -115,6 +115,11 @@ def test_adoption_evidence_matches_schema() -> None:
     assert not errors, "\n".join(errors[:25])
 
 
+def test_adoption_report_template_matches_schema() -> None:
+    errors = collect_errors("schemas/adoption-report.schema.json", [load_json("examples/adoption/adoption-report-template.json")], "adoption_report")
+    assert not errors, "\n".join(errors[:25])
+
+
 def test_evidence_taxonomy_matches_schema() -> None:
     errors = collect_errors("schemas/evidence-taxonomy.schema.json", [load_json("data/evidence_taxonomy.json")], "evidence_taxonomy")
     assert not errors, "\n".join(errors[:25])

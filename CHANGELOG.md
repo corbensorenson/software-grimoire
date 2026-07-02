@@ -25,6 +25,9 @@
   hidden-invariant executable fixtures, weak/repaired seed artifacts,
   five deterministic repetitions per variant, a schema, CLI/console command,
   CI wiring, smoke coverage, and generated reference/evidence pages.
+- Added a standalone adoption-report generator, schema, CLI/console command,
+  package smoke coverage, and docs for producing valid report drafts without
+  fabricating external adoption.
 
 ## v3.0.0-evidence-package
 

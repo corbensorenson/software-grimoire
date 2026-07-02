@@ -3676,6 +3676,28 @@ Allowed provenance values:
 
 Template: [adoption-report-template.json](../examples/adoption/adoption-report-template.json)
 
+Create a draft report without publishing it:
+
+```bash
+python3 scripts/create_adoption_report.py \
+  --id adoption.example-review.v1 \
+  --title "Example Review" \
+  --provenance reviewer-supplied \
+  --task "Describe the real task and artifact boundary." \
+  --spell-or-stack-used spell.safe-refactoring.v1 \
+  --surface "Reviewer tool or workflow" \
+  --artifact-produced "Patch, review, test, decision, or design artifact." \
+  --verification-performed "Tests, checks, screenshots, or review performed." \
+  --time-cost "Setup/runtime and whether the structure was worth it." \
+  --failure-or-friction "Failures, overkill, unclear clauses, or friction." \
+  --reuse-decision reuse \
+  --write-report tmp/adoption-report.json
+```
+
+The generator validates one standalone report. It does not add the report to
+published evidence or increment external adoption counts; maintainer review is
+still required.
+
 ## Project-Owned Dogfood Reports
 
 {reports}
@@ -4067,6 +4089,7 @@ python3 -m pip install -e .
 grimoire export --target cursor
 grimoire export --target claude-code
 grimoire bench import examples/evaluations/manual-import-template.json
+grimoire adoption report -- --id adoption.example-review.v1 --title "Example Review" --provenance reviewer-supplied --task "Describe the real task." --spell-or-stack-used spell.safe-refactoring.v1 --surface "Reviewer workflow" --artifact-produced "Patch or review artifact." --verification-performed "Tests or review checks." --time-cost "Low" --failure-or-friction "Record friction honestly." --reuse-decision reuse --write-report tmp/adoption-report.json
 grimoire-install-assets --target cursor --dest tmp/grimoire-assets --write
 grimoire-install-assets --target claude-code --dest tmp/grimoire-assets --write
 ```

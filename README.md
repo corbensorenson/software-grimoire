@@ -70,6 +70,9 @@ Implemented:
 - Release-gate stack dogfood record tied to the public GitHub Pages workflow.
 - Project-owned adoption evidence records, adoption report template, and public
   GitHub issue templates for adoption evidence and canon corrections.
+- Standalone adoption-report generator for schema-valid project-owned,
+  reviewer-supplied, or external-user report drafts without automatically
+  counting them as external adoption.
 - Evidence taxonomy, calibration separation, real Claude Code second-surface
   runs, model-produced artifact execution, real warded A/B runs, evidence
   browser pages, public smoke checks, package install checks, and usage-earned
@@ -108,6 +111,7 @@ python3 scripts/grimoire.py export --target claude-code
 python3 scripts/grimoire.py bench execution
 python3 scripts/grimoire.py bench hardness
 python3 scripts/grimoire.py bench import examples/evaluations/manual-import-template.json
+python3 scripts/grimoire.py adoption report -- --id adoption.example-review.v1 --title "Example Review" --provenance reviewer-supplied --task "Describe the real task." --spell-or-stack-used spell.safe-refactoring.v1 --surface "Reviewer workflow" --artifact-produced "Patch or review artifact." --verification-performed "Tests or review checks." --time-cost "Low" --failure-or-friction "Record friction honestly." --reuse-decision reuse --write-report tmp/adoption-report.json
 python3 scripts/install_assets.py --target cursor --dest tmp/grimoire-assets
 python3 scripts/install_assets.py --target claude-code --dest tmp/grimoire-assets
 python3 scripts/install_assets.py --target cursor --dest tmp/grimoire-assets --write
