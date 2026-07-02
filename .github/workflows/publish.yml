@@ -76,9 +76,12 @@ jobs:
           GITHUB_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
+          unset GIT_DIR
+          unset GIT_WORK_TREE
           publish_dir="$RUNNER_TEMP/software-grimoire-gh-pages"
           rm -rf "$publish_dir"
-          git init --initial-branch=gh-pages "$publish_dir"
+          mkdir -p "$publish_dir"
+          git -C "$publish_dir" init --initial-branch=gh-pages
           git -C "$publish_dir" config user.name "github-actions[bot]"
           git -C "$publish_dir" config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           rsync -a --delete "_site/" "$publish_dir/"
