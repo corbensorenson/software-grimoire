@@ -12,7 +12,7 @@ permissions:
 
 concurrency:
   group: pages
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   build:
@@ -52,6 +52,9 @@ jobs:
 
       - name: Validate bench import contract
         run: python scripts/run_bench.py import examples/evaluations/manual-import-template.json
+
+      - name: Validate Bench v4 hardness import contract
+        run: python scripts/import_hardness_model_run.py validate examples/evaluations/hardness-v4/manual-import-template.json
 
       - name: Render site
         run: quarto render
@@ -98,3 +101,5 @@ jobs:
     steps:
       - id: deployment
         uses: actions/deploy-pages@v5
+        with:
+          timeout: 1800000
