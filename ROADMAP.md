@@ -39,8 +39,8 @@ spells, stacks, runes, and examples without manually searching the site.
 
 Current public-site status:
 
-- The long public release is ported into the main book spine, public canon, full
-  lexicon data, and generated reference pages.
+- The long public release is structurally ported into the main book spine,
+  public canon, full lexicon data, and generated reference pages.
 - The pocket edition is ported into the pocket field guide and 300-rune pocket
   canon.
 - The stacked-spells addendum is ported into the Stackcraft chapter, stack
@@ -49,6 +49,11 @@ Current public-site status:
   entries, 300 pocket runes, six spell templates, and six stack workflows.
 - The repository includes schemas, validation, seal generation, CI, GitHub Pages
   publishing, contribution templates, examples, and a public seed release.
+- Important qualification: "ported" means the source material exists in the
+  Quarto/data system. It does not mean every lexicon entry has been individually
+  authored to final canon quality. The full 1,645-entry lexicon contains many
+  category-gloss stubs that must be marked honestly before the project claims a
+  complete authored canon.
 
 Reader-experience requirements:
 
@@ -77,6 +82,25 @@ Reader-experience acceptance criteria:
 - Stack pages expose the spell templates and vocabulary that support the stack.
 - Quarto renders the full site locally and in GitHub Actions.
 - The public GitHub Pages site returns HTTP 200 after deployment.
+
+External review findings to absorb into the roadmap:
+
+1. The pipeline and public site are real: GitHub Pages is live, CI deploys, data
+   validates, seals generate, and reader cross-links exist.
+2. The strongest hand-authored content is the core theory, chapters 1-8, six
+   field spells, six stacks, and the major/pocket entry points.
+3. The master lexicon must become honest about completion state. An external
+   review found that most entries still carry duplicated category boilerplate,
+   most have no failure shadow, and many have no sense disambiguator.
+4. Chapters 09 and 10 are currently too shallow relative to the roadmap promise
+   around schema documentation, registry/replay, contribution practice, and
+   adoption.
+5. Proof by Difference must become a real reference section and example suite,
+   not only a thesis inside the manuscript.
+6. CI must run on pull requests and automate the internal-link audit currently
+   performed locally.
+7. The next phase should prioritize content integrity before adding new visual
+   or mathematical features.
 
 ## 1. End State
 
@@ -1154,6 +1178,228 @@ Tag:
 
 - `v0.1.0-public-seed`
 
+### Phase 9.5: Reader-Linking Release
+
+Goal:
+
+Make the structurally ported site easy to traverse.
+
+Status:
+
+- Completed as `v0.2.0-reader-links`.
+
+Delivered:
+
+1. Guided reader path.
+2. Porting status page.
+3. Stable `#rune-NNNN` anchors for all lexicon entries.
+4. Term index.
+5. Canon map.
+6. Major and pocket canon links into detailed rune entries.
+7. Related-rune sections on spell pages.
+8. Related-spell and related-rune sections on stack pages.
+9. Related-page sections on core chapters.
+10. Validation for rune anchors, spell rune references, stack rune references,
+    and stack related-spell references.
+
+Remaining risk:
+
+- Reader navigation is now strong, but the reference layer can still over-imply
+  that every lexicon entry is authored canon. Phase 9.6 fixes that.
+
+### Phase 9.6: Lexicon Honesty and Content Integrity
+
+Goal:
+
+Make the public site truthful about which lexicon entries are authored and which
+are stubs, then start the authoring campaign with the 300-rune pocket canon.
+
+Tasks:
+
+1. Add a `completion_status` field to every lexicon entry:
+   - `authored`: unique, term-specific operative definition.
+   - `stub`: duplicated or generic category gloss.
+   - `needs_shadow`: term-specific definition exists but failure shadow is
+     missing.
+   - `needs_sense`: overloaded term lacks a useful sense disambiguator.
+2. Detect obvious stubs programmatically:
+   - Count duplicated summaries.
+   - Mark shared boilerplate summaries as `stub`.
+   - Preserve already-authored entries as `authored`.
+3. Extend schemas and validation:
+   - Require `completion_status`.
+   - Require `shadow` for `authored` entries where feasible.
+   - Validate that major canon entries are authored.
+   - Validate that pocket canon entries are either authored or explicitly listed
+     in the pocket authoring backlog.
+4. Update generated pages:
+   - Show authored/stub counts globally and per house.
+   - Show a completion summary on `porting-status.qmd`.
+   - Show completion status in `reference/lexicon.qmd`.
+   - Style stub rows and stub detail blocks visibly but soberly.
+   - Avoid claiming the master lexicon is complete authored canon until the
+     counts support that claim.
+5. Create a pocket-canon authoring tracker:
+   - Group the 300 pocket runes by house.
+   - Track authored, stub, missing-shadow, and missing-sense counts.
+   - Review whole houses at a time rather than random individual entries.
+6. Author the 300 pocket runes first:
+   - Write unique summaries specific to each term.
+   - Add a failure shadow.
+   - Add sense disambiguation for overloaded terms.
+   - Preserve existing sigil IDs.
+   - Treat generated drafts as candidates until reviewed.
+7. Add a human review gate:
+   - Pocket entries should not move to `authored` merely because text was
+     generated.
+   - Review for technical accuracy, operational usefulness, and voice.
+
+Definition of done:
+
+- The site shows honest completion counts.
+- Stub entries are visually distinct.
+- No page implies that generic boilerplate entries are finished canon.
+- The 50 major canon entries are authored.
+- The 300 pocket runes have a clear authoring backlog and at least one complete
+  house has been reviewed.
+
+Recommended release:
+
+- `v0.3.0-lexicon-honesty`
+
+### Phase 9.7: Proof by Difference and Evidence Layer
+
+Goal:
+
+Demonstrate the grimoire's core claim with visible before/after cases.
+
+Tasks:
+
+1. Create `reference/proof-by-difference.qmd`.
+2. Define the method:
+   - Same task.
+   - Weak request.
+   - Repaired spell.
+   - Observable delta.
+   - Verification rubric.
+3. Create one weak-vs-repaired example per field spell:
+   - Safe refactoring.
+   - Bug diagnosis from logs.
+   - API design.
+   - Migration without data loss.
+   - Test generation.
+   - Performance tuning.
+4. Link each spell page to its proof-by-difference case.
+5. Expand `examples/evaluations/` beyond a placeholder:
+   - Store input context.
+   - Expected output contract.
+   - Scoring rubric.
+   - Result notes.
+6. Add the proof page to `_quarto.yml` and the reference index.
+
+Definition of done:
+
+- A reader can see why the spell structure matters without trusting the thesis
+  on assertion.
+- Every field spell has at least one concrete weak-vs-repaired case.
+- Evaluation examples can be replayed across model/tool versions.
+
+Recommended release:
+
+- `v0.4.0-proof-by-difference`
+
+### Phase 9.8: Editorial Depth for Tooling and Living Practice
+
+Goal:
+
+Bring chapters 09 and 10 up to the depth of the core chapters.
+
+Tasks:
+
+1. Expand `chapters/09-tooling-and-formalization.qmd`:
+   - Schema responsibilities.
+   - Required fields for houses, lexicon entries, spells, stacks, and seals.
+   - How validation prevents canon drift.
+   - How canonical streams are formed.
+   - How working seals are computed.
+   - What causes seal changes.
+   - Prompt registry design.
+   - Replay across model versions.
+   - Evaluation and audit logs.
+2. Expand `chapters/10-living-practice.qmd`:
+   - Solo use.
+   - Team prompt registry.
+   - Code-review and incident-response workflows.
+   - Contribution flow.
+   - Canon change policy.
+   - How to keep metaphor subordinate to engineering.
+   - Adoption ladder from copy/paste templates to validated registry.
+
+Definition of done:
+
+- Chapters 09 and 10 no longer read as placeholders.
+- The tooling chapter explains the actual repo implementation.
+- The living-practice chapter gives a team a credible adoption path.
+
+Recommended release:
+
+- Can ship with `v0.4.0-proof-by-difference` or as `v0.5.0-editorial-depth`.
+
+### Phase 9.9: CI and Test Hardening
+
+Goal:
+
+Make the repository safer for contributors.
+
+Tasks:
+
+1. Add `.github/workflows/check.yml`:
+   - Run on `pull_request`.
+   - Run on pushes to non-main branches.
+   - Generate data/pages.
+   - Validate data.
+   - Run tests.
+   - Render Quarto.
+   - Do not deploy.
+2. Add tests:
+   - Seal stability for at least one known spell and one known stack.
+   - Schema conformance for all generated data files.
+   - Internal-link and anchor audit over rendered `_site` HTML.
+   - Required `#rune-NNNN` anchors.
+3. Add `pytest` to the existing Pages publish workflow.
+4. Add a build/status badge to the README.
+5. Keep deployment restricted to `main`.
+
+Definition of done:
+
+- Pull requests cannot break generation, validation, tests, render, or internal
+  links without failing CI.
+- Seal canonicalization changes fail loudly and require changelog notes.
+
+Recommended release:
+
+- `v0.5.0-ci-hardening`
+
+### Phase 9.10: Repository Hygiene
+
+Goal:
+
+Remove ambiguity and dead scaffolding.
+
+Tasks:
+
+1. Delete empty directories such as `appendices/` until they contain content.
+2. State the license plainly in README: MIT.
+3. Keep `CHANGELOG.md` aligned with each release.
+4. Keep source manuscripts and extracts clearly marked as source lineage.
+5. Avoid hand-editing generated QMD pages; edit data and generators instead.
+
+Definition of done:
+
+- Repository state matches public claims.
+- New contributors can tell which files are source, generated, and review
+  artifacts.
+
 ### Phase 10: Canonical v1.0
 
 Goal:
@@ -1165,9 +1411,10 @@ Required v1.0 contents:
 1. Complete edited book spine.
 2. Integrated stackcraft chapter.
 3. Structured 50-entry major canon.
-4. Structured 300-entry pocket canon.
-5. Structured full lexicon or a clearly labeled partial lexicon with completion
-   plan.
+4. Authored 300-entry pocket canon with shadows and sense disambiguation where
+   needed.
+5. Structured full lexicon with honest completion status for every entry:
+   authored, stub, needs-shadow, or needs-sense.
 6. Spell schema.
 7. Stack schema.
 8. Generated spell pages.
@@ -1185,6 +1432,11 @@ v1.0 quality bar:
 - The formal structures validate.
 - The site is easy to navigate.
 - The generated reference does not drown the reader.
+- The master lexicon does not overclaim completion.
+- The pocket canon is genuinely usable as a minimum working vocabulary.
+- Proof by Difference exists as a real evidence layer.
+- Pull requests run generation, validation, tests, render, and internal-link
+  checks before merge.
 - The project is useful even to someone who ignores the metaphysical flavor and
   just wants better AI-assisted engineering workflows.
 
@@ -1496,6 +1748,16 @@ Mitigation:
 - Generate per-house pages.
 - Keep the 50-word and 300-rune canons as smaller entry points.
 
+Risk: The lexicon is structurally complete but semantically under-authored.
+
+Mitigation:
+
+- Track `completion_status` on every rune.
+- Surface authored/stub counts publicly.
+- Author the 300 pocket runes before treating the master lexicon as final.
+- Require shadows and sense disambiguation for authored entries.
+- Do not allow generic category boilerplate to masquerade as final canon.
+
 Risk: Formalization becomes too abstract.
 
 Mitigation:
@@ -1536,28 +1798,36 @@ The project is complete in the strong sense when:
 2. The main book is readable and coherent.
 3. The pocket guide is useful as a daily reference.
 4. The stacked-spells system is integrated and validated.
-5. The lexicon is structured and navigable.
+5. The lexicon is structured, navigable, and honest about authored vs stub
+   entries.
 6. The six initial spells are reusable templates.
 7. The six initial stacks are reusable workflows.
 8. Spells and stacks have schemas.
-9. Data validation runs in CI.
+9. Data validation, tests, render, and internal-link audit run in CI.
 10. Quarto publication is automated.
-11. Examples demonstrate proof by difference.
+11. Examples demonstrate Proof by Difference for every field spell.
 12. The project can accept contributions without losing structure.
 13. The project has versioned releases.
 14. A user can go from vague request to structured spell to verified result.
 15. A team can go from one-off prompt to reusable stack to versioned practice.
+16. The 50 major canon entries are authored.
+17. The 300 pocket canon entries are authored or explicitly marked as still in
+    review.
+18. Seal stability is tested and seal changes are documented.
 
 ## 15. Immediate Next Move
 
-The highest-leverage next move is not to perfect the lexicon. It is to create
-the public Quarto skeleton and move the strongest existing content into the
-right shapes:
+The highest-leverage next move is now the content-integrity package:
 
-1. Book spine for the theory.
-2. Reference pages for spells, stacks, and canon.
-3. Data files for structured concepts.
-4. CI for render and validation.
+1. Add lexicon completion status (`authored`, `stub`, `needs_shadow`,
+   `needs_sense`) using duplicate-summary detection.
+2. Surface authored/stub counts on the porting status, lexicon, and house pages.
+3. Mark boilerplate entries as stubs instead of implying finished canon.
+4. Begin the pocket-canon authoring campaign house by house.
+5. Add Proof by Difference as a real reference page and example suite.
+6. Harden CI so pull requests run generation, validation, tests, render, and
+   internal-link checks.
 
-Once that is done, the project stops being three DOCX manuscripts and becomes a
-living public system.
+The project has moved past the "make it public and navigable" phase. The next
+standard is editorial truthfulness: every public claim about canon quality should
+match the data underneath it.
