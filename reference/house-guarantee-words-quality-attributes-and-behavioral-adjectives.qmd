@@ -6,102 +6,109 @@ title: "Guarantee Words, Quality Attributes, and Behavioral Adjectives"
 
 Range: `1421-1512`.
 
+## Completion
+
+| Status   | Count |
+| -------- | ----- |
+| authored | 22    |
+| stub     | 70    |
+
 Use the summary table for scanning. Each row links to the detailed anchored entry below.
 
-| Sigil | Term                                  | Summary                                                                                                                                                  |
-| ----- | ------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 1421  | [accessible](#rune-1421)              | A property word; it says what kind of behavior should remain true under stress.                                                                          |
-| 1422  | [adaptive](#rune-1422)                | A property word; it says what kind of behavior should remain true under stress.                                                                          |
-| 1423  | [amortized](#rune-1423)               | A virtue word; it names an operational quality that can guide design and evaluation.                                                                     |
-| 1424  | [approximate {Qual}](#rune-1424)      | A property word; it says what kind of behavior should remain true under stress.                                                                          |
-| 1425  | [atomic](#rune-1425)                  | No halfway state is allowed to leak across the line. Use it when partial success would be indistinguishable from corruption.                             |
-| 1426  | [auditable](#rune-1426)               | A virtue word; it names an operational quality that can guide design and evaluation.                                                                     |
-| 1427  | [authenticated](#rune-1427)           | A virtue word; it names an operational quality that can guide design and evaluation.                                                                     |
-| 1428  | [authoritative](#rune-1428)           | A promise adjective; it binds the system to a stronger form of conduct.                                                                                  |
-| 1429  | [available](#rune-1429)               | A promise adjective; it binds the system to a stronger form of conduct.                                                                                  |
-| 1430  | [backward-compatible](#rune-1430)     | A guarantee word; it claims a behavioral law rather than a mere preference.                                                                              |
-| 1431  | [balanced](#rune-1431)                | A property word; it says what kind of behavior should remain true under stress.                                                                          |
-| 1432  | [batched](#rune-1432)                 | A virtue word; it names an operational quality that can guide design and evaluation.                                                                     |
-| 1433  | [bounded](#rune-1433)                 | A promise adjective; it binds the system to a stronger form of conduct.                                                                                  |
-| 1434  | [cache-friendly](#rune-1434)          | A property word; it says what kind of behavior should remain true under stress.                                                                          |
-| 1435  | [canonical](#rune-1435)               | A guarantee word; it claims a behavioral law rather than a mere preference.                                                                              |
-| 1436  | [causal](#rune-1436)                  | A promise adjective; it binds the system to a stronger form of conduct.                                                                                  |
-| 1437  | [composable](#rune-1437)              | A promise adjective; it binds the system to a stronger form of conduct.                                                                                  |
-| 1438  | [concurrent](#rune-1438)              | A virtue word; it names an operational quality that can guide design and evaluation.                                                                     |
-| 1439  | [configurable](#rune-1439)            | A promise adjective; it binds the system to a stronger form of conduct.                                                                                  |
-| 1440  | [consistent](#rune-1440)              | A property word; it says what kind of behavior should remain true under stress.                                                                          |
-| 1441  | [convergent](#rune-1441)              | A virtue word; it names an operational quality that can guide design and evaluation.                                                                     |
-| 1442  | [crash-safe](#rune-1442)              | A promise adjective; it binds the system to a stronger form of conduct.                                                                                  |
-| 1443  | [declarative](#rune-1443)             | A guarantee word; it claims a behavioral law rather than a mere preference.                                                                              |
-| 1444  | [deduplicated](#rune-1444)            | A guarantee word; it claims a behavioral law rather than a mere preference.                                                                              |
-| 1445  | [deterministic](#rune-1445)           | Given the same inputs, the same result should return. This is the antidote to drift, heisenbugs, and unreviewable behavior.                              |
-| 1446  | [durable](#rune-1446)                 | A virtue word; it names an operational quality that can guide design and evaluation.                                                                     |
-| 1447  | [eager](#rune-1447)                   | A guarantee word; it claims a behavioral law rather than a mere preference.                                                                              |
-| 1448  | [elastic](#rune-1448)                 | A promise adjective; it binds the system to a stronger form of conduct.                                                                                  |
-| 1449  | [encrypted](#rune-1449)               | A property word; it says what kind of behavior should remain true under stress.                                                                          |
-| 1450  | [eventual](#rune-1450)                | A guarantee word; it claims a behavioral law rather than a mere preference.                                                                              |
-| 1451  | [exact](#rune-1451)                   | A promise adjective; it binds the system to a stronger form of conduct.                                                                                  |
-| 1452  | [exhaustive](#rune-1452)              | A property word; it says what kind of behavior should remain true under stress.                                                                          |
-| 1453  | [extensible](#rune-1453)              | A virtue word; it names an operational quality that can guide design and evaluation.                                                                     |
-| 1454  | [fault-tolerant](#rune-1454)          | A resilience word; some breakage is expected and survivable.                                                                                             |
-| 1455  | [federated](#rune-1455)               | A guarantee word; it claims a behavioral law rather than a mere preference.                                                                              |
-| 1456  | [formal](#rune-1456)                  | A promise adjective; it binds the system to a stronger form of conduct.                                                                                  |
-| 1457  | [generic {Qual}](#rune-1457)          | A promise adjective; it binds the system to a stronger form of conduct.                                                                                  |
-| 1458  | [hardened](#rune-1458)                | A virtue word; it names an operational quality that can guide design and evaluation.                                                                     |
-| 1459  | [hermetic](#rune-1459)                | A promise adjective; it binds the system to a stronger form of conduct.                                                                                  |
-| 1460  | [high-availability](#rune-1460)       | A guarantee word; it claims a behavioral law rather than a mere preference.                                                                              |
-| 1461  | [idempotent](#rune-1461)              | The word that makes retries survivable: same request, same lasting effect. Shadow: duplicate charges, duplicate emails, and fear of recovery.            |
-| 1462  | [immutable](#rune-1462)               | Once written, this thing does not change in place. Immutability buys clarity, replayability, and safer sharing at the cost of update convenience.        |
-| 1463  | [incremental](#rune-1463)             | A property word; it says what kind of behavior should remain true under stress.                                                                          |
-| 1464  | [indexed](#rune-1464)                 | A promise adjective; it binds the system to a stronger form of conduct.                                                                                  |
-| 1465  | [isolated](#rune-1465)                | A promise adjective; it binds the system to a stronger form of conduct.                                                                                  |
-| 1466  | [lazy](#rune-1466)                    | A guarantee word; it claims a behavioral law rather than a mere preference.                                                                              |
-| 1467  | [linearizable](#rune-1467)            | Every operation behaves as though it took effect at one real instant visible to all observers. Use it rarely, but mean it fully.                         |
-| 1468  | [lock-free {Qual}](#rune-1468)        | A progress word; some thread always moves forward without a lock.                                                                                        |
-| 1469  | [lossless](#rune-1469)                | A guarantee word; it claims a behavioral law rather than a mere preference.                                                                              |
-| 1470  | [lossy](#rune-1470)                   | A property word; it says what kind of behavior should remain true under stress.                                                                          |
-| 1471  | [maintainable](#rune-1471)            | A promise adjective; it binds the system to a stronger form of conduct.                                                                                  |
-| 1472  | [memory-safe {Qual}](#rune-1472)      | A promise that the system will not casually trespass across allocation boundaries. Shadow: leaks, corruption, and security bugs born from illegal touch. |
-| 1473  | [modular](#rune-1473)                 | A guarantee word; it claims a behavioral law rather than a mere preference.                                                                              |
-| 1474  | [observable](#rune-1474)              | A promise adjective; it binds the system to a stronger form of conduct.                                                                                  |
-| 1475  | [opaque](#rune-1475)                  | A virtue word; it names an operational quality that can guide design and evaluation.                                                                     |
-| 1476  | [orthogonal](#rune-1476)              | A promise adjective; it binds the system to a stronger form of conduct.                                                                                  |
-| 1477  | [parallel {Qual}](#rune-1477)         | A promise adjective; it binds the system to a stronger form of conduct.                                                                                  |
-| 1478  | [portable](#rune-1478)                | A promise adjective; it binds the system to a stronger form of conduct.                                                                                  |
-| 1479  | [predictable](#rune-1479)             | A virtue word; it names an operational quality that can guide design and evaluation.                                                                     |
-| 1480  | [private](#rune-1480)                 | A virtue word; it names an operational quality that can guide design and evaluation.                                                                     |
-| 1481  | [pure](#rune-1481)                    | Same inputs, same output, no hidden state smuggled in from the side. Use it to shrink reasoning scope.                                                   |
-| 1482  | [reactive](#rune-1482)                | A virtue word; it names an operational quality that can guide design and evaluation.                                                                     |
-| 1483  | [reentrant](#rune-1483)               | A safe-return word; the same code may be entered again before the first invocation finishes.                                                             |
-| 1484  | [reliable](#rune-1484)                | A guarantee word; it claims a behavioral law rather than a mere preference.                                                                              |
-| 1485  | [reproducible](#rune-1485)            | A guarantee word; it claims a behavioral law rather than a mere preference.                                                                              |
-| 1486  | [resilient](#rune-1486)               | A virtue word; it names an operational quality that can guide design and evaluation.                                                                     |
-| 1487  | [responsive](#rune-1487)              | A property word; it says what kind of behavior should remain true under stress.                                                                          |
-| 1488  | [safe](#rune-1488)                    | A guarded word; some class of failure is explicitly ruled out.                                                                                           |
-| 1489  | [sandboxed](#rune-1489)               | A guarantee word; it claims a behavioral law rather than a mere preference.                                                                              |
-| 1490  | [scalable](#rune-1490)                | A virtue word; it names an operational quality that can guide design and evaluation.                                                                     |
-| 1491  | [secure](#rune-1491)                  | A virtue word; it names an operational quality that can guide design and evaluation.                                                                     |
-| 1492  | [serializable {Qual}](#rune-1492)     | Concurrency forced to behave as though transactions happened in one clean order. Expensive when overused, indispensable when history must remain sane.   |
-| 1493  | [sharded](#rune-1493)                 | A virtue word; it names an operational quality that can guide design and evaluation.                                                                     |
-| 1494  | [side-effect-free {Qual}](#rune-1494) | A property word; it says what kind of behavior should remain true under stress.                                                                          |
-| 1495  | [signed](#rune-1495)                  | A property word; it says what kind of behavior should remain true under stress.                                                                          |
-| 1496  | [stable](#rune-1496)                  | A virtue word; it names an operational quality that can guide design and evaluation.                                                                     |
-| 1497  | [stateful](#rune-1497)                | A guarantee word; it claims a behavioral law rather than a mere preference.                                                                              |
-| 1498  | [stateless](#rune-1498)               | A guarantee word; it claims a behavioral law rather than a mere preference.                                                                              |
-| 1499  | [streaming](#rune-1499)               | A property word; it says what kind of behavior should remain true under stress.                                                                          |
-| 1500  | [strict](#rune-1500)                  | A promise adjective; it binds the system to a stronger form of conduct.                                                                                  |
-| 1501  | [synchronized](#rune-1501)            | A guarantee word; it claims a behavioral law rather than a mere preference.                                                                              |
-| 1502  | [testable](#rune-1502)                | A guarantee word; it claims a behavioral law rather than a mere preference.                                                                              |
-| 1503  | [thread-safe](#rune-1503)             | A guarantee word; it claims a behavioral law rather than a mere preference.                                                                              |
-| 1504  | [traceable](#rune-1504)               | A virtue word; it names an operational quality that can guide design and evaluation.                                                                     |
-| 1505  | [transactional](#rune-1505)           | A virtue word; it names an operational quality that can guide design and evaluation.                                                                     |
-| 1506  | [typed](#rune-1506)                   | A property word; it says what kind of behavior should remain true under stress.                                                                          |
-| 1507  | [validated](#rune-1507)               | A property word; it says what kind of behavior should remain true under stress.                                                                          |
-| 1508  | [vectorized](#rune-1508)              | A virtue word; it names an operational quality that can guide design and evaluation.                                                                     |
-| 1509  | [verified](#rune-1509)                | A property word; it says what kind of behavior should remain true under stress.                                                                          |
-| 1510  | [versioned](#rune-1510)               | A virtue word; it names an operational quality that can guide design and evaluation.                                                                     |
-| 1511  | [wait-free {Qual}](#rune-1511)        | A guarantee word; it claims a behavioral law rather than a mere preference.                                                                              |
-| 1512  | [zero-copy {Qual}](#rune-1512)        | A nearness-and-efficiency word; data moves without redundant duplication.                                                                                |
+| Sigil | Term                                         | Completion | Summary                                                                                                                                                  |
+| ----- | -------------------------------------------- | ---------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1421  | `STUB` [accessible](#rune-1421)              | stub       | A property word; it says what kind of behavior should remain true under stress.                                                                          |
+| 1422  | `STUB` [adaptive](#rune-1422)                | stub       | A property word; it says what kind of behavior should remain true under stress.                                                                          |
+| 1423  | `STUB` [amortized](#rune-1423)               | stub       | A virtue word; it names an operational quality that can guide design and evaluation.                                                                     |
+| 1424  | `STUB` [approximate {Qual}](#rune-1424)      | stub       | A property word; it says what kind of behavior should remain true under stress.                                                                          |
+| 1425  | [atomic](#rune-1425)                         | authored   | No halfway state is allowed to leak across the line. Use it when partial success would be indistinguishable from corruption.                             |
+| 1426  | `STUB` [auditable](#rune-1426)               | stub       | A virtue word; it names an operational quality that can guide design and evaluation.                                                                     |
+| 1427  | `STUB` [authenticated](#rune-1427)           | stub       | A virtue word; it names an operational quality that can guide design and evaluation.                                                                     |
+| 1428  | `STUB` [authoritative](#rune-1428)           | stub       | A promise adjective; it binds the system to a stronger form of conduct.                                                                                  |
+| 1429  | [available](#rune-1429)                      | authored   | Reachable and functioning when needed.                                                                                                                   |
+| 1430  | [backward-compatible](#rune-1430)            | authored   | New versions do not casually break old clients or data.                                                                                                  |
+| 1431  | `STUB` [balanced](#rune-1431)                | stub       | A property word; it says what kind of behavior should remain true under stress.                                                                          |
+| 1432  | `STUB` [batched](#rune-1432)                 | stub       | A virtue word; it names an operational quality that can guide design and evaluation.                                                                     |
+| 1433  | `STUB` [bounded](#rune-1433)                 | stub       | A promise adjective; it binds the system to a stronger form of conduct.                                                                                  |
+| 1434  | `STUB` [cache-friendly](#rune-1434)          | stub       | A property word; it says what kind of behavior should remain true under stress.                                                                          |
+| 1435  | `STUB` [canonical](#rune-1435)               | stub       | A guarantee word; it claims a behavioral law rather than a mere preference.                                                                              |
+| 1436  | `STUB` [causal](#rune-1436)                  | stub       | A promise adjective; it binds the system to a stronger form of conduct.                                                                                  |
+| 1437  | [composable](#rune-1437)                     | authored   | Small parts combine without excessive friction.                                                                                                          |
+| 1438  | `STUB` [concurrent](#rune-1438)              | stub       | A virtue word; it names an operational quality that can guide design and evaluation.                                                                     |
+| 1439  | `STUB` [configurable](#rune-1439)            | stub       | A promise adjective; it binds the system to a stronger form of conduct.                                                                                  |
+| 1440  | [consistent](#rune-1440)                     | authored   | Different observers are not being told incompatible stories.                                                                                             |
+| 1441  | `STUB` [convergent](#rune-1441)              | stub       | A virtue word; it names an operational quality that can guide design and evaluation.                                                                     |
+| 1442  | [crash-safe](#rune-1442)                     | authored   | Failure does not leave storage in nonsense.                                                                                                              |
+| 1443  | `STUB` [declarative](#rune-1443)             | stub       | A guarantee word; it claims a behavioral law rather than a mere preference.                                                                              |
+| 1444  | `STUB` [deduplicated](#rune-1444)            | stub       | A guarantee word; it claims a behavioral law rather than a mere preference.                                                                              |
+| 1445  | [deterministic](#rune-1445)                  | authored   | Given the same inputs, the same result should return. This is the antidote to drift, heisenbugs, and unreviewable behavior.                              |
+| 1446  | [durable](#rune-1446)                        | authored   | Once acknowledged, the change really sticks.                                                                                                             |
+| 1447  | `STUB` [eager](#rune-1447)                   | stub       | A guarantee word; it claims a behavioral law rather than a mere preference.                                                                              |
+| 1448  | `STUB` [elastic](#rune-1448)                 | stub       | A promise adjective; it binds the system to a stronger form of conduct.                                                                                  |
+| 1449  | `STUB` [encrypted](#rune-1449)               | stub       | A property word; it says what kind of behavior should remain true under stress.                                                                          |
+| 1450  | `STUB` [eventual](#rune-1450)                | stub       | A guarantee word; it claims a behavioral law rather than a mere preference.                                                                              |
+| 1451  | `STUB` [exact](#rune-1451)                   | stub       | A promise adjective; it binds the system to a stronger form of conduct.                                                                                  |
+| 1452  | `STUB` [exhaustive](#rune-1452)              | stub       | A property word; it says what kind of behavior should remain true under stress.                                                                          |
+| 1453  | `STUB` [extensible](#rune-1453)              | stub       | A virtue word; it names an operational quality that can guide design and evaluation.                                                                     |
+| 1454  | [fault-tolerant](#rune-1454)                 | authored   | A resilience word; some breakage is expected and survivable.                                                                                             |
+| 1455  | `STUB` [federated](#rune-1455)               | stub       | A guarantee word; it claims a behavioral law rather than a mere preference.                                                                              |
+| 1456  | `STUB` [formal](#rune-1456)                  | stub       | A promise adjective; it binds the system to a stronger form of conduct.                                                                                  |
+| 1457  | `STUB` [generic {Qual}](#rune-1457)          | stub       | A promise adjective; it binds the system to a stronger form of conduct.                                                                                  |
+| 1458  | `STUB` [hardened](#rune-1458)                | stub       | A virtue word; it names an operational quality that can guide design and evaluation.                                                                     |
+| 1459  | `STUB` [hermetic](#rune-1459)                | stub       | A promise adjective; it binds the system to a stronger form of conduct.                                                                                  |
+| 1460  | `STUB` [high-availability](#rune-1460)       | stub       | A guarantee word; it claims a behavioral law rather than a mere preference.                                                                              |
+| 1461  | [idempotent](#rune-1461)                     | authored   | The word that makes retries survivable: same request, same lasting effect. Shadow: duplicate charges, duplicate emails, and fear of recovery.            |
+| 1462  | [immutable](#rune-1462)                      | authored   | Once written, this thing does not change in place. Immutability buys clarity, replayability, and safer sharing at the cost of update convenience.        |
+| 1463  | `STUB` [incremental](#rune-1463)             | stub       | A property word; it says what kind of behavior should remain true under stress.                                                                          |
+| 1464  | `STUB` [indexed](#rune-1464)                 | stub       | A promise adjective; it binds the system to a stronger form of conduct.                                                                                  |
+| 1465  | `STUB` [isolated](#rune-1465)                | stub       | A promise adjective; it binds the system to a stronger form of conduct.                                                                                  |
+| 1466  | `STUB` [lazy](#rune-1466)                    | stub       | A guarantee word; it claims a behavioral law rather than a mere preference.                                                                              |
+| 1467  | [linearizable](#rune-1467)                   | authored   | Every operation behaves as though it took effect at one real instant visible to all observers. Use it rarely, but mean it fully.                         |
+| 1468  | `STUB` [lock-free {Qual}](#rune-1468)        | stub       | A progress word; some thread always moves forward without a lock.                                                                                        |
+| 1469  | `STUB` [lossless](#rune-1469)                | stub       | A guarantee word; it claims a behavioral law rather than a mere preference.                                                                              |
+| 1470  | `STUB` [lossy](#rune-1470)                   | stub       | A property word; it says what kind of behavior should remain true under stress.                                                                          |
+| 1471  | [maintainable](#rune-1471)                   | authored   | Cheap enough to understand, modify, and keep healthy.                                                                                                    |
+| 1472  | [memory-safe {Qual}](#rune-1472)             | authored   | A promise that the system will not casually trespass across allocation boundaries. Shadow: leaks, corruption, and security bugs born from illegal touch. |
+| 1473  | `STUB` [modular](#rune-1473)                 | stub       | A guarantee word; it claims a behavioral law rather than a mere preference.                                                                              |
+| 1474  | [observable](#rune-1474)                     | authored   | Structured so internal behavior can be inferred from external evidence.                                                                                  |
+| 1475  | `STUB` [opaque](#rune-1475)                  | stub       | A virtue word; it names an operational quality that can guide design and evaluation.                                                                     |
+| 1476  | `STUB` [orthogonal](#rune-1476)              | stub       | A promise adjective; it binds the system to a stronger form of conduct.                                                                                  |
+| 1477  | `STUB` [parallel {Qual}](#rune-1477)         | stub       | A promise adjective; it binds the system to a stronger form of conduct.                                                                                  |
+| 1478  | `STUB` [portable](#rune-1478)                | stub       | A promise adjective; it binds the system to a stronger form of conduct.                                                                                  |
+| 1479  | `STUB` [predictable](#rune-1479)             | stub       | A virtue word; it names an operational quality that can guide design and evaluation.                                                                     |
+| 1480  | `STUB` [private](#rune-1480)                 | stub       | A virtue word; it names an operational quality that can guide design and evaluation.                                                                     |
+| 1481  | [pure](#rune-1481)                           | authored   | Same inputs, same output, no hidden state smuggled in from the side. Use it to shrink reasoning scope.                                                   |
+| 1482  | `STUB` [reactive](#rune-1482)                | stub       | A virtue word; it names an operational quality that can guide design and evaluation.                                                                     |
+| 1483  | [reentrant](#rune-1483)                      | authored   | A safe-return word; the same code may be entered again before the first invocation finishes.                                                             |
+| 1484  | [reliable](#rune-1484)                       | authored   | Keeps doing the promised thing under ordinary stress.                                                                                                    |
+| 1485  | [reproducible](#rune-1485)                   | authored   | Can be rebuilt or rerun and yield the same result again.                                                                                                 |
+| 1486  | `STUB` [resilient](#rune-1486)               | stub       | A virtue word; it names an operational quality that can guide design and evaluation.                                                                     |
+| 1487  | `STUB` [responsive](#rune-1487)              | stub       | A property word; it says what kind of behavior should remain true under stress.                                                                          |
+| 1488  | [safe](#rune-1488)                           | authored   | A guarded word; some class of failure is explicitly ruled out.                                                                                           |
+| 1489  | `STUB` [sandboxed](#rune-1489)               | stub       | A guarantee word; it claims a behavioral law rather than a mere preference.                                                                              |
+| 1490  | [scalable](#rune-1490)                       | authored   | Can grow without collapsing the qualities that matter.                                                                                                   |
+| 1491  | `STUB` [secure](#rune-1491)                  | stub       | A virtue word; it names an operational quality that can guide design and evaluation.                                                                     |
+| 1492  | [serializable {Qual}](#rune-1492)            | authored   | Concurrency forced to behave as though transactions happened in one clean order. Expensive when overused, indispensable when history must remain sane.   |
+| 1493  | `STUB` [sharded](#rune-1493)                 | stub       | A virtue word; it names an operational quality that can guide design and evaluation.                                                                     |
+| 1494  | `STUB` [side-effect-free {Qual}](#rune-1494) | stub       | A property word; it says what kind of behavior should remain true under stress.                                                                          |
+| 1495  | `STUB` [signed](#rune-1495)                  | stub       | A property word; it says what kind of behavior should remain true under stress.                                                                          |
+| 1496  | `STUB` [stable](#rune-1496)                  | stub       | A virtue word; it names an operational quality that can guide design and evaluation.                                                                     |
+| 1497  | `STUB` [stateful](#rune-1497)                | stub       | A guarantee word; it claims a behavioral law rather than a mere preference.                                                                              |
+| 1498  | `STUB` [stateless](#rune-1498)               | stub       | A guarantee word; it claims a behavioral law rather than a mere preference.                                                                              |
+| 1499  | `STUB` [streaming](#rune-1499)               | stub       | A property word; it says what kind of behavior should remain true under stress.                                                                          |
+| 1500  | `STUB` [strict](#rune-1500)                  | stub       | A promise adjective; it binds the system to a stronger form of conduct.                                                                                  |
+| 1501  | `STUB` [synchronized](#rune-1501)            | stub       | A guarantee word; it claims a behavioral law rather than a mere preference.                                                                              |
+| 1502  | `STUB` [testable](#rune-1502)                | stub       | A guarantee word; it claims a behavioral law rather than a mere preference.                                                                              |
+| 1503  | `STUB` [thread-safe](#rune-1503)             | stub       | A guarantee word; it claims a behavioral law rather than a mere preference.                                                                              |
+| 1504  | `STUB` [traceable](#rune-1504)               | stub       | A virtue word; it names an operational quality that can guide design and evaluation.                                                                     |
+| 1505  | `STUB` [transactional](#rune-1505)           | stub       | A virtue word; it names an operational quality that can guide design and evaluation.                                                                     |
+| 1506  | `STUB` [typed](#rune-1506)                   | stub       | A property word; it says what kind of behavior should remain true under stress.                                                                          |
+| 1507  | `STUB` [validated](#rune-1507)               | stub       | A property word; it says what kind of behavior should remain true under stress.                                                                          |
+| 1508  | `STUB` [vectorized](#rune-1508)              | stub       | A virtue word; it names an operational quality that can guide design and evaluation.                                                                     |
+| 1509  | `STUB` [verified](#rune-1509)                | stub       | A property word; it says what kind of behavior should remain true under stress.                                                                          |
+| 1510  | `STUB` [versioned](#rune-1510)               | stub       | A virtue word; it names an operational quality that can guide design and evaluation.                                                                     |
+| 1511  | `STUB` [wait-free {Qual}](#rune-1511)        | stub       | A guarantee word; it claims a behavioral law rather than a mere preference.                                                                              |
+| 1512  | `STUB` [zero-copy {Qual}](#rune-1512)        | stub       | A nearness-and-efficiency word; data moves without redundant duplication.                                                                                |
 
 ## Entries
 
@@ -109,31 +116,51 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A property word; it says what kind of behavior should remain true under stress.
+
+**Shadow:** Shadow: calling something accessible can hide the missing invariant, test, or operating envelope.
 
 ### [1422] adaptive {#rune-1422}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A property word; it says what kind of behavior should remain true under stress.
+
+**Shadow:** Shadow: calling something adaptive can hide the missing invariant, test, or operating envelope.
 
 ### [1423] amortized {#rune-1423}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A virtue word; it names an operational quality that can guide design and evaluation.
+
+**Shadow:** Shadow: calling something amortized can hide the missing invariant, test, or operating envelope.
 
 ### [1424] approximate {Qual} {#rune-1424}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A property word; it says what kind of behavior should remain true under stress.
+
+**Shadow:** Shadow: calling something approximate can hide the missing invariant, test, or operating envelope.
 
 ### [1425] atomic {#rune-1425}
 
 **Status:** canonical (major canon, pocket canon)
 
+**Completion:** authored
+
 **Force:** No halfway state is allowed to leak across the line. Use it when partial success would be indistinguishable from corruption.
+
+**Shadow:** Shadow: calling something atomic can hide the missing invariant, test, or operating envelope.
 
 **Pocket gloss:** No halfway state is allowed to leak.
 
@@ -141,25 +168,41 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A virtue word; it names an operational quality that can guide design and evaluation.
+
+**Shadow:** Shadow: calling something auditable can hide the missing invariant, test, or operating envelope.
 
 ### [1427] authenticated {#rune-1427}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A virtue word; it names an operational quality that can guide design and evaluation.
+
+**Shadow:** Shadow: calling something authenticated can hide the missing invariant, test, or operating envelope.
 
 ### [1428] authoritative {#rune-1428}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A promise adjective; it binds the system to a stronger form of conduct.
+
+**Shadow:** Shadow: calling something authoritative can hide the missing invariant, test, or operating envelope.
 
 ### [1429] available {#rune-1429}
 
 **Status:** canonical (pocket canon)
 
-**Force:** A promise adjective; it binds the system to a stronger form of conduct.
+**Completion:** authored
+
+**Force:** Reachable and functioning when needed.
+
+**Shadow:** Shadow: calling something available can hide the missing invariant, test, or operating envelope.
 
 **Pocket gloss:** Reachable and functioning when needed.
 
@@ -167,7 +210,11 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical (pocket canon)
 
-**Force:** A guarantee word; it claims a behavioral law rather than a mere preference.
+**Completion:** authored
+
+**Force:** New versions do not casually break old clients or data.
+
+**Shadow:** Shadow: calling something backward-compatible can hide the missing invariant, test, or operating envelope.
 
 **Pocket gloss:** New versions do not casually break old clients or data.
 
@@ -175,43 +222,71 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A property word; it says what kind of behavior should remain true under stress.
+
+**Shadow:** Shadow: calling something balanced can hide the missing invariant, test, or operating envelope.
 
 ### [1432] batched {#rune-1432}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A virtue word; it names an operational quality that can guide design and evaluation.
+
+**Shadow:** Shadow: calling something batched can hide the missing invariant, test, or operating envelope.
 
 ### [1433] bounded {#rune-1433}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A promise adjective; it binds the system to a stronger form of conduct.
+
+**Shadow:** Shadow: calling something bounded can hide the missing invariant, test, or operating envelope.
 
 ### [1434] cache-friendly {#rune-1434}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A property word; it says what kind of behavior should remain true under stress.
+
+**Shadow:** Shadow: calling something cache-friendly can hide the missing invariant, test, or operating envelope.
 
 ### [1435] canonical {#rune-1435}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A guarantee word; it claims a behavioral law rather than a mere preference.
+
+**Shadow:** Shadow: calling something canonical can hide the missing invariant, test, or operating envelope.
 
 ### [1436] causal {#rune-1436}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A promise adjective; it binds the system to a stronger form of conduct.
+
+**Shadow:** Shadow: calling something causal can hide the missing invariant, test, or operating envelope.
 
 ### [1437] composable {#rune-1437}
 
 **Status:** canonical (pocket canon)
 
-**Force:** A promise adjective; it binds the system to a stronger form of conduct.
+**Completion:** authored
+
+**Force:** Small parts combine without excessive friction.
+
+**Shadow:** Shadow: calling something composable can hide the missing invariant, test, or operating envelope.
 
 **Pocket gloss:** Small parts combine without excessive friction.
 
@@ -219,19 +294,31 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A virtue word; it names an operational quality that can guide design and evaluation.
+
+**Shadow:** Shadow: calling something concurrent can hide the missing invariant, test, or operating envelope.
 
 ### [1439] configurable {#rune-1439}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A promise adjective; it binds the system to a stronger form of conduct.
+
+**Shadow:** Shadow: calling something configurable can hide the missing invariant, test, or operating envelope.
 
 ### [1440] consistent {#rune-1440}
 
 **Status:** canonical (pocket canon)
 
-**Force:** A property word; it says what kind of behavior should remain true under stress.
+**Completion:** authored
+
+**Force:** Different observers are not being told incompatible stories.
+
+**Shadow:** Shadow: calling something consistent can hide the missing invariant, test, or operating envelope.
 
 **Pocket gloss:** Different observers are not being told incompatible stories.
 
@@ -239,13 +326,21 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A virtue word; it names an operational quality that can guide design and evaluation.
+
+**Shadow:** Shadow: calling something convergent can hide the missing invariant, test, or operating envelope.
 
 ### [1442] crash-safe {#rune-1442}
 
 **Status:** canonical (pocket canon)
 
-**Force:** A promise adjective; it binds the system to a stronger form of conduct.
+**Completion:** authored
+
+**Force:** Failure does not leave storage in nonsense.
+
+**Shadow:** Shadow: calling something crash-safe can hide the missing invariant, test, or operating envelope.
 
 **Pocket gloss:** Failure does not leave storage in nonsense.
 
@@ -253,19 +348,31 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A guarantee word; it claims a behavioral law rather than a mere preference.
+
+**Shadow:** Shadow: calling something declarative can hide the missing invariant, test, or operating envelope.
 
 ### [1444] deduplicated {#rune-1444}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A guarantee word; it claims a behavioral law rather than a mere preference.
+
+**Shadow:** Shadow: calling something deduplicated can hide the missing invariant, test, or operating envelope.
 
 ### [1445] deterministic {#rune-1445}
 
 **Status:** canonical (major canon, pocket canon)
 
+**Completion:** authored
+
 **Force:** Given the same inputs, the same result should return. This is the antidote to drift, heisenbugs, and unreviewable behavior.
+
+**Shadow:** Shadow: calling something deterministic can hide the missing invariant, test, or operating envelope.
 
 **Pocket gloss:** Same inputs, same result.
 
@@ -273,7 +380,11 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical (pocket canon)
 
-**Force:** A virtue word; it names an operational quality that can guide design and evaluation.
+**Completion:** authored
+
+**Force:** Once acknowledged, the change really sticks.
+
+**Shadow:** Shadow: calling something durable can hide the missing invariant, test, or operating envelope.
 
 **Pocket gloss:** Once acknowledged, the change really sticks.
 
@@ -281,89 +392,147 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A guarantee word; it claims a behavioral law rather than a mere preference.
+
+**Shadow:** Shadow: calling something eager can hide the missing invariant, test, or operating envelope.
 
 ### [1448] elastic {#rune-1448}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A promise adjective; it binds the system to a stronger form of conduct.
+
+**Shadow:** Shadow: calling something elastic can hide the missing invariant, test, or operating envelope.
 
 ### [1449] encrypted {#rune-1449}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A property word; it says what kind of behavior should remain true under stress.
+
+**Shadow:** Shadow: calling something encrypted can hide the missing invariant, test, or operating envelope.
 
 ### [1450] eventual {#rune-1450}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A guarantee word; it claims a behavioral law rather than a mere preference.
+
+**Shadow:** Shadow: calling something eventual can hide the missing invariant, test, or operating envelope.
 
 ### [1451] exact {#rune-1451}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A promise adjective; it binds the system to a stronger form of conduct.
+
+**Shadow:** Shadow: calling something exact can hide the missing invariant, test, or operating envelope.
 
 ### [1452] exhaustive {#rune-1452}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A property word; it says what kind of behavior should remain true under stress.
+
+**Shadow:** Shadow: calling something exhaustive can hide the missing invariant, test, or operating envelope.
 
 ### [1453] extensible {#rune-1453}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A virtue word; it names an operational quality that can guide design and evaluation.
+
+**Shadow:** Shadow: calling something extensible can hide the missing invariant, test, or operating envelope.
 
 ### [1454] fault-tolerant {#rune-1454}
 
 **Status:** canonical
 
+**Completion:** authored
+
 **Force:** A resilience word; some breakage is expected and survivable.
+
+**Shadow:** Shadow: calling something fault-tolerant can hide the missing invariant, test, or operating envelope.
 
 ### [1455] federated {#rune-1455}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A guarantee word; it claims a behavioral law rather than a mere preference.
+
+**Shadow:** Shadow: calling something federated can hide the missing invariant, test, or operating envelope.
 
 ### [1456] formal {#rune-1456}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A promise adjective; it binds the system to a stronger form of conduct.
+
+**Shadow:** Shadow: calling something formal can hide the missing invariant, test, or operating envelope.
 
 ### [1457] generic {Qual} {#rune-1457}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A promise adjective; it binds the system to a stronger form of conduct.
+
+**Shadow:** Shadow: calling something generic can hide the missing invariant, test, or operating envelope.
 
 ### [1458] hardened {#rune-1458}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A virtue word; it names an operational quality that can guide design and evaluation.
+
+**Shadow:** Shadow: calling something hardened can hide the missing invariant, test, or operating envelope.
 
 ### [1459] hermetic {#rune-1459}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A promise adjective; it binds the system to a stronger form of conduct.
+
+**Shadow:** Shadow: calling something hermetic can hide the missing invariant, test, or operating envelope.
 
 ### [1460] high-availability {#rune-1460}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A guarantee word; it claims a behavioral law rather than a mere preference.
+
+**Shadow:** Shadow: calling something high-availability can hide the missing invariant, test, or operating envelope.
 
 ### [1461] idempotent {#rune-1461}
 
 **Status:** canonical (major canon, pocket canon)
+
+**Completion:** authored
 
 **Force:** The word that makes retries survivable: same request, same lasting effect.
 
@@ -375,7 +544,11 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical (major canon, pocket canon)
 
+**Completion:** authored
+
 **Force:** Once written, this thing does not change in place. Immutability buys clarity, replayability, and safer sharing at the cost of update convenience.
+
+**Shadow:** Shadow: calling something immutable can hide the missing invariant, test, or operating envelope.
 
 **Pocket gloss:** Written once, then never changed in place.
 
@@ -383,31 +556,51 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A property word; it says what kind of behavior should remain true under stress.
+
+**Shadow:** Shadow: calling something incremental can hide the missing invariant, test, or operating envelope.
 
 ### [1464] indexed {#rune-1464}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A promise adjective; it binds the system to a stronger form of conduct.
+
+**Shadow:** Shadow: calling something indexed can hide the missing invariant, test, or operating envelope.
 
 ### [1465] isolated {#rune-1465}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A promise adjective; it binds the system to a stronger form of conduct.
+
+**Shadow:** Shadow: calling something isolated can hide the missing invariant, test, or operating envelope.
 
 ### [1466] lazy {#rune-1466}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A guarantee word; it claims a behavioral law rather than a mere preference.
+
+**Shadow:** Shadow: calling something lazy can hide the missing invariant, test, or operating envelope.
 
 ### [1467] linearizable {#rune-1467}
 
 **Status:** canonical (major canon, pocket canon)
 
+**Completion:** authored
+
 **Force:** Every operation behaves as though it took effect at one real instant visible to all observers. Use it rarely, but mean it fully.
+
+**Shadow:** Shadow: calling something linearizable can hide the missing invariant, test, or operating envelope.
 
 **Pocket gloss:** Behaves as though each operation took effect at one visible instant.
 
@@ -415,31 +608,49 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A progress word; some thread always moves forward without a lock.
+
+**Shadow:** Shadow: calling something lock-free can hide the missing invariant, test, or operating envelope.
 
 ### [1469] lossless {#rune-1469}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A guarantee word; it claims a behavioral law rather than a mere preference.
+
+**Shadow:** Shadow: calling something lossless can hide the missing invariant, test, or operating envelope.
 
 ### [1470] lossy {#rune-1470}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A property word; it says what kind of behavior should remain true under stress.
+
+**Shadow:** Shadow: calling something lossy can hide the missing invariant, test, or operating envelope.
 
 ### [1471] maintainable {#rune-1471}
 
 **Status:** canonical (pocket canon)
 
-**Force:** A promise adjective; it binds the system to a stronger form of conduct.
+**Completion:** authored
+
+**Force:** Cheap enough to understand, modify, and keep healthy.
+
+**Shadow:** Shadow: calling something maintainable can hide the missing invariant, test, or operating envelope.
 
 **Pocket gloss:** Cheap enough to understand, modify, and keep healthy.
 
 ### [1472] memory-safe {Qual} {#rune-1472}
 
 **Status:** canonical (major canon, pocket canon)
+
+**Completion:** authored
 
 **Force:** A promise that the system will not casually trespass across allocation boundaries.
 
@@ -451,13 +662,21 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A guarantee word; it claims a behavioral law rather than a mere preference.
+
+**Shadow:** Shadow: calling something modular can hide the missing invariant, test, or operating envelope.
 
 ### [1474] observable {#rune-1474}
 
 **Status:** canonical (pocket canon)
 
-**Force:** A promise adjective; it binds the system to a stronger form of conduct.
+**Completion:** authored
+
+**Force:** Structured so internal behavior can be inferred from external evidence.
+
+**Shadow:** Shadow: calling something observable can hide the missing invariant, test, or operating envelope.
 
 **Pocket gloss:** Structured so internal behavior can be inferred from external evidence.
 
@@ -465,43 +684,71 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A virtue word; it names an operational quality that can guide design and evaluation.
+
+**Shadow:** Shadow: calling something opaque can hide the missing invariant, test, or operating envelope.
 
 ### [1476] orthogonal {#rune-1476}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A promise adjective; it binds the system to a stronger form of conduct.
+
+**Shadow:** Shadow: calling something orthogonal can hide the missing invariant, test, or operating envelope.
 
 ### [1477] parallel {Qual} {#rune-1477}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A promise adjective; it binds the system to a stronger form of conduct.
+
+**Shadow:** Shadow: calling something parallel can hide the missing invariant, test, or operating envelope.
 
 ### [1478] portable {#rune-1478}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A promise adjective; it binds the system to a stronger form of conduct.
+
+**Shadow:** Shadow: calling something portable can hide the missing invariant, test, or operating envelope.
 
 ### [1479] predictable {#rune-1479}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A virtue word; it names an operational quality that can guide design and evaluation.
+
+**Shadow:** Shadow: calling something predictable can hide the missing invariant, test, or operating envelope.
 
 ### [1480] private {#rune-1480}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A virtue word; it names an operational quality that can guide design and evaluation.
+
+**Shadow:** Shadow: calling something private can hide the missing invariant, test, or operating envelope.
 
 ### [1481] pure {#rune-1481}
 
 **Status:** canonical (major canon, pocket canon)
 
+**Completion:** authored
+
 **Force:** Same inputs, same output, no hidden state smuggled in from the side. Use it to shrink reasoning scope.
+
+**Shadow:** Shadow: calling something pure can hide the missing invariant, test, or operating envelope.
 
 **Pocket gloss:** Same inputs, same output, no hidden side effects.
 
@@ -509,19 +756,31 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A virtue word; it names an operational quality that can guide design and evaluation.
+
+**Shadow:** Shadow: calling something reactive can hide the missing invariant, test, or operating envelope.
 
 ### [1483] reentrant {#rune-1483}
 
 **Status:** canonical
 
+**Completion:** authored
+
 **Force:** A safe-return word; the same code may be entered again before the first invocation finishes.
+
+**Shadow:** Shadow: calling something reentrant can hide the missing invariant, test, or operating envelope.
 
 ### [1484] reliable {#rune-1484}
 
 **Status:** canonical (pocket canon)
 
-**Force:** A guarantee word; it claims a behavioral law rather than a mere preference.
+**Completion:** authored
+
+**Force:** Keeps doing the promised thing under ordinary stress.
+
+**Shadow:** Shadow: calling something reliable can hide the missing invariant, test, or operating envelope.
 
 **Pocket gloss:** Keeps doing the promised thing under ordinary stress.
 
@@ -529,7 +788,11 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical (pocket canon)
 
-**Force:** A guarantee word; it claims a behavioral law rather than a mere preference.
+**Completion:** authored
+
+**Force:** Can be rebuilt or rerun and yield the same result again.
+
+**Shadow:** Shadow: calling something reproducible can hide the missing invariant, test, or operating envelope.
 
 **Pocket gloss:** Can be rebuilt or rerun and yield the same result again.
 
@@ -537,31 +800,51 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A virtue word; it names an operational quality that can guide design and evaluation.
+
+**Shadow:** Shadow: calling something resilient can hide the missing invariant, test, or operating envelope.
 
 ### [1487] responsive {#rune-1487}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A property word; it says what kind of behavior should remain true under stress.
+
+**Shadow:** Shadow: calling something responsive can hide the missing invariant, test, or operating envelope.
 
 ### [1488] safe {#rune-1488}
 
 **Status:** canonical
 
+**Completion:** authored
+
 **Force:** A guarded word; some class of failure is explicitly ruled out.
+
+**Shadow:** Shadow: calling something safe can hide the missing invariant, test, or operating envelope.
 
 ### [1489] sandboxed {#rune-1489}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A guarantee word; it claims a behavioral law rather than a mere preference.
+
+**Shadow:** Shadow: calling something sandboxed can hide the missing invariant, test, or operating envelope.
 
 ### [1490] scalable {#rune-1490}
 
 **Status:** canonical (pocket canon)
 
-**Force:** A virtue word; it names an operational quality that can guide design and evaluation.
+**Completion:** authored
+
+**Force:** Can grow without collapsing the qualities that matter.
+
+**Shadow:** Shadow: calling something scalable can hide the missing invariant, test, or operating envelope.
 
 **Pocket gloss:** Can grow without collapsing the qualities that matter.
 
@@ -569,13 +852,21 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A virtue word; it names an operational quality that can guide design and evaluation.
+
+**Shadow:** Shadow: calling something secure can hide the missing invariant, test, or operating envelope.
 
 ### [1492] serializable {Qual} {#rune-1492}
 
 **Status:** canonical (major canon, pocket canon)
 
+**Completion:** authored
+
 **Force:** Concurrency forced to behave as though transactions happened in one clean order. Expensive when overused, indispensable when history must remain sane.
+
+**Shadow:** Shadow: calling something serializable can hide the missing invariant, test, or operating envelope.
 
 **Pocket gloss:** Concurrency behaves as though transactions happened in one clean order.
 
@@ -583,118 +874,198 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A virtue word; it names an operational quality that can guide design and evaluation.
+
+**Shadow:** Shadow: calling something sharded can hide the missing invariant, test, or operating envelope.
 
 ### [1494] side-effect-free {Qual} {#rune-1494}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A property word; it says what kind of behavior should remain true under stress.
+
+**Shadow:** Shadow: calling something side-effect-free can hide the missing invariant, test, or operating envelope.
 
 ### [1495] signed {#rune-1495}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A property word; it says what kind of behavior should remain true under stress.
+
+**Shadow:** Shadow: calling something signed can hide the missing invariant, test, or operating envelope.
 
 ### [1496] stable {#rune-1496}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A virtue word; it names an operational quality that can guide design and evaluation.
+
+**Shadow:** Shadow: calling something stable can hide the missing invariant, test, or operating envelope.
 
 ### [1497] stateful {#rune-1497}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A guarantee word; it claims a behavioral law rather than a mere preference.
+
+**Shadow:** Shadow: calling something stateful can hide the missing invariant, test, or operating envelope.
 
 ### [1498] stateless {#rune-1498}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A guarantee word; it claims a behavioral law rather than a mere preference.
+
+**Shadow:** Shadow: calling something stateless can hide the missing invariant, test, or operating envelope.
 
 ### [1499] streaming {#rune-1499}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A property word; it says what kind of behavior should remain true under stress.
+
+**Shadow:** Shadow: calling something streaming can hide the missing invariant, test, or operating envelope.
 
 ### [1500] strict {#rune-1500}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A promise adjective; it binds the system to a stronger form of conduct.
+
+**Shadow:** Shadow: calling something strict can hide the missing invariant, test, or operating envelope.
 
 ### [1501] synchronized {#rune-1501}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A guarantee word; it claims a behavioral law rather than a mere preference.
+
+**Shadow:** Shadow: calling something synchronized can hide the missing invariant, test, or operating envelope.
 
 ### [1502] testable {#rune-1502}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A guarantee word; it claims a behavioral law rather than a mere preference.
+
+**Shadow:** Shadow: calling something testable can hide the missing invariant, test, or operating envelope.
 
 ### [1503] thread-safe {#rune-1503}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A guarantee word; it claims a behavioral law rather than a mere preference.
+
+**Shadow:** Shadow: calling something thread-safe can hide the missing invariant, test, or operating envelope.
 
 ### [1504] traceable {#rune-1504}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A virtue word; it names an operational quality that can guide design and evaluation.
+
+**Shadow:** Shadow: calling something traceable can hide the missing invariant, test, or operating envelope.
 
 ### [1505] transactional {#rune-1505}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A virtue word; it names an operational quality that can guide design and evaluation.
+
+**Shadow:** Shadow: calling something transactional can hide the missing invariant, test, or operating envelope.
 
 ### [1506] typed {#rune-1506}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A property word; it says what kind of behavior should remain true under stress.
+
+**Shadow:** Shadow: calling something typed can hide the missing invariant, test, or operating envelope.
 
 ### [1507] validated {#rune-1507}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A property word; it says what kind of behavior should remain true under stress.
+
+**Shadow:** Shadow: calling something validated can hide the missing invariant, test, or operating envelope.
 
 ### [1508] vectorized {#rune-1508}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A virtue word; it names an operational quality that can guide design and evaluation.
+
+**Shadow:** Shadow: calling something vectorized can hide the missing invariant, test, or operating envelope.
 
 ### [1509] verified {#rune-1509}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A property word; it says what kind of behavior should remain true under stress.
+
+**Shadow:** Shadow: calling something verified can hide the missing invariant, test, or operating envelope.
 
 ### [1510] versioned {#rune-1510}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A virtue word; it names an operational quality that can guide design and evaluation.
+
+**Shadow:** Shadow: calling something versioned can hide the missing invariant, test, or operating envelope.
 
 ### [1511] wait-free {Qual} {#rune-1511}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A guarantee word; it claims a behavioral law rather than a mere preference.
+
+**Shadow:** Shadow: calling something wait-free can hide the missing invariant, test, or operating envelope.
 
 ### [1512] zero-copy {Qual} {#rune-1512}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A nearness-and-efficiency word; data moves without redundant duplication.
+
+**Shadow:** Shadow: calling something zero-copy can hide the missing invariant, test, or operating envelope.

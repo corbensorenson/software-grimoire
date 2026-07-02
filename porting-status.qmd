@@ -8,11 +8,43 @@ The grimoire source corpus has been ported into the public Quarto site and repos
 
 | Source | Ported form | Status |
 |---|---|---|
-| `software_magic_grimoire_v3_public_release.docx` | Main book chapters, public canon, full lexicon data, generated reference pages | Ported |
+| `software_magic_grimoire_v3_public_release.docx` | Main book chapters, public canon, full lexicon data, generated reference pages | Structurally ported; lexicon authoring in progress |
 | `pocket_grimoire_software_spellcraft_final.docx` | Pocket field guide, 300-rune pocket canon, quick-reference pages | Ported |
 | `software_spellcraft_addendum_on_stacked_spells.docx` | Stackcraft chapter, stack grammar, six generated stack pages | Ported |
 
-The first public seed was a complete content port. The current pass improves the reading layer: guided paths, rune anchors, term index links, spell-to-rune links, stack-to-spell links, and canon maps.
+The first public seed was a complete structural port. The reader-linking pass improved the reading layer: guided paths, rune anchors, term index links, spell-to-rune links, stack-to-spell links, and canon maps. The current integrity layer is honest about lexicon authoring state.
+
+## Lexicon Completion
+
+The master lexicon currently has `343` authored entries and `1302` stub entries.
+
+| Status   | Count |
+| -------- | ----- |
+| authored | 343   |
+| stub     | 1302  |
+
+## Completion by House
+
+| House                                                          | Authored | Stub | Needs Shadow | Needs Sense |
+| -------------------------------------------------------------- | -------- | ---- | ------------ | ----------- |
+| Architecture, Abstraction, and Design                          | 25       | 87   | 0            | 0           |
+| Language, Semantics, and Formal Shape                          | 23       | 114  | 0            | 0           |
+| Data, State, and Representation                                | 19       | 103  | 0            | 0           |
+| Transformation, Algorithms, and Working Verbs                  | 28       | 112  | 0            | 0           |
+| Control Flow, Coordination, and Temporal Logic                 | 19       | 78   | 0            | 0           |
+| Runtime, Memory, and Execution                                 | 16       | 60   | 0            | 0           |
+| Systems Programming and Operating-System Words                 | 13       | 73   | 0            | 0           |
+| Networking and Distributed Systems                             | 26       | 90   | 0            | 0           |
+| Databases, Persistence, and Time-Binding Words                 | 16       | 66   | 0            | 0           |
+| Security, Trust, and Warding Words                             | 19       | 76   | 0            | 0           |
+| Build, Tooling, Versioning, and Release                        | 17       | 59   | 0            | 0           |
+| Testing, Verification, and Observability                       | 17       | 54   | 0            | 0           |
+| Hardware, Embedded, and Performance-Near Words                 | 15       | 65   | 0            | 0           |
+| Interface, UX, and Human-Facing Words                          | 10       | 50   | 0            | 0           |
+| Promptcraft, AI-Oriented Engineering, and Spell Structure      | 22       | 48   | 0            | 0           |
+| Guarantee Words, Quality Attributes, and Behavioral Adjectives | 22       | 70   | 0            | 0           |
+| Failure Words, Pathologies, and Counter-Spells                 | 20       | 50   | 0            | 0           |
+| Compound Forms, Prefixes, Suffixes, and Naming Runes           | 16       | 47   | 0            | 0           |
 
 ## What Counts As Complete
 
@@ -21,4 +53,5 @@ The first public seed was a complete content port. The current pass improves the
 - Major and pocket canon entries link into the master house pages.
 - Spell templates link to relevant runes and supporting reference pages.
 - Stack workflows link to relevant spell templates, runes, and stack grammar.
+- Stub lexicon entries are explicitly marked as stubs until they receive term-specific summaries, shadows, and sense disambiguation.
 - The roadmap distinguishes archival completeness from reader experience completeness.

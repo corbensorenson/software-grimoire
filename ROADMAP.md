@@ -48,12 +48,15 @@ Current public-site status:
 - The structured canon includes 18 houses, 1,645 lexicon entries, 50 major canon
   entries, 300 pocket runes, six spell templates, and six stack workflows.
 - The repository includes schemas, validation, seal generation, CI, GitHub Pages
-  publishing, contribution templates, examples, and a public seed release.
+  publishing, pull-request checks, contribution templates, examples, and public
+  releases.
+- The rendered Quarto site currently contains 65 pages, including six
+  Proof-by-Difference cases and a dedicated Proof by Difference reference page.
 - Important qualification: "ported" means the source material exists in the
   Quarto/data system. It does not mean every lexicon entry has been individually
   authored to final canon quality. The full 1,645-entry lexicon contains many
-  category-gloss stubs that must be marked honestly before the project claims a
-  complete authored canon.
+  category-gloss stubs. The current site marks this honestly: 343 entries are
+  authored and 1,302 entries are stubs pending term-specific authoring.
 
 Reader-experience requirements:
 
@@ -89,18 +92,24 @@ External review findings to absorb into the roadmap:
    validates, seals generate, and reader cross-links exist.
 2. The strongest hand-authored content is the core theory, chapters 1-8, six
    field spells, six stacks, and the major/pocket entry points.
-3. The master lexicon must become honest about completion state. An external
+3. The master lexicon had to become honest about completion state. An external
    review found that most entries still carry duplicated category boilerplate,
    most have no failure shadow, and many have no sense disambiguator.
-4. Chapters 09 and 10 are currently too shallow relative to the roadmap promise
+4. Chapters 09 and 10 were too shallow relative to the roadmap promise
    around schema documentation, registry/replay, contribution practice, and
    adoption.
-5. Proof by Difference must become a real reference section and example suite,
-   not only a thesis inside the manuscript.
-6. CI must run on pull requests and automate the internal-link audit currently
+5. Proof by Difference needed to become a real reference section and example
+   suite, not only a thesis inside the manuscript.
+6. CI needed to run on pull requests and automate the internal-link audit
    performed locally.
 7. The next phase should prioritize content integrity before adding new visual
    or mathematical features.
+
+Absorption status:
+
+- Findings 3 through 6 were implemented in `v0.3.0-integrity-evidence-ci`.
+- The remaining long-term authoring work is the human-reviewed expansion of
+  stub lexicon entries into final canon, starting from the pocket-canon layer.
 
 ## 1. End State
 
@@ -270,13 +279,13 @@ software-grimoire/
     recursive-decomposition-stack.qmd
 
   data/
-    lexicon.yml
-    major_arcana.yml
-    pocket_runes.yml
-    spells.yml
-    stacks.yml
-    houses.yml
-    cast_levels.yml
+    lexicon.json
+    major_arcana.json
+    pocket_runes.json
+    spells.json
+    stacks.json
+    houses.json
+    seals.json
 
   schemas/
     lexicon-entry.schema.json
@@ -286,15 +295,11 @@ software-grimoire/
     seal.schema.json
 
   scripts/
+    bootstrap_project.py
     sync_scaffold.py
-    import_docx_extracts.py
     validate_data.py
-    build_reference_pages.py
-    build_spell_pages.py
-    build_stack_pages.py
     generate_seals.py
-    render_clause_circle.py
-    render_stack_graph.py
+    grimoire.py
 
   assets/
     styles.scss
@@ -317,10 +322,10 @@ software-grimoire/
     README.md
 
   tests/
-    test_validate_lexicon.py
-    test_validate_spells.py
-    test_validate_stacks.py
-    test_generate_seals.py
+    test_internal_links.py
+    test_schema_conformance.py
+    test_seal_stability.py
+    test_validate_data.py
 ```
 
 The existing workspace already contains `source_extracts/` and
@@ -646,7 +651,7 @@ Validation rules:
 - Canonical entries must have a summary.
 - Major canon entries should have force and shadow.
 - Related IDs must exist.
-- House names must match `data/houses.yml`.
+- House names must match `data/houses.json`.
 
 ### 5.2 Spell
 
@@ -893,10 +898,10 @@ Move from static prose to navigable public reference.
 
 Tasks:
 
-1. Create `data/houses.yml` for the 18 lexicon houses.
-2. Create `data/major_arcana.yml` for the 50 expanded words.
-3. Create `data/pocket_runes.yml` for the 300 high-force runes.
-4. Create `data/lexicon.yml` for the full 1,645-entry lexicon.
+1. Create `data/houses.json` for the 18 lexicon houses.
+2. Create `data/major_arcana.json` for the 50 expanded words.
+3. Create `data/pocket_runes.json` for the 300 high-force runes.
+4. Create `data/lexicon.json` for the full 1,645-entry lexicon.
 5. Add validation scripts for ID uniqueness, range membership, and required
    fields.
 6. Generate:
@@ -928,12 +933,12 @@ Turn the example spells into reusable, structured templates.
 
 Tasks:
 
-1. Create `data/spells.yml`.
+1. Create `data/spells.json`.
 2. Convert the six field spells into structured records.
 3. Generate one page per spell.
 4. Include both:
    - human-readable full text
-   - structured YAML representation
+   - structured JSON representation
 5. Add blank templates for quick, working, and full casts.
 6. Add "fill this in" examples.
 7. Add verification patterns by task type:
@@ -967,7 +972,7 @@ Make stacked spells practical enough to reuse.
 
 Tasks:
 
-1. Create `data/stacks.yml`.
+1. Create `data/stacks.json`.
 2. Convert the addendum's six worked stacks into structured records.
 3. Generate one page per stack.
 4. Include:
@@ -1204,10 +1209,18 @@ Delivered:
 
 Remaining risk:
 
-- Reader navigation is now strong, but the reference layer can still over-imply
-  that every lexicon entry is authored canon. Phase 9.6 fixes that.
+- Reader navigation is now strong. The v0.3 integrity layer also prevents the
+  reference layer from implying that every lexicon entry is authored canon.
 
 ### Phase 9.6: Lexicon Honesty and Content Integrity
+
+Status:
+
+- Integrity layer completed as part of `v0.3.0-integrity-evidence-ci`.
+- The site now reports 343 authored entries and 1,302 stub entries.
+- Major and pocket entries are authored from their source-canon glosses.
+- Remaining full-lexicon stubs are explicitly marked for future authoring.
+- Long-term human review of the full 1,645-entry canon remains v1.0 work.
 
 Goal:
 
@@ -1265,9 +1278,16 @@ Definition of done:
 
 Recommended release:
 
-- `v0.3.0-lexicon-honesty`
+- Shipped inside `v0.3.0-integrity-evidence-ci`.
 
 ### Phase 9.7: Proof by Difference and Evidence Layer
+
+Status:
+
+- Completed as part of `v0.3.0-integrity-evidence-ci`.
+- Added one weak-vs-repaired case per field spell.
+- Added a replayable evaluation template and six-case field-spell evaluation
+  matrix under `examples/evaluations/`.
 
 Goal:
 
@@ -1306,9 +1326,16 @@ Definition of done:
 
 Recommended release:
 
-- `v0.4.0-proof-by-difference`
+- Shipped inside `v0.3.0-integrity-evidence-ci`.
 
 ### Phase 9.8: Editorial Depth for Tooling and Living Practice
+
+Status:
+
+- Completed as part of `v0.3.0-integrity-evidence-ci`.
+- Chapters 09 and 10 now explain schema responsibilities, validation,
+  registry/replay, seal behavior, evaluation logs, solo practice, team registry
+  use, contribution standards, adoption ladder, and canon governance.
 
 Goal:
 
@@ -1343,9 +1370,17 @@ Definition of done:
 
 Recommended release:
 
-- Can ship with `v0.4.0-proof-by-difference` or as `v0.5.0-editorial-depth`.
+- Shipped inside `v0.3.0-integrity-evidence-ci`.
 
 ### Phase 9.9: CI and Test Hardening
+
+Status:
+
+- Completed as part of `v0.3.0-integrity-evidence-ci`.
+- Added PR/non-main check workflow.
+- Added schema-conformance, seal-stability, validation, and rendered
+  internal-link tests.
+- Pages publishing now runs pytest before deployment.
 
 Goal:
 
@@ -1378,9 +1413,17 @@ Definition of done:
 
 Recommended release:
 
-- `v0.5.0-ci-hardening`
+- Shipped inside `v0.3.0-integrity-evidence-ci`.
 
 ### Phase 9.10: Repository Hygiene
+
+Status:
+
+- Completed as part of `v0.3.0-integrity-evidence-ci`.
+- Removed the empty `appendices/` directory from the working tree.
+- Removed the stale duplicate `examples/weak-vs-repaired/refactor.md`.
+- README now states MIT plainly, exposes badges, and reports the current
+  65-page render size.
 
 Goal:
 
@@ -1459,13 +1502,13 @@ Commands:
 
 ```text
 grimoire validate
-grimoire spell lint path/to/spell.yml
-grimoire spell seal path/to/spell.yml
-grimoire stack lint path/to/stack.yml
-grimoire stack seal path/to/stack.yml
+grimoire spell lint path/to/spell.json
+grimoire spell seal path/to/spell.json
+grimoire stack lint path/to/stack.json
+grimoire stack seal path/to/stack.json
 grimoire render reference
-grimoire render coil path/to/spell.yml
-grimoire render stack path/to/stack.yml
+grimoire render coil path/to/spell.json
+grimoire render stack path/to/stack.json
 ```
 
 Tooling principles:
@@ -1478,7 +1521,7 @@ Tooling principles:
 
 Definition of done:
 
-- A user can define a spell or stack in YAML, validate it, generate a seal, and
+- A user can define a spell or stack in JSON, validate it, generate a seal, and
   render a readable page.
 
 ### Phase 12: Evaluation and Replay
@@ -1634,9 +1677,9 @@ High priority:
 
 Medium priority:
 
-- Extract the 50 world-running words into `data/major_arcana.yml`.
-- Extract the six field spells into `data/spells.yml`.
-- Extract the six worked stacks into `data/stacks.yml`.
+- Extract the 50 world-running words into `data/major_arcana.json`.
+- Extract the six field spells into `data/spells.json`.
+- Extract the six worked stacks into `data/stacks.json`.
 - Add schemas for spells and stacks.
 - Add validation script.
 - Generate spell and stack pages.
@@ -1693,8 +1736,8 @@ Tasks:
 
 1. Define spell schema.
 2. Define stack schema.
-3. Create `data/spells.yml`.
-4. Create `data/stacks.yml`.
+3. Create `data/spells.json`.
+4. Create `data/stacks.json`.
 5. Build page generators.
 6. Add validation.
 7. Add tests.
@@ -1817,17 +1860,18 @@ The project is complete in the strong sense when:
 
 ## 15. Immediate Next Move
 
-The highest-leverage next move is now the content-integrity package:
+The highest-leverage next move is now the v1.0 canon-authoring campaign:
 
-1. Add lexicon completion status (`authored`, `stub`, `needs_shadow`,
-   `needs_sense`) using duplicate-summary detection.
-2. Surface authored/stub counts on the porting status, lexicon, and house pages.
-3. Mark boilerplate entries as stubs instead of implying finished canon.
-4. Begin the pocket-canon authoring campaign house by house.
-5. Add Proof by Difference as a real reference page and example suite.
-6. Harden CI so pull requests run generation, validation, tests, render, and
-   internal-link checks.
+1. Review the 343 authored major/pocket entries for technical accuracy, voice,
+   and source faithfulness.
+2. Promote stub entries house by house only when they have term-specific force,
+   shadow, and sense.
+3. Add at least one working clause or Proof by Difference reference for newly
+   promoted high-force runes.
+4. Keep `completion_status` honest after every authoring pass.
+5. Treat seal changes, schema changes, and canon promotions as changelog-worthy.
 
-The project has moved past the "make it public and navigable" phase. The next
-standard is editorial truthfulness: every public claim about canon quality should
-match the data underneath it.
+The project has moved past the "make it public and navigable" phase and past the
+first integrity hardening pass. The next standard is reviewed canon quality:
+every public claim about an authored rune should be technically useful under
+real software work.

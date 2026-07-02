@@ -6,86 +6,93 @@ title: "Runtime, Memory, and Execution"
 
 Range: `0609-0684`.
 
+## Completion
+
+| Status   | Count |
+| -------- | ----- |
+| authored | 16    |
+| stub     | 60    |
+
 Use the summary table for scanning. Each row links to the detailed anchored entry below.
 
-| Sigil | Term                               | Summary                                                                                                                                    |
-| ----- | ---------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
-| 0609  | [address space](#rune-0609)        | A vessel-word; it shapes how memory and execution are physically arranged.                                                                 |
-| 0610  | [aliasing](#rune-0610)             | An embodiment-word; it concerns where computation resides and how it is reclaimed.                                                         |
-| 0611  | [allocation](#rune-0611)           | A vessel-word; it shapes how memory and execution are physically arranged.                                                                 |
-| 0612  | [allocator](#rune-0612)            | A living-system word; it describes the program while it is actually in motion.                                                             |
-| 0613  | [arena](#rune-0613)                | A runtime-law word; it constrains performance, allocation, or safety at execution time.                                                    |
-| 0614  | [borrow {Run}](#rune-0614)         | A runtime-law word; it constrains performance, allocation, or safety at execution time.                                                    |
-| 0615  | [cache {Run}](#rune-0615)          | Keep likely things close so future cost falls. Shadow: stale truth delivered at machine speed.                                             |
-| 0616  | [cache line {Run}](#rune-0616)     | An embodiment-word; it concerns where computation resides and how it is reclaimed.                                                         |
-| 0617  | [call frame](#rune-0617)           | A runtime-law word; it constrains performance, allocation, or safety at execution time.                                                    |
-| 0618  | [call stack](#rune-0618)           | A vessel-word; it shapes how memory and execution are physically arranged.                                                                 |
-| 0619  | [closure environment](#rune-0619)  | A vessel-word; it shapes how memory and execution are physically arranged.                                                                 |
-| 0620  | [compaction {Run}](#rune-0620)     | A living-system word; it describes the program while it is actually in motion.                                                             |
-| 0621  | [copy-on-write {Run}](#rune-0621)  | A living-system word; it describes the program while it is actually in motion.                                                             |
-| 0622  | [core dump {Run}](#rune-0622)      | A runtime-law word; it constrains performance, allocation, or safety at execution time.                                                    |
-| 0623  | [deallocation](#rune-0623)         | A runtime-law word; it constrains performance, allocation, or safety at execution time.                                                    |
-| 0624  | [destructor {Run}](#rune-0624)     | A runtime-law word; it constrains performance, allocation, or safety at execution time.                                                    |
-| 0625  | [dynamic allocation](#rune-0625)   | A runtime-law word; it constrains performance, allocation, or safety at execution time.                                                    |
-| 0626  | [eager evaluation](#rune-0626)     | An embodiment-word; it concerns where computation resides and how it is reclaimed.                                                         |
-| 0627  | [escape analysis](#rune-0627)      | A living-system word; it describes the program while it is actually in motion.                                                             |
-| 0628  | [execution context](#rune-0628)    | A living-system word; it describes the program while it is actually in motion.                                                             |
-| 0629  | [finalizer](#rune-0629)            | An embodiment-word; it concerns where computation resides and how it is reclaimed.                                                         |
-| 0630  | [frame pointer](#rune-0630)        | An embodiment-word; it concerns where computation resides and how it is reclaimed.                                                         |
-| 0631  | [garbage collection](#rune-0631)   | A reclamation word; unreachable memory is gathered and returned.                                                                           |
-| 0632  | [generation](#rune-0632)           | An embodiment-word; it concerns where computation resides and how it is reclaimed.                                                         |
-| 0633  | [handle {Run}](#rune-0633)         | An embodiment-word; it concerns where computation resides and how it is reclaimed.                                                         |
-| 0634  | [heap](#rune-0634)                 | A vessel-word; it shapes how memory and execution are physically arranged.                                                                 |
-| 0635  | [heap object](#rune-0635)          | A living-system word; it describes the program while it is actually in motion.                                                             |
-| 0636  | [hot path {Run}](#rune-0636)       | An embodiment-word; it concerns where computation resides and how it is reclaimed.                                                         |
-| 0637  | [inline cache](#rune-0637)         | A runtime-law word; it constrains performance, allocation, or safety at execution time.                                                    |
-| 0638  | [interpreter loop](#rune-0638)     | A vessel-word; it shapes how memory and execution are physically arranged.                                                                 |
-| 0639  | [JIT](#rune-0639)                  | A just-in-time word; translation happens at runtime rather than earlier in the forge.                                                      |
-| 0640  | [layout {Run}](#rune-0640)         | A vessel-word; it shapes how memory and execution are physically arranged.                                                                 |
-| 0641  | [lazy evaluation](#rune-0641)      | An embodiment-word; it concerns where computation resides and how it is reclaimed.                                                         |
-| 0642  | [leak {Run}](#rune-0642)           | A living-system word; it describes the program while it is actually in motion.                                                             |
-| 0643  | [lifetime {Run}](#rune-0643)       | A runtime-law word; it constrains performance, allocation, or safety at execution time.                                                    |
-| 0644  | [live set](#rune-0644)             | An embodiment-word; it concerns where computation resides and how it is reclaimed.                                                         |
-| 0645  | [locality](#rune-0645)             | A living-system word; it describes the program while it is actually in motion.                                                             |
-| 0646  | [lock-free {Run}](#rune-0646)      | A progress word; some thread always moves forward without a lock.                                                                          |
-| 0647  | [mark phase](#rune-0647)           | An embodiment-word; it concerns where computation resides and how it is reclaimed.                                                         |
-| 0648  | [memory {Run}](#rune-0648)         | A living-system word; it describes the program while it is actually in motion.                                                             |
-| 0649  | [memory barrier](#rune-0649)       | An ordering word; it forbids certain reorderings across threads or hardware boundaries.                                                    |
-| 0650  | [memory map](#rune-0650)           | A runtime-law word; it constrains performance, allocation, or safety at execution time.                                                    |
-| 0651  | [memory pool](#rune-0651)          | A runtime-law word; it constrains performance, allocation, or safety at execution time.                                                    |
-| 0652  | [memory safety](#rune-0652)        | A living-system word; it describes the program while it is actually in motion.                                                             |
-| 0653  | [move semantics](#rune-0653)       | A vessel-word; it shapes how memory and execution are physically arranged.                                                                 |
-| 0654  | [object header](#rune-0654)        | An embodiment-word; it concerns where computation resides and how it is reclaimed.                                                         |
-| 0655  | [page {Run}](#rune-0655)           | A living-system word; it describes the program while it is actually in motion.                                                             |
-| 0656  | [page fault](#rune-0656)           | A living-system word; it describes the program while it is actually in motion.                                                             |
-| 0657  | [pinning](#rune-0657)              | A runtime-law word; it constrains performance, allocation, or safety at execution time.                                                    |
-| 0658  | [pointer {Run}](#rune-0658)        | A location word; it does not hold the thing, but where the thing may be found.                                                             |
-| 0659  | [pool allocator](#rune-0659)       | A runtime-law word; it constrains performance, allocation, or safety at execution time.                                                    |
-| 0660  | [prefetch](#rune-0660)             | A living-system word; it describes the program while it is actually in motion.                                                             |
-| 0661  | [quiescence](#rune-0661)           | A living-system word; it describes the program while it is actually in motion.                                                             |
-| 0662  | [reclaim](#rune-0662)              | A living-system word; it describes the program while it is actually in motion.                                                             |
-| 0663  | [reference count](#rune-0663)      | An embodiment-word; it concerns where computation resides and how it is reclaimed.                                                         |
-| 0664  | [register allocation](#rune-0664)  | A runtime-law word; it constrains performance, allocation, or safety at execution time.                                                    |
-| 0665  | [root set](#rune-0665)             | An embodiment-word; it concerns where computation resides and how it is reclaimed.                                                         |
-| 0666  | [runtime](#rune-0666)              | A living word; the conditions under which the program presently exists and executes.                                                       |
-| 0667  | [sandbox {Run}](#rune-0667)        | A confinement word; actions are permitted only within a restricted space.                                                                  |
-| 0668  | [shadow stack](#rune-0668)         | An embodiment-word; it concerns where computation resides and how it is reclaimed.                                                         |
-| 0669  | [slab allocator](#rune-0669)       | A runtime-law word; it constrains performance, allocation, or safety at execution time.                                                    |
-| 0670  | [stack {Run}](#rune-0670)          | A layering word; order matters and the most recent thing is nearest the top.                                                               |
-| 0671  | [stack frame](#rune-0671)          | A living-system word; it describes the program while it is actually in motion.                                                             |
-| 0672  | [stop-the-world](#rune-0672)       | A living-system word; it describes the program while it is actually in motion.                                                             |
-| 0673  | [sweep phase](#rune-0673)          | A living-system word; it describes the program while it is actually in motion.                                                             |
-| 0674  | [tail call](#rune-0674)            | A vessel-word; it shapes how memory and execution are physically arranged.                                                                 |
-| 0675  | [thread-local storage](#rune-0675) | A living-system word; it describes the program while it is actually in motion.                                                             |
-| 0676  | [TLB](#rune-0676)                  | A vessel-word; it shapes how memory and execution are physically arranged.                                                                 |
-| 0677  | [tracing collector](#rune-0677)    | A runtime-law word; it constrains performance, allocation, or safety at execution time.                                                    |
-| 0678  | [unbox](#rune-0678)                | An embodiment-word; it concerns where computation resides and how it is reclaimed.                                                         |
-| 0679  | [user heap](#rune-0679)            | A living-system word; it describes the program while it is actually in motion.                                                             |
-| 0680  | [virtual memory](#rune-0680)       | An embodiment-word; it concerns where computation resides and how it is reclaimed.                                                         |
-| 0681  | [VM](#rune-0681)                   | A runtime-law word; it constrains performance, allocation, or safety at execution time.                                                    |
-| 0682  | [wait-free {Run}](#rune-0682)      | An embodiment-word; it concerns where computation resides and how it is reclaimed.                                                         |
-| 0683  | [write barrier](#rune-0683)        | A vessel-word; it shapes how memory and execution are physically arranged.                                                                 |
-| 0684  | [zero-copy {Run}](#rune-0684)      | Data movement stripped down to the minimum number of duplications. Use it when the bottleneck is physical movement rather than arithmetic. |
+| Sigil | Term                                      | Completion | Summary                                                                                                                                    |
+| ----- | ----------------------------------------- | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| 0609  | `STUB` [address space](#rune-0609)        | stub       | A vessel-word; it shapes how memory and execution are physically arranged.                                                                 |
+| 0610  | `STUB` [aliasing](#rune-0610)             | stub       | An embodiment-word; it concerns where computation resides and how it is reclaimed.                                                         |
+| 0611  | [allocation](#rune-0611)                  | authored   | Reserve memory for something that is about to live.                                                                                        |
+| 0612  | `STUB` [allocator](#rune-0612)            | stub       | A living-system word; it describes the program while it is actually in motion.                                                             |
+| 0613  | `STUB` [arena](#rune-0613)                | stub       | A runtime-law word; it constrains performance, allocation, or safety at execution time.                                                    |
+| 0614  | `STUB` [borrow {Run}](#rune-0614)         | stub       | A runtime-law word; it constrains performance, allocation, or safety at execution time.                                                    |
+| 0615  | [cache {Run}](#rune-0615)                 | authored   | Keep likely things close so future cost falls. Shadow: stale truth delivered at machine speed.                                             |
+| 0616  | `STUB` [cache line {Run}](#rune-0616)     | stub       | An embodiment-word; it concerns where computation resides and how it is reclaimed.                                                         |
+| 0617  | `STUB` [call frame](#rune-0617)           | stub       | A runtime-law word; it constrains performance, allocation, or safety at execution time.                                                    |
+| 0618  | `STUB` [call stack](#rune-0618)           | stub       | A vessel-word; it shapes how memory and execution are physically arranged.                                                                 |
+| 0619  | `STUB` [closure environment](#rune-0619)  | stub       | A vessel-word; it shapes how memory and execution are physically arranged.                                                                 |
+| 0620  | `STUB` [compaction {Run}](#rune-0620)     | stub       | A living-system word; it describes the program while it is actually in motion.                                                             |
+| 0621  | [copy-on-write {Run}](#rune-0621)         | authored   | Share until mutation forces a real duplicate.                                                                                              |
+| 0622  | `STUB` [core dump {Run}](#rune-0622)      | stub       | A runtime-law word; it constrains performance, allocation, or safety at execution time.                                                    |
+| 0623  | `STUB` [deallocation](#rune-0623)         | stub       | A runtime-law word; it constrains performance, allocation, or safety at execution time.                                                    |
+| 0624  | `STUB` [destructor {Run}](#rune-0624)     | stub       | A runtime-law word; it constrains performance, allocation, or safety at execution time.                                                    |
+| 0625  | `STUB` [dynamic allocation](#rune-0625)   | stub       | A runtime-law word; it constrains performance, allocation, or safety at execution time.                                                    |
+| 0626  | `STUB` [eager evaluation](#rune-0626)     | stub       | An embodiment-word; it concerns where computation resides and how it is reclaimed.                                                         |
+| 0627  | `STUB` [escape analysis](#rune-0627)      | stub       | A living-system word; it describes the program while it is actually in motion.                                                             |
+| 0628  | `STUB` [execution context](#rune-0628)    | stub       | A living-system word; it describes the program while it is actually in motion.                                                             |
+| 0629  | `STUB` [finalizer](#rune-0629)            | stub       | An embodiment-word; it concerns where computation resides and how it is reclaimed.                                                         |
+| 0630  | `STUB` [frame pointer](#rune-0630)        | stub       | An embodiment-word; it concerns where computation resides and how it is reclaimed.                                                         |
+| 0631  | [garbage collection](#rune-0631)          | authored   | Automatic reclamation of memory no longer reachable.                                                                                       |
+| 0632  | `STUB` [generation](#rune-0632)           | stub       | An embodiment-word; it concerns where computation resides and how it is reclaimed.                                                         |
+| 0633  | `STUB` [handle {Run}](#rune-0633)         | stub       | An embodiment-word; it concerns where computation resides and how it is reclaimed.                                                         |
+| 0634  | [heap](#rune-0634)                        | authored   | Region for dynamically allocated objects.                                                                                                  |
+| 0635  | `STUB` [heap object](#rune-0635)          | stub       | A living-system word; it describes the program while it is actually in motion.                                                             |
+| 0636  | [hot path {Run}](#rune-0636)              | authored   | The path where small inefficiencies burn real time.                                                                                        |
+| 0637  | `STUB` [inline cache](#rune-0637)         | stub       | A runtime-law word; it constrains performance, allocation, or safety at execution time.                                                    |
+| 0638  | `STUB` [interpreter loop](#rune-0638)     | stub       | A vessel-word; it shapes how memory and execution are physically arranged.                                                                 |
+| 0639  | [JIT](#rune-0639)                         | authored   | A just-in-time word; translation happens at runtime rather than earlier in the forge.                                                      |
+| 0640  | `STUB` [layout {Run}](#rune-0640)         | stub       | A vessel-word; it shapes how memory and execution are physically arranged.                                                                 |
+| 0641  | `STUB` [lazy evaluation](#rune-0641)      | stub       | An embodiment-word; it concerns where computation resides and how it is reclaimed.                                                         |
+| 0642  | `STUB` [leak {Run}](#rune-0642)           | stub       | A living-system word; it describes the program while it is actually in motion.                                                             |
+| 0643  | [lifetime {Run}](#rune-0643)              | authored   | How long a value may legally remain alive.                                                                                                 |
+| 0644  | `STUB` [live set](#rune-0644)             | stub       | An embodiment-word; it concerns where computation resides and how it is reclaimed.                                                         |
+| 0645  | [locality](#rune-0645)                    | authored   | The performance dividend from keeping related data physically close.                                                                       |
+| 0646  | `STUB` [lock-free {Run}](#rune-0646)      | stub       | A progress word; some thread always moves forward without a lock.                                                                          |
+| 0647  | `STUB` [mark phase](#rune-0647)           | stub       | An embodiment-word; it concerns where computation resides and how it is reclaimed.                                                         |
+| 0648  | `STUB` [memory {Run}](#rune-0648)         | stub       | A living-system word; it describes the program while it is actually in motion.                                                             |
+| 0649  | [memory barrier](#rune-0649)              | authored   | An ordering fence for memory effects across threads or cores.                                                                              |
+| 0650  | `STUB` [memory map](#rune-0650)           | stub       | A runtime-law word; it constrains performance, allocation, or safety at execution time.                                                    |
+| 0651  | `STUB` [memory pool](#rune-0651)          | stub       | A runtime-law word; it constrains performance, allocation, or safety at execution time.                                                    |
+| 0652  | [memory safety](#rune-0652)               | authored   | Protection against illegal memory access and corruption.                                                                                   |
+| 0653  | `STUB` [move semantics](#rune-0653)       | stub       | A vessel-word; it shapes how memory and execution are physically arranged.                                                                 |
+| 0654  | `STUB` [object header](#rune-0654)        | stub       | An embodiment-word; it concerns where computation resides and how it is reclaimed.                                                         |
+| 0655  | `STUB` [page {Run}](#rune-0655)           | stub       | A living-system word; it describes the program while it is actually in motion.                                                             |
+| 0656  | `STUB` [page fault](#rune-0656)           | stub       | A living-system word; it describes the program while it is actually in motion.                                                             |
+| 0657  | [pinning](#rune-0657)                     | authored   | Keep an object fixed in place so other machinery can safely refer to it.                                                                   |
+| 0658  | `STUB` [pointer {Run}](#rune-0658)        | stub       | A location word; it does not hold the thing, but where the thing may be found.                                                             |
+| 0659  | `STUB` [pool allocator](#rune-0659)       | stub       | A runtime-law word; it constrains performance, allocation, or safety at execution time.                                                    |
+| 0660  | `STUB` [prefetch](#rune-0660)             | stub       | A living-system word; it describes the program while it is actually in motion.                                                             |
+| 0661  | `STUB` [quiescence](#rune-0661)           | stub       | A living-system word; it describes the program while it is actually in motion.                                                             |
+| 0662  | `STUB` [reclaim](#rune-0662)              | stub       | A living-system word; it describes the program while it is actually in motion.                                                             |
+| 0663  | [reference count](#rune-0663)             | authored   | Ownership tracked by counting how many references remain.                                                                                  |
+| 0664  | `STUB` [register allocation](#rune-0664)  | stub       | A runtime-law word; it constrains performance, allocation, or safety at execution time.                                                    |
+| 0665  | `STUB` [root set](#rune-0665)             | stub       | An embodiment-word; it concerns where computation resides and how it is reclaimed.                                                         |
+| 0666  | [runtime](#rune-0666)                     | authored   | A living word; the conditions under which the program presently exists and executes.                                                       |
+| 0667  | `STUB` [sandbox {Run}](#rune-0667)        | stub       | A confinement word; actions are permitted only within a restricted space.                                                                  |
+| 0668  | `STUB` [shadow stack](#rune-0668)         | stub       | An embodiment-word; it concerns where computation resides and how it is reclaimed.                                                         |
+| 0669  | `STUB` [slab allocator](#rune-0669)       | stub       | A runtime-law word; it constrains performance, allocation, or safety at execution time.                                                    |
+| 0670  | [stack {Run}](#rune-0670)                 | authored   | Region for call frames and short-lived local state.                                                                                        |
+| 0671  | `STUB` [stack frame](#rune-0671)          | stub       | A living-system word; it describes the program while it is actually in motion.                                                             |
+| 0672  | `STUB` [stop-the-world](#rune-0672)       | stub       | A living-system word; it describes the program while it is actually in motion.                                                             |
+| 0673  | `STUB` [sweep phase](#rune-0673)          | stub       | A living-system word; it describes the program while it is actually in motion.                                                             |
+| 0674  | `STUB` [tail call](#rune-0674)            | stub       | A vessel-word; it shapes how memory and execution are physically arranged.                                                                 |
+| 0675  | `STUB` [thread-local storage](#rune-0675) | stub       | A living-system word; it describes the program while it is actually in motion.                                                             |
+| 0676  | `STUB` [TLB](#rune-0676)                  | stub       | A vessel-word; it shapes how memory and execution are physically arranged.                                                                 |
+| 0677  | `STUB` [tracing collector](#rune-0677)    | stub       | A runtime-law word; it constrains performance, allocation, or safety at execution time.                                                    |
+| 0678  | `STUB` [unbox](#rune-0678)                | stub       | An embodiment-word; it concerns where computation resides and how it is reclaimed.                                                         |
+| 0679  | `STUB` [user heap](#rune-0679)            | stub       | A living-system word; it describes the program while it is actually in motion.                                                             |
+| 0680  | `STUB` [virtual memory](#rune-0680)       | stub       | An embodiment-word; it concerns where computation resides and how it is reclaimed.                                                         |
+| 0681  | `STUB` [VM](#rune-0681)                   | stub       | A runtime-law word; it constrains performance, allocation, or safety at execution time.                                                    |
+| 0682  | `STUB` [wait-free {Run}](#rune-0682)      | stub       | An embodiment-word; it concerns where computation resides and how it is reclaimed.                                                         |
+| 0683  | `STUB` [write barrier](#rune-0683)        | stub       | A vessel-word; it shapes how memory and execution are physically arranged.                                                                 |
+| 0684  | [zero-copy {Run}](#rune-0684)             | authored   | Data movement stripped down to the minimum number of duplications. Use it when the bottleneck is physical movement rather than arithmetic. |
 
 ## Entries
 
@@ -93,19 +100,31 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A vessel-word; it shapes how memory and execution are physically arranged.
+
+**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
 
 ### [0610] aliasing {#rune-0610}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** An embodiment-word; it concerns where computation resides and how it is reclaimed.
+
+**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
 
 ### [0611] allocation {#rune-0611}
 
 **Status:** canonical (pocket canon)
 
-**Force:** A vessel-word; it shapes how memory and execution are physically arranged.
+**Completion:** authored
+
+**Force:** Reserve memory for something that is about to live.
+
+**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
 
 **Pocket gloss:** Reserve memory for something that is about to live.
 
@@ -113,23 +132,37 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A living-system word; it describes the program while it is actually in motion.
+
+**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
 
 ### [0613] arena {#rune-0613}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A runtime-law word; it constrains performance, allocation, or safety at execution time.
+
+**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
 
 ### [0614] borrow {Run} {#rune-0614}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A runtime-law word; it constrains performance, allocation, or safety at execution time.
+
+**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
 
 ### [0615] cache {Run} {#rune-0615}
 
 **Status:** canonical (major canon, pocket canon)
+
+**Completion:** authored
 
 **Force:** Keep likely things close so future cost falls.
 
@@ -141,37 +174,61 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** An embodiment-word; it concerns where computation resides and how it is reclaimed.
+
+**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
 
 ### [0617] call frame {#rune-0617}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A runtime-law word; it constrains performance, allocation, or safety at execution time.
+
+**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
 
 ### [0618] call stack {#rune-0618}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A vessel-word; it shapes how memory and execution are physically arranged.
+
+**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
 
 ### [0619] closure environment {#rune-0619}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A vessel-word; it shapes how memory and execution are physically arranged.
+
+**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
 
 ### [0620] compaction {Run} {#rune-0620}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A living-system word; it describes the program while it is actually in motion.
+
+**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
 
 ### [0621] copy-on-write {Run} {#rune-0621}
 
 **Status:** canonical (pocket canon)
 
-**Force:** A living-system word; it describes the program while it is actually in motion.
+**Completion:** authored
+
+**Force:** Share until mutation forces a real duplicate.
+
+**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
 
 **Pocket gloss:** Share until mutation forces a real duplicate.
 
@@ -179,61 +236,101 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A runtime-law word; it constrains performance, allocation, or safety at execution time.
+
+**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
 
 ### [0623] deallocation {#rune-0623}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A runtime-law word; it constrains performance, allocation, or safety at execution time.
+
+**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
 
 ### [0624] destructor {Run} {#rune-0624}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A runtime-law word; it constrains performance, allocation, or safety at execution time.
+
+**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
 
 ### [0625] dynamic allocation {#rune-0625}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A runtime-law word; it constrains performance, allocation, or safety at execution time.
+
+**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
 
 ### [0626] eager evaluation {#rune-0626}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** An embodiment-word; it concerns where computation resides and how it is reclaimed.
+
+**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
 
 ### [0627] escape analysis {#rune-0627}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A living-system word; it describes the program while it is actually in motion.
+
+**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
 
 ### [0628] execution context {#rune-0628}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A living-system word; it describes the program while it is actually in motion.
+
+**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
 
 ### [0629] finalizer {#rune-0629}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** An embodiment-word; it concerns where computation resides and how it is reclaimed.
+
+**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
 
 ### [0630] frame pointer {#rune-0630}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** An embodiment-word; it concerns where computation resides and how it is reclaimed.
+
+**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
 
 ### [0631] garbage collection {#rune-0631}
 
 **Status:** canonical (pocket canon)
 
-**Force:** A reclamation word; unreachable memory is gathered and returned.
+**Completion:** authored
+
+**Force:** Automatic reclamation of memory no longer reachable.
+
+**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
 
 **Pocket gloss:** Automatic reclamation of memory no longer reachable.
 
@@ -241,19 +338,31 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** An embodiment-word; it concerns where computation resides and how it is reclaimed.
+
+**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
 
 ### [0633] handle {Run} {#rune-0633}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** An embodiment-word; it concerns where computation resides and how it is reclaimed.
+
+**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
 
 ### [0634] heap {#rune-0634}
 
 **Status:** canonical (pocket canon)
 
-**Force:** A vessel-word; it shapes how memory and execution are physically arranged.
+**Completion:** authored
+
+**Force:** Region for dynamically allocated objects.
+
+**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
 
 **Pocket gloss:** Region for dynamically allocated objects.
 
@@ -261,13 +370,21 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A living-system word; it describes the program while it is actually in motion.
+
+**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
 
 ### [0636] hot path {Run} {#rune-0636}
 
 **Status:** canonical (pocket canon)
 
-**Force:** An embodiment-word; it concerns where computation resides and how it is reclaimed.
+**Completion:** authored
+
+**Force:** The path where small inefficiencies burn real time.
+
+**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
 
 **Pocket gloss:** The path where small inefficiencies burn real time.
 
@@ -275,43 +392,71 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A runtime-law word; it constrains performance, allocation, or safety at execution time.
+
+**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
 
 ### [0638] interpreter loop {#rune-0638}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A vessel-word; it shapes how memory and execution are physically arranged.
+
+**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
 
 ### [0639] JIT {#rune-0639}
 
 **Status:** canonical
 
+**Completion:** authored
+
 **Force:** A just-in-time word; translation happens at runtime rather than earlier in the forge.
+
+**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
 
 ### [0640] layout {Run} {#rune-0640}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A vessel-word; it shapes how memory and execution are physically arranged.
+
+**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
 
 ### [0641] lazy evaluation {#rune-0641}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** An embodiment-word; it concerns where computation resides and how it is reclaimed.
+
+**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
 
 ### [0642] leak {Run} {#rune-0642}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A living-system word; it describes the program while it is actually in motion.
+
+**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
 
 ### [0643] lifetime {Run} {#rune-0643}
 
 **Status:** canonical (pocket canon)
 
-**Force:** A runtime-law word; it constrains performance, allocation, or safety at execution time.
+**Completion:** authored
+
+**Force:** How long a value may legally remain alive.
+
+**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
 
 **Pocket gloss:** How long a value may legally remain alive.
 
@@ -319,13 +464,21 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** An embodiment-word; it concerns where computation resides and how it is reclaimed.
+
+**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
 
 ### [0645] locality {#rune-0645}
 
 **Status:** canonical (pocket canon)
 
-**Force:** A living-system word; it describes the program while it is actually in motion.
+**Completion:** authored
+
+**Force:** The performance dividend from keeping related data physically close.
+
+**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
 
 **Pocket gloss:** The performance dividend from keeping related data physically close.
 
@@ -333,25 +486,41 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A progress word; some thread always moves forward without a lock.
+
+**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
 
 ### [0647] mark phase {#rune-0647}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** An embodiment-word; it concerns where computation resides and how it is reclaimed.
+
+**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
 
 ### [0648] memory {Run} {#rune-0648}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A living-system word; it describes the program while it is actually in motion.
+
+**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
 
 ### [0649] memory barrier {#rune-0649}
 
 **Status:** canonical (pocket canon)
 
-**Force:** An ordering word; it forbids certain reorderings across threads or hardware boundaries.
+**Completion:** authored
+
+**Force:** An ordering fence for memory effects across threads or cores.
+
+**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
 
 **Pocket gloss:** An ordering fence for memory effects across threads or cores.
 
@@ -359,19 +528,31 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A runtime-law word; it constrains performance, allocation, or safety at execution time.
+
+**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
 
 ### [0651] memory pool {#rune-0651}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A runtime-law word; it constrains performance, allocation, or safety at execution time.
+
+**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
 
 ### [0652] memory safety {#rune-0652}
 
 **Status:** canonical (pocket canon)
 
-**Force:** A living-system word; it describes the program while it is actually in motion.
+**Completion:** authored
+
+**Force:** Protection against illegal memory access and corruption.
+
+**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
 
 **Pocket gloss:** Protection against illegal memory access and corruption.
 
@@ -379,31 +560,51 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A vessel-word; it shapes how memory and execution are physically arranged.
+
+**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
 
 ### [0654] object header {#rune-0654}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** An embodiment-word; it concerns where computation resides and how it is reclaimed.
+
+**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
 
 ### [0655] page {Run} {#rune-0655}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A living-system word; it describes the program while it is actually in motion.
+
+**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
 
 ### [0656] page fault {#rune-0656}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A living-system word; it describes the program while it is actually in motion.
+
+**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
 
 ### [0657] pinning {#rune-0657}
 
 **Status:** canonical (pocket canon)
 
-**Force:** A runtime-law word; it constrains performance, allocation, or safety at execution time.
+**Completion:** authored
+
+**Force:** Keep an object fixed in place so other machinery can safely refer to it.
+
+**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
 
 **Pocket gloss:** Keep an object fixed in place so other machinery can safely refer to it.
 
@@ -411,37 +612,61 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A location word; it does not hold the thing, but where the thing may be found.
+
+**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
 
 ### [0659] pool allocator {#rune-0659}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A runtime-law word; it constrains performance, allocation, or safety at execution time.
+
+**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
 
 ### [0660] prefetch {#rune-0660}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A living-system word; it describes the program while it is actually in motion.
+
+**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
 
 ### [0661] quiescence {#rune-0661}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A living-system word; it describes the program while it is actually in motion.
+
+**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
 
 ### [0662] reclaim {#rune-0662}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A living-system word; it describes the program while it is actually in motion.
+
+**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
 
 ### [0663] reference count {#rune-0663}
 
 **Status:** canonical (pocket canon)
 
-**Force:** An embodiment-word; it concerns where computation resides and how it is reclaimed.
+**Completion:** authored
+
+**Force:** Ownership tracked by counting how many references remain.
+
+**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
 
 **Pocket gloss:** Ownership tracked by counting how many references remain.
 
@@ -449,43 +674,71 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A runtime-law word; it constrains performance, allocation, or safety at execution time.
+
+**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
 
 ### [0665] root set {#rune-0665}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** An embodiment-word; it concerns where computation resides and how it is reclaimed.
+
+**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
 
 ### [0666] runtime {#rune-0666}
 
 **Status:** canonical
 
+**Completion:** authored
+
 **Force:** A living word; the conditions under which the program presently exists and executes.
+
+**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
 
 ### [0667] sandbox {Run} {#rune-0667}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A confinement word; actions are permitted only within a restricted space.
+
+**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
 
 ### [0668] shadow stack {#rune-0668}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** An embodiment-word; it concerns where computation resides and how it is reclaimed.
+
+**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
 
 ### [0669] slab allocator {#rune-0669}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A runtime-law word; it constrains performance, allocation, or safety at execution time.
+
+**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
 
 ### [0670] stack {Run} {#rune-0670}
 
 **Status:** canonical (pocket canon)
 
-**Force:** A layering word; order matters and the most recent thing is nearest the top.
+**Completion:** authored
+
+**Force:** Region for call frames and short-lived local state.
+
+**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
 
 **Pocket gloss:** Region for call frames and short-lived local state.
 
@@ -493,84 +746,140 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A living-system word; it describes the program while it is actually in motion.
+
+**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
 
 ### [0672] stop-the-world {#rune-0672}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A living-system word; it describes the program while it is actually in motion.
+
+**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
 
 ### [0673] sweep phase {#rune-0673}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A living-system word; it describes the program while it is actually in motion.
+
+**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
 
 ### [0674] tail call {#rune-0674}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A vessel-word; it shapes how memory and execution are physically arranged.
+
+**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
 
 ### [0675] thread-local storage {#rune-0675}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A living-system word; it describes the program while it is actually in motion.
+
+**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
 
 ### [0676] TLB {#rune-0676}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A vessel-word; it shapes how memory and execution are physically arranged.
+
+**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
 
 ### [0677] tracing collector {#rune-0677}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A runtime-law word; it constrains performance, allocation, or safety at execution time.
+
+**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
 
 ### [0678] unbox {#rune-0678}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** An embodiment-word; it concerns where computation resides and how it is reclaimed.
+
+**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
 
 ### [0679] user heap {#rune-0679}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A living-system word; it describes the program while it is actually in motion.
+
+**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
 
 ### [0680] virtual memory {#rune-0680}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** An embodiment-word; it concerns where computation resides and how it is reclaimed.
+
+**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
 
 ### [0681] VM {#rune-0681}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A runtime-law word; it constrains performance, allocation, or safety at execution time.
+
+**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
 
 ### [0682] wait-free {Run} {#rune-0682}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** An embodiment-word; it concerns where computation resides and how it is reclaimed.
+
+**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
 
 ### [0683] write barrier {#rune-0683}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A vessel-word; it shapes how memory and execution are physically arranged.
+
+**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
 
 ### [0684] zero-copy {Run} {#rune-0684}
 
 **Status:** canonical (major canon, pocket canon)
 
+**Completion:** authored
+
 **Force:** Data movement stripped down to the minimum number of duplications. Use it when the bottleneck is physical movement rather than arithmetic.
+
+**Shadow:** runtime convenience can hide allocation, lifetime, contention, or stale-state costs.
 
 **Pocket gloss:** Move data without making redundant copies.

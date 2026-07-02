@@ -1,4 +1,8 @@
-# Weak vs Repaired: Refactor
+---
+title: "Refactor Without Breaking Behavior"
+---
+
+# Refactor Without Breaking Behavior
 
 ## Weak Request
 
@@ -6,6 +10,7 @@ Clean up this Python module and make it nicer.
 
 ## Repaired Spell
 
+```text
 ROLE: Act as a senior Python engineer performing behavior-preserving refactoring.
 
 OBJECTIVE: Remove duplication in the supplied module without changing public behavior.
@@ -19,8 +24,11 @@ OUTPUT CONTRACT: Return a minimal patch plan, the proposed refactor, and tests t
 VERIFICATION: State the invariants first; then show before/after test cases for edge inputs.
 
 FAILURE BEHAVIOR: If the module boundary is too small for a safe refactor, say exactly what adjacent file must also move and why.
+```
 
 ## Expected Delta
 
 The repaired spell narrows blast radius, makes invariants reviewable, and forces proof through tests instead of relying on claims of cleanliness.
 
+
+[Back to spell](../../spells/safe-refactoring.qmd)

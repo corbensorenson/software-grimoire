@@ -23,7 +23,8 @@ def main(argv: list[str] | None = None) -> int:
     sub.add_parser("validate", help="validate structured data")
     sub.add_parser("seals", help="regenerate seal summary data")
     sub.add_parser("render", help="render the Quarto site")
-    sub.add_parser("all", help="generate, validate, and render")
+    sub.add_parser("test", help="run repository tests")
+    sub.add_parser("all", help="generate, validate, render, and test")
     args = parser.parse_args(argv)
 
     if args.command == "generate":
@@ -34,11 +35,14 @@ def main(argv: list[str] | None = None) -> int:
         return run([sys.executable, "scripts/generate_seals.py"])
     if args.command == "render":
         return run(["quarto", "render"])
+    if args.command == "test":
+        return run([sys.executable, "-m", "pytest"])
     if args.command == "all":
         for command in [
             [sys.executable, "scripts/bootstrap_project.py"],
             [sys.executable, "scripts/validate_data.py"],
             ["quarto", "render"],
+            [sys.executable, "-m", "pytest"],
         ]:
             code = run(command)
             if code:
@@ -49,4 +53,3 @@ def main(argv: list[str] | None = None) -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-

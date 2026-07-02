@@ -6,86 +6,93 @@ title: "Build, Tooling, Versioning, and Release"
 
 Range: `1064-1139`.
 
+## Completion
+
+| Status   | Count |
+| -------- | ----- |
+| authored | 17    |
+| stub     | 59    |
+
 Use the summary table for scanning. Each row links to the detailed anchored entry below.
 
-| Sigil | Term                                 | Summary                                                                                                                       |
-| ----- | ------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------- |
-| 1064  | [artifact](#rune-1064)               | A history-and-release word; it determines how change is packaged and remembered.                                              |
-| 1065  | [assemble {Forge}](#rune-1065)       | A forge-word; it turns work into artifact, revision, or release.                                                              |
-| 1066  | [baseline {Forge}](#rune-1066)       | A workshop word; it shapes the rituals by which teams produce running systems.                                                |
-| 1067  | [binary](#rune-1067)                 | A delivery word; it moves software through build, review, and deployment.                                                     |
-| 1068  | [branch {Forge}](#rune-1068)         | A divergence word; execution or history splits into alternate paths.                                                          |
-| 1069  | [build](#rune-1069)                  | A forge word; it turns source into artifact.                                                                                  |
-| 1070  | [build cache](#rune-1070)            | A forge-word; it turns work into artifact, revision, or release.                                                              |
-| 1071  | [build graph](#rune-1071)            | A history-and-release word; it determines how change is packaged and remembered.                                              |
-| 1072  | [bundle](#rune-1072)                 | A history-and-release word; it determines how change is packaged and remembered.                                              |
-| 1073  | [canary](#rune-1073)                 | A deliberately limited release whose job is to discover whether production reality agrees with the story told in staging.     |
-| 1074  | [changelog](#rune-1074)              | A forge-word; it turns work into artifact, revision, or release.                                                              |
-| 1075  | [cherry-pick](#rune-1075)            | A delivery word; it moves software through build, review, and deployment.                                                     |
-| 1076  | [CI](#rune-1076)                     | A forge-word; it turns work into artifact, revision, or release.                                                              |
-| 1077  | [codegen](#rune-1077)                | A delivery word; it moves software through build, review, and deployment.                                                     |
-| 1078  | [commit {Forge}](#rune-1078)         | A sealing word; it makes a change part of durable history.                                                                    |
-| 1079  | [compile {Forge}](#rune-1079)        | A transmutation word; it transforms one language into another fit for execution.                                              |
-| 1080  | [container {Forge}](#rune-1080)      | A workshop word; it shapes the rituals by which teams produce running systems.                                                |
-| 1081  | [container image](#rune-1081)        | A history-and-release word; it determines how change is packaged and remembered.                                              |
-| 1082  | [continuous delivery](#rune-1082)    | A workshop word; it shapes the rituals by which teams produce running systems.                                                |
-| 1083  | [continuous integration](#rune-1083) | A workshop word; it shapes the rituals by which teams produce running systems.                                                |
-| 1084  | [dependency](#rune-1084)             | A workshop word; it shapes the rituals by which teams produce running systems.                                                |
-| 1085  | [dependency graph](#rune-1085)       | A delivery word; it moves software through build, review, and deployment.                                                     |
-| 1086  | [deploy](#rune-1086)                 | The crossing from forge to world. Many good ideas become bad facts only after they are actually shipped.                      |
-| 1087  | [deployment ring](#rune-1087)        | A delivery word; it moves software through build, review, and deployment.                                                     |
-| 1088  | [diff {Forge}](#rune-1088)           | A visible account of what changed between one state and another. Good diffs make review local; bad diffs turn truth into fog. |
-| 1089  | [distribution](#rune-1089)           | A forge-word; it turns work into artifact, revision, or release.                                                              |
-| 1090  | [Dockerfile](#rune-1090)             | A forge-word; it turns work into artifact, revision, or release.                                                              |
-| 1091  | [downgrade](#rune-1091)              | A workshop word; it shapes the rituals by which teams produce running systems.                                                |
-| 1092  | [environment](#rune-1092)            | A delivery word; it moves software through build, review, and deployment.                                                     |
-| 1093  | [feature flag](#rune-1093)           | A history-and-release word; it determines how change is packaged and remembered.                                              |
-| 1094  | [formatter](#rune-1094)              | A forge-word; it turns work into artifact, revision, or release.                                                              |
-| 1095  | [hermetic build](#rune-1095)         | A delivery word; it moves software through build, review, and deployment.                                                     |
-| 1096  | [install](#rune-1096)                | A workshop word; it shapes the rituals by which teams produce running systems.                                                |
-| 1097  | [installer](#rune-1097)              | A history-and-release word; it determines how change is packaged and remembered.                                              |
-| 1098  | [issue tracker](#rune-1098)          | A delivery word; it moves software through build, review, and deployment.                                                     |
-| 1099  | [job runner](#rune-1099)             | A delivery word; it moves software through build, review, and deployment.                                                     |
-| 1100  | [label {Forge}](#rune-1100)          | A forge-word; it turns work into artifact, revision, or release.                                                              |
-| 1101  | [lint](#rune-1101)                   | A workshop word; it shapes the rituals by which teams produce running systems.                                                |
-| 1102  | [lockfile](#rune-1102)               | A delivery word; it moves software through build, review, and deployment.                                                     |
-| 1103  | [manifest](#rune-1103)               | A workshop word; it shapes the rituals by which teams produce running systems.                                                |
-| 1104  | [merge {Forge}](#rune-1104)          | A reconciliation word; separate lines of change are brought back together.                                                    |
-| 1105  | [migration script](#rune-1105)       | A workshop word; it shapes the rituals by which teams produce running systems.                                                |
-| 1106  | [minifier](#rune-1106)               | A workshop word; it shapes the rituals by which teams produce running systems.                                                |
-| 1107  | [package {Forge}](#rune-1107)        | A forge-word; it turns work into artifact, revision, or release.                                                              |
-| 1108  | [package manager](#rune-1108)        | A workshop word; it shapes the rituals by which teams produce running systems.                                                |
-| 1109  | [patch release](#rune-1109)          | A delivery word; it moves software through build, review, and deployment.                                                     |
-| 1110  | [pin](#rune-1110)                    | A workshop word; it shapes the rituals by which teams produce running systems.                                                |
-| 1111  | [pipeline {Forge}](#rune-1111)       | A procession word; work passes through ordered stages.                                                                        |
-| 1112  | [precommit hook](#rune-1112)         | A delivery word; it moves software through build, review, and deployment.                                                     |
-| 1113  | [preview environment](#rune-1113)    | A workshop word; it shapes the rituals by which teams produce running systems.                                                |
-| 1114  | [promote](#rune-1114)                | A history-and-release word; it determines how change is packaged and remembered.                                              |
-| 1115  | [publish](#rune-1115)                | A workshop word; it shapes the rituals by which teams produce running systems.                                                |
-| 1116  | [rebase](#rune-1116)                 | A history-and-release word; it determines how change is packaged and remembered.                                              |
-| 1117  | [release](#rune-1117)                | A delivery word; it moves software through build, review, and deployment.                                                     |
-| 1118  | [release candidate](#rune-1118)      | A history-and-release word; it determines how change is packaged and remembered.                                              |
-| 1119  | [repository {Forge}](#rune-1119)     | A custody word; an official place from which versions or entities are retrieved.                                              |
-| 1120  | [reproducible build](#rune-1120)     | A forge-word; it turns work into artifact, revision, or release.                                                              |
-| 1121  | [restore {Forge}](#rune-1121)        | A forge-word; it turns work into artifact, revision, or release.                                                              |
-| 1122  | [revision {Forge}](#rune-1122)       | A workshop word; it shapes the rituals by which teams produce running systems.                                                |
-| 1123  | [rollback {Forge}](#rune-1123)       | A reversal word; the system returns toward an earlier trusted state.                                                          |
-| 1124  | [rollout](#rune-1124)                | A delivery word; it moves software through build, review, and deployment.                                                     |
-| 1125  | [scaffold {Forge}](#rune-1125)       | A history-and-release word; it determines how change is packaged and remembered.                                              |
-| 1126  | [semantic version](#rune-1126)       | A history-and-release word; it determines how change is packaged and remembered.                                              |
-| 1127  | [ship](#rune-1127)                   | A forge-word; it turns work into artifact, revision, or release.                                                              |
-| 1128  | [source map](#rune-1128)             | A workshop word; it shapes the rituals by which teams produce running systems.                                                |
-| 1129  | [staging](#rune-1129)                | A delivery word; it moves software through build, review, and deployment.                                                     |
-| 1130  | [static analysis](#rune-1130)        | A forge-word; it turns work into artifact, revision, or release.                                                              |
-| 1131  | [tag](#rune-1131)                    | A forge-word; it turns work into artifact, revision, or release.                                                              |
-| 1132  | [template {Forge}](#rune-1132)       | A forge-word; it turns work into artifact, revision, or release.                                                              |
-| 1133  | [test gate](#rune-1133)              | A delivery word; it moves software through build, review, and deployment.                                                     |
-| 1134  | [toolchain](#rune-1134)              | A delivery word; it moves software through build, review, and deployment.                                                     |
-| 1135  | [transitive dependency](#rune-1135)  | A forge-word; it turns work into artifact, revision, or release.                                                              |
-| 1136  | [upgrade](#rune-1136)                | A forge-word; it turns work into artifact, revision, or release.                                                              |
-| 1137  | [version](#rune-1137)                | A chronology word; the same thing is named at different moments.                                                              |
-| 1138  | [version pin](#rune-1138)            | A delivery word; it moves software through build, review, and deployment.                                                     |
-| 1139  | [workspace](#rune-1139)              | A workshop word; it shapes the rituals by which teams produce running systems.                                                |
+| Sigil | Term                                        | Completion | Summary                                                                                                                       |
+| ----- | ------------------------------------------- | ---------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| 1064  | [artifact](#rune-1064)                      | authored   | A produced thing you can store, ship, or compare.                                                                             |
+| 1065  | `STUB` [assemble {Forge}](#rune-1065)       | stub       | A forge-word; it turns work into artifact, revision, or release.                                                              |
+| 1066  | `STUB` [baseline {Forge}](#rune-1066)       | stub       | A workshop word; it shapes the rituals by which teams produce running systems.                                                |
+| 1067  | `STUB` [binary](#rune-1067)                 | stub       | A delivery word; it moves software through build, review, and deployment.                                                     |
+| 1068  | [branch {Forge}](#rune-1068)                | authored   | A line of history where change can proceed without touching the main trunk.                                                   |
+| 1069  | [build](#rune-1069)                         | authored   | Turn source into a runnable or shippable artifact.                                                                            |
+| 1070  | `STUB` [build cache](#rune-1070)            | stub       | A forge-word; it turns work into artifact, revision, or release.                                                              |
+| 1071  | `STUB` [build graph](#rune-1071)            | stub       | A history-and-release word; it determines how change is packaged and remembered.                                              |
+| 1072  | `STUB` [bundle](#rune-1072)                 | stub       | A history-and-release word; it determines how change is packaged and remembered.                                              |
+| 1073  | [canary](#rune-1073)                        | authored   | A deliberately limited release whose job is to discover whether production reality agrees with the story told in staging.     |
+| 1074  | `STUB` [changelog](#rune-1074)              | stub       | A forge-word; it turns work into artifact, revision, or release.                                                              |
+| 1075  | `STUB` [cherry-pick](#rune-1075)            | stub       | A delivery word; it moves software through build, review, and deployment.                                                     |
+| 1076  | [CI](#rune-1076)                            | authored   | Continuous integration: change is merged only after automated checks speak.                                                   |
+| 1077  | `STUB` [codegen](#rune-1077)                | stub       | A delivery word; it moves software through build, review, and deployment.                                                     |
+| 1078  | [commit {Forge}](#rune-1078)                | authored   | Record a change as one named point in history.                                                                                |
+| 1079  | `STUB` [compile {Forge}](#rune-1079)        | stub       | A transmutation word; it transforms one language into another fit for execution.                                              |
+| 1080  | `STUB` [container {Forge}](#rune-1080)      | stub       | A workshop word; it shapes the rituals by which teams produce running systems.                                                |
+| 1081  | `STUB` [container image](#rune-1081)        | stub       | A history-and-release word; it determines how change is packaged and remembered.                                              |
+| 1082  | `STUB` [continuous delivery](#rune-1082)    | stub       | A workshop word; it shapes the rituals by which teams produce running systems.                                                |
+| 1083  | `STUB` [continuous integration](#rune-1083) | stub       | A workshop word; it shapes the rituals by which teams produce running systems.                                                |
+| 1084  | [dependency](#rune-1084)                    | authored   | Something your code needs in order to build or run.                                                                           |
+| 1085  | `STUB` [dependency graph](#rune-1085)       | stub       | A delivery word; it moves software through build, review, and deployment.                                                     |
+| 1086  | [deploy](#rune-1086)                        | authored   | The crossing from forge to world. Many good ideas become bad facts only after they are actually shipped.                      |
+| 1087  | `STUB` [deployment ring](#rune-1087)        | stub       | A delivery word; it moves software through build, review, and deployment.                                                     |
+| 1088  | [diff {Forge}](#rune-1088)                  | authored   | A visible account of what changed between one state and another. Good diffs make review local; bad diffs turn truth into fog. |
+| 1089  | `STUB` [distribution](#rune-1089)           | stub       | A forge-word; it turns work into artifact, revision, or release.                                                              |
+| 1090  | `STUB` [Dockerfile](#rune-1090)             | stub       | A forge-word; it turns work into artifact, revision, or release.                                                              |
+| 1091  | `STUB` [downgrade](#rune-1091)              | stub       | A workshop word; it shapes the rituals by which teams produce running systems.                                                |
+| 1092  | `STUB` [environment](#rune-1092)            | stub       | A delivery word; it moves software through build, review, and deployment.                                                     |
+| 1093  | [feature flag](#rune-1093)                  | authored   | A runtime switch that separates deploy from release.                                                                          |
+| 1094  | `STUB` [formatter](#rune-1094)              | stub       | A forge-word; it turns work into artifact, revision, or release.                                                              |
+| 1095  | `STUB` [hermetic build](#rune-1095)         | stub       | A delivery word; it moves software through build, review, and deployment.                                                     |
+| 1096  | `STUB` [install](#rune-1096)                | stub       | A workshop word; it shapes the rituals by which teams produce running systems.                                                |
+| 1097  | `STUB` [installer](#rune-1097)              | stub       | A history-and-release word; it determines how change is packaged and remembered.                                              |
+| 1098  | `STUB` [issue tracker](#rune-1098)          | stub       | A delivery word; it moves software through build, review, and deployment.                                                     |
+| 1099  | `STUB` [job runner](#rune-1099)             | stub       | A delivery word; it moves software through build, review, and deployment.                                                     |
+| 1100  | `STUB` [label {Forge}](#rune-1100)          | stub       | A forge-word; it turns work into artifact, revision, or release.                                                              |
+| 1101  | `STUB` [lint](#rune-1101)                   | stub       | A workshop word; it shapes the rituals by which teams produce running systems.                                                |
+| 1102  | [lockfile](#rune-1102)                      | authored   | The file that freezes dependency resolution into repeatable history.                                                          |
+| 1103  | `STUB` [manifest](#rune-1103)               | stub       | A workshop word; it shapes the rituals by which teams produce running systems.                                                |
+| 1104  | [merge {Forge}](#rune-1104)                 | authored   | Reconcile divergent lines of history into one.                                                                                |
+| 1105  | `STUB` [migration script](#rune-1105)       | stub       | A workshop word; it shapes the rituals by which teams produce running systems.                                                |
+| 1106  | `STUB` [minifier](#rune-1106)               | stub       | A workshop word; it shapes the rituals by which teams produce running systems.                                                |
+| 1107  | `STUB` [package {Forge}](#rune-1107)        | stub       | A forge-word; it turns work into artifact, revision, or release.                                                              |
+| 1108  | `STUB` [package manager](#rune-1108)        | stub       | A workshop word; it shapes the rituals by which teams produce running systems.                                                |
+| 1109  | `STUB` [patch release](#rune-1109)          | stub       | A delivery word; it moves software through build, review, and deployment.                                                     |
+| 1110  | `STUB` [pin](#rune-1110)                    | stub       | A workshop word; it shapes the rituals by which teams produce running systems.                                                |
+| 1111  | [pipeline {Forge}](#rune-1111)              | authored   | The ordered automation that turns edit into tested artifact.                                                                  |
+| 1112  | `STUB` [precommit hook](#rune-1112)         | stub       | A delivery word; it moves software through build, review, and deployment.                                                     |
+| 1113  | `STUB` [preview environment](#rune-1113)    | stub       | A workshop word; it shapes the rituals by which teams produce running systems.                                                |
+| 1114  | `STUB` [promote](#rune-1114)                | stub       | A history-and-release word; it determines how change is packaged and remembered.                                              |
+| 1115  | `STUB` [publish](#rune-1115)                | stub       | A workshop word; it shapes the rituals by which teams produce running systems.                                                |
+| 1116  | `STUB` [rebase](#rune-1116)                 | stub       | A history-and-release word; it determines how change is packaged and remembered.                                              |
+| 1117  | [release](#rune-1117)                       | authored   | A named version intended for actual users.                                                                                    |
+| 1118  | `STUB` [release candidate](#rune-1118)      | stub       | A history-and-release word; it determines how change is packaged and remembered.                                              |
+| 1119  | `STUB` [repository {Forge}](#rune-1119)     | stub       | A custody word; an official place from which versions or entities are retrieved.                                              |
+| 1120  | [reproducible build](#rune-1120)            | authored   | A build that can be rebuilt into the same bits again.                                                                         |
+| 1121  | `STUB` [restore {Forge}](#rune-1121)        | stub       | A forge-word; it turns work into artifact, revision, or release.                                                              |
+| 1122  | `STUB` [revision {Forge}](#rune-1122)       | stub       | A workshop word; it shapes the rituals by which teams produce running systems.                                                |
+| 1123  | [rollback {Forge}](#rune-1123)              | authored   | Operational permission to retreat after release.                                                                              |
+| 1124  | `STUB` [rollout](#rune-1124)                | stub       | A delivery word; it moves software through build, review, and deployment.                                                     |
+| 1125  | `STUB` [scaffold {Forge}](#rune-1125)       | stub       | A history-and-release word; it determines how change is packaged and remembered.                                              |
+| 1126  | `STUB` [semantic version](#rune-1126)       | stub       | A history-and-release word; it determines how change is packaged and remembered.                                              |
+| 1127  | `STUB` [ship](#rune-1127)                   | stub       | A forge-word; it turns work into artifact, revision, or release.                                                              |
+| 1128  | `STUB` [source map](#rune-1128)             | stub       | A workshop word; it shapes the rituals by which teams produce running systems.                                                |
+| 1129  | `STUB` [staging](#rune-1129)                | stub       | A delivery word; it moves software through build, review, and deployment.                                                     |
+| 1130  | `STUB` [static analysis](#rune-1130)        | stub       | A forge-word; it turns work into artifact, revision, or release.                                                              |
+| 1131  | `STUB` [tag](#rune-1131)                    | stub       | A forge-word; it turns work into artifact, revision, or release.                                                              |
+| 1132  | `STUB` [template {Forge}](#rune-1132)       | stub       | A forge-word; it turns work into artifact, revision, or release.                                                              |
+| 1133  | `STUB` [test gate](#rune-1133)              | stub       | A delivery word; it moves software through build, review, and deployment.                                                     |
+| 1134  | `STUB` [toolchain](#rune-1134)              | stub       | A delivery word; it moves software through build, review, and deployment.                                                     |
+| 1135  | `STUB` [transitive dependency](#rune-1135)  | stub       | A forge-word; it turns work into artifact, revision, or release.                                                              |
+| 1136  | `STUB` [upgrade](#rune-1136)                | stub       | A forge-word; it turns work into artifact, revision, or release.                                                              |
+| 1137  | [version](#rune-1137)                       | authored   | A chronology word; the same thing is named at different moments.                                                              |
+| 1138  | `STUB` [version pin](#rune-1138)            | stub       | A delivery word; it moves software through build, review, and deployment.                                                     |
+| 1139  | `STUB` [workspace](#rune-1139)              | stub       | A workshop word; it shapes the rituals by which teams produce running systems.                                                |
 
 ## Entries
 
@@ -93,7 +100,11 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical (pocket canon)
 
-**Force:** A history-and-release word; it determines how change is packaged and remembered.
+**Completion:** authored
+
+**Force:** A produced thing you can store, ship, or compare.
+
+**Shadow:** the release machinery can ship unreviewed drift faster than people can inspect it.
 
 **Pocket gloss:** A produced thing you can store, ship, or compare.
 
@@ -101,25 +112,41 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A forge-word; it turns work into artifact, revision, or release.
+
+**Shadow:** the release machinery can ship unreviewed drift faster than people can inspect it.
 
 ### [1066] baseline {Forge} {#rune-1066}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A workshop word; it shapes the rituals by which teams produce running systems.
+
+**Shadow:** the release machinery can ship unreviewed drift faster than people can inspect it.
 
 ### [1067] binary {#rune-1067}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A delivery word; it moves software through build, review, and deployment.
+
+**Shadow:** the release machinery can ship unreviewed drift faster than people can inspect it.
 
 ### [1068] branch {Forge} {#rune-1068}
 
 **Status:** canonical (pocket canon)
 
-**Force:** A divergence word; execution or history splits into alternate paths.
+**Completion:** authored
+
+**Force:** A line of history where change can proceed without touching the main trunk.
+
+**Shadow:** the release machinery can ship unreviewed drift faster than people can inspect it.
 
 **Pocket gloss:** A line of history where change can proceed without touching the main trunk.
 
@@ -127,7 +154,11 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical (pocket canon)
 
-**Force:** A forge word; it turns source into artifact.
+**Completion:** authored
+
+**Force:** Turn source into a runnable or shippable artifact.
+
+**Shadow:** the release machinery can ship unreviewed drift faster than people can inspect it.
 
 **Pocket gloss:** Turn source into a runnable or shippable artifact.
 
@@ -135,25 +166,41 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A forge-word; it turns work into artifact, revision, or release.
+
+**Shadow:** the release machinery can ship unreviewed drift faster than people can inspect it.
 
 ### [1071] build graph {#rune-1071}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A history-and-release word; it determines how change is packaged and remembered.
+
+**Shadow:** the release machinery can ship unreviewed drift faster than people can inspect it.
 
 ### [1072] bundle {#rune-1072}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A history-and-release word; it determines how change is packaged and remembered.
+
+**Shadow:** the release machinery can ship unreviewed drift faster than people can inspect it.
 
 ### [1073] canary {#rune-1073}
 
 **Status:** canonical (major canon, pocket canon)
 
+**Completion:** authored
+
 **Force:** A deliberately limited release whose job is to discover whether production reality agrees with the story told in staging.
+
+**Shadow:** the release machinery can ship unreviewed drift faster than people can inspect it.
 
 **Pocket gloss:** A small production release meant to detect reality before full rollout.
 
@@ -161,19 +208,31 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A forge-word; it turns work into artifact, revision, or release.
+
+**Shadow:** the release machinery can ship unreviewed drift faster than people can inspect it.
 
 ### [1075] cherry-pick {#rune-1075}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A delivery word; it moves software through build, review, and deployment.
+
+**Shadow:** the release machinery can ship unreviewed drift faster than people can inspect it.
 
 ### [1076] CI {#rune-1076}
 
 **Status:** canonical (pocket canon)
 
-**Force:** A forge-word; it turns work into artifact, revision, or release.
+**Completion:** authored
+
+**Force:** Continuous integration: change is merged only after automated checks speak.
+
+**Shadow:** the release machinery can ship unreviewed drift faster than people can inspect it.
 
 **Pocket gloss:** Continuous integration: change is merged only after automated checks speak.
 
@@ -181,13 +240,21 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A delivery word; it moves software through build, review, and deployment.
+
+**Shadow:** the release machinery can ship unreviewed drift faster than people can inspect it.
 
 ### [1078] commit {Forge} {#rune-1078}
 
 **Status:** canonical (pocket canon)
 
-**Force:** A sealing word; it makes a change part of durable history.
+**Completion:** authored
+
+**Force:** Record a change as one named point in history.
+
+**Shadow:** the release machinery can ship unreviewed drift faster than people can inspect it.
 
 **Pocket gloss:** Record a change as one named point in history.
 
@@ -195,37 +262,61 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A transmutation word; it transforms one language into another fit for execution.
+
+**Shadow:** the release machinery can ship unreviewed drift faster than people can inspect it.
 
 ### [1080] container {Forge} {#rune-1080}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A workshop word; it shapes the rituals by which teams produce running systems.
+
+**Shadow:** the release machinery can ship unreviewed drift faster than people can inspect it.
 
 ### [1081] container image {#rune-1081}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A history-and-release word; it determines how change is packaged and remembered.
+
+**Shadow:** the release machinery can ship unreviewed drift faster than people can inspect it.
 
 ### [1082] continuous delivery {#rune-1082}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A workshop word; it shapes the rituals by which teams produce running systems.
+
+**Shadow:** the release machinery can ship unreviewed drift faster than people can inspect it.
 
 ### [1083] continuous integration {#rune-1083}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A workshop word; it shapes the rituals by which teams produce running systems.
+
+**Shadow:** the release machinery can ship unreviewed drift faster than people can inspect it.
 
 ### [1084] dependency {#rune-1084}
 
 **Status:** canonical (pocket canon)
 
-**Force:** A workshop word; it shapes the rituals by which teams produce running systems.
+**Completion:** authored
+
+**Force:** Something your code needs in order to build or run.
+
+**Shadow:** the release machinery can ship unreviewed drift faster than people can inspect it.
 
 **Pocket gloss:** Something your code needs in order to build or run.
 
@@ -233,13 +324,21 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A delivery word; it moves software through build, review, and deployment.
+
+**Shadow:** the release machinery can ship unreviewed drift faster than people can inspect it.
 
 ### [1086] deploy {#rune-1086}
 
 **Status:** canonical (major canon, pocket canon)
 
+**Completion:** authored
+
 **Force:** The crossing from forge to world. Many good ideas become bad facts only after they are actually shipped.
+
+**Shadow:** the release machinery can ship unreviewed drift faster than people can inspect it.
 
 **Pocket gloss:** Cross the line from forge to world.
 
@@ -247,13 +346,21 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A delivery word; it moves software through build, review, and deployment.
+
+**Shadow:** the release machinery can ship unreviewed drift faster than people can inspect it.
 
 ### [1088] diff {Forge} {#rune-1088}
 
 **Status:** canonical (major canon, pocket canon)
 
+**Completion:** authored
+
 **Force:** A visible account of what changed between one state and another. Good diffs make review local; bad diffs turn truth into fog.
+
+**Shadow:** the release machinery can ship unreviewed drift faster than people can inspect it.
 
 **Pocket gloss:** A visible account of what changed between states.
 
@@ -261,31 +368,51 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A forge-word; it turns work into artifact, revision, or release.
+
+**Shadow:** the release machinery can ship unreviewed drift faster than people can inspect it.
 
 ### [1090] Dockerfile {#rune-1090}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A forge-word; it turns work into artifact, revision, or release.
+
+**Shadow:** the release machinery can ship unreviewed drift faster than people can inspect it.
 
 ### [1091] downgrade {#rune-1091}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A workshop word; it shapes the rituals by which teams produce running systems.
+
+**Shadow:** the release machinery can ship unreviewed drift faster than people can inspect it.
 
 ### [1092] environment {#rune-1092}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A delivery word; it moves software through build, review, and deployment.
+
+**Shadow:** the release machinery can ship unreviewed drift faster than people can inspect it.
 
 ### [1093] feature flag {#rune-1093}
 
 **Status:** canonical (pocket canon)
 
-**Force:** A history-and-release word; it determines how change is packaged and remembered.
+**Completion:** authored
+
+**Force:** A runtime switch that separates deploy from release.
+
+**Shadow:** the release machinery can ship unreviewed drift faster than people can inspect it.
 
 **Pocket gloss:** A runtime switch that separates deploy from release.
 
@@ -293,55 +420,91 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A forge-word; it turns work into artifact, revision, or release.
+
+**Shadow:** the release machinery can ship unreviewed drift faster than people can inspect it.
 
 ### [1095] hermetic build {#rune-1095}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A delivery word; it moves software through build, review, and deployment.
+
+**Shadow:** the release machinery can ship unreviewed drift faster than people can inspect it.
 
 ### [1096] install {#rune-1096}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A workshop word; it shapes the rituals by which teams produce running systems.
+
+**Shadow:** the release machinery can ship unreviewed drift faster than people can inspect it.
 
 ### [1097] installer {#rune-1097}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A history-and-release word; it determines how change is packaged and remembered.
+
+**Shadow:** the release machinery can ship unreviewed drift faster than people can inspect it.
 
 ### [1098] issue tracker {#rune-1098}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A delivery word; it moves software through build, review, and deployment.
+
+**Shadow:** the release machinery can ship unreviewed drift faster than people can inspect it.
 
 ### [1099] job runner {#rune-1099}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A delivery word; it moves software through build, review, and deployment.
+
+**Shadow:** the release machinery can ship unreviewed drift faster than people can inspect it.
 
 ### [1100] label {Forge} {#rune-1100}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A forge-word; it turns work into artifact, revision, or release.
+
+**Shadow:** the release machinery can ship unreviewed drift faster than people can inspect it.
 
 ### [1101] lint {#rune-1101}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A workshop word; it shapes the rituals by which teams produce running systems.
+
+**Shadow:** the release machinery can ship unreviewed drift faster than people can inspect it.
 
 ### [1102] lockfile {#rune-1102}
 
 **Status:** canonical (pocket canon)
 
-**Force:** A delivery word; it moves software through build, review, and deployment.
+**Completion:** authored
+
+**Force:** The file that freezes dependency resolution into repeatable history.
+
+**Shadow:** the release machinery can ship unreviewed drift faster than people can inspect it.
 
 **Pocket gloss:** The file that freezes dependency resolution into repeatable history.
 
@@ -349,13 +512,21 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A workshop word; it shapes the rituals by which teams produce running systems.
+
+**Shadow:** the release machinery can ship unreviewed drift faster than people can inspect it.
 
 ### [1104] merge {Forge} {#rune-1104}
 
 **Status:** canonical (pocket canon)
 
-**Force:** A reconciliation word; separate lines of change are brought back together.
+**Completion:** authored
+
+**Force:** Reconcile divergent lines of history into one.
+
+**Shadow:** the release machinery can ship unreviewed drift faster than people can inspect it.
 
 **Pocket gloss:** Reconcile divergent lines of history into one.
 
@@ -363,43 +534,71 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A workshop word; it shapes the rituals by which teams produce running systems.
+
+**Shadow:** the release machinery can ship unreviewed drift faster than people can inspect it.
 
 ### [1106] minifier {#rune-1106}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A workshop word; it shapes the rituals by which teams produce running systems.
+
+**Shadow:** the release machinery can ship unreviewed drift faster than people can inspect it.
 
 ### [1107] package {Forge} {#rune-1107}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A forge-word; it turns work into artifact, revision, or release.
+
+**Shadow:** the release machinery can ship unreviewed drift faster than people can inspect it.
 
 ### [1108] package manager {#rune-1108}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A workshop word; it shapes the rituals by which teams produce running systems.
+
+**Shadow:** the release machinery can ship unreviewed drift faster than people can inspect it.
 
 ### [1109] patch release {#rune-1109}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A delivery word; it moves software through build, review, and deployment.
+
+**Shadow:** the release machinery can ship unreviewed drift faster than people can inspect it.
 
 ### [1110] pin {#rune-1110}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A workshop word; it shapes the rituals by which teams produce running systems.
+
+**Shadow:** the release machinery can ship unreviewed drift faster than people can inspect it.
 
 ### [1111] pipeline {Forge} {#rune-1111}
 
 **Status:** canonical (pocket canon)
 
-**Force:** A procession word; work passes through ordered stages.
+**Completion:** authored
+
+**Force:** The ordered automation that turns edit into tested artifact.
+
+**Shadow:** the release machinery can ship unreviewed drift faster than people can inspect it.
 
 **Pocket gloss:** The ordered automation that turns edit into tested artifact.
 
@@ -407,37 +606,61 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A delivery word; it moves software through build, review, and deployment.
+
+**Shadow:** the release machinery can ship unreviewed drift faster than people can inspect it.
 
 ### [1113] preview environment {#rune-1113}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A workshop word; it shapes the rituals by which teams produce running systems.
+
+**Shadow:** the release machinery can ship unreviewed drift faster than people can inspect it.
 
 ### [1114] promote {#rune-1114}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A history-and-release word; it determines how change is packaged and remembered.
+
+**Shadow:** the release machinery can ship unreviewed drift faster than people can inspect it.
 
 ### [1115] publish {#rune-1115}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A workshop word; it shapes the rituals by which teams produce running systems.
+
+**Shadow:** the release machinery can ship unreviewed drift faster than people can inspect it.
 
 ### [1116] rebase {#rune-1116}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A history-and-release word; it determines how change is packaged and remembered.
+
+**Shadow:** the release machinery can ship unreviewed drift faster than people can inspect it.
 
 ### [1117] release {#rune-1117}
 
 **Status:** canonical (pocket canon)
 
-**Force:** A delivery word; it moves software through build, review, and deployment.
+**Completion:** authored
+
+**Force:** A named version intended for actual users.
+
+**Shadow:** the release machinery can ship unreviewed drift faster than people can inspect it.
 
 **Pocket gloss:** A named version intended for actual users.
 
@@ -445,19 +668,31 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A history-and-release word; it determines how change is packaged and remembered.
+
+**Shadow:** the release machinery can ship unreviewed drift faster than people can inspect it.
 
 ### [1119] repository {Forge} {#rune-1119}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A custody word; an official place from which versions or entities are retrieved.
+
+**Shadow:** the release machinery can ship unreviewed drift faster than people can inspect it.
 
 ### [1120] reproducible build {#rune-1120}
 
 **Status:** canonical (pocket canon)
 
-**Force:** A forge-word; it turns work into artifact, revision, or release.
+**Completion:** authored
+
+**Force:** A build that can be rebuilt into the same bits again.
+
+**Shadow:** the release machinery can ship unreviewed drift faster than people can inspect it.
 
 **Pocket gloss:** A build that can be rebuilt into the same bits again.
 
@@ -465,19 +700,31 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A forge-word; it turns work into artifact, revision, or release.
+
+**Shadow:** the release machinery can ship unreviewed drift faster than people can inspect it.
 
 ### [1122] revision {Forge} {#rune-1122}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A workshop word; it shapes the rituals by which teams produce running systems.
+
+**Shadow:** the release machinery can ship unreviewed drift faster than people can inspect it.
 
 ### [1123] rollback {Forge} {#rune-1123}
 
 **Status:** canonical (pocket canon)
 
-**Force:** A reversal word; the system returns toward an earlier trusted state.
+**Completion:** authored
+
+**Force:** Operational permission to retreat after release.
+
+**Shadow:** the release machinery can ship unreviewed drift faster than people can inspect it.
 
 **Pocket gloss:** Operational permission to retreat after release.
 
@@ -485,94 +732,158 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A delivery word; it moves software through build, review, and deployment.
+
+**Shadow:** the release machinery can ship unreviewed drift faster than people can inspect it.
 
 ### [1125] scaffold {Forge} {#rune-1125}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A history-and-release word; it determines how change is packaged and remembered.
+
+**Shadow:** the release machinery can ship unreviewed drift faster than people can inspect it.
 
 ### [1126] semantic version {#rune-1126}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A history-and-release word; it determines how change is packaged and remembered.
+
+**Shadow:** the release machinery can ship unreviewed drift faster than people can inspect it.
 
 ### [1127] ship {#rune-1127}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A forge-word; it turns work into artifact, revision, or release.
+
+**Shadow:** the release machinery can ship unreviewed drift faster than people can inspect it.
 
 ### [1128] source map {#rune-1128}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A workshop word; it shapes the rituals by which teams produce running systems.
+
+**Shadow:** the release machinery can ship unreviewed drift faster than people can inspect it.
 
 ### [1129] staging {#rune-1129}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A delivery word; it moves software through build, review, and deployment.
+
+**Shadow:** the release machinery can ship unreviewed drift faster than people can inspect it.
 
 ### [1130] static analysis {#rune-1130}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A forge-word; it turns work into artifact, revision, or release.
+
+**Shadow:** the release machinery can ship unreviewed drift faster than people can inspect it.
 
 ### [1131] tag {#rune-1131}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A forge-word; it turns work into artifact, revision, or release.
+
+**Shadow:** the release machinery can ship unreviewed drift faster than people can inspect it.
 
 ### [1132] template {Forge} {#rune-1132}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A forge-word; it turns work into artifact, revision, or release.
+
+**Shadow:** the release machinery can ship unreviewed drift faster than people can inspect it.
 
 ### [1133] test gate {#rune-1133}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A delivery word; it moves software through build, review, and deployment.
+
+**Shadow:** the release machinery can ship unreviewed drift faster than people can inspect it.
 
 ### [1134] toolchain {#rune-1134}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A delivery word; it moves software through build, review, and deployment.
+
+**Shadow:** the release machinery can ship unreviewed drift faster than people can inspect it.
 
 ### [1135] transitive dependency {#rune-1135}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A forge-word; it turns work into artifact, revision, or release.
+
+**Shadow:** the release machinery can ship unreviewed drift faster than people can inspect it.
 
 ### [1136] upgrade {#rune-1136}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A forge-word; it turns work into artifact, revision, or release.
+
+**Shadow:** the release machinery can ship unreviewed drift faster than people can inspect it.
 
 ### [1137] version {#rune-1137}
 
 **Status:** canonical
 
+**Completion:** authored
+
 **Force:** A chronology word; the same thing is named at different moments.
+
+**Shadow:** the release machinery can ship unreviewed drift faster than people can inspect it.
 
 ### [1138] version pin {#rune-1138}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A delivery word; it moves software through build, review, and deployment.
+
+**Shadow:** the release machinery can ship unreviewed drift faster than people can inspect it.
 
 ### [1139] workspace {#rune-1139}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A workshop word; it shapes the rituals by which teams produce running systems.
+
+**Shadow:** the release machinery can ship unreviewed drift faster than people can inspect it.

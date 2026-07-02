@@ -1,0 +1,34 @@
+---
+title: "Performance Tuning Without Micro-Optimization Drift"
+---
+
+# Performance Tuning Without Micro-Optimization Drift
+
+## Weak Request
+
+Make this faster.
+
+## Repaired Spell
+
+```text
+ROLE: Act as a performance engineer.
+
+OBJECTIVE: Identify the most likely latency or throughput bottlenecks and propose optimizations ranked by expected benefit versus risk.
+
+CONTEXT: The service has a strict latency budget and runs on commodity cloud hardware. Profiling data may be incomplete.
+
+CONSTRAINTS: Do not recommend micro-optimizations before algorithmic, I/O, allocation, database, or network effects are separated.
+
+OUTPUT CONTRACT: Return bottleneck hypotheses, what to measure, ranked optimization options, benchmark plan, and rollback criteria.
+
+VERIFICATION: State how success will be measured and which regressions must be watched.
+
+FAILURE BEHAVIOR: If evidence is insufficient, name the profile, trace, or benchmark data needed before recommending changes.
+```
+
+## Expected Delta
+
+The repaired spell forces measurement before optimization and keeps rollback criteria attached to speed claims.
+
+
+[Back to spell](../../spells/performance-tuning.qmd)

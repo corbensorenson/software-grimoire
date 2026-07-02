@@ -4,7 +4,7 @@ title: "Tooling and Formalization"
 
 # Tooling and Formalization
 
-The grimoire becomes more useful when its structures are machine-readable. This repository treats spells, stacks, houses, runes, and seals as data.
+The grimoire becomes more useful when its structures are machine-readable. This repository treats spells, stacks, houses, runes, and seals as data rather than decorative prose. The book is the reader surface. The JSON files are the working surface. The schemas and tests are the guardrails that keep the two from drifting apart.
 
 ## Structured Layers
 
@@ -13,12 +13,80 @@ The grimoire becomes more useful when its structures are machine-readable. This 
 - `data/pocket_runes.json` stores the 300-entry field canon.
 - `data/spells.json` stores reusable spell templates.
 - `data/stacks.json` stores repeatable workflow choreography.
+- `data/seals.json` stores the public digest layer for spells and stacks.
 - `schemas/` documents the expected shape of each data file.
+
+The source manuscripts remain in `source_docs/` and the extraction layer remains in `source_extracts/`. Generated pages should be treated as build artifacts derived from those sources and from the structured data. When the same concept appears in several places, the durable version should live in data or in the generator, then render outward into the site.
+
+## Data Contracts
+
+The minimum useful data contract is not "has text." It is "has enough structure to be checked."
+
+Lexicon entries carry:
+
+- a stable numeric `id`;
+- a zero-padded `sigil`;
+- a normalized `term` and display `raw_term`;
+- a `house` whose numeric range contains the entry;
+- a generated `anchor` and page path;
+- a summary, force, shadow, source, and completion status;
+- major-canon and pocket-canon membership flags.
+
+Spells carry:
+
+- title, version, status, and cast level;
+- the eight working limbs: role, objective, context, constraints, procedure, output contract, verification, and failure behavior;
+- referenced runes;
+- working seal and formal sigil.
+
+Stacks carry:
+
+- title, version, status, entry condition, exit condition, and failure behavior;
+- ordered frames with handoff artifacts and advance conditions;
+- related spell slugs and supporting runes;
+- optional loop or recursion metadata;
+- working seal and formal sigil.
 
 ## Validation
 
-The validation script checks uniqueness, house ranges, required fields, spell limbs, stack handoffs, loop exits, recursive base cases, and broken references.
+The validation script checks uniqueness, house ranges, required fields, completion status, spell limbs, stack handoffs, loop exits, recursive base cases, and broken references. The tests add schema conformance, seal stability, and rendered internal-link auditing. These checks are intentionally plain: the project should be easy to clone, regenerate, inspect, and trust.
+
+Validation should prevent four kinds of drift:
+
+- **Shape drift:** a required field disappears or changes type.
+- **Reference drift:** a spell, stack, rune, anchor, or page path points nowhere.
+- **Canon drift:** a working seal changes without an intentional release note.
+- **Integrity drift:** a scaffolded lexicon entry is presented as finished canon.
+
+The current lexicon integrity layer is deliberately honest. Major and pocket entries are authored canon. Remaining scaffold entries are marked as stubs until they receive term-specific summaries, shadows, and sense disambiguation.
 
 ## Seals
 
 Working seals are short stable digests derived from canonical streams. They are meant for commits, prompt registries, dashboards, and experiment logs. Formal sigils preserve the exact canonical stream for tooling.
+
+A seal is not a security primitive. It is a change detector. If the canonical stream for a spell or stack changes, the seal should change. If a page is reformatted without changing the canonical stream, the seal should remain stable. This gives maintainers a practical way to distinguish editorial movement from behavioral movement.
+
+## Registry and Replay
+
+The natural next tool is a local spell registry. A registry entry should record:
+
+- spell or stack id;
+- version and working seal;
+- input artifacts;
+- model or assistant surface used;
+- output artifact path;
+- verification command or evidence;
+- failure notes and repair path.
+
+That registry makes replay possible. A team can ask whether a prompt worked once, whether it keeps working, which rune cluster improved it, and which output contract caught a bad answer. The public site does not need to run a large platform to support this practice. It needs stable data, stable seals, and examples that show how to record evidence.
+
+## Evaluation Logs
+
+Evaluation in this project should stay close to engineering evidence. A useful eval record compares a weak request with a repaired spell, then records the expected delta: fewer invented assumptions, clearer output shape, explicit verification, better failure handling, or safer execution plan. The [Proof by Difference](../reference/proof-by-difference.qmd) examples are the first public version of that evaluation layer.
+
+
+## Related Pages
+
+- [Seals and Sigils](../reference/seals-and-sigils.qmd)
+- [Proof by Difference](../reference/proof-by-difference.qmd)
+- [Canon Map](../reference/canon-map.qmd)

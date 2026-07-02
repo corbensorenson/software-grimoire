@@ -1,9 +1,9 @@
 PYTHON ?= python3
 QUARTO ?= quarto
 
-.PHONY: all generate validate render clean seals
+.PHONY: all generate validate render test clean seals
 
-all: generate validate render
+all: generate validate render test
 
 generate:
 	$(PYTHON) scripts/bootstrap_project.py
@@ -17,6 +17,8 @@ seals:
 render:
 	$(QUARTO) render
 
+test:
+	$(PYTHON) -m pytest
+
 clean:
 	rm -rf _site .quarto
-

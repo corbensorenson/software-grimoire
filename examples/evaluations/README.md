@@ -3,6 +3,11 @@
 Use this folder for replayable comparisons between weak requests and structured
 spells.
 
+Start with:
+
+- `evaluation-template.md` for one replayable run.
+- `field-spell-eval-matrix.md` for the six public field-spell cases.
+
 Each evaluation should include:
 
 - Weak request.
@@ -23,3 +28,10 @@ Suggested metrics:
 - Reversibility.
 - Reviewer effort.
 
+Minimum passing standard:
+
+- The repaired spell must make at least one success obligation inspectable that
+  the weak request left implicit.
+- The output contract must be checkable by a reviewer who did not write the
+  prompt.
+- The result notes must separate observed behavior from interpretation.

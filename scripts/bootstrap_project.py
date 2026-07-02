@@ -63,6 +63,159 @@ STACK_RELATED_SPELLS = {
     "recursive-decomposition-stack": ["api-design", "safe-refactoring", "test-generation"],
 }
 
+PROOF_CASES = {
+    "safe-refactoring": {
+        "title": "Refactor Without Breaking Behavior",
+        "weak": "Clean up this Python module and make it nicer.",
+        "repaired": """ROLE: Act as a senior Python engineer performing behavior-preserving refactoring.
+
+OBJECTIVE: Remove duplication in the supplied module without changing public behavior.
+
+CONTEXT: The module is imported by two API handlers and one CLI entry point. Existing tests cover only the happy path.
+
+CONSTRAINTS: Do not change public function names, parameter order, return types, or raised exception classes. Touch only this module and its tests.
+
+OUTPUT CONTRACT: Return a minimal patch plan, the proposed refactor, and tests that prove unchanged behavior.
+
+VERIFICATION: State the invariants first; then show before/after test cases for edge inputs.
+
+FAILURE BEHAVIOR: If the module boundary is too small for a safe refactor, say exactly what adjacent file must also move and why.""",
+        "delta": "The repaired spell narrows blast radius, makes invariants reviewable, and forces proof through tests instead of relying on claims of cleanliness.",
+    },
+    "bug-diagnosis-from-logs": {
+        "title": "Incident Diagnosis Without Fake Certainty",
+        "weak": "Why are requests timing out?",
+        "repaired": """ROLE: Act as a production incident analyst.
+
+OBJECTIVE: Narrow the most likely causes of the timeout spike and say what evidence would distinguish them.
+
+CONTEXT: A web API talks to Redis and PostgreSQL. Latency increased in the last hour. Logs are partial.
+
+CONSTRAINTS: Do not claim a root cause unsupported by supplied evidence. Separate fact, hypothesis, and missing signal.
+
+OUTPUT CONTRACT: Return ranked hypotheses, evidence already present, missing evidence, and the next three commands or dashboards to inspect.
+
+VERIFICATION: Every factual claim must cite an observed symptom or be labeled hypothesis.
+
+FAILURE BEHAVIOR: If the evidence is insufficient, say insufficient and identify the minimum additional signals needed.""",
+        "delta": "The repaired spell prevents counterfeit certainty while still producing actionable next checks.",
+    },
+    "api-design": {
+        "title": "API Design Without Hidden Compatibility Traps",
+        "weak": "Design an API for billing.",
+        "repaired": """ROLE: Act as a backend architect designing a public JSON API.
+
+OBJECTIVE: Produce a boring, versionable billing API that supports invoices, payment attempts, refunds, and idempotent retries.
+
+CONTEXT: Mobile and web clients; PostgreSQL storage; slow client upgrade cadence; OAuth-based auth.
+
+CONSTRAINTS: Preserve backward compatibility, include pagination and error schema, prefer boring patterns over novelty.
+
+OUTPUT CONTRACT: Return endpoint table, request/response examples, auth notes, idempotency notes, migration/versioning notes.
+
+VERIFICATION: Call out race conditions, retry hazards, and compatibility risks.
+
+FAILURE BEHAVIOR: If the resource model is underspecified, list assumptions explicitly before designing.""",
+        "delta": "The repaired spell forces the design to expose compatibility, authorization, idempotency, and migration surfaces up front.",
+    },
+    "migration-without-data-loss": {
+        "title": "Online Migration Without Data Loss",
+        "weak": "Migrate users.birthdate from string to date.",
+        "repaired": """ROLE: Act as a migration planner for a production PostgreSQL system.
+
+OBJECTIVE: Move users.birthdate from VARCHAR to DATE without data loss and without breaking reads or writes during rollout.
+
+CONTEXT: The table is large, writes continue during business hours, and some existing rows contain invalid or partial dates.
+
+CONSTRAINTS: Use expand-and-contract. Preserve rollback until data quality is validated. Assume two application deploys are allowed.
+
+OUTPUT CONTRACT: Return phased SQL and application steps: schema expand, dual write, backfill, validation queries, read switch, cleanup, rollback plan.
+
+VERIFICATION: Include checks for invalid rows, null behavior, row-count parity, and post-cutover consistency.
+
+FAILURE BEHAVIOR: If the data quality problem is too large for safe automatic cast, stop at quarantine and describe the manual decision boundary.""",
+        "delta": "The repaired spell turns one risky command into a reversible campaign with validation and dirty-data handling.",
+    },
+    "test-generation": {
+        "title": "Test Generation Without Overfitting To Implementation",
+        "weak": "Write tests for this function.",
+        "repaired": """ROLE: Act as a meticulous test engineer.
+
+OBJECTIVE: Generate focused tests that capture observable behavior and important edge cases for the supplied function.
+
+CONTEXT: Existing behavior is inferred from docstrings, examples, type hints, and current callers.
+
+CONSTRAINTS: Prefer high-signal tests over high-count tests. Do not assert private implementation details unless no public behavior exists.
+
+OUTPUT CONTRACT: Return inferred behaviors, ambiguities, the test file, and a rationale for each test group.
+
+VERIFICATION: Include nominal cases, boundary cases, error cases, and one regression-style case.
+
+FAILURE BEHAVIOR: If behavior is ambiguous, write characterization tests and label them as such.""",
+        "delta": "The repaired spell makes tests protect behavior instead of freezing incidental implementation shape.",
+    },
+    "performance-tuning": {
+        "title": "Performance Tuning Without Micro-Optimization Drift",
+        "weak": "Make this faster.",
+        "repaired": """ROLE: Act as a performance engineer.
+
+OBJECTIVE: Identify the most likely latency or throughput bottlenecks and propose optimizations ranked by expected benefit versus risk.
+
+CONTEXT: The service has a strict latency budget and runs on commodity cloud hardware. Profiling data may be incomplete.
+
+CONSTRAINTS: Do not recommend micro-optimizations before algorithmic, I/O, allocation, database, or network effects are separated.
+
+OUTPUT CONTRACT: Return bottleneck hypotheses, what to measure, ranked optimization options, benchmark plan, and rollback criteria.
+
+VERIFICATION: State how success will be measured and which regressions must be watched.
+
+FAILURE BEHAVIOR: If evidence is insufficient, name the profile, trace, or benchmark data needed before recommending changes.""",
+        "delta": "The repaired spell forces measurement before optimization and keeps rollback criteria attached to speed claims.",
+    },
+}
+
+HOUSE_SENSES = {
+    "architecture-abstraction-and-design": "architecture",
+    "language-semantics-and-formal-shape": "language",
+    "data-state-and-representation": "data",
+    "transformation-algorithms-and-working-verbs": "transformation",
+    "control-flow-coordination-and-temporal-logic": "control",
+    "runtime-memory-and-execution": "runtime",
+    "systems-programming-and-operating-system-words": "operating-system",
+    "networking-and-distributed-systems": "distributed-systems",
+    "databases-persistence-and-time-binding-words": "database",
+    "security-trust-and-warding-words": "security",
+    "build-tooling-versioning-and-release": "release",
+    "testing-verification-and-observability": "verification",
+    "hardware-embedded-and-performance-near-words": "hardware",
+    "interface-ux-and-human-facing-words": "interface-ux",
+    "promptcraft-ai-oriented-engineering-and-spell-structure": "promptcraft",
+    "guarantee-words-quality-attributes-and-behavioral-adjectives": "quality",
+    "failure-words-pathologies-and-counter-spells": "failure",
+    "compound-forms-prefixes-suffixes-and-naming-runes": "naming",
+}
+
+SHADOW_TEMPLATES = {
+    "architecture-abstraction-and-design": "the boundary or abstraction can hide the failure that actually needs ownership.",
+    "language-semantics-and-formal-shape": "the form can look precise while still carrying ambiguous or invalid meaning.",
+    "data-state-and-representation": "stored or transported shape can drift from the world the code thinks it is reading.",
+    "transformation-algorithms-and-working-verbs": "the transformation can silently lose information, reorder meaning, or amplify cost.",
+    "control-flow-coordination-and-temporal-logic": "timing assumptions can turn coordination into stalls, races, retries, or dead paths.",
+    "runtime-memory-and-execution": "runtime convenience can hide allocation, lifetime, contention, or stale-state costs.",
+    "systems-programming-and-operating-system-words": "the host boundary can leak resources, permissions, descriptors, or platform assumptions.",
+    "networking-and-distributed-systems": "distance can turn a local-looking operation into partial failure, delay, or split authority.",
+    "databases-persistence-and-time-binding-words": "durable state can preserve the wrong truth longer than the code remembers why it changed.",
+    "security-trust-and-warding-words": "misplaced trust can grant authority, expose secrets, or make identity look stronger than it is.",
+    "build-tooling-versioning-and-release": "the release machinery can ship unreviewed drift faster than people can inspect it.",
+    "testing-verification-and-observability": "the evidence surface can reward passing checks while missing the property that matters.",
+    "hardware-embedded-and-performance-near-words": "physical constraints can turn clean software assumptions into timing, heat, or bandwidth failures.",
+    "interface-ux-and-human-facing-words": "the human-facing surface can make the wrong action easier than the safe one.",
+    "promptcraft-ai-oriented-engineering-and-spell-structure": "the model can satisfy the shape of the request while inventing unsupported substance.",
+    "guarantee-words-quality-attributes-and-behavioral-adjectives": "the quality claim can become theater if no invariant or measurement backs it.",
+    "failure-words-pathologies-and-counter-spells": "naming the failure can create false closure before the mechanism is actually understood.",
+    "compound-forms-prefixes-suffixes-and-naming-runes": "the modifier can imply a guarantee the underlying design does not actually provide.",
+}
+
 
 def slugify(value: str) -> str:
     value = value.lower()
@@ -125,6 +278,86 @@ def split_term(term: str) -> tuple[str, str | None]:
     if not m:
         return term.strip(), None
     return m.group(1).strip(), m.group(2).strip()
+
+
+def term_specific_shadow(entry: dict) -> str:
+    template = SHADOW_TEMPLATES.get(entry["house"], "Shadow: the term can imply more structure than the artifact actually carries.")
+    term = entry["term"]
+    if entry["house"] == "failure-words-pathologies-and-counter-spells":
+        return f"Shadow: treating {term} as the root cause too early can freeze the investigation around a symptom."
+    if entry["house"] == "guarantee-words-quality-attributes-and-behavioral-adjectives":
+        return f"Shadow: calling something {term} can hide the missing invariant, test, or operating envelope."
+    if entry["house"] == "promptcraft-ai-oriented-engineering-and-spell-structure":
+        return f"Shadow: {term} can become a prompt-shaped decoration unless it changes output, evidence, or tool behavior."
+    if entry["house"] == "compound-forms-prefixes-suffixes-and-naming-runes":
+        return f"Shadow: {term} can smuggle in a guarantee the base design has not earned."
+    return template
+
+
+def refresh_force_shadow(entry: dict) -> None:
+    shadow = None
+    force = entry["summary"]
+    if "Shadow:" in entry["summary"]:
+        force, shadow = [part.strip() for part in entry["summary"].split("Shadow:", 1)]
+    entry["force"] = force.strip()
+    entry["shadow"] = (shadow.strip() if shadow else entry.get("shadow") or term_specific_shadow(entry))
+
+
+def add_completion_status(lexicon: list[dict], major: dict[int, dict], pocket: dict[int, dict]) -> list[dict]:
+    original_counts = {}
+    for entry in lexicon:
+        original_counts[entry["summary"]] = original_counts.get(entry["summary"], 0) + 1
+
+    for entry in lexicon:
+        ident = entry["id"]
+        if not entry.get("sense"):
+            entry["sense"] = HOUSE_SENSES.get(entry["house"])
+
+        original_summary = entry["summary"]
+        was_duplicate = original_counts[original_summary] > 1
+
+        if ident in major:
+            entry["summary"] = major[ident]["expanded_gloss"]
+            entry["force_source"] = "major-canon"
+        elif ident in pocket:
+            entry["summary"] = pocket[ident]["pocket_gloss"]
+            entry["force_source"] = "pocket-canon"
+        else:
+            entry["force_source"] = "master-lexicon"
+
+        refresh_force_shadow(entry)
+
+        if ident in major or ident in pocket:
+            entry["completion_status"] = "authored"
+        elif was_duplicate:
+            entry["completion_status"] = "stub"
+        elif not entry.get("shadow"):
+            entry["completion_status"] = "needs_shadow"
+        elif not entry.get("sense"):
+            entry["completion_status"] = "needs_sense"
+        else:
+            entry["completion_status"] = "authored"
+
+        entry["is_stub"] = entry["completion_status"] == "stub"
+
+    return lexicon
+
+
+def completion_counts(entries: list[dict]) -> dict[str, int]:
+    counts: dict[str, int] = {}
+    for entry in entries:
+        status = entry.get("completion_status", "unknown")
+        counts[status] = counts.get(status, 0) + 1
+    return counts
+
+
+def count_summary_table(counts: dict[str, int]) -> str:
+    order = ["authored", "stub", "needs_shadow", "needs_sense", "unknown"]
+    rows = [["Status", "Count"]]
+    for status in order:
+        if counts.get(status):
+            rows.append([status, str(counts[status])])
+    return qmd_table(rows)
 
 
 def canonical_stream(kind: str, record: dict) -> str:
@@ -515,7 +748,49 @@ def qmd_table(rows: list[list[str]]) -> str:
     return "\n".join(lines)
 
 
-def write_chapters(public_text: str, pocket_text: str, stacks_text: str) -> None:
+def proof_case_markdown(slug: str, case: dict, qmd: bool = False) -> str:
+    repaired = "```text\n" + case["repaired"].strip() + "\n```"
+    link = f"\n\n[Back to spell](../../spells/{slug}.qmd)\n" if not qmd else ""
+    return f"""# {case['title']}
+
+## Weak Request
+
+{case['weak']}
+
+## Repaired Spell
+
+{repaired}
+
+## Expected Delta
+
+{case['delta']}
+{link}"""
+
+
+def write_proof_examples() -> None:
+    for slug, case in PROOF_CASES.items():
+        write_text(ROOT / "examples" / "weak-vs-repaired" / f"{slug}.qmd", page(case["title"], proof_case_markdown(slug, case)))
+
+
+def write_chapters(public_text: str, pocket_text: str, stacks_text: str, lexicon: list[dict], houses: list[dict]) -> None:
+    counts = completion_counts(lexicon)
+    authored = counts.get("authored", 0)
+    stub = counts.get("stub", 0)
+    per_house_rows = [["House", "Authored", "Stub", "Needs Shadow", "Needs Sense"]]
+    by_house = {h["id"]: [] for h in houses}
+    for entry in lexicon:
+        by_house[entry["house"]].append(entry)
+    for house in houses:
+        h_counts = completion_counts(by_house[house["id"]])
+        per_house_rows.append(
+            [
+                house["name"],
+                str(h_counts.get("authored", 0)),
+                str(h_counts.get("stub", 0)),
+                str(h_counts.get("needs_shadow", 0)),
+                str(h_counts.get("needs_sense", 0)),
+            ]
+        )
     write_text(
         ROOT / "index.qmd",
         page(
@@ -573,17 +848,27 @@ The site can be read three ways.
         ROOT / "porting-status.qmd",
         page(
             "Porting Status",
-            """# Porting Status
+            f"""# Porting Status
 
 The grimoire source corpus has been ported into the public Quarto site and repository.
 
 | Source | Ported form | Status |
 |---|---|---|
-| `software_magic_grimoire_v3_public_release.docx` | Main book chapters, public canon, full lexicon data, generated reference pages | Ported |
+| `software_magic_grimoire_v3_public_release.docx` | Main book chapters, public canon, full lexicon data, generated reference pages | Structurally ported; lexicon authoring in progress |
 | `pocket_grimoire_software_spellcraft_final.docx` | Pocket field guide, 300-rune pocket canon, quick-reference pages | Ported |
 | `software_spellcraft_addendum_on_stacked_spells.docx` | Stackcraft chapter, stack grammar, six generated stack pages | Ported |
 
-The first public seed was a complete content port. The current pass improves the reading layer: guided paths, rune anchors, term index links, spell-to-rune links, stack-to-spell links, and canon maps.
+The first public seed was a complete structural port. The reader-linking pass improved the reading layer: guided paths, rune anchors, term index links, spell-to-rune links, stack-to-spell links, and canon maps. The current integrity layer is honest about lexicon authoring state.
+
+## Lexicon Completion
+
+The master lexicon currently has `{authored}` authored entries and `{stub}` stub entries.
+
+{count_summary_table(counts)}
+
+## Completion by House
+
+{qmd_table(per_house_rows)}
 
 ## What Counts As Complete
 
@@ -592,6 +877,7 @@ The first public seed was a complete content port. The current pass improves the
 - Major and pocket canon entries link into the master house pages.
 - Spell templates link to relevant runes and supporting reference pages.
 - Stack workflows link to relevant spell templates, runes, and stack grammar.
+- Stub lexicon entries are explicitly marked as stubs until they receive term-specific summaries, shadows, and sense disambiguation.
 - The roadmap distinguishes archival completeness from reader experience completeness.
 """,
         ),
@@ -618,7 +904,7 @@ The goal is not ornate prompting. The goal is bounded, verifiable work.
             "Tooling and Formalization",
             """# Tooling and Formalization
 
-The grimoire becomes more useful when its structures are machine-readable. This repository treats spells, stacks, houses, runes, and seals as data.
+The grimoire becomes more useful when its structures are machine-readable. This repository treats spells, stacks, houses, runes, and seals as data rather than decorative prose. The book is the reader surface. The JSON files are the working surface. The schemas and tests are the guardrails that keep the two from drifting apart.
 
 ## Structured Layers
 
@@ -627,15 +913,76 @@ The grimoire becomes more useful when its structures are machine-readable. This 
 - `data/pocket_runes.json` stores the 300-entry field canon.
 - `data/spells.json` stores reusable spell templates.
 - `data/stacks.json` stores repeatable workflow choreography.
+- `data/seals.json` stores the public digest layer for spells and stacks.
 - `schemas/` documents the expected shape of each data file.
+
+The source manuscripts remain in `source_docs/` and the extraction layer remains in `source_extracts/`. Generated pages should be treated as build artifacts derived from those sources and from the structured data. When the same concept appears in several places, the durable version should live in data or in the generator, then render outward into the site.
+
+## Data Contracts
+
+The minimum useful data contract is not "has text." It is "has enough structure to be checked."
+
+Lexicon entries carry:
+
+- a stable numeric `id`;
+- a zero-padded `sigil`;
+- a normalized `term` and display `raw_term`;
+- a `house` whose numeric range contains the entry;
+- a generated `anchor` and page path;
+- a summary, force, shadow, source, and completion status;
+- major-canon and pocket-canon membership flags.
+
+Spells carry:
+
+- title, version, status, and cast level;
+- the eight working limbs: role, objective, context, constraints, procedure, output contract, verification, and failure behavior;
+- referenced runes;
+- working seal and formal sigil.
+
+Stacks carry:
+
+- title, version, status, entry condition, exit condition, and failure behavior;
+- ordered frames with handoff artifacts and advance conditions;
+- related spell slugs and supporting runes;
+- optional loop or recursion metadata;
+- working seal and formal sigil.
 
 ## Validation
 
-The validation script checks uniqueness, house ranges, required fields, spell limbs, stack handoffs, loop exits, recursive base cases, and broken references.
+The validation script checks uniqueness, house ranges, required fields, completion status, spell limbs, stack handoffs, loop exits, recursive base cases, and broken references. The tests add schema conformance, seal stability, and rendered internal-link auditing. These checks are intentionally plain: the project should be easy to clone, regenerate, inspect, and trust.
+
+Validation should prevent four kinds of drift:
+
+- **Shape drift:** a required field disappears or changes type.
+- **Reference drift:** a spell, stack, rune, anchor, or page path points nowhere.
+- **Canon drift:** a working seal changes without an intentional release note.
+- **Integrity drift:** a scaffolded lexicon entry is presented as finished canon.
+
+The current lexicon integrity layer is deliberately honest. Major and pocket entries are authored canon. Remaining scaffold entries are marked as stubs until they receive term-specific summaries, shadows, and sense disambiguation.
 
 ## Seals
 
 Working seals are short stable digests derived from canonical streams. They are meant for commits, prompt registries, dashboards, and experiment logs. Formal sigils preserve the exact canonical stream for tooling.
+
+A seal is not a security primitive. It is a change detector. If the canonical stream for a spell or stack changes, the seal should change. If a page is reformatted without changing the canonical stream, the seal should remain stable. This gives maintainers a practical way to distinguish editorial movement from behavioral movement.
+
+## Registry and Replay
+
+The natural next tool is a local spell registry. A registry entry should record:
+
+- spell or stack id;
+- version and working seal;
+- input artifacts;
+- model or assistant surface used;
+- output artifact path;
+- verification command or evidence;
+- failure notes and repair path.
+
+That registry makes replay possible. A team can ask whether a prompt worked once, whether it keeps working, which rune cluster improved it, and which output contract caught a bad answer. The public site does not need to run a large platform to support this practice. It needs stable data, stable seals, and examples that show how to record evidence.
+
+## Evaluation Logs
+
+Evaluation in this project should stay close to engineering evidence. A useful eval record compares a weak request with a repaired spell, then records the expected delta: fewer invented assumptions, clearer output shape, explicit verification, better failure handling, or safer execution plan. The [Proof by Difference](../reference/proof-by-difference.qmd) examples are the first public version of that evaluation layer.
 """,
         ),
         (
@@ -643,7 +990,7 @@ Working seals are short stable digests derived from canonical streams. They are 
             "Living Practice",
             """# Living Practice
 
-The project should stay useful under real engineering pressure. A spell that cannot be adapted to a live task is just decorative prose. A stack that does not move artifacts is just a checklist.
+The project should stay useful under real engineering pressure. A spell that cannot be adapted to a live task is just decorative prose. A stack that does not move artifacts is just a checklist. Living practice is the discipline of keeping the metaphor subordinate to engineering evidence.
 
 ## Operating Rules
 
@@ -653,9 +1000,66 @@ The project should stay useful under real engineering pressure. A spell that can
 - Keep recursive workflows tied to smaller scopes and base cases.
 - Keep lexicon entries connected to both force and shadow.
 
+## Solo Use
+
+For an individual practitioner, the fastest adoption path is:
+
+1. Start with a weak request that you would normally send to an assistant.
+2. Choose the closest field spell.
+3. Fill only the limbs that affect risk.
+4. Add one verification instruction.
+5. Save the final prompt and result when it worked.
+
+This is not meant to slow down simple work. It is meant to make expensive work legible before it runs. A quick cast is enough for low-risk explanation. A full ritual is appropriate when the work touches migrations, incidents, security, releases, or broad refactors.
+
+## Team Use
+
+For a team, the grimoire becomes useful when repeated work gets named. A prompt that solves an incident class should become a spell. A sequence that safely moves code through analysis, edit, tests, review, and release should become a stack. A term that repeatedly changes model behavior should become a rune candidate.
+
+A team prompt registry should track:
+
+- approved spell templates;
+- current working seals;
+- owner or review group;
+- allowed artifact scopes;
+- required verification commands;
+- known failure modes;
+- retirement notes.
+
+The registry does not need to be heavy. A folder of versioned Markdown or JSON files is enough until the work demands more.
+
+## Adoption Ladder
+
+The practice should grow in this order:
+
+1. Use the existing spells as examples.
+2. Create local variants for repeated tasks.
+3. Record weak-vs-repaired cases when a variant clearly improves output.
+4. Promote stable variants into team templates.
+5. Add stack choreography only after single spells become too small.
+6. Add tooling only after humans already agree on the contract.
+
+This order matters because premature tooling can fossilize vague habits. The formal layer should capture practice that already works, then make it easier to repeat.
+
 ## Contribution Standard
 
 New additions should improve the public canon, a working template, an executable schema, or a verification practice. The contribution guide explains how to propose additions without weakening the structure.
+
+Good contributions usually do one of these things:
+
+- turn a vague prompt into a bounded spell;
+- add an example with an expected verification delta;
+- improve a stub lexicon entry into authored canon;
+- add a stack that moves real artifacts through guarded steps;
+- strengthen a schema or test without making contribution awkward.
+
+Weak contributions usually add vocabulary without force, examples without evidence, or metaphor without a working contract.
+
+## Canon Governance
+
+The public canon should change slowly. New terms can be proposed freely, but canon promotion should require a useful force description, a failure shadow, a sense disambiguator, and at least one working example. A spell or stack change that changes behavior should update the seal and changelog. Editorial-only changes should not pretend to be behavioral releases.
+
+The goal is a living book that can accept new practice without losing its spine.
 """,
         ),
     ]
@@ -673,7 +1077,7 @@ New additions should improve the public canon, a working template, an executable
         "03-crafting-spells.qmd": [
             ("Failure Modes", "../reference/failure-modes.qmd"),
             ("Spell Library", "../spells/index.qmd"),
-            ("Proof by Difference", "../chapters/07-public-canon.qmd#proof-by-difference"),
+            ("Proof by Difference", "../reference/proof-by-difference.qmd"),
         ],
         "04-sigils-canonicalization-and-seals.qmd": [
             ("Seals and Sigils", "../reference/seals-and-sigils.qmd"),
@@ -698,6 +1102,16 @@ New additions should improve the public canon, a working template, an executable
             ("Stack Library", "../stacks/index.qmd"),
             ("Failure Modes", "../reference/failure-modes.qmd"),
         ],
+        "09-tooling-and-formalization.qmd": [
+            ("Seals and Sigils", "../reference/seals-and-sigils.qmd"),
+            ("Proof by Difference", "../reference/proof-by-difference.qmd"),
+            ("Canon Map", "../reference/canon-map.qmd"),
+        ],
+        "10-living-practice.qmd": [
+            ("Contribution Guide", "https://github.com/corbensorenson/software-grimoire/blob/main/CONTRIBUTING.md"),
+            ("Proof by Difference", "../reference/proof-by-difference.qmd"),
+            ("Failure Modes", "../reference/failure-modes.qmd"),
+        ],
     }
     for filename, title, body in chapter_defs:
         body = body + related_section(chapter_links.get(filename, []))
@@ -708,6 +1122,7 @@ New additions should improve the public canon, a working template, an executable
 
 
 def write_reference_pages(houses: list[dict], lexicon: list[dict], major: dict[int, dict], pocket: dict[int, dict], spells: list[dict], stacks: list[dict]) -> None:
+    global_counts = completion_counts(lexicon)
     rows = [["House", "Range", "Entries"]]
     by_house = {h["id"]: [] for h in houses}
     lex_by_id = {entry["id"]: entry for entry in lexicon}
@@ -725,6 +1140,9 @@ def write_reference_pages(houses: list[dict], lexicon: list[dict], major: dict[i
             "- [Canon Map](canon-map.qmd)\n"
             "- [Term Index](term-index.qmd)\n"
             "- [Master Lexicon](lexicon.qmd)\n\n"
+            "## Lexicon Completion\n\n"
+            + count_summary_table(global_counts)
+            + "\n\n"
             + qmd_table(rows)
             + "\n",
         ),
@@ -842,6 +1260,27 @@ Common stack failures:
 """,
         ),
     )
+    proof_rows = [["Spell", "Case", "Weak Request", "Expected Delta"]]
+    for slug, case in PROOF_CASES.items():
+        spell_title = next((s["title"] for s in spells if s["id"].split(".")[1] == slug), slug)
+        proof_rows.append(
+            [
+                f"[{spell_title}](../spells/{slug}.qmd)",
+                f"[{case['title']}](../examples/weak-vs-repaired/{slug}.qmd)",
+                case["weak"],
+                case["delta"],
+            ]
+        )
+    proof_body = """# Proof by Difference
+
+Proof by Difference is the grimoire's evidence discipline. It compares a weak request and a repaired spell against the same task. The claim is not that the repaired spell guarantees a perfect answer. The claim is that it makes success obligations inspectable: artifact boundary, invariant, output contract, verification, and failure behavior.
+
+Use each case as a replayable prompt-design test. If a future model or workflow makes the weak request perform as well as the repaired spell, record that. If the repaired spell fails, inspect which limb was underspecified.
+
+Replay templates and the six-case evaluation matrix live in the repository's [evaluation examples](https://github.com/corbensorenson/software-grimoire/tree/main/examples/evaluations).
+
+""" + qmd_table(proof_rows)
+    write_text(ROOT / "reference" / "proof-by-difference.qmd", page("Proof by Difference", proof_body))
 
     major_rows = [["Sigil", "Term", "Cluster", "Gloss"]]
     for ident in sorted(major):
@@ -857,15 +1296,15 @@ Common stack failures:
         pocket_rows.append([f"{ident:04d}", rune_link(entry, "../"), item["pocket_gloss"]])
     write_text(ROOT / "reference" / "pocket-canon.qmd", page("Pocket Canon", qmd_table(pocket_rows)))
 
-    lex_rows = [["Sigil", "Term", "House", "Summary"]]
+    lex_rows = [["Sigil", "Term", "House", "Completion", "Summary"]]
     for entry in lexicon:
-        lex_rows.append([entry["sigil"], rune_link(entry, "../"), f"[{entry['house_name']}](house-{entry['house']}.qmd)", entry["summary"]])
+        lex_rows.append([entry["sigil"], rune_link(entry, "../"), f"[{entry['house_name']}](house-{entry['house']}.qmd)", entry["completion_status"], entry["summary"]])
     write_text(ROOT / "reference" / "lexicon.qmd", page("Master Lexicon", qmd_table(lex_rows)))
 
-    term_rows = [["Term", "Sigil", "House", "Status"]]
+    term_rows = [["Term", "Sigil", "House", "Canon", "Completion"]]
     for entry in sorted(lexicon, key=lambda e: (e["term"].lower(), e["id"])):
-        status = ", ".join(label for label, flag in [("major", entry["major"]), ("pocket", entry["pocket"])] if flag) or "canonical"
-        term_rows.append([rune_link(entry, "../"), entry["sigil"], entry["house_name"], status])
+        canon_status = ", ".join(label for label, flag in [("major", entry["major"]), ("pocket", entry["pocket"])] if flag) or "master"
+        term_rows.append([rune_link(entry, "../"), entry["sigil"], entry["house_name"], canon_status, entry["completion_status"]])
     write_text(ROOT / "reference" / "term-index.qmd", page("Term Index", qmd_table(term_rows)))
 
     canon_map = """# Canon Map
@@ -914,9 +1353,13 @@ Use this map to jump from intent to the right reading surface.
 
     for house in houses:
         entries = by_house[house["id"]]
-        rows = [["Sigil", "Term", "Summary"]]
+        h_counts = completion_counts(entries)
+        rows = [["Sigil", "Term", "Completion", "Summary"]]
         for entry in entries:
-            rows.append([entry["sigil"], f"[{entry['raw_term']}](#rune-{entry['sigil']})", entry["summary"]])
+            term_label = f"[{entry['raw_term']}](#rune-{entry['sigil']})"
+            if entry["completion_status"] == "stub":
+                term_label = f"`STUB` {term_label}"
+            rows.append([entry["sigil"], term_label, entry["completion_status"], entry["summary"]])
         details = []
         for entry in entries:
             badges = []
@@ -930,6 +1373,8 @@ Use this map to jump from intent to the right reading surface.
                 "",
                 f"**Status:** {entry['status']}{badge_text}",
                 "",
+                f"**Completion:** {entry['completion_status']}",
+                "",
                 f"**Force:** {entry['force']}",
             ]
             if entry.get("shadow"):
@@ -942,6 +1387,9 @@ Use this map to jump from intent to the right reading surface.
         body = (
             f"# {house['name']}\n\n"
             f"Range: `{house['range']}`.\n\n"
+            "## Completion\n\n"
+            + count_summary_table(h_counts)
+            + "\n\n"
             "Use the summary table for scanning. Each row links to the detailed anchored entry below.\n\n"
             + qmd_table(rows)
             + "\n\n## Entries\n\n"
@@ -969,6 +1417,7 @@ Use this map to jump from intent to the right reading surface.
                     ("Canonical Spell Skeleton", "../reference/spell-skeleton.qmd"),
                     ("Cast Levels", "../reference/cast-levels.qmd"),
                     ("Failure Modes", "../reference/failure-modes.qmd"),
+                    ("Proof by Difference Case", f"../examples/weak-vs-repaired/{slug}.qmd"),
                     ("Canon Map", "../reference/canon-map.qmd"),
                 ]
             )
@@ -1049,6 +1498,7 @@ def write_quarto_config(houses: list[dict]) -> None:
             "release-gate-stack",
             "recursive-decomposition-stack",
         ]],
+        "proof_pages": [f"examples/weak-vs-repaired/{slug}.qmd" for slug in PROOF_CASES],
         "reference_pages": [
             "reference/index.qmd",
             "reference/cast-levels.qmd",
@@ -1056,6 +1506,7 @@ def write_quarto_config(houses: list[dict]) -> None:
             "reference/stack-grammar.qmd",
             "reference/seals-and-sigils.qmd",
             "reference/failure-modes.qmd",
+            "reference/proof-by-difference.qmd",
             "reference/canon-map.qmd",
             "reference/major-canon.qmd",
             "reference/pocket-canon.qmd",
@@ -1068,6 +1519,7 @@ def write_quarto_config(houses: list[dict]) -> None:
     refs = "\n".join(["        - " + p for p in structure["reference_pages"]])
     spells = "\n".join(["        - " + p for p in structure["spell_pages"]])
     stacks = "\n".join(["        - " + p for p in structure["stack_pages"]])
+    proof_pages = "\n".join(["        - " + p for p in structure["proof_pages"]])
     chapters = "\n".join(["    - " + p for p in structure["chapters"][:2]])
     main_chapters = "\n".join(["        - " + p for p in structure["chapters"][2:]])
     q = f"""project:
@@ -1097,6 +1549,9 @@ book:
     - part: "Stack Library"
       chapters:
 {stacks}
+    - part: "Proof by Difference Cases"
+      chapters:
+{proof_pages}
     - part: "Reference"
       chapters:
 {refs}
@@ -1157,6 +1612,7 @@ def main() -> None:
     major = parse_major_entries(public_text)
     pocket = parse_pocket_entries(pocket_text)
     lexicon = parse_lexicon(public_text, houses, major, pocket)
+    lexicon = add_completion_status(lexicon, major, pocket)
     spells = build_spells(public_text)
     stacks = build_stacks(stacks_text)
 
@@ -1174,7 +1630,8 @@ def main() -> None:
         },
     )
 
-    write_chapters(public_text, pocket_text, stacks_text)
+    write_chapters(public_text, pocket_text, stacks_text, lexicon, houses)
+    write_proof_examples()
     write_reference_pages(houses, lexicon, major, pocket, spells, stacks)
     write_quarto_config(houses)
 

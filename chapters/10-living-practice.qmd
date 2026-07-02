@@ -4,7 +4,7 @@ title: "Living Practice"
 
 # Living Practice
 
-The project should stay useful under real engineering pressure. A spell that cannot be adapted to a live task is just decorative prose. A stack that does not move artifacts is just a checklist.
+The project should stay useful under real engineering pressure. A spell that cannot be adapted to a live task is just decorative prose. A stack that does not move artifacts is just a checklist. Living practice is the discipline of keeping the metaphor subordinate to engineering evidence.
 
 ## Operating Rules
 
@@ -14,6 +14,70 @@ The project should stay useful under real engineering pressure. A spell that can
 - Keep recursive workflows tied to smaller scopes and base cases.
 - Keep lexicon entries connected to both force and shadow.
 
+## Solo Use
+
+For an individual practitioner, the fastest adoption path is:
+
+1. Start with a weak request that you would normally send to an assistant.
+2. Choose the closest field spell.
+3. Fill only the limbs that affect risk.
+4. Add one verification instruction.
+5. Save the final prompt and result when it worked.
+
+This is not meant to slow down simple work. It is meant to make expensive work legible before it runs. A quick cast is enough for low-risk explanation. A full ritual is appropriate when the work touches migrations, incidents, security, releases, or broad refactors.
+
+## Team Use
+
+For a team, the grimoire becomes useful when repeated work gets named. A prompt that solves an incident class should become a spell. A sequence that safely moves code through analysis, edit, tests, review, and release should become a stack. A term that repeatedly changes model behavior should become a rune candidate.
+
+A team prompt registry should track:
+
+- approved spell templates;
+- current working seals;
+- owner or review group;
+- allowed artifact scopes;
+- required verification commands;
+- known failure modes;
+- retirement notes.
+
+The registry does not need to be heavy. A folder of versioned Markdown or JSON files is enough until the work demands more.
+
+## Adoption Ladder
+
+The practice should grow in this order:
+
+1. Use the existing spells as examples.
+2. Create local variants for repeated tasks.
+3. Record weak-vs-repaired cases when a variant clearly improves output.
+4. Promote stable variants into team templates.
+5. Add stack choreography only after single spells become too small.
+6. Add tooling only after humans already agree on the contract.
+
+This order matters because premature tooling can fossilize vague habits. The formal layer should capture practice that already works, then make it easier to repeat.
+
 ## Contribution Standard
 
 New additions should improve the public canon, a working template, an executable schema, or a verification practice. The contribution guide explains how to propose additions without weakening the structure.
+
+Good contributions usually do one of these things:
+
+- turn a vague prompt into a bounded spell;
+- add an example with an expected verification delta;
+- improve a stub lexicon entry into authored canon;
+- add a stack that moves real artifacts through guarded steps;
+- strengthen a schema or test without making contribution awkward.
+
+Weak contributions usually add vocabulary without force, examples without evidence, or metaphor without a working contract.
+
+## Canon Governance
+
+The public canon should change slowly. New terms can be proposed freely, but canon promotion should require a useful force description, a failure shadow, a sense disambiguator, and at least one working example. A spell or stack change that changes behavior should update the seal and changelog. Editorial-only changes should not pretend to be behavioral releases.
+
+The goal is a living book that can accept new practice without losing its spine.
+
+
+## Related Pages
+
+- [Contribution Guide](https://github.com/corbensorenson/software-grimoire/blob/main/CONTRIBUTING.md)
+- [Proof by Difference](../reference/proof-by-difference.qmd)
+- [Failure Modes](../reference/failure-modes.qmd)

@@ -1,5 +1,8 @@
 # The Grimoire of Software Magic Words
 
+[![Check Quarto Site](https://github.com/corbensorenson/software-grimoire/actions/workflows/check.yml/badge.svg)](https://github.com/corbensorenson/software-grimoire/actions/workflows/check.yml)
+[![Publish Quarto Site](https://github.com/corbensorenson/software-grimoire/actions/workflows/publish.yml/badge.svg)](https://github.com/corbensorenson/software-grimoire/actions/workflows/publish.yml)
+
 Operative vocabulary, prompt-spells, and stackcraft for AI-assisted software
 engineering.
 
@@ -23,12 +26,15 @@ Implemented:
   addendum.
 - Structured JSON data for lexicon houses, full 1,645-entry lexicon, 50-entry
   major canon, 300-entry pocket canon, six field spells, and six worked stacks.
+- Honest lexicon completion metadata: 343 authored entries and 1,302 marked
+  stubs until they receive final term-specific authoring.
 - Stable rune anchors, term index, canon map, and generated cross-links between
   chapters, spells, stacks, and lexicon entries.
-- Generated spell, stack, and reference pages.
-- JSON schemas and validation tooling.
+- Generated spell, stack, Proof by Difference, and reference pages.
+- JSON schemas, validation tooling, seal-stability tests, and rendered
+  internal-link audit.
 - Working seal generation for spells and stacks.
-- GitHub Pages publishing workflow.
+- GitHub Pages publishing workflow and pull-request check workflow.
 
 ## Local Development
 
@@ -43,14 +49,16 @@ Common commands:
 make generate
 make validate
 make render
+make test
 make all
 python3 scripts/grimoire.py validate
 python3 scripts/grimoire.py seals
+python3 scripts/grimoire.py all
 ```
 
 The generated site is written to `_site/`.
 
-Current render size: 58 Quarto pages.
+Current render size: 65 Quarto pages.
 
 ## Repository Map
 
@@ -67,11 +75,11 @@ Current render size: 58 Quarto pages.
 
 ## Public Site
 
-The intended public site URL is:
+The public repository and site are:
 
-<https://corbensorenson.github.io/software-grimoire/>
+- <https://github.com/corbensorenson/software-grimoire>
+- <https://corbensorenson.github.io/software-grimoire/>
 
 ## License
 
-Content and code are released under the MIT License unless a future release
-splits code/content licensing more narrowly.
+Released under the MIT License.

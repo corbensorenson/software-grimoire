@@ -6,107 +6,114 @@ title: "Control Flow, Coordination, and Temporal Logic"
 
 Range: `0512-0608`.
 
+## Completion
+
+| Status   | Count |
+| -------- | ----- |
+| authored | 19    |
+| stub     | 78    |
+
 Use the summary table for scanning. Each row links to the detailed anchored entry below.
 
-| Sigil | Term                           | Summary                                                                                                                                       |
-| ----- | ------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------- |
-| 0512  | [abort](#rune-0512)            | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
-| 0513  | [acknowledge](#rune-0513)      | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
-| 0514  | [async](#rune-0514)            | A time-binding word; it changes when an action may proceed.                                                                                   |
-| 0515  | [await](#rune-0515)            | A suspension word; it pauses one flow so other work may continue.                                                                             |
-| 0516  | [backoff {Ctrl}](#rune-0516)   | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
-| 0517  | [barrier {Ctrl}](#rune-0517)   | A rendezvous word; no party crosses until all required parties arrive.                                                                        |
-| 0518  | [block {Ctrl}](#rune-0518)     | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
-| 0519  | [branch {Ctrl}](#rune-0519)    | A divergence word; execution or history splits into alternate paths.                                                                          |
-| 0520  | [break](#rune-0520)            | A sequencing word; it decides what happens next and under what condition.                                                                     |
-| 0521  | [callback](#rune-0521)         | A sequencing word; it decides what happens next and under what condition.                                                                     |
-| 0522  | [cancel](#rune-0522)           | A time-binding word; it changes when an action may proceed.                                                                                   |
-| 0523  | [case](#rune-0523)             | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
-| 0524  | [catch](#rune-0524)            | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
-| 0525  | [chain](#rune-0525)            | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
-| 0526  | [choose](#rune-0526)           | A sequencing word; it decides what happens next and under what condition.                                                                     |
-| 0527  | [circuit breaker](#rune-0527)  | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
-| 0528  | [clause](#rune-0528)           | A sequencing word; it decides what happens next and under what condition.                                                                     |
-| 0529  | [continue](#rune-0529)         | A sequencing word; it decides what happens next and under what condition.                                                                     |
-| 0530  | [coroutine](#rune-0530)        | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
-| 0531  | [countdown](#rune-0531)        | A sequencing word; it decides what happens next and under what condition.                                                                     |
-| 0532  | [cycle](#rune-0532)            | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
-| 0533  | [debounce](#rune-0533)         | A sequencing word; it decides what happens next and under what condition.                                                                     |
-| 0534  | [defer {Ctrl}](#rune-0534)     | A time-binding word; it changes when an action may proceed.                                                                                   |
-| 0535  | [delay](#rune-0535)            | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
-| 0536  | [dispatch {Ctrl}](#rune-0536)  | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
-| 0537  | [do](#rune-0537)               | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
-| 0538  | [else](#rune-0538)             | A sequencing word; it decides what happens next and under what condition.                                                                     |
-| 0539  | [enqueue](#rune-0539)          | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
-| 0540  | [event loop](#rune-0540)       | A circulation word; work is accepted, queued, and resumed by recurrent inspection.                                                            |
-| 0541  | [fallback {Ctrl}](#rune-0541)  | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
-| 0542  | [fan-in](#rune-0542)           | A sequencing word; it decides what happens next and under what condition.                                                                     |
-| 0543  | [fan-out {Ctrl}](#rune-0543)   | A time-binding word; it changes when an action may proceed.                                                                                   |
-| 0544  | [finally](#rune-0544)          | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
-| 0545  | [fire-and-forget](#rune-0545)  | A time-binding word; it changes when an action may proceed.                                                                                   |
-| 0546  | [flow control](#rune-0546)     | A sequencing word; it decides what happens next and under what condition.                                                                     |
-| 0547  | [for](#rune-0547)              | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
-| 0548  | [fork {Ctrl}](#rune-0548)      | A time-binding word; it changes when an action may proceed.                                                                                   |
-| 0549  | [future](#rune-0549)           | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
-| 0550  | [gate](#rune-0550)             | A permission word; passage occurs only when conditions hold.                                                                                  |
-| 0551  | [guard](#rune-0551)            | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
-| 0552  | [halt](#rune-0552)             | A sequencing word; it decides what happens next and under what condition.                                                                     |
-| 0553  | [heartbeat {Ctrl}](#rune-0553) | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
-| 0554  | [if](#rune-0554)               | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
-| 0555  | [iterate](#rune-0555)          | A time-binding word; it changes when an action may proceed.                                                                                   |
-| 0556  | [join {Ctrl}](#rune-0556)      | A union word; separate streams, sets, or histories are brought into one result.                                                               |
-| 0557  | [jump](#rune-0557)             | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
-| 0558  | [latch](#rune-0558)            | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
-| 0559  | [loop](#rune-0559)             | A time-binding word; it changes when an action may proceed.                                                                                   |
-| 0560  | [match](#rune-0560)            | A sequencing word; it decides what happens next and under what condition.                                                                     |
-| 0561  | [mutex](#rune-0561)            | An exclusion word; only one actor may enter the critical region at a time.                                                                    |
-| 0562  | [notify](#rune-0562)           | A sequencing word; it decides what happens next and under what condition.                                                                     |
-| 0563  | [once](#rune-0563)             | A sequencing word; it decides what happens next and under what condition.                                                                     |
-| 0564  | [parallel {Ctrl}](#rune-0564)  | A sequencing word; it decides what happens next and under what condition.                                                                     |
-| 0565  | [pause](#rune-0565)            | A time-binding word; it changes when an action may proceed.                                                                                   |
-| 0566  | [poll {Ctrl}](#rune-0566)      | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
-| 0567  | [preempt](#rune-0567)          | A sequencing word; it decides what happens next and under what condition.                                                                     |
-| 0568  | [priority](#rune-0568)         | A time-binding word; it changes when an action may proceed.                                                                                   |
-| 0569  | [process {Ctrl}](#rune-0569)   | A sovereignty word; an executing program with its own protected address space.                                                                |
-| 0570  | [promise](#rune-0570)          | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
-| 0571  | [queue {Ctrl}](#rune-0571)     | A sequencing word; it decides what happens next and under what condition.                                                                     |
-| 0572  | [race window](#rune-0572)      | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
-| 0573  | [recurse](#rune-0573)          | A sequencing word; it decides what happens next and under what condition.                                                                     |
-| 0574  | [repeat](#rune-0574)           | A sequencing word; it decides what happens next and under what condition.                                                                     |
-| 0575  | [reserve](#rune-0575)          | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
-| 0576  | [retry {Ctrl}](#rune-0576)     | Failure does not necessarily end the ritual; policy may permit another attempt. Shadow: blind repetition against a broken precondition.       |
-| 0577  | [return](#rune-0577)           | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
-| 0578  | [round-robin](#rune-0578)      | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
-| 0579  | [schedule {Ctrl}](#rune-0579)  | A sequencing word; it decides what happens next and under what condition.                                                                     |
-| 0580  | [select {Ctrl}](#rune-0580)    | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
-| 0581  | [semaphore](#rune-0581)        | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
-| 0582  | [sequence point](#rune-0582)   | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
-| 0583  | [serialize access](#rune-0583) | A time-binding word; it changes when an action may proceed.                                                                                   |
-| 0584  | [signal {Ctrl}](#rune-0584)    | A time-binding word; it changes when an action may proceed.                                                                                   |
-| 0585  | [sleep](#rune-0585)            | A sequencing word; it decides what happens next and under what condition.                                                                     |
-| 0586  | [spawn {Ctrl}](#rune-0586)     | A sequencing word; it decides what happens next and under what condition.                                                                     |
-| 0587  | [step](#rune-0587)             | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
-| 0588  | [stop](#rune-0588)             | A time-binding word; it changes when an action may proceed.                                                                                   |
-| 0589  | [suspend](#rune-0589)          | A time-binding word; it changes when an action may proceed.                                                                                   |
-| 0590  | [switch](#rune-0590)           | A time-binding word; it changes when an action may proceed.                                                                                   |
-| 0591  | [sync](#rune-0591)             | A sequencing word; it decides what happens next and under what condition.                                                                     |
-| 0592  | [synchronize](#rune-0592)      | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
-| 0593  | [task](#rune-0593)             | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
-| 0594  | [terminate](#rune-0594)        | A sequencing word; it decides what happens next and under what condition.                                                                     |
-| 0595  | [then](#rune-0595)             | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
-| 0596  | [throttle](#rune-0596)         | A time-binding word; it changes when an action may proceed.                                                                                   |
-| 0597  | [tick](#rune-0597)             | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
-| 0598  | [timeout {Ctrl}](#rune-0598)   | Waiting is not free and patience must have a boundary. A timeout is a contract with reality about how long uncertainty is allowed to persist. |
-| 0599  | [timeslice](#rune-0599)        | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
-| 0600  | [trigger](#rune-0600)          | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
-| 0601  | [try](#rune-0601)              | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
-| 0602  | [unblock](#rune-0602)          | A time-binding word; it changes when an action may proceed.                                                                                   |
-| 0603  | [until](#rune-0603)            | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
-| 0604  | [wait](#rune-0604)             | A sequencing word; it decides what happens next and under what condition.                                                                     |
-| 0605  | [wake](#rune-0605)             | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
-| 0606  | [when](#rune-0606)             | A time-binding word; it changes when an action may proceed.                                                                                   |
-| 0607  | [while](#rune-0607)            | A sequencing word; it decides what happens next and under what condition.                                                                     |
-| 0608  | [yield](#rune-0608)            | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
+| Sigil | Term                                  | Completion | Summary                                                                                                                                       |
+| ----- | ------------------------------------- | ---------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| 0512  | `STUB` [abort](#rune-0512)            | stub       | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
+| 0513  | `STUB` [acknowledge](#rune-0513)      | stub       | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
+| 0514  | [async](#rune-0514)                   | authored   | Work may proceed without immediate blocking at the call site.                                                                                 |
+| 0515  | [await](#rune-0515)                   | authored   | Pause until an asynchronous result becomes ready.                                                                                             |
+| 0516  | [backoff {Ctrl}](#rune-0516)          | authored   | Wait longer between retries so recovery does not become attack.                                                                               |
+| 0517  | [barrier {Ctrl}](#rune-0517)          | authored   | A synchronization point no participant may cross early.                                                                                       |
+| 0518  | `STUB` [block {Ctrl}](#rune-0518)     | stub       | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
+| 0519  | `STUB` [branch {Ctrl}](#rune-0519)    | stub       | A divergence word; execution or history splits into alternate paths.                                                                          |
+| 0520  | `STUB` [break](#rune-0520)            | stub       | A sequencing word; it decides what happens next and under what condition.                                                                     |
+| 0521  | `STUB` [callback](#rune-0521)         | stub       | A sequencing word; it decides what happens next and under what condition.                                                                     |
+| 0522  | `STUB` [cancel](#rune-0522)           | stub       | A time-binding word; it changes when an action may proceed.                                                                                   |
+| 0523  | `STUB` [case](#rune-0523)             | stub       | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
+| 0524  | `STUB` [catch](#rune-0524)            | stub       | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
+| 0525  | `STUB` [chain](#rune-0525)            | stub       | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
+| 0526  | `STUB` [choose](#rune-0526)           | stub       | A sequencing word; it decides what happens next and under what condition.                                                                     |
+| 0527  | [circuit breaker](#rune-0527)         | authored   | Trip open after repeated failure to prevent repeated harm.                                                                                    |
+| 0528  | `STUB` [clause](#rune-0528)           | stub       | A sequencing word; it decides what happens next and under what condition.                                                                     |
+| 0529  | `STUB` [continue](#rune-0529)         | stub       | A sequencing word; it decides what happens next and under what condition.                                                                     |
+| 0530  | [coroutine](#rune-0530)               | authored   | A suspendable routine that can yield and later resume.                                                                                        |
+| 0531  | `STUB` [countdown](#rune-0531)        | stub       | A sequencing word; it decides what happens next and under what condition.                                                                     |
+| 0532  | `STUB` [cycle](#rune-0532)            | stub       | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
+| 0533  | `STUB` [debounce](#rune-0533)         | stub       | A sequencing word; it decides what happens next and under what condition.                                                                     |
+| 0534  | `STUB` [defer {Ctrl}](#rune-0534)     | stub       | A time-binding word; it changes when an action may proceed.                                                                                   |
+| 0535  | `STUB` [delay](#rune-0535)            | stub       | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
+| 0536  | `STUB` [dispatch {Ctrl}](#rune-0536)  | stub       | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
+| 0537  | `STUB` [do](#rune-0537)               | stub       | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
+| 0538  | `STUB` [else](#rune-0538)             | stub       | A sequencing word; it decides what happens next and under what condition.                                                                     |
+| 0539  | [enqueue](#rune-0539)                 | authored   | Place work onto a queue for later handling.                                                                                                   |
+| 0540  | [event loop](#rune-0540)              | authored   | The scheduler that drives nonblocking tasks and callbacks.                                                                                    |
+| 0541  | `STUB` [fallback {Ctrl}](#rune-0541)  | stub       | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
+| 0542  | `STUB` [fan-in](#rune-0542)           | stub       | A sequencing word; it decides what happens next and under what condition.                                                                     |
+| 0543  | `STUB` [fan-out {Ctrl}](#rune-0543)   | stub       | A time-binding word; it changes when an action may proceed.                                                                                   |
+| 0544  | `STUB` [finally](#rune-0544)          | stub       | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
+| 0545  | `STUB` [fire-and-forget](#rune-0545)  | stub       | A time-binding word; it changes when an action may proceed.                                                                                   |
+| 0546  | [flow control](#rune-0546)            | authored   | Mechanisms that keep producers from outrunning consumers.                                                                                     |
+| 0547  | `STUB` [for](#rune-0547)              | stub       | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
+| 0548  | `STUB` [fork {Ctrl}](#rune-0548)      | stub       | A time-binding word; it changes when an action may proceed.                                                                                   |
+| 0549  | [future](#rune-0549)                  | authored   | A placeholder for a value that will exist later.                                                                                              |
+| 0550  | [gate](#rune-0550)                    | authored   | A permission word; passage occurs only when conditions hold.                                                                                  |
+| 0551  | `STUB` [guard](#rune-0551)            | stub       | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
+| 0552  | `STUB` [halt](#rune-0552)             | stub       | A sequencing word; it decides what happens next and under what condition.                                                                     |
+| 0553  | `STUB` [heartbeat {Ctrl}](#rune-0553) | stub       | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
+| 0554  | `STUB` [if](#rune-0554)               | stub       | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
+| 0555  | `STUB` [iterate](#rune-0555)          | stub       | A time-binding word; it changes when an action may proceed.                                                                                   |
+| 0556  | `STUB` [join {Ctrl}](#rune-0556)      | stub       | A union word; separate streams, sets, or histories are brought into one result.                                                               |
+| 0557  | `STUB` [jump](#rune-0557)             | stub       | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
+| 0558  | `STUB` [latch](#rune-0558)            | stub       | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
+| 0559  | `STUB` [loop](#rune-0559)             | stub       | A time-binding word; it changes when an action may proceed.                                                                                   |
+| 0560  | `STUB` [match](#rune-0560)            | stub       | A sequencing word; it decides what happens next and under what condition.                                                                     |
+| 0561  | [mutex](#rune-0561)                   | authored   | Mutual exclusion for one critical region at a time.                                                                                           |
+| 0562  | `STUB` [notify](#rune-0562)           | stub       | A sequencing word; it decides what happens next and under what condition.                                                                     |
+| 0563  | `STUB` [once](#rune-0563)             | stub       | A sequencing word; it decides what happens next and under what condition.                                                                     |
+| 0564  | `STUB` [parallel {Ctrl}](#rune-0564)  | stub       | A sequencing word; it decides what happens next and under what condition.                                                                     |
+| 0565  | `STUB` [pause](#rune-0565)            | stub       | A time-binding word; it changes when an action may proceed.                                                                                   |
+| 0566  | `STUB` [poll {Ctrl}](#rune-0566)      | stub       | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
+| 0567  | `STUB` [preempt](#rune-0567)          | stub       | A sequencing word; it decides what happens next and under what condition.                                                                     |
+| 0568  | `STUB` [priority](#rune-0568)         | stub       | A time-binding word; it changes when an action may proceed.                                                                                   |
+| 0569  | `STUB` [process {Ctrl}](#rune-0569)   | stub       | A sovereignty word; an executing program with its own protected address space.                                                                |
+| 0570  | `STUB` [promise](#rune-0570)          | stub       | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
+| 0571  | [queue {Ctrl}](#rune-0571)            | authored   | Ordered holding area that decouples production from consumption.                                                                              |
+| 0572  | `STUB` [race window](#rune-0572)      | stub       | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
+| 0573  | `STUB` [recurse](#rune-0573)          | stub       | A sequencing word; it decides what happens next and under what condition.                                                                     |
+| 0574  | `STUB` [repeat](#rune-0574)           | stub       | A sequencing word; it decides what happens next and under what condition.                                                                     |
+| 0575  | `STUB` [reserve](#rune-0575)          | stub       | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
+| 0576  | [retry {Ctrl}](#rune-0576)            | authored   | Failure does not necessarily end the ritual; policy may permit another attempt. Shadow: blind repetition against a broken precondition.       |
+| 0577  | `STUB` [return](#rune-0577)           | stub       | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
+| 0578  | `STUB` [round-robin](#rune-0578)      | stub       | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
+| 0579  | [schedule {Ctrl}](#rune-0579)         | authored   | Assign work to time, order, or execution slots.                                                                                               |
+| 0580  | `STUB` [select {Ctrl}](#rune-0580)    | stub       | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
+| 0581  | [semaphore](#rune-0581)               | authored   | A counted gate controlling concurrent access to limited capacity.                                                                             |
+| 0582  | `STUB` [sequence point](#rune-0582)   | stub       | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
+| 0583  | `STUB` [serialize access](#rune-0583) | stub       | A time-binding word; it changes when an action may proceed.                                                                                   |
+| 0584  | [signal {Ctrl}](#rune-0584)           | authored   | Emit a condition change another task may respond to.                                                                                          |
+| 0585  | `STUB` [sleep](#rune-0585)            | stub       | A sequencing word; it decides what happens next and under what condition.                                                                     |
+| 0586  | `STUB` [spawn {Ctrl}](#rune-0586)     | stub       | A sequencing word; it decides what happens next and under what condition.                                                                     |
+| 0587  | `STUB` [step](#rune-0587)             | stub       | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
+| 0588  | `STUB` [stop](#rune-0588)             | stub       | A time-binding word; it changes when an action may proceed.                                                                                   |
+| 0589  | `STUB` [suspend](#rune-0589)          | stub       | A time-binding word; it changes when an action may proceed.                                                                                   |
+| 0590  | `STUB` [switch](#rune-0590)           | stub       | A time-binding word; it changes when an action may proceed.                                                                                   |
+| 0591  | `STUB` [sync](#rune-0591)             | stub       | A sequencing word; it decides what happens next and under what condition.                                                                     |
+| 0592  | `STUB` [synchronize](#rune-0592)      | stub       | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
+| 0593  | `STUB` [task](#rune-0593)             | stub       | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
+| 0594  | `STUB` [terminate](#rune-0594)        | stub       | A sequencing word; it decides what happens next and under what condition.                                                                     |
+| 0595  | `STUB` [then](#rune-0595)             | stub       | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
+| 0596  | `STUB` [throttle](#rune-0596)         | stub       | A time-binding word; it changes when an action may proceed.                                                                                   |
+| 0597  | `STUB` [tick](#rune-0597)             | stub       | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
+| 0598  | [timeout {Ctrl}](#rune-0598)          | authored   | Waiting is not free and patience must have a boundary. A timeout is a contract with reality about how long uncertainty is allowed to persist. |
+| 0599  | `STUB` [timeslice](#rune-0599)        | stub       | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
+| 0600  | `STUB` [trigger](#rune-0600)          | stub       | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
+| 0601  | `STUB` [try](#rune-0601)              | stub       | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
+| 0602  | `STUB` [unblock](#rune-0602)          | stub       | A time-binding word; it changes when an action may proceed.                                                                                   |
+| 0603  | `STUB` [until](#rune-0603)            | stub       | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
+| 0604  | `STUB` [wait](#rune-0604)             | stub       | A sequencing word; it decides what happens next and under what condition.                                                                     |
+| 0605  | `STUB` [wake](#rune-0605)             | stub       | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
+| 0606  | `STUB` [when](#rune-0606)             | stub       | A time-binding word; it changes when an action may proceed.                                                                                   |
+| 0607  | `STUB` [while](#rune-0607)            | stub       | A sequencing word; it decides what happens next and under what condition.                                                                     |
+| 0608  | [yield](#rune-0608)                   | authored   | Give up control now so another act may proceed.                                                                                               |
 
 ## Entries
 
@@ -114,19 +121,31 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A tempo-word; it governs order, waiting, branching, or repetition.
+
+**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
 
 ### [0513] acknowledge {#rune-0513}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A tempo-word; it governs order, waiting, branching, or repetition.
+
+**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
 
 ### [0514] async {#rune-0514}
 
 **Status:** canonical (pocket canon)
 
-**Force:** A time-binding word; it changes when an action may proceed.
+**Completion:** authored
+
+**Force:** Work may proceed without immediate blocking at the call site.
+
+**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
 
 **Pocket gloss:** Work may proceed without immediate blocking at the call site.
 
@@ -134,7 +153,11 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical (pocket canon)
 
-**Force:** A suspension word; it pauses one flow so other work may continue.
+**Completion:** authored
+
+**Force:** Pause until an asynchronous result becomes ready.
+
+**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
 
 **Pocket gloss:** Pause until an asynchronous result becomes ready.
 
@@ -142,7 +165,11 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical (pocket canon)
 
-**Force:** A tempo-word; it governs order, waiting, branching, or repetition.
+**Completion:** authored
+
+**Force:** Wait longer between retries so recovery does not become attack.
+
+**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
 
 **Pocket gloss:** Wait longer between retries so recovery does not become attack.
 
@@ -150,7 +177,11 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical (pocket canon)
 
-**Force:** A rendezvous word; no party crosses until all required parties arrive.
+**Completion:** authored
+
+**Force:** A synchronization point no participant may cross early.
+
+**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
 
 **Pocket gloss:** A synchronization point no participant may cross early.
 
@@ -158,61 +189,101 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A coordination word; it manages concurrency, interruption, or flow.
+
+**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
 
 ### [0519] branch {Ctrl} {#rune-0519}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A divergence word; execution or history splits into alternate paths.
+
+**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
 
 ### [0520] break {#rune-0520}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A sequencing word; it decides what happens next and under what condition.
+
+**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
 
 ### [0521] callback {#rune-0521}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A sequencing word; it decides what happens next and under what condition.
+
+**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
 
 ### [0522] cancel {#rune-0522}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A time-binding word; it changes when an action may proceed.
+
+**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
 
 ### [0523] case {#rune-0523}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A tempo-word; it governs order, waiting, branching, or repetition.
+
+**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
 
 ### [0524] catch {#rune-0524}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A coordination word; it manages concurrency, interruption, or flow.
+
+**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
 
 ### [0525] chain {#rune-0525}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A coordination word; it manages concurrency, interruption, or flow.
+
+**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
 
 ### [0526] choose {#rune-0526}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A sequencing word; it decides what happens next and under what condition.
+
+**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
 
 ### [0527] circuit breaker {#rune-0527}
 
 **Status:** canonical (pocket canon)
 
-**Force:** A coordination word; it manages concurrency, interruption, or flow.
+**Completion:** authored
+
+**Force:** Trip open after repeated failure to prevent repeated harm.
+
+**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
 
 **Pocket gloss:** Trip open after repeated failure to prevent repeated harm.
 
@@ -220,19 +291,31 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A sequencing word; it decides what happens next and under what condition.
+
+**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
 
 ### [0529] continue {#rune-0529}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A sequencing word; it decides what happens next and under what condition.
+
+**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
 
 ### [0530] coroutine {#rune-0530}
 
 **Status:** canonical (pocket canon)
 
-**Force:** A tempo-word; it governs order, waiting, branching, or repetition.
+**Completion:** authored
+
+**Force:** A suspendable routine that can yield and later resume.
+
+**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
 
 **Pocket gloss:** A suspendable routine that can yield and later resume.
 
@@ -240,55 +323,91 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A sequencing word; it decides what happens next and under what condition.
+
+**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
 
 ### [0532] cycle {#rune-0532}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A tempo-word; it governs order, waiting, branching, or repetition.
+
+**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
 
 ### [0533] debounce {#rune-0533}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A sequencing word; it decides what happens next and under what condition.
+
+**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
 
 ### [0534] defer {Ctrl} {#rune-0534}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A time-binding word; it changes when an action may proceed.
+
+**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
 
 ### [0535] delay {#rune-0535}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A coordination word; it manages concurrency, interruption, or flow.
+
+**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
 
 ### [0536] dispatch {Ctrl} {#rune-0536}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A tempo-word; it governs order, waiting, branching, or repetition.
+
+**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
 
 ### [0537] do {#rune-0537}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A coordination word; it manages concurrency, interruption, or flow.
+
+**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
 
 ### [0538] else {#rune-0538}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A sequencing word; it decides what happens next and under what condition.
+
+**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
 
 ### [0539] enqueue {#rune-0539}
 
 **Status:** canonical (pocket canon)
 
-**Force:** A tempo-word; it governs order, waiting, branching, or repetition.
+**Completion:** authored
+
+**Force:** Place work onto a queue for later handling.
+
+**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
 
 **Pocket gloss:** Place work onto a queue for later handling.
 
@@ -296,7 +415,11 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical (pocket canon)
 
-**Force:** A circulation word; work is accepted, queued, and resumed by recurrent inspection.
+**Completion:** authored
+
+**Force:** The scheduler that drives nonblocking tasks and callbacks.
+
+**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
 
 **Pocket gloss:** The scheduler that drives nonblocking tasks and callbacks.
 
@@ -304,37 +427,61 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A tempo-word; it governs order, waiting, branching, or repetition.
+
+**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
 
 ### [0542] fan-in {#rune-0542}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A sequencing word; it decides what happens next and under what condition.
+
+**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
 
 ### [0543] fan-out {Ctrl} {#rune-0543}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A time-binding word; it changes when an action may proceed.
+
+**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
 
 ### [0544] finally {#rune-0544}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A coordination word; it manages concurrency, interruption, or flow.
+
+**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
 
 ### [0545] fire-and-forget {#rune-0545}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A time-binding word; it changes when an action may proceed.
+
+**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
 
 ### [0546] flow control {#rune-0546}
 
 **Status:** canonical (pocket canon)
 
-**Force:** A sequencing word; it decides what happens next and under what condition.
+**Completion:** authored
+
+**Force:** Mechanisms that keep producers from outrunning consumers.
+
+**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
 
 **Pocket gloss:** Mechanisms that keep producers from outrunning consumers.
 
@@ -342,19 +489,31 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A coordination word; it manages concurrency, interruption, or flow.
+
+**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
 
 ### [0548] fork {Ctrl} {#rune-0548}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A time-binding word; it changes when an action may proceed.
+
+**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
 
 ### [0549] future {#rune-0549}
 
 **Status:** canonical (pocket canon)
 
-**Force:** A coordination word; it manages concurrency, interruption, or flow.
+**Completion:** authored
+
+**Force:** A placeholder for a value that will exist later.
+
+**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
 
 **Pocket gloss:** A placeholder for a value that will exist later.
 
@@ -362,73 +521,121 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
+**Completion:** authored
+
 **Force:** A permission word; passage occurs only when conditions hold.
+
+**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
 
 ### [0551] guard {#rune-0551}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A coordination word; it manages concurrency, interruption, or flow.
+
+**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
 
 ### [0552] halt {#rune-0552}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A sequencing word; it decides what happens next and under what condition.
+
+**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
 
 ### [0553] heartbeat {Ctrl} {#rune-0553}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A tempo-word; it governs order, waiting, branching, or repetition.
+
+**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
 
 ### [0554] if {#rune-0554}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A coordination word; it manages concurrency, interruption, or flow.
+
+**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
 
 ### [0555] iterate {#rune-0555}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A time-binding word; it changes when an action may proceed.
+
+**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
 
 ### [0556] join {Ctrl} {#rune-0556}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A union word; separate streams, sets, or histories are brought into one result.
+
+**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
 
 ### [0557] jump {#rune-0557}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A tempo-word; it governs order, waiting, branching, or repetition.
+
+**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
 
 ### [0558] latch {#rune-0558}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A tempo-word; it governs order, waiting, branching, or repetition.
+
+**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
 
 ### [0559] loop {#rune-0559}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A time-binding word; it changes when an action may proceed.
+
+**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
 
 ### [0560] match {#rune-0560}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A sequencing word; it decides what happens next and under what condition.
+
+**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
 
 ### [0561] mutex {#rune-0561}
 
 **Status:** canonical (pocket canon)
 
-**Force:** An exclusion word; only one actor may enter the critical region at a time.
+**Completion:** authored
+
+**Force:** Mutual exclusion for one critical region at a time.
+
+**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
 
 **Pocket gloss:** Mutual exclusion for one critical region at a time.
 
@@ -436,61 +643,101 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A sequencing word; it decides what happens next and under what condition.
+
+**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
 
 ### [0563] once {#rune-0563}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A sequencing word; it decides what happens next and under what condition.
+
+**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
 
 ### [0564] parallel {Ctrl} {#rune-0564}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A sequencing word; it decides what happens next and under what condition.
+
+**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
 
 ### [0565] pause {#rune-0565}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A time-binding word; it changes when an action may proceed.
+
+**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
 
 ### [0566] poll {Ctrl} {#rune-0566}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A coordination word; it manages concurrency, interruption, or flow.
+
+**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
 
 ### [0567] preempt {#rune-0567}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A sequencing word; it decides what happens next and under what condition.
+
+**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
 
 ### [0568] priority {#rune-0568}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A time-binding word; it changes when an action may proceed.
+
+**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
 
 ### [0569] process {Ctrl} {#rune-0569}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A sovereignty word; an executing program with its own protected address space.
+
+**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
 
 ### [0570] promise {#rune-0570}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A coordination word; it manages concurrency, interruption, or flow.
+
+**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
 
 ### [0571] queue {Ctrl} {#rune-0571}
 
 **Status:** canonical (pocket canon)
 
-**Force:** A sequencing word; it decides what happens next and under what condition.
+**Completion:** authored
+
+**Force:** Ordered holding area that decouples production from consumption.
+
+**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
 
 **Pocket gloss:** Ordered holding area that decouples production from consumption.
 
@@ -498,29 +745,47 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A coordination word; it manages concurrency, interruption, or flow.
+
+**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
 
 ### [0573] recurse {#rune-0573}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A sequencing word; it decides what happens next and under what condition.
+
+**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
 
 ### [0574] repeat {#rune-0574}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A sequencing word; it decides what happens next and under what condition.
+
+**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
 
 ### [0575] reserve {#rune-0575}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A tempo-word; it governs order, waiting, branching, or repetition.
+
+**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
 
 ### [0576] retry {Ctrl} {#rune-0576}
 
 **Status:** canonical (major canon, pocket canon)
+
+**Completion:** authored
 
 **Force:** Failure does not necessarily end the ritual; policy may permit another attempt.
 
@@ -532,19 +797,31 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A tempo-word; it governs order, waiting, branching, or repetition.
+
+**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
 
 ### [0578] round-robin {#rune-0578}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A coordination word; it manages concurrency, interruption, or flow.
+
+**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
 
 ### [0579] schedule {Ctrl} {#rune-0579}
 
 **Status:** canonical (pocket canon)
 
-**Force:** A sequencing word; it decides what happens next and under what condition.
+**Completion:** authored
+
+**Force:** Assign work to time, order, or execution slots.
+
+**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
 
 **Pocket gloss:** Assign work to time, order, or execution slots.
 
@@ -552,13 +829,21 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A tempo-word; it governs order, waiting, branching, or repetition.
+
+**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
 
 ### [0581] semaphore {#rune-0581}
 
 **Status:** canonical (pocket canon)
 
-**Force:** A tempo-word; it governs order, waiting, branching, or repetition.
+**Completion:** authored
+
+**Force:** A counted gate controlling concurrent access to limited capacity.
+
+**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
 
 **Pocket gloss:** A counted gate controlling concurrent access to limited capacity.
 
@@ -566,19 +851,31 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A coordination word; it manages concurrency, interruption, or flow.
+
+**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
 
 ### [0583] serialize access {#rune-0583}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A time-binding word; it changes when an action may proceed.
+
+**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
 
 ### [0584] signal {Ctrl} {#rune-0584}
 
 **Status:** canonical (pocket canon)
 
-**Force:** A time-binding word; it changes when an action may proceed.
+**Completion:** authored
+
+**Force:** Emit a condition change another task may respond to.
+
+**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
 
 **Pocket gloss:** Emit a condition change another task may respond to.
 
@@ -586,85 +883,141 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A sequencing word; it decides what happens next and under what condition.
+
+**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
 
 ### [0586] spawn {Ctrl} {#rune-0586}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A sequencing word; it decides what happens next and under what condition.
+
+**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
 
 ### [0587] step {#rune-0587}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A tempo-word; it governs order, waiting, branching, or repetition.
+
+**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
 
 ### [0588] stop {#rune-0588}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A time-binding word; it changes when an action may proceed.
+
+**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
 
 ### [0589] suspend {#rune-0589}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A time-binding word; it changes when an action may proceed.
+
+**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
 
 ### [0590] switch {#rune-0590}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A time-binding word; it changes when an action may proceed.
+
+**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
 
 ### [0591] sync {#rune-0591}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A sequencing word; it decides what happens next and under what condition.
+
+**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
 
 ### [0592] synchronize {#rune-0592}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A tempo-word; it governs order, waiting, branching, or repetition.
+
+**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
 
 ### [0593] task {#rune-0593}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A coordination word; it manages concurrency, interruption, or flow.
+
+**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
 
 ### [0594] terminate {#rune-0594}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A sequencing word; it decides what happens next and under what condition.
+
+**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
 
 ### [0595] then {#rune-0595}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A coordination word; it manages concurrency, interruption, or flow.
+
+**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
 
 ### [0596] throttle {#rune-0596}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A time-binding word; it changes when an action may proceed.
+
+**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
 
 ### [0597] tick {#rune-0597}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A coordination word; it manages concurrency, interruption, or flow.
+
+**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
 
 ### [0598] timeout {Ctrl} {#rune-0598}
 
 **Status:** canonical (major canon, pocket canon)
 
+**Completion:** authored
+
 **Force:** Waiting is not free and patience must have a boundary. A timeout is a contract with reality about how long uncertainty is allowed to persist.
+
+**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
 
 **Pocket gloss:** A declared limit on how long uncertainty may persist.
 
@@ -672,60 +1025,100 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A coordination word; it manages concurrency, interruption, or flow.
+
+**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
 
 ### [0600] trigger {#rune-0600}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A tempo-word; it governs order, waiting, branching, or repetition.
+
+**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
 
 ### [0601] try {#rune-0601}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A coordination word; it manages concurrency, interruption, or flow.
+
+**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
 
 ### [0602] unblock {#rune-0602}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A time-binding word; it changes when an action may proceed.
+
+**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
 
 ### [0603] until {#rune-0603}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A tempo-word; it governs order, waiting, branching, or repetition.
+
+**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
 
 ### [0604] wait {#rune-0604}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A sequencing word; it decides what happens next and under what condition.
+
+**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
 
 ### [0605] wake {#rune-0605}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A tempo-word; it governs order, waiting, branching, or repetition.
+
+**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
 
 ### [0606] when {#rune-0606}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A time-binding word; it changes when an action may proceed.
+
+**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
 
 ### [0607] while {#rune-0607}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A sequencing word; it decides what happens next and under what condition.
+
+**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
 
 ### [0608] yield {#rune-0608}
 
 **Status:** canonical (pocket canon)
 
-**Force:** A coordination word; it manages concurrency, interruption, or flow.
+**Completion:** authored
+
+**Force:** Give up control now so another act may proceed.
+
+**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
 
 **Pocket gloss:** Give up control now so another act may proceed.

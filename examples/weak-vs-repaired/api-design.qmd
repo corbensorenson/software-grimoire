@@ -1,0 +1,34 @@
+---
+title: "API Design Without Hidden Compatibility Traps"
+---
+
+# API Design Without Hidden Compatibility Traps
+
+## Weak Request
+
+Design an API for billing.
+
+## Repaired Spell
+
+```text
+ROLE: Act as a backend architect designing a public JSON API.
+
+OBJECTIVE: Produce a boring, versionable billing API that supports invoices, payment attempts, refunds, and idempotent retries.
+
+CONTEXT: Mobile and web clients; PostgreSQL storage; slow client upgrade cadence; OAuth-based auth.
+
+CONSTRAINTS: Preserve backward compatibility, include pagination and error schema, prefer boring patterns over novelty.
+
+OUTPUT CONTRACT: Return endpoint table, request/response examples, auth notes, idempotency notes, migration/versioning notes.
+
+VERIFICATION: Call out race conditions, retry hazards, and compatibility risks.
+
+FAILURE BEHAVIOR: If the resource model is underspecified, list assumptions explicitly before designing.
+```
+
+## Expected Delta
+
+The repaired spell forces the design to expose compatibility, authorization, idempotency, and migration surfaces up front.
+
+
+[Back to spell](../../spells/api-design.qmd)

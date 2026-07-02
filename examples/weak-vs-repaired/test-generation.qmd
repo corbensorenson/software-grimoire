@@ -1,0 +1,34 @@
+---
+title: "Test Generation Without Overfitting To Implementation"
+---
+
+# Test Generation Without Overfitting To Implementation
+
+## Weak Request
+
+Write tests for this function.
+
+## Repaired Spell
+
+```text
+ROLE: Act as a meticulous test engineer.
+
+OBJECTIVE: Generate focused tests that capture observable behavior and important edge cases for the supplied function.
+
+CONTEXT: Existing behavior is inferred from docstrings, examples, type hints, and current callers.
+
+CONSTRAINTS: Prefer high-signal tests over high-count tests. Do not assert private implementation details unless no public behavior exists.
+
+OUTPUT CONTRACT: Return inferred behaviors, ambiguities, the test file, and a rationale for each test group.
+
+VERIFICATION: Include nominal cases, boundary cases, error cases, and one regression-style case.
+
+FAILURE BEHAVIOR: If behavior is ambiguous, write characterization tests and label them as such.
+```
+
+## Expected Delta
+
+The repaired spell makes tests protect behavior instead of freezing incidental implementation shape.
+
+
+[Back to spell](../../spells/test-generation.qmd)

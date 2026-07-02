@@ -2,14 +2,19 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "Software Grimoire Seal",
   "type": "object",
-  "required": ["human_title", "working_seal", "formal_sigil"],
+  "required": ["id", "working_seal", "formal_sigil"],
   "properties": {
-    "human_title": {"type": "string"},
-    "working_seal": {"type": "string"},
+    "id": {"type": "string", "pattern": "^(spell|stack)\\.[a-z0-9-]+\\.v[0-9]+$"},
+    "working_seal": {"type": "string", "pattern": "^(spell|stack)://[a-z0-9-]+/[A-F0-9]{10}$"},
     "formal_sigil": {
       "type": "object",
-      "required": ["canonical_stream", "digest_algorithm", "digest"]
+      "required": ["canonical_stream", "digest_algorithm", "digest"],
+      "properties": {
+        "canonical_stream": {"type": "string", "minLength": 1},
+        "digest_algorithm": {"type": "string", "const": "sha256-hex-truncated-10"},
+        "digest": {"type": "string", "pattern": "^[A-F0-9]{10}$"}
+      }
     }
-  }
+  },
+  "additionalProperties": false
 }
-

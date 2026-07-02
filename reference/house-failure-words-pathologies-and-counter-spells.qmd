@@ -6,80 +6,87 @@ title: "Failure Words, Pathologies, and Counter-Spells"
 
 Range: `1513-1582`.
 
+## Completion
+
+| Status   | Count |
+| -------- | ----- |
+| authored | 20    |
+| stub     | 50    |
+
 Use the summary table for scanning. Each row links to the detailed anchored entry below.
 
-| Sigil | Term                                | Summary                                                                                                                                         |
-| ----- | ----------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
-| 1513  | [anomaly](#rune-1513)               | A pathology word; it describes how systems break, stall, or lie.                                                                                |
-| 1514  | [backlog collapse](#rune-1514)      | A counter-spell word; it marks the shadow that disciplined engineering tries to prevent.                                                        |
-| 1515  | [broken pipe](#rune-1515)           | A failure-name; it gives shape to an otherwise vague loss of correctness or service.                                                            |
-| 1516  | [bug](#rune-1516)                   | A counter-spell word; it marks the shadow that disciplined engineering tries to prevent.                                                        |
-| 1517  | [cascading failure](#rune-1517)     | A pathology word; it describes how systems break, stall, or lie.                                                                                |
-| 1518  | [checksum mismatch](#rune-1518)     | A pathology word; it describes how systems break, stall, or lie.                                                                                |
-| 1519  | [collision](#rune-1519)             | A curse-word; it names a bad state so it can stop masquerading as mystery.                                                                      |
-| 1520  | [contention](#rune-1520)            | A pathology word; it describes how systems break, stall, or lie.                                                                                |
-| 1521  | [corruption](#rune-1521)            | A pathology word; it describes how systems break, stall, or lie.                                                                                |
-| 1522  | [crash](#rune-1522)                 | A pathology word; it describes how systems break, stall, or lie.                                                                                |
-| 1523  | [curse of shared state](#rune-1523) | A failure-name; it gives shape to an otherwise vague loss of correctness or service.                                                            |
-| 1524  | [data drift](#rune-1524)            | A failure-name; it gives shape to an otherwise vague loss of correctness or service.                                                            |
-| 1525  | [deadlock {Curse}](#rune-1525)      | A binding curse; multiple actors wait on one another forever.                                                                                   |
-| 1526  | [defect](#rune-1526)                | A failure-name; it gives shape to an otherwise vague loss of correctness or service.                                                            |
-| 1527  | [degraded mode](#rune-1527)         | A pathology word; it describes how systems break, stall, or lie.                                                                                |
-| 1528  | [denial of service](#rune-1528)     | A failure-name; it gives shape to an otherwise vague loss of correctness or service.                                                            |
-| 1529  | [dependency hell](#rune-1529)       | A curse-word; it names a bad state so it can stop masquerading as mystery.                                                                      |
-| 1530  | [divergence](#rune-1530)            | A curse-word; it names a bad state so it can stop masquerading as mystery.                                                                      |
-| 1531  | [drift](#rune-1531)                 | A pathology word; it describes how systems break, stall, or lie.                                                                                |
-| 1532  | [error](#rune-1532)                 | A counter-spell word; it marks the shadow that disciplined engineering tries to prevent.                                                        |
-| 1533  | [exception](#rune-1533)             | A failure-name; it gives shape to an otherwise vague loss of correctness or service.                                                            |
-| 1534  | [exhaustion](#rune-1534)            | A curse-word; it names a bad state so it can stop masquerading as mystery.                                                                      |
-| 1535  | [failure domain](#rune-1535)        | A curse-word; it names a bad state so it can stop masquerading as mystery.                                                                      |
-| 1536  | [fault](#rune-1536)                 | A curse-word; it names a bad state so it can stop masquerading as mystery.                                                                      |
-| 1537  | [flapping](#rune-1537)              | A pathology word; it describes how systems break, stall, or lie.                                                                                |
-| 1538  | [fragmentation](#rune-1538)         | A failure-name; it gives shape to an otherwise vague loss of correctness or service.                                                            |
-| 1539  | [freeze](#rune-1539)                | A pathology word; it describes how systems break, stall, or lie.                                                                                |
-| 1540  | [hang](#rune-1540)                  | A counter-spell word; it marks the shadow that disciplined engineering tries to prevent.                                                        |
-| 1541  | [hotspot](#rune-1541)               | A pathology word; it describes how systems break, stall, or lie.                                                                                |
-| 1542  | [inconsistent read](#rune-1542)     | A pathology word; it describes how systems break, stall, or lie.                                                                                |
-| 1543  | [infinite loop](#rune-1543)         | A curse-word; it names a bad state so it can stop masquerading as mystery.                                                                      |
-| 1544  | [invalid state](#rune-1544)         | A curse-word; it names a bad state so it can stop masquerading as mystery.                                                                      |
-| 1545  | [jitter spike](#rune-1545)          | A counter-spell word; it marks the shadow that disciplined engineering tries to prevent.                                                        |
-| 1546  | [leak {Curse}](#rune-1546)          | Something escapes the boundary that should have held it: memory, secrets, file descriptors, authority, abstraction, or time.                    |
-| 1547  | [livelock](#rune-1547)              | A pathology word; it describes how systems break, stall, or lie.                                                                                |
-| 1548  | [lost update](#rune-1548)           | A pathology word; it describes how systems break, stall, or lie.                                                                                |
-| 1549  | [memory corruption](#rune-1549)     | A counter-spell word; it marks the shadow that disciplined engineering tries to prevent.                                                        |
-| 1550  | [mismatch](#rune-1550)              | A counter-spell word; it marks the shadow that disciplined engineering tries to prevent.                                                        |
-| 1551  | [misroute](#rune-1551)              | A curse-word; it names a bad state so it can stop masquerading as mystery.                                                                      |
-| 1552  | [missed heartbeat](#rune-1552)      | A pathology word; it describes how systems break, stall, or lie.                                                                                |
-| 1553  | [null dereference](#rune-1553)      | A failure-name; it gives shape to an otherwise vague loss of correctness or service.                                                            |
-| 1554  | [outage](#rune-1554)                | A pathology word; it describes how systems break, stall, or lie.                                                                                |
-| 1555  | [overflow](#rune-1555)              | A curse-word; it names a bad state so it can stop masquerading as mystery.                                                                      |
-| 1556  | [packet loss {Curse}](#rune-1556)   | A pathology word; it describes how systems break, stall, or lie.                                                                                |
-| 1557  | [panic](#rune-1557)                 | A failure-name; it gives shape to an otherwise vague loss of correctness or service.                                                            |
-| 1558  | [partial failure](#rune-1558)       | A pathology word; it describes how systems break, stall, or lie.                                                                                |
-| 1559  | [partition storm](#rune-1559)       | A failure-name; it gives shape to an otherwise vague loss of correctness or service.                                                            |
-| 1560  | [poison pill](#rune-1560)           | A pathology word; it describes how systems break, stall, or lie.                                                                                |
-| 1561  | [race](#rune-1561)                  | An ordering curse: outcomes depend on timing you do not actually control. Name the race and the system becomes debuggable again.                |
-| 1562  | [regression](#rune-1562)            | A pathology word; it describes how systems break, stall, or lie.                                                                                |
-| 1563  | [resource starvation](#rune-1563)   | A failure-name; it gives shape to an otherwise vague loss of correctness or service.                                                            |
-| 1564  | [retry storm](#rune-1564)           | Recovery logic amplifying failure instead of containing it. Unguided retries can turn a partial outage into a self-made siege.                  |
-| 1565  | [rollback failure](#rune-1565)      | A counter-spell word; it marks the shadow that disciplined engineering tries to prevent.                                                        |
-| 1566  | [saturation](#rune-1566)            | A counter-spell word; it marks the shadow that disciplined engineering tries to prevent.                                                        |
-| 1567  | [schema drift](#rune-1567)          | The stored world and the assumed world have silently stopped matching. This is how migrations keep hurting after everyone thinks they are done. |
-| 1568  | [split-brain {Curse}](#rune-1568)   | A pathology word; it describes how systems break, stall, or lie.                                                                                |
-| 1569  | [stack overflow](#rune-1569)        | A counter-spell word; it marks the shadow that disciplined engineering tries to prevent.                                                        |
-| 1570  | [stale read](#rune-1570)            | A pathology word; it describes how systems break, stall, or lie.                                                                                |
-| 1571  | [stall](#rune-1571)                 | A curse-word; it names a bad state so it can stop masquerading as mystery.                                                                      |
-| 1572  | [starvation](#rune-1572)            | A failure-name; it gives shape to an otherwise vague loss of correctness or service.                                                            |
-| 1573  | [state explosion](#rune-1573)       | A counter-spell word; it marks the shadow that disciplined engineering tries to prevent.                                                        |
-| 1574  | [storm](#rune-1574)                 | A pathology word; it describes how systems break, stall, or lie.                                                                                |
-| 1575  | [thrash](#rune-1575)                | A counter-spell word; it marks the shadow that disciplined engineering tries to prevent.                                                        |
-| 1576  | [timeout {Curse}](#rune-1576)       | A patience-bound word; after a duration, waiting is no longer allowed.                                                                          |
-| 1577  | [torn write](#rune-1577)            | A counter-spell word; it marks the shadow that disciplined engineering tries to prevent.                                                        |
-| 1578  | [underflow](#rune-1578)             | A counter-spell word; it marks the shadow that disciplined engineering tries to prevent.                                                        |
-| 1579  | [unhandled exception](#rune-1579)   | A counter-spell word; it marks the shadow that disciplined engineering tries to prevent.                                                        |
-| 1580  | [unstable equilibrium](#rune-1580)  | A counter-spell word; it marks the shadow that disciplined engineering tries to prevent.                                                        |
-| 1581  | [write amplification](#rune-1581)   | A failure-name; it gives shape to an otherwise vague loss of correctness or service.                                                            |
-| 1582  | [write skew {Curse}](#rune-1582)    | A pathology word; it describes how systems break, stall, or lie.                                                                                |
+| Sigil | Term                                       | Completion | Summary                                                                                                                                         |
+| ----- | ------------------------------------------ | ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1513  | `STUB` [anomaly](#rune-1513)               | stub       | A pathology word; it describes how systems break, stall, or lie.                                                                                |
+| 1514  | `STUB` [backlog collapse](#rune-1514)      | stub       | A counter-spell word; it marks the shadow that disciplined engineering tries to prevent.                                                        |
+| 1515  | `STUB` [broken pipe](#rune-1515)           | stub       | A failure-name; it gives shape to an otherwise vague loss of correctness or service.                                                            |
+| 1516  | `STUB` [bug](#rune-1516)                   | stub       | A counter-spell word; it marks the shadow that disciplined engineering tries to prevent.                                                        |
+| 1517  | [cascading failure](#rune-1517)            | authored   | One failure fans out into many dependent failures.                                                                                              |
+| 1518  | `STUB` [checksum mismatch](#rune-1518)     | stub       | A pathology word; it describes how systems break, stall, or lie.                                                                                |
+| 1519  | `STUB` [collision](#rune-1519)             | stub       | A curse-word; it names a bad state so it can stop masquerading as mystery.                                                                      |
+| 1520  | [contention](#rune-1520)                   | authored   | Too many actors fighting for the same scarce resource.                                                                                          |
+| 1521  | [corruption](#rune-1521)                   | authored   | Stored or transmitted truth damaged into falsehood.                                                                                             |
+| 1522  | `STUB` [crash](#rune-1522)                 | stub       | A pathology word; it describes how systems break, stall, or lie.                                                                                |
+| 1523  | `STUB` [curse of shared state](#rune-1523) | stub       | A failure-name; it gives shape to an otherwise vague loss of correctness or service.                                                            |
+| 1524  | `STUB` [data drift](#rune-1524)            | stub       | A failure-name; it gives shape to an otherwise vague loss of correctness or service.                                                            |
+| 1525  | [deadlock {Curse}](#rune-1525)             | authored   | Two or more actors wait on one another forever.                                                                                                 |
+| 1526  | `STUB` [defect](#rune-1526)                | stub       | A failure-name; it gives shape to an otherwise vague loss of correctness or service.                                                            |
+| 1527  | `STUB` [degraded mode](#rune-1527)         | stub       | A pathology word; it describes how systems break, stall, or lie.                                                                                |
+| 1528  | `STUB` [denial of service](#rune-1528)     | stub       | A failure-name; it gives shape to an otherwise vague loss of correctness or service.                                                            |
+| 1529  | [dependency hell](#rune-1529)              | authored   | Transitive requirements turning ordinary change into a trap.                                                                                    |
+| 1530  | `STUB` [divergence](#rune-1530)            | stub       | A curse-word; it names a bad state so it can stop masquerading as mystery.                                                                      |
+| 1531  | [drift](#rune-1531)                        | authored   | Slow departure from the world you thought you were still in.                                                                                    |
+| 1532  | `STUB` [error](#rune-1532)                 | stub       | A counter-spell word; it marks the shadow that disciplined engineering tries to prevent.                                                        |
+| 1533  | `STUB` [exception](#rune-1533)             | stub       | A failure-name; it gives shape to an otherwise vague loss of correctness or service.                                                            |
+| 1534  | [exhaustion](#rune-1534)                   | authored   | The resource is simply used up.                                                                                                                 |
+| 1535  | `STUB` [failure domain](#rune-1535)        | stub       | A curse-word; it names a bad state so it can stop masquerading as mystery.                                                                      |
+| 1536  | `STUB` [fault](#rune-1536)                 | stub       | A curse-word; it names a bad state so it can stop masquerading as mystery.                                                                      |
+| 1537  | [flapping](#rune-1537)                     | authored   | Rapid unhealthy oscillation between states.                                                                                                     |
+| 1538  | `STUB` [fragmentation](#rune-1538)         | stub       | A failure-name; it gives shape to an otherwise vague loss of correctness or service.                                                            |
+| 1539  | `STUB` [freeze](#rune-1539)                | stub       | A pathology word; it describes how systems break, stall, or lie.                                                                                |
+| 1540  | `STUB` [hang](#rune-1540)                  | stub       | A counter-spell word; it marks the shadow that disciplined engineering tries to prevent.                                                        |
+| 1541  | `STUB` [hotspot](#rune-1541)               | stub       | A pathology word; it describes how systems break, stall, or lie.                                                                                |
+| 1542  | [inconsistent read](#rune-1542)            | authored   | A read that sees a world that never really existed as one coherent moment.                                                                      |
+| 1543  | `STUB` [infinite loop](#rune-1543)         | stub       | A curse-word; it names a bad state so it can stop masquerading as mystery.                                                                      |
+| 1544  | `STUB` [invalid state](#rune-1544)         | stub       | A curse-word; it names a bad state so it can stop masquerading as mystery.                                                                      |
+| 1545  | `STUB` [jitter spike](#rune-1545)          | stub       | A counter-spell word; it marks the shadow that disciplined engineering tries to prevent.                                                        |
+| 1546  | [leak {Curse}](#rune-1546)                 | authored   | Something escapes the boundary that should have held it: memory, secrets, file descriptors, authority, abstraction, or time.                    |
+| 1547  | [livelock](#rune-1547)                     | authored   | Everyone keeps moving but nobody makes progress.                                                                                                |
+| 1548  | [lost update](#rune-1548)                  | authored   | One writer quietly stomps another writer's valid change.                                                                                        |
+| 1549  | `STUB` [memory corruption](#rune-1549)     | stub       | A counter-spell word; it marks the shadow that disciplined engineering tries to prevent.                                                        |
+| 1550  | `STUB` [mismatch](#rune-1550)              | stub       | A counter-spell word; it marks the shadow that disciplined engineering tries to prevent.                                                        |
+| 1551  | `STUB` [misroute](#rune-1551)              | stub       | A curse-word; it names a bad state so it can stop masquerading as mystery.                                                                      |
+| 1552  | `STUB` [missed heartbeat](#rune-1552)      | stub       | A pathology word; it describes how systems break, stall, or lie.                                                                                |
+| 1553  | `STUB` [null dereference](#rune-1553)      | stub       | A failure-name; it gives shape to an otherwise vague loss of correctness or service.                                                            |
+| 1554  | [outage](#rune-1554)                       | authored   | Service unavailable where availability was expected.                                                                                            |
+| 1555  | [overflow](#rune-1555)                     | authored   | Value exceeds the representable range.                                                                                                          |
+| 1556  | `STUB` [packet loss {Curse}](#rune-1556)   | stub       | A pathology word; it describes how systems break, stall, or lie.                                                                                |
+| 1557  | `STUB` [panic](#rune-1557)                 | stub       | A failure-name; it gives shape to an otherwise vague loss of correctness or service.                                                            |
+| 1558  | [partial failure](#rune-1558)              | authored   | Some of the system failed while the rest kept limping.                                                                                          |
+| 1559  | `STUB` [partition storm](#rune-1559)       | stub       | A failure-name; it gives shape to an otherwise vague loss of correctness or service.                                                            |
+| 1560  | `STUB` [poison pill](#rune-1560)           | stub       | A pathology word; it describes how systems break, stall, or lie.                                                                                |
+| 1561  | [race](#rune-1561)                         | authored   | An ordering curse: outcomes depend on timing you do not actually control. Name the race and the system becomes debuggable again.                |
+| 1562  | [regression](#rune-1562)                   | authored   | A previously solved bug or quality loss has returned.                                                                                           |
+| 1563  | `STUB` [resource starvation](#rune-1563)   | stub       | A failure-name; it gives shape to an otherwise vague loss of correctness or service.                                                            |
+| 1564  | [retry storm](#rune-1564)                  | authored   | Recovery logic amplifying failure instead of containing it. Unguided retries can turn a partial outage into a self-made siege.                  |
+| 1565  | `STUB` [rollback failure](#rune-1565)      | stub       | A counter-spell word; it marks the shadow that disciplined engineering tries to prevent.                                                        |
+| 1566  | `STUB` [saturation](#rune-1566)            | stub       | A counter-spell word; it marks the shadow that disciplined engineering tries to prevent.                                                        |
+| 1567  | [schema drift](#rune-1567)                 | authored   | The stored world and the assumed world have silently stopped matching. This is how migrations keep hurting after everyone thinks they are done. |
+| 1568  | [split-brain {Curse}](#rune-1568)          | authored   | Separated leaders each believe they are authoritative.                                                                                          |
+| 1569  | `STUB` [stack overflow](#rune-1569)        | stub       | A counter-spell word; it marks the shadow that disciplined engineering tries to prevent.                                                        |
+| 1570  | `STUB` [stale read](#rune-1570)            | stub       | A pathology word; it describes how systems break, stall, or lie.                                                                                |
+| 1571  | `STUB` [stall](#rune-1571)                 | stub       | A curse-word; it names a bad state so it can stop masquerading as mystery.                                                                      |
+| 1572  | `STUB` [starvation](#rune-1572)            | stub       | A failure-name; it gives shape to an otherwise vague loss of correctness or service.                                                            |
+| 1573  | `STUB` [state explosion](#rune-1573)       | stub       | A counter-spell word; it marks the shadow that disciplined engineering tries to prevent.                                                        |
+| 1574  | `STUB` [storm](#rune-1574)                 | stub       | A pathology word; it describes how systems break, stall, or lie.                                                                                |
+| 1575  | `STUB` [thrash](#rune-1575)                | stub       | A counter-spell word; it marks the shadow that disciplined engineering tries to prevent.                                                        |
+| 1576  | `STUB` [timeout {Curse}](#rune-1576)       | stub       | A patience-bound word; after a duration, waiting is no longer allowed.                                                                          |
+| 1577  | `STUB` [torn write](#rune-1577)            | stub       | A counter-spell word; it marks the shadow that disciplined engineering tries to prevent.                                                        |
+| 1578  | `STUB` [underflow](#rune-1578)             | stub       | A counter-spell word; it marks the shadow that disciplined engineering tries to prevent.                                                        |
+| 1579  | `STUB` [unhandled exception](#rune-1579)   | stub       | A counter-spell word; it marks the shadow that disciplined engineering tries to prevent.                                                        |
+| 1580  | `STUB` [unstable equilibrium](#rune-1580)  | stub       | A counter-spell word; it marks the shadow that disciplined engineering tries to prevent.                                                        |
+| 1581  | `STUB` [write amplification](#rune-1581)   | stub       | A failure-name; it gives shape to an otherwise vague loss of correctness or service.                                                            |
+| 1582  | `STUB` [write skew {Curse}](#rune-1582)    | stub       | A pathology word; it describes how systems break, stall, or lie.                                                                                |
 
 ## Entries
 
@@ -87,31 +94,51 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A pathology word; it describes how systems break, stall, or lie.
+
+**Shadow:** Shadow: treating anomaly as the root cause too early can freeze the investigation around a symptom.
 
 ### [1514] backlog collapse {#rune-1514}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A counter-spell word; it marks the shadow that disciplined engineering tries to prevent.
+
+**Shadow:** Shadow: treating backlog collapse as the root cause too early can freeze the investigation around a symptom.
 
 ### [1515] broken pipe {#rune-1515}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A failure-name; it gives shape to an otherwise vague loss of correctness or service.
+
+**Shadow:** Shadow: treating broken pipe as the root cause too early can freeze the investigation around a symptom.
 
 ### [1516] bug {#rune-1516}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A counter-spell word; it marks the shadow that disciplined engineering tries to prevent.
+
+**Shadow:** Shadow: treating bug as the root cause too early can freeze the investigation around a symptom.
 
 ### [1517] cascading failure {#rune-1517}
 
 **Status:** canonical (pocket canon)
 
-**Force:** A pathology word; it describes how systems break, stall, or lie.
+**Completion:** authored
+
+**Force:** One failure fans out into many dependent failures.
+
+**Shadow:** Shadow: treating cascading failure as the root cause too early can freeze the investigation around a symptom.
 
 **Pocket gloss:** One failure fans out into many dependent failures.
 
@@ -119,19 +146,31 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A pathology word; it describes how systems break, stall, or lie.
+
+**Shadow:** Shadow: treating checksum mismatch as the root cause too early can freeze the investigation around a symptom.
 
 ### [1519] collision {#rune-1519}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A curse-word; it names a bad state so it can stop masquerading as mystery.
+
+**Shadow:** Shadow: treating collision as the root cause too early can freeze the investigation around a symptom.
 
 ### [1520] contention {#rune-1520}
 
 **Status:** canonical (pocket canon)
 
-**Force:** A pathology word; it describes how systems break, stall, or lie.
+**Completion:** authored
+
+**Force:** Too many actors fighting for the same scarce resource.
+
+**Shadow:** Shadow: treating contention as the root cause too early can freeze the investigation around a symptom.
 
 **Pocket gloss:** Too many actors fighting for the same scarce resource.
 
@@ -139,7 +178,11 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical (pocket canon)
 
-**Force:** A pathology word; it describes how systems break, stall, or lie.
+**Completion:** authored
+
+**Force:** Stored or transmitted truth damaged into falsehood.
+
+**Shadow:** Shadow: treating corruption as the root cause too early can freeze the investigation around a symptom.
 
 **Pocket gloss:** Stored or transmitted truth damaged into falsehood.
 
@@ -147,25 +190,41 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A pathology word; it describes how systems break, stall, or lie.
+
+**Shadow:** Shadow: treating crash as the root cause too early can freeze the investigation around a symptom.
 
 ### [1523] curse of shared state {#rune-1523}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A failure-name; it gives shape to an otherwise vague loss of correctness or service.
+
+**Shadow:** Shadow: treating curse of shared state as the root cause too early can freeze the investigation around a symptom.
 
 ### [1524] data drift {#rune-1524}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A failure-name; it gives shape to an otherwise vague loss of correctness or service.
+
+**Shadow:** Shadow: treating data drift as the root cause too early can freeze the investigation around a symptom.
 
 ### [1525] deadlock {Curse} {#rune-1525}
 
 **Status:** canonical (pocket canon)
 
-**Force:** A binding curse; multiple actors wait on one another forever.
+**Completion:** authored
+
+**Force:** Two or more actors wait on one another forever.
+
+**Shadow:** Shadow: treating deadlock as the root cause too early can freeze the investigation around a symptom.
 
 **Pocket gloss:** Two or more actors wait on one another forever.
 
@@ -173,25 +232,41 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A failure-name; it gives shape to an otherwise vague loss of correctness or service.
+
+**Shadow:** Shadow: treating defect as the root cause too early can freeze the investigation around a symptom.
 
 ### [1527] degraded mode {#rune-1527}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A pathology word; it describes how systems break, stall, or lie.
+
+**Shadow:** Shadow: treating degraded mode as the root cause too early can freeze the investigation around a symptom.
 
 ### [1528] denial of service {#rune-1528}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A failure-name; it gives shape to an otherwise vague loss of correctness or service.
+
+**Shadow:** Shadow: treating denial of service as the root cause too early can freeze the investigation around a symptom.
 
 ### [1529] dependency hell {#rune-1529}
 
 **Status:** canonical (pocket canon)
 
-**Force:** A curse-word; it names a bad state so it can stop masquerading as mystery.
+**Completion:** authored
+
+**Force:** Transitive requirements turning ordinary change into a trap.
+
+**Shadow:** Shadow: treating dependency hell as the root cause too early can freeze the investigation around a symptom.
 
 **Pocket gloss:** Transitive requirements turning ordinary change into a trap.
 
@@ -199,13 +274,21 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A curse-word; it names a bad state so it can stop masquerading as mystery.
+
+**Shadow:** Shadow: treating divergence as the root cause too early can freeze the investigation around a symptom.
 
 ### [1531] drift {#rune-1531}
 
 **Status:** canonical (pocket canon)
 
-**Force:** A pathology word; it describes how systems break, stall, or lie.
+**Completion:** authored
+
+**Force:** Slow departure from the world you thought you were still in.
+
+**Shadow:** Shadow: treating drift as the root cause too early can freeze the investigation around a symptom.
 
 **Pocket gloss:** Slow departure from the world you thought you were still in.
 
@@ -213,19 +296,31 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A counter-spell word; it marks the shadow that disciplined engineering tries to prevent.
+
+**Shadow:** Shadow: treating error as the root cause too early can freeze the investigation around a symptom.
 
 ### [1533] exception {#rune-1533}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A failure-name; it gives shape to an otherwise vague loss of correctness or service.
+
+**Shadow:** Shadow: treating exception as the root cause too early can freeze the investigation around a symptom.
 
 ### [1534] exhaustion {#rune-1534}
 
 **Status:** canonical (pocket canon)
 
-**Force:** A curse-word; it names a bad state so it can stop masquerading as mystery.
+**Completion:** authored
+
+**Force:** The resource is simply used up.
+
+**Shadow:** Shadow: treating exhaustion as the root cause too early can freeze the investigation around a symptom.
 
 **Pocket gloss:** The resource is simply used up.
 
@@ -233,19 +328,31 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A curse-word; it names a bad state so it can stop masquerading as mystery.
+
+**Shadow:** Shadow: treating failure domain as the root cause too early can freeze the investigation around a symptom.
 
 ### [1536] fault {#rune-1536}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A curse-word; it names a bad state so it can stop masquerading as mystery.
+
+**Shadow:** Shadow: treating fault as the root cause too early can freeze the investigation around a symptom.
 
 ### [1537] flapping {#rune-1537}
 
 **Status:** canonical (pocket canon)
 
-**Force:** A pathology word; it describes how systems break, stall, or lie.
+**Completion:** authored
+
+**Force:** Rapid unhealthy oscillation between states.
+
+**Shadow:** Shadow: treating flapping as the root cause too early can freeze the investigation around a symptom.
 
 **Pocket gloss:** Rapid unhealthy oscillation between states.
 
@@ -253,31 +360,51 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A failure-name; it gives shape to an otherwise vague loss of correctness or service.
+
+**Shadow:** Shadow: treating fragmentation as the root cause too early can freeze the investigation around a symptom.
 
 ### [1539] freeze {#rune-1539}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A pathology word; it describes how systems break, stall, or lie.
+
+**Shadow:** Shadow: treating freeze as the root cause too early can freeze the investigation around a symptom.
 
 ### [1540] hang {#rune-1540}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A counter-spell word; it marks the shadow that disciplined engineering tries to prevent.
+
+**Shadow:** Shadow: treating hang as the root cause too early can freeze the investigation around a symptom.
 
 ### [1541] hotspot {#rune-1541}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A pathology word; it describes how systems break, stall, or lie.
+
+**Shadow:** Shadow: treating hotspot as the root cause too early can freeze the investigation around a symptom.
 
 ### [1542] inconsistent read {#rune-1542}
 
 **Status:** canonical (pocket canon)
 
-**Force:** A pathology word; it describes how systems break, stall, or lie.
+**Completion:** authored
+
+**Force:** A read that sees a world that never really existed as one coherent moment.
+
+**Shadow:** Shadow: treating inconsistent read as the root cause too early can freeze the investigation around a symptom.
 
 **Pocket gloss:** A read that sees a world that never really existed as one coherent moment.
 
@@ -285,25 +412,41 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A curse-word; it names a bad state so it can stop masquerading as mystery.
+
+**Shadow:** Shadow: treating infinite loop as the root cause too early can freeze the investigation around a symptom.
 
 ### [1544] invalid state {#rune-1544}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A curse-word; it names a bad state so it can stop masquerading as mystery.
+
+**Shadow:** Shadow: treating invalid state as the root cause too early can freeze the investigation around a symptom.
 
 ### [1545] jitter spike {#rune-1545}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A counter-spell word; it marks the shadow that disciplined engineering tries to prevent.
+
+**Shadow:** Shadow: treating jitter spike as the root cause too early can freeze the investigation around a symptom.
 
 ### [1546] leak {Curse} {#rune-1546}
 
 **Status:** canonical (major canon, pocket canon)
 
+**Completion:** authored
+
 **Force:** Something escapes the boundary that should have held it: memory, secrets, file descriptors, authority, abstraction, or time.
+
+**Shadow:** Shadow: treating leak as the root cause too early can freeze the investigation around a symptom.
 
 **Pocket gloss:** Something escapes the boundary that should have held it.
 
@@ -311,7 +454,11 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical (pocket canon)
 
-**Force:** A pathology word; it describes how systems break, stall, or lie.
+**Completion:** authored
+
+**Force:** Everyone keeps moving but nobody makes progress.
+
+**Shadow:** Shadow: treating livelock as the root cause too early can freeze the investigation around a symptom.
 
 **Pocket gloss:** Everyone keeps moving but nobody makes progress.
 
@@ -319,7 +466,11 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical (pocket canon)
 
-**Force:** A pathology word; it describes how systems break, stall, or lie.
+**Completion:** authored
+
+**Force:** One writer quietly stomps another writer's valid change.
+
+**Shadow:** Shadow: treating lost update as the root cause too early can freeze the investigation around a symptom.
 
 **Pocket gloss:** One writer quietly stomps another writer's valid change.
 
@@ -327,37 +478,61 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A counter-spell word; it marks the shadow that disciplined engineering tries to prevent.
+
+**Shadow:** Shadow: treating memory corruption as the root cause too early can freeze the investigation around a symptom.
 
 ### [1550] mismatch {#rune-1550}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A counter-spell word; it marks the shadow that disciplined engineering tries to prevent.
+
+**Shadow:** Shadow: treating mismatch as the root cause too early can freeze the investigation around a symptom.
 
 ### [1551] misroute {#rune-1551}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A curse-word; it names a bad state so it can stop masquerading as mystery.
+
+**Shadow:** Shadow: treating misroute as the root cause too early can freeze the investigation around a symptom.
 
 ### [1552] missed heartbeat {#rune-1552}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A pathology word; it describes how systems break, stall, or lie.
+
+**Shadow:** Shadow: treating missed heartbeat as the root cause too early can freeze the investigation around a symptom.
 
 ### [1553] null dereference {#rune-1553}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A failure-name; it gives shape to an otherwise vague loss of correctness or service.
+
+**Shadow:** Shadow: treating null dereference as the root cause too early can freeze the investigation around a symptom.
 
 ### [1554] outage {#rune-1554}
 
 **Status:** canonical (pocket canon)
 
-**Force:** A pathology word; it describes how systems break, stall, or lie.
+**Completion:** authored
+
+**Force:** Service unavailable where availability was expected.
+
+**Shadow:** Shadow: treating outage as the root cause too early can freeze the investigation around a symptom.
 
 **Pocket gloss:** Service unavailable where availability was expected.
 
@@ -365,7 +540,11 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical (pocket canon)
 
-**Force:** A curse-word; it names a bad state so it can stop masquerading as mystery.
+**Completion:** authored
+
+**Force:** Value exceeds the representable range.
+
+**Shadow:** Shadow: treating overflow as the root cause too early can freeze the investigation around a symptom.
 
 **Pocket gloss:** Value exceeds the representable range.
 
@@ -373,19 +552,31 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A pathology word; it describes how systems break, stall, or lie.
+
+**Shadow:** Shadow: treating packet loss as the root cause too early can freeze the investigation around a symptom.
 
 ### [1557] panic {#rune-1557}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A failure-name; it gives shape to an otherwise vague loss of correctness or service.
+
+**Shadow:** Shadow: treating panic as the root cause too early can freeze the investigation around a symptom.
 
 ### [1558] partial failure {#rune-1558}
 
 **Status:** canonical (pocket canon)
 
-**Force:** A pathology word; it describes how systems break, stall, or lie.
+**Completion:** authored
+
+**Force:** Some of the system failed while the rest kept limping.
+
+**Shadow:** Shadow: treating partial failure as the root cause too early can freeze the investigation around a symptom.
 
 **Pocket gloss:** Some of the system failed while the rest kept limping.
 
@@ -393,19 +584,31 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A failure-name; it gives shape to an otherwise vague loss of correctness or service.
+
+**Shadow:** Shadow: treating partition storm as the root cause too early can freeze the investigation around a symptom.
 
 ### [1560] poison pill {#rune-1560}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A pathology word; it describes how systems break, stall, or lie.
+
+**Shadow:** Shadow: treating poison pill as the root cause too early can freeze the investigation around a symptom.
 
 ### [1561] race {#rune-1561}
 
 **Status:** canonical (major canon, pocket canon)
 
+**Completion:** authored
+
 **Force:** An ordering curse: outcomes depend on timing you do not actually control. Name the race and the system becomes debuggable again.
+
+**Shadow:** Shadow: treating race as the root cause too early can freeze the investigation around a symptom.
 
 **Pocket gloss:** Outcome depends on timing you do not actually control.
 
@@ -413,7 +616,11 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical (pocket canon)
 
-**Force:** A pathology word; it describes how systems break, stall, or lie.
+**Completion:** authored
+
+**Force:** A previously solved bug or quality loss has returned.
+
+**Shadow:** Shadow: treating regression as the root cause too early can freeze the investigation around a symptom.
 
 **Pocket gloss:** A previously solved bug or quality loss has returned.
 
@@ -421,13 +628,21 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A failure-name; it gives shape to an otherwise vague loss of correctness or service.
+
+**Shadow:** Shadow: treating resource starvation as the root cause too early can freeze the investigation around a symptom.
 
 ### [1564] retry storm {#rune-1564}
 
 **Status:** canonical (major canon, pocket canon)
 
+**Completion:** authored
+
 **Force:** Recovery logic amplifying failure instead of containing it. Unguided retries can turn a partial outage into a self-made siege.
+
+**Shadow:** Shadow: treating retry storm as the root cause too early can freeze the investigation around a symptom.
 
 **Pocket gloss:** Recovery logic amplifying failure instead of containing it.
 
@@ -435,19 +650,31 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A counter-spell word; it marks the shadow that disciplined engineering tries to prevent.
+
+**Shadow:** Shadow: treating rollback failure as the root cause too early can freeze the investigation around a symptom.
 
 ### [1566] saturation {#rune-1566}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A counter-spell word; it marks the shadow that disciplined engineering tries to prevent.
+
+**Shadow:** Shadow: treating saturation as the root cause too early can freeze the investigation around a symptom.
 
 ### [1567] schema drift {#rune-1567}
 
 **Status:** canonical (major canon, pocket canon)
 
+**Completion:** authored
+
 **Force:** The stored world and the assumed world have silently stopped matching. This is how migrations keep hurting after everyone thinks they are done.
+
+**Shadow:** Shadow: treating schema drift as the root cause too early can freeze the investigation around a symptom.
 
 **Pocket gloss:** Stored shape and assumed shape have silently diverged.
 
@@ -455,7 +682,11 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical (pocket canon)
 
-**Force:** A pathology word; it describes how systems break, stall, or lie.
+**Completion:** authored
+
+**Force:** Separated leaders each believe they are authoritative.
+
+**Shadow:** Shadow: treating split-brain as the root cause too early can freeze the investigation around a symptom.
 
 **Pocket gloss:** Separated leaders each believe they are authoritative.
 
@@ -463,82 +694,138 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A counter-spell word; it marks the shadow that disciplined engineering tries to prevent.
+
+**Shadow:** Shadow: treating stack overflow as the root cause too early can freeze the investigation around a symptom.
 
 ### [1570] stale read {#rune-1570}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A pathology word; it describes how systems break, stall, or lie.
+
+**Shadow:** Shadow: treating stale read as the root cause too early can freeze the investigation around a symptom.
 
 ### [1571] stall {#rune-1571}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A curse-word; it names a bad state so it can stop masquerading as mystery.
+
+**Shadow:** Shadow: treating stall as the root cause too early can freeze the investigation around a symptom.
 
 ### [1572] starvation {#rune-1572}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A failure-name; it gives shape to an otherwise vague loss of correctness or service.
+
+**Shadow:** Shadow: treating starvation as the root cause too early can freeze the investigation around a symptom.
 
 ### [1573] state explosion {#rune-1573}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A counter-spell word; it marks the shadow that disciplined engineering tries to prevent.
+
+**Shadow:** Shadow: treating state explosion as the root cause too early can freeze the investigation around a symptom.
 
 ### [1574] storm {#rune-1574}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A pathology word; it describes how systems break, stall, or lie.
+
+**Shadow:** Shadow: treating storm as the root cause too early can freeze the investigation around a symptom.
 
 ### [1575] thrash {#rune-1575}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A counter-spell word; it marks the shadow that disciplined engineering tries to prevent.
+
+**Shadow:** Shadow: treating thrash as the root cause too early can freeze the investigation around a symptom.
 
 ### [1576] timeout {Curse} {#rune-1576}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A patience-bound word; after a duration, waiting is no longer allowed.
+
+**Shadow:** Shadow: treating timeout as the root cause too early can freeze the investigation around a symptom.
 
 ### [1577] torn write {#rune-1577}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A counter-spell word; it marks the shadow that disciplined engineering tries to prevent.
+
+**Shadow:** Shadow: treating torn write as the root cause too early can freeze the investigation around a symptom.
 
 ### [1578] underflow {#rune-1578}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A counter-spell word; it marks the shadow that disciplined engineering tries to prevent.
+
+**Shadow:** Shadow: treating underflow as the root cause too early can freeze the investigation around a symptom.
 
 ### [1579] unhandled exception {#rune-1579}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A counter-spell word; it marks the shadow that disciplined engineering tries to prevent.
+
+**Shadow:** Shadow: treating unhandled exception as the root cause too early can freeze the investigation around a symptom.
 
 ### [1580] unstable equilibrium {#rune-1580}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A counter-spell word; it marks the shadow that disciplined engineering tries to prevent.
+
+**Shadow:** Shadow: treating unstable equilibrium as the root cause too early can freeze the investigation around a symptom.
 
 ### [1581] write amplification {#rune-1581}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A failure-name; it gives shape to an otherwise vague loss of correctness or service.
+
+**Shadow:** Shadow: treating write amplification as the root cause too early can freeze the investigation around a symptom.
 
 ### [1582] write skew {Curse} {#rune-1582}
 
 **Status:** canonical
 
+**Completion:** stub
+
 **Force:** A pathology word; it describes how systems break, stall, or lie.
+
+**Shadow:** Shadow: treating write skew as the root cause too early can freeze the investigation around a symptom.

@@ -10,6 +10,8 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
+COMPLETION_STATUSES = {"authored", "stub", "needs_shadow", "needs_sense"}
+FORCE_SOURCES = {"major-canon", "pocket-canon", "master-lexicon"}
 
 
 def load(name: str):
@@ -43,9 +45,34 @@ def validate_lexicon(errors: list[str], houses: list[dict]) -> list[dict]:
     house_by_id = {h["id"]: h for h in houses}
     ids = set()
     for entry in lexicon:
-        for key in ["id", "sigil", "term", "raw_term", "house", "anchor", "page", "summary", "status", "source"]:
+        required = [
+            "id",
+            "sigil",
+            "term",
+            "raw_term",
+            "sense",
+            "house",
+            "house_name",
+            "anchor",
+            "page",
+            "summary",
+            "force",
+            "shadow",
+            "status",
+            "completion_status",
+            "is_stub",
+            "major",
+            "pocket",
+            "source",
+            "force_source",
+        ]
+        missing_required = False
+        for key in required:
             if key not in entry or entry[key] in ("", None):
                 fail(errors, f"Lexicon entry missing {key}: {entry.get('id')}")
+                missing_required = True
+        if missing_required:
+            continue
         ident = entry["id"]
         if ident in ids:
             fail(errors, f"Duplicate lexicon id: {ident}")
@@ -54,11 +81,31 @@ def validate_lexicon(errors: list[str], houses: list[dict]) -> list[dict]:
             fail(errors, f"Bad sigil for lexicon id {ident}")
         if entry["anchor"] != f"rune-{ident:04d}":
             fail(errors, f"Bad anchor for lexicon id {ident}: {entry['anchor']}")
+        if entry["page"] != f"reference/house-{entry['house']}.qmd":
+            fail(errors, f"Bad page for lexicon id {ident}: {entry['page']}")
+        if entry["completion_status"] not in COMPLETION_STATUSES:
+            fail(errors, f"Bad completion_status for lexicon id {ident}: {entry['completion_status']}")
+        if entry["force_source"] not in FORCE_SOURCES:
+            fail(errors, f"Bad force_source for lexicon id {ident}: {entry['force_source']}")
+        if entry["is_stub"] != (entry["completion_status"] == "stub"):
+            fail(errors, f"Bad is_stub flag for lexicon id {ident}")
+        if entry["completion_status"] == "authored" and (not entry.get("shadow") or not entry.get("sense")):
+            fail(errors, f"Authored lexicon entry missing shadow or sense: {ident}")
+        if entry.get("major") and entry["completion_status"] != "authored":
+            fail(errors, f"Major canon entry is not authored: {ident}")
+        if entry.get("pocket") and entry["completion_status"] != "authored":
+            fail(errors, f"Pocket canon entry is not authored: {ident}")
+        if entry.get("major") and entry["force_source"] != "major-canon":
+            fail(errors, f"Major canon entry has wrong force_source: {ident}")
+        if not entry.get("major") and entry.get("pocket") and entry["force_source"] != "pocket-canon":
+            fail(errors, f"Pocket canon entry has wrong force_source: {ident}")
         house = house_by_id.get(entry["house"])
         if not house:
             fail(errors, f"Unknown house for lexicon id {ident}: {entry['house']}")
         elif not (house["start"] <= ident <= house["end"]):
             fail(errors, f"Lexicon id {ident} outside house range {house['range']}")
+        elif entry["house_name"] != house["name"]:
+            fail(errors, f"Bad house_name for lexicon id {ident}: {entry['house_name']}")
     if len(lexicon) != 1645:
         fail(errors, f"Expected 1645 lexicon entries, found {len(lexicon)}")
     if len(ids) != len(lexicon):
@@ -67,7 +114,8 @@ def validate_lexicon(errors: list[str], houses: list[dict]) -> list[dict]:
 
 
 def validate_major_and_pocket(errors: list[str], lexicon: list[dict]) -> None:
-    lex_ids = {e["id"] for e in lexicon}
+    lex_by_id = {e["id"]: e for e in lexicon}
+    lex_ids = set(lex_by_id)
     major = load("major_arcana.json")
     pocket = load("pocket_runes.json")
     if len(major) != 50:
@@ -83,6 +131,8 @@ def validate_major_and_pocket(errors: list[str], lexicon: list[dict]) -> None:
             seen.add(ident)
             if ident not in lex_ids:
                 fail(errors, f"{label} id missing from lexicon: {ident}")
+            elif lex_by_id[ident]["completion_status"] != "authored":
+                fail(errors, f"{label} id is not authored in lexicon: {ident}")
 
 
 def validate_spells(errors: list[str], lexicon: list[dict]) -> list[dict]:
@@ -103,14 +153,21 @@ def validate_spells(errors: list[str], lexicon: list[dict]) -> list[dict]:
         "output_contract",
         "verification",
         "failure_behavior",
+        "runes",
+        "source",
+        "human_title",
         "working_seal",
         "formal_sigil",
     ]
     ids = set()
     for spell in spells:
+        missing_required = False
         for key in required:
             if key not in spell or spell[key] in ("", None):
                 fail(errors, f"Spell {spell.get('id')} missing {key}")
+                missing_required = True
+        if missing_required:
+            continue
         if spell["id"] in ids:
             fail(errors, f"Duplicate spell id: {spell['id']}")
         ids.add(spell["id"])
@@ -120,6 +177,8 @@ def validate_spells(errors: list[str], lexicon: list[dict]) -> list[dict]:
                     fail(errors, f"Full spell {spell['id']} missing limb {limb}")
         if not re.match(r"^spell://[a-z0-9-]+/[A-F0-9]{10}$", spell.get("working_seal", "")):
             fail(errors, f"Bad spell seal: {spell.get('working_seal')}")
+        if not spell.get("runes"):
+            fail(errors, f"Spell {spell['id']} has no rune references")
         for ident in spell.get("runes", []):
             if ident not in lex_ids:
                 fail(errors, f"Spell {spell['id']} references missing rune {ident}")
@@ -134,9 +193,30 @@ def validate_stacks(errors: list[str], lexicon: list[dict], spells: list[dict]) 
     spell_slugs = {spell["id"].split(".")[1] for spell in spells}
     ids = set()
     for stack in stacks:
-        for key in ["id", "title", "version", "status", "enter", "frames", "on_fail", "exit", "working_seal", "formal_sigil"]:
+        missing_required = False
+        for key in [
+            "id",
+            "title",
+            "version",
+            "status",
+            "enter",
+            "inputs",
+            "frames",
+            "on_fail",
+            "exit",
+            "why_it_works",
+            "source",
+            "human_title",
+            "working_seal",
+            "formal_sigil",
+            "runes",
+            "related_spells",
+        ]:
             if key not in stack or stack[key] in ("", None, []):
                 fail(errors, f"Stack {stack.get('id')} missing {key}")
+                missing_required = True
+        if missing_required:
+            continue
         if stack["id"] in ids:
             fail(errors, f"Duplicate stack id: {stack['id']}")
         ids.add(stack["id"])
@@ -152,6 +232,10 @@ def validate_stacks(errors: list[str], lexicon: list[dict], spells: list[dict]) 
                 fail(errors, f"Loop stack missing until rule: {stack['id']}")
         if not re.match(r"^stack://[a-z0-9-]+/[A-F0-9]{10}$", stack.get("working_seal", "")):
             fail(errors, f"Bad stack seal: {stack.get('working_seal')}")
+        if not stack.get("runes"):
+            fail(errors, f"Stack {stack['id']} has no rune references")
+        if not stack.get("related_spells"):
+            fail(errors, f"Stack {stack['id']} has no related spell references")
         for ident in stack.get("runes", []):
             if ident not in lex_ids:
                 fail(errors, f"Stack {stack['id']} references missing rune {ident}")
