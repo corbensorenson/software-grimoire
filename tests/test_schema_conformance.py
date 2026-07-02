@@ -52,3 +52,8 @@ def test_seals_match_schema() -> None:
     items = seals["spells"] + seals["stacks"]
     errors = collect_errors("schemas/seal.schema.json", items, "seal")
     assert not errors, "\n".join(errors[:25])
+
+
+def test_canon_quality_matches_schema() -> None:
+    errors = collect_errors("schemas/canon-quality.schema.json", [load_json("data/canon_quality.json")], "canon_quality")
+    assert not errors, "\n".join(errors[:25])

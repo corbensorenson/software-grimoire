@@ -8,152 +8,153 @@ Range: `0113-0249`.
 
 ## Completion
 
-| Status   | Count |
-| -------- | ----- |
-| authored | 23    |
-| stub     | 114   |
+| Status      | Count |
+| ----------- | ----- |
+| authored    | 20    |
+| stub        | 114   |
+| needs_sense | 3     |
 
 Use the summary table for scanning. Each row links to the detailed anchored entry below.
 
-| Sigil | Term                                          | Completion | Summary                                                                             |
-| ----- | --------------------------------------------- | ---------- | ----------------------------------------------------------------------------------- |
-| 0113  | `STUB` [abstract class](#rune-0113)           | stub       | A semantics word; it alters what symbols are allowed to mean in practice.           |
-| 0114  | `STUB` [alias](#rune-0114)                    | stub       | A semantics word; it alters what symbols are allowed to mean in practice.           |
-| 0115  | `STUB` [annotation](#rune-0115)               | stub       | A shape-of-thought word; it influences how programs are written and reasoned about. |
-| 0116  | `STUB` [argument](#rune-0116)                 | stub       | A shape-of-thought word; it influences how programs are written and reasoned about. |
-| 0117  | `STUB` [arity](#rune-0117)                    | stub       | A law-of-form word; it changes what the language can guarantee.                     |
-| 0118  | `STUB` [assembly](#rune-0118)                 | stub       | A grammar-word; it shapes how meaning is expressed to humans and machines.          |
-| 0119  | `STUB` [assertion {Lang}](#rune-0119)         | stub       | A grammar-word; it shapes how meaning is expressed to humans and machines.          |
-| 0120  | [AST](#rune-0120)                             | authored   | The tree form of parsed program structure.                                          |
-| 0121  | `STUB` [attribute](#rune-0121)                | stub       | A grammar-word; it shapes how meaning is expressed to humans and machines.          |
-| 0122  | `STUB` [binding](#rune-0122)                  | stub       | A shape-of-thought word; it influences how programs are written and reasoned about. |
-| 0123  | `STUB` [borrow {Lang}](#rune-0123)            | stub       | A shape-of-thought word; it influences how programs are written and reasoned about. |
-| 0124  | [borrow checker](#rune-0124)                  | authored   | A checker that enforces safe borrowing and lifetime law before runtime.             |
-| 0125  | `STUB` [bytecode](#rune-0125)                 | stub       | A shape-of-thought word; it influences how programs are written and reasoned about. |
-| 0126  | `STUB` [capture](#rune-0126)                  | stub       | A grammar-word; it shapes how meaning is expressed to humans and machines.          |
-| 0127  | `STUB` [cast](#rune-0127)                     | stub       | A shape-of-thought word; it influences how programs are written and reasoned about. |
-| 0128  | [class](#rune-0128)                           | authored   | A shape word for bundled state and behavior.                                        |
-| 0129  | [closure](#rune-0129)                         | authored   | A capture word; it carries surrounding bindings forward with executable intent.     |
-| 0130  | `STUB` [coercion](#rune-0130)                 | stub       | A semantics word; it alters what symbols are allowed to mean in practice.           |
-| 0131  | `STUB` [comment](#rune-0131)                  | stub       | A shape-of-thought word; it influences how programs are written and reasoned about. |
-| 0132  | [compile-time](#rune-0132)                    | authored   | Known and fixed before execution begins.                                            |
-| 0133  | [compiler](#rune-0133)                        | authored   | The translator from source language to lower-level executable form.                 |
-| 0134  | `STUB` [constant](#rune-0134)                 | stub       | A semantics word; it alters what symbols are allowed to mean in practice.           |
-| 0135  | `STUB` [constraint {Lang}](#rune-0135)        | stub       | A bounding word; it removes degrees of freedom in order to improve correctness.     |
-| 0136  | `STUB` [constructor](#rune-0136)              | stub       | A semantics word; it alters what symbols are allowed to mean in practice.           |
-| 0137  | `STUB` [contravariance](#rune-0137)           | stub       | A grammar-word; it shapes how meaning is expressed to humans and machines.          |
-| 0138  | `STUB` [covariance](#rune-0138)               | stub       | A shape-of-thought word; it influences how programs are written and reasoned about. |
-| 0139  | `STUB` [currying](#rune-0139)                 | stub       | A shape-of-thought word; it influences how programs are written and reasoned about. |
-| 0140  | `STUB` [declaration](#rune-0140)              | stub       | A semantics word; it alters what symbols are allowed to mean in practice.           |
-| 0141  | `STUB` [decorator {Lang}](#rune-0141)         | stub       | A shape-of-thought word; it influences how programs are written and reasoned about. |
-| 0142  | `STUB` [default](#rune-0142)                  | stub       | A law-of-form word; it changes what the language can guarantee.                     |
-| 0143  | `STUB` [definition](#rune-0143)               | stub       | A law-of-form word; it changes what the language can guarantee.                     |
-| 0144  | `STUB` [denotation](#rune-0144)               | stub       | A law-of-form word; it changes what the language can guarantee.                     |
-| 0145  | `STUB` [destructor {Lang}](#rune-0145)        | stub       | A shape-of-thought word; it influences how programs are written and reasoned about. |
-| 0146  | `STUB` [dispatch {Lang}](#rune-0146)          | stub       | A grammar-word; it shapes how meaning is expressed to humans and machines.          |
-| 0147  | `STUB` [domain-specific language](#rune-0147) | stub       | A shape-of-thought word; it influences how programs are written and reasoned about. |
-| 0148  | `STUB` [dynamic scope](#rune-0148)            | stub       | A shape-of-thought word; it influences how programs are written and reasoned about. |
-| 0149  | `STUB` [effect](#rune-0149)                   | stub       | A law-of-form word; it changes what the language can guarantee.                     |
-| 0150  | `STUB` [enum](#rune-0150)                     | stub       | A law-of-form word; it changes what the language can guarantee.                     |
-| 0151  | `STUB` [evaluation {Lang}](#rune-0151)        | stub       | A grammar-word; it shapes how meaning is expressed to humans and machines.          |
-| 0152  | `STUB` [export {Lang}](#rune-0152)            | stub       | A semantics word; it alters what symbols are allowed to mean in practice.           |
-| 0153  | `STUB` [expression](#rune-0153)               | stub       | A grammar-word; it shapes how meaning is expressed to humans and machines.          |
-| 0154  | `STUB` [extern](#rune-0154)                   | stub       | A semantics word; it alters what symbols are allowed to mean in practice.           |
-| 0155  | `STUB` [field {Lang}](#rune-0155)             | stub       | A grammar-word; it shapes how meaning is expressed to humans and machines.          |
-| 0156  | `STUB` [final](#rune-0156)                    | stub       | A semantics word; it alters what symbols are allowed to mean in practice.           |
-| 0157  | [function](#rune-0157)                        | authored   | A callable word; given inputs, it yields outputs by a named rule.                   |
-| 0158  | [generic {Lang}](#rune-0158)                  | authored   | One definition parameterized over many concrete types or cases.                     |
-| 0159  | [grammar](#rune-0159)                         | authored   | The rules that say what strings count as well-formed structure.                     |
-| 0160  | `STUB` [higher-order function](#rune-0160)    | stub       | A semantics word; it alters what symbols are allowed to mean in practice.           |
-| 0161  | `STUB` [identifier](#rune-0161)               | stub       | A shape-of-thought word; it influences how programs are written and reasoned about. |
-| 0162  | `STUB` [impl](#rune-0162)                     | stub       | A semantics word; it alters what symbols are allowed to mean in practice.           |
-| 0163  | `STUB` [implementation {Lang}](#rune-0163)    | stub       | A semantics word; it alters what symbols are allowed to mean in practice.           |
-| 0164  | `STUB` [import](#rune-0164)                   | stub       | A shape-of-thought word; it influences how programs are written and reasoned about. |
-| 0165  | `STUB` [include](#rune-0165)                  | stub       | A grammar-word; it shapes how meaning is expressed to humans and machines.          |
-| 0166  | [inference](#rune-0166)                       | authored   | Recovering missing type or shape information from surrounding evidence.             |
-| 0167  | `STUB` [inheritance](#rune-0167)              | stub       | A semantics word; it alters what symbols are allowed to mean in practice.           |
-| 0168  | `STUB` [inline {Lang}](#rune-0168)            | stub       | A shape-of-thought word; it influences how programs are written and reasoned about. |
-| 0169  | `STUB` [instruction {Lang}](#rune-0169)       | stub       | A semantics word; it alters what symbols are allowed to mean in practice.           |
-| 0170  | [interface {Lang}](#rune-0170)                | authored   | A boundary word; it lets different bodies touch through a disciplined seam.         |
-| 0171  | [interpreter {Lang}](#rune-0171)              | authored   | A runtime that executes a representation rather than precompiling it away.          |
-| 0172  | [IR](#rune-0172)                              | authored   | An internal representation built for analysis and transformation.                   |
-| 0173  | `STUB` [keyword](#rune-0173)                  | stub       | A law-of-form word; it changes what the language can guarantee.                     |
-| 0174  | `STUB` [lambda](#rune-0174)                   | stub       | A law-of-form word; it changes what the language can guarantee.                     |
-| 0175  | `STUB` [lexical scope](#rune-0175)            | stub       | A grammar-word; it shapes how meaning is expressed to humans and machines.          |
-| 0176  | `STUB` [lifetime {Lang}](#rune-0176)          | stub       | A shape-of-thought word; it influences how programs are written and reasoned about. |
-| 0177  | [linker](#rune-0177)                          | authored   | The binder that turns compiled pieces into one loadable whole.                      |
-| 0178  | `STUB` [literal](#rune-0178)                  | stub       | A law-of-form word; it changes what the language can guarantee.                     |
-| 0179  | `STUB` [loader](#rune-0179)                   | stub       | A shape-of-thought word; it influences how programs are written and reasoned about. |
-| 0180  | [macro](#rune-0180)                           | authored   | Code that writes or reshapes code.                                                  |
-| 0181  | `STUB` [metaprogramming](#rune-0181)          | stub       | A semantics word; it alters what symbols are allowed to mean in practice.           |
-| 0182  | `STUB` [method](#rune-0182)                   | stub       | A law-of-form word; it changes what the language can guarantee.                     |
-| 0183  | `STUB` [mixin](#rune-0183)                    | stub       | A law-of-form word; it changes what the language can guarantee.                     |
-| 0184  | `STUB` [module {Lang}](#rune-0184)            | stub       | A containment word; related definitions are packaged as one coherent unit.          |
-| 0185  | `STUB` [monomorphization](#rune-0185)         | stub       | A law-of-form word; it changes what the language can guarantee.                     |
-| 0186  | `STUB` [mutability](#rune-0186)               | stub       | A grammar-word; it shapes how meaning is expressed to humans and machines.          |
-| 0187  | `STUB` [name resolution](#rune-0187)          | stub       | A law-of-form word; it changes what the language can guarantee.                     |
-| 0188  | [namespace {Lang}](#rune-0188)                | authored   | A naming region that prevents collisions and clarifies ownership.                   |
-| 0189  | `STUB` [object](#rune-0189)                   | stub       | A shape-of-thought word; it influences how programs are written and reasoned about. |
-| 0190  | `STUB` [opcode {Lang}](#rune-0190)            | stub       | A semantics word; it alters what symbols are allowed to mean in practice.           |
-| 0191  | `STUB` [overload](#rune-0191)                 | stub       | A grammar-word; it shapes how meaning is expressed to humans and machines.          |
-| 0192  | `STUB` [override](#rune-0192)                 | stub       | A grammar-word; it shapes how meaning is expressed to humans and machines.          |
-| 0193  | `STUB` [ownership](#rune-0193)                | stub       | A shape-of-thought word; it influences how programs are written and reasoned about. |
-| 0194  | `STUB` [package {Lang}](#rune-0194)           | stub       | A grammar-word; it shapes how meaning is expressed to humans and machines.          |
-| 0195  | `STUB` [parameter](#rune-0195)                | stub       | A law-of-form word; it changes what the language can guarantee.                     |
-| 0196  | `STUB` [parametric polymorphism](#rune-0196)  | stub       | A shape-of-thought word; it influences how programs are written and reasoned about. |
-| 0197  | [parser](#rune-0197)                          | authored   | The mechanism that turns surface text into structured meaning.                      |
-| 0198  | `STUB` [pattern](#rune-0198)                  | stub       | A semantics word; it alters what symbols are allowed to mean in practice.           |
-| 0199  | `STUB` [pattern matching](#rune-0199)         | stub       | A law-of-form word; it changes what the language can guarantee.                     |
-| 0200  | [polymorphism](#rune-0200)                    | authored   | One interface, many concrete behaviors.                                             |
-| 0201  | `STUB` [procedure {Lang}](#rune-0201)         | stub       | A method word; not just what to do, but in what order to do it.                     |
-| 0202  | `STUB` [program](#rune-0202)                  | stub       | A grammar-word; it shapes how meaning is expressed to humans and machines.          |
-| 0203  | `STUB` [property {Lang}](#rune-0203)          | stub       | A law-of-form word; it changes what the language can guarantee.                     |
-| 0204  | `STUB` [protected](#rune-0204)                | stub       | A semantics word; it alters what symbols are allowed to mean in practice.           |
-| 0205  | `STUB` [public](#rune-0205)                   | stub       | A shape-of-thought word; it influences how programs are written and reasoned about. |
-| 0206  | `STUB` [purity](#rune-0206)                   | stub       | A law-of-form word; it changes what the language can guarantee.                     |
-| 0207  | `STUB` [qualified name](#rune-0207)           | stub       | A law-of-form word; it changes what the language can guarantee.                     |
-| 0208  | `STUB` [readonly](#rune-0208)                 | stub       | A semantics word; it alters what symbols are allowed to mean in practice.           |
-| 0209  | `STUB` [record {Lang}](#rune-0209)            | stub       | A shape-of-thought word; it influences how programs are written and reasoned about. |
-| 0210  | `STUB` [reference {Lang}](#rune-0210)         | stub       | A shape-of-thought word; it influences how programs are written and reasoned about. |
-| 0211  | `STUB` [referential transparency](#rune-0211) | stub       | A shape-of-thought word; it influences how programs are written and reasoned about. |
-| 0212  | `STUB` [reflection](#rune-0212)               | stub       | A shape-of-thought word; it influences how programs are written and reasoned about. |
-| 0213  | `STUB` [resolution](#rune-0213)               | stub       | A grammar-word; it shapes how meaning is expressed to humans and machines.          |
-| 0214  | `STUB` [return type](#rune-0214)              | stub       | A semantics word; it alters what symbols are allowed to mean in practice.           |
-| 0215  | `STUB` [runtime type](#rune-0215)             | stub       | A semantics word; it alters what symbols are allowed to mean in practice.           |
-| 0216  | `STUB` [scope {Lang}](#rune-0216)             | stub       | A semantics word; it alters what symbols are allowed to mean in practice.           |
-| 0217  | `STUB` [sealed](#rune-0217)                   | stub       | A semantics word; it alters what symbols are allowed to mean in practice.           |
-| 0218  | [semantics](#rune-0218)                       | authored   | What a program means, not just how it is spelled.                                   |
-| 0219  | [signature {Lang}](#rune-0219)                | authored   | A proving word; identity or contract is made checkable.                             |
-| 0220  | `STUB` [source code](#rune-0220)              | stub       | A grammar-word; it shapes how meaning is expressed to humans and machines.          |
-| 0221  | `STUB` [specialization](#rune-0221)           | stub       | A shape-of-thought word; it influences how programs are written and reasoned about. |
-| 0222  | `STUB` [statement](#rune-0222)                | stub       | A law-of-form word; it changes what the language can guarantee.                     |
-| 0223  | `STUB` [static dispatch](#rune-0223)          | stub       | A grammar-word; it shapes how meaning is expressed to humans and machines.          |
-| 0224  | `STUB` [strictness](#rune-0224)               | stub       | A semantics word; it alters what symbols are allowed to mean in practice.           |
-| 0225  | `STUB` [struct {Lang}](#rune-0225)            | stub       | A law-of-form word; it changes what the language can guarantee.                     |
-| 0226  | `STUB` [subtype](#rune-0226)                  | stub       | A grammar-word; it shapes how meaning is expressed to humans and machines.          |
-| 0227  | `STUB` [supertype](#rune-0227)                | stub       | A law-of-form word; it changes what the language can guarantee.                     |
-| 0228  | `STUB` [symbol](#rune-0228)                   | stub       | A semantics word; it alters what symbols are allowed to mean in practice.           |
-| 0229  | [syntax](#rune-0229)                          | authored   | The legal surface form of the language.                                             |
-| 0230  | `STUB` [template {Lang}](#rune-0230)          | stub       | A grammar-word; it shapes how meaning is expressed to humans and machines.          |
-| 0231  | `STUB` [theorem {Lang}](#rune-0231)           | stub       | A grammar-word; it shapes how meaning is expressed to humans and machines.          |
-| 0232  | `STUB` [token {Lang}](#rune-0232)             | stub       | A countable unit of text or symbol used for parsing, modeling, or encoding.         |
-| 0233  | `STUB` [trait](#rune-0233)                    | stub       | A grammar-word; it shapes how meaning is expressed to humans and machines.          |
-| 0234  | `STUB` [transpiler](#rune-0234)               | stub       | A grammar-word; it shapes how meaning is expressed to humans and machines.          |
-| 0235  | `STUB` [tuple {Lang}](#rune-0235)             | stub       | A semantics word; it alters what symbols are allowed to mean in practice.           |
-| 0236  | [type](#rune-0236)                            | authored   | A declared or inferred class of values and allowed operations.                      |
-| 0237  | `STUB` [type alias](#rune-0237)               | stub       | A grammar-word; it shapes how meaning is expressed to humans and machines.          |
-| 0238  | `STUB` [type inference](#rune-0238)           | stub       | A law-of-form word; it changes what the language can guarantee.                     |
-| 0239  | `STUB` [type system](#rune-0239)              | stub       | A shape-of-thought word; it influences how programs are written and reasoned about. |
-| 0240  | [typechecker](#rune-0240)                     | authored   | The checker that enforces type law before execution.                                |
-| 0241  | `STUB` [typeclass](#rune-0241)                | stub       | A grammar-word; it shapes how meaning is expressed to humans and machines.          |
-| 0242  | `STUB` [unification](#rune-0242)              | stub       | A law-of-form word; it changes what the language can guarantee.                     |
-| 0243  | `STUB` [union](#rune-0243)                    | stub       | A law-of-form word; it changes what the language can guarantee.                     |
-| 0244  | `STUB` [value](#rune-0244)                    | stub       | A law-of-form word; it changes what the language can guarantee.                     |
-| 0245  | `STUB` [variance](#rune-0245)                 | stub       | A law-of-form word; it changes what the language can guarantee.                     |
-| 0246  | `STUB` [virtual](#rune-0246)                  | stub       | A shape-of-thought word; it influences how programs are written and reasoned about. |
-| 0247  | `STUB` [visibility](#rune-0247)               | stub       | A grammar-word; it shapes how meaning is expressed to humans and machines.          |
-| 0248  | `STUB` [visitor](#rune-0248)                  | stub       | A grammar-word; it shapes how meaning is expressed to humans and machines.          |
-| 0249  | `STUB` [where-clause](#rune-0249)             | stub       | A law-of-form word; it changes what the language can guarantee.                     |
+| Sigil | Term                                          | Completion  | Summary                                                                             |
+| ----- | --------------------------------------------- | ----------- | ----------------------------------------------------------------------------------- |
+| 0113  | `STUB` [abstract class](#rune-0113)           | stub        | A semantics word; it alters what symbols are allowed to mean in practice.           |
+| 0114  | `STUB` [alias](#rune-0114)                    | stub        | A semantics word; it alters what symbols are allowed to mean in practice.           |
+| 0115  | `STUB` [annotation](#rune-0115)               | stub        | A shape-of-thought word; it influences how programs are written and reasoned about. |
+| 0116  | `STUB` [argument](#rune-0116)                 | stub        | A shape-of-thought word; it influences how programs are written and reasoned about. |
+| 0117  | `STUB` [arity](#rune-0117)                    | stub        | A law-of-form word; it changes what the language can guarantee.                     |
+| 0118  | `STUB` [assembly](#rune-0118)                 | stub        | A grammar-word; it shapes how meaning is expressed to humans and machines.          |
+| 0119  | `STUB` [assertion {Lang}](#rune-0119)         | stub        | A grammar-word; it shapes how meaning is expressed to humans and machines.          |
+| 0120  | [AST](#rune-0120)                             | authored    | The tree form of parsed program structure.                                          |
+| 0121  | `STUB` [attribute](#rune-0121)                | stub        | A grammar-word; it shapes how meaning is expressed to humans and machines.          |
+| 0122  | `STUB` [binding](#rune-0122)                  | stub        | A shape-of-thought word; it influences how programs are written and reasoned about. |
+| 0123  | `STUB` [borrow {Lang}](#rune-0123)            | stub        | A shape-of-thought word; it influences how programs are written and reasoned about. |
+| 0124  | [borrow checker](#rune-0124)                  | authored    | A checker that enforces safe borrowing and lifetime law before runtime.             |
+| 0125  | `STUB` [bytecode](#rune-0125)                 | stub        | A shape-of-thought word; it influences how programs are written and reasoned about. |
+| 0126  | `STUB` [capture](#rune-0126)                  | stub        | A grammar-word; it shapes how meaning is expressed to humans and machines.          |
+| 0127  | `STUB` [cast](#rune-0127)                     | stub        | A shape-of-thought word; it influences how programs are written and reasoned about. |
+| 0128  | [class](#rune-0128)                           | needs_sense | A shape word for bundled state and behavior.                                        |
+| 0129  | [closure](#rune-0129)                         | needs_sense | A capture word; it carries surrounding bindings forward with executable intent.     |
+| 0130  | `STUB` [coercion](#rune-0130)                 | stub        | A semantics word; it alters what symbols are allowed to mean in practice.           |
+| 0131  | `STUB` [comment](#rune-0131)                  | stub        | A shape-of-thought word; it influences how programs are written and reasoned about. |
+| 0132  | [compile-time](#rune-0132)                    | authored    | Known and fixed before execution begins.                                            |
+| 0133  | [compiler](#rune-0133)                        | authored    | The translator from source language to lower-level executable form.                 |
+| 0134  | `STUB` [constant](#rune-0134)                 | stub        | A semantics word; it alters what symbols are allowed to mean in practice.           |
+| 0135  | `STUB` [constraint {Lang}](#rune-0135)        | stub        | A bounding word; it removes degrees of freedom in order to improve correctness.     |
+| 0136  | `STUB` [constructor](#rune-0136)              | stub        | A semantics word; it alters what symbols are allowed to mean in practice.           |
+| 0137  | `STUB` [contravariance](#rune-0137)           | stub        | A grammar-word; it shapes how meaning is expressed to humans and machines.          |
+| 0138  | `STUB` [covariance](#rune-0138)               | stub        | A shape-of-thought word; it influences how programs are written and reasoned about. |
+| 0139  | `STUB` [currying](#rune-0139)                 | stub        | A shape-of-thought word; it influences how programs are written and reasoned about. |
+| 0140  | `STUB` [declaration](#rune-0140)              | stub        | A semantics word; it alters what symbols are allowed to mean in practice.           |
+| 0141  | `STUB` [decorator {Lang}](#rune-0141)         | stub        | A shape-of-thought word; it influences how programs are written and reasoned about. |
+| 0142  | `STUB` [default](#rune-0142)                  | stub        | A law-of-form word; it changes what the language can guarantee.                     |
+| 0143  | `STUB` [definition](#rune-0143)               | stub        | A law-of-form word; it changes what the language can guarantee.                     |
+| 0144  | `STUB` [denotation](#rune-0144)               | stub        | A law-of-form word; it changes what the language can guarantee.                     |
+| 0145  | `STUB` [destructor {Lang}](#rune-0145)        | stub        | A shape-of-thought word; it influences how programs are written and reasoned about. |
+| 0146  | `STUB` [dispatch {Lang}](#rune-0146)          | stub        | A grammar-word; it shapes how meaning is expressed to humans and machines.          |
+| 0147  | `STUB` [domain-specific language](#rune-0147) | stub        | A shape-of-thought word; it influences how programs are written and reasoned about. |
+| 0148  | `STUB` [dynamic scope](#rune-0148)            | stub        | A shape-of-thought word; it influences how programs are written and reasoned about. |
+| 0149  | `STUB` [effect](#rune-0149)                   | stub        | A law-of-form word; it changes what the language can guarantee.                     |
+| 0150  | `STUB` [enum](#rune-0150)                     | stub        | A law-of-form word; it changes what the language can guarantee.                     |
+| 0151  | `STUB` [evaluation {Lang}](#rune-0151)        | stub        | A grammar-word; it shapes how meaning is expressed to humans and machines.          |
+| 0152  | `STUB` [export {Lang}](#rune-0152)            | stub        | A semantics word; it alters what symbols are allowed to mean in practice.           |
+| 0153  | `STUB` [expression](#rune-0153)               | stub        | A grammar-word; it shapes how meaning is expressed to humans and machines.          |
+| 0154  | `STUB` [extern](#rune-0154)                   | stub        | A semantics word; it alters what symbols are allowed to mean in practice.           |
+| 0155  | `STUB` [field {Lang}](#rune-0155)             | stub        | A grammar-word; it shapes how meaning is expressed to humans and machines.          |
+| 0156  | `STUB` [final](#rune-0156)                    | stub        | A semantics word; it alters what symbols are allowed to mean in practice.           |
+| 0157  | [function](#rune-0157)                        | needs_sense | A callable word; given inputs, it yields outputs by a named rule.                   |
+| 0158  | [generic {Lang}](#rune-0158)                  | authored    | One definition parameterized over many concrete types or cases.                     |
+| 0159  | [grammar](#rune-0159)                         | authored    | The rules that say what strings count as well-formed structure.                     |
+| 0160  | `STUB` [higher-order function](#rune-0160)    | stub        | A semantics word; it alters what symbols are allowed to mean in practice.           |
+| 0161  | `STUB` [identifier](#rune-0161)               | stub        | A shape-of-thought word; it influences how programs are written and reasoned about. |
+| 0162  | `STUB` [impl](#rune-0162)                     | stub        | A semantics word; it alters what symbols are allowed to mean in practice.           |
+| 0163  | `STUB` [implementation {Lang}](#rune-0163)    | stub        | A semantics word; it alters what symbols are allowed to mean in practice.           |
+| 0164  | `STUB` [import](#rune-0164)                   | stub        | A shape-of-thought word; it influences how programs are written and reasoned about. |
+| 0165  | `STUB` [include](#rune-0165)                  | stub        | A grammar-word; it shapes how meaning is expressed to humans and machines.          |
+| 0166  | [inference](#rune-0166)                       | authored    | Recovering missing type or shape information from surrounding evidence.             |
+| 0167  | `STUB` [inheritance](#rune-0167)              | stub        | A semantics word; it alters what symbols are allowed to mean in practice.           |
+| 0168  | `STUB` [inline {Lang}](#rune-0168)            | stub        | A shape-of-thought word; it influences how programs are written and reasoned about. |
+| 0169  | `STUB` [instruction {Lang}](#rune-0169)       | stub        | A semantics word; it alters what symbols are allowed to mean in practice.           |
+| 0170  | [interface {Lang}](#rune-0170)                | authored    | A boundary word; it lets different bodies touch through a disciplined seam.         |
+| 0171  | [interpreter {Lang}](#rune-0171)              | authored    | A runtime that executes a representation rather than precompiling it away.          |
+| 0172  | [IR](#rune-0172)                              | authored    | An internal representation built for analysis and transformation.                   |
+| 0173  | `STUB` [keyword](#rune-0173)                  | stub        | A law-of-form word; it changes what the language can guarantee.                     |
+| 0174  | `STUB` [lambda](#rune-0174)                   | stub        | A law-of-form word; it changes what the language can guarantee.                     |
+| 0175  | `STUB` [lexical scope](#rune-0175)            | stub        | A grammar-word; it shapes how meaning is expressed to humans and machines.          |
+| 0176  | `STUB` [lifetime {Lang}](#rune-0176)          | stub        | A shape-of-thought word; it influences how programs are written and reasoned about. |
+| 0177  | [linker](#rune-0177)                          | authored    | The binder that turns compiled pieces into one loadable whole.                      |
+| 0178  | `STUB` [literal](#rune-0178)                  | stub        | A law-of-form word; it changes what the language can guarantee.                     |
+| 0179  | `STUB` [loader](#rune-0179)                   | stub        | A shape-of-thought word; it influences how programs are written and reasoned about. |
+| 0180  | [macro](#rune-0180)                           | authored    | Code that writes or reshapes code.                                                  |
+| 0181  | `STUB` [metaprogramming](#rune-0181)          | stub        | A semantics word; it alters what symbols are allowed to mean in practice.           |
+| 0182  | `STUB` [method](#rune-0182)                   | stub        | A law-of-form word; it changes what the language can guarantee.                     |
+| 0183  | `STUB` [mixin](#rune-0183)                    | stub        | A law-of-form word; it changes what the language can guarantee.                     |
+| 0184  | `STUB` [module {Lang}](#rune-0184)            | stub        | A containment word; related definitions are packaged as one coherent unit.          |
+| 0185  | `STUB` [monomorphization](#rune-0185)         | stub        | A law-of-form word; it changes what the language can guarantee.                     |
+| 0186  | `STUB` [mutability](#rune-0186)               | stub        | A grammar-word; it shapes how meaning is expressed to humans and machines.          |
+| 0187  | `STUB` [name resolution](#rune-0187)          | stub        | A law-of-form word; it changes what the language can guarantee.                     |
+| 0188  | [namespace {Lang}](#rune-0188)                | authored    | A naming region that prevents collisions and clarifies ownership.                   |
+| 0189  | `STUB` [object](#rune-0189)                   | stub        | A shape-of-thought word; it influences how programs are written and reasoned about. |
+| 0190  | `STUB` [opcode {Lang}](#rune-0190)            | stub        | A semantics word; it alters what symbols are allowed to mean in practice.           |
+| 0191  | `STUB` [overload](#rune-0191)                 | stub        | A grammar-word; it shapes how meaning is expressed to humans and machines.          |
+| 0192  | `STUB` [override](#rune-0192)                 | stub        | A grammar-word; it shapes how meaning is expressed to humans and machines.          |
+| 0193  | `STUB` [ownership](#rune-0193)                | stub        | A shape-of-thought word; it influences how programs are written and reasoned about. |
+| 0194  | `STUB` [package {Lang}](#rune-0194)           | stub        | A grammar-word; it shapes how meaning is expressed to humans and machines.          |
+| 0195  | `STUB` [parameter](#rune-0195)                | stub        | A law-of-form word; it changes what the language can guarantee.                     |
+| 0196  | `STUB` [parametric polymorphism](#rune-0196)  | stub        | A shape-of-thought word; it influences how programs are written and reasoned about. |
+| 0197  | [parser](#rune-0197)                          | authored    | The mechanism that turns surface text into structured meaning.                      |
+| 0198  | `STUB` [pattern](#rune-0198)                  | stub        | A semantics word; it alters what symbols are allowed to mean in practice.           |
+| 0199  | `STUB` [pattern matching](#rune-0199)         | stub        | A law-of-form word; it changes what the language can guarantee.                     |
+| 0200  | [polymorphism](#rune-0200)                    | authored    | One interface, many concrete behaviors.                                             |
+| 0201  | `STUB` [procedure {Lang}](#rune-0201)         | stub        | A method word; not just what to do, but in what order to do it.                     |
+| 0202  | `STUB` [program](#rune-0202)                  | stub        | A grammar-word; it shapes how meaning is expressed to humans and machines.          |
+| 0203  | `STUB` [property {Lang}](#rune-0203)          | stub        | A law-of-form word; it changes what the language can guarantee.                     |
+| 0204  | `STUB` [protected](#rune-0204)                | stub        | A semantics word; it alters what symbols are allowed to mean in practice.           |
+| 0205  | `STUB` [public](#rune-0205)                   | stub        | A shape-of-thought word; it influences how programs are written and reasoned about. |
+| 0206  | `STUB` [purity](#rune-0206)                   | stub        | A law-of-form word; it changes what the language can guarantee.                     |
+| 0207  | `STUB` [qualified name](#rune-0207)           | stub        | A law-of-form word; it changes what the language can guarantee.                     |
+| 0208  | `STUB` [readonly](#rune-0208)                 | stub        | A semantics word; it alters what symbols are allowed to mean in practice.           |
+| 0209  | `STUB` [record {Lang}](#rune-0209)            | stub        | A shape-of-thought word; it influences how programs are written and reasoned about. |
+| 0210  | `STUB` [reference {Lang}](#rune-0210)         | stub        | A shape-of-thought word; it influences how programs are written and reasoned about. |
+| 0211  | `STUB` [referential transparency](#rune-0211) | stub        | A shape-of-thought word; it influences how programs are written and reasoned about. |
+| 0212  | `STUB` [reflection](#rune-0212)               | stub        | A shape-of-thought word; it influences how programs are written and reasoned about. |
+| 0213  | `STUB` [resolution](#rune-0213)               | stub        | A grammar-word; it shapes how meaning is expressed to humans and machines.          |
+| 0214  | `STUB` [return type](#rune-0214)              | stub        | A semantics word; it alters what symbols are allowed to mean in practice.           |
+| 0215  | `STUB` [runtime type](#rune-0215)             | stub        | A semantics word; it alters what symbols are allowed to mean in practice.           |
+| 0216  | `STUB` [scope {Lang}](#rune-0216)             | stub        | A semantics word; it alters what symbols are allowed to mean in practice.           |
+| 0217  | `STUB` [sealed](#rune-0217)                   | stub        | A semantics word; it alters what symbols are allowed to mean in practice.           |
+| 0218  | [semantics](#rune-0218)                       | authored    | What a program means, not just how it is spelled.                                   |
+| 0219  | [signature {Lang}](#rune-0219)                | authored    | A proving word; identity or contract is made checkable.                             |
+| 0220  | `STUB` [source code](#rune-0220)              | stub        | A grammar-word; it shapes how meaning is expressed to humans and machines.          |
+| 0221  | `STUB` [specialization](#rune-0221)           | stub        | A shape-of-thought word; it influences how programs are written and reasoned about. |
+| 0222  | `STUB` [statement](#rune-0222)                | stub        | A law-of-form word; it changes what the language can guarantee.                     |
+| 0223  | `STUB` [static dispatch](#rune-0223)          | stub        | A grammar-word; it shapes how meaning is expressed to humans and machines.          |
+| 0224  | `STUB` [strictness](#rune-0224)               | stub        | A semantics word; it alters what symbols are allowed to mean in practice.           |
+| 0225  | `STUB` [struct {Lang}](#rune-0225)            | stub        | A law-of-form word; it changes what the language can guarantee.                     |
+| 0226  | `STUB` [subtype](#rune-0226)                  | stub        | A grammar-word; it shapes how meaning is expressed to humans and machines.          |
+| 0227  | `STUB` [supertype](#rune-0227)                | stub        | A law-of-form word; it changes what the language can guarantee.                     |
+| 0228  | `STUB` [symbol](#rune-0228)                   | stub        | A semantics word; it alters what symbols are allowed to mean in practice.           |
+| 0229  | [syntax](#rune-0229)                          | authored    | The legal surface form of the language.                                             |
+| 0230  | `STUB` [template {Lang}](#rune-0230)          | stub        | A grammar-word; it shapes how meaning is expressed to humans and machines.          |
+| 0231  | `STUB` [theorem {Lang}](#rune-0231)           | stub        | A grammar-word; it shapes how meaning is expressed to humans and machines.          |
+| 0232  | `STUB` [token {Lang}](#rune-0232)             | stub        | A countable unit of text or symbol used for parsing, modeling, or encoding.         |
+| 0233  | `STUB` [trait](#rune-0233)                    | stub        | A grammar-word; it shapes how meaning is expressed to humans and machines.          |
+| 0234  | `STUB` [transpiler](#rune-0234)               | stub        | A grammar-word; it shapes how meaning is expressed to humans and machines.          |
+| 0235  | `STUB` [tuple {Lang}](#rune-0235)             | stub        | A semantics word; it alters what symbols are allowed to mean in practice.           |
+| 0236  | [type](#rune-0236)                            | authored    | A declared or inferred class of values and allowed operations.                      |
+| 0237  | `STUB` [type alias](#rune-0237)               | stub        | A grammar-word; it shapes how meaning is expressed to humans and machines.          |
+| 0238  | `STUB` [type inference](#rune-0238)           | stub        | A law-of-form word; it changes what the language can guarantee.                     |
+| 0239  | `STUB` [type system](#rune-0239)              | stub        | A shape-of-thought word; it influences how programs are written and reasoned about. |
+| 0240  | [typechecker](#rune-0240)                     | authored    | The checker that enforces type law before execution.                                |
+| 0241  | `STUB` [typeclass](#rune-0241)                | stub        | A grammar-word; it shapes how meaning is expressed to humans and machines.          |
+| 0242  | `STUB` [unification](#rune-0242)              | stub        | A law-of-form word; it changes what the language can guarantee.                     |
+| 0243  | `STUB` [union](#rune-0243)                    | stub        | A law-of-form word; it changes what the language can guarantee.                     |
+| 0244  | `STUB` [value](#rune-0244)                    | stub        | A law-of-form word; it changes what the language can guarantee.                     |
+| 0245  | `STUB` [variance](#rune-0245)                 | stub        | A law-of-form word; it changes what the language can guarantee.                     |
+| 0246  | `STUB` [virtual](#rune-0246)                  | stub        | A shape-of-thought word; it influences how programs are written and reasoned about. |
+| 0247  | `STUB` [visibility](#rune-0247)               | stub        | A grammar-word; it shapes how meaning is expressed to humans and machines.          |
+| 0248  | `STUB` [visitor](#rune-0248)                  | stub        | A grammar-word; it shapes how meaning is expressed to humans and machines.          |
+| 0249  | `STUB` [where-clause](#rune-0249)             | stub        | A law-of-form word; it changes what the language can guarantee.                     |
 
 ## Entries
 
@@ -315,7 +316,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** authored
+**Completion:** needs_sense
 
 **Force:** A shape word for bundled state and behavior.
 
@@ -325,7 +326,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** authored
+**Completion:** needs_sense
 
 **Force:** A capture word; it carries surrounding bindings forward with executable intent.
 
@@ -609,7 +610,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** authored
+**Completion:** needs_sense
 
 **Force:** A callable word; given inputs, it yields outputs by a named rule.
 

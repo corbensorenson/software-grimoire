@@ -1,5 +1,36 @@
 # Changelog
 
+## v1.0.0-canonical-field-release
+
+- Rebuilt the homepage around the practical engineering payoff, with a weak
+  request, repaired spell, expected delta, quick-start path, and direct spell
+  link.
+- Added `quick_start.qmd` with a plain-English map from grimoire vocabulary to
+  ordinary engineering terms.
+- Added `data/canon_quality.json`, `schemas/canon-quality.schema.json`, and
+  validation coverage for authored-layer quality reporting.
+- Reviewed all 50 major-canon shadows and made them term-specific.
+- Clarified `sense` policy so category labels no longer masquerade as real
+  disambiguators; current counts are 305 authored entries and 1,302 stubs.
+- Moved the full house pages into a clearly labeled partially authored master
+  lexicon appendix.
+- Added copyable fenced templates and raw prompt links to every field-spell
+  page.
+- Added generated `prompts/` assets for all six field spells and six stack
+  workflows.
+- Added Codex-owned recorded weak-vs-repaired evaluation runs for all six field
+  spells, including score tables, raw prompt files, raw transcript files, and
+  one preserved non-win.
+- Added `examples/evaluations/` result pages generated from
+  `examples/evaluations/results.json`.
+- Added adoption-kit pages for copying assets and using the local CLI in an
+  external workflow.
+- Expanded `scripts/grimoire.py` with `new spell`, single-file `validate`, and
+  single-file `seal` commands.
+- Added tests for recorded evaluation integrity, the local CLI round trip, and
+  canon-quality schema conformance.
+- Rendered site size is now 75 Quarto pages.
+
 ## v0.3.0-integrity-evidence-ci
 
 - Added honest lexicon completion metadata for all 1,645 entries.

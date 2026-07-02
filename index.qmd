@@ -2,8 +2,34 @@
 title: "The Grimoire of Software Magic Words"
 ---
 
-Every software system is a ritual of names. The names that merely describe are ordinary. The names that constrain, invoke, transform, verify, or guard are magic.
+AI coding gets better when the request names the artifact, the invariant, the output shape, the verification step, and what to do when the task is underspecified.
 
-This site is a public field manual and formal reference for AI-assisted software engineering. It teaches spells as structured instruction artifacts, stacks as reusable workflows, and runes as high-force engineering word-senses.
+The Software Grimoire is a public field manual for turning vague AI requests into bounded, reviewable software work. Its core unit is a **spell**: a structured prompt template. A **stack** is a workflow made of spells. A **rune** is a high-force engineering term. A **shadow** is the failure mode to watch.
 
-Start with [the guided reader path](reader_path.qmd) if you want an ordered route. Check [porting status](porting-status.qmd) if you want to see what moved from the source manuscripts into the public site. Use the spell and stack libraries if you want working forms immediately. Use the lexicon when you need stable vocabulary for prompts, reviews, migrations, incidents, and release gates.
+## Weak Request
+
+```text
+Clean up this Python module and make it nicer.
+```
+
+## Repaired Spell
+
+```text
+ROLE: Act as a senior Python engineer performing behavior-preserving refactoring.
+
+OBJECTIVE: Remove duplication in the supplied module without changing public behavior.
+
+CONTEXT: The module is imported by two API handlers and one CLI entry point. Existing tests cover only the happy path.
+
+CONSTRAINTS: Do not change public function names, parameter order, return types, or raised exception classes. Touch only this module and its tests.
+
+OUTPUT CONTRACT: Return a minimal patch plan, the proposed refactor, and tests that prove unchanged behavior.
+
+VERIFICATION: State the invariants first; then show before/after test cases for edge inputs.
+
+FAILURE BEHAVIOR: If the module boundary is too small for a safe refactor, say exactly what adjacent file must also move and why.
+```
+
+**Expected delta:** The repaired spell narrows blast radius, makes invariants reviewable, and forces proof through tests instead of relying on claims of cleanliness.
+
+Start with [First Spell in Five Minutes](quick_start.qmd), copy [Spell of Safe Refactoring](spells/safe-refactoring.qmd), or browse the [Proof by Difference](reference/proof-by-difference.qmd) cases. Use the [guided reader path](reader_path.qmd) if you want the full theory.

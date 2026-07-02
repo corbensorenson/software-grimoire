@@ -9,6 +9,51 @@ title: "Spell of Performance Tuning"
 **Use when:** Use when latency or throughput needs disciplined measurement before optimization.
 
 
+## Copyable Template
+
+Raw template: [prompts/spells/performance-tuning.txt](../prompts/spells/performance-tuning.txt)
+
+```text
+ROLE:
+Act as a performance engineer.
+
+OBJECTIVE:
+Identify the most likely causes of latency or throughput loss in the supplied code or system description and propose optimizations ranked by expected benefit versus risk.
+
+CONTEXT:
+The service has a strict latency budget and runs on commodity cloud hardware. A profiler or benchmark may or may not be available.
+
+CONSTRAINTS:
+Do not recommend micro-optimizations before addressing algorithmic or I/O-bound issues.
+
+Separate CPU, memory, allocation, database, and network effects. Mention measurement strategy.
+
+PROCEDURE:
+First classify the probable bottleneck class. Then propose measurement steps. After that, list optimization candidates in descending order of expected value.
+
+Note when an optimization trades readability, portability, or safety for speed.
+
+OUTPUT CONTRACT:
+Return:
+
+1\. bottleneck hypotheses,
+
+2\. what to measure,
+
+3\. optimization options ranked by expected payoff,
+
+4\. benchmark plan,
+
+5\. rollback criteria.
+
+VERIFICATION:
+State how success will be measured and what regression risks need to be watched.
+
+FAILURE BEHAVIOR:
+If evidence is insufficient, say what profile, trace, or benchmark data would most improve the recommendation.
+```
+
+
 ## Related Runes
 
 - [1146 benchmark](../reference/house-testing-verification-and-observability.qmd#rune-1146) - A performance claim forced to meet measurement. Benchmarks are where speed rhetoric either cashes out or dies.
@@ -24,7 +69,11 @@ title: "Spell of Performance Tuning"
 - [Cast Levels](../reference/cast-levels.qmd)
 - [Failure Modes](../reference/failure-modes.qmd)
 - [Proof by Difference Case](../examples/weak-vs-repaired/performance-tuning.qmd)
+- [Recorded Evaluations](../examples/evaluations/performance-tuning.qmd)
 - [Canon Map](../reference/canon-map.qmd)
+
+
+## Source Form
 
 ## Spell of Performance Tuning
 

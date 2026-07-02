@@ -4,6 +4,7 @@ project:
   resources:
     - .nojekyll
     - data/*.json
+    - prompts/**
 
 lang: en-US
 
@@ -16,6 +17,7 @@ book:
   repo-actions: [issue, source]
   chapters:
     - index.qmd
+    - quick_start.qmd
     - reader_path.qmd
     - part: "Core Grimoire"
       chapters:
@@ -57,6 +59,19 @@ book:
         - examples/weak-vs-repaired/migration-without-data-loss.qmd
         - examples/weak-vs-repaired/test-generation.qmd
         - examples/weak-vs-repaired/performance-tuning.qmd
+    - part: "Recorded Evaluations"
+      chapters:
+        - examples/evaluations/index.qmd
+        - examples/evaluations/safe-refactoring.qmd
+        - examples/evaluations/bug-diagnosis-from-logs.qmd
+        - examples/evaluations/api-design.qmd
+        - examples/evaluations/migration-without-data-loss.qmd
+        - examples/evaluations/test-generation.qmd
+        - examples/evaluations/performance-tuning.qmd
+    - part: "Adoption Kit"
+      chapters:
+        - adoption/index.qmd
+        - adoption/external-walkthrough.qmd
     - part: "Reference"
       chapters:
         - reference/index.qmd
@@ -71,6 +86,8 @@ book:
         - reference/pocket-canon.qmd
         - reference/pocket-field-guide.qmd
         - reference/term-index.qmd
+    - part: "Partially Authored Master Lexicon"
+      chapters:
         - reference/lexicon.qmd
         - reference/house-architecture-abstraction-and-design.qmd
         - reference/house-language-semantics-and-formal-shape.qmd
@@ -95,6 +112,7 @@ format:
   html:
     toc: true
     number-sections: true
+    code-copy: true
     code-fold: true
     theme:
       - cosmo

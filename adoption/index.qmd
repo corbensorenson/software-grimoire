@@ -1,0 +1,34 @@
+---
+title: "Adoption Kit"
+---
+
+# Adoption Kit
+
+The adoption kit is intentionally small. It exists to make the six field spell templates and six stack workflows usable outside this repository.
+
+## Raw Prompt Assets
+
+- [Prompt asset README](../prompts/README.md)
+- [Spell templates](https://github.com/corbensorenson/software-grimoire/tree/main/prompts/spells)
+- [Stack workflow templates](https://github.com/corbensorenson/software-grimoire/tree/main/prompts/stacks)
+
+## Minimal CLI
+
+Use the repository CLI through Python:
+
+```bash
+python3 scripts/grimoire.py validate
+python3 scripts/grimoire.py new spell /tmp/my-spell.json
+python3 scripts/grimoire.py validate /tmp/my-spell.json
+python3 scripts/grimoire.py seal /tmp/my-spell.json
+```
+
+The CLI stays local. It has no hidden model calls and no provider dependency.
+
+## Use Policy
+
+- Copy templates first; customize only the context and constraints needed for the task.
+- Keep verification visible.
+- Save prompts and outputs that worked.
+- Retire local variants that no longer improve output.
+- Record evidence before promoting a local spell to a team template.

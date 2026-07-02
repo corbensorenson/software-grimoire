@@ -9,6 +9,55 @@ title: "Spell of API Design"
 **Use when:** Use when designing a public or durable JSON API surface.
 
 
+## Copyable Template
+
+Raw template: [prompts/spells/api-design.txt](../prompts/spells/api-design.txt)
+
+```text
+ROLE:
+Act as a backend architect designing a public JSON API.
+
+OBJECTIVE:
+Design an API for the described resource model that is clean, versionable, secure, and observable.
+
+CONTEXT:
+Clients include web, mobile, and internal automation. The system uses OAuth-based authorization and PostgreSQL storage.
+
+Backward compatibility matters because mobile clients update slowly.
+
+CONSTRAINTS:
+Prefer boring, maintainable patterns over novelty. Include pagination, error schema, idempotency where appropriate,
+
+authorization notes, and migration considerations. Do not hand-wave failure modes.
+
+PROCEDURE:
+Start from the resource model and operations. Then define endpoints, request and response schemas,
+
+error codes, pagination, filtering, authorization checks, and observability requirements.
+
+OUTPUT CONTRACT:
+Return:
+
+1\. resource model,
+
+2\. endpoint table,
+
+3\. example requests and responses,
+
+4\. error format,
+
+5\. auth model,
+
+6\. migration and versioning notes.
+
+VERIFICATION:
+Call out edge cases, race conditions, and compatibility risks.
+
+FAILURE BEHAVIOR:
+If the resource model is underspecified, list the assumptions explicitly before designing.
+```
+
+
 ## Related Runes
 
 - [0055 interface {Arch}](../reference/house-architecture-abstraction-and-design.qmd#rune-0055) - A disciplined seam that lets unlike bodies cooperate without swapping internal organs.
@@ -24,7 +73,11 @@ title: "Spell of API Design"
 - [Cast Levels](../reference/cast-levels.qmd)
 - [Failure Modes](../reference/failure-modes.qmd)
 - [Proof by Difference Case](../examples/weak-vs-repaired/api-design.qmd)
+- [Recorded Evaluations](../examples/evaluations/api-design.qmd)
 - [Canon Map](../reference/canon-map.qmd)
+
+
+## Source Form
 
 ## Spell of API Design
 

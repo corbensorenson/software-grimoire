@@ -50,12 +50,13 @@ Current public-site status:
 - The repository includes schemas, validation, seal generation, CI, GitHub Pages
   publishing, pull-request checks, contribution templates, examples, and public
   releases.
-- The rendered Quarto site currently contains 65 pages, including six
-  Proof-by-Difference cases and a dedicated Proof by Difference reference page.
+- The rendered Quarto site currently contains 75 pages, including six
+  Proof-by-Difference cases, six recorded evaluation result pages, and a
+  dedicated Proof by Difference reference page.
 - Important qualification: "ported" means the source material exists in the
   Quarto/data system. It does not mean every lexicon entry has been individually
   authored to final canon quality. The full 1,645-entry lexicon contains many
-  category-gloss stubs. The current site marks this honestly: 343 entries are
+  category-gloss stubs. The current site marks this honestly: 305 entries are
   authored and 1,302 entries are stubs pending term-specific authoring.
 
 Reader-experience requirements:
@@ -108,8 +109,35 @@ External review findings to absorb into the roadmap:
 Absorption status:
 
 - Findings 3 through 6 were implemented in `v0.3.0-integrity-evidence-ci`.
-- The remaining long-term authoring work is the human-reviewed expansion of
-  stub lexicon entries into final canon, starting from the pocket-canon layer.
+- A v0.3 follow-up review found a more important fork: the project should not
+  spend its next credibility budget authoring 1,302 master-lexicon stubs.
+  Stub authoring remains background work. The next foreground work is:
+  1. improve the quality and usability of the authored layer readers actually
+     touch;
+  2. prove the core claim with recorded evaluations, not asserted deltas;
+  3. package the six spells and six stacks for real tool use only after the
+     evidence exists.
+- The roadmap therefore pivots from "grow the canon" to "prove and package the
+  method." Full master-lexicon authoring remains a long-term v1.x campaign, not
+  the next release train.
+
+External v0.3 review findings absorbed in the v1.0 release train:
+
+1. Proof by Difference lacked recorded runs. The v1.0 release adds preserved
+   weak-vs-repaired Codex transcripts, scores, and observed results for all six
+   field spells.
+2. The authored layer needed quality review before more canon growth. Summaries
+   are unique, but shadows and `sense` values need tighter term-specific review.
+3. The front door needed to lead with the engineering payoff, not the metaphor.
+   A new visitor now sees a weak request, repaired spell, and expected output
+   delta immediately.
+4. Spell pages needed to be easier to use directly: one copyable template block,
+   raw template downloads, and seal adjacency.
+5. The 50 major words and 300 pocket runes needed to become the promoted
+   vocabulary surfaces. Full house pages are now framed as a partially authored
+   appendix until their authored ratio improves.
+6. Tooling architecture remained a strength. `scripts/bootstrap_project.py` can
+   stay a monolith until it causes real pain.
 
 ## 1. End State
 
@@ -1217,10 +1245,11 @@ Remaining risk:
 Status:
 
 - Integrity layer completed as part of `v0.3.0-integrity-evidence-ci`.
-- The site now reports 343 authored entries and 1,302 stub entries.
+- The site now reports 305 authored entries and 1,302 stub entries.
 - Major and pocket entries are authored from their source-canon glosses.
 - Remaining full-lexicon stubs are explicitly marked for future authoring.
-- Long-term human review of the full 1,645-entry canon remains v1.0 work.
+- Long-term human review of the full 1,645-entry canon remains v1.x background
+  work, not a blocker for v0.4, v0.5, v0.6, or v1.0.
 
 Goal:
 
@@ -1443,11 +1472,264 @@ Definition of done:
 - New contributors can tell which files are source, generated, and review
   artifacts.
 
+### Phase 9.11: Canon Quality and Front Door
+
+Recommended release:
+
+- `v0.4.0-canon-quality-front-door`
+
+Implementation status:
+
+- Completed in `v1.0.0-canonical-field-release`.
+
+Goal:
+
+Make the already-authored and already-usable parts of the project feel credible
+to a skeptical working engineer in the first five minutes.
+
+Rationale:
+
+The obvious work would be to author 1,302 remaining stub lexicon entries. That is
+not the highest-leverage next move. The project already has enough vocabulary,
+spells, stacks, and generated structure to test its thesis. The next release
+should improve the surfaces people will actually touch: the homepage, quick
+start, major/pocket canon, and copyable spell templates.
+
+Tasks:
+
+1. Audit the authored layer:
+   - Count unique summaries, unique shadows, and true sense-disambiguator values
+     for authored entries.
+   - Report shadow uniqueness and sense quality on `porting-status.qmd`.
+   - Add validation to reject `Shadow: Shadow:` or any similar doubled-label
+     artifact in data or rendered pages.
+2. Improve major-canon shadows:
+   - Ensure all 50 major-canon entries have term-specific shadows.
+   - Avoid house-level boilerplate shadows for major entries.
+   - Keep the wording compressed, technical, and operational.
+3. Clarify `sense`:
+   - Use `sense` only when it disambiguates overloaded terms, such as
+     architecture vs database vs hardware vs promptcraft meanings.
+   - If no real disambiguation is needed, allow `sense` to be absent or null
+     rather than repeating the house category.
+   - Add validation or reporting so category-mirror values do not masquerade as
+     real sense disambiguation.
+4. Rebuild the homepage as a practical front door:
+   - Lead with the engineering claim in plain language.
+   - Show one complete weak request next to a repaired spell above the fold.
+   - Show what changes in the expected or observed output.
+   - Link directly to the quick start and the first copyable spell.
+5. Add a "First Spell in Five Minutes" quick start:
+   - Pick task.
+   - Pick cast level.
+   - Copy a spell.
+   - Fill artifact, invariant, output contract, verification, and failure
+     behavior.
+   - Run or review the result.
+6. Make spell pages directly usable:
+   - Render each full spell template as one copyable fenced code block.
+   - Put the working seal next to the copyable block.
+   - Add raw template downloads or repository links for each spell.
+   - Keep prose explanation below the usable block.
+7. Translate metaphor at the door:
+   - Add a plain-English alias table on the quick start and reference entry
+     points:
+     - spell = structured prompt template;
+     - stack = workflow;
+     - rune = high-force engineering term;
+     - shadow = failure mode;
+     - seal = stable digest.
+   - Preserve the grimoire language inside the book, but do not require it
+     before value is demonstrated.
+8. Demote the full master house pages:
+   - Keep house pages generated and linkable.
+   - Move house pages out of the main numbered reference spine into an
+     unnumbered or clearly labeled "Partially Authored Master Lexicon" appendix.
+   - Promote `major-canon.qmd`, `pocket-canon.qmd`, spell pages, stack pages,
+     and Proof by Difference cases as the primary practical surfaces.
+
+Definition of done:
+
+- Zero doubled shadow-label artifacts in data and rendered pages.
+- Porting status reports authored summary, shadow, and sense-quality counts.
+- All 50 major-canon entries have reviewed, term-specific shadows.
+- The homepage demonstrates value before asking readers to buy into the
+  metaphor.
+- A new reader can reach a copyable spell in one click from the homepage.
+- Every field spell page has one copyable template block and a raw template
+  link.
+- Full house pages remain available but are visibly framed as partially authored
+  appendix material.
+- `make all` and both GitHub workflows pass.
+
+What not to do in this phase:
+
+- Do not author the 1,302 master-lexicon stubs as the main work.
+- Do not add new spells or stacks.
+- Do not build clause-circle, stack-graph, or Godel-encoding tooling.
+
+### Phase 9.12: Evidence and Recorded Evaluations
+
+Recommended release:
+
+- `v0.5.0-evidence`
+
+Implementation status:
+
+- Completed in `v1.0.0-canonical-field-release` as a Codex-owned recorded
+  evaluation pass. External reviewer-provided runs remain future optional
+  evidence.
+
+Goal:
+
+Turn Proof by Difference from a persuasive claim into a recorded experiment.
+
+Rationale:
+
+The project's core thesis is empirical: structured spells should produce more
+bounded, verifiable AI-assisted software work than weak requests. The current
+site explains the method and provides cases, but it must publish observed runs,
+including ties and losses, to earn trust.
+
+Tasks:
+
+1. Create concrete input contexts for the six field-spell cases:
+   - safe refactoring;
+   - bug diagnosis from logs;
+   - API design;
+   - migration without data loss;
+   - test generation;
+   - performance tuning.
+2. Run each case twice on the project-owned Codex surface:
+   - weak request;
+   - repaired spell.
+3. Treat external model/tool surfaces as optional reviewer-provided follow-up,
+   not as implementation work owned by this project.
+4. Preserve transcripts verbatim:
+   - prompt/input;
+   - model/tool version or surface label;
+   - output;
+   - timestamp;
+   - evaluator notes;
+   - any commands or checks used.
+5. Score each run against the existing rubric:
+   - artifact boundary;
+   - invariants;
+   - output contract;
+   - verification;
+   - failure behavior;
+   - assumption control.
+6. Publish result pages:
+   - one summary page for the whole pass;
+   - one detailed result page per field spell;
+   - raw transcript files or links in the repository.
+7. Report losses honestly:
+   - If the weak request ties or beats the repaired spell, record that.
+   - If the repaired spell fails because a limb was underspecified, name the
+     repair.
+   - If a model/tool has become strong enough that the weak request works, treat
+     that as an important finding when an external reviewer supplies that run.
+8. Update Proof by Difference:
+   - Separate "expected delta" from "observed delta."
+   - Link every case to its recorded runs and score table.
+
+Definition of done:
+
+- Every field spell has at least one preserved weak-vs-repaired evaluation run
+  on the project-owned Codex surface.
+- Any future external-review runs are clearly labeled as reviewer-supplied
+  evidence, not hidden implementation work.
+- The site publishes both scores and transcripts.
+- Results include non-wins when they occur.
+- The Proof by Difference reference page distinguishes expectation from
+  evidence.
+- The roadmap and README no longer describe the evidence layer as merely a
+  template or future plan.
+
+What not to do in this phase:
+
+- Do not add more cases until the first six are actually run.
+- Do not tune the examples to produce a perfect scorecard.
+- Do not hide weak-request wins.
+
+### Phase 9.13: Adoption Kit
+
+Recommended release:
+
+- `v0.6.0-adoption-kit`
+
+Implementation status:
+
+- Completed in `v1.0.0-canonical-field-release`.
+
+Goal:
+
+Make the proven spell and stack system easy to use inside real engineering
+tools without overbuilding a platform.
+
+Rationale:
+
+The repo tooling is sound. The next useful layer is not a large product; it is a
+small adoption kit that lets another engineer copy, validate, seal, and adapt a
+spell in their own workflow.
+
+Tasks:
+
+1. Export agent-ready assets:
+   - Add a `prompts/` or `agents/` directory.
+   - Provide each field spell as a raw prompt template.
+   - Provide each stack as a workflow template.
+   - Include metadata: id, version, seal, source page, required inputs, and
+     verification expectations.
+2. Add a minimal CLI surface:
+   - `grimoire validate`
+   - `grimoire seal path/to/spell-or-stack.json`
+   - `grimoire new spell`
+3. Keep the CLI boring:
+   - No model integration in the core.
+   - No hosted service.
+   - No speculative agent framework.
+   - Plain JSON in, readable output out.
+4. Make one external-use walkthrough:
+   - Start from a blank task.
+   - Generate a new spell skeleton.
+   - Fill it.
+   - Validate it.
+   - Seal it.
+   - Use it in a model/tool surface.
+   - Record the result.
+5. Add adoption docs:
+   - solo use;
+   - team prompt registry;
+   - when not to use a full spell;
+   - how to retire a spell;
+   - how to record evidence.
+
+Definition of done:
+
+- A user can copy a raw spell template without scraping prose from the site.
+- A user can scaffold, validate, and seal a local spell.
+- The adoption kit works without publishing to PyPI.
+- At least one walkthrough demonstrates use outside the source author's own
+  examples.
+
+What not to do in this phase:
+
+- Do not package for broad contributor governance before there is external use.
+- Do not add a complex plugin system.
+- Do not make the CLI depend on a particular model provider.
+
 ### Phase 10: Canonical v1.0
 
 Goal:
 
-Ship the first stable public canon.
+Ship the first stable public canon after the method has been demonstrated,
+usable templates are easy to copy, and the authored vocabulary layer has passed
+quality review.
+
+Implementation status:
+
+- Completed in `v1.0.0-canonical-field-release`.
 
 Required v1.0 contents:
 
@@ -1456,16 +1738,24 @@ Required v1.0 contents:
 3. Structured 50-entry major canon.
 4. Authored 300-entry pocket canon with shadows and sense disambiguation where
    needed.
-5. Structured full lexicon with honest completion status for every entry:
+5. Reviewed major-canon shadows and honest sense-disambiguation policy.
+6. Structured full lexicon with honest completion status for every entry:
    authored, stub, needs-shadow, or needs-sense.
-6. Spell schema.
-7. Stack schema.
-8. Generated spell pages.
-9. Generated stack pages.
-10. Validation scripts.
-11. CI render and validation.
-12. Contribution policy.
-13. Changelog.
+7. Full house pages demoted or clearly labeled as partially authored appendix
+   material until their authored ratio justifies promotion.
+8. Copyable spell templates and raw template links.
+9. First-spell quick start.
+10. Spell schema.
+11. Stack schema.
+12. Generated spell pages.
+13. Generated stack pages.
+14. Validation scripts.
+15. CI render and validation.
+16. Recorded Proof by Difference evaluation runs for the initial six field
+   spells.
+17. Minimal adoption kit for local spell creation, validation, and sealing.
+18. Contribution policy.
+19. Changelog.
 
 v1.0 quality bar:
 
@@ -1477,11 +1767,15 @@ v1.0 quality bar:
 - The generated reference does not drown the reader.
 - The master lexicon does not overclaim completion.
 - The pocket canon is genuinely usable as a minimum working vocabulary.
-- Proof by Difference exists as a real evidence layer.
+- Proof by Difference exists as a real evidence layer with recorded runs, not
+  only expected deltas.
 - Pull requests run generation, validation, tests, render, and internal-link
   checks before merge.
 - The project is useful even to someone who ignores the metaphysical flavor and
   just wants better AI-assisted engineering workflows.
+- The homepage demonstrates the practical payoff before requiring project
+  vocabulary.
+- The project is not blocked on authoring every master-lexicon stub.
 
 Tag:
 
@@ -1491,7 +1785,8 @@ Tag:
 
 Goal:
 
-Make the grimoire executable as a small local toolkit.
+Make the grimoire executable as a small local toolkit only after v0.5 evidence
+and v0.6 adoption-kit work show that people need it.
 
 Possible package:
 
@@ -1502,13 +1797,8 @@ Commands:
 
 ```text
 grimoire validate
-grimoire spell lint path/to/spell.json
-grimoire spell seal path/to/spell.json
-grimoire stack lint path/to/stack.json
-grimoire stack seal path/to/stack.json
-grimoire render reference
-grimoire render coil path/to/spell.json
-grimoire render stack path/to/stack.json
+grimoire seal path/to/spell-or-stack.json
+grimoire new spell
 ```
 
 Tooling principles:
@@ -1518,28 +1808,34 @@ Tooling principles:
 - Make output diffable.
 - Avoid model-specific dependencies in the core.
 - Treat AI integrations as adapters, not as the heart of the project.
+- Do not package a broad platform before there is external pull.
+- Delay clause-circle, stack-graph, and formal-number renderers until recorded
+  evaluations show they help users make better decisions.
 
 Definition of done:
 
 - A user can define a spell or stack in JSON, validate it, generate a seal, and
   render a readable page.
+- The CLI has no hidden network calls and no model-provider dependency.
+- The package exists because a real adoption path needs it, not because the
+  roadmap can imagine it.
 
 ### Phase 12: Evaluation and Replay
 
 Goal:
 
-Prove that stronger spell structure improves work quality in observable ways.
+Keep the evidence layer alive after the initial v0.5 recorded-evaluation pass.
 
 Tasks:
 
-1. Create benchmark tasks:
-   - refactor
-   - bug diagnosis
-   - API design
-   - migration plan
-   - test generation
-   - performance tuning
-2. For each task, store:
+1. Preserve the initial six benchmark tasks:
+   - refactor;
+   - bug diagnosis;
+   - API design;
+   - migration plan;
+   - test generation;
+   - performance tuning.
+2. For each new or repeated run, store:
    - weak request
    - repaired spell
    - input context
@@ -1547,7 +1843,7 @@ Tasks:
    - verification rubric
    - model/tool version
    - result
-3. Define metrics:
+3. Keep metrics stable enough to compare over time:
    - instruction adherence
    - artifact completeness
    - verification quality
@@ -1555,12 +1851,15 @@ Tasks:
    - blast-radius control
    - reversibility
    - reviewer effort
-4. Add result pages.
-5. Repeat periodically across model versions.
+4. Repeat periodically across model versions.
+5. Add new benchmark tasks only when the first six have enough recorded runs to
+   teach something.
+6. Preserve ties and losses as first-class evidence.
 
 Definition of done:
 
-- The project can show concrete deltas, not just assert that structure helps.
+- The project can show concrete deltas over time, not just assert that structure
+  helps.
 
 ### Phase 13: Community Extension System
 
@@ -1775,6 +2074,44 @@ Sprint deliverable:
 
 ## 13. Risks and Mitigations
 
+Risk: The lexicon treadmill consumes the project.
+
+Mitigation:
+
+- Treat the 1,302 stub entries as background work, not the next release train.
+- Promote the 50 major words and 300 pocket runes as the practical vocabulary
+  surface.
+- Improve authored-layer quality before expanding authored-layer quantity.
+- Require evidence or real use before authoring new large vocabulary batches.
+
+Risk: The project asserts verification discipline without verifying itself.
+
+Mitigation:
+
+- Run the six Proof by Difference cases.
+- Preserve transcripts and scores.
+- Publish ties and losses.
+- Separate expected deltas from observed deltas.
+- Make v0.5 evidence a gate before major new formal machinery.
+
+Risk: The front door taxes pragmatic engineers before showing value.
+
+Mitigation:
+
+- Lead the homepage with a concrete weak-vs-repaired example.
+- Add a five-minute quick start.
+- Put copyable templates one click from the homepage.
+- Translate grimoire terms into plain engineering aliases at first contact.
+
+Risk: The authored layer looks more finished than it is.
+
+Mitigation:
+
+- Track summary, shadow, and sense quality separately.
+- Report shadow uniqueness and sense quality publicly.
+- Add validation against doubled labels such as `Shadow: Shadow:`.
+- Review all 50 major-canon shadows before claiming major-canon polish.
+
 Risk: The metaphor overwhelms the engineering value.
 
 Mitigation:
@@ -1789,7 +2126,9 @@ Mitigation:
 
 - Separate reading path from reference.
 - Generate per-house pages.
-- Keep the 50-word and 300-rune canons as smaller entry points.
+- Keep the 50-word and 300-rune canons as the promoted entry points.
+- Treat full house pages as appendix/reference material while most rows remain
+  stubs.
 
 Risk: The lexicon is structurally complete but semantically under-authored.
 
@@ -1797,9 +2136,11 @@ Mitigation:
 
 - Track `completion_status` on every rune.
 - Surface authored/stub counts publicly.
-- Author the 300 pocket runes before treating the master lexicon as final.
+- Keep the 300 pocket runes reviewed before treating them as the minimum
+  working vocabulary.
 - Require shadows and sense disambiguation for authored entries.
 - Do not allow generic category boilerplate to masquerade as final canon.
+- Do not let full master-lexicon authoring block evidence work.
 
 Risk: Formalization becomes too abstract.
 
@@ -1849,29 +2190,42 @@ The project is complete in the strong sense when:
 9. Data validation, tests, render, and internal-link audit run in CI.
 10. Quarto publication is automated.
 11. Examples demonstrate Proof by Difference for every field spell.
-12. The project can accept contributions without losing structure.
-13. The project has versioned releases.
-14. A user can go from vague request to structured spell to verified result.
-15. A team can go from one-off prompt to reusable stack to versioned practice.
-16. The 50 major canon entries are authored.
-17. The 300 pocket canon entries are authored or explicitly marked as still in
+12. Recorded evaluation runs show observed weak-vs-repaired deltas for the six
+    initial field spells.
+13. The project can accept contributions without losing structure.
+14. The project has versioned releases.
+15. A user can go from vague request to structured spell to verified result.
+16. A team can go from one-off prompt to reusable stack to versioned practice.
+17. The homepage demonstrates practical value before requiring grimoire
+    vocabulary.
+18. Every field spell has a copyable template block and raw template form.
+19. The 50 major canon entries are authored and have reviewed term-specific
+    shadows.
+20. The 300 pocket canon entries are authored or explicitly marked as still in
     review.
-18. Seal stability is tested and seal changes are documented.
+21. Full master-lexicon house pages are honest about partial authorship and do
+    not dominate the primary reading path.
+22. Seal stability is tested and seal changes are documented.
 
 ## 15. Immediate Next Move
 
-The highest-leverage next move is now the v1.0 canon-authoring campaign:
+The roadmap through `v1.0.0-canonical-field-release` is implemented. The next
+work should be post-v1 maintenance rather than another credibility reset:
 
-1. Review the 343 authored major/pocket entries for technical accuracy, voice,
-   and source faithfulness.
-2. Promote stub entries house by house only when they have term-specific force,
-   shadow, and sense.
-3. Add at least one working clause or Proof by Difference reference for newly
-   promoted high-force runes.
-4. Keep `completion_status` honest after every authoring pass.
-5. Treat seal changes, schema changes, and canon promotions as changelog-worthy.
+1. Watch GitHub Pages and CI after release deployment.
+2. Invite external review of the v1.0 site, especially the recorded evaluation
+   pages and the adoption workflow.
+3. Add reviewer-supplied evaluation runs only when they preserve prompts,
+   transcripts, surface labels, timestamps, rubric scores, and losses.
+4. Continue the background master-lexicon campaign in small batches, promoting
+   stubs only when they have term-specific force, shadow, and real sense
+   disambiguation when needed.
+5. Add new spells or stacks only after a real repeated workflow appears in use.
+6. Keep the CLI small unless adoption evidence shows that a broader tool is
+   necessary.
 
-The project has moved past the "make it public and navigable" phase and past the
-first integrity hardening pass. The next standard is reviewed canon quality:
-every public claim about an authored rune should be technically useful under
-real software work.
+The project has moved past the "make it public and navigable" phase, the first
+integrity hardening pass, the practical front-door pass, the initial recorded
+evidence pass, and the adoption-kit pass. The post-v1 standard is operational
+trust: every new claim should come with a reusable artifact, a validation check,
+or a preserved evaluation record.

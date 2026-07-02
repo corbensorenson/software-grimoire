@@ -1,0 +1,87 @@
+{
+  "id": "stack.live-migration-stack.v1",
+  "title": "Live Migration Stack",
+  "version": 1,
+  "status": "canonical",
+  "enter": "Use when data, schemas, or infrastructure are changing in a live environment.",
+  "inputs": [
+    "Task context",
+    "Relevant artifacts",
+    "Constraints",
+    "Verification expectations"
+  ],
+  "frames": [
+    {
+      "step": 1,
+      "spell": "Inventory",
+      "artifact": "Dependency and blast-radius map",
+      "advance_when": "Moving parts are known"
+    },
+    {
+      "step": 2,
+      "spell": "Prepare rollback",
+      "artifact": "Backup, snapshot, flag, or dual-read path",
+      "advance_when": "Reversal is real"
+    },
+    {
+      "step": 3,
+      "spell": "Expand compatibly",
+      "artifact": "Backward-compatible new structure",
+      "advance_when": "Old paths still work"
+    },
+    {
+      "step": 4,
+      "spell": "Backfill",
+      "artifact": "New representation",
+      "advance_when": "Old path is not cut off"
+    },
+    {
+      "step": 5,
+      "spell": "Compare parity",
+      "artifact": "Parity report",
+      "advance_when": "Old and new paths agree"
+    },
+    {
+      "step": 6,
+      "spell": "Cut over",
+      "artifact": "Read or write switch",
+      "advance_when": "Parity holds and rollback is live"
+    },
+    {
+      "step": 7,
+      "spell": "Observe",
+      "artifact": "Live metrics and divergence samples",
+      "advance_when": "Safety window remains stable"
+    },
+    {
+      "step": 8,
+      "spell": "Contract",
+      "artifact": "Removed old paths",
+      "advance_when": "Safety window closes cleanly"
+    }
+  ],
+  "loop": {
+    "steps": [
+      5,
+      6,
+      7
+    ],
+    "until": "Confidence is sufficient for cutover and contraction"
+  },
+  "on_fail": "Rollback immediately using the prepared boundary and preserve divergence samples.",
+  "exit": "Safety window closes cleanly",
+  "why_it_works": "It forces reversibility to exist before forward motion becomes expensive.",
+  "source": "software_spellcraft_addendum_on_stacked_spells",
+  "human_title": "Live Migration Stack",
+  "working_seal": "stack://live-migration-stack/23AA56B454",
+  "runes": [
+    926,
+    943,
+    347,
+    1461,
+    1567
+  ],
+  "related_spells": [
+    "migration-without-data-loss"
+  ]
+}

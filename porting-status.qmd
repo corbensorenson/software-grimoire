@@ -16,33 +16,47 @@ The first public seed was a complete structural port. The reader-linking pass im
 
 ## Lexicon Completion
 
-The master lexicon currently has `343` authored entries and `1302` stub entries.
+The master lexicon currently has `305` authored entries and `1302` stub entries.
 
-| Status   | Count |
-| -------- | ----- |
-| authored | 343   |
-| stub     | 1302  |
+| Status      | Count |
+| ----------- | ----- |
+| authored    | 305   |
+| stub        | 1302  |
+| needs_sense | 38    |
+
+## Authored-Layer Quality
+
+| Measure                            | Value   |
+| ---------------------------------- | ------- |
+| Authored entries                   | 305     |
+| Stub entries                       | 1302    |
+| Authored unique summaries          | 305     |
+| Authored unique shadows            | 121     |
+| Doubled shadow labels              | 0       |
+| Major-canon reviewed shadows       | 50/50   |
+| Major-canon unique shadows         | 50      |
+| Overloaded entries with real sense | 336/336 |
 
 ## Completion by House
 
 | House                                                          | Authored | Stub | Needs Shadow | Needs Sense |
 | -------------------------------------------------------------- | -------- | ---- | ------------ | ----------- |
-| Architecture, Abstraction, and Design                          | 25       | 87   | 0            | 0           |
-| Language, Semantics, and Formal Shape                          | 23       | 114  | 0            | 0           |
-| Data, State, and Representation                                | 19       | 103  | 0            | 0           |
-| Transformation, Algorithms, and Working Verbs                  | 28       | 112  | 0            | 0           |
-| Control Flow, Coordination, and Temporal Logic                 | 19       | 78   | 0            | 0           |
-| Runtime, Memory, and Execution                                 | 16       | 60   | 0            | 0           |
-| Systems Programming and Operating-System Words                 | 13       | 73   | 0            | 0           |
-| Networking and Distributed Systems                             | 26       | 90   | 0            | 0           |
+| Architecture, Abstraction, and Design                          | 21       | 87   | 0            | 4           |
+| Language, Semantics, and Formal Shape                          | 20       | 114  | 0            | 3           |
+| Data, State, and Representation                                | 18       | 103  | 0            | 1           |
+| Transformation, Algorithms, and Working Verbs                  | 21       | 112  | 0            | 7           |
+| Control Flow, Coordination, and Temporal Logic                 | 18       | 78   | 0            | 1           |
+| Runtime, Memory, and Execution                                 | 14       | 60   | 0            | 2           |
+| Systems Programming and Operating-System Words                 | 12       | 73   | 0            | 1           |
+| Networking and Distributed Systems                             | 21       | 90   | 0            | 5           |
 | Databases, Persistence, and Time-Binding Words                 | 16       | 66   | 0            | 0           |
-| Security, Trust, and Warding Words                             | 19       | 76   | 0            | 0           |
-| Build, Tooling, Versioning, and Release                        | 17       | 59   | 0            | 0           |
-| Testing, Verification, and Observability                       | 17       | 54   | 0            | 0           |
+| Security, Trust, and Warding Words                             | 18       | 76   | 0            | 1           |
+| Build, Tooling, Versioning, and Release                        | 16       | 59   | 0            | 1           |
+| Testing, Verification, and Observability                       | 16       | 54   | 0            | 1           |
 | Hardware, Embedded, and Performance-Near Words                 | 15       | 65   | 0            | 0           |
 | Interface, UX, and Human-Facing Words                          | 10       | 50   | 0            | 0           |
-| Promptcraft, AI-Oriented Engineering, and Spell Structure      | 22       | 48   | 0            | 0           |
-| Guarantee Words, Quality Attributes, and Behavioral Adjectives | 22       | 70   | 0            | 0           |
+| Promptcraft, AI-Oriented Engineering, and Spell Structure      | 14       | 48   | 0            | 8           |
+| Guarantee Words, Quality Attributes, and Behavioral Adjectives | 19       | 70   | 0            | 3           |
 | Failure Words, Pathologies, and Counter-Spells                 | 20       | 50   | 0            | 0           |
 | Compound Forms, Prefixes, Suffixes, and Naming Runes           | 16       | 47   | 0            | 0           |
 

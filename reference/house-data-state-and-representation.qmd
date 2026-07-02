@@ -8,137 +8,138 @@ Range: `0250-0371`.
 
 ## Completion
 
-| Status   | Count |
-| -------- | ----- |
-| authored | 19    |
-| stub     | 103   |
+| Status      | Count |
+| ----------- | ----- |
+| authored    | 18    |
+| stub        | 103   |
+| needs_sense | 1     |
 
 Use the summary table for scanning. Each row links to the detailed anchored entry below.
 
-| Sigil | Term                                       | Completion | Summary                                                                                                   |
-| ----- | ------------------------------------------ | ---------- | --------------------------------------------------------------------------------------------------------- |
-| 0250  | `STUB` [address](#rune-0250)               | stub       | A storage-word; it determines how meaning is carried through memory or transport.                         |
-| 0251  | `STUB` [aggregate state](#rune-0251)       | stub       | A matter-word; it names something that can be held, moved, or compared.                                   |
-| 0252  | [array](#rune-0252)                        | authored   | A contiguous ordered collection accessed by position.                                                     |
-| 0253  | `STUB` [bag](#rune-0253)                   | stub       | A storage-word; it determines how meaning is carried through memory or transport.                         |
-| 0254  | `STUB` [binary blob](#rune-0254)           | stub       | A matter-word; it names something that can be held, moved, or compared.                                   |
-| 0255  | `STUB` [bit](#rune-0255)                   | stub       | A shape-of-state word; it influences what later transformations are easy or hard.                         |
-| 0256  | `STUB` [bitmap](#rune-0256)                | stub       | A representation-word; it gives state a vessel or surface.                                                |
-| 0257  | `STUB` [blob](#rune-0257)                  | stub       | A shape-of-state word; it influences what later transformations are easy or hard.                         |
-| 0258  | `STUB` [block {Data}](#rune-0258)          | stub       | A shape-of-state word; it influences what later transformations are easy or hard.                         |
-| 0259  | `STUB` [Bloom filter](#rune-0259)          | stub       | A shape-of-state word; it influences what later transformations are easy or hard.                         |
-| 0260  | `STUB` [body](#rune-0260)                  | stub       | A storage-word; it determines how meaning is carried through memory or transport.                         |
-| 0261  | `STUB` [book-keeping field](#rune-0261)    | stub       | A shape-of-state word; it influences what later transformations are easy or hard.                         |
-| 0262  | `STUB` [bucket {Data}](#rune-0262)         | stub       | A storage-word; it determines how meaning is carried through memory or transport.                         |
-| 0263  | [buffer](#rune-0263)                       | authored   | A temporary holding area used to smooth movement, parsing, or I/O.                                        |
-| 0264  | `STUB` [byte](#rune-0264)                  | stub       | A matter-word; it names something that can be held, moved, or compared.                                   |
-| 0265  | `STUB` [cache entry](#rune-0265)           | stub       | A storage-word; it determines how meaning is carried through memory or transport.                         |
-| 0266  | `STUB` [canonical form {Data}](#rune-0266) | stub       | A normalization word; many possible surfaces are forced into one agreed shape.                            |
-| 0267  | `STUB` [cell](#rune-0267)                  | stub       | A matter-word; it names something that can be held, moved, or compared.                                   |
-| 0268  | [checksum](#rune-0268)                     | authored   | A compact fingerprint used to detect accidental change.                                                   |
-| 0269  | `STUB` [chunk](#rune-0269)                 | stub       | A representation-word; it gives state a vessel or surface.                                                |
-| 0270  | `STUB` [column {Data}](#rune-0270)         | stub       | A storage-word; it determines how meaning is carried through memory or transport.                         |
-| 0271  | `STUB` [composite value](#rune-0271)       | stub       | A matter-word; it names something that can be held, moved, or compared.                                   |
-| 0272  | [config](#rune-0272)                       | authored   | Declared settings that shape behavior without editing code.                                               |
-| 0273  | `STUB` [constant pool](#rune-0273)         | stub       | A matter-word; it names something that can be held, moved, or compared.                                   |
-| 0274  | `STUB` [content](#rune-0274)               | stub       | A shape-of-state word; it influences what later transformations are easy or hard.                         |
-| 0275  | `STUB` [context object](#rune-0275)        | stub       | A matter-word; it names something that can be held, moved, or compared.                                   |
-| 0276  | `STUB` [cookie](#rune-0276)                | stub       | A storage-word; it determines how meaning is carried through memory or transport.                         |
-| 0277  | `STUB` [corpus](#rune-0277)                | stub       | A matter-word; it names something that can be held, moved, or compared.                                   |
-| 0278  | `STUB` [counter {Data}](#rune-0278)        | stub       | A matter-word; it names something that can be held, moved, or compared.                                   |
-| 0279  | `STUB` [credential {Data}](#rune-0279)     | stub       | A shape-of-state word; it influences what later transformations are easy or hard.                         |
-| 0280  | [cursor {Data}](#rune-0280)                | authored   | A movable pointer into a sequence or result set.                                                          |
-| 0281  | `STUB` [data frame](#rune-0281)            | stub       | A representation-word; it gives state a vessel or surface.                                                |
-| 0282  | `STUB` [data point](#rune-0282)            | stub       | A matter-word; it names something that can be held, moved, or compared.                                   |
-| 0283  | `STUB` [dataset](#rune-0283)               | stub       | A storage-word; it determines how meaning is carried through memory or transport.                         |
-| 0284  | `STUB` [datum](#rune-0284)                 | stub       | A shape-of-state word; it influences what later transformations are easy or hard.                         |
-| 0285  | `STUB` [delta](#rune-0285)                 | stub       | A storage-word; it determines how meaning is carried through memory or transport.                         |
-| 0286  | `STUB` [dense vector](#rune-0286)          | stub       | A storage-word; it determines how meaning is carried through memory or transport.                         |
-| 0287  | `STUB` [descriptor](#rune-0287)            | stub       | A shape-of-state word; it influences what later transformations are easy or hard.                         |
-| 0288  | [dictionary](#rune-0288)                   | authored   | Keyed lookup structure for named values.                                                                  |
-| 0289  | `STUB` [digest {Data}](#rune-0289)         | stub       | A matter-word; it names something that can be held, moved, or compared.                                   |
-| 0290  | `STUB` [document](#rune-0290)              | stub       | A shape-of-state word; it influences what later transformations are easy or hard.                         |
-| 0291  | `STUB` [edge {Data}](#rune-0291)           | stub       | A representation-word; it gives state a vessel or surface.                                                |
-| 0292  | `STUB` [element](#rune-0292)               | stub       | A storage-word; it determines how meaning is carried through memory or transport.                         |
-| 0293  | `STUB` [embedding {Data}](#rune-0293)      | stub       | A closeness word; it places meaning into geometry.                                                        |
-| 0294  | [entity](#rune-0294)                       | authored   | A thing with stable identity that the system cares about.                                                 |
-| 0295  | `STUB` [enum value](#rune-0295)            | stub       | A storage-word; it determines how meaning is carried through memory or transport.                         |
-| 0296  | `STUB` [envelope](#rune-0296)              | stub       | A storage-word; it determines how meaning is carried through memory or transport.                         |
-| 0297  | [event](#rune-0297)                        | authored   | A record of something that happened.                                                                      |
-| 0298  | [event log](#rune-0298)                    | authored   | History stored as events instead of overwritten final state.                                              |
-| 0299  | `STUB` [fact](#rune-0299)                  | stub       | A storage-word; it determines how meaning is carried through memory or transport.                         |
-| 0300  | `STUB` [feature](#rune-0300)               | stub       | A matter-word; it names something that can be held, moved, or compared.                                   |
-| 0301  | `STUB` [field {Data}](#rune-0301)          | stub       | A matter-word; it names something that can be held, moved, or compared.                                   |
-| 0302  | `STUB` [fingerprint](#rune-0302)           | stub       | A matter-word; it names something that can be held, moved, or compared.                                   |
-| 0303  | `STUB` [flag](#rune-0303)                  | stub       | A storage-word; it determines how meaning is carried through memory or transport.                         |
-| 0304  | `STUB` [frame {Data}](#rune-0304)          | stub       | A shape-of-state word; it influences what later transformations are easy or hard.                         |
-| 0305  | `STUB` [handle {Data}](#rune-0305)         | stub       | A matter-word; it names something that can be held, moved, or compared.                                   |
-| 0306  | [hash {Data}](#rune-0306)                  | authored   | A condensed fingerprint used for lookup, bucketing, or integrity checks.                                  |
-| 0307  | `STUB` [hash map](#rune-0307)              | stub       | A storage-word; it determines how meaning is carried through memory or transport.                         |
-| 0308  | `STUB` [header](#rune-0308)                | stub       | A representation-word; it gives state a vessel or surface.                                                |
-| 0309  | `STUB` [heap record](#rune-0309)           | stub       | A representation-word; it gives state a vessel or surface.                                                |
-| 0310  | [index {Data}](#rune-0310)                 | authored   | An access structure that trades space and write cost for faster reads.                                    |
-| 0311  | `STUB` [index key](#rune-0311)             | stub       | A representation-word; it gives state a vessel or surface.                                                |
-| 0312  | `STUB` [item](#rune-0312)                  | stub       | A shape-of-state word; it influences what later transformations are easy or hard.                         |
-| 0313  | `STUB` [iterator](#rune-0313)              | stub       | A storage-word; it determines how meaning is carried through memory or transport.                         |
-| 0314  | `STUB` [journal](#rune-0314)               | stub       | A shape-of-state word; it influences what later transformations are easy or hard.                         |
-| 0315  | [key {Data}](#rune-0315)                   | authored   | The field by which something is found or grouped.                                                         |
-| 0316  | `STUB` [key-value pair](#rune-0316)        | stub       | A shape-of-state word; it influences what later transformations are easy or hard.                         |
-| 0317  | `STUB` [ledger](#rune-0317)                | stub       | A shape-of-state word; it influences what later transformations are easy or hard.                         |
-| 0318  | `STUB` [list](#rune-0318)                  | stub       | A matter-word; it names something that can be held, moved, or compared.                                   |
-| 0319  | `STUB` [literal value](#rune-0319)         | stub       | A storage-word; it determines how meaning is carried through memory or transport.                         |
-| 0320  | [map {Data}](#rune-0320)                   | authored   | Associative collection from keys to values.                                                               |
-| 0321  | `STUB` [matrix](#rune-0321)                | stub       | A representation-word; it gives state a vessel or surface.                                                |
-| 0322  | [message](#rune-0322)                      | authored   | A discrete packet of meaning sent between parts.                                                          |
-| 0323  | `STUB` [metadata](#rune-0323)              | stub       | A representation-word; it gives state a vessel or surface.                                                |
-| 0324  | `STUB` [model {Data}](#rune-0324)          | stub       | A representative word; a simplified structure stands in for a larger reality.                             |
-| 0325  | `STUB` [multimap](#rune-0325)              | stub       | A representation-word; it gives state a vessel or surface.                                                |
-| 0326  | `STUB` [node {Data}](#rune-0326)           | stub       | A storage-word; it determines how meaning is carried through memory or transport.                         |
-| 0327  | `STUB` [null](#rune-0327)                  | stub       | A shape-of-state word; it influences what later transformations are easy or hard.                         |
-| 0328  | `STUB` [object state](#rune-0328)          | stub       | A matter-word; it names something that can be held, moved, or compared.                                   |
-| 0329  | `STUB` [offset](#rune-0329)                | stub       | A shape-of-state word; it influences what later transformations are easy or hard.                         |
-| 0330  | `STUB` [page {Data}](#rune-0330)           | stub       | A representation-word; it gives state a vessel or surface.                                                |
-| 0331  | `STUB` [pair](#rune-0331)                  | stub       | A matter-word; it names something that can be held, moved, or compared.                                   |
-| 0332  | `STUB` [payload](#rune-0332)               | stub       | A storage-word; it determines how meaning is carried through memory or transport.                         |
-| 0333  | `STUB` [pointer {Data}](#rune-0333)        | stub       | A location word; it does not hold the thing, but where the thing may be found.                            |
-| 0334  | `STUB` [pool](#rune-0334)                  | stub       | A storage-word; it determines how meaning is carried through memory or transport.                         |
-| 0335  | `STUB` [property {Data}](#rune-0335)       | stub       | A representation-word; it gives state a vessel or surface.                                                |
-| 0336  | `STUB` [queue element](#rune-0336)         | stub       | A shape-of-state word; it influences what later transformations are easy or hard.                         |
-| 0337  | `STUB` [range](#rune-0337)                 | stub       | A representation-word; it gives state a vessel or surface.                                                |
-| 0338  | [record {Data}](#rune-0338)                | authored   | A row-like bundle of named fields describing one thing.                                                   |
-| 0339  | `STUB` [reference {Data}](#rune-0339)      | stub       | A shape-of-state word; it influences what later transformations are easy or hard.                         |
-| 0340  | `STUB` [relation {Data}](#rune-0340)       | stub       | A storage-word; it determines how meaning is carried through memory or transport.                         |
-| 0341  | `STUB` [representation](#rune-0341)        | stub       | A shape-of-state word; it influences what later transformations are easy or hard.                         |
-| 0342  | [resource](#rune-0342)                     | authored   | A bounded-thing word; something that must be acquired, used, and released.                                |
-| 0343  | `STUB` [revision {Data}](#rune-0343)       | stub       | A shape-of-state word; it influences what later transformations are easy or hard.                         |
-| 0344  | `STUB` [ring buffer](#rune-0344)           | stub       | A storage-word; it determines how meaning is carried through memory or transport.                         |
-| 0345  | `STUB` [row {Data}](#rune-0345)            | stub       | A matter-word; it names something that can be held, moved, or compared.                                   |
-| 0346  | `STUB` [scalar](#rune-0346)                | stub       | A storage-word; it determines how meaning is carried through memory or transport.                         |
-| 0347  | [schema {Data}](#rune-0347)                | authored   | The declared shape of stored meaning. Shadow: drift, silent coercion, and backward-incompatible surprise. |
-| 0348  | `STUB` [secret {Data}](#rune-0348)         | stub       | A guarded-value word meant to remain hidden except to the few who must know it.                           |
-| 0349  | `STUB` [segment {Data}](#rune-0349)        | stub       | A shape-of-state word; it influences what later transformations are easy or hard.                         |
-| 0350  | `STUB` [sequence](#rune-0350)              | stub       | A representation-word; it gives state a vessel or surface.                                                |
-| 0351  | `STUB` [series](#rune-0351)                | stub       | A shape-of-state word; it influences what later transformations are easy or hard.                         |
-| 0352  | `STUB` [session](#rune-0352)               | stub       | A matter-word; it names something that can be held, moved, or compared.                                   |
-| 0353  | `STUB` [set](#rune-0353)                   | stub       | A matter-word; it names something that can be held, moved, or compared.                                   |
-| 0354  | `STUB` [sketch](#rune-0354)                | stub       | A storage-word; it determines how meaning is carried through memory or transport.                         |
-| 0355  | `STUB` [slice](#rune-0355)                 | stub       | A matter-word; it names something that can be held, moved, or compared.                                   |
-| 0356  | [snapshot](#rune-0356)                     | authored   | A captured view of state at one moment.                                                                   |
-| 0357  | `STUB` [sparse vector](#rune-0357)         | stub       | A representation-word; it gives state a vessel or surface.                                                |
-| 0358  | `STUB` [stack item](#rune-0358)            | stub       | A representation-word; it gives state a vessel or surface.                                                |
-| 0359  | [state](#rune-0359)                        | authored   | The currently true condition of a thing that can change over time.                                        |
-| 0360  | `STUB` [stream item](#rune-0360)           | stub       | A shape-of-state word; it influences what later transformations are easy or hard.                         |
-| 0361  | `STUB` [string](#rune-0361)                | stub       | A shape-of-state word; it influences what later transformations are easy or hard.                         |
-| 0362  | `STUB` [struct {Data}](#rune-0362)         | stub       | A representation-word; it gives state a vessel or surface.                                                |
-| 0363  | `STUB` [table {Data}](#rune-0363)          | stub       | A matter-word; it names something that can be held, moved, or compared.                                   |
-| 0364  | `STUB` [tensor](#rune-0364)                | stub       | A shape-of-state word; it influences what later transformations are easy or hard.                         |
-| 0365  | `STUB` [token {Data}](#rune-0365)          | stub       | A countable unit of text or symbol used for parsing, modeling, or encoding.                               |
-| 0366  | `STUB` [tree node](#rune-0366)             | stub       | A storage-word; it determines how meaning is carried through memory or transport.                         |
-| 0367  | `STUB` [trie](#rune-0367)                  | stub       | A matter-word; it names something that can be held, moved, or compared.                                   |
-| 0368  | `STUB` [tuple {Data}](#rune-0368)          | stub       | A storage-word; it determines how meaning is carried through memory or transport.                         |
-| 0369  | `STUB` [vector](#rune-0369)                | stub       | A shape-of-state word; it influences what later transformations are easy or hard.                         |
-| 0370  | `STUB` [view {Data}](#rune-0370)           | stub       | A shape-of-state word; it influences what later transformations are easy or hard.                         |
-| 0371  | `STUB` [window](#rune-0371)                | stub       | A matter-word; it names something that can be held, moved, or compared.                                   |
+| Sigil | Term                                       | Completion  | Summary                                                                                                   |
+| ----- | ------------------------------------------ | ----------- | --------------------------------------------------------------------------------------------------------- |
+| 0250  | `STUB` [address](#rune-0250)               | stub        | A storage-word; it determines how meaning is carried through memory or transport.                         |
+| 0251  | `STUB` [aggregate state](#rune-0251)       | stub        | A matter-word; it names something that can be held, moved, or compared.                                   |
+| 0252  | [array](#rune-0252)                        | authored    | A contiguous ordered collection accessed by position.                                                     |
+| 0253  | `STUB` [bag](#rune-0253)                   | stub        | A storage-word; it determines how meaning is carried through memory or transport.                         |
+| 0254  | `STUB` [binary blob](#rune-0254)           | stub        | A matter-word; it names something that can be held, moved, or compared.                                   |
+| 0255  | `STUB` [bit](#rune-0255)                   | stub        | A shape-of-state word; it influences what later transformations are easy or hard.                         |
+| 0256  | `STUB` [bitmap](#rune-0256)                | stub        | A representation-word; it gives state a vessel or surface.                                                |
+| 0257  | `STUB` [blob](#rune-0257)                  | stub        | A shape-of-state word; it influences what later transformations are easy or hard.                         |
+| 0258  | `STUB` [block {Data}](#rune-0258)          | stub        | A shape-of-state word; it influences what later transformations are easy or hard.                         |
+| 0259  | `STUB` [Bloom filter](#rune-0259)          | stub        | A shape-of-state word; it influences what later transformations are easy or hard.                         |
+| 0260  | `STUB` [body](#rune-0260)                  | stub        | A storage-word; it determines how meaning is carried through memory or transport.                         |
+| 0261  | `STUB` [book-keeping field](#rune-0261)    | stub        | A shape-of-state word; it influences what later transformations are easy or hard.                         |
+| 0262  | `STUB` [bucket {Data}](#rune-0262)         | stub        | A storage-word; it determines how meaning is carried through memory or transport.                         |
+| 0263  | [buffer](#rune-0263)                       | authored    | A temporary holding area used to smooth movement, parsing, or I/O.                                        |
+| 0264  | `STUB` [byte](#rune-0264)                  | stub        | A matter-word; it names something that can be held, moved, or compared.                                   |
+| 0265  | `STUB` [cache entry](#rune-0265)           | stub        | A storage-word; it determines how meaning is carried through memory or transport.                         |
+| 0266  | `STUB` [canonical form {Data}](#rune-0266) | stub        | A normalization word; many possible surfaces are forced into one agreed shape.                            |
+| 0267  | `STUB` [cell](#rune-0267)                  | stub        | A matter-word; it names something that can be held, moved, or compared.                                   |
+| 0268  | [checksum](#rune-0268)                     | authored    | A compact fingerprint used to detect accidental change.                                                   |
+| 0269  | `STUB` [chunk](#rune-0269)                 | stub        | A representation-word; it gives state a vessel or surface.                                                |
+| 0270  | `STUB` [column {Data}](#rune-0270)         | stub        | A storage-word; it determines how meaning is carried through memory or transport.                         |
+| 0271  | `STUB` [composite value](#rune-0271)       | stub        | A matter-word; it names something that can be held, moved, or compared.                                   |
+| 0272  | [config](#rune-0272)                       | authored    | Declared settings that shape behavior without editing code.                                               |
+| 0273  | `STUB` [constant pool](#rune-0273)         | stub        | A matter-word; it names something that can be held, moved, or compared.                                   |
+| 0274  | `STUB` [content](#rune-0274)               | stub        | A shape-of-state word; it influences what later transformations are easy or hard.                         |
+| 0275  | `STUB` [context object](#rune-0275)        | stub        | A matter-word; it names something that can be held, moved, or compared.                                   |
+| 0276  | `STUB` [cookie](#rune-0276)                | stub        | A storage-word; it determines how meaning is carried through memory or transport.                         |
+| 0277  | `STUB` [corpus](#rune-0277)                | stub        | A matter-word; it names something that can be held, moved, or compared.                                   |
+| 0278  | `STUB` [counter {Data}](#rune-0278)        | stub        | A matter-word; it names something that can be held, moved, or compared.                                   |
+| 0279  | `STUB` [credential {Data}](#rune-0279)     | stub        | A shape-of-state word; it influences what later transformations are easy or hard.                         |
+| 0280  | [cursor {Data}](#rune-0280)                | authored    | A movable pointer into a sequence or result set.                                                          |
+| 0281  | `STUB` [data frame](#rune-0281)            | stub        | A representation-word; it gives state a vessel or surface.                                                |
+| 0282  | `STUB` [data point](#rune-0282)            | stub        | A matter-word; it names something that can be held, moved, or compared.                                   |
+| 0283  | `STUB` [dataset](#rune-0283)               | stub        | A storage-word; it determines how meaning is carried through memory or transport.                         |
+| 0284  | `STUB` [datum](#rune-0284)                 | stub        | A shape-of-state word; it influences what later transformations are easy or hard.                         |
+| 0285  | `STUB` [delta](#rune-0285)                 | stub        | A storage-word; it determines how meaning is carried through memory or transport.                         |
+| 0286  | `STUB` [dense vector](#rune-0286)          | stub        | A storage-word; it determines how meaning is carried through memory or transport.                         |
+| 0287  | `STUB` [descriptor](#rune-0287)            | stub        | A shape-of-state word; it influences what later transformations are easy or hard.                         |
+| 0288  | [dictionary](#rune-0288)                   | authored    | Keyed lookup structure for named values.                                                                  |
+| 0289  | `STUB` [digest {Data}](#rune-0289)         | stub        | A matter-word; it names something that can be held, moved, or compared.                                   |
+| 0290  | `STUB` [document](#rune-0290)              | stub        | A shape-of-state word; it influences what later transformations are easy or hard.                         |
+| 0291  | `STUB` [edge {Data}](#rune-0291)           | stub        | A representation-word; it gives state a vessel or surface.                                                |
+| 0292  | `STUB` [element](#rune-0292)               | stub        | A storage-word; it determines how meaning is carried through memory or transport.                         |
+| 0293  | `STUB` [embedding {Data}](#rune-0293)      | stub        | A closeness word; it places meaning into geometry.                                                        |
+| 0294  | [entity](#rune-0294)                       | authored    | A thing with stable identity that the system cares about.                                                 |
+| 0295  | `STUB` [enum value](#rune-0295)            | stub        | A storage-word; it determines how meaning is carried through memory or transport.                         |
+| 0296  | `STUB` [envelope](#rune-0296)              | stub        | A storage-word; it determines how meaning is carried through memory or transport.                         |
+| 0297  | [event](#rune-0297)                        | authored    | A record of something that happened.                                                                      |
+| 0298  | [event log](#rune-0298)                    | authored    | History stored as events instead of overwritten final state.                                              |
+| 0299  | `STUB` [fact](#rune-0299)                  | stub        | A storage-word; it determines how meaning is carried through memory or transport.                         |
+| 0300  | `STUB` [feature](#rune-0300)               | stub        | A matter-word; it names something that can be held, moved, or compared.                                   |
+| 0301  | `STUB` [field {Data}](#rune-0301)          | stub        | A matter-word; it names something that can be held, moved, or compared.                                   |
+| 0302  | `STUB` [fingerprint](#rune-0302)           | stub        | A matter-word; it names something that can be held, moved, or compared.                                   |
+| 0303  | `STUB` [flag](#rune-0303)                  | stub        | A storage-word; it determines how meaning is carried through memory or transport.                         |
+| 0304  | `STUB` [frame {Data}](#rune-0304)          | stub        | A shape-of-state word; it influences what later transformations are easy or hard.                         |
+| 0305  | `STUB` [handle {Data}](#rune-0305)         | stub        | A matter-word; it names something that can be held, moved, or compared.                                   |
+| 0306  | [hash {Data}](#rune-0306)                  | authored    | A condensed fingerprint used for lookup, bucketing, or integrity checks.                                  |
+| 0307  | `STUB` [hash map](#rune-0307)              | stub        | A storage-word; it determines how meaning is carried through memory or transport.                         |
+| 0308  | `STUB` [header](#rune-0308)                | stub        | A representation-word; it gives state a vessel or surface.                                                |
+| 0309  | `STUB` [heap record](#rune-0309)           | stub        | A representation-word; it gives state a vessel or surface.                                                |
+| 0310  | [index {Data}](#rune-0310)                 | authored    | An access structure that trades space and write cost for faster reads.                                    |
+| 0311  | `STUB` [index key](#rune-0311)             | stub        | A representation-word; it gives state a vessel or surface.                                                |
+| 0312  | `STUB` [item](#rune-0312)                  | stub        | A shape-of-state word; it influences what later transformations are easy or hard.                         |
+| 0313  | `STUB` [iterator](#rune-0313)              | stub        | A storage-word; it determines how meaning is carried through memory or transport.                         |
+| 0314  | `STUB` [journal](#rune-0314)               | stub        | A shape-of-state word; it influences what later transformations are easy or hard.                         |
+| 0315  | [key {Data}](#rune-0315)                   | authored    | The field by which something is found or grouped.                                                         |
+| 0316  | `STUB` [key-value pair](#rune-0316)        | stub        | A shape-of-state word; it influences what later transformations are easy or hard.                         |
+| 0317  | `STUB` [ledger](#rune-0317)                | stub        | A shape-of-state word; it influences what later transformations are easy or hard.                         |
+| 0318  | `STUB` [list](#rune-0318)                  | stub        | A matter-word; it names something that can be held, moved, or compared.                                   |
+| 0319  | `STUB` [literal value](#rune-0319)         | stub        | A storage-word; it determines how meaning is carried through memory or transport.                         |
+| 0320  | [map {Data}](#rune-0320)                   | authored    | Associative collection from keys to values.                                                               |
+| 0321  | `STUB` [matrix](#rune-0321)                | stub        | A representation-word; it gives state a vessel or surface.                                                |
+| 0322  | [message](#rune-0322)                      | authored    | A discrete packet of meaning sent between parts.                                                          |
+| 0323  | `STUB` [metadata](#rune-0323)              | stub        | A representation-word; it gives state a vessel or surface.                                                |
+| 0324  | `STUB` [model {Data}](#rune-0324)          | stub        | A representative word; a simplified structure stands in for a larger reality.                             |
+| 0325  | `STUB` [multimap](#rune-0325)              | stub        | A representation-word; it gives state a vessel or surface.                                                |
+| 0326  | `STUB` [node {Data}](#rune-0326)           | stub        | A storage-word; it determines how meaning is carried through memory or transport.                         |
+| 0327  | `STUB` [null](#rune-0327)                  | stub        | A shape-of-state word; it influences what later transformations are easy or hard.                         |
+| 0328  | `STUB` [object state](#rune-0328)          | stub        | A matter-word; it names something that can be held, moved, or compared.                                   |
+| 0329  | `STUB` [offset](#rune-0329)                | stub        | A shape-of-state word; it influences what later transformations are easy or hard.                         |
+| 0330  | `STUB` [page {Data}](#rune-0330)           | stub        | A representation-word; it gives state a vessel or surface.                                                |
+| 0331  | `STUB` [pair](#rune-0331)                  | stub        | A matter-word; it names something that can be held, moved, or compared.                                   |
+| 0332  | `STUB` [payload](#rune-0332)               | stub        | A storage-word; it determines how meaning is carried through memory or transport.                         |
+| 0333  | `STUB` [pointer {Data}](#rune-0333)        | stub        | A location word; it does not hold the thing, but where the thing may be found.                            |
+| 0334  | `STUB` [pool](#rune-0334)                  | stub        | A storage-word; it determines how meaning is carried through memory or transport.                         |
+| 0335  | `STUB` [property {Data}](#rune-0335)       | stub        | A representation-word; it gives state a vessel or surface.                                                |
+| 0336  | `STUB` [queue element](#rune-0336)         | stub        | A shape-of-state word; it influences what later transformations are easy or hard.                         |
+| 0337  | `STUB` [range](#rune-0337)                 | stub        | A representation-word; it gives state a vessel or surface.                                                |
+| 0338  | [record {Data}](#rune-0338)                | authored    | A row-like bundle of named fields describing one thing.                                                   |
+| 0339  | `STUB` [reference {Data}](#rune-0339)      | stub        | A shape-of-state word; it influences what later transformations are easy or hard.                         |
+| 0340  | `STUB` [relation {Data}](#rune-0340)       | stub        | A storage-word; it determines how meaning is carried through memory or transport.                         |
+| 0341  | `STUB` [representation](#rune-0341)        | stub        | A shape-of-state word; it influences what later transformations are easy or hard.                         |
+| 0342  | [resource](#rune-0342)                     | needs_sense | A bounded-thing word; something that must be acquired, used, and released.                                |
+| 0343  | `STUB` [revision {Data}](#rune-0343)       | stub        | A shape-of-state word; it influences what later transformations are easy or hard.                         |
+| 0344  | `STUB` [ring buffer](#rune-0344)           | stub        | A storage-word; it determines how meaning is carried through memory or transport.                         |
+| 0345  | `STUB` [row {Data}](#rune-0345)            | stub        | A matter-word; it names something that can be held, moved, or compared.                                   |
+| 0346  | `STUB` [scalar](#rune-0346)                | stub        | A storage-word; it determines how meaning is carried through memory or transport.                         |
+| 0347  | [schema {Data}](#rune-0347)                | authored    | The declared shape of stored meaning. Shadow: drift, silent coercion, and backward-incompatible surprise. |
+| 0348  | `STUB` [secret {Data}](#rune-0348)         | stub        | A guarded-value word meant to remain hidden except to the few who must know it.                           |
+| 0349  | `STUB` [segment {Data}](#rune-0349)        | stub        | A shape-of-state word; it influences what later transformations are easy or hard.                         |
+| 0350  | `STUB` [sequence](#rune-0350)              | stub        | A representation-word; it gives state a vessel or surface.                                                |
+| 0351  | `STUB` [series](#rune-0351)                | stub        | A shape-of-state word; it influences what later transformations are easy or hard.                         |
+| 0352  | `STUB` [session](#rune-0352)               | stub        | A matter-word; it names something that can be held, moved, or compared.                                   |
+| 0353  | `STUB` [set](#rune-0353)                   | stub        | A matter-word; it names something that can be held, moved, or compared.                                   |
+| 0354  | `STUB` [sketch](#rune-0354)                | stub        | A storage-word; it determines how meaning is carried through memory or transport.                         |
+| 0355  | `STUB` [slice](#rune-0355)                 | stub        | A matter-word; it names something that can be held, moved, or compared.                                   |
+| 0356  | [snapshot](#rune-0356)                     | authored    | A captured view of state at one moment.                                                                   |
+| 0357  | `STUB` [sparse vector](#rune-0357)         | stub        | A representation-word; it gives state a vessel or surface.                                                |
+| 0358  | `STUB` [stack item](#rune-0358)            | stub        | A representation-word; it gives state a vessel or surface.                                                |
+| 0359  | [state](#rune-0359)                        | authored    | The currently true condition of a thing that can change over time.                                        |
+| 0360  | `STUB` [stream item](#rune-0360)           | stub        | A shape-of-state word; it influences what later transformations are easy or hard.                         |
+| 0361  | `STUB` [string](#rune-0361)                | stub        | A shape-of-state word; it influences what later transformations are easy or hard.                         |
+| 0362  | `STUB` [struct {Data}](#rune-0362)         | stub        | A representation-word; it gives state a vessel or surface.                                                |
+| 0363  | `STUB` [table {Data}](#rune-0363)          | stub        | A matter-word; it names something that can be held, moved, or compared.                                   |
+| 0364  | `STUB` [tensor](#rune-0364)                | stub        | A shape-of-state word; it influences what later transformations are easy or hard.                         |
+| 0365  | `STUB` [token {Data}](#rune-0365)          | stub        | A countable unit of text or symbol used for parsing, modeling, or encoding.                               |
+| 0366  | `STUB` [tree node](#rune-0366)             | stub        | A storage-word; it determines how meaning is carried through memory or transport.                         |
+| 0367  | `STUB` [trie](#rune-0367)                  | stub        | A matter-word; it names something that can be held, moved, or compared.                                   |
+| 0368  | `STUB` [tuple {Data}](#rune-0368)          | stub        | A storage-word; it determines how meaning is carried through memory or transport.                         |
+| 0369  | `STUB` [vector](#rune-0369)                | stub        | A shape-of-state word; it influences what later transformations are easy or hard.                         |
+| 0370  | `STUB` [view {Data}](#rune-0370)           | stub        | A shape-of-state word; it influences what later transformations are easy or hard.                         |
+| 0371  | `STUB` [window](#rune-0371)                | stub        | A matter-word; it names something that can be held, moved, or compared.                                   |
 
 ## Entries
 
@@ -1096,7 +1097,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** authored
+**Completion:** needs_sense
 
 **Force:** A bounded-thing word; something that must be acquired, used, and released.
 

@@ -1,0 +1,277 @@
+---
+title: "API Design Without Hidden Compatibility Traps"
+---
+
+# API Design Without Hidden Compatibility Traps
+
+**Expected delta:** The repaired spell forces the design to expose compatibility, authorization, idempotency, and migration surfaces up front.
+
+**Input context:** Design the first public billing API for invoices, payment attempts, refunds, and account credits. Clients include web, mobile, and internal automations. Mobile clients update slowly. Auth uses OAuth scopes. Payments must support safe retries.
+
+## Scores
+
+| Surface           | Variant  | Artifact | Invariant | Output | Verify | Failure | Assumptions | Total |
+| ----------------- | -------- | -------- | --------- | ------ | ------ | ------- | ----------- | ----- |
+| codex-cli-default | weak     | 2        | 0         | 2      | 0      | 1       | 1           | 6     |
+| codex-cli-default | repaired | 2        | 1         | 2      | 1      | 2       | 2           | 10    |
+
+## Transcripts
+
+### codex-cli-default - weak
+
+- Surface label: Codex CLI default model
+- Run timestamp: `2026-07-02T03:05:52.472305+00:00`
+- Prompt file: [examples/evaluations/runs/codex-cli-default/api-design/weak-prompt.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/api-design/weak-prompt.md)
+- Transcript file: [examples/evaluations/runs/codex-cli-default/api-design/weak-output.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/api-design/weak-output.md)
+- Evaluator notes: Auto-scored with the structural rubric; transcript remains the primary evidence.
+
+```text
+**API Shape**
+
+Use HTTP/JSON, `/v1`, additive-only changes, cursor pagination, stable enum values, and webhook/event delivery for async changes. Mobile clients should be able to keep working for years, so avoid removing fields, renaming states, or changing default behavior.
+
+**Core Resources**
+
+`Invoice`
+```json
+{
+  "id": "inv_123",
+  "account_id": "acct_123",
+  "status": "draft|open|paid|void|uncollectible",
+  "currency": "USD",
+  "amount_due": 12000,
+  "amount_paid": 0,
+  "credit_applied": 2000,
+  "due_at": "2026-07-15T00:00:00Z",
+  "line_items": [],
+  "created_at": "...",
+  "updated_at": "..."
+}
+```
+
+`PaymentAttempt`
+```json
+{
+  "id": "pa_123",
+  "invoice_id": "inv_123",
+  "status": "requires_action|processing|succeeded|failed|canceled",
+  "amount": 10000,
+  "failure_code": null,
+  "retryable": true,
+  "created_at": "..."
+}
+```
+
+`Refund`
+```json
+{
+  "id": "rf_123",
+  "payment_attempt_id": "pa_123",
+  "status": "pending|succeeded|failed",
+  "amount": 5000,
+  "reason": "requested_by_customer"
+}
+```
+
+`AccountCredit`
+```json
+{
+  "id": "cr_123",
+  "account_id": "acct_123",
+  "status": "available|applied|expired|reversed",
+  "amount": 2000,
+  "remaining_amount": 0,
+  "source": "manual|refund_credit|promotion"
+}
+```
+
+**Endpoints**
+
+```http
+GET    /v1/invoices
+GET    /v1/invoices/{invoice_id}
+POST   /v1/invoices/{invoice_id}/void
+POST   /v1/invoices/{invoice_id}/pay
+
+GET    /v1/payment_attempts/{payment_attempt_id}
+POST   /v1/payment_attempts
+POST   /v1/payment_attempts/{payment_attempt_id}/cancel
+
+GET    /v1/refunds
+POST   /v1/refunds
+GET    /v1/refunds/{refund_id}
+
+GET    /v1/account_credits
+POST   /v1/account_credits
+POST   /v1/account_credits/{credit_id}/apply
+POST   /v1/account_credits/{credit_id}/reverse
+
+GET    /v1/events?cursor=...
+POST   /v1/webhook_endpoints
+```
+
+**Safe Retries**
+
+All mutating `POST` requests require:
+
+```http
+Idempotency-Key: client-generated-uuid
+```
+
+The server stores the key with request body hash and final result. Retrying the same request returns the same response. Reusing the key with a different body returns `409 idempotency_conflict`.
+
+Payment creation must be asynchronous-safe: `POST /payment_attempts` creates one attempt, never multiple charges, even if the client times out.
+
+**OAuth Scopes**
+
+```text
+billing.invoices.read
+billing.invoices.write
+billing.payments.read
+billing.payments.write
+billing.refunds.read
+billing.refunds.write
+billing.credits.read
+billing.credits.write
+billing.events.read
+```
+
+Internal automations should use the same API with service accounts and narrower scopes, not hidden behavior.
+
+**Missing To Finalize**
+
+Need processor constraints, tax rules, multi-currency policy, PCI boundaries, invoice mutability rules, refund limits, and whether credits are cash-equivalent or promotional.
+```
+
+### codex-cli-default - repaired
+
+- Surface label: Codex CLI default model
+- Run timestamp: `2026-07-02T03:06:16.192905+00:00`
+- Prompt file: [examples/evaluations/runs/codex-cli-default/api-design/repaired-prompt.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/api-design/repaired-prompt.md)
+- Transcript file: [examples/evaluations/runs/codex-cli-default/api-design/repaired-output.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/api-design/repaired-output.md)
+- Evaluator notes: Auto-scored with the structural rubric; transcript remains the primary evidence.
+
+```text
+**Assumptions**
+- A customer/account owns invoices, payment attempts, refunds, and account credits.
+- One invoice may have many payment attempts.
+- Refunds apply to a successful payment attempt.
+- Account credits are ledger entries, not mutable balances.
+
+**Endpoint Table**
+
+| Method | Endpoint | Purpose | Scope |
+|---|---|---|---|
+| `GET` | `/v1/invoices` | List invoices | `billing.invoices:read` |
+| `GET` | `/v1/invoices/{invoice_id}` | Get invoice | `billing.invoices:read` |
+| `POST` | `/v1/invoices/{invoice_id}/payment_attempts` | Attempt payment | `billing.payments:write` |
+| `GET` | `/v1/invoices/{invoice_id}/payment_attempts` | List attempts | `billing.payments:read` |
+| `GET` | `/v1/payment_attempts/{attempt_id}` | Get attempt | `billing.payments:read` |
+| `POST` | `/v1/payment_attempts/{attempt_id}/refunds` | Create refund | `billing.refunds:write` |
+| `GET` | `/v1/refunds` | List refunds | `billing.refunds:read` |
+| `GET` | `/v1/account_credits` | List credit ledger | `billing.credits:read` |
+
+Pagination:
+
+```http
+GET /v1/invoices?limit=25&cursor=eyJpZCI6...
+```
+
+```json
+{
+  "data": [],
+  "pagination": {
+    "next_cursor": "eyJpZCI6...",
+    "has_more": true
+  }
+}
+```
+
+**Request / Response Examples**
+
+Create payment attempt:
+
+```http
+POST /v1/invoices/inv_123/payment_attempts
+Authorization: Bearer ...
+Idempotency-Key: 8d8f1c7e-...
+Content-Type: application/json
+```
+
+```json
+{
+  "payment_method_id": "pm_456",
+  "amount": 4999,
+  "currency": "usd"
+}
+```
+
+```json
+{
+  "id": "pa_789",
+  "invoice_id": "inv_123",
+  "status": "processing",
+  "amount": 4999,
+  "currency": "usd",
+  "created_at": "2026-07-01T12:00:00Z"
+}
+```
+
+Create refund:
+
+```json
+{
+  "amount": 2000,
+  "reason": "requested_by_customer"
+}
+```
+
+```json
+{
+  "id": "rf_123",
+  "payment_attempt_id": "pa_789",
+  "status": "succeeded",
+  "amount": 2000,
+  "currency": "usd"
+}
+```
+
+Error schema:
+
+```json
+{
+  "error": {
+    "type": "invalid_request",
+    "code": "amount_exceeds_refundable_balance",
+    "message": "Refund amount exceeds refundable balance.",
+    "request_id": "req_123"
+  }
+}
+```
+
+**Auth Notes**
+- Use OAuth bearer tokens.
+- Scopes are resource/action based.
+- Internal automations should use the same public API with service-account tokens.
+- Avoid exposing different semantics for internal callers.
+
+**Idempotency Notes**
+- Require `Idempotency-Key` on all `POST` mutation endpoints.
+- Store key, account, endpoint, request hash, response body, and status in PostgreSQL.
+- Same key + same request returns the original response.
+- Same key + different request returns `409 idempotency_key_conflict`.
+- Payment provider calls must also use stable downstream idempotency keys.
+
+**Migration / Versioning Notes**
+- Use `/v1`.
+- Additive changes only: new fields, new enum values, new endpoints.
+- Never rename or remove fields in `v1`.
+- Mobile clients must tolerate unknown fields and unknown enum values.
+- Breaking changes require `/v2` plus long deprecation windows.
+
+**Risks To Verify**
+- Double payment from concurrent retries: enforce invoice payment state with DB transactions and unique constraints.
+- Refund races: lock payment/refund rows and compute refundable balance transactionally.
+- Idempotency expiry: document retention period; expired keys may create new attempts.
+- Compatibility risk: mobile clients may fail on new enum values unless explicitly hardened.
+```

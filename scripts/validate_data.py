@@ -50,7 +50,6 @@ def validate_lexicon(errors: list[str], houses: list[dict]) -> list[dict]:
             "sigil",
             "term",
             "raw_term",
-            "sense",
             "house",
             "house_name",
             "anchor",
@@ -89,8 +88,10 @@ def validate_lexicon(errors: list[str], houses: list[dict]) -> list[dict]:
             fail(errors, f"Bad force_source for lexicon id {ident}: {entry['force_source']}")
         if entry["is_stub"] != (entry["completion_status"] == "stub"):
             fail(errors, f"Bad is_stub flag for lexicon id {ident}")
-        if entry["completion_status"] == "authored" and (not entry.get("shadow") or not entry.get("sense")):
-            fail(errors, f"Authored lexicon entry missing shadow or sense: {ident}")
+        if entry["completion_status"] == "authored" and not entry.get("shadow"):
+            fail(errors, f"Authored lexicon entry missing shadow: {ident}")
+        if entry.get("shadow", "").strip().lower().startswith("shadow:"):
+            fail(errors, f"Lexicon entry has doubled shadow label: {ident}")
         if entry.get("major") and entry["completion_status"] != "authored":
             fail(errors, f"Major canon entry is not authored: {ident}")
         if entry.get("pocket") and entry["completion_status"] != "authored":
@@ -124,6 +125,7 @@ def validate_major_and_pocket(errors: list[str], lexicon: list[dict]) -> None:
         fail(errors, f"Expected 300 pocket entries, found {len(pocket)}")
     for label, items in [("major", major), ("pocket", pocket)]:
         seen = set()
+        shadows = []
         for item in items:
             ident = item.get("id")
             if ident in seen:
@@ -133,6 +135,39 @@ def validate_major_and_pocket(errors: list[str], lexicon: list[dict]) -> None:
                 fail(errors, f"{label} id missing from lexicon: {ident}")
             elif lex_by_id[ident]["completion_status"] != "authored":
                 fail(errors, f"{label} id is not authored in lexicon: {ident}")
+            elif label == "major":
+                shadows.append(lex_by_id[ident].get("shadow"))
+        if label == "major" and len(set(shadows)) != len(shadows):
+            fail(errors, "Major canon shadows must be unique and term-specific")
+
+
+def validate_canon_quality(errors: list[str], lexicon: list[dict]) -> None:
+    path = ROOT / "data" / "canon_quality.json"
+    if not path.exists():
+        fail(errors, "Missing data/canon_quality.json")
+        return
+    report = json.loads(path.read_text(encoding="utf-8"))
+    summary = report.get("summary", {})
+    authored = sum(1 for entry in lexicon if entry.get("completion_status") == "authored")
+    stub = sum(1 for entry in lexicon if entry.get("completion_status") == "stub")
+    major = sum(1 for entry in lexicon if entry.get("major"))
+    pocket = sum(1 for entry in lexicon if entry.get("pocket"))
+    expected = {
+        "total_entries": len(lexicon),
+        "authored_entries": authored,
+        "stub_entries": stub,
+        "major_entries": major,
+        "pocket_entries": pocket,
+    }
+    for key, value in expected.items():
+        if summary.get(key) != value:
+            fail(errors, f"Canon quality summary mismatch for {key}: {summary.get(key)} != {value}")
+    authored_layer = report.get("authored_layer", {})
+    if authored_layer.get("doubled_shadow_labels") != 0:
+        fail(errors, "Canon quality report found doubled shadow labels")
+    major_canon = report.get("major_canon", {})
+    if major_canon.get("entries_with_reviewed_shadow") != 50:
+        fail(errors, "Canon quality report must show 50 reviewed major-canon shadows")
 
 
 def validate_spells(errors: list[str], lexicon: list[dict]) -> list[dict]:
@@ -252,6 +287,7 @@ def main() -> int:
     houses = validate_houses(errors)
     lexicon = validate_lexicon(errors, houses)
     validate_major_and_pocket(errors, lexicon)
+    validate_canon_quality(errors, lexicon)
     spells = validate_spells(errors, lexicon)
     validate_stacks(errors, lexicon, spells)
 

@@ -1,0 +1,46 @@
+---
+title: "First Spell in Five Minutes"
+---
+
+# First Spell in Five Minutes
+
+Use this when you want a better AI-assisted software answer now, without reading the whole book.
+
+## Plain-English Map
+
+| Grimoire word | Plain engineering meaning |
+|---|---|
+| Spell | Structured prompt template |
+| Stack | Workflow made of prompt templates |
+| Rune | High-force engineering term |
+| Shadow | Failure mode |
+| Seal | Stable digest for versioning and replay |
+
+## 1. Pick the Task
+
+Choose the closest field spell:
+
+- [Safe Refactoring](spells/safe-refactoring.qmd) for behavior-preserving code cleanup.
+- [Bug Diagnosis from Logs](spells/bug-diagnosis-from-logs.qmd) for incidents and uncertain failures.
+- [API Design](spells/api-design.qmd) for durable JSON surfaces.
+- [Migration Without Data Loss](spells/migration-without-data-loss.qmd) for live data changes.
+- [Test Generation](spells/test-generation.qmd) for behavior-focused tests.
+- [Performance Tuning](spells/performance-tuning.qmd) for measurement-led optimization.
+
+## 2. Pick the Cast Level
+
+- Quick cast: role, objective, context, verification.
+- Working cast: add constraints and output shape.
+- Full ritual: use all eight limbs when the task touches data, production, security, release, or broad refactoring.
+
+## 3. Copy the Template
+
+Open the closest spell and copy the fenced template block. Fill the context with the exact artifact, invariant, constraints, output contract, verification command, and fallback behavior.
+
+## 4. Run and Verify
+
+Do not treat a fluent answer as success. Check the output against the contract you wrote. If the assistant cannot verify something, make it label that uncertainty instead of pretending.
+
+## 5. Save Useful Results
+
+When a spell works, save the prompt, model/tool surface, output, verification evidence, and any repair notes. That record is the beginning of a local prompt registry.

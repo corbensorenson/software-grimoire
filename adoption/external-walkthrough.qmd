@@ -1,0 +1,39 @@
+---
+title: "External Walkthrough"
+---
+
+# External Walkthrough
+
+This walkthrough shows the smallest path from blank task to local spell record.
+
+## 1. Start From A Task
+
+```text
+Refactor the account serializer so duplicated validation branches are easier to review, but do not change public behavior.
+```
+
+## 2. Create A Spell Skeleton
+
+```bash
+python3 scripts/grimoire.py new spell /tmp/account-serializer-refactor.json
+```
+
+## 3. Fill The Contract
+
+Add the artifact boundary, invariant, output contract, verification command, and failure behavior. The skeleton is plain JSON so it can live in any repo.
+
+## 4. Validate Locally
+
+```bash
+python3 scripts/grimoire.py validate /tmp/account-serializer-refactor.json
+```
+
+## 5. Seal It
+
+```bash
+python3 scripts/grimoire.py seal /tmp/account-serializer-refactor.json
+```
+
+## 6. Use And Record
+
+Paste the filled spell into your AI tool. Save the model/tool surface, output, verification result, and repair notes. If the spell outperforms the weak request repeatedly, promote it into your local registry.

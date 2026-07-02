@@ -9,6 +9,8 @@ unstructured prompt dump.
 - Spell template addition.
 - Stack workflow addition.
 - Proof-by-difference case.
+- Recorded evaluation run.
+- Raw prompt or workflow asset fix.
 - Tooling or schema improvement.
 - Documentation fix.
 
@@ -30,6 +32,10 @@ unstructured prompt dump.
 - Schema or seal changes should include matching validation and changelog notes.
 - Proof by Difference cases should include a weak request, repaired spell, and
   expected delta.
+- Recorded evaluations should preserve the exact prompt, output, surface label,
+  timestamp, rubric score, and reviewer notes. Do not tune away losses.
+- Raw prompt assets in `prompts/` are generated; change the structured spell or
+  stack data and regenerate instead of editing generated prompt files by hand.
 
 ## Local Checks
 

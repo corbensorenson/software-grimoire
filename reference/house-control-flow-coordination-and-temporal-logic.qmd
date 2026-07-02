@@ -8,112 +8,113 @@ Range: `0512-0608`.
 
 ## Completion
 
-| Status   | Count |
-| -------- | ----- |
-| authored | 19    |
-| stub     | 78    |
+| Status      | Count |
+| ----------- | ----- |
+| authored    | 18    |
+| stub        | 78    |
+| needs_sense | 1     |
 
 Use the summary table for scanning. Each row links to the detailed anchored entry below.
 
-| Sigil | Term                                  | Completion | Summary                                                                                                                                       |
-| ----- | ------------------------------------- | ---------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
-| 0512  | `STUB` [abort](#rune-0512)            | stub       | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
-| 0513  | `STUB` [acknowledge](#rune-0513)      | stub       | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
-| 0514  | [async](#rune-0514)                   | authored   | Work may proceed without immediate blocking at the call site.                                                                                 |
-| 0515  | [await](#rune-0515)                   | authored   | Pause until an asynchronous result becomes ready.                                                                                             |
-| 0516  | [backoff {Ctrl}](#rune-0516)          | authored   | Wait longer between retries so recovery does not become attack.                                                                               |
-| 0517  | [barrier {Ctrl}](#rune-0517)          | authored   | A synchronization point no participant may cross early.                                                                                       |
-| 0518  | `STUB` [block {Ctrl}](#rune-0518)     | stub       | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
-| 0519  | `STUB` [branch {Ctrl}](#rune-0519)    | stub       | A divergence word; execution or history splits into alternate paths.                                                                          |
-| 0520  | `STUB` [break](#rune-0520)            | stub       | A sequencing word; it decides what happens next and under what condition.                                                                     |
-| 0521  | `STUB` [callback](#rune-0521)         | stub       | A sequencing word; it decides what happens next and under what condition.                                                                     |
-| 0522  | `STUB` [cancel](#rune-0522)           | stub       | A time-binding word; it changes when an action may proceed.                                                                                   |
-| 0523  | `STUB` [case](#rune-0523)             | stub       | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
-| 0524  | `STUB` [catch](#rune-0524)            | stub       | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
-| 0525  | `STUB` [chain](#rune-0525)            | stub       | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
-| 0526  | `STUB` [choose](#rune-0526)           | stub       | A sequencing word; it decides what happens next and under what condition.                                                                     |
-| 0527  | [circuit breaker](#rune-0527)         | authored   | Trip open after repeated failure to prevent repeated harm.                                                                                    |
-| 0528  | `STUB` [clause](#rune-0528)           | stub       | A sequencing word; it decides what happens next and under what condition.                                                                     |
-| 0529  | `STUB` [continue](#rune-0529)         | stub       | A sequencing word; it decides what happens next and under what condition.                                                                     |
-| 0530  | [coroutine](#rune-0530)               | authored   | A suspendable routine that can yield and later resume.                                                                                        |
-| 0531  | `STUB` [countdown](#rune-0531)        | stub       | A sequencing word; it decides what happens next and under what condition.                                                                     |
-| 0532  | `STUB` [cycle](#rune-0532)            | stub       | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
-| 0533  | `STUB` [debounce](#rune-0533)         | stub       | A sequencing word; it decides what happens next and under what condition.                                                                     |
-| 0534  | `STUB` [defer {Ctrl}](#rune-0534)     | stub       | A time-binding word; it changes when an action may proceed.                                                                                   |
-| 0535  | `STUB` [delay](#rune-0535)            | stub       | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
-| 0536  | `STUB` [dispatch {Ctrl}](#rune-0536)  | stub       | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
-| 0537  | `STUB` [do](#rune-0537)               | stub       | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
-| 0538  | `STUB` [else](#rune-0538)             | stub       | A sequencing word; it decides what happens next and under what condition.                                                                     |
-| 0539  | [enqueue](#rune-0539)                 | authored   | Place work onto a queue for later handling.                                                                                                   |
-| 0540  | [event loop](#rune-0540)              | authored   | The scheduler that drives nonblocking tasks and callbacks.                                                                                    |
-| 0541  | `STUB` [fallback {Ctrl}](#rune-0541)  | stub       | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
-| 0542  | `STUB` [fan-in](#rune-0542)           | stub       | A sequencing word; it decides what happens next and under what condition.                                                                     |
-| 0543  | `STUB` [fan-out {Ctrl}](#rune-0543)   | stub       | A time-binding word; it changes when an action may proceed.                                                                                   |
-| 0544  | `STUB` [finally](#rune-0544)          | stub       | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
-| 0545  | `STUB` [fire-and-forget](#rune-0545)  | stub       | A time-binding word; it changes when an action may proceed.                                                                                   |
-| 0546  | [flow control](#rune-0546)            | authored   | Mechanisms that keep producers from outrunning consumers.                                                                                     |
-| 0547  | `STUB` [for](#rune-0547)              | stub       | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
-| 0548  | `STUB` [fork {Ctrl}](#rune-0548)      | stub       | A time-binding word; it changes when an action may proceed.                                                                                   |
-| 0549  | [future](#rune-0549)                  | authored   | A placeholder for a value that will exist later.                                                                                              |
-| 0550  | [gate](#rune-0550)                    | authored   | A permission word; passage occurs only when conditions hold.                                                                                  |
-| 0551  | `STUB` [guard](#rune-0551)            | stub       | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
-| 0552  | `STUB` [halt](#rune-0552)             | stub       | A sequencing word; it decides what happens next and under what condition.                                                                     |
-| 0553  | `STUB` [heartbeat {Ctrl}](#rune-0553) | stub       | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
-| 0554  | `STUB` [if](#rune-0554)               | stub       | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
-| 0555  | `STUB` [iterate](#rune-0555)          | stub       | A time-binding word; it changes when an action may proceed.                                                                                   |
-| 0556  | `STUB` [join {Ctrl}](#rune-0556)      | stub       | A union word; separate streams, sets, or histories are brought into one result.                                                               |
-| 0557  | `STUB` [jump](#rune-0557)             | stub       | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
-| 0558  | `STUB` [latch](#rune-0558)            | stub       | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
-| 0559  | `STUB` [loop](#rune-0559)             | stub       | A time-binding word; it changes when an action may proceed.                                                                                   |
-| 0560  | `STUB` [match](#rune-0560)            | stub       | A sequencing word; it decides what happens next and under what condition.                                                                     |
-| 0561  | [mutex](#rune-0561)                   | authored   | Mutual exclusion for one critical region at a time.                                                                                           |
-| 0562  | `STUB` [notify](#rune-0562)           | stub       | A sequencing word; it decides what happens next and under what condition.                                                                     |
-| 0563  | `STUB` [once](#rune-0563)             | stub       | A sequencing word; it decides what happens next and under what condition.                                                                     |
-| 0564  | `STUB` [parallel {Ctrl}](#rune-0564)  | stub       | A sequencing word; it decides what happens next and under what condition.                                                                     |
-| 0565  | `STUB` [pause](#rune-0565)            | stub       | A time-binding word; it changes when an action may proceed.                                                                                   |
-| 0566  | `STUB` [poll {Ctrl}](#rune-0566)      | stub       | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
-| 0567  | `STUB` [preempt](#rune-0567)          | stub       | A sequencing word; it decides what happens next and under what condition.                                                                     |
-| 0568  | `STUB` [priority](#rune-0568)         | stub       | A time-binding word; it changes when an action may proceed.                                                                                   |
-| 0569  | `STUB` [process {Ctrl}](#rune-0569)   | stub       | A sovereignty word; an executing program with its own protected address space.                                                                |
-| 0570  | `STUB` [promise](#rune-0570)          | stub       | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
-| 0571  | [queue {Ctrl}](#rune-0571)            | authored   | Ordered holding area that decouples production from consumption.                                                                              |
-| 0572  | `STUB` [race window](#rune-0572)      | stub       | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
-| 0573  | `STUB` [recurse](#rune-0573)          | stub       | A sequencing word; it decides what happens next and under what condition.                                                                     |
-| 0574  | `STUB` [repeat](#rune-0574)           | stub       | A sequencing word; it decides what happens next and under what condition.                                                                     |
-| 0575  | `STUB` [reserve](#rune-0575)          | stub       | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
-| 0576  | [retry {Ctrl}](#rune-0576)            | authored   | Failure does not necessarily end the ritual; policy may permit another attempt. Shadow: blind repetition against a broken precondition.       |
-| 0577  | `STUB` [return](#rune-0577)           | stub       | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
-| 0578  | `STUB` [round-robin](#rune-0578)      | stub       | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
-| 0579  | [schedule {Ctrl}](#rune-0579)         | authored   | Assign work to time, order, or execution slots.                                                                                               |
-| 0580  | `STUB` [select {Ctrl}](#rune-0580)    | stub       | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
-| 0581  | [semaphore](#rune-0581)               | authored   | A counted gate controlling concurrent access to limited capacity.                                                                             |
-| 0582  | `STUB` [sequence point](#rune-0582)   | stub       | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
-| 0583  | `STUB` [serialize access](#rune-0583) | stub       | A time-binding word; it changes when an action may proceed.                                                                                   |
-| 0584  | [signal {Ctrl}](#rune-0584)           | authored   | Emit a condition change another task may respond to.                                                                                          |
-| 0585  | `STUB` [sleep](#rune-0585)            | stub       | A sequencing word; it decides what happens next and under what condition.                                                                     |
-| 0586  | `STUB` [spawn {Ctrl}](#rune-0586)     | stub       | A sequencing word; it decides what happens next and under what condition.                                                                     |
-| 0587  | `STUB` [step](#rune-0587)             | stub       | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
-| 0588  | `STUB` [stop](#rune-0588)             | stub       | A time-binding word; it changes when an action may proceed.                                                                                   |
-| 0589  | `STUB` [suspend](#rune-0589)          | stub       | A time-binding word; it changes when an action may proceed.                                                                                   |
-| 0590  | `STUB` [switch](#rune-0590)           | stub       | A time-binding word; it changes when an action may proceed.                                                                                   |
-| 0591  | `STUB` [sync](#rune-0591)             | stub       | A sequencing word; it decides what happens next and under what condition.                                                                     |
-| 0592  | `STUB` [synchronize](#rune-0592)      | stub       | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
-| 0593  | `STUB` [task](#rune-0593)             | stub       | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
-| 0594  | `STUB` [terminate](#rune-0594)        | stub       | A sequencing word; it decides what happens next and under what condition.                                                                     |
-| 0595  | `STUB` [then](#rune-0595)             | stub       | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
-| 0596  | `STUB` [throttle](#rune-0596)         | stub       | A time-binding word; it changes when an action may proceed.                                                                                   |
-| 0597  | `STUB` [tick](#rune-0597)             | stub       | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
-| 0598  | [timeout {Ctrl}](#rune-0598)          | authored   | Waiting is not free and patience must have a boundary. A timeout is a contract with reality about how long uncertainty is allowed to persist. |
-| 0599  | `STUB` [timeslice](#rune-0599)        | stub       | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
-| 0600  | `STUB` [trigger](#rune-0600)          | stub       | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
-| 0601  | `STUB` [try](#rune-0601)              | stub       | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
-| 0602  | `STUB` [unblock](#rune-0602)          | stub       | A time-binding word; it changes when an action may proceed.                                                                                   |
-| 0603  | `STUB` [until](#rune-0603)            | stub       | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
-| 0604  | `STUB` [wait](#rune-0604)             | stub       | A sequencing word; it decides what happens next and under what condition.                                                                     |
-| 0605  | `STUB` [wake](#rune-0605)             | stub       | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
-| 0606  | `STUB` [when](#rune-0606)             | stub       | A time-binding word; it changes when an action may proceed.                                                                                   |
-| 0607  | `STUB` [while](#rune-0607)            | stub       | A sequencing word; it decides what happens next and under what condition.                                                                     |
-| 0608  | [yield](#rune-0608)                   | authored   | Give up control now so another act may proceed.                                                                                               |
+| Sigil | Term                                  | Completion  | Summary                                                                                                                                       |
+| ----- | ------------------------------------- | ----------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| 0512  | `STUB` [abort](#rune-0512)            | stub        | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
+| 0513  | `STUB` [acknowledge](#rune-0513)      | stub        | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
+| 0514  | [async](#rune-0514)                   | authored    | Work may proceed without immediate blocking at the call site.                                                                                 |
+| 0515  | [await](#rune-0515)                   | authored    | Pause until an asynchronous result becomes ready.                                                                                             |
+| 0516  | [backoff {Ctrl}](#rune-0516)          | authored    | Wait longer between retries so recovery does not become attack.                                                                               |
+| 0517  | [barrier {Ctrl}](#rune-0517)          | authored    | A synchronization point no participant may cross early.                                                                                       |
+| 0518  | `STUB` [block {Ctrl}](#rune-0518)     | stub        | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
+| 0519  | `STUB` [branch {Ctrl}](#rune-0519)    | stub        | A divergence word; execution or history splits into alternate paths.                                                                          |
+| 0520  | `STUB` [break](#rune-0520)            | stub        | A sequencing word; it decides what happens next and under what condition.                                                                     |
+| 0521  | `STUB` [callback](#rune-0521)         | stub        | A sequencing word; it decides what happens next and under what condition.                                                                     |
+| 0522  | `STUB` [cancel](#rune-0522)           | stub        | A time-binding word; it changes when an action may proceed.                                                                                   |
+| 0523  | `STUB` [case](#rune-0523)             | stub        | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
+| 0524  | `STUB` [catch](#rune-0524)            | stub        | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
+| 0525  | `STUB` [chain](#rune-0525)            | stub        | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
+| 0526  | `STUB` [choose](#rune-0526)           | stub        | A sequencing word; it decides what happens next and under what condition.                                                                     |
+| 0527  | [circuit breaker](#rune-0527)         | authored    | Trip open after repeated failure to prevent repeated harm.                                                                                    |
+| 0528  | `STUB` [clause](#rune-0528)           | stub        | A sequencing word; it decides what happens next and under what condition.                                                                     |
+| 0529  | `STUB` [continue](#rune-0529)         | stub        | A sequencing word; it decides what happens next and under what condition.                                                                     |
+| 0530  | [coroutine](#rune-0530)               | authored    | A suspendable routine that can yield and later resume.                                                                                        |
+| 0531  | `STUB` [countdown](#rune-0531)        | stub        | A sequencing word; it decides what happens next and under what condition.                                                                     |
+| 0532  | `STUB` [cycle](#rune-0532)            | stub        | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
+| 0533  | `STUB` [debounce](#rune-0533)         | stub        | A sequencing word; it decides what happens next and under what condition.                                                                     |
+| 0534  | `STUB` [defer {Ctrl}](#rune-0534)     | stub        | A time-binding word; it changes when an action may proceed.                                                                                   |
+| 0535  | `STUB` [delay](#rune-0535)            | stub        | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
+| 0536  | `STUB` [dispatch {Ctrl}](#rune-0536)  | stub        | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
+| 0537  | `STUB` [do](#rune-0537)               | stub        | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
+| 0538  | `STUB` [else](#rune-0538)             | stub        | A sequencing word; it decides what happens next and under what condition.                                                                     |
+| 0539  | [enqueue](#rune-0539)                 | authored    | Place work onto a queue for later handling.                                                                                                   |
+| 0540  | [event loop](#rune-0540)              | authored    | The scheduler that drives nonblocking tasks and callbacks.                                                                                    |
+| 0541  | `STUB` [fallback {Ctrl}](#rune-0541)  | stub        | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
+| 0542  | `STUB` [fan-in](#rune-0542)           | stub        | A sequencing word; it decides what happens next and under what condition.                                                                     |
+| 0543  | `STUB` [fan-out {Ctrl}](#rune-0543)   | stub        | A time-binding word; it changes when an action may proceed.                                                                                   |
+| 0544  | `STUB` [finally](#rune-0544)          | stub        | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
+| 0545  | `STUB` [fire-and-forget](#rune-0545)  | stub        | A time-binding word; it changes when an action may proceed.                                                                                   |
+| 0546  | [flow control](#rune-0546)            | authored    | Mechanisms that keep producers from outrunning consumers.                                                                                     |
+| 0547  | `STUB` [for](#rune-0547)              | stub        | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
+| 0548  | `STUB` [fork {Ctrl}](#rune-0548)      | stub        | A time-binding word; it changes when an action may proceed.                                                                                   |
+| 0549  | [future](#rune-0549)                  | authored    | A placeholder for a value that will exist later.                                                                                              |
+| 0550  | [gate](#rune-0550)                    | needs_sense | A permission word; passage occurs only when conditions hold.                                                                                  |
+| 0551  | `STUB` [guard](#rune-0551)            | stub        | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
+| 0552  | `STUB` [halt](#rune-0552)             | stub        | A sequencing word; it decides what happens next and under what condition.                                                                     |
+| 0553  | `STUB` [heartbeat {Ctrl}](#rune-0553) | stub        | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
+| 0554  | `STUB` [if](#rune-0554)               | stub        | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
+| 0555  | `STUB` [iterate](#rune-0555)          | stub        | A time-binding word; it changes when an action may proceed.                                                                                   |
+| 0556  | `STUB` [join {Ctrl}](#rune-0556)      | stub        | A union word; separate streams, sets, or histories are brought into one result.                                                               |
+| 0557  | `STUB` [jump](#rune-0557)             | stub        | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
+| 0558  | `STUB` [latch](#rune-0558)            | stub        | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
+| 0559  | `STUB` [loop](#rune-0559)             | stub        | A time-binding word; it changes when an action may proceed.                                                                                   |
+| 0560  | `STUB` [match](#rune-0560)            | stub        | A sequencing word; it decides what happens next and under what condition.                                                                     |
+| 0561  | [mutex](#rune-0561)                   | authored    | Mutual exclusion for one critical region at a time.                                                                                           |
+| 0562  | `STUB` [notify](#rune-0562)           | stub        | A sequencing word; it decides what happens next and under what condition.                                                                     |
+| 0563  | `STUB` [once](#rune-0563)             | stub        | A sequencing word; it decides what happens next and under what condition.                                                                     |
+| 0564  | `STUB` [parallel {Ctrl}](#rune-0564)  | stub        | A sequencing word; it decides what happens next and under what condition.                                                                     |
+| 0565  | `STUB` [pause](#rune-0565)            | stub        | A time-binding word; it changes when an action may proceed.                                                                                   |
+| 0566  | `STUB` [poll {Ctrl}](#rune-0566)      | stub        | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
+| 0567  | `STUB` [preempt](#rune-0567)          | stub        | A sequencing word; it decides what happens next and under what condition.                                                                     |
+| 0568  | `STUB` [priority](#rune-0568)         | stub        | A time-binding word; it changes when an action may proceed.                                                                                   |
+| 0569  | `STUB` [process {Ctrl}](#rune-0569)   | stub        | A sovereignty word; an executing program with its own protected address space.                                                                |
+| 0570  | `STUB` [promise](#rune-0570)          | stub        | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
+| 0571  | [queue {Ctrl}](#rune-0571)            | authored    | Ordered holding area that decouples production from consumption.                                                                              |
+| 0572  | `STUB` [race window](#rune-0572)      | stub        | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
+| 0573  | `STUB` [recurse](#rune-0573)          | stub        | A sequencing word; it decides what happens next and under what condition.                                                                     |
+| 0574  | `STUB` [repeat](#rune-0574)           | stub        | A sequencing word; it decides what happens next and under what condition.                                                                     |
+| 0575  | `STUB` [reserve](#rune-0575)          | stub        | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
+| 0576  | [retry {Ctrl}](#rune-0576)            | authored    | Failure does not necessarily end the ritual; policy may permit another attempt. Shadow: blind repetition against a broken precondition.       |
+| 0577  | `STUB` [return](#rune-0577)           | stub        | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
+| 0578  | `STUB` [round-robin](#rune-0578)      | stub        | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
+| 0579  | [schedule {Ctrl}](#rune-0579)         | authored    | Assign work to time, order, or execution slots.                                                                                               |
+| 0580  | `STUB` [select {Ctrl}](#rune-0580)    | stub        | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
+| 0581  | [semaphore](#rune-0581)               | authored    | A counted gate controlling concurrent access to limited capacity.                                                                             |
+| 0582  | `STUB` [sequence point](#rune-0582)   | stub        | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
+| 0583  | `STUB` [serialize access](#rune-0583) | stub        | A time-binding word; it changes when an action may proceed.                                                                                   |
+| 0584  | [signal {Ctrl}](#rune-0584)           | authored    | Emit a condition change another task may respond to.                                                                                          |
+| 0585  | `STUB` [sleep](#rune-0585)            | stub        | A sequencing word; it decides what happens next and under what condition.                                                                     |
+| 0586  | `STUB` [spawn {Ctrl}](#rune-0586)     | stub        | A sequencing word; it decides what happens next and under what condition.                                                                     |
+| 0587  | `STUB` [step](#rune-0587)             | stub        | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
+| 0588  | `STUB` [stop](#rune-0588)             | stub        | A time-binding word; it changes when an action may proceed.                                                                                   |
+| 0589  | `STUB` [suspend](#rune-0589)          | stub        | A time-binding word; it changes when an action may proceed.                                                                                   |
+| 0590  | `STUB` [switch](#rune-0590)           | stub        | A time-binding word; it changes when an action may proceed.                                                                                   |
+| 0591  | `STUB` [sync](#rune-0591)             | stub        | A sequencing word; it decides what happens next and under what condition.                                                                     |
+| 0592  | `STUB` [synchronize](#rune-0592)      | stub        | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
+| 0593  | `STUB` [task](#rune-0593)             | stub        | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
+| 0594  | `STUB` [terminate](#rune-0594)        | stub        | A sequencing word; it decides what happens next and under what condition.                                                                     |
+| 0595  | `STUB` [then](#rune-0595)             | stub        | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
+| 0596  | `STUB` [throttle](#rune-0596)         | stub        | A time-binding word; it changes when an action may proceed.                                                                                   |
+| 0597  | `STUB` [tick](#rune-0597)             | stub        | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
+| 0598  | [timeout {Ctrl}](#rune-0598)          | authored    | Waiting is not free and patience must have a boundary. A timeout is a contract with reality about how long uncertainty is allowed to persist. |
+| 0599  | `STUB` [timeslice](#rune-0599)        | stub        | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
+| 0600  | `STUB` [trigger](#rune-0600)          | stub        | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
+| 0601  | `STUB` [try](#rune-0601)              | stub        | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
+| 0602  | `STUB` [unblock](#rune-0602)          | stub        | A time-binding word; it changes when an action may proceed.                                                                                   |
+| 0603  | `STUB` [until](#rune-0603)            | stub        | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
+| 0604  | `STUB` [wait](#rune-0604)             | stub        | A sequencing word; it decides what happens next and under what condition.                                                                     |
+| 0605  | `STUB` [wake](#rune-0605)             | stub        | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
+| 0606  | `STUB` [when](#rune-0606)             | stub        | A time-binding word; it changes when an action may proceed.                                                                                   |
+| 0607  | `STUB` [while](#rune-0607)            | stub        | A sequencing word; it decides what happens next and under what condition.                                                                     |
+| 0608  | [yield](#rune-0608)                   | authored    | Give up control now so another act may proceed.                                                                                               |
 
 ## Entries
 
@@ -521,7 +522,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** authored
+**Completion:** needs_sense
 
 **Force:** A permission word; passage occurs only when conditions hold.
 
@@ -1017,7 +1018,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** Waiting is not free and patience must have a boundary. A timeout is a contract with reality about how long uncertainty is allowed to persist.
 
-**Shadow:** timing assumptions can turn coordination into stalls, races, retries, or dead paths.
+**Shadow:** when a timeout hides whether the operation failed, succeeded late, or is still running.
 
 **Pocket gloss:** A declared limit on how long uncertainty may persist.
 

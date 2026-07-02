@@ -8,101 +8,102 @@ Range: `0685-0770`.
 
 ## Completion
 
-| Status   | Count |
-| -------- | ----- |
-| authored | 13    |
-| stub     | 73    |
+| Status      | Count |
+| ----------- | ----- |
+| authored    | 12    |
+| stub        | 73    |
+| needs_sense | 1     |
 
 Use the summary table for scanning. Each row links to the detailed anchored entry below.
 
-| Sigil | Term                                      | Completion | Summary                                                                           |
-| ----- | ----------------------------------------- | ---------- | --------------------------------------------------------------------------------- |
-| 0685  | `STUB` [boot](#rune-0685)                 | stub       | A host-word; it governs how programs bargain with the operating system.           |
-| 0686  | `STUB` [bootloader](#rune-0686)           | stub       | An operating word; it changes how software inhabits the host machine.             |
-| 0687  | `STUB` [capability mode](#rune-0687)      | stub       | An operating word; it changes how software inhabits the host machine.             |
-| 0688  | [cgroup](#rune-0688)                      | authored   | A kernel mechanism for bounding resources by group.                               |
-| 0689  | `STUB` [chroot](#rune-0689)               | stub       | An operating word; it changes how software inhabits the host machine.             |
-| 0690  | `STUB` [context switch](#rune-0690)       | stub       | An operating word; it changes how software inhabits the host machine.             |
-| 0691  | `STUB` [cron](#rune-0691)                 | stub       | A machine-host word; it marks a boundary where software meets system authority.   |
-| 0692  | `STUB` [daemon {Sys}](#rune-0692)         | stub       | A host-word; it governs how programs bargain with the operating system.           |
-| 0693  | `STUB` [device](#rune-0693)               | stub       | A host-word; it governs how programs bargain with the operating system.           |
-| 0694  | `STUB` [device tree](#rune-0694)          | stub       | A host-word; it governs how programs bargain with the operating system.           |
-| 0695  | `STUB` [direct I/O](#rune-0695)           | stub       | A machine-host word; it marks a boundary where software meets system authority.   |
-| 0696  | [driver](#rune-0696)                      | authored   | Software that speaks directly to a device or kernel surface.                      |
-| 0697  | [epoll](#rune-0697)                       | authored   | Linux event notification for many file descriptors at once.                       |
-| 0698  | `STUB` [exec](#rune-0698)                 | stub       | A kernel-adjacent word; it concerns process, device, file, or privilege.          |
-| 0699  | `STUB` [exit code](#rune-0699)            | stub       | A kernel-adjacent word; it concerns process, device, file, or privilege.          |
-| 0700  | [file](#rune-0700)                        | authored   | A named persistent byte stream in a filesystem.                                   |
-| 0701  | [file descriptor](#rune-0701)             | authored   | A small integer handle standing in for an open kernel object.                     |
-| 0702  | `STUB` [file lock](#rune-0702)            | stub       | A kernel-adjacent word; it concerns process, device, file, or privilege.          |
-| 0703  | `STUB` [filesystem](#rune-0703)           | stub       | A kernel-adjacent word; it concerns process, device, file, or privilege.          |
-| 0704  | `STUB` [firmware {Sys}](#rune-0704)       | stub       | A kernel-adjacent word; it concerns process, device, file, or privilege.          |
-| 0705  | `STUB` [fork {Sys}](#rune-0705)           | stub       | A machine-host word; it marks a boundary where software meets system authority.   |
-| 0706  | `STUB` [futex](#rune-0706)                | stub       | A host-word; it governs how programs bargain with the operating system.           |
-| 0707  | `STUB` [group id](#rune-0707)             | stub       | A machine-host word; it marks a boundary where software meets system authority.   |
-| 0708  | `STUB` [init](#rune-0708)                 | stub       | A host-word; it governs how programs bargain with the operating system.           |
-| 0709  | [inode](#rune-0709)                       | authored   | Filesystem record describing a file apart from its name.                          |
-| 0710  | [interrupt](#rune-0710)                   | authored   | A priority word from the machine; ordinary flow is preempted for urgent handling. |
-| 0711  | `STUB` [ioctl](#rune-0711)                | stub       | An operating word; it changes how software inhabits the host machine.             |
-| 0712  | `STUB` [IRQ](#rune-0712)                  | stub       | A host-word; it governs how programs bargain with the operating system.           |
-| 0713  | `STUB` [isolate {Sys}](#rune-0713)        | stub       | A kernel-adjacent word; it concerns process, device, file, or privilege.          |
-| 0714  | [kernel](#rune-0714)                      | authored   | The privileged core that arbitrates process, memory, and device access.           |
-| 0715  | `STUB` [kernelspace](#rune-0715)          | stub       | A kernel-adjacent word; it concerns process, device, file, or privilege.          |
-| 0716  | `STUB` [kill signal](#rune-0716)          | stub       | A machine-host word; it marks a boundary where software meets system authority.   |
-| 0717  | `STUB` [link layer device](#rune-0717)    | stub       | An operating word; it changes how software inhabits the host machine.             |
-| 0718  | `STUB` [load average](#rune-0718)         | stub       | An operating word; it changes how software inhabits the host machine.             |
-| 0719  | `STUB` [login shell](#rune-0719)          | stub       | A kernel-adjacent word; it concerns process, device, file, or privilege.          |
-| 0720  | [mount](#rune-0720)                       | authored   | Attach a filesystem into the visible path tree.                                   |
-| 0721  | `STUB` [namespace {Sys}](#rune-0721)      | stub       | A kernel-adjacent word; it concerns process, device, file, or privilege.          |
-| 0722  | `STUB` [niceness](#rune-0722)             | stub       | A host-word; it governs how programs bargain with the operating system.           |
-| 0723  | `STUB` [nonblocking I/O](#rune-0723)      | stub       | An operating word; it changes how software inhabits the host machine.             |
-| 0724  | `STUB` [open file table](#rune-0724)      | stub       | A machine-host word; it marks a boundary where software meets system authority.   |
-| 0725  | `STUB` [page cache](#rune-0725)           | stub       | A kernel-adjacent word; it concerns process, device, file, or privilege.          |
-| 0726  | `STUB` [page table](#rune-0726)           | stub       | A kernel-adjacent word; it concerns process, device, file, or privilege.          |
-| 0727  | `STUB` [path](#rune-0727)                 | stub       | A kernel-adjacent word; it concerns process, device, file, or privilege.          |
-| 0728  | `STUB` [permission {Sys}](#rune-0728)     | stub       | A kernel-adjacent word; it concerns process, device, file, or privilege.          |
-| 0729  | [pipe](#rune-0729)                        | authored   | A byte stream connecting one process to another.                                  |
-| 0730  | `STUB` [poll {Sys}](#rune-0730)           | stub       | An operating word; it changes how software inhabits the host machine.             |
-| 0731  | `STUB` [privilege](#rune-0731)            | stub       | An operating word; it changes how software inhabits the host machine.             |
-| 0732  | [process {Sys}](#rune-0732)               | authored   | A running program with its own address space and resources.                       |
-| 0733  | `STUB` [process table](#rune-0733)        | stub       | An operating word; it changes how software inhabits the host machine.             |
-| 0734  | `STUB` [pseudo-terminal](#rune-0734)      | stub       | A kernel-adjacent word; it concerns process, device, file, or privilege.          |
-| 0735  | `STUB` [pthread](#rune-0735)              | stub       | A host-word; it governs how programs bargain with the operating system.           |
-| 0736  | `STUB` [quota](#rune-0736)                | stub       | A machine-host word; it marks a boundary where software meets system authority.   |
-| 0737  | `STUB` [read-only mount](#rune-0737)      | stub       | A machine-host word; it marks a boundary where software meets system authority.   |
-| 0738  | `STUB` [real-time scheduler](#rune-0738)  | stub       | An operating word; it changes how software inhabits the host machine.             |
-| 0739  | `STUB` [run queue](#rune-0739)            | stub       | A machine-host word; it marks a boundary where software meets system authority.   |
-| 0740  | `STUB` [scheduler class](#rune-0740)      | stub       | A kernel-adjacent word; it concerns process, device, file, or privilege.          |
-| 0741  | `STUB` [select {Sys}](#rune-0741)         | stub       | A host-word; it governs how programs bargain with the operating system.           |
-| 0742  | `STUB` [service manager](#rune-0742)      | stub       | A host-word; it governs how programs bargain with the operating system.           |
-| 0743  | `STUB` [session leader](#rune-0743)       | stub       | A kernel-adjacent word; it concerns process, device, file, or privilege.          |
-| 0744  | `STUB` [shared memory](#rune-0744)        | stub       | A host-word; it governs how programs bargain with the operating system.           |
-| 0745  | `STUB` [signal {Sys}](#rune-0745)         | stub       | A machine-host word; it marks a boundary where software meets system authority.   |
-| 0746  | `STUB` [socket {Sys}](#rune-0746)         | stub       | A conduit word; a live endpoint for network communication.                        |
-| 0747  | `STUB` [softirq](#rune-0747)              | stub       | A host-word; it governs how programs bargain with the operating system.           |
-| 0748  | `STUB` [spawn {Sys}](#rune-0748)          | stub       | A kernel-adjacent word; it concerns process, device, file, or privilege.          |
-| 0749  | `STUB` [standard error](#rune-0749)       | stub       | An operating word; it changes how software inhabits the host machine.             |
-| 0750  | `STUB` [standard input](#rune-0750)       | stub       | A kernel-adjacent word; it concerns process, device, file, or privilege.          |
-| 0751  | `STUB` [standard output](#rune-0751)      | stub       | A machine-host word; it marks a boundary where software meets system authority.   |
-| 0752  | `STUB` [sticky bit](#rune-0752)           | stub       | A machine-host word; it marks a boundary where software meets system authority.   |
-| 0753  | `STUB` [stream descriptor](#rune-0753)    | stub       | An operating word; it changes how software inhabits the host machine.             |
-| 0754  | `STUB` [swap](#rune-0754)                 | stub       | An operating word; it changes how software inhabits the host machine.             |
-| 0755  | [syscall](#rune-0755)                     | authored   | The controlled crossing from userland into kernel service.                        |
-| 0756  | `STUB` [system call boundary](#rune-0756) | stub       | A kernel-adjacent word; it concerns process, device, file, or privilege.          |
-| 0757  | `STUB` [systemd unit](#rune-0757)         | stub       | A kernel-adjacent word; it concerns process, device, file, or privilege.          |
-| 0758  | `STUB` [tempfile](#rune-0758)             | stub       | A machine-host word; it marks a boundary where software meets system authority.   |
-| 0759  | `STUB` [terminal](#rune-0759)             | stub       | A host-word; it governs how programs bargain with the operating system.           |
-| 0760  | [thread](#rune-0760)                      | authored   | An independently schedulable line of execution inside a process.                  |
-| 0761  | `STUB` [timer](#rune-0761)                | stub       | A kernel-adjacent word; it concerns process, device, file, or privilege.          |
-| 0762  | `STUB` [trap](#rune-0762)                 | stub       | An operating word; it changes how software inhabits the host machine.             |
-| 0763  | `STUB` [tty](#rune-0763)                  | stub       | A kernel-adjacent word; it concerns process, device, file, or privilege.          |
-| 0764  | `STUB` [umask](#rune-0764)                | stub       | A kernel-adjacent word; it concerns process, device, file, or privilege.          |
-| 0765  | `STUB` [unmount](#rune-0765)              | stub       | A machine-host word; it marks a boundary where software meets system authority.   |
-| 0766  | `STUB` [user id](#rune-0766)              | stub       | A host-word; it governs how programs bargain with the operating system.           |
-| 0767  | `STUB` [userland](#rune-0767)             | stub       | A machine-host word; it marks a boundary where software meets system authority.   |
-| 0768  | `STUB` [virtual file system](#rune-0768)  | stub       | A host-word; it governs how programs bargain with the operating system.           |
-| 0769  | `STUB` [watchdog](#rune-0769)             | stub       | A kernel-adjacent word; it concerns process, device, file, or privilege.          |
-| 0770  | `STUB` [writeback](#rune-0770)            | stub       | A host-word; it governs how programs bargain with the operating system.           |
+| Sigil | Term                                      | Completion  | Summary                                                                           |
+| ----- | ----------------------------------------- | ----------- | --------------------------------------------------------------------------------- |
+| 0685  | `STUB` [boot](#rune-0685)                 | stub        | A host-word; it governs how programs bargain with the operating system.           |
+| 0686  | `STUB` [bootloader](#rune-0686)           | stub        | An operating word; it changes how software inhabits the host machine.             |
+| 0687  | `STUB` [capability mode](#rune-0687)      | stub        | An operating word; it changes how software inhabits the host machine.             |
+| 0688  | [cgroup](#rune-0688)                      | authored    | A kernel mechanism for bounding resources by group.                               |
+| 0689  | `STUB` [chroot](#rune-0689)               | stub        | An operating word; it changes how software inhabits the host machine.             |
+| 0690  | `STUB` [context switch](#rune-0690)       | stub        | An operating word; it changes how software inhabits the host machine.             |
+| 0691  | `STUB` [cron](#rune-0691)                 | stub        | A machine-host word; it marks a boundary where software meets system authority.   |
+| 0692  | `STUB` [daemon {Sys}](#rune-0692)         | stub        | A host-word; it governs how programs bargain with the operating system.           |
+| 0693  | `STUB` [device](#rune-0693)               | stub        | A host-word; it governs how programs bargain with the operating system.           |
+| 0694  | `STUB` [device tree](#rune-0694)          | stub        | A host-word; it governs how programs bargain with the operating system.           |
+| 0695  | `STUB` [direct I/O](#rune-0695)           | stub        | A machine-host word; it marks a boundary where software meets system authority.   |
+| 0696  | [driver](#rune-0696)                      | authored    | Software that speaks directly to a device or kernel surface.                      |
+| 0697  | [epoll](#rune-0697)                       | authored    | Linux event notification for many file descriptors at once.                       |
+| 0698  | `STUB` [exec](#rune-0698)                 | stub        | A kernel-adjacent word; it concerns process, device, file, or privilege.          |
+| 0699  | `STUB` [exit code](#rune-0699)            | stub        | A kernel-adjacent word; it concerns process, device, file, or privilege.          |
+| 0700  | [file](#rune-0700)                        | authored    | A named persistent byte stream in a filesystem.                                   |
+| 0701  | [file descriptor](#rune-0701)             | authored    | A small integer handle standing in for an open kernel object.                     |
+| 0702  | `STUB` [file lock](#rune-0702)            | stub        | A kernel-adjacent word; it concerns process, device, file, or privilege.          |
+| 0703  | `STUB` [filesystem](#rune-0703)           | stub        | A kernel-adjacent word; it concerns process, device, file, or privilege.          |
+| 0704  | `STUB` [firmware {Sys}](#rune-0704)       | stub        | A kernel-adjacent word; it concerns process, device, file, or privilege.          |
+| 0705  | `STUB` [fork {Sys}](#rune-0705)           | stub        | A machine-host word; it marks a boundary where software meets system authority.   |
+| 0706  | `STUB` [futex](#rune-0706)                | stub        | A host-word; it governs how programs bargain with the operating system.           |
+| 0707  | `STUB` [group id](#rune-0707)             | stub        | A machine-host word; it marks a boundary where software meets system authority.   |
+| 0708  | `STUB` [init](#rune-0708)                 | stub        | A host-word; it governs how programs bargain with the operating system.           |
+| 0709  | [inode](#rune-0709)                       | authored    | Filesystem record describing a file apart from its name.                          |
+| 0710  | [interrupt](#rune-0710)                   | needs_sense | A priority word from the machine; ordinary flow is preempted for urgent handling. |
+| 0711  | `STUB` [ioctl](#rune-0711)                | stub        | An operating word; it changes how software inhabits the host machine.             |
+| 0712  | `STUB` [IRQ](#rune-0712)                  | stub        | A host-word; it governs how programs bargain with the operating system.           |
+| 0713  | `STUB` [isolate {Sys}](#rune-0713)        | stub        | A kernel-adjacent word; it concerns process, device, file, or privilege.          |
+| 0714  | [kernel](#rune-0714)                      | authored    | The privileged core that arbitrates process, memory, and device access.           |
+| 0715  | `STUB` [kernelspace](#rune-0715)          | stub        | A kernel-adjacent word; it concerns process, device, file, or privilege.          |
+| 0716  | `STUB` [kill signal](#rune-0716)          | stub        | A machine-host word; it marks a boundary where software meets system authority.   |
+| 0717  | `STUB` [link layer device](#rune-0717)    | stub        | An operating word; it changes how software inhabits the host machine.             |
+| 0718  | `STUB` [load average](#rune-0718)         | stub        | An operating word; it changes how software inhabits the host machine.             |
+| 0719  | `STUB` [login shell](#rune-0719)          | stub        | A kernel-adjacent word; it concerns process, device, file, or privilege.          |
+| 0720  | [mount](#rune-0720)                       | authored    | Attach a filesystem into the visible path tree.                                   |
+| 0721  | `STUB` [namespace {Sys}](#rune-0721)      | stub        | A kernel-adjacent word; it concerns process, device, file, or privilege.          |
+| 0722  | `STUB` [niceness](#rune-0722)             | stub        | A host-word; it governs how programs bargain with the operating system.           |
+| 0723  | `STUB` [nonblocking I/O](#rune-0723)      | stub        | An operating word; it changes how software inhabits the host machine.             |
+| 0724  | `STUB` [open file table](#rune-0724)      | stub        | A machine-host word; it marks a boundary where software meets system authority.   |
+| 0725  | `STUB` [page cache](#rune-0725)           | stub        | A kernel-adjacent word; it concerns process, device, file, or privilege.          |
+| 0726  | `STUB` [page table](#rune-0726)           | stub        | A kernel-adjacent word; it concerns process, device, file, or privilege.          |
+| 0727  | `STUB` [path](#rune-0727)                 | stub        | A kernel-adjacent word; it concerns process, device, file, or privilege.          |
+| 0728  | `STUB` [permission {Sys}](#rune-0728)     | stub        | A kernel-adjacent word; it concerns process, device, file, or privilege.          |
+| 0729  | [pipe](#rune-0729)                        | authored    | A byte stream connecting one process to another.                                  |
+| 0730  | `STUB` [poll {Sys}](#rune-0730)           | stub        | An operating word; it changes how software inhabits the host machine.             |
+| 0731  | `STUB` [privilege](#rune-0731)            | stub        | An operating word; it changes how software inhabits the host machine.             |
+| 0732  | [process {Sys}](#rune-0732)               | authored    | A running program with its own address space and resources.                       |
+| 0733  | `STUB` [process table](#rune-0733)        | stub        | An operating word; it changes how software inhabits the host machine.             |
+| 0734  | `STUB` [pseudo-terminal](#rune-0734)      | stub        | A kernel-adjacent word; it concerns process, device, file, or privilege.          |
+| 0735  | `STUB` [pthread](#rune-0735)              | stub        | A host-word; it governs how programs bargain with the operating system.           |
+| 0736  | `STUB` [quota](#rune-0736)                | stub        | A machine-host word; it marks a boundary where software meets system authority.   |
+| 0737  | `STUB` [read-only mount](#rune-0737)      | stub        | A machine-host word; it marks a boundary where software meets system authority.   |
+| 0738  | `STUB` [real-time scheduler](#rune-0738)  | stub        | An operating word; it changes how software inhabits the host machine.             |
+| 0739  | `STUB` [run queue](#rune-0739)            | stub        | A machine-host word; it marks a boundary where software meets system authority.   |
+| 0740  | `STUB` [scheduler class](#rune-0740)      | stub        | A kernel-adjacent word; it concerns process, device, file, or privilege.          |
+| 0741  | `STUB` [select {Sys}](#rune-0741)         | stub        | A host-word; it governs how programs bargain with the operating system.           |
+| 0742  | `STUB` [service manager](#rune-0742)      | stub        | A host-word; it governs how programs bargain with the operating system.           |
+| 0743  | `STUB` [session leader](#rune-0743)       | stub        | A kernel-adjacent word; it concerns process, device, file, or privilege.          |
+| 0744  | `STUB` [shared memory](#rune-0744)        | stub        | A host-word; it governs how programs bargain with the operating system.           |
+| 0745  | `STUB` [signal {Sys}](#rune-0745)         | stub        | A machine-host word; it marks a boundary where software meets system authority.   |
+| 0746  | `STUB` [socket {Sys}](#rune-0746)         | stub        | A conduit word; a live endpoint for network communication.                        |
+| 0747  | `STUB` [softirq](#rune-0747)              | stub        | A host-word; it governs how programs bargain with the operating system.           |
+| 0748  | `STUB` [spawn {Sys}](#rune-0748)          | stub        | A kernel-adjacent word; it concerns process, device, file, or privilege.          |
+| 0749  | `STUB` [standard error](#rune-0749)       | stub        | An operating word; it changes how software inhabits the host machine.             |
+| 0750  | `STUB` [standard input](#rune-0750)       | stub        | A kernel-adjacent word; it concerns process, device, file, or privilege.          |
+| 0751  | `STUB` [standard output](#rune-0751)      | stub        | A machine-host word; it marks a boundary where software meets system authority.   |
+| 0752  | `STUB` [sticky bit](#rune-0752)           | stub        | A machine-host word; it marks a boundary where software meets system authority.   |
+| 0753  | `STUB` [stream descriptor](#rune-0753)    | stub        | An operating word; it changes how software inhabits the host machine.             |
+| 0754  | `STUB` [swap](#rune-0754)                 | stub        | An operating word; it changes how software inhabits the host machine.             |
+| 0755  | [syscall](#rune-0755)                     | authored    | The controlled crossing from userland into kernel service.                        |
+| 0756  | `STUB` [system call boundary](#rune-0756) | stub        | A kernel-adjacent word; it concerns process, device, file, or privilege.          |
+| 0757  | `STUB` [systemd unit](#rune-0757)         | stub        | A kernel-adjacent word; it concerns process, device, file, or privilege.          |
+| 0758  | `STUB` [tempfile](#rune-0758)             | stub        | A machine-host word; it marks a boundary where software meets system authority.   |
+| 0759  | `STUB` [terminal](#rune-0759)             | stub        | A host-word; it governs how programs bargain with the operating system.           |
+| 0760  | [thread](#rune-0760)                      | authored    | An independently schedulable line of execution inside a process.                  |
+| 0761  | `STUB` [timer](#rune-0761)                | stub        | A kernel-adjacent word; it concerns process, device, file, or privilege.          |
+| 0762  | `STUB` [trap](#rune-0762)                 | stub        | An operating word; it changes how software inhabits the host machine.             |
+| 0763  | `STUB` [tty](#rune-0763)                  | stub        | A kernel-adjacent word; it concerns process, device, file, or privilege.          |
+| 0764  | `STUB` [umask](#rune-0764)                | stub        | A kernel-adjacent word; it concerns process, device, file, or privilege.          |
+| 0765  | `STUB` [unmount](#rune-0765)              | stub        | A machine-host word; it marks a boundary where software meets system authority.   |
+| 0766  | `STUB` [user id](#rune-0766)              | stub        | A host-word; it governs how programs bargain with the operating system.           |
+| 0767  | `STUB` [userland](#rune-0767)             | stub        | A machine-host word; it marks a boundary where software meets system authority.   |
+| 0768  | `STUB` [virtual file system](#rune-0768)  | stub        | A host-word; it governs how programs bargain with the operating system.           |
+| 0769  | `STUB` [watchdog](#rune-0769)             | stub        | A kernel-adjacent word; it concerns process, device, file, or privilege.          |
+| 0770  | `STUB` [writeback](#rune-0770)            | stub        | A host-word; it governs how programs bargain with the operating system.           |
 
 ## Entries
 
@@ -372,7 +373,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** authored
+**Completion:** needs_sense
 
 **Force:** A priority word from the machine; ordinary flow is preempted for urgent handling.
 

@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Software Grimoire Canon Quality Report",
+  "type": "object",
+  "required": ["summary", "authored_layer", "major_canon", "overloaded_terms"],
+  "properties": {
+    "summary": {
+      "type": "object",
+      "required": ["total_entries", "authored_entries", "stub_entries", "major_entries", "pocket_entries"],
+      "properties": {
+        "total_entries": {"type": "integer", "minimum": 1},
+        "authored_entries": {"type": "integer", "minimum": 0},
+        "stub_entries": {"type": "integer", "minimum": 0},
+        "major_entries": {"type": "integer", "minimum": 0},
+        "pocket_entries": {"type": "integer", "minimum": 0}
+      }
+    },
+    "authored_layer": {
+      "type": "object",
+      "required": [
+        "unique_summaries",
+        "unique_shadows",
+        "entries_with_real_sense",
+        "entries_with_category_mirror_sense",
+        "doubled_shadow_labels"
+      ],
+      "properties": {
+        "unique_summaries": {"type": "integer", "minimum": 0},
+        "unique_shadows": {"type": "integer", "minimum": 0},
+        "entries_with_real_sense": {"type": "integer", "minimum": 0},
+        "entries_with_category_mirror_sense": {"type": "integer", "minimum": 0},
+        "doubled_shadow_labels": {"type": "integer", "minimum": 0}
+      }
+    },
+    "major_canon": {
+      "type": "object",
+      "required": ["entries", "unique_shadows", "entries_with_reviewed_shadow"],
+      "properties": {
+        "entries": {"type": "integer", "minimum": 0},
+        "unique_shadows": {"type": "integer", "minimum": 0},
+        "entries_with_reviewed_shadow": {"type": "integer", "minimum": 0}
+      }
+    },
+    "overloaded_terms": {
+      "type": "object",
+      "required": ["entries", "entries_with_real_sense"],
+      "properties": {
+        "entries": {"type": "integer", "minimum": 0},
+        "entries_with_real_sense": {"type": "integer", "minimum": 0}
+      }
+    }
+  },
+  "additionalProperties": false
+}

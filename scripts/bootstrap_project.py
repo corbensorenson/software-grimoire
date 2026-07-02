@@ -174,6 +174,68 @@ FAILURE BEHAVIOR: If evidence is insufficient, name the profile, trace, or bench
     },
 }
 
+MAJOR_SHADOWS = {
+    1: "when abstraction hides the one concrete failure the caller must still handle.",
+    2: "when an adapter preserves both old and new confusion instead of isolating either side.",
+    6: "when the gateway becomes the only place anyone can understand, scale, or recover the system.",
+    12: "when an unclear edge smears ownership, tests, errors, and rollback responsibility.",
+    13: "when shared labels make two different domains look unified until data or behavior diverges.",
+    30: "when a change in one component quietly forces coordinated edits across unrelated surfaces.",
+    34: "when inversion adds ceremony but the concrete dependency still dictates policy.",
+    55: "when the contract leaks implementation detail and every caller becomes coupled to internals.",
+    347: "when shape drift, coercion, or undocumented optionality breaks compatibility.",
+    576: "when retry repeats a side effect or load spike instead of repairing the precondition.",
+    598: "when a timeout hides whether the operation failed, succeeded late, or is still running.",
+    615: "when cached truth becomes stale exactly when the caller most needs freshness.",
+    684: "when avoiding copies transfers lifetime and mutation hazards to the caller.",
+    778: "when pressure signals arrive too late and overload has already crossed the boundary.",
+    805: "when stale reads are treated like settled truth and users see impossible histories.",
+    825: "when averages hide tail pain and the slow path becomes the real product.",
+    848: "when the quorum proves agreement among nodes but not correctness of the value.",
+    898: "when committing early makes rollback a business problem instead of a technical one.",
+    926: "when irreversible data movement starts before dirty cases and compatibility windows are known.",
+    943: "when the rollback path exists on paper but cannot restore the actual user-visible state.",
+    974: "when a signed claim is trusted without checking issuer, scope, freshness, or revocation.",
+    976: "when identity is accepted without proving possession, freshness, or context.",
+    978: "when a successful login is mistaken for permission to do every action.",
+    1007: "when hash equality is treated as meaning, authority, or secrecy it does not provide.",
+    1017: "when roles accumulate exceptions until least privilege becomes a slogan.",
+    1028: "when policy text says one thing and enforcement code grants another.",
+    1050: "when a valid signature is accepted outside its intended scope, time, or trust root.",
+    1073: "when the canary is too narrow to detect the failure the full population will hit.",
+    1086: "when deployment is treated as success before runtime behavior and rollback are observed.",
+    1088: "when a small diff hides a large semantic, data, or operational change.",
+    1146: "when a benchmark optimizes the measured path and neglects the production path.",
+    1152: "when the contract test freezes provider quirks instead of public obligations.",
+    1172: "when the invariant is asserted in prose but not guarded by checks or tests.",
+    1180: "when observable signals exist but no one can connect them to user impact.",
+    1186: "when generated cases explore input space but miss the property users depend on.",
+    1202: "when telemetry produces volume without decisions, ownership, or thresholds.",
+    1204: "when trace detail becomes noise and the causal path still remains unclear.",
+    1281: "when bulk capacity rises while latency, fairness, or correctness falls.",
+    1425: "when one layer promises indivisibility that another layer can still interleave.",
+    1445: "when deterministic output makes a wrong assumption reproducible instead of correct.",
+    1461: "when retries appear safe but duplicate side effects still leak through.",
+    1462: "when immutability is shallow and hidden references still mutate underneath.",
+    1467: "when a linearizable claim ignores the boundary, clock, or failure mode where order breaks.",
+    1472: "when memory safety is assumed to cover races, leaks, or unsafe foreign boundaries.",
+    1481: "when a pure-looking function reads hidden state, time, randomness, or external effects.",
+    1492: "when serializable language hides weaker isolation, contention, or retry behavior.",
+    1546: "when treating a leak as the cause prevents finding the owner, lifetime, or boundary.",
+    1561: "when the race is patched locally while the shared state contract remains undefined.",
+    1564: "when retries synchronize into an outage amplifier rather than a recovery path.",
+    1567: "when schema changes are shipped without compatibility checks, migration windows, or readers.",
+}
+
+EVALUATION_CONTEXTS = {
+    "safe-refactoring": """A Python module exposes `normalize_user(raw)` to an API handler and a CLI import. It lowercases emails, preserves unknown fields, and currently duplicates validation branches. Existing tests cover only a happy-path user with an email and display name. Public function names and return keys are stable.""",
+    "bug-diagnosis-from-logs": """A containerized API had p95 latency jump from 180 ms to 2.4 s after a deploy. Logs show repeated `redis timeout after 250ms`, occasional PostgreSQL queries over 900 ms, and a new feature flag `profile_cache_v2=true`. Error rate is low, but checkout requests are timing out.""",
+    "api-design": """Design the first public billing API for invoices, payment attempts, refunds, and account credits. Clients include web, mobile, and internal automations. Mobile clients update slowly. Auth uses OAuth scopes. Payments must support safe retries.""",
+    "migration-without-data-loss": """A production PostgreSQL `users` table has `birthdate_text VARCHAR`. Values include `1990-04-12`, `04/12/1990`, `unknown`, empty strings, and nulls. The app has old and new versions live during deploy. The table has 40 million rows and receives writes all day.""",
+    "test-generation": """A function `price_for(plan, seats, coupon=None)` applies tiered seat pricing, rejects negative seats, supports annual coupons, and rounds currency to cents. The implementation has branches for free, team, and enterprise plans, but no tests for boundary seats or invalid coupons.""",
+    "performance-tuning": """A report endpoint now takes 9 seconds for large accounts. It fetches projects, tasks, comments, and users from PostgreSQL, then builds a nested JSON response. There is no profile yet. The team suspects Python loops, but database query count may have changed.""",
+}
+
 HOUSE_SENSES = {
     "architecture-abstraction-and-design": "architecture",
     "language-semantics-and-formal-shape": "language",
@@ -280,17 +342,25 @@ def split_term(term: str) -> tuple[str, str | None]:
     return m.group(1).strip(), m.group(2).strip()
 
 
+def strip_shadow_label(value: str | None) -> str | None:
+    if value is None:
+        return None
+    return re.sub(r"^(?:\s*Shadow:\s*)+", "", value).strip()
+
+
 def term_specific_shadow(entry: dict) -> str:
-    template = SHADOW_TEMPLATES.get(entry["house"], "Shadow: the term can imply more structure than the artifact actually carries.")
+    if entry["id"] in MAJOR_SHADOWS:
+        return MAJOR_SHADOWS[entry["id"]]
+    template = SHADOW_TEMPLATES.get(entry["house"], "the term can imply more structure than the artifact actually carries.")
     term = entry["term"]
     if entry["house"] == "failure-words-pathologies-and-counter-spells":
-        return f"Shadow: treating {term} as the root cause too early can freeze the investigation around a symptom."
+        return f"treating {term} as the root cause too early can freeze the investigation around a symptom."
     if entry["house"] == "guarantee-words-quality-attributes-and-behavioral-adjectives":
-        return f"Shadow: calling something {term} can hide the missing invariant, test, or operating envelope."
+        return f"calling something {term} can hide the missing invariant, test, or operating envelope."
     if entry["house"] == "promptcraft-ai-oriented-engineering-and-spell-structure":
-        return f"Shadow: {term} can become a prompt-shaped decoration unless it changes output, evidence, or tool behavior."
+        return f"{term} can become a prompt-shaped decoration unless it changes output, evidence, or tool behavior."
     if entry["house"] == "compound-forms-prefixes-suffixes-and-naming-runes":
-        return f"Shadow: {term} can smuggle in a guarantee the base design has not earned."
+        return f"{term} can smuggle in a guarantee the base design has not earned."
     return template
 
 
@@ -300,7 +370,7 @@ def refresh_force_shadow(entry: dict) -> None:
     if "Shadow:" in entry["summary"]:
         force, shadow = [part.strip() for part in entry["summary"].split("Shadow:", 1)]
     entry["force"] = force.strip()
-    entry["shadow"] = (shadow.strip() if shadow else entry.get("shadow") or term_specific_shadow(entry))
+    entry["shadow"] = strip_shadow_label(shadow or entry.get("shadow") or term_specific_shadow(entry))
 
 
 def add_completion_status(lexicon: list[dict], major: dict[int, dict], pocket: dict[int, dict]) -> list[dict]:
@@ -310,8 +380,6 @@ def add_completion_status(lexicon: list[dict], major: dict[int, dict], pocket: d
 
     for entry in lexicon:
         ident = entry["id"]
-        if not entry.get("sense"):
-            entry["sense"] = HOUSE_SENSES.get(entry["house"])
 
         original_summary = entry["summary"]
         was_duplicate = original_counts[original_summary] > 1
@@ -341,6 +409,71 @@ def add_completion_status(lexicon: list[dict], major: dict[int, dict], pocket: d
         entry["is_stub"] = entry["completion_status"] == "stub"
 
     return lexicon
+
+
+def is_real_sense(entry: dict) -> bool:
+    sense = entry.get("sense")
+    if not sense:
+        return False
+    return sense != HOUSE_SENSES.get(entry["house"])
+
+
+def canon_quality_report(lexicon: list[dict]) -> dict:
+    authored = [entry for entry in lexicon if entry.get("completion_status") == "authored"]
+    major = [entry for entry in authored if entry.get("major")]
+    pocket = [entry for entry in authored if entry.get("pocket")]
+    term_counts: dict[str, int] = {}
+    for entry in lexicon:
+        term_counts[entry["term"].lower()] = term_counts.get(entry["term"].lower(), 0) + 1
+    overloaded = [entry for entry in lexicon if term_counts[entry["term"].lower()] > 1]
+    doubled = [entry for entry in lexicon if entry.get("shadow") and entry["shadow"].lower().startswith("shadow:")]
+    category_mirror = [
+        entry
+        for entry in lexicon
+        if entry.get("sense") and entry.get("sense") == HOUSE_SENSES.get(entry["house"])
+    ]
+    return {
+        "summary": {
+            "total_entries": len(lexicon),
+            "authored_entries": len(authored),
+            "stub_entries": sum(1 for entry in lexicon if entry.get("completion_status") == "stub"),
+            "major_entries": len(major),
+            "pocket_entries": len(pocket),
+        },
+        "authored_layer": {
+            "unique_summaries": len({entry.get("summary") for entry in authored}),
+            "unique_shadows": len({entry.get("shadow") for entry in authored}),
+            "entries_with_real_sense": sum(1 for entry in authored if is_real_sense(entry)),
+            "entries_with_category_mirror_sense": sum(1 for entry in authored if entry in category_mirror),
+            "doubled_shadow_labels": len(doubled),
+        },
+        "major_canon": {
+            "entries": len(major),
+            "unique_shadows": len({entry.get("shadow") for entry in major}),
+            "entries_with_reviewed_shadow": sum(1 for entry in major if entry["id"] in MAJOR_SHADOWS),
+        },
+        "overloaded_terms": {
+            "entries": len(overloaded),
+            "entries_with_real_sense": sum(1 for entry in overloaded if is_real_sense(entry)),
+        },
+    }
+
+
+def quality_table(report: dict) -> str:
+    rows = [["Measure", "Value"]]
+    rows.extend(
+        [
+            ["Authored entries", str(report["summary"]["authored_entries"])],
+            ["Stub entries", str(report["summary"]["stub_entries"])],
+            ["Authored unique summaries", str(report["authored_layer"]["unique_summaries"])],
+            ["Authored unique shadows", str(report["authored_layer"]["unique_shadows"])],
+            ["Doubled shadow labels", str(report["authored_layer"]["doubled_shadow_labels"])],
+            ["Major-canon reviewed shadows", f"{report['major_canon']['entries_with_reviewed_shadow']}/{report['major_canon']['entries']}"],
+            ["Major-canon unique shadows", str(report["major_canon"]["unique_shadows"])],
+            ["Overloaded entries with real sense", f"{report['overloaded_terms']['entries_with_real_sense']}/{report['overloaded_terms']['entries']}"],
+        ]
+    )
+    return qmd_table(rows)
 
 
 def completion_counts(entries: list[dict]) -> dict[str, int]:
@@ -748,6 +881,46 @@ def qmd_table(rows: list[list[str]]) -> str:
     return "\n".join(lines)
 
 
+def spell_template_text(spell: dict) -> str:
+    labels = [
+        ("ROLE", spell["role"]),
+        ("OBJECTIVE", spell["objective"]),
+        ("CONTEXT", spell["context"]),
+        ("CONSTRAINTS", spell["constraints"]),
+        ("PROCEDURE", spell["procedure"]),
+        ("OUTPUT CONTRACT", spell["output_contract"]),
+        ("VERIFICATION", spell["verification"]),
+        ("FAILURE BEHAVIOR", spell["failure_behavior"]),
+    ]
+    return "\n\n".join(f"{label}:\n{value.strip()}" for label, value in labels)
+
+
+def write_adoption_assets(spells: list[dict], stacks: list[dict]) -> None:
+    readme = [
+        "# Software Grimoire Prompt Assets",
+        "",
+        "These files are generated from the canonical spell and stack data.",
+        "Use them as raw templates for AI tools, prompt registries, or local experiments.",
+        "",
+        "Each spell template keeps the same working seal shown on the public site.",
+    ]
+    write_text(ROOT / "prompts" / "README.md", "\n".join(readme))
+    for spell in spells:
+        slug = spell["id"].split(".")[1]
+        template = (
+            f"# {spell['title']}\n"
+            f"# id: {spell['id']}\n"
+            f"# working_seal: {spell['working_seal']}\n"
+            f"# use_when: {spell['use_when']}\n\n"
+            + spell_template_text(spell)
+        )
+        write_text(ROOT / "prompts" / "spells" / f"{slug}.txt", template)
+    for stack in stacks:
+        slug = stack["id"].split(".")[1]
+        payload = {k: v for k, v in stack.items() if k != "formal_sigil"}
+        write_json(ROOT / "prompts" / "stacks" / f"{slug}.json", payload)
+
+
 def proof_case_markdown(slug: str, case: dict, qmd: bool = False) -> str:
     repaired = "```text\n" + case["repaired"].strip() + "\n```"
     link = f"\n\n[Back to spell](../../spells/{slug}.qmd)\n" if not qmd else ""
@@ -772,8 +945,184 @@ def write_proof_examples() -> None:
         write_text(ROOT / "examples" / "weak-vs-repaired" / f"{slug}.qmd", page(case["title"], proof_case_markdown(slug, case)))
 
 
+def load_evaluation_results() -> dict:
+    path = ROOT / "examples" / "evaluations" / "results.json"
+    if not path.exists():
+        return {"generated_at": None, "surfaces": {}, "cases": {}}
+    return json.loads(path.read_text(encoding="utf-8"))
+
+
+def run_score_table(runs: list[dict]) -> str:
+    rows = [["Surface", "Variant", "Artifact", "Invariant", "Output", "Verify", "Failure", "Assumptions", "Total"]]
+    for run in runs:
+        scores = run.get("scores", {})
+        rows.append(
+            [
+                run.get("surface", ""),
+                run.get("variant", ""),
+                str(scores.get("artifact_boundary", "")),
+                str(scores.get("invariants", "")),
+                str(scores.get("output_contract", "")),
+                str(scores.get("verification", "")),
+                str(scores.get("failure_behavior", "")),
+                str(scores.get("assumption_control", "")),
+                str(run.get("total_score", "")),
+            ]
+        )
+    return qmd_table(rows)
+
+
+def write_evaluation_pages() -> None:
+    results = load_evaluation_results()
+    cases = results.get("cases", {})
+    index_rows = [["Case", "Surfaces", "Weak Avg", "Repaired Avg", "Observed Delta"]]
+    for slug, proof in PROOF_CASES.items():
+        case = cases.get(slug, {})
+        runs = case.get("runs", [])
+        weak = [run.get("total_score", 0) for run in runs if run.get("variant") == "weak"]
+        repaired = [run.get("total_score", 0) for run in runs if run.get("variant") == "repaired"]
+        weak_avg = f"{sum(weak) / len(weak):.1f}" if weak else "pending"
+        repaired_avg = f"{sum(repaired) / len(repaired):.1f}" if repaired else "pending"
+        delta = case.get("observed_delta") or "pending recorded run"
+        surfaces = ", ".join(sorted({run.get("surface", "") for run in runs if run.get("surface")})) or "pending"
+        index_rows.append([f"[{proof['title']}]({slug}.qmd)", surfaces, weak_avg, repaired_avg, delta])
+
+        body_parts = [
+            f"# {proof['title']}",
+            "",
+            f"**Expected delta:** {proof['delta']}",
+            "",
+            f"**Input context:** {EVALUATION_CONTEXTS[slug]}",
+            "",
+            "## Scores",
+            "",
+            run_score_table(runs) if runs else "No recorded runs yet.",
+            "",
+            "## Transcripts",
+        ]
+        for run in runs:
+            transcript_url = f"https://github.com/corbensorenson/software-grimoire/blob/main/{run.get('transcript_path')}"
+            prompt_url = f"https://github.com/corbensorenson/software-grimoire/blob/main/{run.get('prompt_path')}"
+            body_parts.extend(
+                [
+                    "",
+                    f"### {run.get('surface')} - {run.get('variant')}",
+                    "",
+                    f"- Surface label: {run.get('surface_label', run.get('surface', ''))}",
+                    f"- Run timestamp: `{run.get('run_timestamp', results.get('generated_at') or 'not recorded')}`",
+                    f"- Prompt file: [{run.get('prompt_path')}]({prompt_url})",
+                    f"- Transcript file: [{run.get('transcript_path')}]({transcript_url})",
+                    f"- Evaluator notes: {run.get('evaluator_notes', 'Auto-scored with the structural rubric; transcript remains the primary evidence.')}",
+                    "",
+                    "```text",
+                    run.get("output", "").strip(),
+                    "```",
+                ]
+            )
+        write_text(ROOT / "examples" / "evaluations" / f"{slug}.qmd", page(proof["title"], "\n".join(body_parts)))
+
+    index_body = f"""# Recorded Evaluations
+
+Proof by Difference becomes credible only when weak and repaired prompts are run against the same context and scored with the same rubric. This section preserves those runs, including non-wins when they occur.
+
+Generated at: `{results.get('generated_at') or 'pending'}`
+
+## Summary
+
+{qmd_table(index_rows)}
+
+## Rubric
+
+Scores use 0-2 per criterion: artifact boundary, invariants, output contract, verification, failure behavior, and assumption control. The score is structural and review-oriented; transcripts remain the primary evidence.
+"""
+    write_text(ROOT / "examples" / "evaluations" / "index.qmd", page("Recorded Evaluations", index_body))
+
+
+def write_adoption_pages() -> None:
+    write_text(
+        ROOT / "adoption" / "index.qmd",
+        page(
+            "Adoption Kit",
+            """# Adoption Kit
+
+The adoption kit is intentionally small. It exists to make the six field spell templates and six stack workflows usable outside this repository.
+
+## Raw Prompt Assets
+
+- [Prompt asset README](../prompts/README.md)
+- [Spell templates](https://github.com/corbensorenson/software-grimoire/tree/main/prompts/spells)
+- [Stack workflow templates](https://github.com/corbensorenson/software-grimoire/tree/main/prompts/stacks)
+
+## Minimal CLI
+
+Use the repository CLI through Python:
+
+```bash
+python3 scripts/grimoire.py validate
+python3 scripts/grimoire.py new spell /tmp/my-spell.json
+python3 scripts/grimoire.py validate /tmp/my-spell.json
+python3 scripts/grimoire.py seal /tmp/my-spell.json
+```
+
+The CLI stays local. It has no hidden model calls and no provider dependency.
+
+## Use Policy
+
+- Copy templates first; customize only the context and constraints needed for the task.
+- Keep verification visible.
+- Save prompts and outputs that worked.
+- Retire local variants that no longer improve output.
+- Record evidence before promoting a local spell to a team template.
+""",
+        ),
+    )
+    write_text(
+        ROOT / "adoption" / "external-walkthrough.qmd",
+        page(
+            "External Walkthrough",
+            """# External Walkthrough
+
+This walkthrough shows the smallest path from blank task to local spell record.
+
+## 1. Start From A Task
+
+```text
+Refactor the account serializer so duplicated validation branches are easier to review, but do not change public behavior.
+```
+
+## 2. Create A Spell Skeleton
+
+```bash
+python3 scripts/grimoire.py new spell /tmp/account-serializer-refactor.json
+```
+
+## 3. Fill The Contract
+
+Add the artifact boundary, invariant, output contract, verification command, and failure behavior. The skeleton is plain JSON so it can live in any repo.
+
+## 4. Validate Locally
+
+```bash
+python3 scripts/grimoire.py validate /tmp/account-serializer-refactor.json
+```
+
+## 5. Seal It
+
+```bash
+python3 scripts/grimoire.py seal /tmp/account-serializer-refactor.json
+```
+
+## 6. Use And Record
+
+Paste the filled spell into your AI tool. Save the model/tool surface, output, verification result, and repair notes. If the spell outperforms the weak request repeatedly, promote it into your local registry.
+""",
+        ),
+    )
+
+
 def write_chapters(public_text: str, pocket_text: str, stacks_text: str, lexicon: list[dict], houses: list[dict]) -> None:
     counts = completion_counts(lexicon)
+    quality = canon_quality_report(lexicon)
     authored = counts.get("authored", 0)
     stub = counts.get("stub", 0)
     per_house_rows = [["House", "Authored", "Stub", "Needs Shadow", "Needs Sense"]]
@@ -795,11 +1144,74 @@ def write_chapters(public_text: str, pocket_text: str, stacks_text: str, lexicon
         ROOT / "index.qmd",
         page(
             "The Grimoire of Software Magic Words",
-            """Every software system is a ritual of names. The names that merely describe are ordinary. The names that constrain, invoke, transform, verify, or guard are magic.
+            f"""AI coding gets better when the request names the artifact, the invariant, the output shape, the verification step, and what to do when the task is underspecified.
 
-This site is a public field manual and formal reference for AI-assisted software engineering. It teaches spells as structured instruction artifacts, stacks as reusable workflows, and runes as high-force engineering word-senses.
+The Software Grimoire is a public field manual for turning vague AI requests into bounded, reviewable software work. Its core unit is a **spell**: a structured prompt template. A **stack** is a workflow made of spells. A **rune** is a high-force engineering term. A **shadow** is the failure mode to watch.
 
-Start with [the guided reader path](reader_path.qmd) if you want an ordered route. Check [porting status](porting-status.qmd) if you want to see what moved from the source manuscripts into the public site. Use the spell and stack libraries if you want working forms immediately. Use the lexicon when you need stable vocabulary for prompts, reviews, migrations, incidents, and release gates.
+## Weak Request
+
+```text
+{PROOF_CASES['safe-refactoring']['weak']}
+```
+
+## Repaired Spell
+
+```text
+{PROOF_CASES['safe-refactoring']['repaired']}
+```
+
+**Expected delta:** {PROOF_CASES['safe-refactoring']['delta']}
+
+Start with [First Spell in Five Minutes](quick_start.qmd), copy [Spell of Safe Refactoring](spells/safe-refactoring.qmd), or browse the [Proof by Difference](reference/proof-by-difference.qmd) cases. Use the [guided reader path](reader_path.qmd) if you want the full theory.
+""",
+        ),
+    )
+    write_text(
+        ROOT / "quick_start.qmd",
+        page(
+            "First Spell in Five Minutes",
+            """# First Spell in Five Minutes
+
+Use this when you want a better AI-assisted software answer now, without reading the whole book.
+
+## Plain-English Map
+
+| Grimoire word | Plain engineering meaning |
+|---|---|
+| Spell | Structured prompt template |
+| Stack | Workflow made of prompt templates |
+| Rune | High-force engineering term |
+| Shadow | Failure mode |
+| Seal | Stable digest for versioning and replay |
+
+## 1. Pick the Task
+
+Choose the closest field spell:
+
+- [Safe Refactoring](spells/safe-refactoring.qmd) for behavior-preserving code cleanup.
+- [Bug Diagnosis from Logs](spells/bug-diagnosis-from-logs.qmd) for incidents and uncertain failures.
+- [API Design](spells/api-design.qmd) for durable JSON surfaces.
+- [Migration Without Data Loss](spells/migration-without-data-loss.qmd) for live data changes.
+- [Test Generation](spells/test-generation.qmd) for behavior-focused tests.
+- [Performance Tuning](spells/performance-tuning.qmd) for measurement-led optimization.
+
+## 2. Pick the Cast Level
+
+- Quick cast: role, objective, context, verification.
+- Working cast: add constraints and output shape.
+- Full ritual: use all eight limbs when the task touches data, production, security, release, or broad refactoring.
+
+## 3. Copy the Template
+
+Open the closest spell and copy the fenced template block. Fill the context with the exact artifact, invariant, constraints, output contract, verification command, and fallback behavior.
+
+## 4. Run and Verify
+
+Do not treat a fluent answer as success. Check the output against the contract you wrote. If the assistant cannot verify something, make it label that uncertainty instead of pretending.
+
+## 5. Save Useful Results
+
+When a spell works, save the prompt, model/tool surface, output, verification evidence, and any repair notes. That record is the beginning of a local prompt registry.
 """,
         ),
     )
@@ -822,11 +1234,12 @@ The site can be read three ways.
 
 ## Use It Today
 
-1. [Cast Levels](reference/cast-levels.qmd)
-2. [Canonical Spell Skeleton](reference/spell-skeleton.qmd)
-3. [Spell Library](spells/index.qmd)
-4. [Stack Library](stacks/index.qmd)
-5. [Failure Modes](reference/failure-modes.qmd)
+1. [First Spell in Five Minutes](quick_start.qmd)
+2. [Cast Levels](reference/cast-levels.qmd)
+3. [Canonical Spell Skeleton](reference/spell-skeleton.qmd)
+4. [Spell Library](spells/index.qmd)
+5. [Stack Library](stacks/index.qmd)
+6. [Failure Modes](reference/failure-modes.qmd)
 
 ## Build On It
 
@@ -865,6 +1278,10 @@ The first public seed was a complete structural port. The reader-linking pass im
 The master lexicon currently has `{authored}` authored entries and `{stub}` stub entries.
 
 {count_summary_table(counts)}
+
+## Authored-Layer Quality
+
+{quality_table(quality)}
 
 ## Completion by House
 
@@ -1123,6 +1540,7 @@ The goal is a living book that can accept new practice without losing its spine.
 
 def write_reference_pages(houses: list[dict], lexicon: list[dict], major: dict[int, dict], pocket: dict[int, dict], spells: list[dict], stacks: list[dict]) -> None:
     global_counts = completion_counts(lexicon)
+    quality = canon_quality_report(lexicon)
     rows = [["House", "Range", "Entries"]]
     by_house = {h["id"]: [] for h in houses}
     lex_by_id = {entry["id"]: entry for entry in lexicon}
@@ -1137,11 +1555,19 @@ def write_reference_pages(houses: list[dict], lexicon: list[dict], major: dict[i
             "Reference",
             "The reference section is generated from structured data. Use it to browse the canon by house, spell, stack, cast level, and failure mode.\n\n"
             "- [Guided Reader Path](../reader_path.qmd)\n"
+            "- [First Spell in Five Minutes](../quick_start.qmd)\n"
             "- [Canon Map](canon-map.qmd)\n"
-            "- [Term Index](term-index.qmd)\n"
-            "- [Master Lexicon](lexicon.qmd)\n\n"
+            "- [The Fifty World-Running Words](major-canon.qmd)\n"
+            "- [Pocket Canon](pocket-canon.qmd)\n"
+            "- [Proof by Difference](proof-by-difference.qmd)\n"
+            "- [Term Index](term-index.qmd)\n\n"
+            "Plain-English aliases: spell = structured prompt template; stack = workflow; rune = high-force engineering term; shadow = failure mode; seal = stable digest.\n\n"
             "## Lexicon Completion\n\n"
             + count_summary_table(global_counts)
+            + "\n\n## Authored-Layer Quality\n\n"
+            + quality_table(quality)
+            + "\n\n## Partially Authored Master Lexicon Houses\n\n"
+            "These house pages are complete as an index, but many entries are still marked `stub`. Use the major and pocket canons first when you want reviewed vocabulary.\n\n"
             + "\n\n"
             + qmd_table(rows)
             + "\n",
@@ -1260,7 +1686,7 @@ Common stack failures:
 """,
         ),
     )
-    proof_rows = [["Spell", "Case", "Weak Request", "Expected Delta"]]
+    proof_rows = [["Spell", "Case", "Weak Request", "Expected Delta", "Observed Results"]]
     for slug, case in PROOF_CASES.items():
         spell_title = next((s["title"] for s in spells if s["id"].split(".")[1] == slug), slug)
         proof_rows.append(
@@ -1269,6 +1695,7 @@ Common stack failures:
                 f"[{case['title']}](../examples/weak-vs-repaired/{slug}.qmd)",
                 case["weak"],
                 case["delta"],
+                f"[Recorded runs](../examples/evaluations/{slug}.qmd)",
             ]
         )
     proof_body = """# Proof by Difference
@@ -1277,17 +1704,17 @@ Proof by Difference is the grimoire's evidence discipline. It compares a weak re
 
 Use each case as a replayable prompt-design test. If a future model or workflow makes the weak request perform as well as the repaired spell, record that. If the repaired spell fails, inspect which limb was underspecified.
 
-Replay templates and the six-case evaluation matrix live in the repository's [evaluation examples](https://github.com/corbensorenson/software-grimoire/tree/main/examples/evaluations).
+Replay templates, recorded runs, and the six-case evaluation matrix live in [Recorded Evaluations](../examples/evaluations/index.qmd) and in the repository's [evaluation examples](https://github.com/corbensorenson/software-grimoire/tree/main/examples/evaluations).
 
 """ + qmd_table(proof_rows)
     write_text(ROOT / "reference" / "proof-by-difference.qmd", page("Proof by Difference", proof_body))
 
-    major_rows = [["Sigil", "Term", "Cluster", "Gloss"]]
+    major_rows = [["Sigil", "Term", "Cluster", "Gloss", "Reviewed Shadow"]]
     for ident in sorted(major):
         item = major[ident]
         entry = lex_by_id[ident]
-        major_rows.append([f"{ident:04d}", rune_link(entry, "../"), item.get("cluster") or "", item["expanded_gloss"]])
-    write_text(ROOT / "reference" / "major-canon.qmd", page("The Fifty World-Running Words", qmd_table(major_rows)))
+        major_rows.append([f"{ident:04d}", rune_link(entry, "../"), item.get("cluster") or "", item["expanded_gloss"], entry["shadow"]])
+    write_text(ROOT / "reference" / "major-canon.qmd", page("The Fifty World-Running Words", "The 50 major words are the first vocabulary surface to review. Each has a term-specific shadow.\n\n" + qmd_table(major_rows)))
 
     pocket_rows = [["Sigil", "Term", "Gloss"]]
     for ident in sorted(pocket):
@@ -1401,16 +1828,20 @@ Use this map to jump from intent to the right reading surface.
         ROOT / "spells" / "index.qmd",
         page(
             "Spell Library",
-            "Use these as reusable working forms. Each spell page links back to relevant runes and reference pages.\n\n"
+            "Use these as reusable working forms. Each spell page starts with a copyable template and links back to relevant runes, evidence, and raw prompt assets.\n\n"
             + "\n".join(f"- [{s['title']}]({slugify(s['title'].replace('Spell of ', ''))}.qmd)" for s in spells),
         ),
     )
     for spell in spells:
         slug = slugify(spell["title"].replace("Spell of ", ""))
+        template = spell_template_text(spell)
         body = (
             f"# {spell['title']}\n\n"
             f"**Working seal:** `{spell['working_seal']}`\n\n"
             f"**Use when:** {spell['use_when']}\n"
+            f"\n\n## Copyable Template\n\n"
+            f"Raw template: [prompts/spells/{slug}.txt](../prompts/spells/{slug}.txt)\n\n"
+            f"```text\n{template}\n```\n"
             + rune_section(spell.get("runes", []), lex_by_id, "../")
             + related_section(
                 [
@@ -1418,10 +1849,11 @@ Use this map to jump from intent to the right reading surface.
                     ("Cast Levels", "../reference/cast-levels.qmd"),
                     ("Failure Modes", "../reference/failure-modes.qmd"),
                     ("Proof by Difference Case", f"../examples/weak-vs-repaired/{slug}.qmd"),
+                    ("Recorded Evaluations", f"../examples/evaluations/{slug}.qmd"),
                     ("Canon Map", "../reference/canon-map.qmd"),
                 ]
             )
-            + "\n"
+            + "\n\n## Source Form\n\n"
             + spell["source_markdown"]
         )
         write_text(ROOT / "spells" / f"{slug}.qmd", page(spell["title"], body))
@@ -1464,10 +1896,10 @@ Use this map to jump from intent to the right reading surface.
 
 
 def write_quarto_config(houses: list[dict]) -> None:
-    house_pages = [f"        - reference/house-{h['id']}.qmd" for h in houses]
     structure = {
         "chapters": [
             "index.qmd",
+            "quick_start.qmd",
             "reader_path.qmd",
             "porting-status.qmd",
             "preface.qmd",
@@ -1499,6 +1931,11 @@ def write_quarto_config(houses: list[dict]) -> None:
             "recursive-decomposition-stack",
         ]],
         "proof_pages": [f"examples/weak-vs-repaired/{slug}.qmd" for slug in PROOF_CASES],
+        "evaluation_pages": ["examples/evaluations/index.qmd"] + [f"examples/evaluations/{slug}.qmd" for slug in PROOF_CASES],
+        "adoption_pages": [
+            "adoption/index.qmd",
+            "adoption/external-walkthrough.qmd",
+        ],
         "reference_pages": [
             "reference/index.qmd",
             "reference/cast-levels.qmd",
@@ -1512,6 +1949,8 @@ def write_quarto_config(houses: list[dict]) -> None:
             "reference/pocket-canon.qmd",
             "reference/pocket-field-guide.qmd",
             "reference/term-index.qmd",
+        ],
+        "appendix_pages": [
             "reference/lexicon.qmd",
         ] + [f"reference/house-{h['id']}.qmd" for h in houses],
     }
@@ -1520,14 +1959,18 @@ def write_quarto_config(houses: list[dict]) -> None:
     spells = "\n".join(["        - " + p for p in structure["spell_pages"]])
     stacks = "\n".join(["        - " + p for p in structure["stack_pages"]])
     proof_pages = "\n".join(["        - " + p for p in structure["proof_pages"]])
-    chapters = "\n".join(["    - " + p for p in structure["chapters"][:2]])
-    main_chapters = "\n".join(["        - " + p for p in structure["chapters"][2:]])
+    eval_pages = "\n".join(["        - " + p for p in structure["evaluation_pages"]])
+    adoption_pages = "\n".join(["        - " + p for p in structure["adoption_pages"]])
+    appendix_pages = "\n".join(["        - " + p for p in structure["appendix_pages"]])
+    chapters = "\n".join(["    - " + p for p in structure["chapters"][:3]])
+    main_chapters = "\n".join(["        - " + p for p in structure["chapters"][3:]])
     q = f"""project:
   type: book
   output-dir: _site
   resources:
     - .nojekyll
     - data/*.json
+    - prompts/**
 
 lang: en-US
 
@@ -1552,14 +1995,24 @@ book:
     - part: "Proof by Difference Cases"
       chapters:
 {proof_pages}
+    - part: "Recorded Evaluations"
+      chapters:
+{eval_pages}
+    - part: "Adoption Kit"
+      chapters:
+{adoption_pages}
     - part: "Reference"
       chapters:
 {refs}
+    - part: "Partially Authored Master Lexicon"
+      chapters:
+{appendix_pages}
 
 format:
   html:
     toc: true
     number-sections: true
+    code-copy: true
     code-fold: true
     theme:
       - cosmo
@@ -1620,6 +2073,7 @@ def main() -> None:
     write_json(ROOT / "data" / "major_arcana.json", [major[k] for k in sorted(major)])
     write_json(ROOT / "data" / "pocket_runes.json", [pocket[k] for k in sorted(pocket)])
     write_json(ROOT / "data" / "lexicon.json", lexicon)
+    write_json(ROOT / "data" / "canon_quality.json", canon_quality_report(lexicon))
     write_json(ROOT / "data" / "spells.json", [{k: v for k, v in s.items() if k != "source_markdown"} for s in spells])
     write_json(ROOT / "data" / "stacks.json", stacks)
     write_json(
@@ -1630,8 +2084,11 @@ def main() -> None:
         },
     )
 
+    write_adoption_assets(spells, stacks)
     write_chapters(public_text, pocket_text, stacks_text, lexicon, houses)
     write_proof_examples()
+    write_evaluation_pages()
+    write_adoption_pages()
     write_reference_pages(houses, lexicon, major, pocket, spells, stacks)
     write_quarto_config(houses)
 

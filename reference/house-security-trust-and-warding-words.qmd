@@ -8,110 +8,111 @@ Range: `0969-1063`.
 
 ## Completion
 
-| Status   | Count |
-| -------- | ----- |
-| authored | 19    |
-| stub     | 76    |
+| Status      | Count |
+| ----------- | ----- |
+| authored    | 18    |
+| stub        | 76    |
+| needs_sense | 1     |
 
 Use the summary table for scanning. Each row links to the detailed anchored entry below.
 
-| Sigil | Term                                       | Completion | Summary                                                                                                                                        |
-| ----- | ------------------------------------------ | ---------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
-| 0969  | `STUB` [ABAC](#rune-0969)                  | stub       | A defense word; it shapes how systems resist misuse, theft, or forgery.                                                                        |
-| 0970  | `STUB` [access control](#rune-0970)        | stub       | A defense word; it shapes how systems resist misuse, theft, or forgery.                                                                        |
-| 0971  | `STUB` [account](#rune-0971)               | stub       | A threshold word; it governs who may enter, know, or act.                                                                                      |
-| 0972  | `STUB` [ACL](#rune-0972)                   | stub       | A ward-word; it protects trust, secrecy, or authority.                                                                                         |
-| 0973  | `STUB` [allowlist](#rune-0973)             | stub       | A defense word; it shapes how systems resist misuse, theft, or forgery.                                                                        |
-| 0974  | [attestation](#rune-0974)                  | authored   | A proof that a thing is what it claims to be or was produced the way it claims. It matters most when trust cannot be assumed.                  |
-| 0975  | `STUB` [audit](#rune-0975)                 | stub       | A defense word; it shapes how systems resist misuse, theft, or forgery.                                                                        |
-| 0976  | [authenticate](#rune-0976)                 | authored   | Prove who is making the claim before deciding what the claimant may do. Shadow: trusting names that have not earned entrance.                  |
-| 0977  | `STUB` [authentication](#rune-0977)        | stub       | A ward-word; it protects trust, secrecy, or authority.                                                                                         |
-| 0978  | [authorization](#rune-0978)                | authored   | After identity is known, what acts are permitted? Shadow: accidental omnipotence hidden behind a successful login.                             |
-| 0979  | [availability](#rune-0979)                 | authored   | A promise word that says the system can still be reached when called upon.                                                                     |
-| 0980  | `STUB` [bearer token](#rune-0980)          | stub       | A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.                                                |
-| 0981  | `STUB` [blast radius](#rune-0981)          | stub       | A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.                                                |
-| 0982  | `STUB` [blocklist](#rune-0982)             | stub       | A defense word; it shapes how systems resist misuse, theft, or forgery.                                                                        |
-| 0983  | `STUB` [boundary defense](#rune-0983)      | stub       | A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.                                                |
-| 0984  | `STUB` [capability {Sec}](#rune-0984)      | stub       | A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.                                                |
-| 0985  | `STUB` [certificate {Sec}](#rune-0985)     | stub       | A delegated-trust word; it lets one party assert another's identity by signed authority.                                                       |
-| 0986  | `STUB` [challenge](#rune-0986)             | stub       | A defense word; it shapes how systems resist misuse, theft, or forgery.                                                                        |
-| 0987  | `STUB` [cipher](#rune-0987)                | stub       | A defense word; it shapes how systems resist misuse, theft, or forgery.                                                                        |
-| 0988  | `STUB` [claim](#rune-0988)                 | stub       | A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.                                                |
-| 0989  | `STUB` [client secret](#rune-0989)         | stub       | A threshold word; it governs who may enter, know, or act.                                                                                      |
-| 0990  | [code signing](#rune-0990)                 | authored   | Cryptographically bind an artifact to a trusted producer.                                                                                      |
-| 0991  | `STUB` [compliance](#rune-0991)            | stub       | A defense word; it shapes how systems resist misuse, theft, or forgery.                                                                        |
-| 0992  | `STUB` [confidentiality](#rune-0992)       | stub       | A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.                                                |
-| 0993  | `STUB` [credential {Sec}](#rune-0993)      | stub       | A defense word; it shapes how systems resist misuse, theft, or forgery.                                                                        |
-| 0994  | `STUB` [cross-site scripting](#rune-0994)  | stub       | A defense word; it shapes how systems resist misuse, theft, or forgery.                                                                        |
-| 0995  | `STUB` [cryptographic nonce](#rune-0995)   | stub       | A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.                                                |
-| 0996  | `STUB` [CSRF](#rune-0996)                  | stub       | A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.                                                |
-| 0997  | `STUB` [decrypt {Sec}](#rune-0997)         | stub       | An unsealing word; protected meaning becomes legible again under the right key.                                                                |
-| 0998  | [defense in depth](#rune-0998)             | authored   | Stack multiple protective layers so one failure is not total failure.                                                                          |
-| 0999  | `STUB` [deny-by-default](#rune-0999)       | stub       | A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.                                                |
-| 1000  | `STUB` [digest {Sec}](#rune-1000)          | stub       | A ward-word; it protects trust, secrecy, or authority.                                                                                         |
-| 1001  | `STUB` [enclave](#rune-1001)               | stub       | A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.                                                |
-| 1002  | [encrypt {Sec}](#rune-1002)                | authored   | Make plaintext unreadable without the right key.                                                                                               |
-| 1003  | `STUB` [entropy](#rune-1003)               | stub       | A threshold word; it governs who may enter, know, or act.                                                                                      |
-| 1004  | `STUB` [exfiltration](#rune-1004)          | stub       | A threshold word; it governs who may enter, know, or act.                                                                                      |
-| 1005  | `STUB` [exploit](#rune-1005)               | stub       | A threshold word; it governs who may enter, know, or act.                                                                                      |
-| 1006  | `STUB` [harden](#rune-1006)                | stub       | A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.                                                |
-| 1007  | [hash {Sec}](#rune-1007)                   | authored   | Arbitrary input reduced to a fixed fingerprint. Use it for identity, integrity, bucketing, and change detection; never mistake it for secrecy. |
-| 1008  | `STUB` [HMAC](#rune-1008)                  | stub       | A threshold word; it governs who may enter, know, or act.                                                                                      |
-| 1009  | `STUB` [identity](#rune-1009)              | stub       | A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.                                                |
-| 1010  | `STUB` [incident](#rune-1010)              | stub       | A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.                                                |
-| 1011  | `STUB` [injection](#rune-1011)             | stub       | A defense word; it shapes how systems resist misuse, theft, or forgery.                                                                        |
-| 1012  | [integrity](#rune-1012)                    | authored   | Confidence that data has not been silently altered.                                                                                            |
-| 1013  | `STUB` [isolate {Sec}](#rune-1013)         | stub       | A threshold word; it governs who may enter, know, or act.                                                                                      |
-| 1014  | [key {Sec}](#rune-1014)                    | authored   | The secret or public material that makes cryptographic operations possible.                                                                    |
-| 1015  | `STUB` [key exchange](#rune-1015)          | stub       | A ward-word; it protects trust, secrecy, or authority.                                                                                         |
-| 1016  | [key rotation](#rune-1016)                 | authored   | Replace active keys before age or compromise turns them rotten.                                                                                |
-| 1017  | [least privilege](#rune-1017)              | authored   | Give only the authority required for the present act, no more. It is one of the simplest words for reducing future regret.                     |
-| 1018  | `STUB` [login](#rune-1018)                 | stub       | A threshold word; it governs who may enter, know, or act.                                                                                      |
-| 1019  | `STUB` [mTLS {Sec}](#rune-1019)            | stub       | A ward-word; it protects trust, secrecy, or authority.                                                                                         |
-| 1020  | `STUB` [mutual authentication](#rune-1020) | stub       | A ward-word; it protects trust, secrecy, or authority.                                                                                         |
-| 1021  | `STUB` [nonce](#rune-1021)                 | stub       | A defense word; it shapes how systems resist misuse, theft, or forgery.                                                                        |
-| 1022  | `STUB` [passkey](#rune-1022)               | stub       | A ward-word; it protects trust, secrecy, or authority.                                                                                         |
-| 1023  | `STUB` [password](#rune-1023)              | stub       | A defense word; it shapes how systems resist misuse, theft, or forgery.                                                                        |
-| 1024  | `STUB` [patch {Sec}](#rune-1024)           | stub       | A repair word; a bounded alteration is applied to an existing body.                                                                            |
-| 1025  | `STUB` [pepper](#rune-1025)                | stub       | A ward-word; it protects trust, secrecy, or authority.                                                                                         |
-| 1026  | `STUB` [permission {Sec}](#rune-1026)      | stub       | A threshold word; it governs who may enter, know, or act.                                                                                      |
-| 1027  | `STUB` [phishing](#rune-1027)              | stub       | A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.                                                |
-| 1028  | [policy](#rune-1028)                       | authored   | The declared rule by which a class of cases is decided. Good policy reduces arbitrary judgment; bad policy merely freezes confusion.           |
-| 1029  | `STUB` [principal](#rune-1029)             | stub       | A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.                                                |
-| 1030  | `STUB` [private key](#rune-1030)           | stub       | A ward-word; it protects trust, secrecy, or authority.                                                                                         |
-| 1031  | `STUB` [privilege escalation](#rune-1031)  | stub       | A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.                                                |
-| 1032  | `STUB` [proof of possession](#rune-1032)   | stub       | A threshold word; it governs who may enter, know, or act.                                                                                      |
-| 1033  | `STUB` [public key](#rune-1033)            | stub       | A ward-word; it protects trust, secrecy, or authority.                                                                                         |
-| 1034  | `STUB` [quarantine](#rune-1034)            | stub       | A ward-word; it protects trust, secrecy, or authority.                                                                                         |
-| 1035  | `STUB` [rate limiting](#rune-1035)         | stub       | A threshold word; it governs who may enter, know, or act.                                                                                      |
-| 1036  | `STUB` [replay attack](#rune-1036)         | stub       | A threshold word; it governs who may enter, know, or act.                                                                                      |
-| 1037  | [revocation](#rune-1037)                   | authored   | The act of withdrawing trust from credentials or keys.                                                                                         |
-| 1038  | `STUB` [role {Sec}](#rune-1038)            | stub       | An invocation word; it frames what kind of actor the model should pretend to be.                                                               |
-| 1039  | `STUB` [root of trust](#rune-1039)         | stub       | A defense word; it shapes how systems resist misuse, theft, or forgery.                                                                        |
-| 1040  | `STUB` [rotate](#rune-1040)                | stub       | A defense word; it shapes how systems resist misuse, theft, or forgery.                                                                        |
-| 1041  | `STUB` [salt](#rune-1041)                  | stub       | A ward-word; it protects trust, secrecy, or authority.                                                                                         |
-| 1042  | [sandbox {Sec}](#rune-1042)                | authored   | Constrain code inside a smaller, safer prison.                                                                                                 |
-| 1043  | `STUB` [scope {Sec}](#rune-1043)           | stub       | A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.                                                |
-| 1044  | [secret {Sec}](#rune-1044)                 | authored   | Information whose power comes from staying hidden.                                                                                             |
-| 1045  | `STUB` [secure enclave](#rune-1045)        | stub       | A threshold word; it governs who may enter, know, or act.                                                                                      |
-| 1046  | `STUB` [security boundary](#rune-1046)     | stub       | A ward-word; it protects trust, secrecy, or authority.                                                                                         |
-| 1047  | `STUB` [session fixation](#rune-1047)      | stub       | A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.                                                |
-| 1048  | `STUB` [session token](#rune-1048)         | stub       | A threshold word; it governs who may enter, know, or act.                                                                                      |
-| 1049  | `STUB` [sign {Sec}](#rune-1049)            | stub       | A sealing word; origin or integrity is bound cryptographically to content.                                                                     |
-| 1050  | [signature {Sec}](#rune-1050)              | authored   | Identity or intent made checkable through cryptographic proof. Useful wherever trust must survive distance and replay.                         |
-| 1051  | `STUB` [single sign-on](#rune-1051)        | stub       | A threshold word; it governs who may enter, know, or act.                                                                                      |
-| 1052  | `STUB` [spoofing](#rune-1052)              | stub       | A threshold word; it governs who may enter, know, or act.                                                                                      |
-| 1053  | `STUB` [SSRF](#rune-1053)                  | stub       | A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.                                                |
-| 1054  | [threat model](#rune-1054)                 | authored   | A structured view of likely attackers, assets, and failure paths.                                                                              |
-| 1055  | `STUB` [token {Sec}](#rune-1055)           | stub       | A countable unit of text or symbol used for parsing, modeling, or encoding.                                                                    |
-| 1056  | `STUB` [trust anchor](#rune-1056)          | stub       | A threshold word; it governs who may enter, know, or act.                                                                                      |
-| 1057  | `STUB` [trust boundary](#rune-1057)        | stub       | A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.                                                |
-| 1058  | `STUB` [validate {Sec}](#rune-1058)        | stub       | A gatekeeping word; inputs or outputs are checked against an expected form.                                                                    |
-| 1059  | `STUB` [verification {Sec}](#rune-1059)    | stub       | A truth-checking word that asks not merely for output, but for justified output.                                                               |
-| 1060  | `STUB` [vulnerability](#rune-1060)         | stub       | A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.                                                |
-| 1061  | `STUB` [ward](#rune-1061)                  | stub       | A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.                                                |
-| 1062  | `STUB` [webhook signing](#rune-1062)       | stub       | A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.                                                |
-| 1063  | [zero trust](#rune-1063)                   | authored   | Assume no network location or ambient context deserves automatic trust.                                                                        |
+| Sigil | Term                                       | Completion  | Summary                                                                                                                                        |
+| ----- | ------------------------------------------ | ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| 0969  | `STUB` [ABAC](#rune-0969)                  | stub        | A defense word; it shapes how systems resist misuse, theft, or forgery.                                                                        |
+| 0970  | `STUB` [access control](#rune-0970)        | stub        | A defense word; it shapes how systems resist misuse, theft, or forgery.                                                                        |
+| 0971  | `STUB` [account](#rune-0971)               | stub        | A threshold word; it governs who may enter, know, or act.                                                                                      |
+| 0972  | `STUB` [ACL](#rune-0972)                   | stub        | A ward-word; it protects trust, secrecy, or authority.                                                                                         |
+| 0973  | `STUB` [allowlist](#rune-0973)             | stub        | A defense word; it shapes how systems resist misuse, theft, or forgery.                                                                        |
+| 0974  | [attestation](#rune-0974)                  | authored    | A proof that a thing is what it claims to be or was produced the way it claims. It matters most when trust cannot be assumed.                  |
+| 0975  | `STUB` [audit](#rune-0975)                 | stub        | A defense word; it shapes how systems resist misuse, theft, or forgery.                                                                        |
+| 0976  | [authenticate](#rune-0976)                 | authored    | Prove who is making the claim before deciding what the claimant may do. Shadow: trusting names that have not earned entrance.                  |
+| 0977  | `STUB` [authentication](#rune-0977)        | stub        | A ward-word; it protects trust, secrecy, or authority.                                                                                         |
+| 0978  | [authorization](#rune-0978)                | authored    | After identity is known, what acts are permitted? Shadow: accidental omnipotence hidden behind a successful login.                             |
+| 0979  | [availability](#rune-0979)                 | needs_sense | A promise word that says the system can still be reached when called upon.                                                                     |
+| 0980  | `STUB` [bearer token](#rune-0980)          | stub        | A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.                                                |
+| 0981  | `STUB` [blast radius](#rune-0981)          | stub        | A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.                                                |
+| 0982  | `STUB` [blocklist](#rune-0982)             | stub        | A defense word; it shapes how systems resist misuse, theft, or forgery.                                                                        |
+| 0983  | `STUB` [boundary defense](#rune-0983)      | stub        | A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.                                                |
+| 0984  | `STUB` [capability {Sec}](#rune-0984)      | stub        | A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.                                                |
+| 0985  | `STUB` [certificate {Sec}](#rune-0985)     | stub        | A delegated-trust word; it lets one party assert another's identity by signed authority.                                                       |
+| 0986  | `STUB` [challenge](#rune-0986)             | stub        | A defense word; it shapes how systems resist misuse, theft, or forgery.                                                                        |
+| 0987  | `STUB` [cipher](#rune-0987)                | stub        | A defense word; it shapes how systems resist misuse, theft, or forgery.                                                                        |
+| 0988  | `STUB` [claim](#rune-0988)                 | stub        | A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.                                                |
+| 0989  | `STUB` [client secret](#rune-0989)         | stub        | A threshold word; it governs who may enter, know, or act.                                                                                      |
+| 0990  | [code signing](#rune-0990)                 | authored    | Cryptographically bind an artifact to a trusted producer.                                                                                      |
+| 0991  | `STUB` [compliance](#rune-0991)            | stub        | A defense word; it shapes how systems resist misuse, theft, or forgery.                                                                        |
+| 0992  | `STUB` [confidentiality](#rune-0992)       | stub        | A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.                                                |
+| 0993  | `STUB` [credential {Sec}](#rune-0993)      | stub        | A defense word; it shapes how systems resist misuse, theft, or forgery.                                                                        |
+| 0994  | `STUB` [cross-site scripting](#rune-0994)  | stub        | A defense word; it shapes how systems resist misuse, theft, or forgery.                                                                        |
+| 0995  | `STUB` [cryptographic nonce](#rune-0995)   | stub        | A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.                                                |
+| 0996  | `STUB` [CSRF](#rune-0996)                  | stub        | A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.                                                |
+| 0997  | `STUB` [decrypt {Sec}](#rune-0997)         | stub        | An unsealing word; protected meaning becomes legible again under the right key.                                                                |
+| 0998  | [defense in depth](#rune-0998)             | authored    | Stack multiple protective layers so one failure is not total failure.                                                                          |
+| 0999  | `STUB` [deny-by-default](#rune-0999)       | stub        | A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.                                                |
+| 1000  | `STUB` [digest {Sec}](#rune-1000)          | stub        | A ward-word; it protects trust, secrecy, or authority.                                                                                         |
+| 1001  | `STUB` [enclave](#rune-1001)               | stub        | A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.                                                |
+| 1002  | [encrypt {Sec}](#rune-1002)                | authored    | Make plaintext unreadable without the right key.                                                                                               |
+| 1003  | `STUB` [entropy](#rune-1003)               | stub        | A threshold word; it governs who may enter, know, or act.                                                                                      |
+| 1004  | `STUB` [exfiltration](#rune-1004)          | stub        | A threshold word; it governs who may enter, know, or act.                                                                                      |
+| 1005  | `STUB` [exploit](#rune-1005)               | stub        | A threshold word; it governs who may enter, know, or act.                                                                                      |
+| 1006  | `STUB` [harden](#rune-1006)                | stub        | A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.                                                |
+| 1007  | [hash {Sec}](#rune-1007)                   | authored    | Arbitrary input reduced to a fixed fingerprint. Use it for identity, integrity, bucketing, and change detection; never mistake it for secrecy. |
+| 1008  | `STUB` [HMAC](#rune-1008)                  | stub        | A threshold word; it governs who may enter, know, or act.                                                                                      |
+| 1009  | `STUB` [identity](#rune-1009)              | stub        | A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.                                                |
+| 1010  | `STUB` [incident](#rune-1010)              | stub        | A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.                                                |
+| 1011  | `STUB` [injection](#rune-1011)             | stub        | A defense word; it shapes how systems resist misuse, theft, or forgery.                                                                        |
+| 1012  | [integrity](#rune-1012)                    | authored    | Confidence that data has not been silently altered.                                                                                            |
+| 1013  | `STUB` [isolate {Sec}](#rune-1013)         | stub        | A threshold word; it governs who may enter, know, or act.                                                                                      |
+| 1014  | [key {Sec}](#rune-1014)                    | authored    | The secret or public material that makes cryptographic operations possible.                                                                    |
+| 1015  | `STUB` [key exchange](#rune-1015)          | stub        | A ward-word; it protects trust, secrecy, or authority.                                                                                         |
+| 1016  | [key rotation](#rune-1016)                 | authored    | Replace active keys before age or compromise turns them rotten.                                                                                |
+| 1017  | [least privilege](#rune-1017)              | authored    | Give only the authority required for the present act, no more. It is one of the simplest words for reducing future regret.                     |
+| 1018  | `STUB` [login](#rune-1018)                 | stub        | A threshold word; it governs who may enter, know, or act.                                                                                      |
+| 1019  | `STUB` [mTLS {Sec}](#rune-1019)            | stub        | A ward-word; it protects trust, secrecy, or authority.                                                                                         |
+| 1020  | `STUB` [mutual authentication](#rune-1020) | stub        | A ward-word; it protects trust, secrecy, or authority.                                                                                         |
+| 1021  | `STUB` [nonce](#rune-1021)                 | stub        | A defense word; it shapes how systems resist misuse, theft, or forgery.                                                                        |
+| 1022  | `STUB` [passkey](#rune-1022)               | stub        | A ward-word; it protects trust, secrecy, or authority.                                                                                         |
+| 1023  | `STUB` [password](#rune-1023)              | stub        | A defense word; it shapes how systems resist misuse, theft, or forgery.                                                                        |
+| 1024  | `STUB` [patch {Sec}](#rune-1024)           | stub        | A repair word; a bounded alteration is applied to an existing body.                                                                            |
+| 1025  | `STUB` [pepper](#rune-1025)                | stub        | A ward-word; it protects trust, secrecy, or authority.                                                                                         |
+| 1026  | `STUB` [permission {Sec}](#rune-1026)      | stub        | A threshold word; it governs who may enter, know, or act.                                                                                      |
+| 1027  | `STUB` [phishing](#rune-1027)              | stub        | A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.                                                |
+| 1028  | [policy](#rune-1028)                       | authored    | The declared rule by which a class of cases is decided. Good policy reduces arbitrary judgment; bad policy merely freezes confusion.           |
+| 1029  | `STUB` [principal](#rune-1029)             | stub        | A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.                                                |
+| 1030  | `STUB` [private key](#rune-1030)           | stub        | A ward-word; it protects trust, secrecy, or authority.                                                                                         |
+| 1031  | `STUB` [privilege escalation](#rune-1031)  | stub        | A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.                                                |
+| 1032  | `STUB` [proof of possession](#rune-1032)   | stub        | A threshold word; it governs who may enter, know, or act.                                                                                      |
+| 1033  | `STUB` [public key](#rune-1033)            | stub        | A ward-word; it protects trust, secrecy, or authority.                                                                                         |
+| 1034  | `STUB` [quarantine](#rune-1034)            | stub        | A ward-word; it protects trust, secrecy, or authority.                                                                                         |
+| 1035  | `STUB` [rate limiting](#rune-1035)         | stub        | A threshold word; it governs who may enter, know, or act.                                                                                      |
+| 1036  | `STUB` [replay attack](#rune-1036)         | stub        | A threshold word; it governs who may enter, know, or act.                                                                                      |
+| 1037  | [revocation](#rune-1037)                   | authored    | The act of withdrawing trust from credentials or keys.                                                                                         |
+| 1038  | `STUB` [role {Sec}](#rune-1038)            | stub        | An invocation word; it frames what kind of actor the model should pretend to be.                                                               |
+| 1039  | `STUB` [root of trust](#rune-1039)         | stub        | A defense word; it shapes how systems resist misuse, theft, or forgery.                                                                        |
+| 1040  | `STUB` [rotate](#rune-1040)                | stub        | A defense word; it shapes how systems resist misuse, theft, or forgery.                                                                        |
+| 1041  | `STUB` [salt](#rune-1041)                  | stub        | A ward-word; it protects trust, secrecy, or authority.                                                                                         |
+| 1042  | [sandbox {Sec}](#rune-1042)                | authored    | Constrain code inside a smaller, safer prison.                                                                                                 |
+| 1043  | `STUB` [scope {Sec}](#rune-1043)           | stub        | A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.                                                |
+| 1044  | [secret {Sec}](#rune-1044)                 | authored    | Information whose power comes from staying hidden.                                                                                             |
+| 1045  | `STUB` [secure enclave](#rune-1045)        | stub        | A threshold word; it governs who may enter, know, or act.                                                                                      |
+| 1046  | `STUB` [security boundary](#rune-1046)     | stub        | A ward-word; it protects trust, secrecy, or authority.                                                                                         |
+| 1047  | `STUB` [session fixation](#rune-1047)      | stub        | A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.                                                |
+| 1048  | `STUB` [session token](#rune-1048)         | stub        | A threshold word; it governs who may enter, know, or act.                                                                                      |
+| 1049  | `STUB` [sign {Sec}](#rune-1049)            | stub        | A sealing word; origin or integrity is bound cryptographically to content.                                                                     |
+| 1050  | [signature {Sec}](#rune-1050)              | authored    | Identity or intent made checkable through cryptographic proof. Useful wherever trust must survive distance and replay.                         |
+| 1051  | `STUB` [single sign-on](#rune-1051)        | stub        | A threshold word; it governs who may enter, know, or act.                                                                                      |
+| 1052  | `STUB` [spoofing](#rune-1052)              | stub        | A threshold word; it governs who may enter, know, or act.                                                                                      |
+| 1053  | `STUB` [SSRF](#rune-1053)                  | stub        | A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.                                                |
+| 1054  | [threat model](#rune-1054)                 | authored    | A structured view of likely attackers, assets, and failure paths.                                                                              |
+| 1055  | `STUB` [token {Sec}](#rune-1055)           | stub        | A countable unit of text or symbol used for parsing, modeling, or encoding.                                                                    |
+| 1056  | `STUB` [trust anchor](#rune-1056)          | stub        | A threshold word; it governs who may enter, know, or act.                                                                                      |
+| 1057  | `STUB` [trust boundary](#rune-1057)        | stub        | A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.                                                |
+| 1058  | `STUB` [validate {Sec}](#rune-1058)        | stub        | A gatekeeping word; inputs or outputs are checked against an expected form.                                                                    |
+| 1059  | `STUB` [verification {Sec}](#rune-1059)    | stub        | A truth-checking word that asks not merely for output, but for justified output.                                                               |
+| 1060  | `STUB` [vulnerability](#rune-1060)         | stub        | A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.                                                |
+| 1061  | `STUB` [ward](#rune-1061)                  | stub        | A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.                                                |
+| 1062  | `STUB` [webhook signing](#rune-1062)       | stub        | A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.                                                |
+| 1063  | [zero trust](#rune-1063)                   | authored    | Assume no network location or ambient context deserves automatic trust.                                                                        |
 
 ## Entries
 
@@ -173,7 +174,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** A proof that a thing is what it claims to be or was produced the way it claims. It matters most when trust cannot be assumed.
 
-**Shadow:** misplaced trust can grant authority, expose secrets, or make identity look stronger than it is.
+**Shadow:** when a signed claim is trusted without checking issuer, scope, freshness, or revocation.
 
 **Pocket gloss:** Evidence that a thing is what it claims to be or was produced the way it claims.
 
@@ -225,7 +226,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Status:** canonical
 
-**Completion:** authored
+**Completion:** needs_sense
 
 **Force:** A promise word that says the system can still be reached when called upon.
 
@@ -515,7 +516,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** Arbitrary input reduced to a fixed fingerprint. Use it for identity, integrity, bucketing, and change detection; never mistake it for secrecy.
 
-**Shadow:** misplaced trust can grant authority, expose secrets, or make identity look stronger than it is.
+**Shadow:** when hash equality is treated as meaning, authority, or secrecy it does not provide.
 
 **Pocket gloss:** Reduce arbitrary input to a fixed fingerprint.
 
@@ -623,7 +624,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** Give only the authority required for the present act, no more. It is one of the simplest words for reducing future regret.
 
-**Shadow:** misplaced trust can grant authority, expose secrets, or make identity look stronger than it is.
+**Shadow:** when roles accumulate exceptions until least privilege becomes a slogan.
 
 **Pocket gloss:** Grant only the authority required for the present act.
 
@@ -735,7 +736,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** The declared rule by which a class of cases is decided. Good policy reduces arbitrary judgment; bad policy merely freezes confusion.
 
-**Shadow:** misplaced trust can grant authority, expose secrets, or make identity look stronger than it is.
+**Shadow:** when policy text says one thing and enforcement code grants another.
 
 **Pocket gloss:** A declared rule for how a class of cases is decided.
 
@@ -963,7 +964,7 @@ Use the summary table for scanning. Each row links to the detailed anchored entr
 
 **Force:** Identity or intent made checkable through cryptographic proof. Useful wherever trust must survive distance and replay.
 
-**Shadow:** misplaced trust can grant authority, expose secrets, or make identity look stronger than it is.
+**Shadow:** when a valid signature is accepted outside its intended scope, time, or trust root.
 
 **Pocket gloss:** Identity or intent made checkable through cryptographic proof.
 
