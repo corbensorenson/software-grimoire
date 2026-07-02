@@ -17,6 +17,7 @@ QUARTO_RESOURCE_PATTERNS = [
     "examples/evaluations/fixtures/**",
     "examples/evaluations/runs/**",
     "examples/adoption/**",
+    "examples/canon/**",
     "examples/jailbreak-resilience/fixtures/**",
     "examples/jailbreak-resilience/results.json",
     "examples/jailbreak-resilience/baseline-results.json",

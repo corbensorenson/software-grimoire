@@ -35,6 +35,7 @@ grimoire-run-model-artifacts = "run_model_artifact_execution:main"
 grimoire-run-warded-ab = "run_warded_ab:main"
 grimoire-check-package = "check_package:main"
 grimoire-check-package-index = "check_package_index:main"
+grimoire-check-canon-decision = "check_canon_audit_decision:main"
 grimoire-smoke-public-site = "smoke_public_site:main"
 
 [tool.setuptools]
@@ -48,6 +49,7 @@ py-modules = [
   "import_hardness_model_run",
   "check_package",
   "check_package_index",
+  "check_canon_audit_decision",
   "run_adversarial_harness",
   "run_bench",
   "run_execution_bench",

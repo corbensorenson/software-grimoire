@@ -603,6 +603,42 @@ CANON_AUDIT_DATA = {
     ],
 }
 
+CANON_AUDIT_DECISION_TEMPLATE = {
+    "schema_version": "4.0.0-canon-audit-decision",
+    "decision_id": "canon-audit.first-two-houses-template.v1",
+    "generated_at": "pending-human-maintainer",
+    "status": "pending-human-maintainer",
+    "policy": "This template is structured intake for a named maintainer decision. It does not prove human signoff until status is human-signed and reviewer, review_date, decision, notes, and evidence are real.",
+    "audit_id": "canon.first-two-houses.reviewed-tranche",
+    "queue_source": "data/canon_audit.json",
+    "scope": "Architecture and language/semantics houses",
+    "reviewer": "",
+    "review_date": "",
+    "decision": "pending",
+    "evidence_checked": [
+        {
+            "kind": "data",
+            "path": "data/canon_audit.json",
+            "notes": "Prepared audit queue and required human fields.",
+        },
+        {
+            "kind": "data",
+            "path": "data/semantic_promotion.json",
+            "notes": "Reviewed-house promotion state for the first two houses.",
+        },
+        {
+            "kind": "data",
+            "path": "data/canon_review_queue.json",
+            "notes": "Usage-earned canonical review candidates and pending decisions.",
+        },
+    ],
+    "corrections": [],
+    "signoff_statement": "Pending named maintainer decision; this is not canonical signoff.",
+    "maintainer_notes": "Replace this template with a human-signed decision record after real review.",
+    "accepted_as_canonical": False,
+    "blocks_canonical_promotion": True,
+}
+
 JAILBREAK_CASES = {
     "indirect-readme-injection": {
         "title": "Indirect README Injection",
@@ -2581,6 +2617,7 @@ def evidence_index_data() -> dict:
     package_check = load_runtime_json("examples/adoption/package-check.json", {"steps": [], "passed": False})
     package_index_plan = load_runtime_json("examples/adoption/package-index-release-plan.json", {"preflight_checks": [], "build_commands": []})
     package_index_smoke = load_runtime_json("examples/adoption/package-index-smoke-template.json", {"steps": [], "passed": False})
+    canon_audit_decision = load_runtime_json("examples/canon/canon-audit-decision-template.json", {"status": "pending-human-maintainer", "evidence_checked": []})
     canon_review_queue = load_runtime_json("data/canon_review_queue.json", {"summary": {"queued_candidates": 0}, "batches": []})
     logical_conclusion = load_runtime_json("data/logical_conclusion_status.json", {"criteria": [], "summary": {}})
     smoke = load_runtime_json("examples/release-gate/public-smoke-check.json", {"checks": [], "passed": False})
@@ -2684,6 +2721,20 @@ def evidence_index_data() -> dict:
             "surfaces": [],
             "run_count": canon_review_queue.get("summary", {}).get("queued_candidates", 0),
             "passed": canon_review_queue.get("summary", {}).get("human_signoff_status") == "complete",
+        },
+        {
+            "id": "canon-audit-decision-template",
+            "title": "Canon Audit Decision Template",
+            "path": "examples/canon/canon-audit-decision-template.json",
+            "exists": (ROOT / "examples/canon/canon-audit-decision-template.json").exists(),
+            "bytes": (ROOT / "examples/canon/canon-audit-decision-template.json").stat().st_size if (ROOT / "examples/canon/canon-audit-decision-template.json").exists() else 0,
+            "evidence_class": "human_audit_pending",
+            "calibration_role": "governance_evidence",
+            "claim_scope": "Schema-valid pending template and validator target for a named maintainer canon-audit decision; does not prove signoff.",
+            "generated_at": canon_audit_decision.get("generated_at"),
+            "surfaces": [],
+            "run_count": len(canon_audit_decision.get("evidence_checked", [])),
+            "passed": canon_audit_decision.get("status") == "human-signed" and canon_audit_decision.get("accepted_as_canonical") is True,
         },
         {
             "id": "logical-conclusion-status",
@@ -4304,9 +4355,10 @@ still required.
 
 def write_v3_evidence_pages(lexicon: list[dict], spells: list[dict], stacks: list[dict]) -> None:
     taxonomy = EVIDENCE_TAXONOMY_DATA
-    index = evidence_index_data()
     usage_graph = rune_usage_graph_data(lexicon, spells, stacks)
     canon_review_queue = canon_review_queue_data(usage_graph)
+    write_json(ROOT / "examples" / "canon" / "canon-audit-decision-template.json", CANON_AUDIT_DECISION_TEMPLATE)
+    index = evidence_index_data()
     write_json(ROOT / "data" / "evidence_taxonomy.json", taxonomy)
     write_json(ROOT / "data" / "evidence_index.json", index)
     write_json(ROOT / "data" / "canon_audit.json", CANON_AUDIT_DATA)
@@ -4469,7 +4521,23 @@ The canon audit page is intentionally strict. AI-assisted pre-audit can prepare 
 
 {rows}
 
+## Decision Intake
+
+Use the pending decision template and validator when a named maintainer is ready
+to record a real audit decision:
+
+```bash
+python3 scripts/check_canon_audit_decision.py validate examples/canon/canon-audit-decision-template.json
+```
+
+The pending template validates structure only. It must not be counted as human
+signoff until the record is replaced with a `human-signed` decision that names
+the reviewer, date, decision, evidence checked, correction outcome, and signoff
+notes.
+
 Raw data: [canon_audit.json](../data/canon_audit.json)
+
+Pending decision template: [canon-audit-decision-template.json](../examples/canon/canon-audit-decision-template.json)
 """.format(
         status=CANON_AUDIT_DATA["status"],
         policy=CANON_AUDIT_DATA["policy"],
@@ -4545,6 +4613,18 @@ This page is the bounded human review surface for usage-earned canon. It is gene
 ## Batch 001
 
 {rows}
+
+## Recording A Decision
+
+Prepared queue rows are nominations only. A human maintainer can validate a
+decision artifact with:
+
+```bash
+python3 scripts/grimoire.py canon decision examples/canon/canon-audit-decision-template.json
+```
+
+Only a `human-signed` record with a named reviewer, review date, decision,
+checked evidence, and correction outcome can unblock canonical promotion.
 
 Raw data: [canon_review_queue.json](../data/canon_review_queue.json)
 """.format(

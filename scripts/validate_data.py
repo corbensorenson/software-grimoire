@@ -758,6 +758,7 @@ def validate_v3_evidence_layer(errors: list[str]) -> None:
         "jailbreak-resilience-model-runs",
         "local-warded-baseline",
         "real-warded-ab",
+        "canon-audit-decision-template",
         "package-check",
         "package-index-smoke-template",
         "logical-conclusion-status",
@@ -780,6 +781,22 @@ def validate_v3_evidence_layer(errors: list[str]) -> None:
         fail(errors, "Canon audit must honestly preserve pending human signoff status")
     if not audit.get("audit_queue"):
         fail(errors, "Canon audit must include an audit queue")
+    decision_path = ROOT / "examples" / "canon" / "canon-audit-decision-template.json"
+    if not decision_path.exists():
+        fail(errors, "Missing examples/canon/canon-audit-decision-template.json")
+    else:
+        decision = json.loads(decision_path.read_text(encoding="utf-8"))
+        if decision.get("status") != "pending-human-maintainer":
+            fail(errors, "Canon audit decision template must remain pending-human-maintainer")
+        if decision.get("decision") != "pending":
+            fail(errors, "Canon audit decision template must not contain a real decision")
+        if decision.get("accepted_as_canonical") is not False:
+            fail(errors, "Canon audit decision template cannot accept canonical status")
+        if decision.get("blocks_canonical_promotion") is not True:
+            fail(errors, "Canon audit decision template must keep canonical promotion blocked")
+        audit_ids = {item.get("id") for item in audit.get("audit_queue", [])}
+        if decision.get("audit_id") not in audit_ids:
+            fail(errors, "Canon audit decision template audit_id must exist in canon audit queue")
 
     usage = json.loads(usage_path.read_text(encoding="utf-8"))
     if usage.get("summary", {}).get("canonical_review_candidates", 0) <= 0:
@@ -956,6 +973,8 @@ def validate_public_package_and_smoke(errors: list[str]) -> None:
                 fail(errors, f"Package check missing step: {expected}")
         if not any("grimoire-check-package-index --help" in step.get("name", "") for step in package.get("steps", [])):
             fail(errors, "Package check must verify grimoire-check-package-index entry point")
+        if not any("grimoire-check-canon-decision --help" in step.get("name", "") for step in package.get("steps", [])):
+            fail(errors, "Package check must verify grimoire-check-canon-decision entry point")
     if not package_index_plan_path.exists():
         fail(errors, "Missing examples/adoption/package-index-release-plan.json")
     else:
@@ -984,6 +1003,8 @@ def validate_public_package_and_smoke(errors: list[str]) -> None:
         for expected in ["index.html", "reference/evidence-browser.html", "exports/library-manifest.json"]:
             if expected not in targets:
                 fail(errors, f"Public smoke check missing target: {expected}")
+        if "examples/canon/canon-audit-decision-template.json" not in targets:
+            fail(errors, "Public smoke check missing canon audit decision template")
         if "examples/adoption/package-index-smoke-template.json" not in targets:
             fail(errors, "Public smoke check missing package-index smoke template")
 

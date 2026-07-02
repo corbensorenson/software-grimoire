@@ -326,7 +326,10 @@ def test_install_assets_dry_run_and_write() -> None:
 def test_public_intake_issue_templates_exist() -> None:
     adoption = (ROOT / ".github" / "ISSUE_TEMPLATE" / "adoption-report.yml").read_text(encoding="utf-8")
     correction = (ROOT / ".github" / "ISSUE_TEMPLATE" / "canon-correction.yml").read_text(encoding="utf-8")
+    audit = (ROOT / ".github" / "ISSUE_TEMPLATE" / "canon-audit-decision.yml").read_text(encoding="utf-8")
     assert "Adoption evidence report" in adoption
     assert "Failure or friction" in adoption
     assert "Canon correction" in correction
     assert "semantic change" in correction
+    assert "Canon audit decision" in audit
+    assert "Evidence checked" in audit

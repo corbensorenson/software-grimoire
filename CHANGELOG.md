@@ -71,6 +71,10 @@
   point, and generated release-plan wiring so post-upload TestPyPI/PyPI install
   proof can be recorded without counting local wheel checks as public package
   availability.
+- Added a canon-audit decision schema, pending template, validator, `grimoire
+  canon decision` wrapper, package entry point, public issue form, smoke
+  coverage, and evidence-index wiring so human signoff can be recorded later
+  without treating a pending template as reviewer evidence.
 - Normalized pytest duration text in hardness-ladder execution ledgers so
   repeated deterministic bench runs do not churn committed evidence on timing
   noise alone.

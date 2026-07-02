@@ -156,6 +156,11 @@ def main(argv: list[str] | None = None) -> int:
     adoption_sub = adoption_parser.add_subparsers(dest="adoption_command", required=True)
     adoption_report = adoption_sub.add_parser("report", help="create a standalone adoption evidence report")
     adoption_report.add_argument("args", nargs=argparse.REMAINDER, help="arguments forwarded to create_adoption_report.py")
+    canon_parser = sub.add_parser("canon", help="canon governance utilities")
+    canon_sub = canon_parser.add_subparsers(dest="canon_command", required=True)
+    canon_decision = canon_sub.add_parser("decision", help="validate a human canon-audit decision record")
+    canon_decision.add_argument("path", help="canon-audit decision JSON path")
+    canon_decision.add_argument("args", nargs=argparse.REMAINDER, help="arguments forwarded to check_canon_audit_decision.py")
     bench_parser = sub.add_parser("bench", help="bench utilities")
     bench_sub = bench_parser.add_subparsers(dest="bench_command", required=True)
     bench_import = bench_sub.add_parser("import", help="validate a manual benchmark import record")
@@ -204,6 +209,10 @@ def main(argv: list[str] | None = None) -> int:
     if args.command == "adoption":
         if args.adoption_command == "report":
             return run([sys.executable, "scripts/create_adoption_report.py", *forwarded_args(args.args)])
+        return 2
+    if args.command == "canon":
+        if args.canon_command == "decision":
+            return run([sys.executable, "scripts/check_canon_audit_decision.py", "validate", args.path, *forwarded_args(args.args)])
         return 2
     if args.command == "bench":
         if args.bench_command == "import":

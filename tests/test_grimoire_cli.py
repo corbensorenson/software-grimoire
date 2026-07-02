@@ -126,6 +126,13 @@ def test_bench_hardness_import_command_validates_template() -> None:
     assert "Hardness import record is valid" in imported.stdout
 
 
+def test_canon_decision_command_validates_template() -> None:
+    decided = run_cli("canon", "decision", "examples/canon/canon-audit-decision-template.json")
+    assert decided.returncode == 0, decided.stderr
+    assert "Canon audit decision record is valid" in decided.stdout
+    assert "Maintainer decision remains pending" in decided.stdout
+
+
 def test_package_index_smoke_command_dry_run_is_exposed() -> None:
     scratch = ROOT / "tmp" / "tests" / "grimoire-package-index"
     remove_scratch(scratch)

@@ -1,0 +1,58 @@
+name: Canon audit decision
+description: Record a named maintainer decision for a prepared canon audit queue item.
+title: "[canon audit] "
+labels: ["canon", "audit", "human-review"]
+body:
+  - type: input
+    id: audit_id
+    attributes:
+      label: Audit queue id
+      description: Example: canon.first-two-houses.reviewed-tranche.
+    validations:
+      required: true
+  - type: input
+    id: reviewer
+    attributes:
+      label: Reviewer
+      description: Named maintainer making the decision.
+    validations:
+      required: true
+  - type: input
+    id: review_date
+    attributes:
+      label: Review date
+      description: YYYY-MM-DD.
+    validations:
+      required: true
+  - type: dropdown
+    id: decision
+    attributes:
+      label: Decision
+      options:
+        - accept
+        - revise
+        - defer
+        - reject
+    validations:
+      required: true
+  - type: textarea
+    id: evidence_checked
+    attributes:
+      label: Evidence checked
+      description: List data files, reference pages, issues, PRs, and tests reviewed.
+    validations:
+      required: true
+  - type: textarea
+    id: corrections
+    attributes:
+      label: Corrections and blockers
+      description: Link any correction issues or PRs; write none if no correction is required.
+    validations:
+      required: true
+  - type: textarea
+    id: signoff_statement
+    attributes:
+      label: Signoff statement
+      description: State exactly what is accepted, revised, deferred, or rejected.
+    validations:
+      required: true

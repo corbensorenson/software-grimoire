@@ -41,4 +41,16 @@ Codex may prepare a bounded usage-earned queue, but cannot accept canonical entr
 | 1461  | idempotent          | 3    | reviewed        | pending-human-maintainer | spell:spell.api-design.v1; stack:stack.live-migration-stack.v1; proof_case:api-design                                                                                                               |
 | 1485  | reproducible        | 3    | reviewed        | pending-human-maintainer | spell:spell.test-generation.v1; stack:stack.code-generation-and-repair-loop.v1; proof_case:test-generation                                                                                          |
 
+## Recording A Decision
+
+Prepared queue rows are nominations only. A human maintainer can validate a
+decision artifact with:
+
+```bash
+python3 scripts/grimoire.py canon decision examples/canon/canon-audit-decision-template.json
+```
+
+Only a `human-signed` record with a named reviewer, review date, decision,
+checked evidence, and correction outcome can unblock canonical promotion.
+
 Raw data: [canon_review_queue.json](../data/canon_review_queue.json)

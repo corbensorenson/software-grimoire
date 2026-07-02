@@ -103,6 +103,9 @@ Implemented:
   with evidence links and explicit blockers for human canon signoff, public
   package-index upload, non-maintainer adoption, and non-Codex/reviewer
   hardness evidence.
+- Canon-audit decision template, public issue form, validator, and CLI route
+  for recording future named maintainer signoff without treating pending
+  templates as human evidence.
 - JSON schemas, validation tooling, seal-stability tests, and rendered
   internal-link audit.
 - Working seal generation for spells and stacks, plus a local CLI for
@@ -136,6 +139,7 @@ python3 scripts/grimoire.py bench hardness
 python3 scripts/grimoire.py bench hardness-model -- --surface codex-cli-default --repetitions 5 --append
 python3 scripts/grimoire.py bench import examples/evaluations/manual-import-template.json
 python3 scripts/grimoire.py bench hardness-import examples/evaluations/hardness-v4/manual-import-template.json
+python3 scripts/grimoire.py canon decision examples/canon/canon-audit-decision-template.json
 python3 scripts/grimoire.py adoption report -- --id adoption.example-review.v1 --title "Example Review" --provenance reviewer-supplied --task "Describe the real task." --spell-or-stack-used spell.safe-refactoring.v1 --surface "Reviewer workflow" --artifact-produced "Patch or review artifact." --verification-performed "Tests or review checks." --time-cost "Low" --failure-or-friction "Record friction honestly." --reuse-decision reuse --write-report tmp/adoption-report.json
 python3 scripts/grimoire.py install --target cursor --dest tmp/grimoire-assets
 python3 scripts/grimoire.py install --target claude-code --dest tmp/grimoire-assets --write

@@ -21,6 +21,7 @@ TRACKED_GENERATED = [
     "data/canon_audit.json",
     "data/rune_usage_graph.json",
     "data/canon_review_queue.json",
+    "examples/canon/canon-audit-decision-template.json",
     "data/bench_v2.json",
     "data/execution_bench.json",
     "data/adversarial_harness.json",

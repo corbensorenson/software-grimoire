@@ -27,4 +27,20 @@ The canon audit page is intentionally strict. AI-assisted pre-audit can prepare 
 | canon.pocket-300.prompt-use-review      | 300 pocket canon entries                   | Every reviewed entry has prompt uses and examples.                      | pending | Usage-earned promotion needs maintainer acceptance and issue-driven correction path.          |
 | canon.first-two-houses.reviewed-tranche | Architecture and language/semantics houses | data/semantic_promotion.json marks the first two houses fully reviewed. | pending | Canonical status remains blocked on human review notes.                                       |
 
+## Decision Intake
+
+Use the pending decision template and validator when a named maintainer is ready
+to record a real audit decision:
+
+```bash
+python3 scripts/check_canon_audit_decision.py validate examples/canon/canon-audit-decision-template.json
+```
+
+The pending template validates structure only. It must not be counted as human
+signoff until the record is replaced with a `human-signed` decision that names
+the reviewer, date, decision, evidence checked, correction outcome, and signoff
+notes.
+
 Raw data: [canon_audit.json](../data/canon_audit.json)
+
+Pending decision template: [canon-audit-decision-template.json](../examples/canon/canon-audit-decision-template.json)

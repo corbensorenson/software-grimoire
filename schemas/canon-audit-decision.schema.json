@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Software Grimoire Canon Audit Decision",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "decision_id",
+    "generated_at",
+    "status",
+    "policy",
+    "audit_id",
+    "queue_source",
+    "scope",
+    "reviewer",
+    "review_date",
+    "decision",
+    "evidence_checked",
+    "corrections",
+    "signoff_statement",
+    "maintainer_notes",
+    "accepted_as_canonical",
+    "blocks_canonical_promotion"
+  ],
+  "properties": {
+    "schema_version": {"const": "4.0.0-canon-audit-decision"},
+    "decision_id": {"type": "string", "pattern": "^canon-audit\\.[a-z0-9][a-z0-9.-]*\\.v[0-9]+$"},
+    "generated_at": {"type": "string", "minLength": 1},
+    "status": {"enum": ["pending-human-maintainer", "human-signed"]},
+    "policy": {"type": "string", "minLength": 1},
+    "audit_id": {"type": "string", "minLength": 1},
+    "queue_source": {"const": "data/canon_audit.json"},
+    "scope": {"type": "string", "minLength": 1},
+    "reviewer": {"type": "string"},
+    "review_date": {"type": "string"},
+    "decision": {"enum": ["pending", "accept", "revise", "defer", "reject"]},
+    "evidence_checked": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["kind", "path", "notes"],
+        "properties": {
+          "kind": {"enum": ["data", "reference", "issue", "pull_request", "test", "other"]},
+          "path": {"type": "string", "minLength": 1},
+          "notes": {"type": "string", "minLength": 1}
+        },
+        "additionalProperties": false
+      }
+    },
+    "corrections": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["target", "status", "notes"],
+        "properties": {
+          "target": {"type": "string", "minLength": 1},
+          "status": {"enum": ["not-needed", "pending", "filed", "merged", "rejected"]},
+          "notes": {"type": "string", "minLength": 1}
+        },
+        "additionalProperties": false
+      }
+    },
+    "signoff_statement": {"type": "string", "minLength": 1},
+    "maintainer_notes": {"type": "string", "minLength": 1},
+    "accepted_as_canonical": {"type": "boolean"},
+    "blocks_canonical_promotion": {"type": "boolean"}
+  },
+  "additionalProperties": false
+}

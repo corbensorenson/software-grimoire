@@ -79,6 +79,11 @@ def test_human_canon_audit_is_honest_and_usage_earned() -> None:
     queue = load("data/canon_review_queue.json")
     assert audit["status"] == "pending-human-maintainer-signoff"
     assert audit["audit_queue"]
+    decision = load("examples/canon/canon-audit-decision-template.json")
+    assert decision["status"] == "pending-human-maintainer"
+    assert decision["decision"] == "pending"
+    assert decision["accepted_as_canonical"] is False
+    assert decision["blocks_canonical_promotion"] is True
     assert usage["summary"]["canonical_review_candidates"] > 0
     assert all(candidate["promotion_blocker"] == "human maintainer signoff required" for candidate in usage["canonical_review_candidates"])
     assert 0 < queue["summary"]["queued_candidates"] <= 20
@@ -94,6 +99,7 @@ def test_package_and_smoke_checks_pass() -> None:
     assert {"build wheel and sdist", "install wheel"} <= {step["name"] for step in package["steps"]}
     assert any("grimoire-import-hardness-run --help" in step["name"] for step in package["steps"])
     assert any("grimoire-check-package-index --help" in step["name"] for step in package["steps"])
+    assert any("grimoire-check-canon-decision --help" in step["name"] for step in package["steps"])
     assert {
         "index.html",
         "reference/evidence-browser.html",
@@ -111,6 +117,7 @@ def test_package_and_smoke_checks_pass() -> None:
     assert "data/logical_conclusion_status.json" in {check["target"] for check in smoke["checks"]}
     assert "examples/adoption/package-index-release-plan.json" in {check["target"] for check in smoke["checks"]}
     assert "examples/adoption/package-index-smoke-template.json" in {check["target"] for check in smoke["checks"]}
+    assert "examples/canon/canon-audit-decision-template.json" in {check["target"] for check in smoke["checks"]}
     assert "examples/jailbreak-resilience/ward-science-results.json" in {check["target"] for check in smoke["checks"]}
     assert "data/canon_review_queue.json" in {check["target"] for check in smoke["checks"]}
 

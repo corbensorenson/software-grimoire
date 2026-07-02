@@ -115,6 +115,10 @@ Current public-site status:
   preflight checks, build commands, post-upload package-index smoke tooling,
   evidence rules, schema, generated reference page, and evidence-index entry
   all preserve upload as pending until a maintainer performs it.
+- Human canon review now has a schema-backed decision intake path: a pending
+  decision template, validator, package/CLI entry point, public issue form,
+  generated reference-page instructions, smoke coverage, and evidence-index
+  entry. It remains pending until a named maintainer signs a real record.
 - Ward science now has a local deterministic seed: a limb ablation over a
   defanged indirect-injection case, overrefusal-aware scoring, and six
   additional defanged attack-shape designs. Model-provider ward-science runs
@@ -540,12 +544,12 @@ Absorption status:
   scratch hygiene, explicit reviewability-score fields, per-surface/per-tier
   delta reporting, all five local hardness seed rungs, ward-science seed data,
   package-index release materials, one-step installs, adoption-report
-  generation, bounded canon-review queue, methods write-up, Codex trap-tier
-  field-spell runs, Codex real warded A/B runs, and Codex Bench v4
-  model-surface hardness-ladder runs are implemented. The remaining open work
-  is Claude Code standard warded jailbreak-resilience runs, additional
-  non-Codex or reviewer-supplied hardness-ladder surfaces, human package
-  upload, human canon signoff, and accepted external adoption reports.
+  generation, bounded canon-review queue, canon-audit decision intake, methods
+  write-up, Codex trap-tier field-spell runs, Codex real warded A/B runs, and
+  Codex Bench v4 model-surface hardness-ladder runs are implemented. The
+  remaining open work is Claude Code standard warded jailbreak-resilience runs,
+  additional non-Codex or reviewer-supplied hardness-ladder surfaces, human
+  package upload, human canon signoff, and accepted external adoption reports.
 - `data/logical_conclusion_status.json` now maps all 90 logical-conclusion
   acceptance criteria to current evidence, blockers, and status counts. It
   records 84 proven criteria, one partial package-index criterion, and five
@@ -4717,7 +4721,10 @@ Implementation note as of July 2, 2026: `data/canon_review_queue.json` and
 from `data/rune_usage_graph.json`. The queue exposes inline usage evidence and
 accept/revise/defer/reject decision options, but all entries remain
 `pending-human-maintainer` until a named maintainer records real signoff in
-`data/canon_audit.json`.
+`data/canon_audit.json`. The repo now also publishes
+`examples/canon/canon-audit-decision-template.json` and validates it with
+`scripts/check_canon_audit_decision.py`; this is intake structure only, not
+human signoff.
 
 1. Use `data/rune_usage_graph.json` as the promotion engine:
    - spell references;
@@ -4738,6 +4745,8 @@ accept/revise/defer/reject decision options, but all entries remain
    - decision;
    - usage evidence;
    - correction issue or PR when needed.
+   - schema-valid decision artifact checked by
+     `scripts/check_canon_audit_decision.py`.
 4. Enforce invariants:
    - `canonical <= reviewed`;
    - canonical requires reviewed status first;
@@ -5452,7 +5461,8 @@ The project is complete in the strong sense when:
     release downloads after deployment.
 68. Release assets are downloadable and checksum-verified after publication.
 69. The first two reviewed lexicon houses have human audit records and tracked
-    correction outcomes.
+    correction outcomes. A pending template and validator exist, but the
+    criterion remains open until a named maintainer signs a real decision.
 70. Canonical rune promotion is backed by usage evidence and reviewer signoff.
 71. A usage graph links runes to spells, stacks, benchmarks, adoption reports,
     and accepted external/reviewer evidence.

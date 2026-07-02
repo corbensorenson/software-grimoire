@@ -3,8 +3,8 @@
   "generated_at": "2026-07-02T00:00:00Z",
   "policy": "Calibration fixtures, project-owned model runs, local deterministic checks, reviewer imports, human audit, and adoption reports must remain separately labeled.",
   "summary": {
-    "artifact_count": 15,
-    "available_artifacts": 15,
+    "artifact_count": 16,
+    "available_artifacts": 16,
     "project_owned_model_surfaces": [
       "claude-code-safe",
       "claude-code-safe:baseline",
@@ -176,11 +176,25 @@
       "passed": false
     },
     {
+      "id": "canon-audit-decision-template",
+      "title": "Canon Audit Decision Template",
+      "path": "examples/canon/canon-audit-decision-template.json",
+      "exists": true,
+      "bytes": 1403,
+      "evidence_class": "human_audit_pending",
+      "calibration_role": "governance_evidence",
+      "claim_scope": "Schema-valid pending template and validator target for a named maintainer canon-audit decision; does not prove signoff.",
+      "generated_at": "pending-human-maintainer",
+      "surfaces": [],
+      "run_count": 3,
+      "passed": false
+    },
+    {
       "id": "logical-conclusion-status",
       "title": "Logical Conclusion Status",
       "path": "data/logical_conclusion_status.json",
       "exists": true,
-      "bytes": 37911,
+      "bytes": 38919,
       "evidence_class": "roadmap_acceptance_status",
       "calibration_role": "release_readiness",
       "claim_scope": "All 90 roadmap acceptance criteria are mapped to evidence, explicit blockers, and non-fabrication gates.",
@@ -194,13 +208,13 @@
       "title": "Public Package Build and Install Check",
       "path": "examples/adoption/package-check.json",
       "exists": true,
-      "bytes": 17033,
+      "bytes": 17527,
       "evidence_class": "packaging_or_release_check",
       "calibration_role": "release_evidence",
       "claim_scope": "The wheel/sdist build, temporary install, and console scripts work in the current environment.",
-      "generated_at": "2026-07-02T17:53:42.744366+00:00",
+      "generated_at": "2026-07-02T18:20:41.492717+00:00",
       "surfaces": [],
-      "run_count": 11,
+      "run_count": 12,
       "passed": true
     },
     {
@@ -236,13 +250,13 @@
       "title": "Public Site Smoke Check",
       "path": "examples/release-gate/public-smoke-check.json",
       "exists": true,
-      "bytes": 3174,
+      "bytes": 3309,
       "evidence_class": "packaging_or_release_check",
       "calibration_role": "release_evidence",
       "claim_scope": "Rendered local site resources and optionally live GitHub Pages URLs resolve.",
-      "generated_at": "2026-07-02T17:56:41.887987+00:00",
+      "generated_at": "2026-07-02T18:23:49.733475+00:00",
       "surfaces": [],
-      "run_count": 25,
+      "run_count": 26,
       "passed": true
     }
   ]

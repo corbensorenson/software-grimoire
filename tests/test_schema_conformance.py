@@ -159,6 +159,15 @@ def test_canon_audit_matches_schema() -> None:
     assert not errors, "\n".join(errors[:25])
 
 
+def test_canon_audit_decision_template_matches_schema() -> None:
+    errors = collect_errors(
+        "schemas/canon-audit-decision.schema.json",
+        [load_json("examples/canon/canon-audit-decision-template.json")],
+        "canon_audit_decision",
+    )
+    assert not errors, "\n".join(errors[:25])
+
+
 def test_rune_usage_graph_matches_schema() -> None:
     errors = collect_errors("schemas/rune-usage-graph.schema.json", [load_json("data/rune_usage_graph.json")], "rune_usage_graph")
     assert not errors, "\n".join(errors[:25])

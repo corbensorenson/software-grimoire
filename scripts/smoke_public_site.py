@@ -30,6 +30,7 @@ RESOURCE_REQUIRED = [
     "data/evidence_index.json",
     "data/logical_conclusion_status.json",
     "data/canon_review_queue.json",
+    "examples/canon/canon-audit-decision-template.json",
     "examples/evaluations/model-execution-results.json",
     "examples/evaluations/hardness-v4/results.json",
     "examples/evaluations/hardness-v4/model-surface-results.json",

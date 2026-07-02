@@ -8,7 +8,7 @@ The evidence browser is the project ledger. It separates calibration materials f
 
 ## Summary
 
-- Available artifacts: `15/15`
+- Available artifacts: `16/16`
 - Project-owned model surfaces: `claude-code-safe, claude-code-safe:baseline, claude-code-safe:warded, codex-cli-default, codex-cli-default:baseline, codex-cli-default:warded`
 - Recorded model runs: `266`
 - Deterministic execution runs: `80`
@@ -29,11 +29,12 @@ The evidence browser is the project ledger. It separates calibration materials f
 | Ward Science Seed                      | local_deterministic_control   | 6    | local-ward-limb-control                                                                                  | present | [examples/jailbreak-resilience/ward-science-results.json](../examples/jailbreak-resilience/ward-science-results.json)         |
 | Real Surface Warded A/B Runs           | project_owned_model_run       | 96   | claude-code-safe:baseline, claude-code-safe:warded, codex-cli-default:baseline, codex-cli-default:warded | present | [examples/jailbreak-resilience/ab-results.json](../examples/jailbreak-resilience/ab-results.json)                             |
 | Canon Review Queue                     | human_audit_pending           | 19   | -                                                                                                        | present | [data/canon_review_queue.json](../data/canon_review_queue.json)                                                               |
+| Canon Audit Decision Template          | human_audit_pending           | 3    | -                                                                                                        | present | [examples/canon/canon-audit-decision-template.json](../examples/canon/canon-audit-decision-template.json)                     |
 | Logical Conclusion Status              | roadmap_acceptance_status     | 90   | -                                                                                                        | present | [data/logical_conclusion_status.json](../data/logical_conclusion_status.json)                                                 |
-| Public Package Build and Install Check | packaging_or_release_check    | 11   | -                                                                                                        | present | [examples/adoption/package-check.json](../examples/adoption/package-check.json)                                               |
+| Public Package Build and Install Check | packaging_or_release_check    | 12   | -                                                                                                        | present | [examples/adoption/package-check.json](../examples/adoption/package-check.json)                                               |
 | Package-Index Release Plan             | packaging_or_release_check    | 10   | -                                                                                                        | present | [examples/adoption/package-index-release-plan.json](../examples/adoption/package-index-release-plan.json)                     |
 | Package-Index Smoke Template           | packaging_or_release_check    | 1    | -                                                                                                        | present | [examples/adoption/package-index-smoke-template.json](../examples/adoption/package-index-smoke-template.json)                 |
-| Public Site Smoke Check                | packaging_or_release_check    | 25   | -                                                                                                        | present | [examples/release-gate/public-smoke-check.json](../examples/release-gate/public-smoke-check.json)                             |
+| Public Site Smoke Check                | packaging_or_release_check    | 26   | -                                                                                                        | present | [examples/release-gate/public-smoke-check.json](../examples/release-gate/public-smoke-check.json)                             |
 
 ## Evidence Classes
 
