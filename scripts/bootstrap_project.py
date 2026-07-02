@@ -2541,6 +2541,7 @@ def evidence_index_data() -> dict:
     real_ab = load_runtime_json("examples/jailbreak-resilience/ab-results.json", {"surfaces": {}, "cases": {}})
     package_check = load_runtime_json("examples/adoption/package-check.json", {"steps": [], "passed": False})
     package_index_plan = load_runtime_json("examples/adoption/package-index-release-plan.json", {"preflight_checks": [], "build_commands": []})
+    canon_review_queue = load_runtime_json("data/canon_review_queue.json", {"summary": {"queued_candidates": 0}, "batches": []})
     smoke = load_runtime_json("examples/release-gate/public-smoke-check.json", {"checks": [], "passed": False})
 
     artifacts = [
@@ -2577,7 +2578,7 @@ def evidence_index_data() -> dict:
             "examples/evaluations/hardness-v4/results.json",
             "local_deterministic_execution",
             "execution_evidence",
-            "Weak/repaired seed artifacts are executed across ambiguity and hidden-invariant hardness rungs.",
+            "Weak/repaired seed artifacts are executed across ambiguity, hidden-invariant, misleading-context, blast-radius, and agentic hardness rungs.",
             hardness,
         ),
         evidence_artifact_record(
@@ -2620,6 +2621,20 @@ def evidence_index_data() -> dict:
             "A/B transcripts comparing unwarded and warded prompts on real local model surfaces with publication redaction.",
             real_ab,
         ),
+        {
+            "id": "canon-review-queue",
+            "title": "Canon Review Queue",
+            "path": "data/canon_review_queue.json",
+            "exists": (ROOT / "data/canon_review_queue.json").exists(),
+            "bytes": (ROOT / "data/canon_review_queue.json").stat().st_size if (ROOT / "data/canon_review_queue.json").exists() else 0,
+            "evidence_class": "human_audit_pending",
+            "calibration_role": "governance_evidence",
+            "claim_scope": "Bounded usage-earned canonical review queue prepared for human maintainer decisions.",
+            "generated_at": canon_review_queue.get("generated_at"),
+            "surfaces": [],
+            "run_count": canon_review_queue.get("summary", {}).get("queued_candidates", 0),
+            "passed": canon_review_queue.get("summary", {}).get("human_signoff_status") == "complete",
+        },
         {
             "id": "package-check",
             "title": "Public Package Build and Install Check",
@@ -2755,6 +2770,46 @@ def rune_usage_graph_data(lexicon: list[dict], spells: list[dict], stacks: list[
         },
         "nodes": nodes,
         "canonical_review_candidates": candidates,
+    }
+
+
+def canon_review_queue_data(usage_graph: dict, batch_size: int = 20) -> dict:
+    nodes_by_id = {item["id"]: item for item in usage_graph.get("nodes", [])}
+    candidates = []
+    for item in usage_graph.get("canonical_review_candidates", [])[:batch_size]:
+        node = nodes_by_id.get(item["id"], {})
+        candidates.append(
+            {
+                "id": item["id"],
+                "sigil": item["sigil"],
+                "term": item["term"],
+                "current_semantic_status": item["current_semantic_status"],
+                "use_count": item["use_count"],
+                "usage_evidence": node.get("uses", []),
+                "required_decision_fields": CANON_AUDIT_DATA["required_human_fields"],
+                "allowed_decisions": ["accept", "revise", "defer", "reject"],
+                "decision": "pending-human-maintainer",
+                "blocker": "A named human maintainer must review usage evidence before canonical promotion.",
+            }
+        )
+    return {
+        "version": "4.0.0-canon-review-queue",
+        "generated_at": "2026-07-02T00:00:00Z",
+        "policy": "Codex may prepare a bounded usage-earned queue, but cannot accept canonical entries without named human maintainer signoff.",
+        "batch_size": batch_size,
+        "summary": {
+            "source_candidates": usage_graph.get("summary", {}).get("canonical_review_candidates", 0),
+            "queued_candidates": len(candidates),
+            "accepted_candidates": 0,
+            "human_signoff_status": CANON_AUDIT_DATA["status"],
+        },
+        "batches": [
+            {
+                "batch_id": "canon-review-queue-001",
+                "status": "pending-human-maintainer",
+                "candidates": candidates,
+            }
+        ],
     }
 
 
@@ -3157,6 +3212,9 @@ Bench v4 begins where the v3 field-spell corpus stopped being discriminating eno
 
 - The ambiguity rung tests whether an artifact resolves a stale docstring versus a stronger caller contract.
 - The hidden-invariant rung tests whether an artifact preserves replay order and mutation boundaries that are easy to erase with a naive cleanup.
+- The misleading-context rung tests whether an artifact ignores stale or wrong local guidance in favor of the executable contract.
+- The blast-radius rung tests whether an artifact keeps a requested change narrow instead of altering adjacent behavior.
+- The agentic rung tests whether a stack-shaped handoff preserves repo-local scratch, allowlists, gates, and human-review boundaries.
 - These are execution checks for seed artifacts. They do not count as independent model-provider evidence, external adoption, or human review.
 - Model-surface runs should be added only as recorded transcripts or extracted artifacts; do not simulate them.
 
@@ -3541,6 +3599,140 @@ Raw results: [ward-science-results.json](../examples/jailbreak-resilience/ward-s
         shape_rows=qmd_table(shape_rows),
     )
     write_text(ROOT / "reference" / "ward-science.qmd", page("Ward Science", body))
+
+
+def write_methods_pages() -> None:
+    comparison = load_runtime_json("examples/evaluations/surface-comparison.json", {"field_spell_matrix": {}})
+    model_execution = load_runtime_json("examples/evaluations/model-execution-results.json", {"cases": {}})
+    hardness = load_hardness_results()
+    warded_ab = load_runtime_json("examples/jailbreak-resilience/ab-results.json", {"cases": {}})
+    ward_science = load_runtime_json("examples/jailbreak-resilience/ward-science-results.json", {"ablation_case": {"variants": {}}})
+
+    reviewability_deltas = []
+    outcome_deltas = []
+    cell_count = 0
+    for case in comparison.get("field_spell_matrix", {}).values():
+        for surface in case.get("surfaces", {}).values():
+            for cell in surface.get("cells", []):
+                cell_count += 1
+                if isinstance(cell.get("reviewability_delta"), (int, float)):
+                    reviewability_deltas.append(cell["reviewability_delta"])
+                if isinstance(cell.get("outcome_delta"), (int, float)):
+                    outcome_deltas.append(cell["outcome_delta"])
+
+    def count_where(values: list[float], predicate) -> int:
+        return sum(1 for value in values if predicate(value))
+
+    model_runs = [
+        run
+        for case in model_execution.get("cases", {}).values()
+        for run in case.get("runs", [])
+    ]
+    model_weak = [run for run in model_runs if run.get("variant") == "weak"]
+    model_repaired = [run for run in model_runs if run.get("variant") == "repaired"]
+    model_weak_passes = sum(1 for run in model_weak if run.get("execution_result", {}).get("passed") is True)
+    model_repaired_passes = sum(1 for run in model_repaired if run.get("execution_result", {}).get("passed") is True)
+
+    hardness_runs = [
+        run
+        for case in hardness.get("cases", {}).values()
+        for run in case.get("runs", [])
+    ]
+    hardness_weak = [run for run in hardness_runs if run.get("variant") == "weak"]
+    hardness_repaired = [run for run in hardness_runs if run.get("variant") == "repaired"]
+    hardness_weak_passes = sum(1 for run in hardness_weak if run.get("execution_result", {}).get("passed") is True)
+    hardness_repaired_passes = sum(1 for run in hardness_repaired if run.get("execution_result", {}).get("passed") is True)
+
+    ab_runs = [
+        run
+        for case in warded_ab.get("cases", {}).values()
+        for run in case.get("runs", [])
+    ]
+    baseline_runs = [run for run in ab_runs if run.get("variant") == "baseline"]
+    warded_runs = [run for run in ab_runs if run.get("variant") == "warded"]
+    baseline_failures = sum(1 for run in baseline_runs if run.get("baseline_failure") is True)
+    warded_failures = sum(1 for run in warded_runs if run.get("baseline_failure") is True)
+
+    rows = [["Claim", "Recorded Result", "Evidence Class", "Limitation"]]
+    rows.append(
+        [
+            "Prompt structure improves reviewability",
+            f"{count_where(reviewability_deltas, lambda value: value > 0)}/{len(reviewability_deltas)} surface-tier cells show positive repaired-minus-weak reviewability delta; range {min(reviewability_deltas):.1f} to {max(reviewability_deltas):.1f}.",
+            "project_owned_model_run plus rubric scoring",
+            "Reviewability is inspectability, not proof that execution outcomes changed.",
+        ]
+    )
+    rows.append(
+        [
+            "Outcome markers are task-dependent",
+            f"{count_where(outcome_deltas, lambda value: value > 0)} positive, {count_where(outcome_deltas, lambda value: value == 0)} ties, {count_where(outcome_deltas, lambda value: value < 0)} regressions across {len(outcome_deltas)} surface-tier cells.",
+            "project_owned_model_run plus marker scoring",
+            "Markers are useful but weaker than execution-graded artifacts.",
+        ]
+    )
+    rows.append(
+        [
+            "Current model-produced execution slice does not separate weak from repaired",
+            f"Weak model artifacts passed {model_weak_passes}/{len(model_weak)}; repaired model artifacts passed {model_repaired_passes}/{len(model_repaired)}.",
+            "project_owned_model_run plus local deterministic execution",
+            "The slice is small and currently covers only recorded Claude Code artifact runs.",
+        ]
+    )
+    rows.append(
+        [
+            "Bench v4 local seed ladder discriminates fixture contracts",
+            f"Local weak seed artifacts passed {hardness_weak_passes}/{len(hardness_weak)}; repaired seed artifacts passed {hardness_repaired_passes}/{len(hardness_repaired)} across {len(hardness.get('cases', {}))} rungs.",
+            "local_deterministic_execution",
+            "These are project-authored control artifacts, not model-provider results.",
+        ]
+    )
+    rows.append(
+        [
+            "Warding has the strongest measured protective signal so far",
+            f"Baseline runs recorded {baseline_failures}/{len(baseline_runs)} failures; warded runs recorded {warded_failures}/{len(warded_runs)} failures.",
+            "project_owned_model_run",
+            "Current real A/B evidence is on the Claude Code safe surface; other surface holes remain.",
+        ]
+    )
+    rows.append(
+        [
+            "Ward-limb science has a structural seed",
+            f"{len(ward_science.get('ablation_case', {}).get('variants', {}))} local ablation variants score attack resistance, utility, audit quality, and overrefusal.",
+            "local_deterministic_control",
+            "This does not simulate model behavior and is not model-provider evidence.",
+        ]
+    )
+
+    body = """# Methods: Structure, Reviewability, and Warding
+
+This methods note is generated from the project evidence ledger. It states only what the recorded artifacts can support, keeps null results visible, and separates local controls from project-owned model runs.
+
+## Summary Finding
+
+The current evidence supports a narrow thesis: structured prompts reliably improve reviewability, outcome-marker effects are task-dependent, the current model-produced execution slice does not yet separate weak from repaired prompts, and warded prompts have the strongest measured protective signal against defanged injection fixtures.
+
+## Evidence Table
+
+{rows}
+
+## Nulls And Non-Wins
+
+- Execution-grade model artifacts currently show no weak-versus-repaired separation on the recorded slice.
+- Outcome-marker scoring includes ties and regressions, not only wins.
+- Bench v4 hardness ladder results are local deterministic controls until model-produced artifacts are recorded against those rungs.
+- The canon-review queue is prepared, but canonical promotion remains pending human maintainer signoff.
+- Package-index release materials are prepared, but public upload remains pending human action.
+
+## Next Falsification Steps
+
+1. Run the five Bench v4 hardness rungs against real recorded model outputs.
+2. Close the Codex and Claude warded A/B matrix holes before claiming cross-surface ward science.
+3. Publish package-index smoke checks only after a human performs the upload.
+4. Record maintainer decisions before promoting any usage-earned rune to canonical.
+
+Raw evidence: [surface-comparison.json](../examples/evaluations/surface-comparison.json), [model-execution-results.json](../examples/evaluations/model-execution-results.json), [hardness-v4 results](../examples/evaluations/hardness-v4/results.json), [ab-results.json](../examples/jailbreak-resilience/ab-results.json), [ward-science-results.json](../examples/jailbreak-resilience/ward-science-results.json)
+""".format(rows=qmd_table(rows))
+    write_text(ROOT / "reference" / "methods-structure-reviewability-warding.qmd", page("Methods: Structure, Reviewability, and Warding", body))
 
 
 def write_bench_v2_pages() -> None:
@@ -3965,10 +4157,12 @@ def write_v3_evidence_pages(lexicon: list[dict], spells: list[dict], stacks: lis
     taxonomy = EVIDENCE_TAXONOMY_DATA
     index = evidence_index_data()
     usage_graph = rune_usage_graph_data(lexicon, spells, stacks)
+    canon_review_queue = canon_review_queue_data(usage_graph)
     write_json(ROOT / "data" / "evidence_taxonomy.json", taxonomy)
     write_json(ROOT / "data" / "evidence_index.json", index)
     write_json(ROOT / "data" / "canon_audit.json", CANON_AUDIT_DATA)
     write_json(ROOT / "data" / "rune_usage_graph.json", usage_graph)
+    write_json(ROOT / "data" / "canon_review_queue.json", canon_review_queue)
 
     taxonomy_rows = [["Evidence Class", "Claim Power", "Examples"]]
     for key, item in taxonomy["evidence_classes"].items():
@@ -4168,6 +4362,51 @@ Raw data: [rune_usage_graph.json](../data/rune_usage_graph.json)
         rows=qmd_table(usage_rows) if len(usage_rows) > 1 else "No usage-earned candidates yet.",
     )
     write_text(ROOT / "reference" / "usage-earned-canon.qmd", page("Usage-Earned Canon", usage_body))
+
+    queue_rows = [["Sigil", "Term", "Uses", "Current Status", "Decision", "Evidence"]]
+    for item in canon_review_queue["batches"][0]["candidates"]:
+        evidence = "; ".join(f"{use['kind']}:{use['source_id']}" for use in item["usage_evidence"][:5])
+        if len(item["usage_evidence"]) > 5:
+            evidence += "; ..."
+        queue_rows.append(
+            [
+                item["sigil"],
+                item["term"],
+                str(item["use_count"]),
+                item["current_semantic_status"],
+                item["decision"],
+                evidence,
+            ]
+        )
+    queue_body = """# Canon Review Queue
+
+This page is the bounded human review surface for usage-earned canon. It is generated from `rune_usage_graph.json`, but all decisions stay pending until a named maintainer records reviewer, date, decision, scope, and notes in `canon_audit.json`.
+
+## Policy
+
+{policy}
+
+## Summary
+
+- Source candidates: `{source_candidates}`
+- Queued candidates in this batch: `{queued_candidates}`
+- Accepted candidates: `{accepted_candidates}`
+- Human signoff status: `{signoff}`
+
+## Batch 001
+
+{rows}
+
+Raw data: [canon_review_queue.json](../data/canon_review_queue.json)
+""".format(
+        policy=canon_review_queue["policy"],
+        source_candidates=canon_review_queue["summary"]["source_candidates"],
+        queued_candidates=canon_review_queue["summary"]["queued_candidates"],
+        accepted_candidates=canon_review_queue["summary"]["accepted_candidates"],
+        signoff=canon_review_queue["summary"]["human_signoff_status"],
+        rows=qmd_table(queue_rows) if len(queue_rows) > 1 else "No candidates are queued.",
+    )
+    write_text(ROOT / "reference" / "canon-review-queue.qmd", page("Canon Review Queue", queue_body))
 
     package = load_runtime_json("examples/adoption/package-check.json", {"steps": [], "passed": False})
     smoke = load_runtime_json("examples/release-gate/public-smoke-check.json", {"checks": [], "passed": False})
@@ -5010,6 +5249,8 @@ def write_reference_pages(houses: list[dict], lexicon: list[dict], major: dict[i
             "- [Semantic Promotion Ladder](semantic-promotion.qmd)\n"
             "- [Canon Audit](canon-audit.qmd)\n"
             "- [Usage-Earned Canon](usage-earned-canon.qmd)\n"
+            "- [Canon Review Queue](canon-review-queue.qmd)\n"
+            "- [Methods Write-Up](methods-structure-reviewability-warding.qmd)\n"
             "- [Public Smoke Checks](public-smoke-checks.qmd)\n"
             "- [Package-Index Release Plan](package-index-release.qmd)\n"
             "- [Generator Architecture](generator-architecture.qmd)\n"
@@ -5520,6 +5761,8 @@ def write_quarto_config(houses: list[dict]) -> None:
             "reference/semantic-promotion.qmd",
             "reference/canon-audit.qmd",
             "reference/usage-earned-canon.qmd",
+            "reference/canon-review-queue.qmd",
+            "reference/methods-structure-reviewability-warding.qmd",
             "reference/public-smoke-checks.qmd",
             "reference/package-index-release.qmd",
             "reference/generator-architecture.qmd",
@@ -5695,6 +5938,7 @@ def main() -> None:
     write_surface_comparison_pages()
     write_jailbreak_baseline_matrix()
     write_ward_science_pages()
+    write_methods_pages()
     write_bench_v2_pages()
     write_adversarial_harness_pages()
     write_generator_architecture_pages()

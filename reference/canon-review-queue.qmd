@@ -1,0 +1,44 @@
+---
+title: "Canon Review Queue"
+---
+
+# Canon Review Queue
+
+This page is the bounded human review surface for usage-earned canon. It is generated from `rune_usage_graph.json`, but all decisions stay pending until a named maintainer records reviewer, date, decision, scope, and notes in `canon_audit.json`.
+
+## Policy
+
+Codex may prepare a bounded usage-earned queue, but cannot accept canonical entries without named human maintainer signoff.
+
+## Summary
+
+- Source candidates: `19`
+- Queued candidates in this batch: `19`
+- Accepted candidates: `0`
+- Human signoff status: `pending-human-maintainer-signoff`
+
+## Batch 001
+
+| Sigil | Term                | Uses | Current Status  | Decision                 | Evidence                                                                                                                                                                                            |
+| ----- | ------------------- | ---- | --------------- | ------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1172  | invariant           | 10   | reviewed        | pending-human-maintainer | spell:spell.safe-refactoring.v1; spell:spell.migration-without-data-loss.v1; spell:spell.test-generation.v1; stack:stack.code-generation-and-repair-loop.v1; stack:stack.bug-hunt-stack.v1; ...     |
+| 1445  | deterministic       | 7    | reviewed        | pending-human-maintainer | spell:spell.safe-refactoring.v1; spell:spell.test-generation.v1; stack:stack.bug-hunt-stack.v1; stack:stack.safe-refactor-stack.v1; stack:stack.recursive-decomposition-stack.v1; ...               |
+| 0943  | rollback {DB}       | 6    | reviewed        | pending-human-maintainer | spell:spell.bug-diagnosis-from-logs.v1; spell:spell.migration-without-data-loss.v1; stack:stack.live-migration-stack.v1; stack:stack.release-gate-stack.v1; proof_case:bug-diagnosis-from-logs; ... |
+| 0347  | schema {Data}       | 5    | reviewed        | pending-human-maintainer | spell:spell.api-design.v1; spell:spell.migration-without-data-loss.v1; stack:stack.live-migration-stack.v1; proof_case:api-design; proof_case:migration-without-data-loss                           |
+| 1152  | contract test       | 5    | reviewed        | pending-human-maintainer | spell:spell.safe-refactoring.v1; spell:spell.test-generation.v1; stack:stack.safe-refactor-stack.v1; proof_case:safe-refactoring; proof_case:test-generation                                        |
+| 1180  | observability       | 5    | reviewed        | pending-human-maintainer | spell:spell.bug-diagnosis-from-logs.v1; stack:stack.code-generation-and-repair-loop.v1; stack:stack.bug-hunt-stack.v1; stack:stack.release-gate-stack.v1; proof_case:bug-diagnosis-from-logs        |
+| 1430  | backward-compatible | 5    | reviewed        | pending-human-maintainer | spell:spell.safe-refactoring.v1; spell:spell.api-design.v1; stack:stack.safe-refactor-stack.v1; proof_case:safe-refactoring; proof_case:api-design                                                  |
+| 1088  | diff {Forge}        | 4    | reviewed        | pending-human-maintainer | spell:spell.safe-refactoring.v1; stack:stack.code-generation-and-repair-loop.v1; stack:stack.safe-refactor-stack.v1; proof_case:safe-refactoring                                                    |
+| 1146  | benchmark           | 4    | reviewed        | pending-human-maintainer | spell:spell.performance-tuning.v1; stack:stack.code-generation-and-repair-loop.v1; stack:stack.release-gate-stack.v1; proof_case:performance-tuning                                                 |
+| 0055  | interface {Arch}    | 3    | reviewed        | pending-human-maintainer | spell:spell.api-design.v1; stack:stack.recursive-decomposition-stack.v1; proof_case:api-design                                                                                                      |
+| 0926  | migration           | 3    | reviewed        | pending-human-maintainer | spell:spell.migration-without-data-loss.v1; stack:stack.live-migration-stack.v1; proof_case:migration-without-data-loss                                                                             |
+| 1017  | least privilege     | 3    | reviewed        | pending-human-maintainer | spell:spell.jailbreak-resilience-review.v1; stack:stack.ai-red-team-loop.v1; defensive_bench:jailbreak-resilience                                                                                   |
+| 1034  | quarantine          | 3    | generated_draft | pending-human-maintainer | spell:spell.jailbreak-resilience-review.v1; stack:stack.ai-red-team-loop.v1; defensive_bench:jailbreak-resilience                                                                                   |
+| 1204  | trace {Proof}       | 3    | reviewed        | pending-human-maintainer | spell:spell.bug-diagnosis-from-logs.v1; stack:stack.bug-hunt-stack.v1; proof_case:bug-diagnosis-from-logs                                                                                           |
+| 1374  | guardrail           | 3    | reviewed        | pending-human-maintainer | spell:spell.jailbreak-resilience-review.v1; stack:stack.ai-red-team-loop.v1; defensive_bench:jailbreak-resilience                                                                                   |
+| 1390  | prompt injection    | 3    | generated_draft | pending-human-maintainer | spell:spell.jailbreak-resilience-review.v1; stack:stack.ai-red-team-loop.v1; defensive_bench:jailbreak-resilience                                                                                   |
+| 1414  | tool call           | 3    | reviewed        | pending-human-maintainer | spell:spell.jailbreak-resilience-review.v1; stack:stack.ai-red-team-loop.v1; defensive_bench:jailbreak-resilience                                                                                   |
+| 1461  | idempotent          | 3    | reviewed        | pending-human-maintainer | spell:spell.api-design.v1; stack:stack.live-migration-stack.v1; proof_case:api-design                                                                                                               |
+| 1485  | reproducible        | 3    | reviewed        | pending-human-maintainer | spell:spell.test-generation.v1; stack:stack.code-generation-and-repair-loop.v1; proof_case:test-generation                                                                                          |
+
+Raw data: [canon_review_queue.json](../data/canon_review_queue.json)

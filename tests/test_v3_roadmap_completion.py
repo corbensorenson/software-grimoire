@@ -54,10 +54,14 @@ def test_real_warded_ab_and_publication_redaction_exist() -> None:
 def test_human_canon_audit_is_honest_and_usage_earned() -> None:
     audit = load("data/canon_audit.json")
     usage = load("data/rune_usage_graph.json")
+    queue = load("data/canon_review_queue.json")
     assert audit["status"] == "pending-human-maintainer-signoff"
     assert audit["audit_queue"]
     assert usage["summary"]["canonical_review_candidates"] > 0
     assert all(candidate["promotion_blocker"] == "human maintainer signoff required" for candidate in usage["canonical_review_candidates"])
+    assert 0 < queue["summary"]["queued_candidates"] <= 20
+    assert queue["summary"]["accepted_candidates"] == 0
+    assert queue["batches"][0]["status"] == "pending-human-maintainer"
 
 
 def test_package_and_smoke_checks_pass() -> None:
@@ -71,12 +75,15 @@ def test_package_and_smoke_checks_pass() -> None:
         "reference/evidence-browser.html",
         "reference/hardness-v4.html",
         "reference/ward-science.html",
+        "reference/canon-review-queue.html",
+        "reference/methods-structure-reviewability-warding.html",
         "reference/package-index-release.html",
         "exports/library-manifest.json",
     } <= {check["target"] for check in smoke["checks"]}
     assert "examples/evaluations/hardness-v4/results.json" in {check["target"] for check in smoke["checks"]}
     assert "examples/adoption/package-index-release-plan.json" in {check["target"] for check in smoke["checks"]}
     assert "examples/jailbreak-resilience/ward-science-results.json" in {check["target"] for check in smoke["checks"]}
+    assert "data/canon_review_queue.json" in {check["target"] for check in smoke["checks"]}
 
 
 def test_public_smoke_report_stays_inside_repo() -> None:

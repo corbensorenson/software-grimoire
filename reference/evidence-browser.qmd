@@ -8,10 +8,10 @@ The evidence browser is the project ledger. It separates calibration materials f
 
 ## Summary
 
-- Available artifacts: `11/11`
+- Available artifacts: `12/12`
 - Project-owned model surfaces: `claude-code-safe, claude-code-safe:baseline, claude-code-safe:warded, codex-cli-default`
 - Recorded model runs: `132`
-- Deterministic execution runs: `50`
+- Deterministic execution runs: `80`
 - External adoption reports: `0`
 - Human canon signoff: `pending-human-maintainer-signoff`
 
@@ -22,14 +22,15 @@ The evidence browser is the project ledger. It separates calibration materials f
 | Field Spell Model Runs                 | project_owned_model_run       | 60   | claude-code-safe, codex-cli-default                | present | [examples/evaluations/results.json](../examples/evaluations/results.json)                                             |
 | Fixture-Local Execution Results        | local_deterministic_execution | 24   | codex-cli-default, local-deterministic-grader      | present | [examples/evaluations/execution-results.json](../examples/evaluations/execution-results.json)                         |
 | Model-Produced Artifact Execution      | local_deterministic_execution | 6    | claude-code-safe                                   | present | [examples/evaluations/model-execution-results.json](../examples/evaluations/model-execution-results.json)             |
-| Bench v4 Hardness Ladder Seed          | local_deterministic_execution | 20   | local-deterministic-grader                         | present | [examples/evaluations/hardness-v4/results.json](../examples/evaluations/hardness-v4/results.json)                     |
+| Bench v4 Hardness Ladder Seed          | local_deterministic_execution | 50   | local-deterministic-grader                         | present | [examples/evaluations/hardness-v4/results.json](../examples/evaluations/hardness-v4/results.json)                     |
 | Jailbreak-Resilience Model Runs        | project_owned_model_run       | 24   | codex-cli-default                                  | present | [examples/jailbreak-resilience/results.json](../examples/jailbreak-resilience/results.json)                           |
 | Local Warded Baseline Matrix           | local_deterministic_control   | 16   | local-unwarded-control, local-warded-reviewer      | present | [examples/jailbreak-resilience/baseline-results.json](../examples/jailbreak-resilience/baseline-results.json)         |
 | Ward Science Seed                      | local_deterministic_control   | 6    | local-ward-limb-control                            | present | [examples/jailbreak-resilience/ward-science-results.json](../examples/jailbreak-resilience/ward-science-results.json) |
 | Real Surface Warded A/B Runs           | project_owned_model_run       | 48   | claude-code-safe:baseline, claude-code-safe:warded | present | [examples/jailbreak-resilience/ab-results.json](../examples/jailbreak-resilience/ab-results.json)                     |
+| Canon Review Queue                     | human_audit_pending           | 19   | -                                                  | present | [data/canon_review_queue.json](../data/canon_review_queue.json)                                                       |
 | Public Package Build and Install Check | packaging_or_release_check    | 9    | -                                                  | present | [examples/adoption/package-check.json](../examples/adoption/package-check.json)                                       |
 | Package-Index Release Plan             | packaging_or_release_check    | 9    | -                                                  | present | [examples/adoption/package-index-release-plan.json](../examples/adoption/package-index-release-plan.json)             |
-| Public Site Smoke Check                | packaging_or_release_check    | 17   | -                                                  | present | [examples/release-gate/public-smoke-check.json](../examples/release-gate/public-smoke-check.json)                     |
+| Public Site Smoke Check                | packaging_or_release_check    | 20   | -                                                  | present | [examples/release-gate/public-smoke-check.json](../examples/release-gate/public-smoke-check.json)                     |
 
 ## Evidence Classes
 

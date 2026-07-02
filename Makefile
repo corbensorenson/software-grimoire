@@ -1,9 +1,9 @@
 PYTHON ?= python3
 QUARTO ?= quarto
 
-.PHONY: all generate validate bench render test clean seals
+.PHONY: all generate validate bench refresh render test clean seals
 
-all: generate validate bench render test
+all: generate validate bench refresh render test
 
 generate:
 	$(PYTHON) scripts/bootstrap_project.py
@@ -14,6 +14,10 @@ validate:
 bench:
 	$(PYTHON) scripts/run_execution_bench.py
 	$(PYTHON) scripts/run_hardness_bench.py
+
+refresh:
+	$(PYTHON) scripts/bootstrap_project.py
+	$(PYTHON) scripts/validate_data.py
 
 seals:
 	$(PYTHON) scripts/generate_seals.py

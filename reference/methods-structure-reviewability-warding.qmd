@@ -1,0 +1,39 @@
+---
+title: "Methods: Structure, Reviewability, and Warding"
+---
+
+# Methods: Structure, Reviewability, and Warding
+
+This methods note is generated from the project evidence ledger. It states only what the recorded artifacts can support, keeps null results visible, and separates local controls from project-owned model runs.
+
+## Summary Finding
+
+The current evidence supports a narrow thesis: structured prompts reliably improve reviewability, outcome-marker effects are task-dependent, the current model-produced execution slice does not yet separate weak from repaired prompts, and warded prompts have the strongest measured protective signal against defanged injection fixtures.
+
+## Evidence Table
+
+| Claim                                                                       | Recorded Result                                                                                     | Evidence Class                                             | Limitation                                                                                |
+| --------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | ---------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| Prompt structure improves reviewability                                     | 15/18 surface-tier cells show positive repaired-minus-weak reviewability delta; range -2.0 to 10.0. | project_owned_model_run plus rubric scoring                | Reviewability is inspectability, not proof that execution outcomes changed.               |
+| Outcome markers are task-dependent                                          | 5 positive, 12 ties, 1 regressions across 18 surface-tier cells.                                    | project_owned_model_run plus marker scoring                | Markers are useful but weaker than execution-graded artifacts.                            |
+| Current model-produced execution slice does not separate weak from repaired | Weak model artifacts passed 3/3; repaired model artifacts passed 3/3.                               | project_owned_model_run plus local deterministic execution | The slice is small and currently covers only recorded Claude Code artifact runs.          |
+| Bench v4 local seed ladder discriminates fixture contracts                  | Local weak seed artifacts passed 0/25; repaired seed artifacts passed 25/25 across 5 rungs.         | local_deterministic_execution                              | These are project-authored control artifacts, not model-provider results.                 |
+| Warding has the strongest measured protective signal so far                 | Baseline runs recorded 16/24 failures; warded runs recorded 0/24 failures.                          | project_owned_model_run                                    | Current real A/B evidence is on the Claude Code safe surface; other surface holes remain. |
+| Ward-limb science has a structural seed                                     | 6 local ablation variants score attack resistance, utility, audit quality, and overrefusal.         | local_deterministic_control                                | This does not simulate model behavior and is not model-provider evidence.                 |
+
+## Nulls And Non-Wins
+
+- Execution-grade model artifacts currently show no weak-versus-repaired separation on the recorded slice.
+- Outcome-marker scoring includes ties and regressions, not only wins.
+- Bench v4 hardness ladder results are local deterministic controls until model-produced artifacts are recorded against those rungs.
+- The canon-review queue is prepared, but canonical promotion remains pending human maintainer signoff.
+- Package-index release materials are prepared, but public upload remains pending human action.
+
+## Next Falsification Steps
+
+1. Run the five Bench v4 hardness rungs against real recorded model outputs.
+2. Close the Codex and Claude warded A/B matrix holes before claiming cross-surface ward science.
+3. Publish package-index smoke checks only after a human performs the upload.
+4. Record maintainer decisions before promoting any usage-earned rune to canonical.
+
+Raw evidence: [surface-comparison.json](../examples/evaluations/surface-comparison.json), [model-execution-results.json](../examples/evaluations/model-execution-results.json), [hardness-v4 results](../examples/evaluations/hardness-v4/results.json), [ab-results.json](../examples/jailbreak-resilience/ab-results.json), [ward-science-results.json](../examples/jailbreak-resilience/ward-science-results.json)

@@ -50,14 +50,14 @@ Current public-site status:
 - The repository includes schemas, validation, seal generation, CI, GitHub Pages
   publishing, pull-request checks, contribution templates, examples, package
   metadata, install tooling, and public releases.
-- The rendered Quarto site currently contains 110 pages, including six
+- The rendered Quarto site currently contains 112 pages, including six
   Proof-by-Difference cases, six recorded evaluation result pages, a dedicated
   Proof by Difference reference page, an installable-library page, a visual
   grammar, a task chooser, adoption evidence, a jailbreak-resilience bench,
   execution bench, surface comparison, warded baseline matrix, real warded A/B
   evidence, evidence browser, calibration page, model-artifact execution page,
-  public smoke checks, canon audit page, usage-earned canon page, and semantic
-  promotion board.
+  public smoke checks, canon audit page, usage-earned canon page, bounded
+  canon-review queue, methods write-up, and semantic promotion board.
 - The recorded evaluation layer has moved past the seed state: all six field
   spells now have executable fixtures, planted ground truth, reviewability
   scores, outcome scores, preserved transcripts, and repeated Codex-owned
@@ -87,11 +87,12 @@ Current public-site status:
   software outcomes, complete the remaining surface x tier matrix holes, extend
   ward science with ablations, and move external adoption/human canon review
   from scaffolding into real maintainer/user evidence.
-- The first Bench v4 seed implementation is present: two executable hardness
-  rungs, ambiguity and hidden-invariant, run weak/repaired seed artifacts
-  through five deterministic repetitions each inside repo-local `tmp/`
-  sandboxes. These are fixture-contract and local-artifact evidence, not yet
-  model-surface outcome evidence.
+- The first Bench v4 seed implementation is present: all five local executable
+  hardness rungs, ambiguity, hidden-invariant, misleading-context,
+  blast-radius, and agentic, run weak/repaired seed artifacts through five
+  deterministic repetitions each inside repo-local `tmp/` sandboxes. These are
+  fixture-contract and local-artifact evidence, not yet model-surface outcome
+  evidence.
 - The external-reality workstream now has a standalone adoption-report
   generator that creates schema-valid report drafts while keeping publication,
   external-adoption counts, and reviewer acceptance separate from generation.
@@ -508,23 +509,25 @@ Post-v3 external review findings accepted into the roadmap:
    one-step local install commands for Claude Code and Cursor targets, and add
    an adoption-report generator that creates valid evidence records without
    fabricating external adoption.
-10. The project should eventually publish a methods write-up built entirely
-    from recorded evidence, foregrounding the honest finding: structure improves
-    reviewability, outcome effects are task-dependent, and warding measurably
-    reduces injection success on the current defanged fixtures.
+10. The project now publishes a methods write-up built entirely from recorded
+    evidence, foregrounding the honest finding: structure improves
+    reviewability, outcome effects are task-dependent, current model-produced
+    execution slices can still be null, and warding measurably reduces
+    injection success on the current defanged fixtures.
 
 Absorption status:
 
 - Findings 1 through 10 define the v4 boundary-hunt and ward-science roadmap.
   The roadmap update is complete and implementation is tracked in Phase 36 and
   the active project goal.
-- The first v4 implementation slice is underway: repo-local scratch hygiene,
-  explicit reviewability-score fields, and per-surface/per-tier delta reporting
-  are implemented for the preserved v3 replay corpus. The first two hardness
-  rungs now have executable seed fixtures and deterministic local artifact
-  results. The remaining open work is the real matrix-completion runs,
-  model-surface hardness-ladder results, ward-science ablations, package-index
-  release materials, accepted external adoption reports, and methods write-up.
+- The v4 implementation slice has moved from scaffold to instrument: repo-local
+  scratch hygiene, explicit reviewability-score fields, per-surface/per-tier
+  delta reporting, all five local hardness seed rungs, ward-science seed data,
+  package-index release materials, one-step installs, adoption-report
+  generation, bounded canon-review queue, and methods write-up are implemented.
+  The remaining open work is real matrix-completion runs, model-surface
+  hardness-ladder results, human package upload, human canon signoff, and
+  accepted external adoption reports.
 
 ## 1. End State
 
@@ -4116,8 +4119,9 @@ Implementation evidence:
   Claude Code artifacts for safe-refactoring and test-generation.
 - `reference/model-artifact-execution.qmd` publishes the model-output
   execution table and limitations.
-- v4 must extend this beyond the current two executable cases and make harder
-  fixtures discriminate.
+- Bench v4 now extends this with a five-rung local deterministic hardness
+  ladder; model-produced artifacts still need to be run against the new rungs
+  before those rungs support surface-level claims.
 
 Goal:
 
@@ -4389,10 +4393,11 @@ Implementation evidence:
   instead of simulating a human audit.
 - `data/rune_usage_graph.json` identifies usage-earned canonical review
   candidates and blocks promotion on human signoff.
-- `reference/canon-audit.qmd` and `reference/usage-earned-canon.qmd` expose the
-  queue and blockers.
-- Phase 36 turns this from a scaffold into a bounded review queue with real
-  reviewer/date/decision records.
+- `reference/canon-audit.qmd`, `reference/usage-earned-canon.qmd`, and
+  `reference/canon-review-queue.qmd` expose the blockers and the bounded
+  human review surface.
+- Phase 36 queue generation is implemented; real reviewer/date/decision records
+  remain pending named human maintainer action.
 
 Goal:
 
@@ -4589,9 +4594,9 @@ the preserved v3 replay corpus. Evaluation pages now expose per-surface and
 per-tier delta cells; the data model carries explicit `reviewability_scores`
 and `reviewability_total` fields while retaining old structural aliases only
 for backward compatibility; project scratch output is routed under repo-local
-`tmp/`. Item A5 has its first two local deterministic seed rungs implemented
-with ambiguity and hidden-invariant fixtures; model-surface runs over those
-rungs remain open evidence work.
+`tmp/`. Item A5 now has all five local deterministic seed rungs implemented
+with ambiguity, hidden-invariant, misleading-context, blast-radius, and agentic
+fixtures; model-surface runs over those rungs remain open evidence work.
 
 1. Fix current reporting before adding new cases:
    - report deltas by surface, tier, variant, and repetition cell;
@@ -4668,6 +4673,13 @@ Workstream B: Ward science
 
 Workstream C: Usage-earned canon and human review
 
+Implementation note as of July 2, 2026: `data/canon_review_queue.json` and
+`reference/canon-review-queue.qmd` now generate a bounded usage-earned queue
+from `data/rune_usage_graph.json`. The queue exposes inline usage evidence and
+accept/revise/defer/reject decision options, but all entries remain
+`pending-human-maintainer` until a named maintainer records real signoff in
+`data/canon_audit.json`.
+
 1. Use `data/rune_usage_graph.json` as the promotion engine:
    - spell references;
    - stack references;
@@ -4738,7 +4750,7 @@ baseline/warded model-surface A/B expansion remains open.
    - marks project-owned, reviewer-supplied, and external-user reports
      separately;
    - never counts project-owned dogfood as external adoption.
-5. Write a methods artifact after the hardness ladder has evidence:
+5. Methods artifact is implemented from recorded evidence:
    - title around the honest finding, not a marketing claim;
    - source every number from evidence JSON;
    - foreground at least one null, tie, or task-dependent result;
@@ -5460,49 +5472,39 @@ soften the claim.
 
 Do this first:
 
-1. Enforce repo-local scratch hygiene everywhere:
-   - keep `tmp/` as the ignored scratch directory;
-   - remove `/tmp` from public docs and examples;
-   - reject smoke-report paths outside the repository.
-2. Fix evidence reporting before adding more evidence:
-   - add per-surface x tier x variant delta tables;
-   - rename structural score to reviewability score;
-   - normalize tool-version metadata across all run records.
-3. Close the most important matrix holes:
+1. Close the most important real model-surface matrix holes:
    - Codex trap-tier field-spell runs;
    - Codex real warded A/B runs;
    - Claude Code standard warded jailbreak-resilience runs.
-4. Build the first two hardness rungs:
+2. Run the five Bench v4 hardness rungs against recorded model outputs:
    - ambiguity;
    - hidden invariant;
-   - both with executable graders, ground truth, and null-result publication.
-5. Start ward science:
+   - misleading context;
+   - blast radius;
+   - agentic handoff.
+3. Extend ward science beyond the local deterministic seed:
    - complete both-surface A/B for the original eight attack shapes;
-   - add the first limb ablation;
-   - add at least four new defanged attack shapes before v4.
-6. Build the usage-earned canon review queue:
-   - queue candidates from `rune_usage_graph`;
+   - replay limb ablations on real model surfaces;
+   - expand the new defanged attack-shape catalog into executable fixtures.
+4. Use the generated canon-review queue for real human decisions:
    - keep canonical count at zero until a human maintainer signs;
-   - if human signoff occurs, record reviewer/date/decision.
-7. Prepare external distribution without fabricating external reality:
-   - package-index release materials;
-   - one-step local install command;
-   - adoption-report generator;
+   - record reviewer/date/decision before promoting any candidate.
+5. Finish external distribution without fabricating external reality:
+   - human TestPyPI/PyPI upload;
    - package-index smoke checks only after human upload.
-8. Preserve failures, ties, friction, overrefusal, malformed outputs, and "too
+6. Preserve failures, ties, friction, overrefusal, malformed outputs, and "too
    heavy" reports rather than polishing them away.
 
 Then proceed in this order:
 
-1. Complete Phase 36 workstreams A and B until at least two hardness rungs and
-   the first ward-ablation result are published.
+1. Complete Phase 36 workstreams A and B with real model-surface runs over the
+   now-complete local hardness ladder and ward-science scaffold.
 2. Complete Phase 36 workstream C only as far as real human signoff permits.
-   Queue preparation is automatable; canonical promotion is not.
-3. Complete Phase 36 workstream D through package preparation, install tests,
-   and adoption-report generation. External adoption remains pending until real
-   non-maintainer reports arrive.
-4. Write the methods artifact only after the evidence can support it.
-5. Tag or release only when the changelog, evidence index, live site, package
+   Queue preparation is done; canonical promotion is not automatable.
+3. Complete Phase 36 workstream D through human package upload and post-upload
+   smoke checks. External adoption remains pending until real non-maintainer
+   reports arrive.
+4. Tag or release only when the changelog, evidence index, live site, package
    checks, and CI agree.
 
 The standing standard is now: every major claim must come with an executable

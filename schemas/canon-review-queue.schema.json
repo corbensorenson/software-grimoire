@@ -1,0 +1,96 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Software Grimoire Canon Review Queue",
+  "type": "object",
+  "required": ["version", "generated_at", "policy", "batch_size", "summary", "batches"],
+  "properties": {
+    "version": {"type": "string", "minLength": 1},
+    "generated_at": {"type": "string", "minLength": 1},
+    "policy": {"type": "string", "minLength": 1},
+    "batch_size": {"type": "integer", "minimum": 1, "maximum": 20},
+    "summary": {
+      "type": "object",
+      "required": ["source_candidates", "queued_candidates", "accepted_candidates", "human_signoff_status"],
+      "properties": {
+        "source_candidates": {"type": "integer", "minimum": 0},
+        "queued_candidates": {"type": "integer", "minimum": 0, "maximum": 20},
+        "accepted_candidates": {"const": 0},
+        "human_signoff_status": {"const": "pending-human-maintainer-signoff"}
+      },
+      "additionalProperties": false
+    },
+    "batches": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["batch_id", "status", "candidates"],
+        "properties": {
+          "batch_id": {"type": "string", "minLength": 1},
+          "status": {"const": "pending-human-maintainer"},
+          "candidates": {
+            "type": "array",
+            "maxItems": 20,
+            "items": {
+              "type": "object",
+              "required": [
+                "id",
+                "sigil",
+                "term",
+                "current_semantic_status",
+                "use_count",
+                "usage_evidence",
+                "required_decision_fields",
+                "allowed_decisions",
+                "decision",
+                "blocker"
+              ],
+              "properties": {
+                "id": {"type": "integer", "minimum": 1},
+                "sigil": {"type": "string", "pattern": "^[0-9]{4}$"},
+                "term": {"type": "string", "minLength": 1},
+                "current_semantic_status": {"type": "string", "minLength": 1},
+                "use_count": {"type": "integer", "minimum": 1},
+                "usage_evidence": {
+                  "type": "array",
+                  "minItems": 1,
+                  "items": {
+                    "type": "object",
+                    "required": ["kind", "source_id", "title"],
+                    "properties": {
+                      "kind": {"type": "string", "minLength": 1},
+                      "source_id": {"type": "string", "minLength": 1},
+                      "title": {"type": "string", "minLength": 1}
+                    },
+                    "additionalProperties": false
+                  }
+                },
+                "required_decision_fields": {
+                  "type": "array",
+                  "minItems": 5,
+                  "items": {"type": "string", "minLength": 1}
+                },
+                "allowed_decisions": {
+                  "type": "array",
+                  "prefixItems": [
+                    {"const": "accept"},
+                    {"const": "revise"},
+                    {"const": "defer"},
+                    {"const": "reject"}
+                  ],
+                  "minItems": 4,
+                  "maxItems": 4
+                },
+                "decision": {"const": "pending-human-maintainer"},
+                "blocker": {"type": "string", "minLength": 1}
+              },
+              "additionalProperties": false
+            }
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

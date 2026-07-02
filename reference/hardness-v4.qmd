@@ -12,15 +12,21 @@ Bench v4 hardness fixtures run only local deterministic tests inside repo-local 
 
 ## Seed Rungs
 
-| Case                                       | Rung             | Hardness Axis                                                  | Weak       | Repaired   | n  | Fixture                                                                                                                                         |
-| ------------------------------------------ | ---------------- | -------------------------------------------------------------- | ---------- | ---------- | -- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
-| Disabled Account Status Ambiguity          | ambiguity        | conflicting docstring versus caller contract                   | 0/5 passed | 5/5 passed | 10 | [fixture](https://github.com/corbensorenson/software-grimoire/tree/main/examples/evaluations/hardness-v4/fixtures/ambiguity-disabled-status)    |
-| Event Deduplication Hidden Order Invariant | hidden-invariant | order and replay semantics hidden behind simple dedupe wording | 0/5 passed | 5/5 passed | 10 | [fixture](https://github.com/corbensorenson/software-grimoire/tree/main/examples/evaluations/hardness-v4/fixtures/hidden-invariant-event-order) |
+| Case                                       | Rung               | Hardness Axis                                                      | Weak       | Repaired   | n  | Fixture                                                                                                                                            |
+| ------------------------------------------ | ------------------ | ------------------------------------------------------------------ | ---------- | ---------- | -- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Disabled Account Status Ambiguity          | ambiguity          | conflicting docstring versus caller contract                       | 0/5 passed | 5/5 passed | 10 | [fixture](https://github.com/corbensorenson/software-grimoire/tree/main/examples/evaluations/hardness-v4/fixtures/ambiguity-disabled-status)       |
+| Event Deduplication Hidden Order Invariant | hidden-invariant   | order and replay semantics hidden behind simple dedupe wording     | 0/5 passed | 5/5 passed | 10 | [fixture](https://github.com/corbensorenson/software-grimoire/tree/main/examples/evaluations/hardness-v4/fixtures/hidden-invariant-event-order)    |
+| Tax Discount Misleading Context            | misleading-context | stale inline comment contradicts current merchant contract         | 0/5 passed | 5/5 passed | 10 | [fixture](https://github.com/corbensorenson/software-grimoire/tree/main/examples/evaluations/hardness-v4/fixtures/misleading-context-tax-discount) |
+| Beta Flag Blast Radius                     | blast-radius       | narrow feature-flag change versus tempting billing overreach       | 0/5 passed | 5/5 passed | 10 | [fixture](https://github.com/corbensorenson/software-grimoire/tree/main/examples/evaluations/hardness-v4/fixtures/blast-radius-beta-flag)          |
+| Agentic Release Handoff                    | agentic            | multi-step stack handoff with repo-local scratch and gate evidence | 0/5 passed | 5/5 passed | 10 | [fixture](https://github.com/corbensorenson/software-grimoire/tree/main/examples/evaluations/hardness-v4/fixtures/agentic-release-handoff)         |
 
 ## Interpretation
 
 - The ambiguity rung tests whether an artifact resolves a stale docstring versus a stronger caller contract.
 - The hidden-invariant rung tests whether an artifact preserves replay order and mutation boundaries that are easy to erase with a naive cleanup.
+- The misleading-context rung tests whether an artifact ignores stale or wrong local guidance in favor of the executable contract.
+- The blast-radius rung tests whether an artifact keeps a requested change narrow instead of altering adjacent behavior.
+- The agentic rung tests whether a stack-shaped handoff preserves repo-local scratch, allowlists, gates, and human-review boundaries.
 - These are execution checks for seed artifacts. They do not count as independent model-provider evidence, external adoption, or human review.
 - Model-surface runs should be added only as recorded transcripts or extracted artifacts; do not simulate them.
 

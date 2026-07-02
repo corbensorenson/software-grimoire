@@ -83,9 +83,10 @@ Implemented:
 - Package-index release plan for TestPyPI/PyPI human upload, with preflight,
   build, upload, post-upload, and evidence-recording instructions that keep
   public package availability pending until a maintainer performs it.
-- Bench v4 seed hardness ladder with ambiguity and hidden-invariant executable
-  fixtures, weak/repaired seed artifacts, five deterministic repetitions per
-  variant, and a generated reference page.
+- Bench v4 seed hardness ladder with ambiguity, hidden-invariant,
+  misleading-context, blast-radius, and agentic executable fixtures,
+  weak/repaired seed artifacts, five deterministic repetitions per variant,
+  and a generated reference page.
 - JSON schemas, validation tooling, seal-stability tests, and rendered
   internal-link audit.
 - Working seal generation for spells and stacks, plus a local CLI for
@@ -130,7 +131,7 @@ The generated site is written to `_site/`.
 Repo-local scratch files should go under `tmp/`, which is ignored except for
 `tmp/.gitkeep`.
 
-Current render size: 110 Quarto pages.
+Current render size: 112 Quarto pages.
 
 ## Repository Map
 

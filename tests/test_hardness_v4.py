@@ -17,10 +17,17 @@ def load_results() -> dict:
     return json.loads(RESULTS.read_text(encoding="utf-8"))
 
 
-def test_hardness_v4_has_two_executable_seed_rungs() -> None:
+def test_hardness_v4_has_five_executable_seed_rungs() -> None:
     results = load_results()
     assert results["repetitions_per_variant"] >= 5
-    assert {case["rung"] for case in results["cases"].values()} >= {"ambiguity", "hidden-invariant"}
+    assert {case["rung"] for case in results["cases"].values()} >= {
+        "ambiguity",
+        "hidden-invariant",
+        "misleading-context",
+        "blast-radius",
+        "agentic",
+    }
+    assert len(results["cases"]) >= 5
     for slug, case in results["cases"].items():
         assert (ROOT / case["fixture_path"]).is_dir(), slug
         assert (ROOT / case["ground_truth_path"]).exists(), slug

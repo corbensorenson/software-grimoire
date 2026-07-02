@@ -1,0 +1,881 @@
+{
+  "version": "4.0.0-canon-review-queue",
+  "generated_at": "2026-07-02T00:00:00Z",
+  "policy": "Codex may prepare a bounded usage-earned queue, but cannot accept canonical entries without named human maintainer signoff.",
+  "batch_size": 20,
+  "summary": {
+    "source_candidates": 19,
+    "queued_candidates": 19,
+    "accepted_candidates": 0,
+    "human_signoff_status": "pending-human-maintainer-signoff"
+  },
+  "batches": [
+    {
+      "batch_id": "canon-review-queue-001",
+      "status": "pending-human-maintainer",
+      "candidates": [
+        {
+          "id": 1172,
+          "sigil": "1172",
+          "term": "invariant",
+          "current_semantic_status": "reviewed",
+          "use_count": 10,
+          "usage_evidence": [
+            {
+              "kind": "spell",
+              "source_id": "spell.safe-refactoring.v1",
+              "title": "Spell of Safe Refactoring"
+            },
+            {
+              "kind": "spell",
+              "source_id": "spell.migration-without-data-loss.v1",
+              "title": "Spell of Migration Without Data Loss"
+            },
+            {
+              "kind": "spell",
+              "source_id": "spell.test-generation.v1",
+              "title": "Spell of Test Generation"
+            },
+            {
+              "kind": "stack",
+              "source_id": "stack.code-generation-and-repair-loop.v1",
+              "title": "Code Generation and Repair Loop"
+            },
+            {
+              "kind": "stack",
+              "source_id": "stack.bug-hunt-stack.v1",
+              "title": "Bug-Hunt Stack"
+            },
+            {
+              "kind": "stack",
+              "source_id": "stack.safe-refactor-stack.v1",
+              "title": "Safe Refactor Stack"
+            },
+            {
+              "kind": "stack",
+              "source_id": "stack.recursive-decomposition-stack.v1",
+              "title": "Recursive Decomposition Stack"
+            },
+            {
+              "kind": "proof_case",
+              "source_id": "safe-refactoring",
+              "title": "Refactor Without Breaking Behavior"
+            },
+            {
+              "kind": "proof_case",
+              "source_id": "migration-without-data-loss",
+              "title": "Online Migration Without Data Loss"
+            },
+            {
+              "kind": "proof_case",
+              "source_id": "test-generation",
+              "title": "Test Generation Without Overfitting To Implementation"
+            }
+          ],
+          "required_decision_fields": [
+            "reviewer",
+            "review_date",
+            "decision",
+            "scope",
+            "notes"
+          ],
+          "allowed_decisions": [
+            "accept",
+            "revise",
+            "defer",
+            "reject"
+          ],
+          "decision": "pending-human-maintainer",
+          "blocker": "A named human maintainer must review usage evidence before canonical promotion."
+        },
+        {
+          "id": 1445,
+          "sigil": "1445",
+          "term": "deterministic",
+          "current_semantic_status": "reviewed",
+          "use_count": 7,
+          "usage_evidence": [
+            {
+              "kind": "spell",
+              "source_id": "spell.safe-refactoring.v1",
+              "title": "Spell of Safe Refactoring"
+            },
+            {
+              "kind": "spell",
+              "source_id": "spell.test-generation.v1",
+              "title": "Spell of Test Generation"
+            },
+            {
+              "kind": "stack",
+              "source_id": "stack.bug-hunt-stack.v1",
+              "title": "Bug-Hunt Stack"
+            },
+            {
+              "kind": "stack",
+              "source_id": "stack.safe-refactor-stack.v1",
+              "title": "Safe Refactor Stack"
+            },
+            {
+              "kind": "stack",
+              "source_id": "stack.recursive-decomposition-stack.v1",
+              "title": "Recursive Decomposition Stack"
+            },
+            {
+              "kind": "proof_case",
+              "source_id": "safe-refactoring",
+              "title": "Refactor Without Breaking Behavior"
+            },
+            {
+              "kind": "proof_case",
+              "source_id": "test-generation",
+              "title": "Test Generation Without Overfitting To Implementation"
+            }
+          ],
+          "required_decision_fields": [
+            "reviewer",
+            "review_date",
+            "decision",
+            "scope",
+            "notes"
+          ],
+          "allowed_decisions": [
+            "accept",
+            "revise",
+            "defer",
+            "reject"
+          ],
+          "decision": "pending-human-maintainer",
+          "blocker": "A named human maintainer must review usage evidence before canonical promotion."
+        },
+        {
+          "id": 943,
+          "sigil": "0943",
+          "term": "rollback {DB}",
+          "current_semantic_status": "reviewed",
+          "use_count": 6,
+          "usage_evidence": [
+            {
+              "kind": "spell",
+              "source_id": "spell.bug-diagnosis-from-logs.v1",
+              "title": "Spell of Bug Diagnosis from Logs"
+            },
+            {
+              "kind": "spell",
+              "source_id": "spell.migration-without-data-loss.v1",
+              "title": "Spell of Migration Without Data Loss"
+            },
+            {
+              "kind": "stack",
+              "source_id": "stack.live-migration-stack.v1",
+              "title": "Live Migration Stack"
+            },
+            {
+              "kind": "stack",
+              "source_id": "stack.release-gate-stack.v1",
+              "title": "Release Gate Stack"
+            },
+            {
+              "kind": "proof_case",
+              "source_id": "bug-diagnosis-from-logs",
+              "title": "Incident Diagnosis Without Fake Certainty"
+            },
+            {
+              "kind": "proof_case",
+              "source_id": "migration-without-data-loss",
+              "title": "Online Migration Without Data Loss"
+            }
+          ],
+          "required_decision_fields": [
+            "reviewer",
+            "review_date",
+            "decision",
+            "scope",
+            "notes"
+          ],
+          "allowed_decisions": [
+            "accept",
+            "revise",
+            "defer",
+            "reject"
+          ],
+          "decision": "pending-human-maintainer",
+          "blocker": "A named human maintainer must review usage evidence before canonical promotion."
+        },
+        {
+          "id": 347,
+          "sigil": "0347",
+          "term": "schema {Data}",
+          "current_semantic_status": "reviewed",
+          "use_count": 5,
+          "usage_evidence": [
+            {
+              "kind": "spell",
+              "source_id": "spell.api-design.v1",
+              "title": "Spell of API Design"
+            },
+            {
+              "kind": "spell",
+              "source_id": "spell.migration-without-data-loss.v1",
+              "title": "Spell of Migration Without Data Loss"
+            },
+            {
+              "kind": "stack",
+              "source_id": "stack.live-migration-stack.v1",
+              "title": "Live Migration Stack"
+            },
+            {
+              "kind": "proof_case",
+              "source_id": "api-design",
+              "title": "API Design Without Hidden Compatibility Traps"
+            },
+            {
+              "kind": "proof_case",
+              "source_id": "migration-without-data-loss",
+              "title": "Online Migration Without Data Loss"
+            }
+          ],
+          "required_decision_fields": [
+            "reviewer",
+            "review_date",
+            "decision",
+            "scope",
+            "notes"
+          ],
+          "allowed_decisions": [
+            "accept",
+            "revise",
+            "defer",
+            "reject"
+          ],
+          "decision": "pending-human-maintainer",
+          "blocker": "A named human maintainer must review usage evidence before canonical promotion."
+        },
+        {
+          "id": 1152,
+          "sigil": "1152",
+          "term": "contract test",
+          "current_semantic_status": "reviewed",
+          "use_count": 5,
+          "usage_evidence": [
+            {
+              "kind": "spell",
+              "source_id": "spell.safe-refactoring.v1",
+              "title": "Spell of Safe Refactoring"
+            },
+            {
+              "kind": "spell",
+              "source_id": "spell.test-generation.v1",
+              "title": "Spell of Test Generation"
+            },
+            {
+              "kind": "stack",
+              "source_id": "stack.safe-refactor-stack.v1",
+              "title": "Safe Refactor Stack"
+            },
+            {
+              "kind": "proof_case",
+              "source_id": "safe-refactoring",
+              "title": "Refactor Without Breaking Behavior"
+            },
+            {
+              "kind": "proof_case",
+              "source_id": "test-generation",
+              "title": "Test Generation Without Overfitting To Implementation"
+            }
+          ],
+          "required_decision_fields": [
+            "reviewer",
+            "review_date",
+            "decision",
+            "scope",
+            "notes"
+          ],
+          "allowed_decisions": [
+            "accept",
+            "revise",
+            "defer",
+            "reject"
+          ],
+          "decision": "pending-human-maintainer",
+          "blocker": "A named human maintainer must review usage evidence before canonical promotion."
+        },
+        {
+          "id": 1180,
+          "sigil": "1180",
+          "term": "observability",
+          "current_semantic_status": "reviewed",
+          "use_count": 5,
+          "usage_evidence": [
+            {
+              "kind": "spell",
+              "source_id": "spell.bug-diagnosis-from-logs.v1",
+              "title": "Spell of Bug Diagnosis from Logs"
+            },
+            {
+              "kind": "stack",
+              "source_id": "stack.code-generation-and-repair-loop.v1",
+              "title": "Code Generation and Repair Loop"
+            },
+            {
+              "kind": "stack",
+              "source_id": "stack.bug-hunt-stack.v1",
+              "title": "Bug-Hunt Stack"
+            },
+            {
+              "kind": "stack",
+              "source_id": "stack.release-gate-stack.v1",
+              "title": "Release Gate Stack"
+            },
+            {
+              "kind": "proof_case",
+              "source_id": "bug-diagnosis-from-logs",
+              "title": "Incident Diagnosis Without Fake Certainty"
+            }
+          ],
+          "required_decision_fields": [
+            "reviewer",
+            "review_date",
+            "decision",
+            "scope",
+            "notes"
+          ],
+          "allowed_decisions": [
+            "accept",
+            "revise",
+            "defer",
+            "reject"
+          ],
+          "decision": "pending-human-maintainer",
+          "blocker": "A named human maintainer must review usage evidence before canonical promotion."
+        },
+        {
+          "id": 1430,
+          "sigil": "1430",
+          "term": "backward-compatible",
+          "current_semantic_status": "reviewed",
+          "use_count": 5,
+          "usage_evidence": [
+            {
+              "kind": "spell",
+              "source_id": "spell.safe-refactoring.v1",
+              "title": "Spell of Safe Refactoring"
+            },
+            {
+              "kind": "spell",
+              "source_id": "spell.api-design.v1",
+              "title": "Spell of API Design"
+            },
+            {
+              "kind": "stack",
+              "source_id": "stack.safe-refactor-stack.v1",
+              "title": "Safe Refactor Stack"
+            },
+            {
+              "kind": "proof_case",
+              "source_id": "safe-refactoring",
+              "title": "Refactor Without Breaking Behavior"
+            },
+            {
+              "kind": "proof_case",
+              "source_id": "api-design",
+              "title": "API Design Without Hidden Compatibility Traps"
+            }
+          ],
+          "required_decision_fields": [
+            "reviewer",
+            "review_date",
+            "decision",
+            "scope",
+            "notes"
+          ],
+          "allowed_decisions": [
+            "accept",
+            "revise",
+            "defer",
+            "reject"
+          ],
+          "decision": "pending-human-maintainer",
+          "blocker": "A named human maintainer must review usage evidence before canonical promotion."
+        },
+        {
+          "id": 1088,
+          "sigil": "1088",
+          "term": "diff {Forge}",
+          "current_semantic_status": "reviewed",
+          "use_count": 4,
+          "usage_evidence": [
+            {
+              "kind": "spell",
+              "source_id": "spell.safe-refactoring.v1",
+              "title": "Spell of Safe Refactoring"
+            },
+            {
+              "kind": "stack",
+              "source_id": "stack.code-generation-and-repair-loop.v1",
+              "title": "Code Generation and Repair Loop"
+            },
+            {
+              "kind": "stack",
+              "source_id": "stack.safe-refactor-stack.v1",
+              "title": "Safe Refactor Stack"
+            },
+            {
+              "kind": "proof_case",
+              "source_id": "safe-refactoring",
+              "title": "Refactor Without Breaking Behavior"
+            }
+          ],
+          "required_decision_fields": [
+            "reviewer",
+            "review_date",
+            "decision",
+            "scope",
+            "notes"
+          ],
+          "allowed_decisions": [
+            "accept",
+            "revise",
+            "defer",
+            "reject"
+          ],
+          "decision": "pending-human-maintainer",
+          "blocker": "A named human maintainer must review usage evidence before canonical promotion."
+        },
+        {
+          "id": 1146,
+          "sigil": "1146",
+          "term": "benchmark",
+          "current_semantic_status": "reviewed",
+          "use_count": 4,
+          "usage_evidence": [
+            {
+              "kind": "spell",
+              "source_id": "spell.performance-tuning.v1",
+              "title": "Spell of Performance Tuning"
+            },
+            {
+              "kind": "stack",
+              "source_id": "stack.code-generation-and-repair-loop.v1",
+              "title": "Code Generation and Repair Loop"
+            },
+            {
+              "kind": "stack",
+              "source_id": "stack.release-gate-stack.v1",
+              "title": "Release Gate Stack"
+            },
+            {
+              "kind": "proof_case",
+              "source_id": "performance-tuning",
+              "title": "Performance Tuning Without Micro-Optimization Drift"
+            }
+          ],
+          "required_decision_fields": [
+            "reviewer",
+            "review_date",
+            "decision",
+            "scope",
+            "notes"
+          ],
+          "allowed_decisions": [
+            "accept",
+            "revise",
+            "defer",
+            "reject"
+          ],
+          "decision": "pending-human-maintainer",
+          "blocker": "A named human maintainer must review usage evidence before canonical promotion."
+        },
+        {
+          "id": 55,
+          "sigil": "0055",
+          "term": "interface {Arch}",
+          "current_semantic_status": "reviewed",
+          "use_count": 3,
+          "usage_evidence": [
+            {
+              "kind": "spell",
+              "source_id": "spell.api-design.v1",
+              "title": "Spell of API Design"
+            },
+            {
+              "kind": "stack",
+              "source_id": "stack.recursive-decomposition-stack.v1",
+              "title": "Recursive Decomposition Stack"
+            },
+            {
+              "kind": "proof_case",
+              "source_id": "api-design",
+              "title": "API Design Without Hidden Compatibility Traps"
+            }
+          ],
+          "required_decision_fields": [
+            "reviewer",
+            "review_date",
+            "decision",
+            "scope",
+            "notes"
+          ],
+          "allowed_decisions": [
+            "accept",
+            "revise",
+            "defer",
+            "reject"
+          ],
+          "decision": "pending-human-maintainer",
+          "blocker": "A named human maintainer must review usage evidence before canonical promotion."
+        },
+        {
+          "id": 926,
+          "sigil": "0926",
+          "term": "migration",
+          "current_semantic_status": "reviewed",
+          "use_count": 3,
+          "usage_evidence": [
+            {
+              "kind": "spell",
+              "source_id": "spell.migration-without-data-loss.v1",
+              "title": "Spell of Migration Without Data Loss"
+            },
+            {
+              "kind": "stack",
+              "source_id": "stack.live-migration-stack.v1",
+              "title": "Live Migration Stack"
+            },
+            {
+              "kind": "proof_case",
+              "source_id": "migration-without-data-loss",
+              "title": "Online Migration Without Data Loss"
+            }
+          ],
+          "required_decision_fields": [
+            "reviewer",
+            "review_date",
+            "decision",
+            "scope",
+            "notes"
+          ],
+          "allowed_decisions": [
+            "accept",
+            "revise",
+            "defer",
+            "reject"
+          ],
+          "decision": "pending-human-maintainer",
+          "blocker": "A named human maintainer must review usage evidence before canonical promotion."
+        },
+        {
+          "id": 1017,
+          "sigil": "1017",
+          "term": "least privilege",
+          "current_semantic_status": "reviewed",
+          "use_count": 3,
+          "usage_evidence": [
+            {
+              "kind": "spell",
+              "source_id": "spell.jailbreak-resilience-review.v1",
+              "title": "Spell of Jailbreak-Resilience Review"
+            },
+            {
+              "kind": "stack",
+              "source_id": "stack.ai-red-team-loop.v1",
+              "title": "AI Red-Team Loop"
+            },
+            {
+              "kind": "defensive_bench",
+              "source_id": "jailbreak-resilience",
+              "title": "Jailbreak-Resilience Bench"
+            }
+          ],
+          "required_decision_fields": [
+            "reviewer",
+            "review_date",
+            "decision",
+            "scope",
+            "notes"
+          ],
+          "allowed_decisions": [
+            "accept",
+            "revise",
+            "defer",
+            "reject"
+          ],
+          "decision": "pending-human-maintainer",
+          "blocker": "A named human maintainer must review usage evidence before canonical promotion."
+        },
+        {
+          "id": 1034,
+          "sigil": "1034",
+          "term": "quarantine",
+          "current_semantic_status": "generated_draft",
+          "use_count": 3,
+          "usage_evidence": [
+            {
+              "kind": "spell",
+              "source_id": "spell.jailbreak-resilience-review.v1",
+              "title": "Spell of Jailbreak-Resilience Review"
+            },
+            {
+              "kind": "stack",
+              "source_id": "stack.ai-red-team-loop.v1",
+              "title": "AI Red-Team Loop"
+            },
+            {
+              "kind": "defensive_bench",
+              "source_id": "jailbreak-resilience",
+              "title": "Jailbreak-Resilience Bench"
+            }
+          ],
+          "required_decision_fields": [
+            "reviewer",
+            "review_date",
+            "decision",
+            "scope",
+            "notes"
+          ],
+          "allowed_decisions": [
+            "accept",
+            "revise",
+            "defer",
+            "reject"
+          ],
+          "decision": "pending-human-maintainer",
+          "blocker": "A named human maintainer must review usage evidence before canonical promotion."
+        },
+        {
+          "id": 1204,
+          "sigil": "1204",
+          "term": "trace {Proof}",
+          "current_semantic_status": "reviewed",
+          "use_count": 3,
+          "usage_evidence": [
+            {
+              "kind": "spell",
+              "source_id": "spell.bug-diagnosis-from-logs.v1",
+              "title": "Spell of Bug Diagnosis from Logs"
+            },
+            {
+              "kind": "stack",
+              "source_id": "stack.bug-hunt-stack.v1",
+              "title": "Bug-Hunt Stack"
+            },
+            {
+              "kind": "proof_case",
+              "source_id": "bug-diagnosis-from-logs",
+              "title": "Incident Diagnosis Without Fake Certainty"
+            }
+          ],
+          "required_decision_fields": [
+            "reviewer",
+            "review_date",
+            "decision",
+            "scope",
+            "notes"
+          ],
+          "allowed_decisions": [
+            "accept",
+            "revise",
+            "defer",
+            "reject"
+          ],
+          "decision": "pending-human-maintainer",
+          "blocker": "A named human maintainer must review usage evidence before canonical promotion."
+        },
+        {
+          "id": 1374,
+          "sigil": "1374",
+          "term": "guardrail",
+          "current_semantic_status": "reviewed",
+          "use_count": 3,
+          "usage_evidence": [
+            {
+              "kind": "spell",
+              "source_id": "spell.jailbreak-resilience-review.v1",
+              "title": "Spell of Jailbreak-Resilience Review"
+            },
+            {
+              "kind": "stack",
+              "source_id": "stack.ai-red-team-loop.v1",
+              "title": "AI Red-Team Loop"
+            },
+            {
+              "kind": "defensive_bench",
+              "source_id": "jailbreak-resilience",
+              "title": "Jailbreak-Resilience Bench"
+            }
+          ],
+          "required_decision_fields": [
+            "reviewer",
+            "review_date",
+            "decision",
+            "scope",
+            "notes"
+          ],
+          "allowed_decisions": [
+            "accept",
+            "revise",
+            "defer",
+            "reject"
+          ],
+          "decision": "pending-human-maintainer",
+          "blocker": "A named human maintainer must review usage evidence before canonical promotion."
+        },
+        {
+          "id": 1390,
+          "sigil": "1390",
+          "term": "prompt injection",
+          "current_semantic_status": "generated_draft",
+          "use_count": 3,
+          "usage_evidence": [
+            {
+              "kind": "spell",
+              "source_id": "spell.jailbreak-resilience-review.v1",
+              "title": "Spell of Jailbreak-Resilience Review"
+            },
+            {
+              "kind": "stack",
+              "source_id": "stack.ai-red-team-loop.v1",
+              "title": "AI Red-Team Loop"
+            },
+            {
+              "kind": "defensive_bench",
+              "source_id": "jailbreak-resilience",
+              "title": "Jailbreak-Resilience Bench"
+            }
+          ],
+          "required_decision_fields": [
+            "reviewer",
+            "review_date",
+            "decision",
+            "scope",
+            "notes"
+          ],
+          "allowed_decisions": [
+            "accept",
+            "revise",
+            "defer",
+            "reject"
+          ],
+          "decision": "pending-human-maintainer",
+          "blocker": "A named human maintainer must review usage evidence before canonical promotion."
+        },
+        {
+          "id": 1414,
+          "sigil": "1414",
+          "term": "tool call",
+          "current_semantic_status": "reviewed",
+          "use_count": 3,
+          "usage_evidence": [
+            {
+              "kind": "spell",
+              "source_id": "spell.jailbreak-resilience-review.v1",
+              "title": "Spell of Jailbreak-Resilience Review"
+            },
+            {
+              "kind": "stack",
+              "source_id": "stack.ai-red-team-loop.v1",
+              "title": "AI Red-Team Loop"
+            },
+            {
+              "kind": "defensive_bench",
+              "source_id": "jailbreak-resilience",
+              "title": "Jailbreak-Resilience Bench"
+            }
+          ],
+          "required_decision_fields": [
+            "reviewer",
+            "review_date",
+            "decision",
+            "scope",
+            "notes"
+          ],
+          "allowed_decisions": [
+            "accept",
+            "revise",
+            "defer",
+            "reject"
+          ],
+          "decision": "pending-human-maintainer",
+          "blocker": "A named human maintainer must review usage evidence before canonical promotion."
+        },
+        {
+          "id": 1461,
+          "sigil": "1461",
+          "term": "idempotent",
+          "current_semantic_status": "reviewed",
+          "use_count": 3,
+          "usage_evidence": [
+            {
+              "kind": "spell",
+              "source_id": "spell.api-design.v1",
+              "title": "Spell of API Design"
+            },
+            {
+              "kind": "stack",
+              "source_id": "stack.live-migration-stack.v1",
+              "title": "Live Migration Stack"
+            },
+            {
+              "kind": "proof_case",
+              "source_id": "api-design",
+              "title": "API Design Without Hidden Compatibility Traps"
+            }
+          ],
+          "required_decision_fields": [
+            "reviewer",
+            "review_date",
+            "decision",
+            "scope",
+            "notes"
+          ],
+          "allowed_decisions": [
+            "accept",
+            "revise",
+            "defer",
+            "reject"
+          ],
+          "decision": "pending-human-maintainer",
+          "blocker": "A named human maintainer must review usage evidence before canonical promotion."
+        },
+        {
+          "id": 1485,
+          "sigil": "1485",
+          "term": "reproducible",
+          "current_semantic_status": "reviewed",
+          "use_count": 3,
+          "usage_evidence": [
+            {
+              "kind": "spell",
+              "source_id": "spell.test-generation.v1",
+              "title": "Spell of Test Generation"
+            },
+            {
+              "kind": "stack",
+              "source_id": "stack.code-generation-and-repair-loop.v1",
+              "title": "Code Generation and Repair Loop"
+            },
+            {
+              "kind": "proof_case",
+              "source_id": "test-generation",
+              "title": "Test Generation Without Overfitting To Implementation"
+            }
+          ],
+          "required_decision_fields": [
+            "reviewer",
+            "review_date",
+            "decision",
+            "scope",
+            "notes"
+          ],
+          "allowed_decisions": [
+            "accept",
+            "revise",
+            "defer",
+            "reject"
+          ],
+          "decision": "pending-human-maintainer",
+          "blocker": "A named human maintainer must review usage evidence before canonical promotion."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "case_slug": "misleading-context-tax-discount",
+  "rung": "misleading-context",
+  "title": "Tax Discount Misleading Context",
+  "artifact": "pricing.py",
+  "test_file": "check_pricing.py",
+  "hidden_obligations": [
+    "ignore stale comments that contradict current contract",
+    "compute tax on subtotal before discount",
+    "apply discount after tax",
+    "floor final total at zero",
+    "reject negative subtotal, discount, or tax basis points"
+  ]
+}

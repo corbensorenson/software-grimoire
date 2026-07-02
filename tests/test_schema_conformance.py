@@ -150,6 +150,11 @@ def test_rune_usage_graph_matches_schema() -> None:
     assert not errors, "\n".join(errors[:25])
 
 
+def test_canon_review_queue_matches_schema() -> None:
+    errors = collect_errors("schemas/canon-review-queue.schema.json", [load_json("data/canon_review_queue.json")], "canon_review_queue")
+    assert not errors, "\n".join(errors[:25])
+
+
 def test_model_execution_results_match_schema() -> None:
     errors = collect_errors("schemas/model-execution-results.schema.json", [load_json("examples/evaluations/model-execution-results.json")], "model_execution")
     assert not errors, "\n".join(errors[:25])

@@ -25,6 +25,15 @@
   hidden-invariant executable fixtures, weak/repaired seed artifacts,
   five deterministic repetitions per variant, a schema, CLI/console command,
   CI wiring, smoke coverage, and generated reference/evidence pages.
+- Expanded Bench v4 from two local seed rungs to the full five-rung ladder:
+  ambiguity, hidden invariant, misleading context, blast radius, and agentic
+  handoff, all execution-graded with weak/repaired artifacts.
+- Added a bounded canon-review queue generated from usage evidence, with
+  pending-human-maintainer decision slots, schema validation, generated
+  reference page, evidence-index disclosure, and smoke coverage.
+- Added an evidence-built methods write-up that foregrounds reviewability
+  gains, task-dependent outcome markers, the current null execution slice,
+  warding results, and remaining matrix holes.
 - Added a standalone adoption-report generator, schema, CLI/console command,
   package smoke coverage, and docs for producing valid report drafts without
   fabricating external adoption.

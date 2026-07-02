@@ -1,0 +1,13 @@
+{
+  "case_slug": "blast-radius-beta-flag",
+  "rung": "blast-radius",
+  "title": "Beta Flag Blast Radius",
+  "artifact": "change_manifest.json",
+  "test_file": "check_blast_radius.py",
+  "hidden_obligations": [
+    "implement beta_dashboard only in feature_flags.py",
+    "leave billing prices unchanged",
+    "declare the narrow changed-files set",
+    "preserve existing standard_dashboard behavior"
+  ]
+}
