@@ -43,7 +43,7 @@ def validate_lexicon(errors: list[str], houses: list[dict]) -> list[dict]:
     house_by_id = {h["id"]: h for h in houses}
     ids = set()
     for entry in lexicon:
-        for key in ["id", "sigil", "term", "raw_term", "house", "summary", "status", "source"]:
+        for key in ["id", "sigil", "term", "raw_term", "house", "anchor", "page", "summary", "status", "source"]:
             if key not in entry or entry[key] in ("", None):
                 fail(errors, f"Lexicon entry missing {key}: {entry.get('id')}")
         ident = entry["id"]
@@ -52,6 +52,8 @@ def validate_lexicon(errors: list[str], houses: list[dict]) -> list[dict]:
         ids.add(ident)
         if entry["sigil"] != f"{ident:04d}":
             fail(errors, f"Bad sigil for lexicon id {ident}")
+        if entry["anchor"] != f"rune-{ident:04d}":
+            fail(errors, f"Bad anchor for lexicon id {ident}: {entry['anchor']}")
         house = house_by_id.get(entry["house"])
         if not house:
             fail(errors, f"Unknown house for lexicon id {ident}: {entry['house']}")
@@ -83,8 +85,9 @@ def validate_major_and_pocket(errors: list[str], lexicon: list[dict]) -> None:
                 fail(errors, f"{label} id missing from lexicon: {ident}")
 
 
-def validate_spells(errors: list[str]) -> list[dict]:
+def validate_spells(errors: list[str], lexicon: list[dict]) -> list[dict]:
     spells = load("spells.json")
+    lex_ids = {entry["id"] for entry in lexicon}
     required = [
         "id",
         "title",
@@ -117,13 +120,18 @@ def validate_spells(errors: list[str]) -> list[dict]:
                     fail(errors, f"Full spell {spell['id']} missing limb {limb}")
         if not re.match(r"^spell://[a-z0-9-]+/[A-F0-9]{10}$", spell.get("working_seal", "")):
             fail(errors, f"Bad spell seal: {spell.get('working_seal')}")
+        for ident in spell.get("runes", []):
+            if ident not in lex_ids:
+                fail(errors, f"Spell {spell['id']} references missing rune {ident}")
     if len(spells) != 6:
         fail(errors, f"Expected 6 spells, found {len(spells)}")
     return spells
 
 
-def validate_stacks(errors: list[str]) -> list[dict]:
+def validate_stacks(errors: list[str], lexicon: list[dict], spells: list[dict]) -> list[dict]:
     stacks = load("stacks.json")
+    lex_ids = {entry["id"] for entry in lexicon}
+    spell_slugs = {spell["id"].split(".")[1] for spell in spells}
     ids = set()
     for stack in stacks:
         for key in ["id", "title", "version", "status", "enter", "frames", "on_fail", "exit", "working_seal", "formal_sigil"]:
@@ -144,6 +152,12 @@ def validate_stacks(errors: list[str]) -> list[dict]:
                 fail(errors, f"Loop stack missing until rule: {stack['id']}")
         if not re.match(r"^stack://[a-z0-9-]+/[A-F0-9]{10}$", stack.get("working_seal", "")):
             fail(errors, f"Bad stack seal: {stack.get('working_seal')}")
+        for ident in stack.get("runes", []):
+            if ident not in lex_ids:
+                fail(errors, f"Stack {stack['id']} references missing rune {ident}")
+        for slug in stack.get("related_spells", []):
+            if slug not in spell_slugs:
+                fail(errors, f"Stack {stack['id']} references missing spell slug {slug}")
     if len(stacks) != 6:
         fail(errors, f"Expected 6 stacks, found {len(stacks)}")
     return stacks
@@ -154,8 +168,8 @@ def main() -> int:
     houses = validate_houses(errors)
     lexicon = validate_lexicon(errors, houses)
     validate_major_and_pocket(errors, lexicon)
-    validate_spells(errors)
-    validate_stacks(errors)
+    spells = validate_spells(errors, lexicon)
+    validate_stacks(errors, lexicon, spells)
 
     if errors:
         for error in errors:
@@ -168,4 +182,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-

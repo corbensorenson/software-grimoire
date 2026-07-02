@@ -6,145 +6,1029 @@ title: "Transformation, Algorithms, and Working Verbs"
 
 Range: `0372-0511`.
 
-| Sigil | Term               | Summary                                                                                 |
-| ----- | ------------------ | --------------------------------------------------------------------------------------- |
-| 0372  | aggregate {Verb}   | A procedure-word; it tells software what kind of transformation is underway.            |
-| 0373  | amortize           | A procedure-word; it tells software what kind of transformation is underway.            |
-| 0374  | analyze            | A change-word; it alters form, order, or representation.                                |
-| 0375  | annotate           | An alchemical word; it moves data from one shape into another.                          |
-| 0376  | approximate {Verb} | An alchemical word; it moves data from one shape into another.                          |
-| 0377  | archive            | An alchemical word; it moves data from one shape into another.                          |
-| 0378  | assemble {Verb}    | A change-word; it alters form, order, or representation.                                |
-| 0379  | batch              | An alchemical word; it moves data from one shape into another.                          |
-| 0380  | bucket {Verb}      | An alchemical word; it moves data from one shape into another.                          |
-| 0381  | canonicalize       | A change-word; it alters form, order, or representation.                                |
-| 0382  | classify           | An alchemical word; it moves data from one shape into another.                          |
-| 0383  | clean              | A procedure-word; it tells software what kind of transformation is underway.            |
-| 0384  | clone              | A work-word; it describes how material is processed into some next state.               |
-| 0385  | coalesce           | A procedure-word; it tells software what kind of transformation is underway.            |
-| 0386  | collect            | An alchemical word; it moves data from one shape into another.                          |
-| 0387  | compact            | A procedure-word; it tells software what kind of transformation is underway.            |
-| 0388  | compare            | A procedure-word; it tells software what kind of transformation is underway.            |
-| 0389  | compile {Verb}     | A transmutation word; it transforms one language into another fit for execution.        |
-| 0390  | compress           | A change-word; it alters form, order, or representation.                                |
-| 0391  | compute            | A work-word; it describes how material is processed into some next state.               |
-| 0392  | condense           | A procedure-word; it tells software what kind of transformation is underway.            |
-| 0393  | convert            | A work-word; it describes how material is processed into some next state.               |
-| 0394  | correlate          | A work-word; it describes how material is processed into some next state.               |
-| 0395  | decode             | A change-word; it alters form, order, or representation.                                |
-| 0396  | decrypt {Verb}     | An unsealing word; protected meaning becomes legible again under the right key.         |
-| 0397  | deduplicate        | A change-word; it alters form, order, or representation.                                |
-| 0398  | defer {Verb}       | An alchemical word; it moves data from one shape into another.                          |
-| 0399  | delete             | A procedure-word; it tells software what kind of transformation is underway.            |
-| 0400  | denoise            | A procedure-word; it tells software what kind of transformation is underway.            |
-| 0401  | derive             | A procedure-word; it tells software what kind of transformation is underway.            |
-| 0402  | deserialize        | A work-word; it describes how material is processed into some next state.               |
-| 0403  | detect             | A work-word; it describes how material is processed into some next state.               |
-| 0404  | diff {Verb}        | A difference word; it names what changed between two states.                            |
-| 0405  | digest {Verb}      | A change-word; it alters form, order, or representation.                                |
-| 0406  | dispatch {Verb}    | A change-word; it alters form, order, or representation.                                |
-| 0407  | distribute         | A procedure-word; it tells software what kind of transformation is underway.            |
-| 0408  | drain              | An alchemical word; it moves data from one shape into another.                          |
-| 0409  | drop               | A work-word; it describes how material is processed into some next state.               |
-| 0410  | encode             | An alchemical word; it moves data from one shape into another.                          |
-| 0411  | encrypt {Verb}     | A warding word; it hides meaning from everyone except the right holder of the key.      |
-| 0412  | enumerate          | An alchemical word; it moves data from one shape into another.                          |
-| 0413  | evaluate           | A procedure-word; it tells software what kind of transformation is underway.            |
-| 0414  | expand             | A change-word; it alters form, order, or representation.                                |
-| 0415  | explode            | A work-word; it describes how material is processed into some next state.               |
-| 0416  | export {Verb}      | An alchemical word; it moves data from one shape into another.                          |
-| 0417  | extract            | A procedure-word; it tells software what kind of transformation is underway.            |
-| 0418  | fetch              | An alchemical word; it moves data from one shape into another.                          |
-| 0419  | filter             | An alchemical word; it moves data from one shape into another.                          |
-| 0420  | flatten            | An alchemical word; it moves data from one shape into another.                          |
-| 0421  | fold               | A work-word; it describes how material is processed into some next state.               |
-| 0422  | format             | A work-word; it describes how material is processed into some next state.               |
-| 0423  | fuse               | A procedure-word; it tells software what kind of transformation is underway.            |
-| 0424  | generate           | A procedure-word; it tells software what kind of transformation is underway.            |
-| 0425  | group              | A work-word; it describes how material is processed into some next state.               |
-| 0426  | hash {Verb}        | A condensation word; arbitrary input becomes a fixed fingerprint.                       |
-| 0427  | hoist              | A procedure-word; it tells software what kind of transformation is underway.            |
-| 0428  | hydrate            | A work-word; it describes how material is processed into some next state.               |
-| 0429  | infer              | A consequence word; it derives hidden structure from visible evidence.                  |
-| 0430  | inline {Verb}      | A procedure-word; it tells software what kind of transformation is underway.            |
-| 0431  | instrument         | A work-word; it describes how material is processed into some next state.               |
-| 0432  | integrate          | A procedure-word; it tells software what kind of transformation is underway.            |
-| 0433  | interpolate        | A procedure-word; it tells software what kind of transformation is underway.            |
-| 0434  | invert             | A change-word; it alters form, order, or representation.                                |
-| 0435  | isolate {Verb}     | A work-word; it describes how material is processed into some next state.               |
-| 0436  | join {Verb}        | A union word; separate streams, sets, or histories are brought into one result.         |
-| 0437  | lex                | A work-word; it describes how material is processed into some next state.               |
-| 0438  | link               | A joining word; separate symbols are resolved into one executable body.                 |
-| 0439  | map {Verb}         | An alchemical word; it moves data from one shape into another.                          |
-| 0440  | marshal            | A change-word; it alters form, order, or representation.                                |
-| 0441  | materialize        | A procedure-word; it tells software what kind of transformation is underway.            |
-| 0442  | measure            | An alchemical word; it moves data from one shape into another.                          |
-| 0443  | memoize            | An alchemical word; it moves data from one shape into another.                          |
-| 0444  | merge {Verb}       | A reconciliation word; separate lines of change are brought back together.              |
-| 0445  | migrate            | A work-word; it describes how material is processed into some next state.               |
-| 0446  | minify             | A change-word; it alters form, order, or representation.                                |
-| 0447  | model {Verb}       | A representative word; a simplified structure stands in for a larger reality.           |
-| 0448  | normalize          | A regularizing word; irregular forms are bent toward a standard shape.                  |
-| 0449  | optimize           | A work-word; it describes how material is processed into some next state.               |
-| 0450  | paginate           | A work-word; it describes how material is processed into some next state.               |
-| 0451  | parallelize        | A work-word; it describes how material is processed into some next state.               |
-| 0452  | parse              | A structure-finding word; raw symbols become an ordered tree or sequence.               |
-| 0453  | partition {Verb}   | An alchemical word; it moves data from one shape into another.                          |
-| 0454  | patch {Verb}       | A repair word; a bounded alteration is applied to an existing body.                     |
-| 0455  | pipeline {Verb}    | A procession word; work passes through ordered stages.                                  |
-| 0456  | prepare            | A procedure-word; it tells software what kind of transformation is underway.            |
-| 0457  | preprocess         | An alchemical word; it moves data from one shape into another.                          |
-| 0458  | profile            | A hotspot-seeking word; it reveals where time or resources are actually spent.          |
-| 0459  | project            | A procedure-word; it tells software what kind of transformation is underway.            |
-| 0460  | prune              | An alchemical word; it moves data from one shape into another.                          |
-| 0461  | quantize           | A work-word; it describes how material is processed into some next state.               |
-| 0462  | query              | An asking word; it requests structure or records from stored state.                     |
-| 0463  | rasterize          | A work-word; it describes how material is processed into some next state.               |
-| 0464  | rebalance          | A work-word; it describes how material is processed into some next state.               |
-| 0465  | reconcile          | A change-word; it alters form, order, or representation.                                |
-| 0466  | reconstruct        | A change-word; it alters form, order, or representation.                                |
-| 0467  | reduce             | A change-word; it alters form, order, or representation.                                |
-| 0468  | refactor           | A reshaping word; structure changes while intended behavior is preserved.               |
-| 0469  | reformat           | A change-word; it alters form, order, or representation.                                |
-| 0470  | rehydrate          | A change-word; it alters form, order, or representation.                                |
-| 0471  | reindex            | A procedure-word; it tells software what kind of transformation is underway.            |
-| 0472  | render             | A change-word; it alters form, order, or representation.                                |
-| 0473  | reorder            | A procedure-word; it tells software what kind of transformation is underway.            |
-| 0474  | replicate          | A work-word; it describes how material is processed into some next state.               |
-| 0475  | reshape            | A change-word; it alters form, order, or representation.                                |
-| 0476  | resolve            | A change-word; it alters form, order, or representation.                                |
-| 0477  | restore {Verb}     | A change-word; it alters form, order, or representation.                                |
-| 0478  | rewrite            | An alchemical word; it moves data from one shape into another.                          |
-| 0479  | sample             | An alchemical word; it moves data from one shape into another.                          |
-| 0480  | sanitize           | A procedure-word; it tells software what kind of transformation is underway.            |
-| 0481  | scan {Verb}        | A work-word; it describes how material is processed into some next state.               |
-| 0482  | schedule {Verb}    | A work-word; it describes how material is processed into some next state.               |
-| 0483  | search             | An alchemical word; it moves data from one shape into another.                          |
-| 0484  | segment {Verb}     | A procedure-word; it tells software what kind of transformation is underway.            |
-| 0485  | serialize          | A flattening word; structured state is turned into a transportable sequence.            |
-| 0486  | shard {Verb}       | A splitting word; one logical body is divided across multiple partitions.               |
-| 0487  | shuffle            | A work-word; it describes how material is processed into some next state.               |
-| 0488  | sign {Verb}        | A sealing word; origin or integrity is bound cryptographically to content.              |
-| 0489  | smooth             | An alchemical word; it moves data from one shape into another.                          |
-| 0490  | sort               | A change-word; it alters form, order, or representation.                                |
-| 0491  | specialize         | A work-word; it describes how material is processed into some next state.               |
-| 0492  | split              | A change-word; it alters form, order, or representation.                                |
-| 0493  | stage {Verb}       | A change-word; it alters form, order, or representation.                                |
-| 0494  | stream {Verb}      | A flow word; values arrive over time rather than all at once.                           |
-| 0495  | summarize          | A work-word; it describes how material is processed into some next state.               |
-| 0496  | synthesize         | An alchemical word; it moves data from one shape into another.                          |
-| 0497  | tokenize           | A work-word; it describes how material is processed into some next state.               |
-| 0498  | trace {Verb}       | A path-of-execution word preserved for later reading.                                   |
-| 0499  | train              | An alchemical word; it moves data from one shape into another.                          |
-| 0500  | transform          | A change word; the material remains connected to its former self while taking new form. |
-| 0501  | translate          | An alchemical word; it moves data from one shape into another.                          |
-| 0502  | transpose          | A procedure-word; it tells software what kind of transformation is underway.            |
-| 0503  | truncate           | An alchemical word; it moves data from one shape into another.                          |
-| 0504  | tune               | A change-word; it alters form, order, or representation.                                |
-| 0505  | unmarshal          | A procedure-word; it tells software what kind of transformation is underway.            |
-| 0506  | unpack             | An alchemical word; it moves data from one shape into another.                          |
-| 0507  | update             | A procedure-word; it tells software what kind of transformation is underway.            |
-| 0508  | validate {Verb}    | A gatekeeping word; inputs or outputs are checked against an expected form.             |
-| 0509  | vectorize          | A procedure-word; it tells software what kind of transformation is underway.            |
-| 0510  | verify             | A truth-checking verb; it demands evidence that a claim or result actually holds.       |
-| 0511  | zip                | A procedure-word; it tells software what kind of transformation is underway.            |
+Use the summary table for scanning. Each row links to the detailed anchored entry below.
+
+| Sigil | Term                             | Summary                                                                                 |
+| ----- | -------------------------------- | --------------------------------------------------------------------------------------- |
+| 0372  | [aggregate {Verb}](#rune-0372)   | A procedure-word; it tells software what kind of transformation is underway.            |
+| 0373  | [amortize](#rune-0373)           | A procedure-word; it tells software what kind of transformation is underway.            |
+| 0374  | [analyze](#rune-0374)            | A change-word; it alters form, order, or representation.                                |
+| 0375  | [annotate](#rune-0375)           | An alchemical word; it moves data from one shape into another.                          |
+| 0376  | [approximate {Verb}](#rune-0376) | An alchemical word; it moves data from one shape into another.                          |
+| 0377  | [archive](#rune-0377)            | An alchemical word; it moves data from one shape into another.                          |
+| 0378  | [assemble {Verb}](#rune-0378)    | A change-word; it alters form, order, or representation.                                |
+| 0379  | [batch](#rune-0379)              | An alchemical word; it moves data from one shape into another.                          |
+| 0380  | [bucket {Verb}](#rune-0380)      | An alchemical word; it moves data from one shape into another.                          |
+| 0381  | [canonicalize](#rune-0381)       | A change-word; it alters form, order, or representation.                                |
+| 0382  | [classify](#rune-0382)           | An alchemical word; it moves data from one shape into another.                          |
+| 0383  | [clean](#rune-0383)              | A procedure-word; it tells software what kind of transformation is underway.            |
+| 0384  | [clone](#rune-0384)              | A work-word; it describes how material is processed into some next state.               |
+| 0385  | [coalesce](#rune-0385)           | A procedure-word; it tells software what kind of transformation is underway.            |
+| 0386  | [collect](#rune-0386)            | An alchemical word; it moves data from one shape into another.                          |
+| 0387  | [compact](#rune-0387)            | A procedure-word; it tells software what kind of transformation is underway.            |
+| 0388  | [compare](#rune-0388)            | A procedure-word; it tells software what kind of transformation is underway.            |
+| 0389  | [compile {Verb}](#rune-0389)     | A transmutation word; it transforms one language into another fit for execution.        |
+| 0390  | [compress](#rune-0390)           | A change-word; it alters form, order, or representation.                                |
+| 0391  | [compute](#rune-0391)            | A work-word; it describes how material is processed into some next state.               |
+| 0392  | [condense](#rune-0392)           | A procedure-word; it tells software what kind of transformation is underway.            |
+| 0393  | [convert](#rune-0393)            | A work-word; it describes how material is processed into some next state.               |
+| 0394  | [correlate](#rune-0394)          | A work-word; it describes how material is processed into some next state.               |
+| 0395  | [decode](#rune-0395)             | A change-word; it alters form, order, or representation.                                |
+| 0396  | [decrypt {Verb}](#rune-0396)     | An unsealing word; protected meaning becomes legible again under the right key.         |
+| 0397  | [deduplicate](#rune-0397)        | A change-word; it alters form, order, or representation.                                |
+| 0398  | [defer {Verb}](#rune-0398)       | An alchemical word; it moves data from one shape into another.                          |
+| 0399  | [delete](#rune-0399)             | A procedure-word; it tells software what kind of transformation is underway.            |
+| 0400  | [denoise](#rune-0400)            | A procedure-word; it tells software what kind of transformation is underway.            |
+| 0401  | [derive](#rune-0401)             | A procedure-word; it tells software what kind of transformation is underway.            |
+| 0402  | [deserialize](#rune-0402)        | A work-word; it describes how material is processed into some next state.               |
+| 0403  | [detect](#rune-0403)             | A work-word; it describes how material is processed into some next state.               |
+| 0404  | [diff {Verb}](#rune-0404)        | A difference word; it names what changed between two states.                            |
+| 0405  | [digest {Verb}](#rune-0405)      | A change-word; it alters form, order, or representation.                                |
+| 0406  | [dispatch {Verb}](#rune-0406)    | A change-word; it alters form, order, or representation.                                |
+| 0407  | [distribute](#rune-0407)         | A procedure-word; it tells software what kind of transformation is underway.            |
+| 0408  | [drain](#rune-0408)              | An alchemical word; it moves data from one shape into another.                          |
+| 0409  | [drop](#rune-0409)               | A work-word; it describes how material is processed into some next state.               |
+| 0410  | [encode](#rune-0410)             | An alchemical word; it moves data from one shape into another.                          |
+| 0411  | [encrypt {Verb}](#rune-0411)     | A warding word; it hides meaning from everyone except the right holder of the key.      |
+| 0412  | [enumerate](#rune-0412)          | An alchemical word; it moves data from one shape into another.                          |
+| 0413  | [evaluate](#rune-0413)           | A procedure-word; it tells software what kind of transformation is underway.            |
+| 0414  | [expand](#rune-0414)             | A change-word; it alters form, order, or representation.                                |
+| 0415  | [explode](#rune-0415)            | A work-word; it describes how material is processed into some next state.               |
+| 0416  | [export {Verb}](#rune-0416)      | An alchemical word; it moves data from one shape into another.                          |
+| 0417  | [extract](#rune-0417)            | A procedure-word; it tells software what kind of transformation is underway.            |
+| 0418  | [fetch](#rune-0418)              | An alchemical word; it moves data from one shape into another.                          |
+| 0419  | [filter](#rune-0419)             | An alchemical word; it moves data from one shape into another.                          |
+| 0420  | [flatten](#rune-0420)            | An alchemical word; it moves data from one shape into another.                          |
+| 0421  | [fold](#rune-0421)               | A work-word; it describes how material is processed into some next state.               |
+| 0422  | [format](#rune-0422)             | A work-word; it describes how material is processed into some next state.               |
+| 0423  | [fuse](#rune-0423)               | A procedure-word; it tells software what kind of transformation is underway.            |
+| 0424  | [generate](#rune-0424)           | A procedure-word; it tells software what kind of transformation is underway.            |
+| 0425  | [group](#rune-0425)              | A work-word; it describes how material is processed into some next state.               |
+| 0426  | [hash {Verb}](#rune-0426)        | A condensation word; arbitrary input becomes a fixed fingerprint.                       |
+| 0427  | [hoist](#rune-0427)              | A procedure-word; it tells software what kind of transformation is underway.            |
+| 0428  | [hydrate](#rune-0428)            | A work-word; it describes how material is processed into some next state.               |
+| 0429  | [infer](#rune-0429)              | A consequence word; it derives hidden structure from visible evidence.                  |
+| 0430  | [inline {Verb}](#rune-0430)      | A procedure-word; it tells software what kind of transformation is underway.            |
+| 0431  | [instrument](#rune-0431)         | A work-word; it describes how material is processed into some next state.               |
+| 0432  | [integrate](#rune-0432)          | A procedure-word; it tells software what kind of transformation is underway.            |
+| 0433  | [interpolate](#rune-0433)        | A procedure-word; it tells software what kind of transformation is underway.            |
+| 0434  | [invert](#rune-0434)             | A change-word; it alters form, order, or representation.                                |
+| 0435  | [isolate {Verb}](#rune-0435)     | A work-word; it describes how material is processed into some next state.               |
+| 0436  | [join {Verb}](#rune-0436)        | A union word; separate streams, sets, or histories are brought into one result.         |
+| 0437  | [lex](#rune-0437)                | A work-word; it describes how material is processed into some next state.               |
+| 0438  | [link](#rune-0438)               | A joining word; separate symbols are resolved into one executable body.                 |
+| 0439  | [map {Verb}](#rune-0439)         | An alchemical word; it moves data from one shape into another.                          |
+| 0440  | [marshal](#rune-0440)            | A change-word; it alters form, order, or representation.                                |
+| 0441  | [materialize](#rune-0441)        | A procedure-word; it tells software what kind of transformation is underway.            |
+| 0442  | [measure](#rune-0442)            | An alchemical word; it moves data from one shape into another.                          |
+| 0443  | [memoize](#rune-0443)            | An alchemical word; it moves data from one shape into another.                          |
+| 0444  | [merge {Verb}](#rune-0444)       | A reconciliation word; separate lines of change are brought back together.              |
+| 0445  | [migrate](#rune-0445)            | A work-word; it describes how material is processed into some next state.               |
+| 0446  | [minify](#rune-0446)             | A change-word; it alters form, order, or representation.                                |
+| 0447  | [model {Verb}](#rune-0447)       | A representative word; a simplified structure stands in for a larger reality.           |
+| 0448  | [normalize](#rune-0448)          | A regularizing word; irregular forms are bent toward a standard shape.                  |
+| 0449  | [optimize](#rune-0449)           | A work-word; it describes how material is processed into some next state.               |
+| 0450  | [paginate](#rune-0450)           | A work-word; it describes how material is processed into some next state.               |
+| 0451  | [parallelize](#rune-0451)        | A work-word; it describes how material is processed into some next state.               |
+| 0452  | [parse](#rune-0452)              | A structure-finding word; raw symbols become an ordered tree or sequence.               |
+| 0453  | [partition {Verb}](#rune-0453)   | An alchemical word; it moves data from one shape into another.                          |
+| 0454  | [patch {Verb}](#rune-0454)       | A repair word; a bounded alteration is applied to an existing body.                     |
+| 0455  | [pipeline {Verb}](#rune-0455)    | A procession word; work passes through ordered stages.                                  |
+| 0456  | [prepare](#rune-0456)            | A procedure-word; it tells software what kind of transformation is underway.            |
+| 0457  | [preprocess](#rune-0457)         | An alchemical word; it moves data from one shape into another.                          |
+| 0458  | [profile](#rune-0458)            | A hotspot-seeking word; it reveals where time or resources are actually spent.          |
+| 0459  | [project](#rune-0459)            | A procedure-word; it tells software what kind of transformation is underway.            |
+| 0460  | [prune](#rune-0460)              | An alchemical word; it moves data from one shape into another.                          |
+| 0461  | [quantize](#rune-0461)           | A work-word; it describes how material is processed into some next state.               |
+| 0462  | [query](#rune-0462)              | An asking word; it requests structure or records from stored state.                     |
+| 0463  | [rasterize](#rune-0463)          | A work-word; it describes how material is processed into some next state.               |
+| 0464  | [rebalance](#rune-0464)          | A work-word; it describes how material is processed into some next state.               |
+| 0465  | [reconcile](#rune-0465)          | A change-word; it alters form, order, or representation.                                |
+| 0466  | [reconstruct](#rune-0466)        | A change-word; it alters form, order, or representation.                                |
+| 0467  | [reduce](#rune-0467)             | A change-word; it alters form, order, or representation.                                |
+| 0468  | [refactor](#rune-0468)           | A reshaping word; structure changes while intended behavior is preserved.               |
+| 0469  | [reformat](#rune-0469)           | A change-word; it alters form, order, or representation.                                |
+| 0470  | [rehydrate](#rune-0470)          | A change-word; it alters form, order, or representation.                                |
+| 0471  | [reindex](#rune-0471)            | A procedure-word; it tells software what kind of transformation is underway.            |
+| 0472  | [render](#rune-0472)             | A change-word; it alters form, order, or representation.                                |
+| 0473  | [reorder](#rune-0473)            | A procedure-word; it tells software what kind of transformation is underway.            |
+| 0474  | [replicate](#rune-0474)          | A work-word; it describes how material is processed into some next state.               |
+| 0475  | [reshape](#rune-0475)            | A change-word; it alters form, order, or representation.                                |
+| 0476  | [resolve](#rune-0476)            | A change-word; it alters form, order, or representation.                                |
+| 0477  | [restore {Verb}](#rune-0477)     | A change-word; it alters form, order, or representation.                                |
+| 0478  | [rewrite](#rune-0478)            | An alchemical word; it moves data from one shape into another.                          |
+| 0479  | [sample](#rune-0479)             | An alchemical word; it moves data from one shape into another.                          |
+| 0480  | [sanitize](#rune-0480)           | A procedure-word; it tells software what kind of transformation is underway.            |
+| 0481  | [scan {Verb}](#rune-0481)        | A work-word; it describes how material is processed into some next state.               |
+| 0482  | [schedule {Verb}](#rune-0482)    | A work-word; it describes how material is processed into some next state.               |
+| 0483  | [search](#rune-0483)             | An alchemical word; it moves data from one shape into another.                          |
+| 0484  | [segment {Verb}](#rune-0484)     | A procedure-word; it tells software what kind of transformation is underway.            |
+| 0485  | [serialize](#rune-0485)          | A flattening word; structured state is turned into a transportable sequence.            |
+| 0486  | [shard {Verb}](#rune-0486)       | A splitting word; one logical body is divided across multiple partitions.               |
+| 0487  | [shuffle](#rune-0487)            | A work-word; it describes how material is processed into some next state.               |
+| 0488  | [sign {Verb}](#rune-0488)        | A sealing word; origin or integrity is bound cryptographically to content.              |
+| 0489  | [smooth](#rune-0489)             | An alchemical word; it moves data from one shape into another.                          |
+| 0490  | [sort](#rune-0490)               | A change-word; it alters form, order, or representation.                                |
+| 0491  | [specialize](#rune-0491)         | A work-word; it describes how material is processed into some next state.               |
+| 0492  | [split](#rune-0492)              | A change-word; it alters form, order, or representation.                                |
+| 0493  | [stage {Verb}](#rune-0493)       | A change-word; it alters form, order, or representation.                                |
+| 0494  | [stream {Verb}](#rune-0494)      | A flow word; values arrive over time rather than all at once.                           |
+| 0495  | [summarize](#rune-0495)          | A work-word; it describes how material is processed into some next state.               |
+| 0496  | [synthesize](#rune-0496)         | An alchemical word; it moves data from one shape into another.                          |
+| 0497  | [tokenize](#rune-0497)           | A work-word; it describes how material is processed into some next state.               |
+| 0498  | [trace {Verb}](#rune-0498)       | A path-of-execution word preserved for later reading.                                   |
+| 0499  | [train](#rune-0499)              | An alchemical word; it moves data from one shape into another.                          |
+| 0500  | [transform](#rune-0500)          | A change word; the material remains connected to its former self while taking new form. |
+| 0501  | [translate](#rune-0501)          | An alchemical word; it moves data from one shape into another.                          |
+| 0502  | [transpose](#rune-0502)          | A procedure-word; it tells software what kind of transformation is underway.            |
+| 0503  | [truncate](#rune-0503)           | An alchemical word; it moves data from one shape into another.                          |
+| 0504  | [tune](#rune-0504)               | A change-word; it alters form, order, or representation.                                |
+| 0505  | [unmarshal](#rune-0505)          | A procedure-word; it tells software what kind of transformation is underway.            |
+| 0506  | [unpack](#rune-0506)             | An alchemical word; it moves data from one shape into another.                          |
+| 0507  | [update](#rune-0507)             | A procedure-word; it tells software what kind of transformation is underway.            |
+| 0508  | [validate {Verb}](#rune-0508)    | A gatekeeping word; inputs or outputs are checked against an expected form.             |
+| 0509  | [vectorize](#rune-0509)          | A procedure-word; it tells software what kind of transformation is underway.            |
+| 0510  | [verify](#rune-0510)             | A truth-checking verb; it demands evidence that a claim or result actually holds.       |
+| 0511  | [zip](#rune-0511)                | A procedure-word; it tells software what kind of transformation is underway.            |
+
+## Entries
+
+### [0372] aggregate {Verb} {#rune-0372}
+
+**Status:** canonical
+
+**Force:** A procedure-word; it tells software what kind of transformation is underway.
+
+### [0373] amortize {#rune-0373}
+
+**Status:** canonical
+
+**Force:** A procedure-word; it tells software what kind of transformation is underway.
+
+### [0374] analyze {#rune-0374}
+
+**Status:** canonical
+
+**Force:** A change-word; it alters form, order, or representation.
+
+### [0375] annotate {#rune-0375}
+
+**Status:** canonical
+
+**Force:** An alchemical word; it moves data from one shape into another.
+
+### [0376] approximate {Verb} {#rune-0376}
+
+**Status:** canonical
+
+**Force:** An alchemical word; it moves data from one shape into another.
+
+### [0377] archive {#rune-0377}
+
+**Status:** canonical
+
+**Force:** An alchemical word; it moves data from one shape into another.
+
+### [0378] assemble {Verb} {#rune-0378}
+
+**Status:** canonical
+
+**Force:** A change-word; it alters form, order, or representation.
+
+### [0379] batch {#rune-0379}
+
+**Status:** canonical
+
+**Force:** An alchemical word; it moves data from one shape into another.
+
+### [0380] bucket {Verb} {#rune-0380}
+
+**Status:** canonical
+
+**Force:** An alchemical word; it moves data from one shape into another.
+
+### [0381] canonicalize {#rune-0381}
+
+**Status:** canonical
+
+**Force:** A change-word; it alters form, order, or representation.
+
+### [0382] classify {#rune-0382}
+
+**Status:** canonical
+
+**Force:** An alchemical word; it moves data from one shape into another.
+
+### [0383] clean {#rune-0383}
+
+**Status:** canonical
+
+**Force:** A procedure-word; it tells software what kind of transformation is underway.
+
+### [0384] clone {#rune-0384}
+
+**Status:** canonical
+
+**Force:** A work-word; it describes how material is processed into some next state.
+
+### [0385] coalesce {#rune-0385}
+
+**Status:** canonical
+
+**Force:** A procedure-word; it tells software what kind of transformation is underway.
+
+### [0386] collect {#rune-0386}
+
+**Status:** canonical
+
+**Force:** An alchemical word; it moves data from one shape into another.
+
+### [0387] compact {#rune-0387}
+
+**Status:** canonical
+
+**Force:** A procedure-word; it tells software what kind of transformation is underway.
+
+### [0388] compare {#rune-0388}
+
+**Status:** canonical
+
+**Force:** A procedure-word; it tells software what kind of transformation is underway.
+
+### [0389] compile {Verb} {#rune-0389}
+
+**Status:** canonical
+
+**Force:** A transmutation word; it transforms one language into another fit for execution.
+
+### [0390] compress {#rune-0390}
+
+**Status:** canonical
+
+**Force:** A change-word; it alters form, order, or representation.
+
+### [0391] compute {#rune-0391}
+
+**Status:** canonical
+
+**Force:** A work-word; it describes how material is processed into some next state.
+
+### [0392] condense {#rune-0392}
+
+**Status:** canonical
+
+**Force:** A procedure-word; it tells software what kind of transformation is underway.
+
+### [0393] convert {#rune-0393}
+
+**Status:** canonical
+
+**Force:** A work-word; it describes how material is processed into some next state.
+
+### [0394] correlate {#rune-0394}
+
+**Status:** canonical
+
+**Force:** A work-word; it describes how material is processed into some next state.
+
+### [0395] decode {#rune-0395}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A change-word; it alters form, order, or representation.
+
+**Pocket gloss:** Turn encoded bytes or symbols back into usable meaning.
+
+### [0396] decrypt {Verb} {#rune-0396}
+
+**Status:** canonical
+
+**Force:** An unsealing word; protected meaning becomes legible again under the right key.
+
+### [0397] deduplicate {#rune-0397}
+
+**Status:** canonical
+
+**Force:** A change-word; it alters form, order, or representation.
+
+### [0398] defer {Verb} {#rune-0398}
+
+**Status:** canonical
+
+**Force:** An alchemical word; it moves data from one shape into another.
+
+### [0399] delete {#rune-0399}
+
+**Status:** canonical
+
+**Force:** A procedure-word; it tells software what kind of transformation is underway.
+
+### [0400] denoise {#rune-0400}
+
+**Status:** canonical
+
+**Force:** A procedure-word; it tells software what kind of transformation is underway.
+
+### [0401] derive {#rune-0401}
+
+**Status:** canonical
+
+**Force:** A procedure-word; it tells software what kind of transformation is underway.
+
+### [0402] deserialize {#rune-0402}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A work-word; it describes how material is processed into some next state.
+
+**Pocket gloss:** Rebuild structured state from a stored or transmitted form.
+
+### [0403] detect {#rune-0403}
+
+**Status:** canonical
+
+**Force:** A work-word; it describes how material is processed into some next state.
+
+### [0404] diff {Verb} {#rune-0404}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A difference word; it names what changed between two states.
+
+**Pocket gloss:** Make change visible by showing one state against another.
+
+### [0405] digest {Verb} {#rune-0405}
+
+**Status:** canonical
+
+**Force:** A change-word; it alters form, order, or representation.
+
+### [0406] dispatch {Verb} {#rune-0406}
+
+**Status:** canonical
+
+**Force:** A change-word; it alters form, order, or representation.
+
+### [0407] distribute {#rune-0407}
+
+**Status:** canonical
+
+**Force:** A procedure-word; it tells software what kind of transformation is underway.
+
+### [0408] drain {#rune-0408}
+
+**Status:** canonical
+
+**Force:** An alchemical word; it moves data from one shape into another.
+
+### [0409] drop {#rune-0409}
+
+**Status:** canonical
+
+**Force:** A work-word; it describes how material is processed into some next state.
+
+### [0410] encode {#rune-0410}
+
+**Status:** canonical (pocket canon)
+
+**Force:** An alchemical word; it moves data from one shape into another.
+
+**Pocket gloss:** Turn meaning into a transportable or storable representation.
+
+### [0411] encrypt {Verb} {#rune-0411}
+
+**Status:** canonical
+
+**Force:** A warding word; it hides meaning from everyone except the right holder of the key.
+
+### [0412] enumerate {#rune-0412}
+
+**Status:** canonical
+
+**Force:** An alchemical word; it moves data from one shape into another.
+
+### [0413] evaluate {#rune-0413}
+
+**Status:** canonical
+
+**Force:** A procedure-word; it tells software what kind of transformation is underway.
+
+### [0414] expand {#rune-0414}
+
+**Status:** canonical
+
+**Force:** A change-word; it alters form, order, or representation.
+
+### [0415] explode {#rune-0415}
+
+**Status:** canonical
+
+**Force:** A work-word; it describes how material is processed into some next state.
+
+### [0416] export {Verb} {#rune-0416}
+
+**Status:** canonical
+
+**Force:** An alchemical word; it moves data from one shape into another.
+
+### [0417] extract {#rune-0417}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A procedure-word; it tells software what kind of transformation is underway.
+
+**Pocket gloss:** Pull the needed part out of a larger body.
+
+### [0418] fetch {#rune-0418}
+
+**Status:** canonical
+
+**Force:** An alchemical word; it moves data from one shape into another.
+
+### [0419] filter {#rune-0419}
+
+**Status:** canonical (pocket canon)
+
+**Force:** An alchemical word; it moves data from one shape into another.
+
+**Pocket gloss:** Keep what matches; discard what does not.
+
+### [0420] flatten {#rune-0420}
+
+**Status:** canonical
+
+**Force:** An alchemical word; it moves data from one shape into another.
+
+### [0421] fold {#rune-0421}
+
+**Status:** canonical
+
+**Force:** A work-word; it describes how material is processed into some next state.
+
+### [0422] format {#rune-0422}
+
+**Status:** canonical
+
+**Force:** A work-word; it describes how material is processed into some next state.
+
+### [0423] fuse {#rune-0423}
+
+**Status:** canonical
+
+**Force:** A procedure-word; it tells software what kind of transformation is underway.
+
+### [0424] generate {#rune-0424}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A procedure-word; it tells software what kind of transformation is underway.
+
+**Pocket gloss:** Produce new structure, code, or data from rules or inputs.
+
+### [0425] group {#rune-0425}
+
+**Status:** canonical
+
+**Force:** A work-word; it describes how material is processed into some next state.
+
+### [0426] hash {Verb} {#rune-0426}
+
+**Status:** canonical
+
+**Force:** A condensation word; arbitrary input becomes a fixed fingerprint.
+
+### [0427] hoist {#rune-0427}
+
+**Status:** canonical
+
+**Force:** A procedure-word; it tells software what kind of transformation is underway.
+
+### [0428] hydrate {#rune-0428}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A work-word; it describes how material is processed into some next state.
+
+**Pocket gloss:** Reattach lightweight structure to a previously transferred shell.
+
+### [0429] infer {#rune-0429}
+
+**Status:** canonical
+
+**Force:** A consequence word; it derives hidden structure from visible evidence.
+
+### [0430] inline {Verb} {#rune-0430}
+
+**Status:** canonical
+
+**Force:** A procedure-word; it tells software what kind of transformation is underway.
+
+### [0431] instrument {#rune-0431}
+
+**Status:** canonical
+
+**Force:** A work-word; it describes how material is processed into some next state.
+
+### [0432] integrate {#rune-0432}
+
+**Status:** canonical
+
+**Force:** A procedure-word; it tells software what kind of transformation is underway.
+
+### [0433] interpolate {#rune-0433}
+
+**Status:** canonical
+
+**Force:** A procedure-word; it tells software what kind of transformation is underway.
+
+### [0434] invert {#rune-0434}
+
+**Status:** canonical
+
+**Force:** A change-word; it alters form, order, or representation.
+
+### [0435] isolate {Verb} {#rune-0435}
+
+**Status:** canonical
+
+**Force:** A work-word; it describes how material is processed into some next state.
+
+### [0436] join {Verb} {#rune-0436}
+
+**Status:** canonical
+
+**Force:** A union word; separate streams, sets, or histories are brought into one result.
+
+### [0437] lex {#rune-0437}
+
+**Status:** canonical
+
+**Force:** A work-word; it describes how material is processed into some next state.
+
+### [0438] link {#rune-0438}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A joining word; separate symbols are resolved into one executable body.
+
+**Pocket gloss:** Bind separate pieces into one connected whole.
+
+### [0439] map {Verb} {#rune-0439}
+
+**Status:** canonical
+
+**Force:** An alchemical word; it moves data from one shape into another.
+
+### [0440] marshal {#rune-0440}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A change-word; it alters form, order, or representation.
+
+**Pocket gloss:** Pack structured state into a transportable form.
+
+### [0441] materialize {#rune-0441}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A procedure-word; it tells software what kind of transformation is underway.
+
+**Pocket gloss:** Force a deferred or virtual thing into concrete existence.
+
+### [0442] measure {#rune-0442}
+
+**Status:** canonical
+
+**Force:** An alchemical word; it moves data from one shape into another.
+
+### [0443] memoize {#rune-0443}
+
+**Status:** canonical
+
+**Force:** An alchemical word; it moves data from one shape into another.
+
+### [0444] merge {Verb} {#rune-0444}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A reconciliation word; separate lines of change are brought back together.
+
+**Pocket gloss:** Combine many lines or branches into one resolved form.
+
+### [0445] migrate {#rune-0445}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A work-word; it describes how material is processed into some next state.
+
+**Pocket gloss:** Move shape, meaning, or state from one regime to another.
+
+### [0446] minify {#rune-0446}
+
+**Status:** canonical
+
+**Force:** A change-word; it alters form, order, or representation.
+
+### [0447] model {Verb} {#rune-0447}
+
+**Status:** canonical
+
+**Force:** A representative word; a simplified structure stands in for a larger reality.
+
+### [0448] normalize {#rune-0448}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A regularizing word; irregular forms are bent toward a standard shape.
+
+**Pocket gloss:** Force many possible surfaces into one agreed shape.
+
+### [0449] optimize {#rune-0449}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A work-word; it describes how material is processed into some next state.
+
+**Pocket gloss:** Trade time, space, or simplicity to improve a measured objective.
+
+### [0450] paginate {#rune-0450}
+
+**Status:** canonical
+
+**Force:** A work-word; it describes how material is processed into some next state.
+
+### [0451] parallelize {#rune-0451}
+
+**Status:** canonical
+
+**Force:** A work-word; it describes how material is processed into some next state.
+
+### [0452] parse {#rune-0452}
+
+**Status:** canonical
+
+**Force:** A structure-finding word; raw symbols become an ordered tree or sequence.
+
+### [0453] partition {Verb} {#rune-0453}
+
+**Status:** canonical (pocket canon)
+
+**Force:** An alchemical word; it moves data from one shape into another.
+
+**Pocket gloss:** Turn raw text into structured representation.
+
+### [0454] patch {Verb} {#rune-0454}
+
+**Status:** canonical
+
+**Force:** A repair word; a bounded alteration is applied to an existing body.
+
+### [0455] pipeline {Verb} {#rune-0455}
+
+**Status:** canonical
+
+**Force:** A procession word; work passes through ordered stages.
+
+### [0456] prepare {#rune-0456}
+
+**Status:** canonical
+
+**Force:** A procedure-word; it tells software what kind of transformation is underway.
+
+### [0457] preprocess {#rune-0457}
+
+**Status:** canonical
+
+**Force:** An alchemical word; it moves data from one shape into another.
+
+### [0458] profile {#rune-0458}
+
+**Status:** canonical
+
+**Force:** A hotspot-seeking word; it reveals where time or resources are actually spent.
+
+### [0459] project {#rune-0459}
+
+**Status:** canonical
+
+**Force:** A procedure-word; it tells software what kind of transformation is underway.
+
+### [0460] prune {#rune-0460}
+
+**Status:** canonical
+
+**Force:** An alchemical word; it moves data from one shape into another.
+
+### [0461] quantize {#rune-0461}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A work-word; it describes how material is processed into some next state.
+
+**Pocket gloss:** Change structure to improve clarity while preserving behavior.
+
+### [0462] query {#rune-0462}
+
+**Status:** canonical
+
+**Force:** An asking word; it requests structure or records from stored state.
+
+### [0463] rasterize {#rune-0463}
+
+**Status:** canonical
+
+**Force:** A work-word; it describes how material is processed into some next state.
+
+### [0464] rebalance {#rune-0464}
+
+**Status:** canonical
+
+**Force:** A work-word; it describes how material is processed into some next state.
+
+### [0465] reconcile {#rune-0465}
+
+**Status:** canonical
+
+**Force:** A change-word; it alters form, order, or representation.
+
+### [0466] reconstruct {#rune-0466}
+
+**Status:** canonical
+
+**Force:** A change-word; it alters form, order, or representation.
+
+### [0467] reduce {#rune-0467}
+
+**Status:** canonical
+
+**Force:** A change-word; it alters form, order, or representation.
+
+### [0468] refactor {#rune-0468}
+
+**Status:** canonical
+
+**Force:** A reshaping word; structure changes while intended behavior is preserved.
+
+### [0469] reformat {#rune-0469}
+
+**Status:** canonical
+
+**Force:** A change-word; it alters form, order, or representation.
+
+### [0470] rehydrate {#rune-0470}
+
+**Status:** canonical
+
+**Force:** A change-word; it alters form, order, or representation.
+
+### [0471] reindex {#rune-0471}
+
+**Status:** canonical
+
+**Force:** A procedure-word; it tells software what kind of transformation is underway.
+
+### [0472] render {#rune-0472}
+
+**Status:** canonical
+
+**Force:** A change-word; it alters form, order, or representation.
+
+### [0473] reorder {#rune-0473}
+
+**Status:** canonical
+
+**Force:** A procedure-word; it tells software what kind of transformation is underway.
+
+### [0474] replicate {#rune-0474}
+
+**Status:** canonical
+
+**Force:** A work-word; it describes how material is processed into some next state.
+
+### [0475] reshape {#rune-0475}
+
+**Status:** canonical
+
+**Force:** A change-word; it alters form, order, or representation.
+
+### [0476] resolve {#rune-0476}
+
+**Status:** canonical
+
+**Force:** A change-word; it alters form, order, or representation.
+
+### [0477] restore {Verb} {#rune-0477}
+
+**Status:** canonical
+
+**Force:** A change-word; it alters form, order, or representation.
+
+### [0478] rewrite {#rune-0478}
+
+**Status:** canonical
+
+**Force:** An alchemical word; it moves data from one shape into another.
+
+### [0479] sample {#rune-0479}
+
+**Status:** canonical
+
+**Force:** An alchemical word; it moves data from one shape into another.
+
+### [0480] sanitize {#rune-0480}
+
+**Status:** canonical
+
+**Force:** A procedure-word; it tells software what kind of transformation is underway.
+
+### [0481] scan {Verb} {#rune-0481}
+
+**Status:** canonical
+
+**Force:** A work-word; it describes how material is processed into some next state.
+
+### [0482] schedule {Verb} {#rune-0482}
+
+**Status:** canonical
+
+**Force:** A work-word; it describes how material is processed into some next state.
+
+### [0483] search {#rune-0483}
+
+**Status:** canonical
+
+**Force:** An alchemical word; it moves data from one shape into another.
+
+### [0484] segment {Verb} {#rune-0484}
+
+**Status:** canonical
+
+**Force:** A procedure-word; it tells software what kind of transformation is underway.
+
+### [0485] serialize {#rune-0485}
+
+**Status:** canonical
+
+**Force:** A flattening word; structured state is turned into a transportable sequence.
+
+### [0486] shard {Verb} {#rune-0486}
+
+**Status:** canonical
+
+**Force:** A splitting word; one logical body is divided across multiple partitions.
+
+### [0487] shuffle {#rune-0487}
+
+**Status:** canonical
+
+**Force:** A work-word; it describes how material is processed into some next state.
+
+### [0488] sign {Verb} {#rune-0488}
+
+**Status:** canonical
+
+**Force:** A sealing word; origin or integrity is bound cryptographically to content.
+
+### [0489] smooth {#rune-0489}
+
+**Status:** canonical (pocket canon)
+
+**Force:** An alchemical word; it moves data from one shape into another.
+
+**Pocket gloss:** Write structured state into bytes, text, or wire form.
+
+### [0490] sort {#rune-0490}
+
+**Status:** canonical
+
+**Force:** A change-word; it alters form, order, or representation.
+
+### [0491] specialize {#rune-0491}
+
+**Status:** canonical
+
+**Force:** A work-word; it describes how material is processed into some next state.
+
+### [0492] split {#rune-0492}
+
+**Status:** canonical
+
+**Force:** A change-word; it alters form, order, or representation.
+
+### [0493] stage {Verb} {#rune-0493}
+
+**Status:** canonical
+
+**Force:** A change-word; it alters form, order, or representation.
+
+### [0494] stream {Verb} {#rune-0494}
+
+**Status:** canonical
+
+**Force:** A flow word; values arrive over time rather than all at once.
+
+### [0495] summarize {#rune-0495}
+
+**Status:** canonical
+
+**Force:** A work-word; it describes how material is processed into some next state.
+
+### [0496] synthesize {#rune-0496}
+
+**Status:** canonical (pocket canon)
+
+**Force:** An alchemical word; it moves data from one shape into another.
+
+**Pocket gloss:** Change form, order, or representation while preserving some intended substance.
+
+### [0497] tokenize {#rune-0497}
+
+**Status:** canonical
+
+**Force:** A work-word; it describes how material is processed into some next state.
+
+### [0498] trace {Verb} {#rune-0498}
+
+**Status:** canonical
+
+**Force:** A path-of-execution word preserved for later reading.
+
+### [0499] train {#rune-0499}
+
+**Status:** canonical
+
+**Force:** An alchemical word; it moves data from one shape into another.
+
+### [0500] transform {#rune-0500}
+
+**Status:** canonical
+
+**Force:** A change word; the material remains connected to its former self while taking new form.
+
+### [0501] translate {#rune-0501}
+
+**Status:** canonical
+
+**Force:** An alchemical word; it moves data from one shape into another.
+
+### [0502] transpose {#rune-0502}
+
+**Status:** canonical
+
+**Force:** A procedure-word; it tells software what kind of transformation is underway.
+
+### [0503] truncate {#rune-0503}
+
+**Status:** canonical
+
+**Force:** An alchemical word; it moves data from one shape into another.
+
+### [0504] tune {#rune-0504}
+
+**Status:** canonical
+
+**Force:** A change-word; it alters form, order, or representation.
+
+### [0505] unmarshal {#rune-0505}
+
+**Status:** canonical
+
+**Force:** A procedure-word; it tells software what kind of transformation is underway.
+
+### [0506] unpack {#rune-0506}
+
+**Status:** canonical
+
+**Force:** An alchemical word; it moves data from one shape into another.
+
+### [0507] update {#rune-0507}
+
+**Status:** canonical
+
+**Force:** A procedure-word; it tells software what kind of transformation is underway.
+
+### [0508] validate {Verb} {#rune-0508}
+
+**Status:** canonical
+
+**Force:** A gatekeeping word; inputs or outputs are checked against an expected form.
+
+### [0509] vectorize {#rune-0509}
+
+**Status:** canonical
+
+**Force:** A procedure-word; it tells software what kind of transformation is underway.
+
+### [0510] verify {#rune-0510}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A truth-checking verb; it demands evidence that a claim or result actually holds.
+
+**Pocket gloss:** Demand evidence that a claim or result actually holds.
+
+### [0511] zip {#rune-0511}
+
+**Status:** canonical
+
+**Force:** A procedure-word; it tells software what kind of transformation is underway.

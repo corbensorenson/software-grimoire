@@ -6,85 +6,599 @@ title: "Hardware, Embedded, and Performance-Near Words"
 
 Range: `1211-1290`.
 
-| Sigil | Term                      | Summary                                                                                                                                           |
-| ----- | ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 1211  | accelerator               | A near-metal word; it matters when abstraction is no longer cheap enough.                                                                         |
-| 1212  | alignment {HW}            | An embodiment word; software here speaks almost directly to silicon or wire.                                                                      |
-| 1213  | ASIC                      | A machine-word; it reaches into clocks, buses, registers, or heat.                                                                                |
-| 1214  | assembly instruction      | A performance-and-physics word; it governs timing, placement, and finite material limits.                                                         |
-| 1215  | atomic instruction        | An embodiment word; software here speaks almost directly to silicon or wire.                                                                      |
-| 1216  | bandwidth {HW}            | A near-metal word; it matters when abstraction is no longer cheap enough.                                                                         |
-| 1217  | barrier {HW}              | A rendezvous word; no party crosses until all required parties arrive.                                                                            |
-| 1218  | bit width                 | An embodiment word; software here speaks almost directly to silicon or wire.                                                                      |
-| 1219  | boot ROM                  | A performance-and-physics word; it governs timing, placement, and finite material limits.                                                         |
-| 1220  | branch predictor          | A performance-and-physics word; it governs timing, placement, and finite material limits.                                                         |
-| 1221  | bus {HW}                  | A performance-and-physics word; it governs timing, placement, and finite material limits.                                                         |
-| 1222  | cache {HW}                | A nearness word; it keeps likely things close to reduce future cost.                                                                              |
-| 1223  | cache coherence           | A machine-word; it reaches into clocks, buses, registers, or heat.                                                                                |
-| 1224  | cache line {HW}           | A machine-word; it reaches into clocks, buses, registers, or heat.                                                                                |
-| 1225  | clock                     | A machine-word; it reaches into clocks, buses, registers, or heat.                                                                                |
-| 1226  | clock cycle               | A machine-word; it reaches into clocks, buses, registers, or heat.                                                                                |
-| 1227  | co-processor              | An embodiment word; software here speaks almost directly to silicon or wire.                                                                      |
-| 1228  | core {HW}                 | A near-metal word; it matters when abstraction is no longer cheap enough.                                                                         |
-| 1229  | CPU                       | A machine-word; it reaches into clocks, buses, registers, or heat.                                                                                |
-| 1230  | cycle budget              | An embodiment word; software here speaks almost directly to silicon or wire.                                                                      |
-| 1231  | DMA                       | A performance-and-physics word; it governs timing, placement, and finite material limits.                                                         |
-| 1232  | DRAM                      | A machine-word; it reaches into clocks, buses, registers, or heat.                                                                                |
-| 1233  | driver interrupt          | A near-metal word; it matters when abstraction is no longer cheap enough.                                                                         |
-| 1234  | EEPROM                    | A machine-word; it reaches into clocks, buses, registers, or heat.                                                                                |
-| 1235  | endianness                | A machine-word; it reaches into clocks, buses, registers, or heat.                                                                                |
-| 1236  | fence                     | A near-metal word; it matters when abstraction is no longer cheap enough.                                                                         |
-| 1237  | firmware {HW}             | A near-metal word; it matters when abstraction is no longer cheap enough.                                                                         |
-| 1238  | flash                     | A performance-and-physics word; it governs timing, placement, and finite material limits.                                                         |
-| 1239  | FPGA                      | A performance-and-physics word; it governs timing, placement, and finite material limits.                                                         |
-| 1240  | frame budget              | A performance-and-physics word; it governs timing, placement, and finite material limits.                                                         |
-| 1241  | frequency                 | A performance-and-physics word; it governs timing, placement, and finite material limits.                                                         |
-| 1242  | GPIO                      | An embodiment word; software here speaks almost directly to silicon or wire.                                                                      |
-| 1243  | GPU                       | A machine-word; it reaches into clocks, buses, registers, or heat.                                                                                |
-| 1244  | heat budget               | A near-metal word; it matters when abstraction is no longer cheap enough.                                                                         |
-| 1245  | I2C                       | A performance-and-physics word; it governs timing, placement, and finite material limits.                                                         |
-| 1246  | instruction cache         | A performance-and-physics word; it governs timing, placement, and finite material limits.                                                         |
-| 1247  | instruction pointer       | An embodiment word; software here speaks almost directly to silicon or wire.                                                                      |
-| 1248  | interrupt service routine | A machine-word; it reaches into clocks, buses, registers, or heat.                                                                                |
-| 1249  | ioctl boundary            | An embodiment word; software here speaks almost directly to silicon or wire.                                                                      |
-| 1250  | IPC cost                  | A near-metal word; it matters when abstraction is no longer cheap enough.                                                                         |
-| 1251  | ISA                       | A near-metal word; it matters when abstraction is no longer cheap enough.                                                                         |
-| 1252  | jitter {HW}               | A timing-noise word; repeated operations arrive with unstable spacing.                                                                            |
-| 1253  | JTAG                      | A performance-and-physics word; it governs timing, placement, and finite material limits.                                                         |
-| 1254  | kernel bypass             | An embodiment word; software here speaks almost directly to silicon or wire.                                                                      |
-| 1255  | latency budget            | An embodiment word; software here speaks almost directly to silicon or wire.                                                                      |
-| 1256  | memory channel            | A performance-and-physics word; it governs timing, placement, and finite material limits.                                                         |
-| 1257  | memory-mapped I/O         | A machine-word; it reaches into clocks, buses, registers, or heat.                                                                                |
-| 1258  | microcode                 | A near-metal word; it matters when abstraction is no longer cheap enough.                                                                         |
-| 1259  | MMIO                      | A performance-and-physics word; it governs timing, placement, and finite material limits.                                                         |
-| 1260  | NUMA                      | A near-metal word; it matters when abstraction is no longer cheap enough.                                                                         |
-| 1261  | NVRAM                     | A machine-word; it reaches into clocks, buses, registers, or heat.                                                                                |
-| 1262  | opcode {HW}               | A performance-and-physics word; it governs timing, placement, and finite material limits.                                                         |
-| 1263  | out-of-order execution    | An embodiment word; software here speaks almost directly to silicon or wire.                                                                      |
-| 1264  | PCIe                      | A near-metal word; it matters when abstraction is no longer cheap enough.                                                                         |
-| 1265  | pipeline {HW}             | A procession word; work passes through ordered stages.                                                                                            |
-| 1266  | power budget              | A machine-word; it reaches into clocks, buses, registers, or heat.                                                                                |
-| 1267  | prefetcher                | A machine-word; it reaches into clocks, buses, registers, or heat.                                                                                |
-| 1268  | real-time {HW}            | A machine-word; it reaches into clocks, buses, registers, or heat.                                                                                |
-| 1269  | register                  | A near-metal word; a tiny, privileged vessel close to execution itself.                                                                           |
-| 1270  | register file             | A near-metal word; it matters when abstraction is no longer cheap enough.                                                                         |
-| 1271  | reset vector              | A performance-and-physics word; it governs timing, placement, and finite material limits.                                                         |
-| 1272  | ROM                       | A performance-and-physics word; it governs timing, placement, and finite material limits.                                                         |
-| 1273  | RTOS                      | A machine-word; it reaches into clocks, buses, registers, or heat.                                                                                |
-| 1274  | runtime budget            | An embodiment word; software here speaks almost directly to silicon or wire.                                                                      |
-| 1275  | sensor loop               | A machine-word; it reaches into clocks, buses, registers, or heat.                                                                                |
-| 1276  | SIMD                      | A near-metal word; it matters when abstraction is no longer cheap enough.                                                                         |
-| 1277  | SPI                       | A machine-word; it reaches into clocks, buses, registers, or heat.                                                                                |
-| 1278  | SRAM                      | An embodiment word; software here speaks almost directly to silicon or wire.                                                                      |
-| 1279  | superscalar               | A near-metal word; it matters when abstraction is no longer cheap enough.                                                                         |
-| 1280  | thermal throttling        | A machine-word; it reaches into clocks, buses, registers, or heat.                                                                                |
-| 1281  | throughput                | How much useful work the system can push through a narrow world in bounded time. Shadow: chasing bulk capacity while tail latency burns the user. |
-| 1282  | timing window             | A machine-word; it reaches into clocks, buses, registers, or heat.                                                                                |
-| 1283  | TPU                       | A near-metal word; it matters when abstraction is no longer cheap enough.                                                                         |
-| 1284  | UART                      | A machine-word; it reaches into clocks, buses, registers, or heat.                                                                                |
-| 1285  | utilization               | A machine-word; it reaches into clocks, buses, registers, or heat.                                                                                |
-| 1286  | vector unit               | An embodiment word; software here speaks almost directly to silicon or wire.                                                                      |
-| 1287  | volatile                  | A machine-word; it reaches into clocks, buses, registers, or heat.                                                                                |
-| 1288  | watchdog timer            | A performance-and-physics word; it governs timing, placement, and finite material limits.                                                         |
-| 1289  | wire speed                | A machine-word; it reaches into clocks, buses, registers, or heat.                                                                                |
-| 1290  | zero-copy {HW}            | A nearness-and-efficiency word; data moves without redundant duplication.                                                                         |
+Use the summary table for scanning. Each row links to the detailed anchored entry below.
+
+| Sigil | Term                                    | Summary                                                                                                                                           |
+| ----- | --------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1211  | [accelerator](#rune-1211)               | A near-metal word; it matters when abstraction is no longer cheap enough.                                                                         |
+| 1212  | [alignment {HW}](#rune-1212)            | An embodiment word; software here speaks almost directly to silicon or wire.                                                                      |
+| 1213  | [ASIC](#rune-1213)                      | A machine-word; it reaches into clocks, buses, registers, or heat.                                                                                |
+| 1214  | [assembly instruction](#rune-1214)      | A performance-and-physics word; it governs timing, placement, and finite material limits.                                                         |
+| 1215  | [atomic instruction](#rune-1215)        | An embodiment word; software here speaks almost directly to silicon or wire.                                                                      |
+| 1216  | [bandwidth {HW}](#rune-1216)            | A near-metal word; it matters when abstraction is no longer cheap enough.                                                                         |
+| 1217  | [barrier {HW}](#rune-1217)              | A rendezvous word; no party crosses until all required parties arrive.                                                                            |
+| 1218  | [bit width](#rune-1218)                 | An embodiment word; software here speaks almost directly to silicon or wire.                                                                      |
+| 1219  | [boot ROM](#rune-1219)                  | A performance-and-physics word; it governs timing, placement, and finite material limits.                                                         |
+| 1220  | [branch predictor](#rune-1220)          | A performance-and-physics word; it governs timing, placement, and finite material limits.                                                         |
+| 1221  | [bus {HW}](#rune-1221)                  | A performance-and-physics word; it governs timing, placement, and finite material limits.                                                         |
+| 1222  | [cache {HW}](#rune-1222)                | A nearness word; it keeps likely things close to reduce future cost.                                                                              |
+| 1223  | [cache coherence](#rune-1223)           | A machine-word; it reaches into clocks, buses, registers, or heat.                                                                                |
+| 1224  | [cache line {HW}](#rune-1224)           | A machine-word; it reaches into clocks, buses, registers, or heat.                                                                                |
+| 1225  | [clock](#rune-1225)                     | A machine-word; it reaches into clocks, buses, registers, or heat.                                                                                |
+| 1226  | [clock cycle](#rune-1226)               | A machine-word; it reaches into clocks, buses, registers, or heat.                                                                                |
+| 1227  | [co-processor](#rune-1227)              | An embodiment word; software here speaks almost directly to silicon or wire.                                                                      |
+| 1228  | [core {HW}](#rune-1228)                 | A near-metal word; it matters when abstraction is no longer cheap enough.                                                                         |
+| 1229  | [CPU](#rune-1229)                       | A machine-word; it reaches into clocks, buses, registers, or heat.                                                                                |
+| 1230  | [cycle budget](#rune-1230)              | An embodiment word; software here speaks almost directly to silicon or wire.                                                                      |
+| 1231  | [DMA](#rune-1231)                       | A performance-and-physics word; it governs timing, placement, and finite material limits.                                                         |
+| 1232  | [DRAM](#rune-1232)                      | A machine-word; it reaches into clocks, buses, registers, or heat.                                                                                |
+| 1233  | [driver interrupt](#rune-1233)          | A near-metal word; it matters when abstraction is no longer cheap enough.                                                                         |
+| 1234  | [EEPROM](#rune-1234)                    | A machine-word; it reaches into clocks, buses, registers, or heat.                                                                                |
+| 1235  | [endianness](#rune-1235)                | A machine-word; it reaches into clocks, buses, registers, or heat.                                                                                |
+| 1236  | [fence](#rune-1236)                     | A near-metal word; it matters when abstraction is no longer cheap enough.                                                                         |
+| 1237  | [firmware {HW}](#rune-1237)             | A near-metal word; it matters when abstraction is no longer cheap enough.                                                                         |
+| 1238  | [flash](#rune-1238)                     | A performance-and-physics word; it governs timing, placement, and finite material limits.                                                         |
+| 1239  | [FPGA](#rune-1239)                      | A performance-and-physics word; it governs timing, placement, and finite material limits.                                                         |
+| 1240  | [frame budget](#rune-1240)              | A performance-and-physics word; it governs timing, placement, and finite material limits.                                                         |
+| 1241  | [frequency](#rune-1241)                 | A performance-and-physics word; it governs timing, placement, and finite material limits.                                                         |
+| 1242  | [GPIO](#rune-1242)                      | An embodiment word; software here speaks almost directly to silicon or wire.                                                                      |
+| 1243  | [GPU](#rune-1243)                       | A machine-word; it reaches into clocks, buses, registers, or heat.                                                                                |
+| 1244  | [heat budget](#rune-1244)               | A near-metal word; it matters when abstraction is no longer cheap enough.                                                                         |
+| 1245  | [I2C](#rune-1245)                       | A performance-and-physics word; it governs timing, placement, and finite material limits.                                                         |
+| 1246  | [instruction cache](#rune-1246)         | A performance-and-physics word; it governs timing, placement, and finite material limits.                                                         |
+| 1247  | [instruction pointer](#rune-1247)       | An embodiment word; software here speaks almost directly to silicon or wire.                                                                      |
+| 1248  | [interrupt service routine](#rune-1248) | A machine-word; it reaches into clocks, buses, registers, or heat.                                                                                |
+| 1249  | [ioctl boundary](#rune-1249)            | An embodiment word; software here speaks almost directly to silicon or wire.                                                                      |
+| 1250  | [IPC cost](#rune-1250)                  | A near-metal word; it matters when abstraction is no longer cheap enough.                                                                         |
+| 1251  | [ISA](#rune-1251)                       | A near-metal word; it matters when abstraction is no longer cheap enough.                                                                         |
+| 1252  | [jitter {HW}](#rune-1252)               | A timing-noise word; repeated operations arrive with unstable spacing.                                                                            |
+| 1253  | [JTAG](#rune-1253)                      | A performance-and-physics word; it governs timing, placement, and finite material limits.                                                         |
+| 1254  | [kernel bypass](#rune-1254)             | An embodiment word; software here speaks almost directly to silicon or wire.                                                                      |
+| 1255  | [latency budget](#rune-1255)            | An embodiment word; software here speaks almost directly to silicon or wire.                                                                      |
+| 1256  | [memory channel](#rune-1256)            | A performance-and-physics word; it governs timing, placement, and finite material limits.                                                         |
+| 1257  | [memory-mapped I/O](#rune-1257)         | A machine-word; it reaches into clocks, buses, registers, or heat.                                                                                |
+| 1258  | [microcode](#rune-1258)                 | A near-metal word; it matters when abstraction is no longer cheap enough.                                                                         |
+| 1259  | [MMIO](#rune-1259)                      | A performance-and-physics word; it governs timing, placement, and finite material limits.                                                         |
+| 1260  | [NUMA](#rune-1260)                      | A near-metal word; it matters when abstraction is no longer cheap enough.                                                                         |
+| 1261  | [NVRAM](#rune-1261)                     | A machine-word; it reaches into clocks, buses, registers, or heat.                                                                                |
+| 1262  | [opcode {HW}](#rune-1262)               | A performance-and-physics word; it governs timing, placement, and finite material limits.                                                         |
+| 1263  | [out-of-order execution](#rune-1263)    | An embodiment word; software here speaks almost directly to silicon or wire.                                                                      |
+| 1264  | [PCIe](#rune-1264)                      | A near-metal word; it matters when abstraction is no longer cheap enough.                                                                         |
+| 1265  | [pipeline {HW}](#rune-1265)             | A procession word; work passes through ordered stages.                                                                                            |
+| 1266  | [power budget](#rune-1266)              | A machine-word; it reaches into clocks, buses, registers, or heat.                                                                                |
+| 1267  | [prefetcher](#rune-1267)                | A machine-word; it reaches into clocks, buses, registers, or heat.                                                                                |
+| 1268  | [real-time {HW}](#rune-1268)            | A machine-word; it reaches into clocks, buses, registers, or heat.                                                                                |
+| 1269  | [register](#rune-1269)                  | A near-metal word; a tiny, privileged vessel close to execution itself.                                                                           |
+| 1270  | [register file](#rune-1270)             | A near-metal word; it matters when abstraction is no longer cheap enough.                                                                         |
+| 1271  | [reset vector](#rune-1271)              | A performance-and-physics word; it governs timing, placement, and finite material limits.                                                         |
+| 1272  | [ROM](#rune-1272)                       | A performance-and-physics word; it governs timing, placement, and finite material limits.                                                         |
+| 1273  | [RTOS](#rune-1273)                      | A machine-word; it reaches into clocks, buses, registers, or heat.                                                                                |
+| 1274  | [runtime budget](#rune-1274)            | An embodiment word; software here speaks almost directly to silicon or wire.                                                                      |
+| 1275  | [sensor loop](#rune-1275)               | A machine-word; it reaches into clocks, buses, registers, or heat.                                                                                |
+| 1276  | [SIMD](#rune-1276)                      | A near-metal word; it matters when abstraction is no longer cheap enough.                                                                         |
+| 1277  | [SPI](#rune-1277)                       | A machine-word; it reaches into clocks, buses, registers, or heat.                                                                                |
+| 1278  | [SRAM](#rune-1278)                      | An embodiment word; software here speaks almost directly to silicon or wire.                                                                      |
+| 1279  | [superscalar](#rune-1279)               | A near-metal word; it matters when abstraction is no longer cheap enough.                                                                         |
+| 1280  | [thermal throttling](#rune-1280)        | A machine-word; it reaches into clocks, buses, registers, or heat.                                                                                |
+| 1281  | [throughput](#rune-1281)                | How much useful work the system can push through a narrow world in bounded time. Shadow: chasing bulk capacity while tail latency burns the user. |
+| 1282  | [timing window](#rune-1282)             | A machine-word; it reaches into clocks, buses, registers, or heat.                                                                                |
+| 1283  | [TPU](#rune-1283)                       | A near-metal word; it matters when abstraction is no longer cheap enough.                                                                         |
+| 1284  | [UART](#rune-1284)                      | A machine-word; it reaches into clocks, buses, registers, or heat.                                                                                |
+| 1285  | [utilization](#rune-1285)               | A machine-word; it reaches into clocks, buses, registers, or heat.                                                                                |
+| 1286  | [vector unit](#rune-1286)               | An embodiment word; software here speaks almost directly to silicon or wire.                                                                      |
+| 1287  | [volatile](#rune-1287)                  | A machine-word; it reaches into clocks, buses, registers, or heat.                                                                                |
+| 1288  | [watchdog timer](#rune-1288)            | A performance-and-physics word; it governs timing, placement, and finite material limits.                                                         |
+| 1289  | [wire speed](#rune-1289)                | A machine-word; it reaches into clocks, buses, registers, or heat.                                                                                |
+| 1290  | [zero-copy {HW}](#rune-1290)            | A nearness-and-efficiency word; data moves without redundant duplication.                                                                         |
+
+## Entries
+
+### [1211] accelerator {#rune-1211}
+
+**Status:** canonical
+
+**Force:** A near-metal word; it matters when abstraction is no longer cheap enough.
+
+### [1212] alignment {HW} {#rune-1212}
+
+**Status:** canonical
+
+**Force:** An embodiment word; software here speaks almost directly to silicon or wire.
+
+### [1213] ASIC {#rune-1213}
+
+**Status:** canonical
+
+**Force:** A machine-word; it reaches into clocks, buses, registers, or heat.
+
+### [1214] assembly instruction {#rune-1214}
+
+**Status:** canonical
+
+**Force:** A performance-and-physics word; it governs timing, placement, and finite material limits.
+
+### [1215] atomic instruction {#rune-1215}
+
+**Status:** canonical (pocket canon)
+
+**Force:** An embodiment word; software here speaks almost directly to silicon or wire.
+
+**Pocket gloss:** An indivisible machine operation at instruction level.
+
+### [1216] bandwidth {HW} {#rune-1216}
+
+**Status:** canonical
+
+**Force:** A near-metal word; it matters when abstraction is no longer cheap enough.
+
+### [1217] barrier {HW} {#rune-1217}
+
+**Status:** canonical
+
+**Force:** A rendezvous word; no party crosses until all required parties arrive.
+
+### [1218] bit width {#rune-1218}
+
+**Status:** canonical
+
+**Force:** An embodiment word; software here speaks almost directly to silicon or wire.
+
+### [1219] boot ROM {#rune-1219}
+
+**Status:** canonical
+
+**Force:** A performance-and-physics word; it governs timing, placement, and finite material limits.
+
+### [1220] branch predictor {#rune-1220}
+
+**Status:** canonical
+
+**Force:** A performance-and-physics word; it governs timing, placement, and finite material limits.
+
+### [1221] bus {HW} {#rune-1221}
+
+**Status:** canonical
+
+**Force:** A performance-and-physics word; it governs timing, placement, and finite material limits.
+
+### [1222] cache {HW} {#rune-1222}
+
+**Status:** canonical
+
+**Force:** A nearness word; it keeps likely things close to reduce future cost.
+
+### [1223] cache coherence {#rune-1223}
+
+**Status:** canonical
+
+**Force:** A machine-word; it reaches into clocks, buses, registers, or heat.
+
+### [1224] cache line {HW} {#rune-1224}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A machine-word; it reaches into clocks, buses, registers, or heat.
+
+**Pocket gloss:** The coherence-sized chunk of cached memory; too much sharing here hurts.
+
+### [1225] clock {#rune-1225}
+
+**Status:** canonical
+
+**Force:** A machine-word; it reaches into clocks, buses, registers, or heat.
+
+### [1226] clock cycle {#rune-1226}
+
+**Status:** canonical
+
+**Force:** A machine-word; it reaches into clocks, buses, registers, or heat.
+
+### [1227] co-processor {#rune-1227}
+
+**Status:** canonical
+
+**Force:** An embodiment word; software here speaks almost directly to silicon or wire.
+
+### [1228] core {HW} {#rune-1228}
+
+**Status:** canonical
+
+**Force:** A near-metal word; it matters when abstraction is no longer cheap enough.
+
+### [1229] CPU {#rune-1229}
+
+**Status:** canonical
+
+**Force:** A machine-word; it reaches into clocks, buses, registers, or heat.
+
+### [1230] cycle budget {#rune-1230}
+
+**Status:** canonical
+
+**Force:** An embodiment word; software here speaks almost directly to silicon or wire.
+
+### [1231] DMA {#rune-1231}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A performance-and-physics word; it governs timing, placement, and finite material limits.
+
+**Pocket gloss:** Direct memory access: device moves bytes without making the CPU do every step.
+
+### [1232] DRAM {#rune-1232}
+
+**Status:** canonical
+
+**Force:** A machine-word; it reaches into clocks, buses, registers, or heat.
+
+### [1233] driver interrupt {#rune-1233}
+
+**Status:** canonical
+
+**Force:** A near-metal word; it matters when abstraction is no longer cheap enough.
+
+### [1234] EEPROM {#rune-1234}
+
+**Status:** canonical
+
+**Force:** A machine-word; it reaches into clocks, buses, registers, or heat.
+
+### [1235] endianness {#rune-1235}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A machine-word; it reaches into clocks, buses, registers, or heat.
+
+**Pocket gloss:** The byte order in which multi-byte values are laid out.
+
+### [1236] fence {#rune-1236}
+
+**Status:** canonical
+
+**Force:** A near-metal word; it matters when abstraction is no longer cheap enough.
+
+### [1237] firmware {HW} {#rune-1237}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A near-metal word; it matters when abstraction is no longer cheap enough.
+
+**Pocket gloss:** Software that is closer to the board than the application.
+
+### [1238] flash {#rune-1238}
+
+**Status:** canonical
+
+**Force:** A performance-and-physics word; it governs timing, placement, and finite material limits.
+
+### [1239] FPGA {#rune-1239}
+
+**Status:** canonical
+
+**Force:** A performance-and-physics word; it governs timing, placement, and finite material limits.
+
+### [1240] frame budget {#rune-1240}
+
+**Status:** canonical
+
+**Force:** A performance-and-physics word; it governs timing, placement, and finite material limits.
+
+### [1241] frequency {#rune-1241}
+
+**Status:** canonical
+
+**Force:** A performance-and-physics word; it governs timing, placement, and finite material limits.
+
+### [1242] GPIO {#rune-1242}
+
+**Status:** canonical
+
+**Force:** An embodiment word; software here speaks almost directly to silicon or wire.
+
+### [1243] GPU {#rune-1243}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A machine-word; it reaches into clocks, buses, registers, or heat.
+
+**Pocket gloss:** A massively parallel processor built for throughput-heavy workloads.
+
+### [1244] heat budget {#rune-1244}
+
+**Status:** canonical
+
+**Force:** A near-metal word; it matters when abstraction is no longer cheap enough.
+
+### [1245] I2C {#rune-1245}
+
+**Status:** canonical
+
+**Force:** A performance-and-physics word; it governs timing, placement, and finite material limits.
+
+### [1246] instruction cache {#rune-1246}
+
+**Status:** canonical
+
+**Force:** A performance-and-physics word; it governs timing, placement, and finite material limits.
+
+### [1247] instruction pointer {#rune-1247}
+
+**Status:** canonical
+
+**Force:** An embodiment word; software here speaks almost directly to silicon or wire.
+
+### [1248] interrupt service routine {#rune-1248}
+
+**Status:** canonical
+
+**Force:** A machine-word; it reaches into clocks, buses, registers, or heat.
+
+### [1249] ioctl boundary {#rune-1249}
+
+**Status:** canonical
+
+**Force:** An embodiment word; software here speaks almost directly to silicon or wire.
+
+### [1250] IPC cost {#rune-1250}
+
+**Status:** canonical
+
+**Force:** A near-metal word; it matters when abstraction is no longer cheap enough.
+
+### [1251] ISA {#rune-1251}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A near-metal word; it matters when abstraction is no longer cheap enough.
+
+**Pocket gloss:** Instruction set architecture: the machine contract visible to software.
+
+### [1252] jitter {HW} {#rune-1252}
+
+**Status:** canonical
+
+**Force:** A timing-noise word; repeated operations arrive with unstable spacing.
+
+### [1253] JTAG {#rune-1253}
+
+**Status:** canonical
+
+**Force:** A performance-and-physics word; it governs timing, placement, and finite material limits.
+
+### [1254] kernel bypass {#rune-1254}
+
+**Status:** canonical
+
+**Force:** An embodiment word; software here speaks almost directly to silicon or wire.
+
+### [1255] latency budget {#rune-1255}
+
+**Status:** canonical (pocket canon)
+
+**Force:** An embodiment word; software here speaks almost directly to silicon or wire.
+
+**Pocket gloss:** The maximum delay the system is allowed to spend and still remain acceptable.
+
+### [1256] memory channel {#rune-1256}
+
+**Status:** canonical
+
+**Force:** A performance-and-physics word; it governs timing, placement, and finite material limits.
+
+### [1257] memory-mapped I/O {#rune-1257}
+
+**Status:** canonical
+
+**Force:** A machine-word; it reaches into clocks, buses, registers, or heat.
+
+### [1258] microcode {#rune-1258}
+
+**Status:** canonical
+
+**Force:** A near-metal word; it matters when abstraction is no longer cheap enough.
+
+### [1259] MMIO {#rune-1259}
+
+**Status:** canonical
+
+**Force:** A performance-and-physics word; it governs timing, placement, and finite material limits.
+
+### [1260] NUMA {#rune-1260}
+
+**Status:** canonical
+
+**Force:** A near-metal word; it matters when abstraction is no longer cheap enough.
+
+### [1261] NVRAM {#rune-1261}
+
+**Status:** canonical
+
+**Force:** A machine-word; it reaches into clocks, buses, registers, or heat.
+
+### [1262] opcode {HW} {#rune-1262}
+
+**Status:** canonical
+
+**Force:** A performance-and-physics word; it governs timing, placement, and finite material limits.
+
+### [1263] out-of-order execution {#rune-1263}
+
+**Status:** canonical
+
+**Force:** An embodiment word; software here speaks almost directly to silicon or wire.
+
+### [1264] PCIe {#rune-1264}
+
+**Status:** canonical
+
+**Force:** A near-metal word; it matters when abstraction is no longer cheap enough.
+
+### [1265] pipeline {HW} {#rune-1265}
+
+**Status:** canonical
+
+**Force:** A procession word; work passes through ordered stages.
+
+### [1266] power budget {#rune-1266}
+
+**Status:** canonical
+
+**Force:** A machine-word; it reaches into clocks, buses, registers, or heat.
+
+### [1267] prefetcher {#rune-1267}
+
+**Status:** canonical
+
+**Force:** A machine-word; it reaches into clocks, buses, registers, or heat.
+
+### [1268] real-time {HW} {#rune-1268}
+
+**Status:** canonical
+
+**Force:** A machine-word; it reaches into clocks, buses, registers, or heat.
+
+### [1269] register {#rune-1269}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A near-metal word; a tiny, privileged vessel close to execution itself.
+
+**Pocket gloss:** A tiny named storage cell inside the processor.
+
+### [1270] register file {#rune-1270}
+
+**Status:** canonical
+
+**Force:** A near-metal word; it matters when abstraction is no longer cheap enough.
+
+### [1271] reset vector {#rune-1271}
+
+**Status:** canonical
+
+**Force:** A performance-and-physics word; it governs timing, placement, and finite material limits.
+
+### [1272] ROM {#rune-1272}
+
+**Status:** canonical
+
+**Force:** A performance-and-physics word; it governs timing, placement, and finite material limits.
+
+### [1273] RTOS {#rune-1273}
+
+**Status:** canonical
+
+**Force:** A machine-word; it reaches into clocks, buses, registers, or heat.
+
+### [1274] runtime budget {#rune-1274}
+
+**Status:** canonical
+
+**Force:** An embodiment word; software here speaks almost directly to silicon or wire.
+
+### [1275] sensor loop {#rune-1275}
+
+**Status:** canonical
+
+**Force:** A machine-word; it reaches into clocks, buses, registers, or heat.
+
+### [1276] SIMD {#rune-1276}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A near-metal word; it matters when abstraction is no longer cheap enough.
+
+**Pocket gloss:** One instruction operating across many data lanes at once.
+
+### [1277] SPI {#rune-1277}
+
+**Status:** canonical
+
+**Force:** A machine-word; it reaches into clocks, buses, registers, or heat.
+
+### [1278] SRAM {#rune-1278}
+
+**Status:** canonical
+
+**Force:** An embodiment word; software here speaks almost directly to silicon or wire.
+
+### [1279] superscalar {#rune-1279}
+
+**Status:** canonical
+
+**Force:** A near-metal word; it matters when abstraction is no longer cheap enough.
+
+### [1280] thermal throttling {#rune-1280}
+
+**Status:** canonical
+
+**Force:** A machine-word; it reaches into clocks, buses, registers, or heat.
+
+### [1281] throughput {#rune-1281}
+
+**Status:** canonical (major canon, pocket canon)
+
+**Force:** How much useful work the system can push through a narrow world in bounded time.
+
+**Shadow:** chasing bulk capacity while tail latency burns the user.
+
+**Pocket gloss:** How much useful work passes through in bounded time.
+
+### [1282] timing window {#rune-1282}
+
+**Status:** canonical
+
+**Force:** A machine-word; it reaches into clocks, buses, registers, or heat.
+
+### [1283] TPU {#rune-1283}
+
+**Status:** canonical
+
+**Force:** A near-metal word; it matters when abstraction is no longer cheap enough.
+
+### [1284] UART {#rune-1284}
+
+**Status:** canonical
+
+**Force:** A machine-word; it reaches into clocks, buses, registers, or heat.
+
+### [1285] utilization {#rune-1285}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A machine-word; it reaches into clocks, buses, registers, or heat.
+
+**Pocket gloss:** The fraction of available capacity actually being used.
+
+### [1286] vector unit {#rune-1286}
+
+**Status:** canonical
+
+**Force:** An embodiment word; software here speaks almost directly to silicon or wire.
+
+### [1287] volatile {#rune-1287}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A machine-word; it reaches into clocks, buses, registers, or heat.
+
+**Pocket gloss:** A promise to the compiler that this value may change through unusual means.
+
+### [1288] watchdog timer {#rune-1288}
+
+**Status:** canonical
+
+**Force:** A performance-and-physics word; it governs timing, placement, and finite material limits.
+
+### [1289] wire speed {#rune-1289}
+
+**Status:** canonical
+
+**Force:** A machine-word; it reaches into clocks, buses, registers, or heat.
+
+### [1290] zero-copy {HW} {#rune-1290}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A nearness-and-efficiency word; data moves without redundant duplication.
+
+**Pocket gloss:** Near-metal data movement without redundant duplication.

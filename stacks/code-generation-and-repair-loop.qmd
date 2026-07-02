@@ -4,10 +4,28 @@ title: "Code Generation and Repair Loop"
 
 # Code Generation and Repair Loop
 
-**Working seal:** `stack://code-generation-and-repair-loop/D239381DD2`
+**Working seal:** `stack://code-generation-and-repair-loop/DBD637DB96`
 
 **Enter:** Use when an AI system is helping write or modify software and generation should stay tied to execution evidence.
 
+
+## Related Runes
+
+- [1088 diff {Forge}](../reference/house-build-tooling-versioning-and-release.qmd#rune-1088) - A visible account of what changed between one state and another. Good diffs make review local; bad diffs turn truth into fog.
+- [1146 benchmark](../reference/house-testing-verification-and-observability.qmd#rune-1146) - A performance claim forced to meet measurement. Benchmarks are where speed rhetoric either cashes out or dies.
+- [1172 invariant](../reference/house-testing-verification-and-observability.qmd#rune-1172) - A law that must remain true while the rest of the system is allowed to move. If you cannot say the invariant, you probably do not yet understand the change.
+- [1180 observability](../reference/house-testing-verification-and-observability.qmd#rune-1180) - Enough internal evidence exists that you can infer what the system is doing from the outside. Not logs alone: legible state under pressure.
+- [1485 reproducible](../reference/house-guarantee-words-quality-attributes-and-behavioral-adjectives.qmd#rune-1485) - A guarantee word; it claims a behavioral law rather than a mere preference.
+
+
+## Related Spell Templates and References
+
+- [Test Generation](../spells/test-generation.qmd)
+- [Bug Diagnosis From Logs](../spells/bug-diagnosis-from-logs.qmd)
+- [Safe Refactoring](../spells/safe-refactoring.qmd)
+- [Stack Grammar](../reference/stack-grammar.qmd)
+- [Failure Modes](../reference/failure-modes.qmd)
+- [Canon Map](../reference/canon-map.qmd)
 | Step | Spell    | Artifact                                                       | Advance when                                         |
 | ---- | -------- | -------------------------------------------------------------- | ---------------------------------------------------- |
 | 1    | Specify  | Precise task statement, constraints, interfaces, and non-goals | The target is testable                               |

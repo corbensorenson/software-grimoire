@@ -25,6 +25,59 @@ Working thesis:
 > canon, and make the structure executable enough to lint, version, compare, and
 > replay.
 
+## 0. Porting and Reader-Experience Status
+
+The grimoire has two completion bars:
+
+1. Content port completeness.
+2. Reader-experience completeness.
+
+The content port is complete when every source manuscript has a durable home in
+the Quarto project and every reusable structure is represented in data. The
+reader experience is complete when a reader can move naturally between theory,
+spells, stacks, runes, and examples without manually searching the site.
+
+Current public-site status:
+
+- The long public release is ported into the main book spine, public canon, full
+  lexicon data, and generated reference pages.
+- The pocket edition is ported into the pocket field guide and 300-rune pocket
+  canon.
+- The stacked-spells addendum is ported into the Stackcraft chapter, stack
+  grammar reference, and six generated stack pages.
+- The structured canon includes 18 houses, 1,645 lexicon entries, 50 major canon
+  entries, 300 pocket runes, six spell templates, and six stack workflows.
+- The repository includes schemas, validation, seal generation, CI, GitHub Pages
+  publishing, contribution templates, examples, and a public seed release.
+
+Reader-experience requirements:
+
+- Add a guided reader path that supports theory-first, practice-first, and
+  tooling-first routes.
+- Add a porting status page so readers can see how source manuscripts map to the
+  public site.
+- Give every rune a stable anchor of the form `#rune-0001`.
+- Link major canon and pocket canon entries into their detailed house entries.
+- Add a term index for people who know the word but not the sigil or house.
+- Add a canon map for moving from a practical task to the right chapter, spell,
+  stack, and rune cluster.
+- Add related-page sections to chapters.
+- Add related-rune sections to spell pages.
+- Add related-spell and related-rune sections to stack pages.
+- Keep these links generated from structured data where possible so they do not
+  drift from the canon.
+
+Reader-experience acceptance criteria:
+
+- A new reader can start from the home page and choose a clear path.
+- A practitioner can start from a task and reach a usable spell or stack in two
+  clicks.
+- A rune in the major or pocket canon links to its detailed canonical entry.
+- Spell pages expose the vocabulary that makes the spell work.
+- Stack pages expose the spell templates and vocabulary that support the stack.
+- Quarto renders the full site locally and in GitHub Actions.
+- The public GitHub Pages site returns HTTP 200 after deployment.
+
 ## 1. End State
 
 The project reaches its logical conclusion when it has all of these properties:

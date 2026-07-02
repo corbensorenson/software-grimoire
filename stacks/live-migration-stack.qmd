@@ -4,10 +4,26 @@ title: "Live Migration Stack"
 
 # Live Migration Stack
 
-**Working seal:** `stack://live-migration-stack/E1592AF20E`
+**Working seal:** `stack://live-migration-stack/23AA56B454`
 
 **Enter:** Use when data, schemas, or infrastructure are changing in a live environment.
 
+
+## Related Runes
+
+- [0926 migration](../reference/house-databases-persistence-and-time-binding-words.qmd#rune-0926) - Stored reality changing shape without being lost. Good migrations are staged, inspectable, and reversible long enough to discover what the data actually contains.
+- [0943 rollback {DB}](../reference/house-databases-persistence-and-time-binding-words.qmd#rune-0943) - Permission to retreat toward a previously trusted state. A system without rollback mistakes hope for safety.
+- [0347 schema {Data}](../reference/house-data-state-and-representation.qmd#rune-0347) - The declared shape of stored meaning.
+- [1461 idempotent](../reference/house-guarantee-words-quality-attributes-and-behavioral-adjectives.qmd#rune-1461) - The word that makes retries survivable: same request, same lasting effect.
+- [1567 schema drift](../reference/house-failure-words-pathologies-and-counter-spells.qmd#rune-1567) - The stored world and the assumed world have silently stopped matching. This is how migrations keep hurting after everyone thinks they are done.
+
+
+## Related Spell Templates and References
+
+- [Migration Without Data Loss](../spells/migration-without-data-loss.qmd)
+- [Stack Grammar](../reference/stack-grammar.qmd)
+- [Failure Modes](../reference/failure-modes.qmd)
+- [Canon Map](../reference/canon-map.qmd)
 | Step | Spell             | Artifact                                  | Advance when                      |
 | ---- | ----------------- | ----------------------------------------- | --------------------------------- |
 | 1    | Inventory         | Dependency and blast-radius map           | Moving parts are known            |

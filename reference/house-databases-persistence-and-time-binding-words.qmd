@@ -6,87 +6,617 @@ title: "Databases, Persistence, and Time-Binding Words"
 
 Range: `0887-0968`.
 
-| Sigil | Term               | Summary                                                                                                                                                            |
-| ----- | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| 0887  | ACID               | A storage-law word; it governs how facts are kept, found, or rolled back.                                                                                          |
-| 0888  | append-only log    | A storage-law word; it governs how facts are kept, found, or rolled back.                                                                                          |
-| 0889  | archive table      | A durable-state word; it matters because the system must remember through change.                                                                                  |
-| 0890  | audit trail        | A query-and-history word; it shapes how stored truth is accessed or preserved.                                                                                     |
-| 0891  | B-tree             | A query-and-history word; it shapes how stored truth is accessed or preserved.                                                                                     |
-| 0892  | backup             | A durable-state word; it matters because the system must remember through change.                                                                                  |
-| 0893  | base table         | A query-and-history word; it shapes how stored truth is accessed or preserved.                                                                                     |
-| 0894  | bitmap index       | A storage-law word; it governs how facts are kept, found, or rolled back.                                                                                          |
-| 0895  | checkpoint         | A persistence-word; it binds state to time and query.                                                                                                              |
-| 0896  | column {DB}        | A durable-state word; it matters because the system must remember through change.                                                                                  |
-| 0897  | column store       | A query-and-history word; it shapes how stored truth is accessed or preserved.                                                                                     |
-| 0898  | commit {DB}        | The moment a proposed change becomes durable history. Shadow: writing too early, before the world is actually ready to carry the new truth.                        |
-| 0899  | compaction {DB}    | A storage-law word; it governs how facts are kept, found, or rolled back.                                                                                          |
-| 0900  | conflict           | A durable-state word; it matters because the system must remember through change.                                                                                  |
-| 0901  | constraint {DB}    | A bounding word; it removes degrees of freedom in order to improve correctness.                                                                                    |
-| 0902  | covering index     | A storage-law word; it governs how facts are kept, found, or rolled back.                                                                                          |
-| 0903  | cursor {DB}        | A durable-state word; it matters because the system must remember through change.                                                                                  |
-| 0904  | data lake          | A query-and-history word; it shapes how stored truth is accessed or preserved.                                                                                     |
-| 0905  | data warehouse     | A storage-law word; it governs how facts are kept, found, or rolled back.                                                                                          |
-| 0906  | database           | A storage-law word; it governs how facts are kept, found, or rolled back.                                                                                          |
-| 0907  | deadlock {DB}      | A binding curse; multiple actors wait on one another forever.                                                                                                      |
-| 0908  | denormalization    | A persistence-word; it binds state to time and query.                                                                                                              |
-| 0909  | dimension table    | A durable-state word; it matters because the system must remember through change.                                                                                  |
-| 0910  | durability         | A storage-law word; it governs how facts are kept, found, or rolled back.                                                                                          |
-| 0911  | durable log        | A storage-law word; it governs how facts are kept, found, or rolled back.                                                                                          |
-| 0912  | entity table       | A storage-law word; it governs how facts are kept, found, or rolled back.                                                                                          |
-| 0913  | event store        | A query-and-history word; it shapes how stored truth is accessed or preserved.                                                                                     |
-| 0914  | fact table         | A durable-state word; it matters because the system must remember through change.                                                                                  |
-| 0915  | failover replica   | A persistence-word; it binds state to time and query.                                                                                                              |
-| 0916  | foreign key        | A query-and-history word; it shapes how stored truth is accessed or preserved.                                                                                     |
-| 0917  | full table scan    | A persistence-word; it binds state to time and query.                                                                                                              |
-| 0918  | index {DB}         | A retrieval word; it makes later access faster by storing an alternate path to data.                                                                               |
-| 0919  | index hint         | A query-and-history word; it shapes how stored truth is accessed or preserved.                                                                                     |
-| 0920  | index seek         | A persistence-word; it binds state to time and query.                                                                                                              |
-| 0921  | isolation level    | A durable-state word; it matters because the system must remember through change.                                                                                  |
-| 0922  | join {DB}          | A union word; separate streams, sets, or histories are brought into one result.                                                                                    |
-| 0923  | keyspace           | A storage-law word; it governs how facts are kept, found, or rolled back.                                                                                          |
-| 0924  | LSM tree           | A persistence-word; it binds state to time and query.                                                                                                              |
-| 0925  | materialized view  | A durable-state word; it matters because the system must remember through change.                                                                                  |
-| 0926  | migration          | Stored reality changing shape without being lost. Good migrations are staged, inspectable, and reversible long enough to discover what the data actually contains. |
-| 0927  | MVCC               | A storage-law word; it governs how facts are kept, found, or rolled back.                                                                                          |
-| 0928  | nonclustered index | A durable-state word; it matters because the system must remember through change.                                                                                  |
-| 0929  | OLAP               | A persistence-word; it binds state to time and query.                                                                                                              |
-| 0930  | OLTP               | A query-and-history word; it shapes how stored truth is accessed or preserved.                                                                                     |
-| 0931  | partition {DB}     | A durable-state word; it matters because the system must remember through change.                                                                                  |
-| 0932  | partition key      | A query-and-history word; it shapes how stored truth is accessed or preserved.                                                                                     |
-| 0933  | primary key        | A storage-law word; it governs how facts are kept, found, or rolled back.                                                                                          |
-| 0934  | query plan         | A storage-law word; it governs how facts are kept, found, or rolled back.                                                                                          |
-| 0935  | read committed     | A durable-state word; it matters because the system must remember through change.                                                                                  |
-| 0936  | read replica       | A persistence-word; it binds state to time and query.                                                                                                              |
-| 0937  | record lock        | A persistence-word; it binds state to time and query.                                                                                                              |
-| 0938  | redo log           | A persistence-word; it binds state to time and query.                                                                                                              |
-| 0939  | relation {DB}      | A durable-state word; it matters because the system must remember through change.                                                                                  |
-| 0940  | repeatable read    | A storage-law word; it governs how facts are kept, found, or rolled back.                                                                                          |
-| 0941  | replication lag    | A durable-state word; it matters because the system must remember through change.                                                                                  |
-| 0942  | retention          | A persistence-word; it binds state to time and query.                                                                                                              |
-| 0943  | rollback {DB}      | Permission to retreat toward a previously trusted state. A system without rollback mistakes hope for safety.                                                       |
-| 0944  | row {DB}           | A persistence-word; it binds state to time and query.                                                                                                              |
-| 0945  | row store          | A storage-law word; it governs how facts are kept, found, or rolled back.                                                                                          |
-| 0946  | savepoint          | A storage-law word; it governs how facts are kept, found, or rolled back.                                                                                          |
-| 0947  | scan {DB}          | A storage-law word; it governs how facts are kept, found, or rolled back.                                                                                          |
-| 0948  | schema {DB}        | A shape word for stored meaning.                                                                                                                                   |
-| 0949  | secondary index    | A persistence-word; it binds state to time and query.                                                                                                              |
-| 0950  | seed data          | A query-and-history word; it shapes how stored truth is accessed or preserved.                                                                                     |
-| 0951  | serializable {DB}  | A query-and-history word; it shapes how stored truth is accessed or preserved.                                                                                     |
-| 0952  | sharding           | A persistence-word; it binds state to time and query.                                                                                                              |
-| 0953  | snapshot isolation | A durable-state word; it matters because the system must remember through change.                                                                                  |
-| 0954  | sort key           | A storage-law word; it governs how facts are kept, found, or rolled back.                                                                                          |
-| 0955  | stored procedure   | A durable-state word; it matters because the system must remember through change.                                                                                  |
-| 0956  | table {DB}         | A persistence-word; it binds state to time and query.                                                                                                              |
-| 0957  | table scan         | A storage-law word; it governs how facts are kept, found, or rolled back.                                                                                          |
-| 0958  | tenant isolation   | A persistence-word; it binds state to time and query.                                                                                                              |
-| 0959  | transaction        | An all-or-nothing persistence word.                                                                                                                                |
-| 0960  | TTL                | A persistence-word; it binds state to time and query.                                                                                                              |
-| 0961  | tuple {DB}         | A durable-state word; it matters because the system must remember through change.                                                                                  |
-| 0962  | unique constraint  | A persistence-word; it binds state to time and query.                                                                                                              |
-| 0963  | upsert             | A query-and-history word; it shapes how stored truth is accessed or preserved.                                                                                     |
-| 0964  | vacuum             | A storage-law word; it governs how facts are kept, found, or rolled back.                                                                                          |
-| 0965  | view {DB}          | A query-and-history word; it shapes how stored truth is accessed or preserved.                                                                                     |
-| 0966  | WAL                | A persistence-word; it binds state to time and query.                                                                                                              |
-| 0967  | warehouse model    | A persistence-word; it binds state to time and query.                                                                                                              |
-| 0968  | write skew {DB}    | A storage-law word; it governs how facts are kept, found, or rolled back.                                                                                          |
+Use the summary table for scanning. Each row links to the detailed anchored entry below.
+
+| Sigil | Term                             | Summary                                                                                                                                                            |
+| ----- | -------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| 0887  | [ACID](#rune-0887)               | A storage-law word; it governs how facts are kept, found, or rolled back.                                                                                          |
+| 0888  | [append-only log](#rune-0888)    | A storage-law word; it governs how facts are kept, found, or rolled back.                                                                                          |
+| 0889  | [archive table](#rune-0889)      | A durable-state word; it matters because the system must remember through change.                                                                                  |
+| 0890  | [audit trail](#rune-0890)        | A query-and-history word; it shapes how stored truth is accessed or preserved.                                                                                     |
+| 0891  | [B-tree](#rune-0891)             | A query-and-history word; it shapes how stored truth is accessed or preserved.                                                                                     |
+| 0892  | [backup](#rune-0892)             | A durable-state word; it matters because the system must remember through change.                                                                                  |
+| 0893  | [base table](#rune-0893)         | A query-and-history word; it shapes how stored truth is accessed or preserved.                                                                                     |
+| 0894  | [bitmap index](#rune-0894)       | A storage-law word; it governs how facts are kept, found, or rolled back.                                                                                          |
+| 0895  | [checkpoint](#rune-0895)         | A persistence-word; it binds state to time and query.                                                                                                              |
+| 0896  | [column {DB}](#rune-0896)        | A durable-state word; it matters because the system must remember through change.                                                                                  |
+| 0897  | [column store](#rune-0897)       | A query-and-history word; it shapes how stored truth is accessed or preserved.                                                                                     |
+| 0898  | [commit {DB}](#rune-0898)        | The moment a proposed change becomes durable history. Shadow: writing too early, before the world is actually ready to carry the new truth.                        |
+| 0899  | [compaction {DB}](#rune-0899)    | A storage-law word; it governs how facts are kept, found, or rolled back.                                                                                          |
+| 0900  | [conflict](#rune-0900)           | A durable-state word; it matters because the system must remember through change.                                                                                  |
+| 0901  | [constraint {DB}](#rune-0901)    | A bounding word; it removes degrees of freedom in order to improve correctness.                                                                                    |
+| 0902  | [covering index](#rune-0902)     | A storage-law word; it governs how facts are kept, found, or rolled back.                                                                                          |
+| 0903  | [cursor {DB}](#rune-0903)        | A durable-state word; it matters because the system must remember through change.                                                                                  |
+| 0904  | [data lake](#rune-0904)          | A query-and-history word; it shapes how stored truth is accessed or preserved.                                                                                     |
+| 0905  | [data warehouse](#rune-0905)     | A storage-law word; it governs how facts are kept, found, or rolled back.                                                                                          |
+| 0906  | [database](#rune-0906)           | A storage-law word; it governs how facts are kept, found, or rolled back.                                                                                          |
+| 0907  | [deadlock {DB}](#rune-0907)      | A binding curse; multiple actors wait on one another forever.                                                                                                      |
+| 0908  | [denormalization](#rune-0908)    | A persistence-word; it binds state to time and query.                                                                                                              |
+| 0909  | [dimension table](#rune-0909)    | A durable-state word; it matters because the system must remember through change.                                                                                  |
+| 0910  | [durability](#rune-0910)         | A storage-law word; it governs how facts are kept, found, or rolled back.                                                                                          |
+| 0911  | [durable log](#rune-0911)        | A storage-law word; it governs how facts are kept, found, or rolled back.                                                                                          |
+| 0912  | [entity table](#rune-0912)       | A storage-law word; it governs how facts are kept, found, or rolled back.                                                                                          |
+| 0913  | [event store](#rune-0913)        | A query-and-history word; it shapes how stored truth is accessed or preserved.                                                                                     |
+| 0914  | [fact table](#rune-0914)         | A durable-state word; it matters because the system must remember through change.                                                                                  |
+| 0915  | [failover replica](#rune-0915)   | A persistence-word; it binds state to time and query.                                                                                                              |
+| 0916  | [foreign key](#rune-0916)        | A query-and-history word; it shapes how stored truth is accessed or preserved.                                                                                     |
+| 0917  | [full table scan](#rune-0917)    | A persistence-word; it binds state to time and query.                                                                                                              |
+| 0918  | [index {DB}](#rune-0918)         | A retrieval word; it makes later access faster by storing an alternate path to data.                                                                               |
+| 0919  | [index hint](#rune-0919)         | A query-and-history word; it shapes how stored truth is accessed or preserved.                                                                                     |
+| 0920  | [index seek](#rune-0920)         | A persistence-word; it binds state to time and query.                                                                                                              |
+| 0921  | [isolation level](#rune-0921)    | A durable-state word; it matters because the system must remember through change.                                                                                  |
+| 0922  | [join {DB}](#rune-0922)          | A union word; separate streams, sets, or histories are brought into one result.                                                                                    |
+| 0923  | [keyspace](#rune-0923)           | A storage-law word; it governs how facts are kept, found, or rolled back.                                                                                          |
+| 0924  | [LSM tree](#rune-0924)           | A persistence-word; it binds state to time and query.                                                                                                              |
+| 0925  | [materialized view](#rune-0925)  | A durable-state word; it matters because the system must remember through change.                                                                                  |
+| 0926  | [migration](#rune-0926)          | Stored reality changing shape without being lost. Good migrations are staged, inspectable, and reversible long enough to discover what the data actually contains. |
+| 0927  | [MVCC](#rune-0927)               | A storage-law word; it governs how facts are kept, found, or rolled back.                                                                                          |
+| 0928  | [nonclustered index](#rune-0928) | A durable-state word; it matters because the system must remember through change.                                                                                  |
+| 0929  | [OLAP](#rune-0929)               | A persistence-word; it binds state to time and query.                                                                                                              |
+| 0930  | [OLTP](#rune-0930)               | A query-and-history word; it shapes how stored truth is accessed or preserved.                                                                                     |
+| 0931  | [partition {DB}](#rune-0931)     | A durable-state word; it matters because the system must remember through change.                                                                                  |
+| 0932  | [partition key](#rune-0932)      | A query-and-history word; it shapes how stored truth is accessed or preserved.                                                                                     |
+| 0933  | [primary key](#rune-0933)        | A storage-law word; it governs how facts are kept, found, or rolled back.                                                                                          |
+| 0934  | [query plan](#rune-0934)         | A storage-law word; it governs how facts are kept, found, or rolled back.                                                                                          |
+| 0935  | [read committed](#rune-0935)     | A durable-state word; it matters because the system must remember through change.                                                                                  |
+| 0936  | [read replica](#rune-0936)       | A persistence-word; it binds state to time and query.                                                                                                              |
+| 0937  | [record lock](#rune-0937)        | A persistence-word; it binds state to time and query.                                                                                                              |
+| 0938  | [redo log](#rune-0938)           | A persistence-word; it binds state to time and query.                                                                                                              |
+| 0939  | [relation {DB}](#rune-0939)      | A durable-state word; it matters because the system must remember through change.                                                                                  |
+| 0940  | [repeatable read](#rune-0940)    | A storage-law word; it governs how facts are kept, found, or rolled back.                                                                                          |
+| 0941  | [replication lag](#rune-0941)    | A durable-state word; it matters because the system must remember through change.                                                                                  |
+| 0942  | [retention](#rune-0942)          | A persistence-word; it binds state to time and query.                                                                                                              |
+| 0943  | [rollback {DB}](#rune-0943)      | Permission to retreat toward a previously trusted state. A system without rollback mistakes hope for safety.                                                       |
+| 0944  | [row {DB}](#rune-0944)           | A persistence-word; it binds state to time and query.                                                                                                              |
+| 0945  | [row store](#rune-0945)          | A storage-law word; it governs how facts are kept, found, or rolled back.                                                                                          |
+| 0946  | [savepoint](#rune-0946)          | A storage-law word; it governs how facts are kept, found, or rolled back.                                                                                          |
+| 0947  | [scan {DB}](#rune-0947)          | A storage-law word; it governs how facts are kept, found, or rolled back.                                                                                          |
+| 0948  | [schema {DB}](#rune-0948)        | A shape word for stored meaning.                                                                                                                                   |
+| 0949  | [secondary index](#rune-0949)    | A persistence-word; it binds state to time and query.                                                                                                              |
+| 0950  | [seed data](#rune-0950)          | A query-and-history word; it shapes how stored truth is accessed or preserved.                                                                                     |
+| 0951  | [serializable {DB}](#rune-0951)  | A query-and-history word; it shapes how stored truth is accessed or preserved.                                                                                     |
+| 0952  | [sharding](#rune-0952)           | A persistence-word; it binds state to time and query.                                                                                                              |
+| 0953  | [snapshot isolation](#rune-0953) | A durable-state word; it matters because the system must remember through change.                                                                                  |
+| 0954  | [sort key](#rune-0954)           | A storage-law word; it governs how facts are kept, found, or rolled back.                                                                                          |
+| 0955  | [stored procedure](#rune-0955)   | A durable-state word; it matters because the system must remember through change.                                                                                  |
+| 0956  | [table {DB}](#rune-0956)         | A persistence-word; it binds state to time and query.                                                                                                              |
+| 0957  | [table scan](#rune-0957)         | A storage-law word; it governs how facts are kept, found, or rolled back.                                                                                          |
+| 0958  | [tenant isolation](#rune-0958)   | A persistence-word; it binds state to time and query.                                                                                                              |
+| 0959  | [transaction](#rune-0959)        | An all-or-nothing persistence word.                                                                                                                                |
+| 0960  | [TTL](#rune-0960)                | A persistence-word; it binds state to time and query.                                                                                                              |
+| 0961  | [tuple {DB}](#rune-0961)         | A durable-state word; it matters because the system must remember through change.                                                                                  |
+| 0962  | [unique constraint](#rune-0962)  | A persistence-word; it binds state to time and query.                                                                                                              |
+| 0963  | [upsert](#rune-0963)             | A query-and-history word; it shapes how stored truth is accessed or preserved.                                                                                     |
+| 0964  | [vacuum](#rune-0964)             | A storage-law word; it governs how facts are kept, found, or rolled back.                                                                                          |
+| 0965  | [view {DB}](#rune-0965)          | A query-and-history word; it shapes how stored truth is accessed or preserved.                                                                                     |
+| 0966  | [WAL](#rune-0966)                | A persistence-word; it binds state to time and query.                                                                                                              |
+| 0967  | [warehouse model](#rune-0967)    | A persistence-word; it binds state to time and query.                                                                                                              |
+| 0968  | [write skew {DB}](#rune-0968)    | A storage-law word; it governs how facts are kept, found, or rolled back.                                                                                          |
+
+## Entries
+
+### [0887] ACID {#rune-0887}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A storage-law word; it governs how facts are kept, found, or rolled back.
+
+**Pocket gloss:** The classic four-part law of transactional storage: atomicity, consistency, isolation, durability.
+
+### [0888] append-only log {#rune-0888}
+
+**Status:** canonical
+
+**Force:** A storage-law word; it governs how facts are kept, found, or rolled back.
+
+### [0889] archive table {#rune-0889}
+
+**Status:** canonical
+
+**Force:** A durable-state word; it matters because the system must remember through change.
+
+### [0890] audit trail {#rune-0890}
+
+**Status:** canonical
+
+**Force:** A query-and-history word; it shapes how stored truth is accessed or preserved.
+
+### [0891] B-tree {#rune-0891}
+
+**Status:** canonical
+
+**Force:** A query-and-history word; it shapes how stored truth is accessed or preserved.
+
+### [0892] backup {#rune-0892}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A durable-state word; it matters because the system must remember through change.
+
+**Pocket gloss:** A restorable copy taken so loss is not final.
+
+### [0893] base table {#rune-0893}
+
+**Status:** canonical
+
+**Force:** A query-and-history word; it shapes how stored truth is accessed or preserved.
+
+### [0894] bitmap index {#rune-0894}
+
+**Status:** canonical
+
+**Force:** A storage-law word; it governs how facts are kept, found, or rolled back.
+
+### [0895] checkpoint {#rune-0895}
+
+**Status:** canonical
+
+**Force:** A persistence-word; it binds state to time and query.
+
+### [0896] column {DB} {#rune-0896}
+
+**Status:** canonical
+
+**Force:** A durable-state word; it matters because the system must remember through change.
+
+### [0897] column store {#rune-0897}
+
+**Status:** canonical
+
+**Force:** A query-and-history word; it shapes how stored truth is accessed or preserved.
+
+### [0898] commit {DB} {#rune-0898}
+
+**Status:** canonical (major canon, pocket canon)
+
+**Force:** The moment a proposed change becomes durable history.
+
+**Shadow:** writing too early, before the world is actually ready to carry the new truth.
+
+**Pocket gloss:** Make a proposed change durable history.
+
+### [0899] compaction {DB} {#rune-0899}
+
+**Status:** canonical
+
+**Force:** A storage-law word; it governs how facts are kept, found, or rolled back.
+
+### [0900] conflict {#rune-0900}
+
+**Status:** canonical
+
+**Force:** A durable-state word; it matters because the system must remember through change.
+
+### [0901] constraint {DB} {#rune-0901}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A bounding word; it removes degrees of freedom in order to improve correctness.
+
+**Pocket gloss:** A rule the data is not allowed to violate.
+
+### [0902] covering index {#rune-0902}
+
+**Status:** canonical
+
+**Force:** A storage-law word; it governs how facts are kept, found, or rolled back.
+
+### [0903] cursor {DB} {#rune-0903}
+
+**Status:** canonical
+
+**Force:** A durable-state word; it matters because the system must remember through change.
+
+### [0904] data lake {#rune-0904}
+
+**Status:** canonical
+
+**Force:** A query-and-history word; it shapes how stored truth is accessed or preserved.
+
+### [0905] data warehouse {#rune-0905}
+
+**Status:** canonical
+
+**Force:** A storage-law word; it governs how facts are kept, found, or rolled back.
+
+### [0906] database {#rune-0906}
+
+**Status:** canonical
+
+**Force:** A storage-law word; it governs how facts are kept, found, or rolled back.
+
+### [0907] deadlock {DB} {#rune-0907}
+
+**Status:** canonical
+
+**Force:** A binding curse; multiple actors wait on one another forever.
+
+### [0908] denormalization {#rune-0908}
+
+**Status:** canonical
+
+**Force:** A persistence-word; it binds state to time and query.
+
+### [0909] dimension table {#rune-0909}
+
+**Status:** canonical
+
+**Force:** A durable-state word; it matters because the system must remember through change.
+
+### [0910] durability {#rune-0910}
+
+**Status:** canonical
+
+**Force:** A storage-law word; it governs how facts are kept, found, or rolled back.
+
+### [0911] durable log {#rune-0911}
+
+**Status:** canonical
+
+**Force:** A storage-law word; it governs how facts are kept, found, or rolled back.
+
+### [0912] entity table {#rune-0912}
+
+**Status:** canonical
+
+**Force:** A storage-law word; it governs how facts are kept, found, or rolled back.
+
+### [0913] event store {#rune-0913}
+
+**Status:** canonical
+
+**Force:** A query-and-history word; it shapes how stored truth is accessed or preserved.
+
+### [0914] fact table {#rune-0914}
+
+**Status:** canonical
+
+**Force:** A durable-state word; it matters because the system must remember through change.
+
+### [0915] failover replica {#rune-0915}
+
+**Status:** canonical
+
+**Force:** A persistence-word; it binds state to time and query.
+
+### [0916] foreign key {#rune-0916}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A query-and-history word; it shapes how stored truth is accessed or preserved.
+
+**Pocket gloss:** A declared reference from one table to another table's key.
+
+### [0917] full table scan {#rune-0917}
+
+**Status:** canonical
+
+**Force:** A persistence-word; it binds state to time and query.
+
+### [0918] index {DB} {#rune-0918}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A retrieval word; it makes later access faster by storing an alternate path to data.
+
+**Pocket gloss:** An access structure that speeds reads by paying extra write and space cost.
+
+### [0919] index hint {#rune-0919}
+
+**Status:** canonical
+
+**Force:** A query-and-history word; it shapes how stored truth is accessed or preserved.
+
+### [0920] index seek {#rune-0920}
+
+**Status:** canonical
+
+**Force:** A persistence-word; it binds state to time and query.
+
+### [0921] isolation level {#rune-0921}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A durable-state word; it matters because the system must remember through change.
+
+**Pocket gloss:** The degree to which concurrent transactions are allowed to see one another's motion.
+
+### [0922] join {DB} {#rune-0922}
+
+**Status:** canonical
+
+**Force:** A union word; separate streams, sets, or histories are brought into one result.
+
+### [0923] keyspace {#rune-0923}
+
+**Status:** canonical
+
+**Force:** A storage-law word; it governs how facts are kept, found, or rolled back.
+
+### [0924] LSM tree {#rune-0924}
+
+**Status:** canonical
+
+**Force:** A persistence-word; it binds state to time and query.
+
+### [0925] materialized view {#rune-0925}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A durable-state word; it matters because the system must remember through change.
+
+**Pocket gloss:** A stored query result traded for cheaper future reads.
+
+### [0926] migration {#rune-0926}
+
+**Status:** canonical (major canon, pocket canon)
+
+**Force:** Stored reality changing shape without being lost. Good migrations are staged, inspectable, and reversible long enough to discover what the data actually contains.
+
+**Pocket gloss:** Change stored reality without losing it.
+
+### [0927] MVCC {#rune-0927}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A storage-law word; it governs how facts are kept, found, or rolled back.
+
+**Pocket gloss:** Versioned rows that let readers and writers coexist more safely.
+
+### [0928] nonclustered index {#rune-0928}
+
+**Status:** canonical
+
+**Force:** A durable-state word; it matters because the system must remember through change.
+
+### [0929] OLAP {#rune-0929}
+
+**Status:** canonical
+
+**Force:** A persistence-word; it binds state to time and query.
+
+### [0930] OLTP {#rune-0930}
+
+**Status:** canonical
+
+**Force:** A query-and-history word; it shapes how stored truth is accessed or preserved.
+
+### [0931] partition {DB} {#rune-0931}
+
+**Status:** canonical
+
+**Force:** A durable-state word; it matters because the system must remember through change.
+
+### [0932] partition key {#rune-0932}
+
+**Status:** canonical
+
+**Force:** A query-and-history word; it shapes how stored truth is accessed or preserved.
+
+### [0933] primary key {#rune-0933}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A storage-law word; it governs how facts are kept, found, or rolled back.
+
+**Pocket gloss:** The key that uniquely names one row inside its table.
+
+### [0934] query plan {#rune-0934}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A storage-law word; it governs how facts are kept, found, or rolled back.
+
+**Pocket gloss:** The strategy the database chose to answer the query.
+
+### [0935] read committed {#rune-0935}
+
+**Status:** canonical
+
+**Force:** A durable-state word; it matters because the system must remember through change.
+
+### [0936] read replica {#rune-0936}
+
+**Status:** canonical
+
+**Force:** A persistence-word; it binds state to time and query.
+
+### [0937] record lock {#rune-0937}
+
+**Status:** canonical
+
+**Force:** A persistence-word; it binds state to time and query.
+
+### [0938] redo log {#rune-0938}
+
+**Status:** canonical
+
+**Force:** A persistence-word; it binds state to time and query.
+
+### [0939] relation {DB} {#rune-0939}
+
+**Status:** canonical
+
+**Force:** A durable-state word; it matters because the system must remember through change.
+
+### [0940] repeatable read {#rune-0940}
+
+**Status:** canonical
+
+**Force:** A storage-law word; it governs how facts are kept, found, or rolled back.
+
+### [0941] replication lag {#rune-0941}
+
+**Status:** canonical
+
+**Force:** A durable-state word; it matters because the system must remember through change.
+
+### [0942] retention {#rune-0942}
+
+**Status:** canonical
+
+**Force:** A persistence-word; it binds state to time and query.
+
+### [0943] rollback {DB} {#rune-0943}
+
+**Status:** canonical (major canon, pocket canon)
+
+**Force:** Permission to retreat toward a previously trusted state. A system without rollback mistakes hope for safety.
+
+**Pocket gloss:** Retreat toward a previously trusted state.
+
+### [0944] row {DB} {#rune-0944}
+
+**Status:** canonical
+
+**Force:** A persistence-word; it binds state to time and query.
+
+### [0945] row store {#rune-0945}
+
+**Status:** canonical
+
+**Force:** A storage-law word; it governs how facts are kept, found, or rolled back.
+
+### [0946] savepoint {#rune-0946}
+
+**Status:** canonical
+
+**Force:** A storage-law word; it governs how facts are kept, found, or rolled back.
+
+### [0947] scan {DB} {#rune-0947}
+
+**Status:** canonical
+
+**Force:** A storage-law word; it governs how facts are kept, found, or rolled back.
+
+### [0948] schema {DB} {#rune-0948}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A shape word for stored meaning.
+
+**Pocket gloss:** The declared shape of database truth.
+
+### [0949] secondary index {#rune-0949}
+
+**Status:** canonical
+
+**Force:** A persistence-word; it binds state to time and query.
+
+### [0950] seed data {#rune-0950}
+
+**Status:** canonical
+
+**Force:** A query-and-history word; it shapes how stored truth is accessed or preserved.
+
+### [0951] serializable {DB} {#rune-0951}
+
+**Status:** canonical
+
+**Force:** A query-and-history word; it shapes how stored truth is accessed or preserved.
+
+### [0952] sharding {#rune-0952}
+
+**Status:** canonical
+
+**Force:** A persistence-word; it binds state to time and query.
+
+### [0953] snapshot isolation {#rune-0953}
+
+**Status:** canonical
+
+**Force:** A durable-state word; it matters because the system must remember through change.
+
+### [0954] sort key {#rune-0954}
+
+**Status:** canonical
+
+**Force:** A storage-law word; it governs how facts are kept, found, or rolled back.
+
+### [0955] stored procedure {#rune-0955}
+
+**Status:** canonical
+
+**Force:** A durable-state word; it matters because the system must remember through change.
+
+### [0956] table {DB} {#rune-0956}
+
+**Status:** canonical
+
+**Force:** A persistence-word; it binds state to time and query.
+
+### [0957] table scan {#rune-0957}
+
+**Status:** canonical
+
+**Force:** A storage-law word; it governs how facts are kept, found, or rolled back.
+
+### [0958] tenant isolation {#rune-0958}
+
+**Status:** canonical
+
+**Force:** A persistence-word; it binds state to time and query.
+
+### [0959] transaction {#rune-0959}
+
+**Status:** canonical (pocket canon)
+
+**Force:** An all-or-nothing persistence word.
+
+**Pocket gloss:** A unit of work meant to stand or fall together.
+
+### [0960] TTL {#rune-0960}
+
+**Status:** canonical
+
+**Force:** A persistence-word; it binds state to time and query.
+
+### [0961] tuple {DB} {#rune-0961}
+
+**Status:** canonical
+
+**Force:** A durable-state word; it matters because the system must remember through change.
+
+### [0962] unique constraint {#rune-0962}
+
+**Status:** canonical
+
+**Force:** A persistence-word; it binds state to time and query.
+
+### [0963] upsert {#rune-0963}
+
+**Status:** canonical
+
+**Force:** A query-and-history word; it shapes how stored truth is accessed or preserved.
+
+### [0964] vacuum {#rune-0964}
+
+**Status:** canonical
+
+**Force:** A storage-law word; it governs how facts are kept, found, or rolled back.
+
+### [0965] view {DB} {#rune-0965}
+
+**Status:** canonical
+
+**Force:** A query-and-history word; it shapes how stored truth is accessed or preserved.
+
+### [0966] WAL {#rune-0966}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A persistence-word; it binds state to time and query.
+
+**Pocket gloss:** Write-ahead log: history recorded before dirty pages reach their final home.
+
+### [0967] warehouse model {#rune-0967}
+
+**Status:** canonical
+
+**Force:** A persistence-word; it binds state to time and query.
+
+### [0968] write skew {DB} {#rune-0968}
+
+**Status:** canonical
+
+**Force:** A storage-law word; it governs how facts are kept, found, or rolled back.

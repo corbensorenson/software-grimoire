@@ -6,75 +6,527 @@ title: "Promptcraft, AI-Oriented Engineering, and Spell Structure"
 
 Range: `1351-1420`.
 
-| Sigil | Term                           | Summary                                                                                                                             |
-| ----- | ------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------- |
-| 1351  | agent {AI}                     | An acting word; a named locus of initiative that may observe, decide, and invoke tools.                                             |
-| 1352  | alignment {AI}                 | A prompting word; it belongs to the ritual surface between human specification and machine response.                                |
-| 1353  | annotation set                 | A prompting word; it belongs to the ritual surface between human specification and machine response.                                |
-| 1354  | benchmark prompt               | A spellcraft word; it shapes how intent is framed before generation begins.                                                         |
-| 1355  | canonical form {AI}            | A normalization word; many possible surfaces are forced into one agreed shape.                                                      |
-| 1356  | citation                       | A prompting word; it belongs to the ritual surface between human specification and machine response.                                |
-| 1357  | clause marker                  | A prompting word; it belongs to the ritual surface between human specification and machine response.                                |
-| 1358  | constraint {AI}                | A bounding word; it removes degrees of freedom in order to improve correctness.                                                     |
-| 1359  | context                        | A surrounding word; it supplies the conditions under which symbols acquire force.                                                   |
-| 1360  | context window                 | A horizon word; it marks how much text the model can keep active at once.                                                           |
-| 1361  | delegation                     | A conjuration word; it directs probabilistic software by language, retrieval, or evaluation.                                        |
-| 1362  | deterministic decoding         | A spellcraft word; it shapes how intent is framed before generation begins.                                                         |
-| 1363  | embedding {AI}                 | A closeness word; it places meaning into geometry.                                                                                  |
-| 1364  | evaluation {AI}                | A conjuration word; it directs probabilistic software by language, retrieval, or evaluation.                                        |
-| 1365  | evaluator                      | A prompting word; it belongs to the ritual surface between human specification and machine response.                                |
-| 1366  | example                        | A conjuration word; it directs probabilistic software by language, retrieval, or evaluation.                                        |
-| 1367  | exemplar                       | A model-steering word; it affects what the system attends to, emits, or verifies.                                                   |
-| 1368  | fallback {AI}                  | A conjuration word; it directs probabilistic software by language, retrieval, or evaluation.                                        |
-| 1369  | few-shot                       | A spellcraft word; it shapes how intent is framed before generation begins.                                                         |
-| 1370  | fine-tuning                    | A conjuration word; it directs probabilistic software by language, retrieval, or evaluation.                                        |
-| 1371  | function call                  | A model-steering word; it affects what the system attends to, emits, or verifies.                                                   |
-| 1372  | goal                           | An aim word; it tells the spell what outcome matters most.                                                                          |
-| 1373  | grounding                      | A spellcraft word; it shapes how intent is framed before generation begins.                                                         |
-| 1374  | guardrail                      | A limiting word; it narrows the model's allowed behavior without fully specifying the answer.                                       |
-| 1375  | hallucination check            | A skepticism word; it forces the model to verify rather than merely continue.                                                       |
-| 1376  | instruction {AI}               | A model-steering word; it affects what the system attends to, emits, or verifies.                                                   |
-| 1377  | latent space                   | A conjuration word; it directs probabilistic software by language, retrieval, or evaluation.                                        |
-| 1378  | memory {AI}                    | A spellcraft word; it shapes how intent is framed before generation begins.                                                         |
-| 1379  | message role                   | A prompting word; it belongs to the ritual surface between human specification and machine response.                                |
-| 1380  | multimodal                     | A conjuration word; it directs probabilistic software by language, retrieval, or evaluation.                                        |
-| 1381  | normal form                    | A spellcraft word; it shapes how intent is framed before generation begins.                                                         |
-| 1382  | objective                      | A directing word; it states what the spell is trying to cause.                                                                      |
-| 1383  | output contract                | A form-binding word; it specifies the shape the answer must take.                                                                   |
-| 1384  | parser prompt                  | A prompting word; it belongs to the ritual surface between human specification and machine response.                                |
-| 1385  | plan                           | A prompting word; it belongs to the ritual surface between human specification and machine response.                                |
-| 1386  | planner                        | A sequencing word; it arranges acts before they are executed.                                                                       |
-| 1387  | policy prompt                  | A model-steering word; it affects what the system attends to, emits, or verifies.                                                   |
-| 1388  | procedure {AI}                 | A method word; not just what to do, but in what order to do it.                                                                     |
-| 1389  | prompt                         | A conjuration word; it biases a generative system toward a role, task, and style of action.                                         |
-| 1390  | prompt injection               | A spellcraft word; it shapes how intent is framed before generation begins.                                                         |
-| 1391  | prompt surface {AI}            | A prompting word; it belongs to the ritual surface between human specification and machine response.                                |
-| 1392  | ranking                        | A model-steering word; it affects what the system attends to, emits, or verifies.                                                   |
-| 1393  | reasoning trace                | A spellcraft word; it shapes how intent is framed before generation begins.                                                         |
-| 1394  | reranker                       | A refinement word; candidates are reordered after an earlier retrieval pass.                                                        |
-| 1395  | retrieval                      | A model-steering word; it affects what the system attends to, emits, or verifies.                                                   |
-| 1396  | retrieval-augmented generation | A spellcraft word; it shapes how intent is framed before generation begins.                                                         |
-| 1397  | role {AI}                      | An invocation word; it frames what kind of actor the model should pretend to be.                                                    |
-| 1398  | rubric                         | A prompting word; it belongs to the ritual surface between human specification and machine response.                                |
-| 1399  | safety rail                    | A conjuration word; it directs probabilistic software by language, retrieval, or evaluation.                                        |
-| 1400  | scaffold {AI}                  | A model-steering word; it affects what the system attends to, emits, or verifies.                                                   |
-| 1401  | schema {AI}                    | A shape word for stored meaning.                                                                                                    |
-| 1402  | section marker                 | A prompting word; it belongs to the ritual surface between human specification and machine response.                                |
-| 1403  | self-check                     | A spellcraft word; it shapes how intent is framed before generation begins.                                                         |
-| 1404  | shot                           | A model-steering word; it affects what the system attends to, emits, or verifies.                                                   |
-| 1405  | spell                          | A structured instruction artifact that binds role, goal, context, constraints, procedure, and verification into one operative text. |
-| 1406  | spell number                   | A Godel-style identifier for a canonicalized spell sequence.                                                                        |
-| 1407  | spell signature                | A canonical token sequence or prime-exponent form standing in for an entire prompt.                                                 |
-| 1408  | step list                      | A conjuration word; it directs probabilistic software by language, retrieval, or evaluation.                                        |
-| 1409  | system prompt                  | A throne word; it sits above later instructions and frames the entire interaction.                                                  |
-| 1410  | task framing                   | A prompting word; it belongs to the ritual surface between human specification and machine response.                                |
-| 1411  | temperature                    | A variance word in sampling; higher values loosen the model's preference ordering.                                                  |
-| 1412  | token {AI}                     | A countable unit of text or symbol used for parsing, modeling, or encoding.                                                         |
-| 1413  | token stream                   | A spellcraft word; it shapes how intent is framed before generation begins.                                                         |
-| 1414  | tool call                      | An extension word; the model reaches beyond text into an external operation.                                                        |
-| 1415  | toolformer pattern             | A prompting word; it belongs to the ritual surface between human specification and machine response.                                |
-| 1416  | top-k                          | A prompting word; it belongs to the ritual surface between human specification and machine response.                                |
-| 1417  | top-p                          | A conjuration word; it directs probabilistic software by language, retrieval, or evaluation.                                        |
-| 1418  | user prompt                    | A spellcraft word; it shapes how intent is framed before generation begins.                                                         |
-| 1419  | verification {AI}              | A truth-checking word that asks not merely for output, but for justified output.                                                    |
-| 1420  | vocabulary id                  | A spellcraft word; it shapes how intent is framed before generation begins.                                                         |
+Use the summary table for scanning. Each row links to the detailed anchored entry below.
+
+| Sigil | Term                                         | Summary                                                                                                                             |
+| ----- | -------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| 1351  | [agent {AI}](#rune-1351)                     | An acting word; a named locus of initiative that may observe, decide, and invoke tools.                                             |
+| 1352  | [alignment {AI}](#rune-1352)                 | A prompting word; it belongs to the ritual surface between human specification and machine response.                                |
+| 1353  | [annotation set](#rune-1353)                 | A prompting word; it belongs to the ritual surface between human specification and machine response.                                |
+| 1354  | [benchmark prompt](#rune-1354)               | A spellcraft word; it shapes how intent is framed before generation begins.                                                         |
+| 1355  | [canonical form {AI}](#rune-1355)            | A normalization word; many possible surfaces are forced into one agreed shape.                                                      |
+| 1356  | [citation](#rune-1356)                       | A prompting word; it belongs to the ritual surface between human specification and machine response.                                |
+| 1357  | [clause marker](#rune-1357)                  | A prompting word; it belongs to the ritual surface between human specification and machine response.                                |
+| 1358  | [constraint {AI}](#rune-1358)                | A bounding word; it removes degrees of freedom in order to improve correctness.                                                     |
+| 1359  | [context](#rune-1359)                        | A surrounding word; it supplies the conditions under which symbols acquire force.                                                   |
+| 1360  | [context window](#rune-1360)                 | A horizon word; it marks how much text the model can keep active at once.                                                           |
+| 1361  | [delegation](#rune-1361)                     | A conjuration word; it directs probabilistic software by language, retrieval, or evaluation.                                        |
+| 1362  | [deterministic decoding](#rune-1362)         | A spellcraft word; it shapes how intent is framed before generation begins.                                                         |
+| 1363  | [embedding {AI}](#rune-1363)                 | A closeness word; it places meaning into geometry.                                                                                  |
+| 1364  | [evaluation {AI}](#rune-1364)                | A conjuration word; it directs probabilistic software by language, retrieval, or evaluation.                                        |
+| 1365  | [evaluator](#rune-1365)                      | A prompting word; it belongs to the ritual surface between human specification and machine response.                                |
+| 1366  | [example](#rune-1366)                        | A conjuration word; it directs probabilistic software by language, retrieval, or evaluation.                                        |
+| 1367  | [exemplar](#rune-1367)                       | A model-steering word; it affects what the system attends to, emits, or verifies.                                                   |
+| 1368  | [fallback {AI}](#rune-1368)                  | A conjuration word; it directs probabilistic software by language, retrieval, or evaluation.                                        |
+| 1369  | [few-shot](#rune-1369)                       | A spellcraft word; it shapes how intent is framed before generation begins.                                                         |
+| 1370  | [fine-tuning](#rune-1370)                    | A conjuration word; it directs probabilistic software by language, retrieval, or evaluation.                                        |
+| 1371  | [function call](#rune-1371)                  | A model-steering word; it affects what the system attends to, emits, or verifies.                                                   |
+| 1372  | [goal](#rune-1372)                           | An aim word; it tells the spell what outcome matters most.                                                                          |
+| 1373  | [grounding](#rune-1373)                      | A spellcraft word; it shapes how intent is framed before generation begins.                                                         |
+| 1374  | [guardrail](#rune-1374)                      | A limiting word; it narrows the model's allowed behavior without fully specifying the answer.                                       |
+| 1375  | [hallucination check](#rune-1375)            | A skepticism word; it forces the model to verify rather than merely continue.                                                       |
+| 1376  | [instruction {AI}](#rune-1376)               | A model-steering word; it affects what the system attends to, emits, or verifies.                                                   |
+| 1377  | [latent space](#rune-1377)                   | A conjuration word; it directs probabilistic software by language, retrieval, or evaluation.                                        |
+| 1378  | [memory {AI}](#rune-1378)                    | A spellcraft word; it shapes how intent is framed before generation begins.                                                         |
+| 1379  | [message role](#rune-1379)                   | A prompting word; it belongs to the ritual surface between human specification and machine response.                                |
+| 1380  | [multimodal](#rune-1380)                     | A conjuration word; it directs probabilistic software by language, retrieval, or evaluation.                                        |
+| 1381  | [normal form](#rune-1381)                    | A spellcraft word; it shapes how intent is framed before generation begins.                                                         |
+| 1382  | [objective](#rune-1382)                      | A directing word; it states what the spell is trying to cause.                                                                      |
+| 1383  | [output contract](#rune-1383)                | A form-binding word; it specifies the shape the answer must take.                                                                   |
+| 1384  | [parser prompt](#rune-1384)                  | A prompting word; it belongs to the ritual surface between human specification and machine response.                                |
+| 1385  | [plan](#rune-1385)                           | A prompting word; it belongs to the ritual surface between human specification and machine response.                                |
+| 1386  | [planner](#rune-1386)                        | A sequencing word; it arranges acts before they are executed.                                                                       |
+| 1387  | [policy prompt](#rune-1387)                  | A model-steering word; it affects what the system attends to, emits, or verifies.                                                   |
+| 1388  | [procedure {AI}](#rune-1388)                 | A method word; not just what to do, but in what order to do it.                                                                     |
+| 1389  | [prompt](#rune-1389)                         | A conjuration word; it biases a generative system toward a role, task, and style of action.                                         |
+| 1390  | [prompt injection](#rune-1390)               | A spellcraft word; it shapes how intent is framed before generation begins.                                                         |
+| 1391  | [prompt surface {AI}](#rune-1391)            | A prompting word; it belongs to the ritual surface between human specification and machine response.                                |
+| 1392  | [ranking](#rune-1392)                        | A model-steering word; it affects what the system attends to, emits, or verifies.                                                   |
+| 1393  | [reasoning trace](#rune-1393)                | A spellcraft word; it shapes how intent is framed before generation begins.                                                         |
+| 1394  | [reranker](#rune-1394)                       | A refinement word; candidates are reordered after an earlier retrieval pass.                                                        |
+| 1395  | [retrieval](#rune-1395)                      | A model-steering word; it affects what the system attends to, emits, or verifies.                                                   |
+| 1396  | [retrieval-augmented generation](#rune-1396) | A spellcraft word; it shapes how intent is framed before generation begins.                                                         |
+| 1397  | [role {AI}](#rune-1397)                      | An invocation word; it frames what kind of actor the model should pretend to be.                                                    |
+| 1398  | [rubric](#rune-1398)                         | A prompting word; it belongs to the ritual surface between human specification and machine response.                                |
+| 1399  | [safety rail](#rune-1399)                    | A conjuration word; it directs probabilistic software by language, retrieval, or evaluation.                                        |
+| 1400  | [scaffold {AI}](#rune-1400)                  | A model-steering word; it affects what the system attends to, emits, or verifies.                                                   |
+| 1401  | [schema {AI}](#rune-1401)                    | A shape word for stored meaning.                                                                                                    |
+| 1402  | [section marker](#rune-1402)                 | A prompting word; it belongs to the ritual surface between human specification and machine response.                                |
+| 1403  | [self-check](#rune-1403)                     | A spellcraft word; it shapes how intent is framed before generation begins.                                                         |
+| 1404  | [shot](#rune-1404)                           | A model-steering word; it affects what the system attends to, emits, or verifies.                                                   |
+| 1405  | [spell](#rune-1405)                          | A structured instruction artifact that binds role, goal, context, constraints, procedure, and verification into one operative text. |
+| 1406  | [spell number](#rune-1406)                   | A Godel-style identifier for a canonicalized spell sequence.                                                                        |
+| 1407  | [spell signature](#rune-1407)                | A canonical token sequence or prime-exponent form standing in for an entire prompt.                                                 |
+| 1408  | [step list](#rune-1408)                      | A conjuration word; it directs probabilistic software by language, retrieval, or evaluation.                                        |
+| 1409  | [system prompt](#rune-1409)                  | A throne word; it sits above later instructions and frames the entire interaction.                                                  |
+| 1410  | [task framing](#rune-1410)                   | A prompting word; it belongs to the ritual surface between human specification and machine response.                                |
+| 1411  | [temperature](#rune-1411)                    | A variance word in sampling; higher values loosen the model's preference ordering.                                                  |
+| 1412  | [token {AI}](#rune-1412)                     | A countable unit of text or symbol used for parsing, modeling, or encoding.                                                         |
+| 1413  | [token stream](#rune-1413)                   | A spellcraft word; it shapes how intent is framed before generation begins.                                                         |
+| 1414  | [tool call](#rune-1414)                      | An extension word; the model reaches beyond text into an external operation.                                                        |
+| 1415  | [toolformer pattern](#rune-1415)             | A prompting word; it belongs to the ritual surface between human specification and machine response.                                |
+| 1416  | [top-k](#rune-1416)                          | A prompting word; it belongs to the ritual surface between human specification and machine response.                                |
+| 1417  | [top-p](#rune-1417)                          | A conjuration word; it directs probabilistic software by language, retrieval, or evaluation.                                        |
+| 1418  | [user prompt](#rune-1418)                    | A spellcraft word; it shapes how intent is framed before generation begins.                                                         |
+| 1419  | [verification {AI}](#rune-1419)              | A truth-checking word that asks not merely for output, but for justified output.                                                    |
+| 1420  | [vocabulary id](#rune-1420)                  | A spellcraft word; it shapes how intent is framed before generation begins.                                                         |
+
+## Entries
+
+### [1351] agent {AI} {#rune-1351}
+
+**Status:** canonical (pocket canon)
+
+**Force:** An acting word; a named locus of initiative that may observe, decide, and invoke tools.
+
+**Pocket gloss:** A named locus of initiative that may observe, decide, and invoke tools.
+
+### [1352] alignment {AI} {#rune-1352}
+
+**Status:** canonical
+
+**Force:** A prompting word; it belongs to the ritual surface between human specification and machine response.
+
+### [1353] annotation set {#rune-1353}
+
+**Status:** canonical
+
+**Force:** A prompting word; it belongs to the ritual surface between human specification and machine response.
+
+### [1354] benchmark prompt {#rune-1354}
+
+**Status:** canonical
+
+**Force:** A spellcraft word; it shapes how intent is framed before generation begins.
+
+### [1355] canonical form {AI} {#rune-1355}
+
+**Status:** canonical
+
+**Force:** A normalization word; many possible surfaces are forced into one agreed shape.
+
+### [1356] citation {#rune-1356}
+
+**Status:** canonical
+
+**Force:** A prompting word; it belongs to the ritual surface between human specification and machine response.
+
+### [1357] clause marker {#rune-1357}
+
+**Status:** canonical
+
+**Force:** A prompting word; it belongs to the ritual surface between human specification and machine response.
+
+### [1358] constraint {AI} {#rune-1358}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A bounding word; it removes degrees of freedom in order to improve correctness.
+
+**Pocket gloss:** A bound that removes degrees of freedom in favor of correctness.
+
+### [1359] context {#rune-1359}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A surrounding word; it supplies the conditions under which symbols acquire force.
+
+**Pocket gloss:** The surrounding facts that give the prompt its force.
+
+### [1360] context window {#rune-1360}
+
+**Status:** canonical
+
+**Force:** A horizon word; it marks how much text the model can keep active at once.
+
+### [1361] delegation {#rune-1361}
+
+**Status:** canonical
+
+**Force:** A conjuration word; it directs probabilistic software by language, retrieval, or evaluation.
+
+### [1362] deterministic decoding {#rune-1362}
+
+**Status:** canonical
+
+**Force:** A spellcraft word; it shapes how intent is framed before generation begins.
+
+### [1363] embedding {AI} {#rune-1363}
+
+**Status:** canonical
+
+**Force:** A closeness word; it places meaning into geometry.
+
+### [1364] evaluation {AI} {#rune-1364}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A conjuration word; it directs probabilistic software by language, retrieval, or evaluation.
+
+**Pocket gloss:** The act of measuring whether the model is actually useful.
+
+### [1365] evaluator {#rune-1365}
+
+**Status:** canonical
+
+**Force:** A prompting word; it belongs to the ritual surface between human specification and machine response.
+
+### [1366] example {#rune-1366}
+
+**Status:** canonical
+
+**Force:** A conjuration word; it directs probabilistic software by language, retrieval, or evaluation.
+
+### [1367] exemplar {#rune-1367}
+
+**Status:** canonical
+
+**Force:** A model-steering word; it affects what the system attends to, emits, or verifies.
+
+### [1368] fallback {AI} {#rune-1368}
+
+**Status:** canonical
+
+**Force:** A conjuration word; it directs probabilistic software by language, retrieval, or evaluation.
+
+### [1369] few-shot {#rune-1369}
+
+**Status:** canonical
+
+**Force:** A spellcraft word; it shapes how intent is framed before generation begins.
+
+### [1370] fine-tuning {#rune-1370}
+
+**Status:** canonical
+
+**Force:** A conjuration word; it directs probabilistic software by language, retrieval, or evaluation.
+
+### [1371] function call {#rune-1371}
+
+**Status:** canonical
+
+**Force:** A model-steering word; it affects what the system attends to, emits, or verifies.
+
+### [1372] goal {#rune-1372}
+
+**Status:** canonical
+
+**Force:** An aim word; it tells the spell what outcome matters most.
+
+### [1373] grounding {#rune-1373}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A spellcraft word; it shapes how intent is framed before generation begins.
+
+**Pocket gloss:** Tie generation to evidence instead of to free-association alone.
+
+### [1374] guardrail {#rune-1374}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A limiting word; it narrows the model's allowed behavior without fully specifying the answer.
+
+**Pocket gloss:** A boundary that narrows allowed behavior without fully specifying the answer.
+
+### [1375] hallucination check {#rune-1375}
+
+**Status:** canonical
+
+**Force:** A skepticism word; it forces the model to verify rather than merely continue.
+
+### [1376] instruction {AI} {#rune-1376}
+
+**Status:** canonical
+
+**Force:** A model-steering word; it affects what the system attends to, emits, or verifies.
+
+### [1377] latent space {#rune-1377}
+
+**Status:** canonical
+
+**Force:** A conjuration word; it directs probabilistic software by language, retrieval, or evaluation.
+
+### [1378] memory {AI} {#rune-1378}
+
+**Status:** canonical
+
+**Force:** A spellcraft word; it shapes how intent is framed before generation begins.
+
+### [1379] message role {#rune-1379}
+
+**Status:** canonical
+
+**Force:** A prompting word; it belongs to the ritual surface between human specification and machine response.
+
+### [1380] multimodal {#rune-1380}
+
+**Status:** canonical
+
+**Force:** A conjuration word; it directs probabilistic software by language, retrieval, or evaluation.
+
+### [1381] normal form {#rune-1381}
+
+**Status:** canonical
+
+**Force:** A spellcraft word; it shapes how intent is framed before generation begins.
+
+### [1382] objective {#rune-1382}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A directing word; it states what the spell is trying to cause.
+
+**Pocket gloss:** The outcome the spell is trying to cause.
+
+### [1383] output contract {#rune-1383}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A form-binding word; it specifies the shape the answer must take.
+
+**Pocket gloss:** The required shape the answer must take.
+
+### [1384] parser prompt {#rune-1384}
+
+**Status:** canonical
+
+**Force:** A prompting word; it belongs to the ritual surface between human specification and machine response.
+
+### [1385] plan {#rune-1385}
+
+**Status:** canonical
+
+**Force:** A prompting word; it belongs to the ritual surface between human specification and machine response.
+
+### [1386] planner {#rune-1386}
+
+**Status:** canonical
+
+**Force:** A sequencing word; it arranges acts before they are executed.
+
+### [1387] policy prompt {#rune-1387}
+
+**Status:** canonical
+
+**Force:** A model-steering word; it affects what the system attends to, emits, or verifies.
+
+### [1388] procedure {AI} {#rune-1388}
+
+**Status:** canonical
+
+**Force:** A method word; not just what to do, but in what order to do it.
+
+### [1389] prompt {#rune-1389}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A conjuration word; it biases a generative system toward a role, task, and style of action.
+
+**Pocket gloss:** The surface instruction that biases a model toward task, role, and style.
+
+### [1390] prompt injection {#rune-1390}
+
+**Status:** canonical
+
+**Force:** A spellcraft word; it shapes how intent is framed before generation begins.
+
+### [1391] prompt surface {AI} {#rune-1391}
+
+**Status:** canonical
+
+**Force:** A prompting word; it belongs to the ritual surface between human specification and machine response.
+
+### [1392] ranking {#rune-1392}
+
+**Status:** canonical
+
+**Force:** A model-steering word; it affects what the system attends to, emits, or verifies.
+
+### [1393] reasoning trace {#rune-1393}
+
+**Status:** canonical
+
+**Force:** A spellcraft word; it shapes how intent is framed before generation begins.
+
+### [1394] reranker {#rune-1394}
+
+**Status:** canonical
+
+**Force:** A refinement word; candidates are reordered after an earlier retrieval pass.
+
+### [1395] retrieval {#rune-1395}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A model-steering word; it affects what the system attends to, emits, or verifies.
+
+**Pocket gloss:** Bring external evidence into the model's working context.
+
+### [1396] retrieval-augmented generation {#rune-1396}
+
+**Status:** canonical
+
+**Force:** A spellcraft word; it shapes how intent is framed before generation begins.
+
+### [1397] role {AI} {#rune-1397}
+
+**Status:** canonical
+
+**Force:** An invocation word; it frames what kind of actor the model should pretend to be.
+
+### [1398] rubric {#rune-1398}
+
+**Status:** canonical
+
+**Force:** A prompting word; it belongs to the ritual surface between human specification and machine response.
+
+### [1399] safety rail {#rune-1399}
+
+**Status:** canonical
+
+**Force:** A conjuration word; it directs probabilistic software by language, retrieval, or evaluation.
+
+### [1400] scaffold {AI} {#rune-1400}
+
+**Status:** canonical
+
+**Force:** A model-steering word; it affects what the system attends to, emits, or verifies.
+
+### [1401] schema {AI} {#rune-1401}
+
+**Status:** canonical
+
+**Force:** A shape word for stored meaning.
+
+### [1402] section marker {#rune-1402}
+
+**Status:** canonical
+
+**Force:** A prompting word; it belongs to the ritual surface between human specification and machine response.
+
+### [1403] self-check {#rune-1403}
+
+**Status:** canonical
+
+**Force:** A spellcraft word; it shapes how intent is framed before generation begins.
+
+### [1404] shot {#rune-1404}
+
+**Status:** canonical
+
+**Force:** A model-steering word; it affects what the system attends to, emits, or verifies.
+
+### [1405] spell {#rune-1405}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A structured instruction artifact that binds role, goal, context, constraints, procedure, and verification into one operative text.
+
+**Pocket gloss:** A structured instruction artifact that binds role, goal, context, and checks.
+
+### [1406] spell number {#rune-1406}
+
+**Status:** canonical
+
+**Force:** A Godel-style identifier for a canonicalized spell sequence.
+
+### [1407] spell signature {#rune-1407}
+
+**Status:** canonical
+
+**Force:** A canonical token sequence or prime-exponent form standing in for an entire prompt.
+
+### [1408] step list {#rune-1408}
+
+**Status:** canonical
+
+**Force:** A conjuration word; it directs probabilistic software by language, retrieval, or evaluation.
+
+### [1409] system prompt {#rune-1409}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A throne word; it sits above later instructions and frames the entire interaction.
+
+**Pocket gloss:** The highest-order framing instruction in the conversation.
+
+### [1410] task framing {#rune-1410}
+
+**Status:** canonical
+
+**Force:** A prompting word; it belongs to the ritual surface between human specification and machine response.
+
+### [1411] temperature {#rune-1411}
+
+**Status:** canonical
+
+**Force:** A variance word in sampling; higher values loosen the model's preference ordering.
+
+### [1412] token {AI} {#rune-1412}
+
+**Status:** canonical
+
+**Force:** A countable unit of text or symbol used for parsing, modeling, or encoding.
+
+### [1413] token stream {#rune-1413}
+
+**Status:** canonical
+
+**Force:** A spellcraft word; it shapes how intent is framed before generation begins.
+
+### [1414] tool call {#rune-1414}
+
+**Status:** canonical (pocket canon)
+
+**Force:** An extension word; the model reaches beyond text into an external operation.
+
+**Pocket gloss:** A step where the model reaches beyond text into external action.
+
+### [1415] toolformer pattern {#rune-1415}
+
+**Status:** canonical
+
+**Force:** A prompting word; it belongs to the ritual surface between human specification and machine response.
+
+### [1416] top-k {#rune-1416}
+
+**Status:** canonical
+
+**Force:** A prompting word; it belongs to the ritual surface between human specification and machine response.
+
+### [1417] top-p {#rune-1417}
+
+**Status:** canonical
+
+**Force:** A conjuration word; it directs probabilistic software by language, retrieval, or evaluation.
+
+### [1418] user prompt {#rune-1418}
+
+**Status:** canonical
+
+**Force:** A spellcraft word; it shapes how intent is framed before generation begins.
+
+### [1419] verification {AI} {#rune-1419}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A truth-checking word that asks not merely for output, but for justified output.
+
+**Pocket gloss:** Truth-checking added to output generation.
+
+### [1420] vocabulary id {#rune-1420}
+
+**Status:** canonical
+
+**Force:** A spellcraft word; it shapes how intent is framed before generation begins.

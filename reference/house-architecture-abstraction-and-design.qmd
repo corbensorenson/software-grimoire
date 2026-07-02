@@ -6,117 +6,849 @@ title: "Architecture, Abstraction, and Design"
 
 Range: `0001-0112`.
 
-| Sigil | Term                  | Summary                                                                                                                                                                                 |
-| ----- | --------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 0001  | abstraction           | A deliberate forgetting of detail so larger structure can be reasoned about without drowning in mechanism. Shadow: hiding the only failure that matters.                                |
-| 0002  | adapter               | A negotiated translator between unlike shapes. Use it when two systems must meet without infecting one another. Shadow: adapter jungles that preserve confusion rather than resolve it. |
-| 0003  | agent {Arch}          | An acting word; a named locus of initiative that may observe, decide, and invoke tools.                                                                                                 |
-| 0004  | aggregate {Arch}      | An order-word; it constrains how complexity is arranged rather than merely accumulated.                                                                                                 |
-| 0005  | anti-corruption layer | An order-word; it constrains how complexity is arranged rather than merely accumulated.                                                                                                 |
-| 0006  | API gateway           | A threshold that centralizes entry, policy, and routing at the edge of a service world. Shadow: a convenience chokepoint that quietly becomes a monolith.                               |
-| 0007  | architecture          | A world-shaping word; it names the large order into which many smaller decisions must fit.                                                                                              |
-| 0008  | artifact boundary     | A composition-word; it lets many smaller parts behave as one larger form.                                                                                                               |
-| 0009  | assembler             | A composition-word; it lets many smaller parts behave as one larger form.                                                                                                               |
-| 0010  | backbone              | A boundary-word; it shapes how one part may touch another.                                                                                                                              |
-| 0011  | backend               | A structure-word; it gives responsibility a place to live.                                                                                                                              |
-| 0012  | boundary              | The line that says where one responsibility ends and another begins. Shadow: porous edges that smear blame, ownership, and test scope.                                                  |
-| 0013  | bounded context       | A protection against semantic bleed: the same word may not mean the same thing in every subsystem. Shadow: false unification through shared names.                                      |
-| 0014  | bridge                | A boundary-word; it shapes how one part may touch another.                                                                                                                              |
-| 0015  | broker {Arch}         | A boundary-word; it shapes how one part may touch another.                                                                                                                              |
-| 0016  | builder               | An order-word; it constrains how complexity is arranged rather than merely accumulated.                                                                                                 |
-| 0017  | bus {Arch}            | A composition-word; it lets many smaller parts behave as one larger form.                                                                                                               |
-| 0018  | capability {Arch}     | A composition-word; it lets many smaller parts behave as one larger form.                                                                                                               |
-| 0019  | channel               | A boundary-word; it shapes how one part may touch another.                                                                                                                              |
-| 0020  | client {Arch}         | An order-word; it constrains how complexity is arranged rather than merely accumulated.                                                                                                 |
-| 0021  | cluster {Arch}        | A many-body word; several machines are treated as one operational unit.                                                                                                                 |
-| 0022  | command bus           | A boundary-word; it shapes how one part may touch another.                                                                                                                              |
-| 0023  | component {Arch}      | An order-word; it constrains how complexity is arranged rather than merely accumulated.                                                                                                 |
-| 0024  | composition           | A structure-word; it gives responsibility a place to live.                                                                                                                              |
-| 0025  | connector             | An order-word; it constrains how complexity is arranged rather than merely accumulated.                                                                                                 |
-| 0026  | container {Arch}      | An order-word; it constrains how complexity is arranged rather than merely accumulated.                                                                                                 |
-| 0027  | control plane {Arch}  | A boundary-word; it shapes how one part may touch another.                                                                                                                              |
-| 0028  | coordinator           | A structure-word; it gives responsibility a place to live.                                                                                                                              |
-| 0029  | core {Arch}           | A boundary-word; it shapes how one part may touch another.                                                                                                                              |
-| 0030  | coupling              | The hidden tax paid when change in one place forces change elsewhere. Name it early if you want modularity to survive contact with reality.                                             |
-| 0031  | daemon {Arch}         | A structure-word; it gives responsibility a place to live.                                                                                                                              |
-| 0032  | data plane {Arch}     | A composition-word; it lets many smaller parts behave as one larger form.                                                                                                               |
-| 0033  | decorator {Arch}      | An order-word; it constrains how complexity is arranged rather than merely accumulated.                                                                                                 |
-| 0034  | dependency inversion  | Stable policy should not kneel before unstable detail. Shadow: concrete dependencies hard-wired into places that should remain portable.                                                |
-| 0035  | dispatcher            | An order-word; it constrains how complexity is arranged rather than merely accumulated.                                                                                                 |
-| 0036  | domain model          | A boundary-word; it shapes how one part may touch another.                                                                                                                              |
-| 0037  | edge service          | A composition-word; it lets many smaller parts behave as one larger form.                                                                                                               |
-| 0038  | engine                | A composition-word; it lets many smaller parts behave as one larger form.                                                                                                               |
-| 0039  | entrypoint            | A structure-word; it gives responsibility a place to live.                                                                                                                              |
-| 0040  | event bus             | A structure-word; it gives responsibility a place to live.                                                                                                                              |
-| 0041  | event handler         | A structure-word; it gives responsibility a place to live.                                                                                                                              |
-| 0042  | executor              | An order-word; it constrains how complexity is arranged rather than merely accumulated.                                                                                                 |
-| 0043  | facade                | A structure-word; it gives responsibility a place to live.                                                                                                                              |
-| 0044  | factory               | A structure-word; it gives responsibility a place to live.                                                                                                                              |
-| 0045  | feature module        | A composition-word; it lets many smaller parts behave as one larger form.                                                                                                               |
-| 0046  | frontend              | A structure-word; it gives responsibility a place to live.                                                                                                                              |
-| 0047  | gateway {Arch}        | A composition-word; it lets many smaller parts behave as one larger form.                                                                                                               |
-| 0048  | graph                 | A composition-word; it lets many smaller parts behave as one larger form.                                                                                                               |
-| 0049  | handler               | A composition-word; it lets many smaller parts behave as one larger form.                                                                                                               |
-| 0050  | hierarchy {Arch}      | An order-word; it constrains how complexity is arranged rather than merely accumulated.                                                                                                 |
-| 0051  | hook                  | A boundary-word; it shapes how one part may touch another.                                                                                                                              |
-| 0052  | host                  | A composition-word; it lets many smaller parts behave as one larger form.                                                                                                               |
-| 0053  | hub                   | An order-word; it constrains how complexity is arranged rather than merely accumulated.                                                                                                 |
-| 0054  | implementation {Arch} | A composition-word; it lets many smaller parts behave as one larger form.                                                                                                               |
-| 0055  | interface {Arch}      | A disciplined seam that lets unlike bodies cooperate without swapping internal organs. Shadow: tight coupling and type bleed.                                                           |
-| 0056  | interpreter {Arch}    | A structure-word; it gives responsibility a place to live.                                                                                                                              |
-| 0057  | kernel service        | A composition-word; it lets many smaller parts behave as one larger form.                                                                                                               |
-| 0058  | layer                 | A boundary-word; it shapes how one part may touch another.                                                                                                                              |
-| 0059  | library               | A boundary-word; it shapes how one part may touch another.                                                                                                                              |
-| 0060  | listener              | A composition-word; it lets many smaller parts behave as one larger form.                                                                                                               |
-| 0061  | machine boundary      | A boundary-word; it shapes how one part may touch another.                                                                                                                              |
-| 0062  | mediator              | A boundary-word; it shapes how one part may touch another.                                                                                                                              |
-| 0063  | mesh {Arch}           | A boundary-word; it shapes how one part may touch another.                                                                                                                              |
-| 0064  | microservice          | A partition word; a system is cut into independently deployed service bodies.                                                                                                           |
-| 0065  | middleware            | A composition-word; it lets many smaller parts behave as one larger form.                                                                                                               |
-| 0066  | module {Arch}         | A containment word; related definitions are packaged as one coherent unit.                                                                                                              |
-| 0067  | monolith              | A composition-word; it lets many smaller parts behave as one larger form.                                                                                                               |
-| 0068  | namespace {Arch}      | A boundary-word; it shapes how one part may touch another.                                                                                                                              |
-| 0069  | node {Arch}           | A composition-word; it lets many smaller parts behave as one larger form.                                                                                                               |
-| 0070  | observer              | A structure-word; it gives responsibility a place to live.                                                                                                                              |
-| 0071  | orchestrator          | A conducting word; many services or tasks are coordinated into one larger procedure.                                                                                                    |
-| 0072  | package {Arch}        | A structure-word; it gives responsibility a place to live.                                                                                                                              |
-| 0073  | pipeline {Arch}       | A procession word; work passes through ordered stages.                                                                                                                                  |
-| 0074  | platform              | A boundary-word; it shapes how one part may touch another.                                                                                                                              |
-| 0075  | plugin                | An order-word; it constrains how complexity is arranged rather than merely accumulated.                                                                                                 |
-| 0076  | port {Arch}           | A contact word; a defined point of communication or adaptation.                                                                                                                         |
-| 0077  | presenter             | A structure-word; it gives responsibility a place to live.                                                                                                                              |
-| 0078  | process manager       | A composition-word; it lets many smaller parts behave as one larger form.                                                                                                               |
-| 0079  | producer              | A structure-word; it gives responsibility a place to live.                                                                                                                              |
-| 0080  | projection            | A boundary-word; it shapes how one part may touch another.                                                                                                                              |
-| 0081  | protocol boundary     | A composition-word; it lets many smaller parts behave as one larger form.                                                                                                               |
-| 0082  | proxy {Arch}          | A stand-in word; one body speaks or receives on behalf of another.                                                                                                                      |
-| 0083  | queue {Arch}          | A boundary-word; it shapes how one part may touch another.                                                                                                                              |
-| 0084  | reactor               | A structure-word; it gives responsibility a place to live.                                                                                                                              |
-| 0085  | receiver              | A boundary-word; it shapes how one part may touch another.                                                                                                                              |
-| 0086  | registry              | A boundary-word; it shapes how one part may touch another.                                                                                                                              |
-| 0087  | repository {Arch}     | A custody word; an official place from which versions or entities are retrieved.                                                                                                        |
-| 0088  | resource boundary     | A structure-word; it gives responsibility a place to live.                                                                                                                              |
-| 0089  | router {Arch}         | A boundary-word; it shapes how one part may touch another.                                                                                                                              |
-| 0090  | scheduler             | A tempo word; it apportions time among contenders.                                                                                                                                      |
-| 0091  | seam                  | A composition-word; it lets many smaller parts behave as one larger form.                                                                                                               |
-| 0092  | service               | A duty word; a stable capability exposed for repeated use by others.                                                                                                                    |
-| 0093  | service mesh {Arch}   | A side-channel governance word for service-to-service traffic.                                                                                                                          |
-| 0094  | session boundary      | A structure-word; it gives responsibility a place to live.                                                                                                                              |
-| 0095  | shard {Arch}          | A splitting word; one logical body is divided across multiple partitions.                                                                                                               |
-| 0096  | shim                  | A boundary-word; it shapes how one part may touch another.                                                                                                                              |
-| 0097  | singleton             | An order-word; it constrains how complexity is arranged rather than merely accumulated.                                                                                                 |
-| 0098  | source of truth       | An authority word; one record or service is treated as canonical.                                                                                                                       |
-| 0099  | stack {Arch}          | A layering word; order matters and the most recent thing is nearest the top.                                                                                                            |
-| 0100  | stage {Arch}          | A structure-word; it gives responsibility a place to live.                                                                                                                              |
-| 0101  | state machine         | A lawful-transition word; only certain moves are allowed from each state.                                                                                                               |
-| 0102  | strategy              | An order-word; it constrains how complexity is arranged rather than merely accumulated.                                                                                                 |
-| 0103  | subsystem             | An order-word; it constrains how complexity is arranged rather than merely accumulated.                                                                                                 |
-| 0104  | surface               | A boundary-word; it shapes how one part may touch another.                                                                                                                              |
-| 0105  | system                | A boundary-word; it shapes how one part may touch another.                                                                                                                              |
-| 0106  | template method       | A boundary-word; it shapes how one part may touch another.                                                                                                                              |
-| 0107  | tree                  | A structure-word; it gives responsibility a place to live.                                                                                                                              |
-| 0108  | use case              | A boundary-word; it shapes how one part may touch another.                                                                                                                              |
-| 0109  | value object          | A structure-word; it gives responsibility a place to live.                                                                                                                              |
-| 0110  | worker                | A labor word; a designated body performs tasks delegated by some larger system.                                                                                                         |
-| 0111  | workflow              | An order-word; it constrains how complexity is arranged rather than merely accumulated.                                                                                                 |
-| 0112  | wrapper               | A boundary-word; it shapes how one part may touch another.                                                                                                                              |
+Use the summary table for scanning. Each row links to the detailed anchored entry below.
+
+| Sigil | Term                                | Summary                                                                                                                                                                                 |
+| ----- | ----------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 0001  | [abstraction](#rune-0001)           | A deliberate forgetting of detail so larger structure can be reasoned about without drowning in mechanism. Shadow: hiding the only failure that matters.                                |
+| 0002  | [adapter](#rune-0002)               | A negotiated translator between unlike shapes. Use it when two systems must meet without infecting one another. Shadow: adapter jungles that preserve confusion rather than resolve it. |
+| 0003  | [agent {Arch}](#rune-0003)          | An acting word; a named locus of initiative that may observe, decide, and invoke tools.                                                                                                 |
+| 0004  | [aggregate {Arch}](#rune-0004)      | An order-word; it constrains how complexity is arranged rather than merely accumulated.                                                                                                 |
+| 0005  | [anti-corruption layer](#rune-0005) | An order-word; it constrains how complexity is arranged rather than merely accumulated.                                                                                                 |
+| 0006  | [API gateway](#rune-0006)           | A threshold that centralizes entry, policy, and routing at the edge of a service world. Shadow: a convenience chokepoint that quietly becomes a monolith.                               |
+| 0007  | [architecture](#rune-0007)          | A world-shaping word; it names the large order into which many smaller decisions must fit.                                                                                              |
+| 0008  | [artifact boundary](#rune-0008)     | A composition-word; it lets many smaller parts behave as one larger form.                                                                                                               |
+| 0009  | [assembler](#rune-0009)             | A composition-word; it lets many smaller parts behave as one larger form.                                                                                                               |
+| 0010  | [backbone](#rune-0010)              | A boundary-word; it shapes how one part may touch another.                                                                                                                              |
+| 0011  | [backend](#rune-0011)               | A structure-word; it gives responsibility a place to live.                                                                                                                              |
+| 0012  | [boundary](#rune-0012)              | The line that says where one responsibility ends and another begins. Shadow: porous edges that smear blame, ownership, and test scope.                                                  |
+| 0013  | [bounded context](#rune-0013)       | A protection against semantic bleed: the same word may not mean the same thing in every subsystem. Shadow: false unification through shared names.                                      |
+| 0014  | [bridge](#rune-0014)                | A boundary-word; it shapes how one part may touch another.                                                                                                                              |
+| 0015  | [broker {Arch}](#rune-0015)         | A boundary-word; it shapes how one part may touch another.                                                                                                                              |
+| 0016  | [builder](#rune-0016)               | An order-word; it constrains how complexity is arranged rather than merely accumulated.                                                                                                 |
+| 0017  | [bus {Arch}](#rune-0017)            | A composition-word; it lets many smaller parts behave as one larger form.                                                                                                               |
+| 0018  | [capability {Arch}](#rune-0018)     | A composition-word; it lets many smaller parts behave as one larger form.                                                                                                               |
+| 0019  | [channel](#rune-0019)               | A boundary-word; it shapes how one part may touch another.                                                                                                                              |
+| 0020  | [client {Arch}](#rune-0020)         | An order-word; it constrains how complexity is arranged rather than merely accumulated.                                                                                                 |
+| 0021  | [cluster {Arch}](#rune-0021)        | A many-body word; several machines are treated as one operational unit.                                                                                                                 |
+| 0022  | [command bus](#rune-0022)           | A boundary-word; it shapes how one part may touch another.                                                                                                                              |
+| 0023  | [component {Arch}](#rune-0023)      | An order-word; it constrains how complexity is arranged rather than merely accumulated.                                                                                                 |
+| 0024  | [composition](#rune-0024)           | A structure-word; it gives responsibility a place to live.                                                                                                                              |
+| 0025  | [connector](#rune-0025)             | An order-word; it constrains how complexity is arranged rather than merely accumulated.                                                                                                 |
+| 0026  | [container {Arch}](#rune-0026)      | An order-word; it constrains how complexity is arranged rather than merely accumulated.                                                                                                 |
+| 0027  | [control plane {Arch}](#rune-0027)  | A boundary-word; it shapes how one part may touch another.                                                                                                                              |
+| 0028  | [coordinator](#rune-0028)           | A structure-word; it gives responsibility a place to live.                                                                                                                              |
+| 0029  | [core {Arch}](#rune-0029)           | A boundary-word; it shapes how one part may touch another.                                                                                                                              |
+| 0030  | [coupling](#rune-0030)              | The hidden tax paid when change in one place forces change elsewhere. Name it early if you want modularity to survive contact with reality.                                             |
+| 0031  | [daemon {Arch}](#rune-0031)         | A structure-word; it gives responsibility a place to live.                                                                                                                              |
+| 0032  | [data plane {Arch}](#rune-0032)     | A composition-word; it lets many smaller parts behave as one larger form.                                                                                                               |
+| 0033  | [decorator {Arch}](#rune-0033)      | An order-word; it constrains how complexity is arranged rather than merely accumulated.                                                                                                 |
+| 0034  | [dependency inversion](#rune-0034)  | Stable policy should not kneel before unstable detail. Shadow: concrete dependencies hard-wired into places that should remain portable.                                                |
+| 0035  | [dispatcher](#rune-0035)            | An order-word; it constrains how complexity is arranged rather than merely accumulated.                                                                                                 |
+| 0036  | [domain model](#rune-0036)          | A boundary-word; it shapes how one part may touch another.                                                                                                                              |
+| 0037  | [edge service](#rune-0037)          | A composition-word; it lets many smaller parts behave as one larger form.                                                                                                               |
+| 0038  | [engine](#rune-0038)                | A composition-word; it lets many smaller parts behave as one larger form.                                                                                                               |
+| 0039  | [entrypoint](#rune-0039)            | A structure-word; it gives responsibility a place to live.                                                                                                                              |
+| 0040  | [event bus](#rune-0040)             | A structure-word; it gives responsibility a place to live.                                                                                                                              |
+| 0041  | [event handler](#rune-0041)         | A structure-word; it gives responsibility a place to live.                                                                                                                              |
+| 0042  | [executor](#rune-0042)              | An order-word; it constrains how complexity is arranged rather than merely accumulated.                                                                                                 |
+| 0043  | [facade](#rune-0043)                | A structure-word; it gives responsibility a place to live.                                                                                                                              |
+| 0044  | [factory](#rune-0044)               | A structure-word; it gives responsibility a place to live.                                                                                                                              |
+| 0045  | [feature module](#rune-0045)        | A composition-word; it lets many smaller parts behave as one larger form.                                                                                                               |
+| 0046  | [frontend](#rune-0046)              | A structure-word; it gives responsibility a place to live.                                                                                                                              |
+| 0047  | [gateway {Arch}](#rune-0047)        | A composition-word; it lets many smaller parts behave as one larger form.                                                                                                               |
+| 0048  | [graph](#rune-0048)                 | A composition-word; it lets many smaller parts behave as one larger form.                                                                                                               |
+| 0049  | [handler](#rune-0049)               | A composition-word; it lets many smaller parts behave as one larger form.                                                                                                               |
+| 0050  | [hierarchy {Arch}](#rune-0050)      | An order-word; it constrains how complexity is arranged rather than merely accumulated.                                                                                                 |
+| 0051  | [hook](#rune-0051)                  | A boundary-word; it shapes how one part may touch another.                                                                                                                              |
+| 0052  | [host](#rune-0052)                  | A composition-word; it lets many smaller parts behave as one larger form.                                                                                                               |
+| 0053  | [hub](#rune-0053)                   | An order-word; it constrains how complexity is arranged rather than merely accumulated.                                                                                                 |
+| 0054  | [implementation {Arch}](#rune-0054) | A composition-word; it lets many smaller parts behave as one larger form.                                                                                                               |
+| 0055  | [interface {Arch}](#rune-0055)      | A disciplined seam that lets unlike bodies cooperate without swapping internal organs. Shadow: tight coupling and type bleed.                                                           |
+| 0056  | [interpreter {Arch}](#rune-0056)    | A structure-word; it gives responsibility a place to live.                                                                                                                              |
+| 0057  | [kernel service](#rune-0057)        | A composition-word; it lets many smaller parts behave as one larger form.                                                                                                               |
+| 0058  | [layer](#rune-0058)                 | A boundary-word; it shapes how one part may touch another.                                                                                                                              |
+| 0059  | [library](#rune-0059)               | A boundary-word; it shapes how one part may touch another.                                                                                                                              |
+| 0060  | [listener](#rune-0060)              | A composition-word; it lets many smaller parts behave as one larger form.                                                                                                               |
+| 0061  | [machine boundary](#rune-0061)      | A boundary-word; it shapes how one part may touch another.                                                                                                                              |
+| 0062  | [mediator](#rune-0062)              | A boundary-word; it shapes how one part may touch another.                                                                                                                              |
+| 0063  | [mesh {Arch}](#rune-0063)           | A boundary-word; it shapes how one part may touch another.                                                                                                                              |
+| 0064  | [microservice](#rune-0064)          | A partition word; a system is cut into independently deployed service bodies.                                                                                                           |
+| 0065  | [middleware](#rune-0065)            | A composition-word; it lets many smaller parts behave as one larger form.                                                                                                               |
+| 0066  | [module {Arch}](#rune-0066)         | A containment word; related definitions are packaged as one coherent unit.                                                                                                              |
+| 0067  | [monolith](#rune-0067)              | A composition-word; it lets many smaller parts behave as one larger form.                                                                                                               |
+| 0068  | [namespace {Arch}](#rune-0068)      | A boundary-word; it shapes how one part may touch another.                                                                                                                              |
+| 0069  | [node {Arch}](#rune-0069)           | A composition-word; it lets many smaller parts behave as one larger form.                                                                                                               |
+| 0070  | [observer](#rune-0070)              | A structure-word; it gives responsibility a place to live.                                                                                                                              |
+| 0071  | [orchestrator](#rune-0071)          | A conducting word; many services or tasks are coordinated into one larger procedure.                                                                                                    |
+| 0072  | [package {Arch}](#rune-0072)        | A structure-word; it gives responsibility a place to live.                                                                                                                              |
+| 0073  | [pipeline {Arch}](#rune-0073)       | A procession word; work passes through ordered stages.                                                                                                                                  |
+| 0074  | [platform](#rune-0074)              | A boundary-word; it shapes how one part may touch another.                                                                                                                              |
+| 0075  | [plugin](#rune-0075)                | An order-word; it constrains how complexity is arranged rather than merely accumulated.                                                                                                 |
+| 0076  | [port {Arch}](#rune-0076)           | A contact word; a defined point of communication or adaptation.                                                                                                                         |
+| 0077  | [presenter](#rune-0077)             | A structure-word; it gives responsibility a place to live.                                                                                                                              |
+| 0078  | [process manager](#rune-0078)       | A composition-word; it lets many smaller parts behave as one larger form.                                                                                                               |
+| 0079  | [producer](#rune-0079)              | A structure-word; it gives responsibility a place to live.                                                                                                                              |
+| 0080  | [projection](#rune-0080)            | A boundary-word; it shapes how one part may touch another.                                                                                                                              |
+| 0081  | [protocol boundary](#rune-0081)     | A composition-word; it lets many smaller parts behave as one larger form.                                                                                                               |
+| 0082  | [proxy {Arch}](#rune-0082)          | A stand-in word; one body speaks or receives on behalf of another.                                                                                                                      |
+| 0083  | [queue {Arch}](#rune-0083)          | A boundary-word; it shapes how one part may touch another.                                                                                                                              |
+| 0084  | [reactor](#rune-0084)               | A structure-word; it gives responsibility a place to live.                                                                                                                              |
+| 0085  | [receiver](#rune-0085)              | A boundary-word; it shapes how one part may touch another.                                                                                                                              |
+| 0086  | [registry](#rune-0086)              | A boundary-word; it shapes how one part may touch another.                                                                                                                              |
+| 0087  | [repository {Arch}](#rune-0087)     | A custody word; an official place from which versions or entities are retrieved.                                                                                                        |
+| 0088  | [resource boundary](#rune-0088)     | A structure-word; it gives responsibility a place to live.                                                                                                                              |
+| 0089  | [router {Arch}](#rune-0089)         | A boundary-word; it shapes how one part may touch another.                                                                                                                              |
+| 0090  | [scheduler](#rune-0090)             | A tempo word; it apportions time among contenders.                                                                                                                                      |
+| 0091  | [seam](#rune-0091)                  | A composition-word; it lets many smaller parts behave as one larger form.                                                                                                               |
+| 0092  | [service](#rune-0092)               | A duty word; a stable capability exposed for repeated use by others.                                                                                                                    |
+| 0093  | [service mesh {Arch}](#rune-0093)   | A side-channel governance word for service-to-service traffic.                                                                                                                          |
+| 0094  | [session boundary](#rune-0094)      | A structure-word; it gives responsibility a place to live.                                                                                                                              |
+| 0095  | [shard {Arch}](#rune-0095)          | A splitting word; one logical body is divided across multiple partitions.                                                                                                               |
+| 0096  | [shim](#rune-0096)                  | A boundary-word; it shapes how one part may touch another.                                                                                                                              |
+| 0097  | [singleton](#rune-0097)             | An order-word; it constrains how complexity is arranged rather than merely accumulated.                                                                                                 |
+| 0098  | [source of truth](#rune-0098)       | An authority word; one record or service is treated as canonical.                                                                                                                       |
+| 0099  | [stack {Arch}](#rune-0099)          | A layering word; order matters and the most recent thing is nearest the top.                                                                                                            |
+| 0100  | [stage {Arch}](#rune-0100)          | A structure-word; it gives responsibility a place to live.                                                                                                                              |
+| 0101  | [state machine](#rune-0101)         | A lawful-transition word; only certain moves are allowed from each state.                                                                                                               |
+| 0102  | [strategy](#rune-0102)              | An order-word; it constrains how complexity is arranged rather than merely accumulated.                                                                                                 |
+| 0103  | [subsystem](#rune-0103)             | An order-word; it constrains how complexity is arranged rather than merely accumulated.                                                                                                 |
+| 0104  | [surface](#rune-0104)               | A boundary-word; it shapes how one part may touch another.                                                                                                                              |
+| 0105  | [system](#rune-0105)                | A boundary-word; it shapes how one part may touch another.                                                                                                                              |
+| 0106  | [template method](#rune-0106)       | A boundary-word; it shapes how one part may touch another.                                                                                                                              |
+| 0107  | [tree](#rune-0107)                  | A structure-word; it gives responsibility a place to live.                                                                                                                              |
+| 0108  | [use case](#rune-0108)              | A boundary-word; it shapes how one part may touch another.                                                                                                                              |
+| 0109  | [value object](#rune-0109)          | A structure-word; it gives responsibility a place to live.                                                                                                                              |
+| 0110  | [worker](#rune-0110)                | A labor word; a designated body performs tasks delegated by some larger system.                                                                                                         |
+| 0111  | [workflow](#rune-0111)              | An order-word; it constrains how complexity is arranged rather than merely accumulated.                                                                                                 |
+| 0112  | [wrapper](#rune-0112)               | A boundary-word; it shapes how one part may touch another.                                                                                                                              |
+
+## Entries
+
+### [0001] abstraction {#rune-0001}
+
+**Status:** canonical (major canon, pocket canon)
+
+**Force:** A deliberate forgetting of detail so larger structure can be reasoned about without drowning in mechanism.
+
+**Shadow:** hiding the only failure that matters.
+
+**Pocket gloss:** Deliberate forgetting of detail so larger structure can be reasoned about cleanly.
+
+### [0002] adapter {#rune-0002}
+
+**Status:** canonical (major canon, pocket canon)
+
+**Force:** A negotiated translator between unlike shapes. Use it when two systems must meet without infecting one another.
+
+**Shadow:** adapter jungles that preserve confusion rather than resolve it.
+
+**Pocket gloss:** A translator between unlike shapes that lets systems meet without infecting one another.
+
+### [0003] agent {Arch} {#rune-0003}
+
+**Status:** canonical
+
+**Force:** An acting word; a named locus of initiative that may observe, decide, and invoke tools.
+
+### [0004] aggregate {Arch} {#rune-0004}
+
+**Status:** canonical
+
+**Force:** An order-word; it constrains how complexity is arranged rather than merely accumulated.
+
+### [0005] anti-corruption layer {#rune-0005}
+
+**Status:** canonical (pocket canon)
+
+**Force:** An order-word; it constrains how complexity is arranged rather than merely accumulated.
+
+**Pocket gloss:** A protective seam that keeps one model from polluting another.
+
+### [0006] API gateway {#rune-0006}
+
+**Status:** canonical (major canon, pocket canon)
+
+**Force:** A threshold that centralizes entry, policy, and routing at the edge of a service world.
+
+**Shadow:** a convenience chokepoint that quietly becomes a monolith.
+
+**Pocket gloss:** An edge threshold that centralizes entry, policy, and routing.
+
+### [0007] architecture {#rune-0007}
+
+**Status:** canonical
+
+**Force:** A world-shaping word; it names the large order into which many smaller decisions must fit.
+
+### [0008] artifact boundary {#rune-0008}
+
+**Status:** canonical
+
+**Force:** A composition-word; it lets many smaller parts behave as one larger form.
+
+### [0009] assembler {#rune-0009}
+
+**Status:** canonical
+
+**Force:** A composition-word; it lets many smaller parts behave as one larger form.
+
+### [0010] backbone {#rune-0010}
+
+**Status:** canonical
+
+**Force:** A boundary-word; it shapes how one part may touch another.
+
+### [0011] backend {#rune-0011}
+
+**Status:** canonical
+
+**Force:** A structure-word; it gives responsibility a place to live.
+
+### [0012] boundary {#rune-0012}
+
+**Status:** canonical (major canon, pocket canon)
+
+**Force:** The line that says where one responsibility ends and another begins.
+
+**Shadow:** porous edges that smear blame, ownership, and test scope.
+
+**Pocket gloss:** The line where one responsibility ends and another begins.
+
+### [0013] bounded context {#rune-0013}
+
+**Status:** canonical (major canon, pocket canon)
+
+**Force:** A protection against semantic bleed: the same word may not mean the same thing in every subsystem.
+
+**Shadow:** false unification through shared names.
+
+**Pocket gloss:** A semantic fence: the same term is not forced to mean the same thing everywhere.
+
+### [0014] bridge {#rune-0014}
+
+**Status:** canonical
+
+**Force:** A boundary-word; it shapes how one part may touch another.
+
+### [0015] broker {Arch} {#rune-0015}
+
+**Status:** canonical
+
+**Force:** A boundary-word; it shapes how one part may touch another.
+
+### [0016] builder {#rune-0016}
+
+**Status:** canonical
+
+**Force:** An order-word; it constrains how complexity is arranged rather than merely accumulated.
+
+### [0017] bus {Arch} {#rune-0017}
+
+**Status:** canonical
+
+**Force:** A composition-word; it lets many smaller parts behave as one larger form.
+
+### [0018] capability {Arch} {#rune-0018}
+
+**Status:** canonical
+
+**Force:** A composition-word; it lets many smaller parts behave as one larger form.
+
+### [0019] channel {#rune-0019}
+
+**Status:** canonical
+
+**Force:** A boundary-word; it shapes how one part may touch another.
+
+### [0020] client {Arch} {#rune-0020}
+
+**Status:** canonical
+
+**Force:** An order-word; it constrains how complexity is arranged rather than merely accumulated.
+
+### [0021] cluster {Arch} {#rune-0021}
+
+**Status:** canonical
+
+**Force:** A many-body word; several machines are treated as one operational unit.
+
+### [0022] command bus {#rune-0022}
+
+**Status:** canonical
+
+**Force:** A boundary-word; it shapes how one part may touch another.
+
+### [0023] component {Arch} {#rune-0023}
+
+**Status:** canonical (pocket canon)
+
+**Force:** An order-word; it constrains how complexity is arranged rather than merely accumulated.
+
+**Pocket gloss:** A bounded unit of responsibility inside a larger design.
+
+### [0024] composition {#rune-0024}
+
+**Status:** canonical
+
+**Force:** A structure-word; it gives responsibility a place to live.
+
+### [0025] connector {#rune-0025}
+
+**Status:** canonical
+
+**Force:** An order-word; it constrains how complexity is arranged rather than merely accumulated.
+
+### [0026] container {Arch} {#rune-0026}
+
+**Status:** canonical
+
+**Force:** An order-word; it constrains how complexity is arranged rather than merely accumulated.
+
+### [0027] control plane {Arch} {#rune-0027}
+
+**Status:** canonical
+
+**Force:** A boundary-word; it shapes how one part may touch another.
+
+### [0028] coordinator {#rune-0028}
+
+**Status:** canonical
+
+**Force:** A structure-word; it gives responsibility a place to live.
+
+### [0029] core {Arch} {#rune-0029}
+
+**Status:** canonical
+
+**Force:** A boundary-word; it shapes how one part may touch another.
+
+### [0030] coupling {#rune-0030}
+
+**Status:** canonical (major canon, pocket canon)
+
+**Force:** The hidden tax paid when change in one place forces change elsewhere. Name it early if you want modularity to survive contact with reality.
+
+**Pocket gloss:** The hidden tax paid when change in one place forces change elsewhere.
+
+### [0031] daemon {Arch} {#rune-0031}
+
+**Status:** canonical
+
+**Force:** A structure-word; it gives responsibility a place to live.
+
+### [0032] data plane {Arch} {#rune-0032}
+
+**Status:** canonical
+
+**Force:** A composition-word; it lets many smaller parts behave as one larger form.
+
+### [0033] decorator {Arch} {#rune-0033}
+
+**Status:** canonical
+
+**Force:** An order-word; it constrains how complexity is arranged rather than merely accumulated.
+
+### [0034] dependency inversion {#rune-0034}
+
+**Status:** canonical (major canon, pocket canon)
+
+**Force:** Stable policy should not kneel before unstable detail.
+
+**Shadow:** concrete dependencies hard-wired into places that should remain portable.
+
+**Pocket gloss:** Stable policy should not kneel before unstable detail.
+
+### [0035] dispatcher {#rune-0035}
+
+**Status:** canonical
+
+**Force:** An order-word; it constrains how complexity is arranged rather than merely accumulated.
+
+### [0036] domain model {#rune-0036}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A boundary-word; it shapes how one part may touch another.
+
+**Pocket gloss:** The conceptual map of the business world the software is trying to serve.
+
+### [0037] edge service {#rune-0037}
+
+**Status:** canonical
+
+**Force:** A composition-word; it lets many smaller parts behave as one larger form.
+
+### [0038] engine {#rune-0038}
+
+**Status:** canonical
+
+**Force:** A composition-word; it lets many smaller parts behave as one larger form.
+
+### [0039] entrypoint {#rune-0039}
+
+**Status:** canonical
+
+**Force:** A structure-word; it gives responsibility a place to live.
+
+### [0040] event bus {#rune-0040}
+
+**Status:** canonical
+
+**Force:** A structure-word; it gives responsibility a place to live.
+
+### [0041] event handler {#rune-0041}
+
+**Status:** canonical
+
+**Force:** A structure-word; it gives responsibility a place to live.
+
+### [0042] executor {#rune-0042}
+
+**Status:** canonical
+
+**Force:** An order-word; it constrains how complexity is arranged rather than merely accumulated.
+
+### [0043] facade {#rune-0043}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A structure-word; it gives responsibility a place to live.
+
+**Pocket gloss:** A simplified front door hiding a messier interior.
+
+### [0044] factory {#rune-0044}
+
+**Status:** canonical
+
+**Force:** A structure-word; it gives responsibility a place to live.
+
+### [0045] feature module {#rune-0045}
+
+**Status:** canonical
+
+**Force:** A composition-word; it lets many smaller parts behave as one larger form.
+
+### [0046] frontend {#rune-0046}
+
+**Status:** canonical
+
+**Force:** A structure-word; it gives responsibility a place to live.
+
+### [0047] gateway {Arch} {#rune-0047}
+
+**Status:** canonical
+
+**Force:** A composition-word; it lets many smaller parts behave as one larger form.
+
+### [0048] graph {#rune-0048}
+
+**Status:** canonical
+
+**Force:** A composition-word; it lets many smaller parts behave as one larger form.
+
+### [0049] handler {#rune-0049}
+
+**Status:** canonical
+
+**Force:** A composition-word; it lets many smaller parts behave as one larger form.
+
+### [0050] hierarchy {Arch} {#rune-0050}
+
+**Status:** canonical
+
+**Force:** An order-word; it constrains how complexity is arranged rather than merely accumulated.
+
+### [0051] hook {#rune-0051}
+
+**Status:** canonical
+
+**Force:** A boundary-word; it shapes how one part may touch another.
+
+### [0052] host {#rune-0052}
+
+**Status:** canonical
+
+**Force:** A composition-word; it lets many smaller parts behave as one larger form.
+
+### [0053] hub {#rune-0053}
+
+**Status:** canonical
+
+**Force:** An order-word; it constrains how complexity is arranged rather than merely accumulated.
+
+### [0054] implementation {Arch} {#rune-0054}
+
+**Status:** canonical
+
+**Force:** A composition-word; it lets many smaller parts behave as one larger form.
+
+### [0055] interface {Arch} {#rune-0055}
+
+**Status:** canonical (major canon, pocket canon)
+
+**Force:** A disciplined seam that lets unlike bodies cooperate without swapping internal organs.
+
+**Shadow:** tight coupling and type bleed.
+
+**Pocket gloss:** A disciplined seam that lets unlike bodies cooperate without swapping internal organs.
+
+### [0056] interpreter {Arch} {#rune-0056}
+
+**Status:** canonical
+
+**Force:** A structure-word; it gives responsibility a place to live.
+
+### [0057] kernel service {#rune-0057}
+
+**Status:** canonical
+
+**Force:** A composition-word; it lets many smaller parts behave as one larger form.
+
+### [0058] layer {#rune-0058}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A boundary-word; it shapes how one part may touch another.
+
+**Pocket gloss:** A stratum with a narrow job and limited allowed dependencies.
+
+### [0059] library {#rune-0059}
+
+**Status:** canonical
+
+**Force:** A boundary-word; it shapes how one part may touch another.
+
+### [0060] listener {#rune-0060}
+
+**Status:** canonical
+
+**Force:** A composition-word; it lets many smaller parts behave as one larger form.
+
+### [0061] machine boundary {#rune-0061}
+
+**Status:** canonical
+
+**Force:** A boundary-word; it shapes how one part may touch another.
+
+### [0062] mediator {#rune-0062}
+
+**Status:** canonical
+
+**Force:** A boundary-word; it shapes how one part may touch another.
+
+### [0063] mesh {Arch} {#rune-0063}
+
+**Status:** canonical
+
+**Force:** A boundary-word; it shapes how one part may touch another.
+
+### [0064] microservice {#rune-0064}
+
+**Status:** canonical
+
+**Force:** A partition word; a system is cut into independently deployed service bodies.
+
+### [0065] middleware {#rune-0065}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A composition-word; it lets many smaller parts behave as one larger form.
+
+**Pocket gloss:** Cross-cutting logic placed in the path between request and handler.
+
+### [0066] module {Arch} {#rune-0066}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A containment word; related definitions are packaged as one coherent unit.
+
+**Pocket gloss:** A package of related definitions meant to travel as one thing.
+
+### [0067] monolith {#rune-0067}
+
+**Status:** canonical
+
+**Force:** A composition-word; it lets many smaller parts behave as one larger form.
+
+### [0068] namespace {Arch} {#rune-0068}
+
+**Status:** canonical
+
+**Force:** A boundary-word; it shapes how one part may touch another.
+
+### [0069] node {Arch} {#rune-0069}
+
+**Status:** canonical
+
+**Force:** A composition-word; it lets many smaller parts behave as one larger form.
+
+### [0070] observer {#rune-0070}
+
+**Status:** canonical
+
+**Force:** A structure-word; it gives responsibility a place to live.
+
+### [0071] orchestrator {#rune-0071}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A conducting word; many services or tasks are coordinated into one larger procedure.
+
+**Pocket gloss:** A coordinator that sequences many services or tasks into one larger procedure.
+
+### [0072] package {Arch} {#rune-0072}
+
+**Status:** canonical
+
+**Force:** A structure-word; it gives responsibility a place to live.
+
+### [0073] pipeline {Arch} {#rune-0073}
+
+**Status:** canonical
+
+**Force:** A procession word; work passes through ordered stages.
+
+### [0074] platform {#rune-0074}
+
+**Status:** canonical
+
+**Force:** A boundary-word; it shapes how one part may touch another.
+
+### [0075] plugin {#rune-0075}
+
+**Status:** canonical (pocket canon)
+
+**Force:** An order-word; it constrains how complexity is arranged rather than merely accumulated.
+
+**Pocket gloss:** An extension point that lets capability be added without rewriting the host.
+
+### [0076] port {Arch} {#rune-0076}
+
+**Status:** canonical
+
+**Force:** A contact word; a defined point of communication or adaptation.
+
+### [0077] presenter {#rune-0077}
+
+**Status:** canonical
+
+**Force:** A structure-word; it gives responsibility a place to live.
+
+### [0078] process manager {#rune-0078}
+
+**Status:** canonical
+
+**Force:** A composition-word; it lets many smaller parts behave as one larger form.
+
+### [0079] producer {#rune-0079}
+
+**Status:** canonical
+
+**Force:** A structure-word; it gives responsibility a place to live.
+
+### [0080] projection {#rune-0080}
+
+**Status:** canonical
+
+**Force:** A boundary-word; it shapes how one part may touch another.
+
+### [0081] protocol boundary {#rune-0081}
+
+**Status:** canonical
+
+**Force:** A composition-word; it lets many smaller parts behave as one larger form.
+
+### [0082] proxy {Arch} {#rune-0082}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A stand-in word; one body speaks or receives on behalf of another.
+
+**Pocket gloss:** A stand-in that speaks or receives on behalf of another body.
+
+### [0083] queue {Arch} {#rune-0083}
+
+**Status:** canonical
+
+**Force:** A boundary-word; it shapes how one part may touch another.
+
+### [0084] reactor {#rune-0084}
+
+**Status:** canonical
+
+**Force:** A structure-word; it gives responsibility a place to live.
+
+### [0085] receiver {#rune-0085}
+
+**Status:** canonical
+
+**Force:** A boundary-word; it shapes how one part may touch another.
+
+### [0086] registry {#rune-0086}
+
+**Status:** canonical
+
+**Force:** A boundary-word; it shapes how one part may touch another.
+
+### [0087] repository {Arch} {#rune-0087}
+
+**Status:** canonical
+
+**Force:** A custody word; an official place from which versions or entities are retrieved.
+
+### [0088] resource boundary {#rune-0088}
+
+**Status:** canonical
+
+**Force:** A structure-word; it gives responsibility a place to live.
+
+### [0089] router {Arch} {#rune-0089}
+
+**Status:** canonical
+
+**Force:** A boundary-word; it shapes how one part may touch another.
+
+### [0090] scheduler {#rune-0090}
+
+**Status:** canonical
+
+**Force:** A tempo word; it apportions time among contenders.
+
+### [0091] seam {#rune-0091}
+
+**Status:** canonical
+
+**Force:** A composition-word; it lets many smaller parts behave as one larger form.
+
+### [0092] service {#rune-0092}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A duty word; a stable capability exposed for repeated use by others.
+
+**Pocket gloss:** A stable capability exposed for repeated use by others.
+
+### [0093] service mesh {Arch} {#rune-0093}
+
+**Status:** canonical
+
+**Force:** A side-channel governance word for service-to-service traffic.
+
+### [0094] session boundary {#rune-0094}
+
+**Status:** canonical
+
+**Force:** A structure-word; it gives responsibility a place to live.
+
+### [0095] shard {Arch} {#rune-0095}
+
+**Status:** canonical
+
+**Force:** A splitting word; one logical body is divided across multiple partitions.
+
+### [0096] shim {#rune-0096}
+
+**Status:** canonical
+
+**Force:** A boundary-word; it shapes how one part may touch another.
+
+### [0097] singleton {#rune-0097}
+
+**Status:** canonical
+
+**Force:** An order-word; it constrains how complexity is arranged rather than merely accumulated.
+
+### [0098] source of truth {#rune-0098}
+
+**Status:** canonical (pocket canon)
+
+**Force:** An authority word; one record or service is treated as canonical.
+
+**Pocket gloss:** The place other copies are supposed to agree with.
+
+### [0099] stack {Arch} {#rune-0099}
+
+**Status:** canonical
+
+**Force:** A layering word; order matters and the most recent thing is nearest the top.
+
+### [0100] stage {Arch} {#rune-0100}
+
+**Status:** canonical
+
+**Force:** A structure-word; it gives responsibility a place to live.
+
+### [0101] state machine {#rune-0101}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A lawful-transition word; only certain moves are allowed from each state.
+
+**Pocket gloss:** Behavior expressed as named states and legal transitions.
+
+### [0102] strategy {#rune-0102}
+
+**Status:** canonical
+
+**Force:** An order-word; it constrains how complexity is arranged rather than merely accumulated.
+
+### [0103] subsystem {#rune-0103}
+
+**Status:** canonical
+
+**Force:** An order-word; it constrains how complexity is arranged rather than merely accumulated.
+
+### [0104] surface {#rune-0104}
+
+**Status:** canonical
+
+**Force:** A boundary-word; it shapes how one part may touch another.
+
+### [0105] system {#rune-0105}
+
+**Status:** canonical
+
+**Force:** A boundary-word; it shapes how one part may touch another.
+
+### [0106] template method {#rune-0106}
+
+**Status:** canonical
+
+**Force:** A boundary-word; it shapes how one part may touch another.
+
+### [0107] tree {#rune-0107}
+
+**Status:** canonical
+
+**Force:** A structure-word; it gives responsibility a place to live.
+
+### [0108] use case {#rune-0108}
+
+**Status:** canonical
+
+**Force:** A boundary-word; it shapes how one part may touch another.
+
+### [0109] value object {#rune-0109}
+
+**Status:** canonical
+
+**Force:** A structure-word; it gives responsibility a place to live.
+
+### [0110] worker {#rune-0110}
+
+**Status:** canonical
+
+**Force:** A labor word; a designated body performs tasks delegated by some larger system.
+
+### [0111] workflow {#rune-0111}
+
+**Status:** canonical
+
+**Force:** An order-word; it constrains how complexity is arranged rather than merely accumulated.
+
+### [0112] wrapper {#rune-0112}
+
+**Status:** canonical
+
+**Force:** A boundary-word; it shapes how one part may touch another.

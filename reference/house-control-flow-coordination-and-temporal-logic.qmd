@@ -6,102 +6,726 @@ title: "Control Flow, Coordination, and Temporal Logic"
 
 Range: `0512-0608`.
 
-| Sigil | Term             | Summary                                                                                                                                       |
-| ----- | ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
-| 0512  | abort            | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
-| 0513  | acknowledge      | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
-| 0514  | async            | A time-binding word; it changes when an action may proceed.                                                                                   |
-| 0515  | await            | A suspension word; it pauses one flow so other work may continue.                                                                             |
-| 0516  | backoff {Ctrl}   | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
-| 0517  | barrier {Ctrl}   | A rendezvous word; no party crosses until all required parties arrive.                                                                        |
-| 0518  | block {Ctrl}     | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
-| 0519  | branch {Ctrl}    | A divergence word; execution or history splits into alternate paths.                                                                          |
-| 0520  | break            | A sequencing word; it decides what happens next and under what condition.                                                                     |
-| 0521  | callback         | A sequencing word; it decides what happens next and under what condition.                                                                     |
-| 0522  | cancel           | A time-binding word; it changes when an action may proceed.                                                                                   |
-| 0523  | case             | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
-| 0524  | catch            | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
-| 0525  | chain            | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
-| 0526  | choose           | A sequencing word; it decides what happens next and under what condition.                                                                     |
-| 0527  | circuit breaker  | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
-| 0528  | clause           | A sequencing word; it decides what happens next and under what condition.                                                                     |
-| 0529  | continue         | A sequencing word; it decides what happens next and under what condition.                                                                     |
-| 0530  | coroutine        | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
-| 0531  | countdown        | A sequencing word; it decides what happens next and under what condition.                                                                     |
-| 0532  | cycle            | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
-| 0533  | debounce         | A sequencing word; it decides what happens next and under what condition.                                                                     |
-| 0534  | defer {Ctrl}     | A time-binding word; it changes when an action may proceed.                                                                                   |
-| 0535  | delay            | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
-| 0536  | dispatch {Ctrl}  | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
-| 0537  | do               | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
-| 0538  | else             | A sequencing word; it decides what happens next and under what condition.                                                                     |
-| 0539  | enqueue          | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
-| 0540  | event loop       | A circulation word; work is accepted, queued, and resumed by recurrent inspection.                                                            |
-| 0541  | fallback {Ctrl}  | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
-| 0542  | fan-in           | A sequencing word; it decides what happens next and under what condition.                                                                     |
-| 0543  | fan-out {Ctrl}   | A time-binding word; it changes when an action may proceed.                                                                                   |
-| 0544  | finally          | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
-| 0545  | fire-and-forget  | A time-binding word; it changes when an action may proceed.                                                                                   |
-| 0546  | flow control     | A sequencing word; it decides what happens next and under what condition.                                                                     |
-| 0547  | for              | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
-| 0548  | fork {Ctrl}      | A time-binding word; it changes when an action may proceed.                                                                                   |
-| 0549  | future           | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
-| 0550  | gate             | A permission word; passage occurs only when conditions hold.                                                                                  |
-| 0551  | guard            | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
-| 0552  | halt             | A sequencing word; it decides what happens next and under what condition.                                                                     |
-| 0553  | heartbeat {Ctrl} | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
-| 0554  | if               | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
-| 0555  | iterate          | A time-binding word; it changes when an action may proceed.                                                                                   |
-| 0556  | join {Ctrl}      | A union word; separate streams, sets, or histories are brought into one result.                                                               |
-| 0557  | jump             | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
-| 0558  | latch            | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
-| 0559  | loop             | A time-binding word; it changes when an action may proceed.                                                                                   |
-| 0560  | match            | A sequencing word; it decides what happens next and under what condition.                                                                     |
-| 0561  | mutex            | An exclusion word; only one actor may enter the critical region at a time.                                                                    |
-| 0562  | notify           | A sequencing word; it decides what happens next and under what condition.                                                                     |
-| 0563  | once             | A sequencing word; it decides what happens next and under what condition.                                                                     |
-| 0564  | parallel {Ctrl}  | A sequencing word; it decides what happens next and under what condition.                                                                     |
-| 0565  | pause            | A time-binding word; it changes when an action may proceed.                                                                                   |
-| 0566  | poll {Ctrl}      | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
-| 0567  | preempt          | A sequencing word; it decides what happens next and under what condition.                                                                     |
-| 0568  | priority         | A time-binding word; it changes when an action may proceed.                                                                                   |
-| 0569  | process {Ctrl}   | A sovereignty word; an executing program with its own protected address space.                                                                |
-| 0570  | promise          | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
-| 0571  | queue {Ctrl}     | A sequencing word; it decides what happens next and under what condition.                                                                     |
-| 0572  | race window      | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
-| 0573  | recurse          | A sequencing word; it decides what happens next and under what condition.                                                                     |
-| 0574  | repeat           | A sequencing word; it decides what happens next and under what condition.                                                                     |
-| 0575  | reserve          | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
-| 0576  | retry {Ctrl}     | Failure does not necessarily end the ritual; policy may permit another attempt. Shadow: blind repetition against a broken precondition.       |
-| 0577  | return           | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
-| 0578  | round-robin      | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
-| 0579  | schedule {Ctrl}  | A sequencing word; it decides what happens next and under what condition.                                                                     |
-| 0580  | select {Ctrl}    | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
-| 0581  | semaphore        | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
-| 0582  | sequence point   | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
-| 0583  | serialize access | A time-binding word; it changes when an action may proceed.                                                                                   |
-| 0584  | signal {Ctrl}    | A time-binding word; it changes when an action may proceed.                                                                                   |
-| 0585  | sleep            | A sequencing word; it decides what happens next and under what condition.                                                                     |
-| 0586  | spawn {Ctrl}     | A sequencing word; it decides what happens next and under what condition.                                                                     |
-| 0587  | step             | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
-| 0588  | stop             | A time-binding word; it changes when an action may proceed.                                                                                   |
-| 0589  | suspend          | A time-binding word; it changes when an action may proceed.                                                                                   |
-| 0590  | switch           | A time-binding word; it changes when an action may proceed.                                                                                   |
-| 0591  | sync             | A sequencing word; it decides what happens next and under what condition.                                                                     |
-| 0592  | synchronize      | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
-| 0593  | task             | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
-| 0594  | terminate        | A sequencing word; it decides what happens next and under what condition.                                                                     |
-| 0595  | then             | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
-| 0596  | throttle         | A time-binding word; it changes when an action may proceed.                                                                                   |
-| 0597  | tick             | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
-| 0598  | timeout {Ctrl}   | Waiting is not free and patience must have a boundary. A timeout is a contract with reality about how long uncertainty is allowed to persist. |
-| 0599  | timeslice        | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
-| 0600  | trigger          | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
-| 0601  | try              | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
-| 0602  | unblock          | A time-binding word; it changes when an action may proceed.                                                                                   |
-| 0603  | until            | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
-| 0604  | wait             | A sequencing word; it decides what happens next and under what condition.                                                                     |
-| 0605  | wake             | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
-| 0606  | when             | A time-binding word; it changes when an action may proceed.                                                                                   |
-| 0607  | while            | A sequencing word; it decides what happens next and under what condition.                                                                     |
-| 0608  | yield            | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
+Use the summary table for scanning. Each row links to the detailed anchored entry below.
+
+| Sigil | Term                           | Summary                                                                                                                                       |
+| ----- | ------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| 0512  | [abort](#rune-0512)            | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
+| 0513  | [acknowledge](#rune-0513)      | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
+| 0514  | [async](#rune-0514)            | A time-binding word; it changes when an action may proceed.                                                                                   |
+| 0515  | [await](#rune-0515)            | A suspension word; it pauses one flow so other work may continue.                                                                             |
+| 0516  | [backoff {Ctrl}](#rune-0516)   | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
+| 0517  | [barrier {Ctrl}](#rune-0517)   | A rendezvous word; no party crosses until all required parties arrive.                                                                        |
+| 0518  | [block {Ctrl}](#rune-0518)     | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
+| 0519  | [branch {Ctrl}](#rune-0519)    | A divergence word; execution or history splits into alternate paths.                                                                          |
+| 0520  | [break](#rune-0520)            | A sequencing word; it decides what happens next and under what condition.                                                                     |
+| 0521  | [callback](#rune-0521)         | A sequencing word; it decides what happens next and under what condition.                                                                     |
+| 0522  | [cancel](#rune-0522)           | A time-binding word; it changes when an action may proceed.                                                                                   |
+| 0523  | [case](#rune-0523)             | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
+| 0524  | [catch](#rune-0524)            | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
+| 0525  | [chain](#rune-0525)            | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
+| 0526  | [choose](#rune-0526)           | A sequencing word; it decides what happens next and under what condition.                                                                     |
+| 0527  | [circuit breaker](#rune-0527)  | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
+| 0528  | [clause](#rune-0528)           | A sequencing word; it decides what happens next and under what condition.                                                                     |
+| 0529  | [continue](#rune-0529)         | A sequencing word; it decides what happens next and under what condition.                                                                     |
+| 0530  | [coroutine](#rune-0530)        | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
+| 0531  | [countdown](#rune-0531)        | A sequencing word; it decides what happens next and under what condition.                                                                     |
+| 0532  | [cycle](#rune-0532)            | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
+| 0533  | [debounce](#rune-0533)         | A sequencing word; it decides what happens next and under what condition.                                                                     |
+| 0534  | [defer {Ctrl}](#rune-0534)     | A time-binding word; it changes when an action may proceed.                                                                                   |
+| 0535  | [delay](#rune-0535)            | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
+| 0536  | [dispatch {Ctrl}](#rune-0536)  | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
+| 0537  | [do](#rune-0537)               | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
+| 0538  | [else](#rune-0538)             | A sequencing word; it decides what happens next and under what condition.                                                                     |
+| 0539  | [enqueue](#rune-0539)          | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
+| 0540  | [event loop](#rune-0540)       | A circulation word; work is accepted, queued, and resumed by recurrent inspection.                                                            |
+| 0541  | [fallback {Ctrl}](#rune-0541)  | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
+| 0542  | [fan-in](#rune-0542)           | A sequencing word; it decides what happens next and under what condition.                                                                     |
+| 0543  | [fan-out {Ctrl}](#rune-0543)   | A time-binding word; it changes when an action may proceed.                                                                                   |
+| 0544  | [finally](#rune-0544)          | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
+| 0545  | [fire-and-forget](#rune-0545)  | A time-binding word; it changes when an action may proceed.                                                                                   |
+| 0546  | [flow control](#rune-0546)     | A sequencing word; it decides what happens next and under what condition.                                                                     |
+| 0547  | [for](#rune-0547)              | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
+| 0548  | [fork {Ctrl}](#rune-0548)      | A time-binding word; it changes when an action may proceed.                                                                                   |
+| 0549  | [future](#rune-0549)           | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
+| 0550  | [gate](#rune-0550)             | A permission word; passage occurs only when conditions hold.                                                                                  |
+| 0551  | [guard](#rune-0551)            | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
+| 0552  | [halt](#rune-0552)             | A sequencing word; it decides what happens next and under what condition.                                                                     |
+| 0553  | [heartbeat {Ctrl}](#rune-0553) | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
+| 0554  | [if](#rune-0554)               | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
+| 0555  | [iterate](#rune-0555)          | A time-binding word; it changes when an action may proceed.                                                                                   |
+| 0556  | [join {Ctrl}](#rune-0556)      | A union word; separate streams, sets, or histories are brought into one result.                                                               |
+| 0557  | [jump](#rune-0557)             | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
+| 0558  | [latch](#rune-0558)            | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
+| 0559  | [loop](#rune-0559)             | A time-binding word; it changes when an action may proceed.                                                                                   |
+| 0560  | [match](#rune-0560)            | A sequencing word; it decides what happens next and under what condition.                                                                     |
+| 0561  | [mutex](#rune-0561)            | An exclusion word; only one actor may enter the critical region at a time.                                                                    |
+| 0562  | [notify](#rune-0562)           | A sequencing word; it decides what happens next and under what condition.                                                                     |
+| 0563  | [once](#rune-0563)             | A sequencing word; it decides what happens next and under what condition.                                                                     |
+| 0564  | [parallel {Ctrl}](#rune-0564)  | A sequencing word; it decides what happens next and under what condition.                                                                     |
+| 0565  | [pause](#rune-0565)            | A time-binding word; it changes when an action may proceed.                                                                                   |
+| 0566  | [poll {Ctrl}](#rune-0566)      | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
+| 0567  | [preempt](#rune-0567)          | A sequencing word; it decides what happens next and under what condition.                                                                     |
+| 0568  | [priority](#rune-0568)         | A time-binding word; it changes when an action may proceed.                                                                                   |
+| 0569  | [process {Ctrl}](#rune-0569)   | A sovereignty word; an executing program with its own protected address space.                                                                |
+| 0570  | [promise](#rune-0570)          | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
+| 0571  | [queue {Ctrl}](#rune-0571)     | A sequencing word; it decides what happens next and under what condition.                                                                     |
+| 0572  | [race window](#rune-0572)      | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
+| 0573  | [recurse](#rune-0573)          | A sequencing word; it decides what happens next and under what condition.                                                                     |
+| 0574  | [repeat](#rune-0574)           | A sequencing word; it decides what happens next and under what condition.                                                                     |
+| 0575  | [reserve](#rune-0575)          | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
+| 0576  | [retry {Ctrl}](#rune-0576)     | Failure does not necessarily end the ritual; policy may permit another attempt. Shadow: blind repetition against a broken precondition.       |
+| 0577  | [return](#rune-0577)           | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
+| 0578  | [round-robin](#rune-0578)      | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
+| 0579  | [schedule {Ctrl}](#rune-0579)  | A sequencing word; it decides what happens next and under what condition.                                                                     |
+| 0580  | [select {Ctrl}](#rune-0580)    | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
+| 0581  | [semaphore](#rune-0581)        | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
+| 0582  | [sequence point](#rune-0582)   | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
+| 0583  | [serialize access](#rune-0583) | A time-binding word; it changes when an action may proceed.                                                                                   |
+| 0584  | [signal {Ctrl}](#rune-0584)    | A time-binding word; it changes when an action may proceed.                                                                                   |
+| 0585  | [sleep](#rune-0585)            | A sequencing word; it decides what happens next and under what condition.                                                                     |
+| 0586  | [spawn {Ctrl}](#rune-0586)     | A sequencing word; it decides what happens next and under what condition.                                                                     |
+| 0587  | [step](#rune-0587)             | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
+| 0588  | [stop](#rune-0588)             | A time-binding word; it changes when an action may proceed.                                                                                   |
+| 0589  | [suspend](#rune-0589)          | A time-binding word; it changes when an action may proceed.                                                                                   |
+| 0590  | [switch](#rune-0590)           | A time-binding word; it changes when an action may proceed.                                                                                   |
+| 0591  | [sync](#rune-0591)             | A sequencing word; it decides what happens next and under what condition.                                                                     |
+| 0592  | [synchronize](#rune-0592)      | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
+| 0593  | [task](#rune-0593)             | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
+| 0594  | [terminate](#rune-0594)        | A sequencing word; it decides what happens next and under what condition.                                                                     |
+| 0595  | [then](#rune-0595)             | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
+| 0596  | [throttle](#rune-0596)         | A time-binding word; it changes when an action may proceed.                                                                                   |
+| 0597  | [tick](#rune-0597)             | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
+| 0598  | [timeout {Ctrl}](#rune-0598)   | Waiting is not free and patience must have a boundary. A timeout is a contract with reality about how long uncertainty is allowed to persist. |
+| 0599  | [timeslice](#rune-0599)        | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
+| 0600  | [trigger](#rune-0600)          | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
+| 0601  | [try](#rune-0601)              | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
+| 0602  | [unblock](#rune-0602)          | A time-binding word; it changes when an action may proceed.                                                                                   |
+| 0603  | [until](#rune-0603)            | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
+| 0604  | [wait](#rune-0604)             | A sequencing word; it decides what happens next and under what condition.                                                                     |
+| 0605  | [wake](#rune-0605)             | A tempo-word; it governs order, waiting, branching, or repetition.                                                                            |
+| 0606  | [when](#rune-0606)             | A time-binding word; it changes when an action may proceed.                                                                                   |
+| 0607  | [while](#rune-0607)            | A sequencing word; it decides what happens next and under what condition.                                                                     |
+| 0608  | [yield](#rune-0608)            | A coordination word; it manages concurrency, interruption, or flow.                                                                           |
+
+## Entries
+
+### [0512] abort {#rune-0512}
+
+**Status:** canonical
+
+**Force:** A tempo-word; it governs order, waiting, branching, or repetition.
+
+### [0513] acknowledge {#rune-0513}
+
+**Status:** canonical
+
+**Force:** A tempo-word; it governs order, waiting, branching, or repetition.
+
+### [0514] async {#rune-0514}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A time-binding word; it changes when an action may proceed.
+
+**Pocket gloss:** Work may proceed without immediate blocking at the call site.
+
+### [0515] await {#rune-0515}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A suspension word; it pauses one flow so other work may continue.
+
+**Pocket gloss:** Pause until an asynchronous result becomes ready.
+
+### [0516] backoff {Ctrl} {#rune-0516}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A tempo-word; it governs order, waiting, branching, or repetition.
+
+**Pocket gloss:** Wait longer between retries so recovery does not become attack.
+
+### [0517] barrier {Ctrl} {#rune-0517}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A rendezvous word; no party crosses until all required parties arrive.
+
+**Pocket gloss:** A synchronization point no participant may cross early.
+
+### [0518] block {Ctrl} {#rune-0518}
+
+**Status:** canonical
+
+**Force:** A coordination word; it manages concurrency, interruption, or flow.
+
+### [0519] branch {Ctrl} {#rune-0519}
+
+**Status:** canonical
+
+**Force:** A divergence word; execution or history splits into alternate paths.
+
+### [0520] break {#rune-0520}
+
+**Status:** canonical
+
+**Force:** A sequencing word; it decides what happens next and under what condition.
+
+### [0521] callback {#rune-0521}
+
+**Status:** canonical
+
+**Force:** A sequencing word; it decides what happens next and under what condition.
+
+### [0522] cancel {#rune-0522}
+
+**Status:** canonical
+
+**Force:** A time-binding word; it changes when an action may proceed.
+
+### [0523] case {#rune-0523}
+
+**Status:** canonical
+
+**Force:** A tempo-word; it governs order, waiting, branching, or repetition.
+
+### [0524] catch {#rune-0524}
+
+**Status:** canonical
+
+**Force:** A coordination word; it manages concurrency, interruption, or flow.
+
+### [0525] chain {#rune-0525}
+
+**Status:** canonical
+
+**Force:** A coordination word; it manages concurrency, interruption, or flow.
+
+### [0526] choose {#rune-0526}
+
+**Status:** canonical
+
+**Force:** A sequencing word; it decides what happens next and under what condition.
+
+### [0527] circuit breaker {#rune-0527}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A coordination word; it manages concurrency, interruption, or flow.
+
+**Pocket gloss:** Trip open after repeated failure to prevent repeated harm.
+
+### [0528] clause {#rune-0528}
+
+**Status:** canonical
+
+**Force:** A sequencing word; it decides what happens next and under what condition.
+
+### [0529] continue {#rune-0529}
+
+**Status:** canonical
+
+**Force:** A sequencing word; it decides what happens next and under what condition.
+
+### [0530] coroutine {#rune-0530}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A tempo-word; it governs order, waiting, branching, or repetition.
+
+**Pocket gloss:** A suspendable routine that can yield and later resume.
+
+### [0531] countdown {#rune-0531}
+
+**Status:** canonical
+
+**Force:** A sequencing word; it decides what happens next and under what condition.
+
+### [0532] cycle {#rune-0532}
+
+**Status:** canonical
+
+**Force:** A tempo-word; it governs order, waiting, branching, or repetition.
+
+### [0533] debounce {#rune-0533}
+
+**Status:** canonical
+
+**Force:** A sequencing word; it decides what happens next and under what condition.
+
+### [0534] defer {Ctrl} {#rune-0534}
+
+**Status:** canonical
+
+**Force:** A time-binding word; it changes when an action may proceed.
+
+### [0535] delay {#rune-0535}
+
+**Status:** canonical
+
+**Force:** A coordination word; it manages concurrency, interruption, or flow.
+
+### [0536] dispatch {Ctrl} {#rune-0536}
+
+**Status:** canonical
+
+**Force:** A tempo-word; it governs order, waiting, branching, or repetition.
+
+### [0537] do {#rune-0537}
+
+**Status:** canonical
+
+**Force:** A coordination word; it manages concurrency, interruption, or flow.
+
+### [0538] else {#rune-0538}
+
+**Status:** canonical
+
+**Force:** A sequencing word; it decides what happens next and under what condition.
+
+### [0539] enqueue {#rune-0539}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A tempo-word; it governs order, waiting, branching, or repetition.
+
+**Pocket gloss:** Place work onto a queue for later handling.
+
+### [0540] event loop {#rune-0540}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A circulation word; work is accepted, queued, and resumed by recurrent inspection.
+
+**Pocket gloss:** The scheduler that drives nonblocking tasks and callbacks.
+
+### [0541] fallback {Ctrl} {#rune-0541}
+
+**Status:** canonical
+
+**Force:** A tempo-word; it governs order, waiting, branching, or repetition.
+
+### [0542] fan-in {#rune-0542}
+
+**Status:** canonical
+
+**Force:** A sequencing word; it decides what happens next and under what condition.
+
+### [0543] fan-out {Ctrl} {#rune-0543}
+
+**Status:** canonical
+
+**Force:** A time-binding word; it changes when an action may proceed.
+
+### [0544] finally {#rune-0544}
+
+**Status:** canonical
+
+**Force:** A coordination word; it manages concurrency, interruption, or flow.
+
+### [0545] fire-and-forget {#rune-0545}
+
+**Status:** canonical
+
+**Force:** A time-binding word; it changes when an action may proceed.
+
+### [0546] flow control {#rune-0546}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A sequencing word; it decides what happens next and under what condition.
+
+**Pocket gloss:** Mechanisms that keep producers from outrunning consumers.
+
+### [0547] for {#rune-0547}
+
+**Status:** canonical
+
+**Force:** A coordination word; it manages concurrency, interruption, or flow.
+
+### [0548] fork {Ctrl} {#rune-0548}
+
+**Status:** canonical
+
+**Force:** A time-binding word; it changes when an action may proceed.
+
+### [0549] future {#rune-0549}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A coordination word; it manages concurrency, interruption, or flow.
+
+**Pocket gloss:** A placeholder for a value that will exist later.
+
+### [0550] gate {#rune-0550}
+
+**Status:** canonical
+
+**Force:** A permission word; passage occurs only when conditions hold.
+
+### [0551] guard {#rune-0551}
+
+**Status:** canonical
+
+**Force:** A coordination word; it manages concurrency, interruption, or flow.
+
+### [0552] halt {#rune-0552}
+
+**Status:** canonical
+
+**Force:** A sequencing word; it decides what happens next and under what condition.
+
+### [0553] heartbeat {Ctrl} {#rune-0553}
+
+**Status:** canonical
+
+**Force:** A tempo-word; it governs order, waiting, branching, or repetition.
+
+### [0554] if {#rune-0554}
+
+**Status:** canonical
+
+**Force:** A coordination word; it manages concurrency, interruption, or flow.
+
+### [0555] iterate {#rune-0555}
+
+**Status:** canonical
+
+**Force:** A time-binding word; it changes when an action may proceed.
+
+### [0556] join {Ctrl} {#rune-0556}
+
+**Status:** canonical
+
+**Force:** A union word; separate streams, sets, or histories are brought into one result.
+
+### [0557] jump {#rune-0557}
+
+**Status:** canonical
+
+**Force:** A tempo-word; it governs order, waiting, branching, or repetition.
+
+### [0558] latch {#rune-0558}
+
+**Status:** canonical
+
+**Force:** A tempo-word; it governs order, waiting, branching, or repetition.
+
+### [0559] loop {#rune-0559}
+
+**Status:** canonical
+
+**Force:** A time-binding word; it changes when an action may proceed.
+
+### [0560] match {#rune-0560}
+
+**Status:** canonical
+
+**Force:** A sequencing word; it decides what happens next and under what condition.
+
+### [0561] mutex {#rune-0561}
+
+**Status:** canonical (pocket canon)
+
+**Force:** An exclusion word; only one actor may enter the critical region at a time.
+
+**Pocket gloss:** Mutual exclusion for one critical region at a time.
+
+### [0562] notify {#rune-0562}
+
+**Status:** canonical
+
+**Force:** A sequencing word; it decides what happens next and under what condition.
+
+### [0563] once {#rune-0563}
+
+**Status:** canonical
+
+**Force:** A sequencing word; it decides what happens next and under what condition.
+
+### [0564] parallel {Ctrl} {#rune-0564}
+
+**Status:** canonical
+
+**Force:** A sequencing word; it decides what happens next and under what condition.
+
+### [0565] pause {#rune-0565}
+
+**Status:** canonical
+
+**Force:** A time-binding word; it changes when an action may proceed.
+
+### [0566] poll {Ctrl} {#rune-0566}
+
+**Status:** canonical
+
+**Force:** A coordination word; it manages concurrency, interruption, or flow.
+
+### [0567] preempt {#rune-0567}
+
+**Status:** canonical
+
+**Force:** A sequencing word; it decides what happens next and under what condition.
+
+### [0568] priority {#rune-0568}
+
+**Status:** canonical
+
+**Force:** A time-binding word; it changes when an action may proceed.
+
+### [0569] process {Ctrl} {#rune-0569}
+
+**Status:** canonical
+
+**Force:** A sovereignty word; an executing program with its own protected address space.
+
+### [0570] promise {#rune-0570}
+
+**Status:** canonical
+
+**Force:** A coordination word; it manages concurrency, interruption, or flow.
+
+### [0571] queue {Ctrl} {#rune-0571}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A sequencing word; it decides what happens next and under what condition.
+
+**Pocket gloss:** Ordered holding area that decouples production from consumption.
+
+### [0572] race window {#rune-0572}
+
+**Status:** canonical
+
+**Force:** A coordination word; it manages concurrency, interruption, or flow.
+
+### [0573] recurse {#rune-0573}
+
+**Status:** canonical
+
+**Force:** A sequencing word; it decides what happens next and under what condition.
+
+### [0574] repeat {#rune-0574}
+
+**Status:** canonical
+
+**Force:** A sequencing word; it decides what happens next and under what condition.
+
+### [0575] reserve {#rune-0575}
+
+**Status:** canonical
+
+**Force:** A tempo-word; it governs order, waiting, branching, or repetition.
+
+### [0576] retry {Ctrl} {#rune-0576}
+
+**Status:** canonical (major canon, pocket canon)
+
+**Force:** Failure does not necessarily end the ritual; policy may permit another attempt.
+
+**Shadow:** blind repetition against a broken precondition.
+
+**Pocket gloss:** Try again under policy rather than treating one failure as final.
+
+### [0577] return {#rune-0577}
+
+**Status:** canonical
+
+**Force:** A tempo-word; it governs order, waiting, branching, or repetition.
+
+### [0578] round-robin {#rune-0578}
+
+**Status:** canonical
+
+**Force:** A coordination word; it manages concurrency, interruption, or flow.
+
+### [0579] schedule {Ctrl} {#rune-0579}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A sequencing word; it decides what happens next and under what condition.
+
+**Pocket gloss:** Assign work to time, order, or execution slots.
+
+### [0580] select {Ctrl} {#rune-0580}
+
+**Status:** canonical
+
+**Force:** A tempo-word; it governs order, waiting, branching, or repetition.
+
+### [0581] semaphore {#rune-0581}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A tempo-word; it governs order, waiting, branching, or repetition.
+
+**Pocket gloss:** A counted gate controlling concurrent access to limited capacity.
+
+### [0582] sequence point {#rune-0582}
+
+**Status:** canonical
+
+**Force:** A coordination word; it manages concurrency, interruption, or flow.
+
+### [0583] serialize access {#rune-0583}
+
+**Status:** canonical
+
+**Force:** A time-binding word; it changes when an action may proceed.
+
+### [0584] signal {Ctrl} {#rune-0584}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A time-binding word; it changes when an action may proceed.
+
+**Pocket gloss:** Emit a condition change another task may respond to.
+
+### [0585] sleep {#rune-0585}
+
+**Status:** canonical
+
+**Force:** A sequencing word; it decides what happens next and under what condition.
+
+### [0586] spawn {Ctrl} {#rune-0586}
+
+**Status:** canonical
+
+**Force:** A sequencing word; it decides what happens next and under what condition.
+
+### [0587] step {#rune-0587}
+
+**Status:** canonical
+
+**Force:** A tempo-word; it governs order, waiting, branching, or repetition.
+
+### [0588] stop {#rune-0588}
+
+**Status:** canonical
+
+**Force:** A time-binding word; it changes when an action may proceed.
+
+### [0589] suspend {#rune-0589}
+
+**Status:** canonical
+
+**Force:** A time-binding word; it changes when an action may proceed.
+
+### [0590] switch {#rune-0590}
+
+**Status:** canonical
+
+**Force:** A time-binding word; it changes when an action may proceed.
+
+### [0591] sync {#rune-0591}
+
+**Status:** canonical
+
+**Force:** A sequencing word; it decides what happens next and under what condition.
+
+### [0592] synchronize {#rune-0592}
+
+**Status:** canonical
+
+**Force:** A tempo-word; it governs order, waiting, branching, or repetition.
+
+### [0593] task {#rune-0593}
+
+**Status:** canonical
+
+**Force:** A coordination word; it manages concurrency, interruption, or flow.
+
+### [0594] terminate {#rune-0594}
+
+**Status:** canonical
+
+**Force:** A sequencing word; it decides what happens next and under what condition.
+
+### [0595] then {#rune-0595}
+
+**Status:** canonical
+
+**Force:** A coordination word; it manages concurrency, interruption, or flow.
+
+### [0596] throttle {#rune-0596}
+
+**Status:** canonical
+
+**Force:** A time-binding word; it changes when an action may proceed.
+
+### [0597] tick {#rune-0597}
+
+**Status:** canonical
+
+**Force:** A coordination word; it manages concurrency, interruption, or flow.
+
+### [0598] timeout {Ctrl} {#rune-0598}
+
+**Status:** canonical (major canon, pocket canon)
+
+**Force:** Waiting is not free and patience must have a boundary. A timeout is a contract with reality about how long uncertainty is allowed to persist.
+
+**Pocket gloss:** A declared limit on how long uncertainty may persist.
+
+### [0599] timeslice {#rune-0599}
+
+**Status:** canonical
+
+**Force:** A coordination word; it manages concurrency, interruption, or flow.
+
+### [0600] trigger {#rune-0600}
+
+**Status:** canonical
+
+**Force:** A tempo-word; it governs order, waiting, branching, or repetition.
+
+### [0601] try {#rune-0601}
+
+**Status:** canonical
+
+**Force:** A coordination word; it manages concurrency, interruption, or flow.
+
+### [0602] unblock {#rune-0602}
+
+**Status:** canonical
+
+**Force:** A time-binding word; it changes when an action may proceed.
+
+### [0603] until {#rune-0603}
+
+**Status:** canonical
+
+**Force:** A tempo-word; it governs order, waiting, branching, or repetition.
+
+### [0604] wait {#rune-0604}
+
+**Status:** canonical
+
+**Force:** A sequencing word; it decides what happens next and under what condition.
+
+### [0605] wake {#rune-0605}
+
+**Status:** canonical
+
+**Force:** A tempo-word; it governs order, waiting, branching, or repetition.
+
+### [0606] when {#rune-0606}
+
+**Status:** canonical
+
+**Force:** A time-binding word; it changes when an action may proceed.
+
+### [0607] while {#rune-0607}
+
+**Status:** canonical
+
+**Force:** A sequencing word; it decides what happens next and under what condition.
+
+### [0608] yield {#rune-0608}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A coordination word; it manages concurrency, interruption, or flow.
+
+**Pocket gloss:** Give up control now so another act may proceed.

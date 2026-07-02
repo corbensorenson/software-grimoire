@@ -6,100 +6,714 @@ title: "Security, Trust, and Warding Words"
 
 Range: `0969-1063`.
 
-| Sigil | Term                  | Summary                                                                                                                                        |
-| ----- | --------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
-| 0969  | ABAC                  | A defense word; it shapes how systems resist misuse, theft, or forgery.                                                                        |
-| 0970  | access control        | A defense word; it shapes how systems resist misuse, theft, or forgery.                                                                        |
-| 0971  | account               | A threshold word; it governs who may enter, know, or act.                                                                                      |
-| 0972  | ACL                   | A ward-word; it protects trust, secrecy, or authority.                                                                                         |
-| 0973  | allowlist             | A defense word; it shapes how systems resist misuse, theft, or forgery.                                                                        |
-| 0974  | attestation           | A proof that a thing is what it claims to be or was produced the way it claims. It matters most when trust cannot be assumed.                  |
-| 0975  | audit                 | A defense word; it shapes how systems resist misuse, theft, or forgery.                                                                        |
-| 0976  | authenticate          | Prove who is making the claim before deciding what the claimant may do. Shadow: trusting names that have not earned entrance.                  |
-| 0977  | authentication        | A ward-word; it protects trust, secrecy, or authority.                                                                                         |
-| 0978  | authorization         | After identity is known, what acts are permitted? Shadow: accidental omnipotence hidden behind a successful login.                             |
-| 0979  | availability          | A promise word that says the system can still be reached when called upon.                                                                     |
-| 0980  | bearer token          | A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.                                                |
-| 0981  | blast radius          | A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.                                                |
-| 0982  | blocklist             | A defense word; it shapes how systems resist misuse, theft, or forgery.                                                                        |
-| 0983  | boundary defense      | A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.                                                |
-| 0984  | capability {Sec}      | A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.                                                |
-| 0985  | certificate {Sec}     | A delegated-trust word; it lets one party assert another's identity by signed authority.                                                       |
-| 0986  | challenge             | A defense word; it shapes how systems resist misuse, theft, or forgery.                                                                        |
-| 0987  | cipher                | A defense word; it shapes how systems resist misuse, theft, or forgery.                                                                        |
-| 0988  | claim                 | A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.                                                |
-| 0989  | client secret         | A threshold word; it governs who may enter, know, or act.                                                                                      |
-| 0990  | code signing          | A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.                                                |
-| 0991  | compliance            | A defense word; it shapes how systems resist misuse, theft, or forgery.                                                                        |
-| 0992  | confidentiality       | A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.                                                |
-| 0993  | credential {Sec}      | A defense word; it shapes how systems resist misuse, theft, or forgery.                                                                        |
-| 0994  | cross-site scripting  | A defense word; it shapes how systems resist misuse, theft, or forgery.                                                                        |
-| 0995  | cryptographic nonce   | A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.                                                |
-| 0996  | CSRF                  | A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.                                                |
-| 0997  | decrypt {Sec}         | An unsealing word; protected meaning becomes legible again under the right key.                                                                |
-| 0998  | defense in depth      | A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.                                                |
-| 0999  | deny-by-default       | A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.                                                |
-| 1000  | digest {Sec}          | A ward-word; it protects trust, secrecy, or authority.                                                                                         |
-| 1001  | enclave               | A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.                                                |
-| 1002  | encrypt {Sec}         | A warding word; it hides meaning from everyone except the right holder of the key.                                                             |
-| 1003  | entropy               | A threshold word; it governs who may enter, know, or act.                                                                                      |
-| 1004  | exfiltration          | A threshold word; it governs who may enter, know, or act.                                                                                      |
-| 1005  | exploit               | A threshold word; it governs who may enter, know, or act.                                                                                      |
-| 1006  | harden                | A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.                                                |
-| 1007  | hash {Sec}            | Arbitrary input reduced to a fixed fingerprint. Use it for identity, integrity, bucketing, and change detection; never mistake it for secrecy. |
-| 1008  | HMAC                  | A threshold word; it governs who may enter, know, or act.                                                                                      |
-| 1009  | identity              | A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.                                                |
-| 1010  | incident              | A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.                                                |
-| 1011  | injection             | A defense word; it shapes how systems resist misuse, theft, or forgery.                                                                        |
-| 1012  | integrity             | A defense word; it shapes how systems resist misuse, theft, or forgery.                                                                        |
-| 1013  | isolate {Sec}         | A threshold word; it governs who may enter, know, or act.                                                                                      |
-| 1014  | key {Sec}             | A threshold word; it governs who may enter, know, or act.                                                                                      |
-| 1015  | key exchange          | A ward-word; it protects trust, secrecy, or authority.                                                                                         |
-| 1016  | key rotation          | A threshold word; it governs who may enter, know, or act.                                                                                      |
-| 1017  | least privilege       | Give only the authority required for the present act, no more. It is one of the simplest words for reducing future regret.                     |
-| 1018  | login                 | A threshold word; it governs who may enter, know, or act.                                                                                      |
-| 1019  | mTLS {Sec}            | A ward-word; it protects trust, secrecy, or authority.                                                                                         |
-| 1020  | mutual authentication | A ward-word; it protects trust, secrecy, or authority.                                                                                         |
-| 1021  | nonce                 | A defense word; it shapes how systems resist misuse, theft, or forgery.                                                                        |
-| 1022  | passkey               | A ward-word; it protects trust, secrecy, or authority.                                                                                         |
-| 1023  | password              | A defense word; it shapes how systems resist misuse, theft, or forgery.                                                                        |
-| 1024  | patch {Sec}           | A repair word; a bounded alteration is applied to an existing body.                                                                            |
-| 1025  | pepper                | A ward-word; it protects trust, secrecy, or authority.                                                                                         |
-| 1026  | permission {Sec}      | A threshold word; it governs who may enter, know, or act.                                                                                      |
-| 1027  | phishing              | A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.                                                |
-| 1028  | policy                | The declared rule by which a class of cases is decided. Good policy reduces arbitrary judgment; bad policy merely freezes confusion.           |
-| 1029  | principal             | A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.                                                |
-| 1030  | private key           | A ward-word; it protects trust, secrecy, or authority.                                                                                         |
-| 1031  | privilege escalation  | A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.                                                |
-| 1032  | proof of possession   | A threshold word; it governs who may enter, know, or act.                                                                                      |
-| 1033  | public key            | A ward-word; it protects trust, secrecy, or authority.                                                                                         |
-| 1034  | quarantine            | A ward-word; it protects trust, secrecy, or authority.                                                                                         |
-| 1035  | rate limiting         | A threshold word; it governs who may enter, know, or act.                                                                                      |
-| 1036  | replay attack         | A threshold word; it governs who may enter, know, or act.                                                                                      |
-| 1037  | revocation            | A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.                                                |
-| 1038  | role {Sec}            | An invocation word; it frames what kind of actor the model should pretend to be.                                                               |
-| 1039  | root of trust         | A defense word; it shapes how systems resist misuse, theft, or forgery.                                                                        |
-| 1040  | rotate                | A defense word; it shapes how systems resist misuse, theft, or forgery.                                                                        |
-| 1041  | salt                  | A ward-word; it protects trust, secrecy, or authority.                                                                                         |
-| 1042  | sandbox {Sec}         | A confinement word; actions are permitted only within a restricted space.                                                                      |
-| 1043  | scope {Sec}           | A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.                                                |
-| 1044  | secret {Sec}          | A guarded-value word meant to remain hidden except to the few who must know it.                                                                |
-| 1045  | secure enclave        | A threshold word; it governs who may enter, know, or act.                                                                                      |
-| 1046  | security boundary     | A ward-word; it protects trust, secrecy, or authority.                                                                                         |
-| 1047  | session fixation      | A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.                                                |
-| 1048  | session token         | A threshold word; it governs who may enter, know, or act.                                                                                      |
-| 1049  | sign {Sec}            | A sealing word; origin or integrity is bound cryptographically to content.                                                                     |
-| 1050  | signature {Sec}       | Identity or intent made checkable through cryptographic proof. Useful wherever trust must survive distance and replay.                         |
-| 1051  | single sign-on        | A threshold word; it governs who may enter, know, or act.                                                                                      |
-| 1052  | spoofing              | A threshold word; it governs who may enter, know, or act.                                                                                      |
-| 1053  | SSRF                  | A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.                                                |
-| 1054  | threat model          | A threshold word; it governs who may enter, know, or act.                                                                                      |
-| 1055  | token {Sec}           | A countable unit of text or symbol used for parsing, modeling, or encoding.                                                                    |
-| 1056  | trust anchor          | A threshold word; it governs who may enter, know, or act.                                                                                      |
-| 1057  | trust boundary        | A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.                                                |
-| 1058  | validate {Sec}        | A gatekeeping word; inputs or outputs are checked against an expected form.                                                                    |
-| 1059  | verification {Sec}    | A truth-checking word that asks not merely for output, but for justified output.                                                               |
-| 1060  | vulnerability         | A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.                                                |
-| 1061  | ward                  | A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.                                                |
-| 1062  | webhook signing       | A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.                                                |
-| 1063  | zero trust            | A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.                                                |
+Use the summary table for scanning. Each row links to the detailed anchored entry below.
+
+| Sigil | Term                                | Summary                                                                                                                                        |
+| ----- | ----------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| 0969  | [ABAC](#rune-0969)                  | A defense word; it shapes how systems resist misuse, theft, or forgery.                                                                        |
+| 0970  | [access control](#rune-0970)        | A defense word; it shapes how systems resist misuse, theft, or forgery.                                                                        |
+| 0971  | [account](#rune-0971)               | A threshold word; it governs who may enter, know, or act.                                                                                      |
+| 0972  | [ACL](#rune-0972)                   | A ward-word; it protects trust, secrecy, or authority.                                                                                         |
+| 0973  | [allowlist](#rune-0973)             | A defense word; it shapes how systems resist misuse, theft, or forgery.                                                                        |
+| 0974  | [attestation](#rune-0974)           | A proof that a thing is what it claims to be or was produced the way it claims. It matters most when trust cannot be assumed.                  |
+| 0975  | [audit](#rune-0975)                 | A defense word; it shapes how systems resist misuse, theft, or forgery.                                                                        |
+| 0976  | [authenticate](#rune-0976)          | Prove who is making the claim before deciding what the claimant may do. Shadow: trusting names that have not earned entrance.                  |
+| 0977  | [authentication](#rune-0977)        | A ward-word; it protects trust, secrecy, or authority.                                                                                         |
+| 0978  | [authorization](#rune-0978)         | After identity is known, what acts are permitted? Shadow: accidental omnipotence hidden behind a successful login.                             |
+| 0979  | [availability](#rune-0979)          | A promise word that says the system can still be reached when called upon.                                                                     |
+| 0980  | [bearer token](#rune-0980)          | A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.                                                |
+| 0981  | [blast radius](#rune-0981)          | A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.                                                |
+| 0982  | [blocklist](#rune-0982)             | A defense word; it shapes how systems resist misuse, theft, or forgery.                                                                        |
+| 0983  | [boundary defense](#rune-0983)      | A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.                                                |
+| 0984  | [capability {Sec}](#rune-0984)      | A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.                                                |
+| 0985  | [certificate {Sec}](#rune-0985)     | A delegated-trust word; it lets one party assert another's identity by signed authority.                                                       |
+| 0986  | [challenge](#rune-0986)             | A defense word; it shapes how systems resist misuse, theft, or forgery.                                                                        |
+| 0987  | [cipher](#rune-0987)                | A defense word; it shapes how systems resist misuse, theft, or forgery.                                                                        |
+| 0988  | [claim](#rune-0988)                 | A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.                                                |
+| 0989  | [client secret](#rune-0989)         | A threshold word; it governs who may enter, know, or act.                                                                                      |
+| 0990  | [code signing](#rune-0990)          | A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.                                                |
+| 0991  | [compliance](#rune-0991)            | A defense word; it shapes how systems resist misuse, theft, or forgery.                                                                        |
+| 0992  | [confidentiality](#rune-0992)       | A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.                                                |
+| 0993  | [credential {Sec}](#rune-0993)      | A defense word; it shapes how systems resist misuse, theft, or forgery.                                                                        |
+| 0994  | [cross-site scripting](#rune-0994)  | A defense word; it shapes how systems resist misuse, theft, or forgery.                                                                        |
+| 0995  | [cryptographic nonce](#rune-0995)   | A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.                                                |
+| 0996  | [CSRF](#rune-0996)                  | A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.                                                |
+| 0997  | [decrypt {Sec}](#rune-0997)         | An unsealing word; protected meaning becomes legible again under the right key.                                                                |
+| 0998  | [defense in depth](#rune-0998)      | A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.                                                |
+| 0999  | [deny-by-default](#rune-0999)       | A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.                                                |
+| 1000  | [digest {Sec}](#rune-1000)          | A ward-word; it protects trust, secrecy, or authority.                                                                                         |
+| 1001  | [enclave](#rune-1001)               | A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.                                                |
+| 1002  | [encrypt {Sec}](#rune-1002)         | A warding word; it hides meaning from everyone except the right holder of the key.                                                             |
+| 1003  | [entropy](#rune-1003)               | A threshold word; it governs who may enter, know, or act.                                                                                      |
+| 1004  | [exfiltration](#rune-1004)          | A threshold word; it governs who may enter, know, or act.                                                                                      |
+| 1005  | [exploit](#rune-1005)               | A threshold word; it governs who may enter, know, or act.                                                                                      |
+| 1006  | [harden](#rune-1006)                | A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.                                                |
+| 1007  | [hash {Sec}](#rune-1007)            | Arbitrary input reduced to a fixed fingerprint. Use it for identity, integrity, bucketing, and change detection; never mistake it for secrecy. |
+| 1008  | [HMAC](#rune-1008)                  | A threshold word; it governs who may enter, know, or act.                                                                                      |
+| 1009  | [identity](#rune-1009)              | A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.                                                |
+| 1010  | [incident](#rune-1010)              | A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.                                                |
+| 1011  | [injection](#rune-1011)             | A defense word; it shapes how systems resist misuse, theft, or forgery.                                                                        |
+| 1012  | [integrity](#rune-1012)             | A defense word; it shapes how systems resist misuse, theft, or forgery.                                                                        |
+| 1013  | [isolate {Sec}](#rune-1013)         | A threshold word; it governs who may enter, know, or act.                                                                                      |
+| 1014  | [key {Sec}](#rune-1014)             | A threshold word; it governs who may enter, know, or act.                                                                                      |
+| 1015  | [key exchange](#rune-1015)          | A ward-word; it protects trust, secrecy, or authority.                                                                                         |
+| 1016  | [key rotation](#rune-1016)          | A threshold word; it governs who may enter, know, or act.                                                                                      |
+| 1017  | [least privilege](#rune-1017)       | Give only the authority required for the present act, no more. It is one of the simplest words for reducing future regret.                     |
+| 1018  | [login](#rune-1018)                 | A threshold word; it governs who may enter, know, or act.                                                                                      |
+| 1019  | [mTLS {Sec}](#rune-1019)            | A ward-word; it protects trust, secrecy, or authority.                                                                                         |
+| 1020  | [mutual authentication](#rune-1020) | A ward-word; it protects trust, secrecy, or authority.                                                                                         |
+| 1021  | [nonce](#rune-1021)                 | A defense word; it shapes how systems resist misuse, theft, or forgery.                                                                        |
+| 1022  | [passkey](#rune-1022)               | A ward-word; it protects trust, secrecy, or authority.                                                                                         |
+| 1023  | [password](#rune-1023)              | A defense word; it shapes how systems resist misuse, theft, or forgery.                                                                        |
+| 1024  | [patch {Sec}](#rune-1024)           | A repair word; a bounded alteration is applied to an existing body.                                                                            |
+| 1025  | [pepper](#rune-1025)                | A ward-word; it protects trust, secrecy, or authority.                                                                                         |
+| 1026  | [permission {Sec}](#rune-1026)      | A threshold word; it governs who may enter, know, or act.                                                                                      |
+| 1027  | [phishing](#rune-1027)              | A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.                                                |
+| 1028  | [policy](#rune-1028)                | The declared rule by which a class of cases is decided. Good policy reduces arbitrary judgment; bad policy merely freezes confusion.           |
+| 1029  | [principal](#rune-1029)             | A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.                                                |
+| 1030  | [private key](#rune-1030)           | A ward-word; it protects trust, secrecy, or authority.                                                                                         |
+| 1031  | [privilege escalation](#rune-1031)  | A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.                                                |
+| 1032  | [proof of possession](#rune-1032)   | A threshold word; it governs who may enter, know, or act.                                                                                      |
+| 1033  | [public key](#rune-1033)            | A ward-word; it protects trust, secrecy, or authority.                                                                                         |
+| 1034  | [quarantine](#rune-1034)            | A ward-word; it protects trust, secrecy, or authority.                                                                                         |
+| 1035  | [rate limiting](#rune-1035)         | A threshold word; it governs who may enter, know, or act.                                                                                      |
+| 1036  | [replay attack](#rune-1036)         | A threshold word; it governs who may enter, know, or act.                                                                                      |
+| 1037  | [revocation](#rune-1037)            | A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.                                                |
+| 1038  | [role {Sec}](#rune-1038)            | An invocation word; it frames what kind of actor the model should pretend to be.                                                               |
+| 1039  | [root of trust](#rune-1039)         | A defense word; it shapes how systems resist misuse, theft, or forgery.                                                                        |
+| 1040  | [rotate](#rune-1040)                | A defense word; it shapes how systems resist misuse, theft, or forgery.                                                                        |
+| 1041  | [salt](#rune-1041)                  | A ward-word; it protects trust, secrecy, or authority.                                                                                         |
+| 1042  | [sandbox {Sec}](#rune-1042)         | A confinement word; actions are permitted only within a restricted space.                                                                      |
+| 1043  | [scope {Sec}](#rune-1043)           | A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.                                                |
+| 1044  | [secret {Sec}](#rune-1044)          | A guarded-value word meant to remain hidden except to the few who must know it.                                                                |
+| 1045  | [secure enclave](#rune-1045)        | A threshold word; it governs who may enter, know, or act.                                                                                      |
+| 1046  | [security boundary](#rune-1046)     | A ward-word; it protects trust, secrecy, or authority.                                                                                         |
+| 1047  | [session fixation](#rune-1047)      | A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.                                                |
+| 1048  | [session token](#rune-1048)         | A threshold word; it governs who may enter, know, or act.                                                                                      |
+| 1049  | [sign {Sec}](#rune-1049)            | A sealing word; origin or integrity is bound cryptographically to content.                                                                     |
+| 1050  | [signature {Sec}](#rune-1050)       | Identity or intent made checkable through cryptographic proof. Useful wherever trust must survive distance and replay.                         |
+| 1051  | [single sign-on](#rune-1051)        | A threshold word; it governs who may enter, know, or act.                                                                                      |
+| 1052  | [spoofing](#rune-1052)              | A threshold word; it governs who may enter, know, or act.                                                                                      |
+| 1053  | [SSRF](#rune-1053)                  | A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.                                                |
+| 1054  | [threat model](#rune-1054)          | A threshold word; it governs who may enter, know, or act.                                                                                      |
+| 1055  | [token {Sec}](#rune-1055)           | A countable unit of text or symbol used for parsing, modeling, or encoding.                                                                    |
+| 1056  | [trust anchor](#rune-1056)          | A threshold word; it governs who may enter, know, or act.                                                                                      |
+| 1057  | [trust boundary](#rune-1057)        | A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.                                                |
+| 1058  | [validate {Sec}](#rune-1058)        | A gatekeeping word; inputs or outputs are checked against an expected form.                                                                    |
+| 1059  | [verification {Sec}](#rune-1059)    | A truth-checking word that asks not merely for output, but for justified output.                                                               |
+| 1060  | [vulnerability](#rune-1060)         | A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.                                                |
+| 1061  | [ward](#rune-1061)                  | A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.                                                |
+| 1062  | [webhook signing](#rune-1062)       | A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.                                                |
+| 1063  | [zero trust](#rune-1063)            | A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.                                                |
+
+## Entries
+
+### [0969] ABAC {#rune-0969}
+
+**Status:** canonical
+
+**Force:** A defense word; it shapes how systems resist misuse, theft, or forgery.
+
+### [0970] access control {#rune-0970}
+
+**Status:** canonical
+
+**Force:** A defense word; it shapes how systems resist misuse, theft, or forgery.
+
+### [0971] account {#rune-0971}
+
+**Status:** canonical
+
+**Force:** A threshold word; it governs who may enter, know, or act.
+
+### [0972] ACL {#rune-0972}
+
+**Status:** canonical
+
+**Force:** A ward-word; it protects trust, secrecy, or authority.
+
+### [0973] allowlist {#rune-0973}
+
+**Status:** canonical
+
+**Force:** A defense word; it shapes how systems resist misuse, theft, or forgery.
+
+### [0974] attestation {#rune-0974}
+
+**Status:** canonical (major canon, pocket canon)
+
+**Force:** A proof that a thing is what it claims to be or was produced the way it claims. It matters most when trust cannot be assumed.
+
+**Pocket gloss:** Evidence that a thing is what it claims to be or was produced the way it claims.
+
+### [0975] audit {#rune-0975}
+
+**Status:** canonical
+
+**Force:** A defense word; it shapes how systems resist misuse, theft, or forgery.
+
+### [0976] authenticate {#rune-0976}
+
+**Status:** canonical (major canon, pocket canon)
+
+**Force:** Prove who is making the claim before deciding what the claimant may do.
+
+**Shadow:** trusting names that have not earned entrance.
+
+**Pocket gloss:** Prove who is making the claim.
+
+### [0977] authentication {#rune-0977}
+
+**Status:** canonical
+
+**Force:** A ward-word; it protects trust, secrecy, or authority.
+
+### [0978] authorization {#rune-0978}
+
+**Status:** canonical (major canon, pocket canon)
+
+**Force:** After identity is known, what acts are permitted?
+
+**Shadow:** accidental omnipotence hidden behind a successful login.
+
+**Pocket gloss:** Decide what an already identified actor may do.
+
+### [0979] availability {#rune-0979}
+
+**Status:** canonical
+
+**Force:** A promise word that says the system can still be reached when called upon.
+
+### [0980] bearer token {#rune-0980}
+
+**Status:** canonical
+
+**Force:** A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.
+
+### [0981] blast radius {#rune-0981}
+
+**Status:** canonical
+
+**Force:** A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.
+
+### [0982] blocklist {#rune-0982}
+
+**Status:** canonical
+
+**Force:** A defense word; it shapes how systems resist misuse, theft, or forgery.
+
+### [0983] boundary defense {#rune-0983}
+
+**Status:** canonical
+
+**Force:** A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.
+
+### [0984] capability {Sec} {#rune-0984}
+
+**Status:** canonical
+
+**Force:** A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.
+
+### [0985] certificate {Sec} {#rune-0985}
+
+**Status:** canonical
+
+**Force:** A delegated-trust word; it lets one party assert another's identity by signed authority.
+
+### [0986] challenge {#rune-0986}
+
+**Status:** canonical
+
+**Force:** A defense word; it shapes how systems resist misuse, theft, or forgery.
+
+### [0987] cipher {#rune-0987}
+
+**Status:** canonical
+
+**Force:** A defense word; it shapes how systems resist misuse, theft, or forgery.
+
+### [0988] claim {#rune-0988}
+
+**Status:** canonical
+
+**Force:** A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.
+
+### [0989] client secret {#rune-0989}
+
+**Status:** canonical
+
+**Force:** A threshold word; it governs who may enter, know, or act.
+
+### [0990] code signing {#rune-0990}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.
+
+**Pocket gloss:** Cryptographically bind an artifact to a trusted producer.
+
+### [0991] compliance {#rune-0991}
+
+**Status:** canonical
+
+**Force:** A defense word; it shapes how systems resist misuse, theft, or forgery.
+
+### [0992] confidentiality {#rune-0992}
+
+**Status:** canonical
+
+**Force:** A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.
+
+### [0993] credential {Sec} {#rune-0993}
+
+**Status:** canonical
+
+**Force:** A defense word; it shapes how systems resist misuse, theft, or forgery.
+
+### [0994] cross-site scripting {#rune-0994}
+
+**Status:** canonical
+
+**Force:** A defense word; it shapes how systems resist misuse, theft, or forgery.
+
+### [0995] cryptographic nonce {#rune-0995}
+
+**Status:** canonical
+
+**Force:** A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.
+
+### [0996] CSRF {#rune-0996}
+
+**Status:** canonical
+
+**Force:** A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.
+
+### [0997] decrypt {Sec} {#rune-0997}
+
+**Status:** canonical
+
+**Force:** An unsealing word; protected meaning becomes legible again under the right key.
+
+### [0998] defense in depth {#rune-0998}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.
+
+**Pocket gloss:** Stack multiple protective layers so one failure is not total failure.
+
+### [0999] deny-by-default {#rune-0999}
+
+**Status:** canonical
+
+**Force:** A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.
+
+### [1000] digest {Sec} {#rune-1000}
+
+**Status:** canonical
+
+**Force:** A ward-word; it protects trust, secrecy, or authority.
+
+### [1001] enclave {#rune-1001}
+
+**Status:** canonical
+
+**Force:** A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.
+
+### [1002] encrypt {Sec} {#rune-1002}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A warding word; it hides meaning from everyone except the right holder of the key.
+
+**Pocket gloss:** Make plaintext unreadable without the right key.
+
+### [1003] entropy {#rune-1003}
+
+**Status:** canonical
+
+**Force:** A threshold word; it governs who may enter, know, or act.
+
+### [1004] exfiltration {#rune-1004}
+
+**Status:** canonical
+
+**Force:** A threshold word; it governs who may enter, know, or act.
+
+### [1005] exploit {#rune-1005}
+
+**Status:** canonical
+
+**Force:** A threshold word; it governs who may enter, know, or act.
+
+### [1006] harden {#rune-1006}
+
+**Status:** canonical
+
+**Force:** A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.
+
+### [1007] hash {Sec} {#rune-1007}
+
+**Status:** canonical (major canon, pocket canon)
+
+**Force:** Arbitrary input reduced to a fixed fingerprint. Use it for identity, integrity, bucketing, and change detection; never mistake it for secrecy.
+
+**Pocket gloss:** Reduce arbitrary input to a fixed fingerprint.
+
+### [1008] HMAC {#rune-1008}
+
+**Status:** canonical
+
+**Force:** A threshold word; it governs who may enter, know, or act.
+
+### [1009] identity {#rune-1009}
+
+**Status:** canonical
+
+**Force:** A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.
+
+### [1010] incident {#rune-1010}
+
+**Status:** canonical
+
+**Force:** A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.
+
+### [1011] injection {#rune-1011}
+
+**Status:** canonical
+
+**Force:** A defense word; it shapes how systems resist misuse, theft, or forgery.
+
+### [1012] integrity {#rune-1012}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A defense word; it shapes how systems resist misuse, theft, or forgery.
+
+**Pocket gloss:** Confidence that data has not been silently altered.
+
+### [1013] isolate {Sec} {#rune-1013}
+
+**Status:** canonical
+
+**Force:** A threshold word; it governs who may enter, know, or act.
+
+### [1014] key {Sec} {#rune-1014}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A threshold word; it governs who may enter, know, or act.
+
+**Pocket gloss:** The secret or public material that makes cryptographic operations possible.
+
+### [1015] key exchange {#rune-1015}
+
+**Status:** canonical
+
+**Force:** A ward-word; it protects trust, secrecy, or authority.
+
+### [1016] key rotation {#rune-1016}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A threshold word; it governs who may enter, know, or act.
+
+**Pocket gloss:** Replace active keys before age or compromise turns them rotten.
+
+### [1017] least privilege {#rune-1017}
+
+**Status:** canonical (major canon, pocket canon)
+
+**Force:** Give only the authority required for the present act, no more. It is one of the simplest words for reducing future regret.
+
+**Pocket gloss:** Grant only the authority required for the present act.
+
+### [1018] login {#rune-1018}
+
+**Status:** canonical
+
+**Force:** A threshold word; it governs who may enter, know, or act.
+
+### [1019] mTLS {Sec} {#rune-1019}
+
+**Status:** canonical
+
+**Force:** A ward-word; it protects trust, secrecy, or authority.
+
+### [1020] mutual authentication {#rune-1020}
+
+**Status:** canonical
+
+**Force:** A ward-word; it protects trust, secrecy, or authority.
+
+### [1021] nonce {#rune-1021}
+
+**Status:** canonical
+
+**Force:** A defense word; it shapes how systems resist misuse, theft, or forgery.
+
+### [1022] passkey {#rune-1022}
+
+**Status:** canonical
+
+**Force:** A ward-word; it protects trust, secrecy, or authority.
+
+### [1023] password {#rune-1023}
+
+**Status:** canonical
+
+**Force:** A defense word; it shapes how systems resist misuse, theft, or forgery.
+
+### [1024] patch {Sec} {#rune-1024}
+
+**Status:** canonical
+
+**Force:** A repair word; a bounded alteration is applied to an existing body.
+
+### [1025] pepper {#rune-1025}
+
+**Status:** canonical
+
+**Force:** A ward-word; it protects trust, secrecy, or authority.
+
+### [1026] permission {Sec} {#rune-1026}
+
+**Status:** canonical
+
+**Force:** A threshold word; it governs who may enter, know, or act.
+
+### [1027] phishing {#rune-1027}
+
+**Status:** canonical
+
+**Force:** A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.
+
+### [1028] policy {#rune-1028}
+
+**Status:** canonical (major canon, pocket canon)
+
+**Force:** The declared rule by which a class of cases is decided. Good policy reduces arbitrary judgment; bad policy merely freezes confusion.
+
+**Pocket gloss:** A declared rule for how a class of cases is decided.
+
+### [1029] principal {#rune-1029}
+
+**Status:** canonical
+
+**Force:** A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.
+
+### [1030] private key {#rune-1030}
+
+**Status:** canonical
+
+**Force:** A ward-word; it protects trust, secrecy, or authority.
+
+### [1031] privilege escalation {#rune-1031}
+
+**Status:** canonical
+
+**Force:** A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.
+
+### [1032] proof of possession {#rune-1032}
+
+**Status:** canonical
+
+**Force:** A threshold word; it governs who may enter, know, or act.
+
+### [1033] public key {#rune-1033}
+
+**Status:** canonical
+
+**Force:** A ward-word; it protects trust, secrecy, or authority.
+
+### [1034] quarantine {#rune-1034}
+
+**Status:** canonical
+
+**Force:** A ward-word; it protects trust, secrecy, or authority.
+
+### [1035] rate limiting {#rune-1035}
+
+**Status:** canonical
+
+**Force:** A threshold word; it governs who may enter, know, or act.
+
+### [1036] replay attack {#rune-1036}
+
+**Status:** canonical
+
+**Force:** A threshold word; it governs who may enter, know, or act.
+
+### [1037] revocation {#rune-1037}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.
+
+**Pocket gloss:** The act of withdrawing trust from credentials or keys.
+
+### [1038] role {Sec} {#rune-1038}
+
+**Status:** canonical
+
+**Force:** An invocation word; it frames what kind of actor the model should pretend to be.
+
+### [1039] root of trust {#rune-1039}
+
+**Status:** canonical
+
+**Force:** A defense word; it shapes how systems resist misuse, theft, or forgery.
+
+### [1040] rotate {#rune-1040}
+
+**Status:** canonical
+
+**Force:** A defense word; it shapes how systems resist misuse, theft, or forgery.
+
+### [1041] salt {#rune-1041}
+
+**Status:** canonical
+
+**Force:** A ward-word; it protects trust, secrecy, or authority.
+
+### [1042] sandbox {Sec} {#rune-1042}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A confinement word; actions are permitted only within a restricted space.
+
+**Pocket gloss:** Constrain code inside a smaller, safer prison.
+
+### [1043] scope {Sec} {#rune-1043}
+
+**Status:** canonical
+
+**Force:** A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.
+
+### [1044] secret {Sec} {#rune-1044}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A guarded-value word meant to remain hidden except to the few who must know it.
+
+**Pocket gloss:** Information whose power comes from staying hidden.
+
+### [1045] secure enclave {#rune-1045}
+
+**Status:** canonical
+
+**Force:** A threshold word; it governs who may enter, know, or act.
+
+### [1046] security boundary {#rune-1046}
+
+**Status:** canonical
+
+**Force:** A ward-word; it protects trust, secrecy, or authority.
+
+### [1047] session fixation {#rune-1047}
+
+**Status:** canonical
+
+**Force:** A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.
+
+### [1048] session token {#rune-1048}
+
+**Status:** canonical
+
+**Force:** A threshold word; it governs who may enter, know, or act.
+
+### [1049] sign {Sec} {#rune-1049}
+
+**Status:** canonical
+
+**Force:** A sealing word; origin or integrity is bound cryptographically to content.
+
+### [1050] signature {Sec} {#rune-1050}
+
+**Status:** canonical (major canon, pocket canon)
+
+**Force:** Identity or intent made checkable through cryptographic proof. Useful wherever trust must survive distance and replay.
+
+**Pocket gloss:** Identity or intent made checkable through cryptographic proof.
+
+### [1051] single sign-on {#rune-1051}
+
+**Status:** canonical
+
+**Force:** A threshold word; it governs who may enter, know, or act.
+
+### [1052] spoofing {#rune-1052}
+
+**Status:** canonical
+
+**Force:** A threshold word; it governs who may enter, know, or act.
+
+### [1053] SSRF {#rune-1053}
+
+**Status:** canonical
+
+**Force:** A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.
+
+### [1054] threat model {#rune-1054}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A threshold word; it governs who may enter, know, or act.
+
+**Pocket gloss:** A structured view of likely attackers, assets, and failure paths.
+
+### [1055] token {Sec} {#rune-1055}
+
+**Status:** canonical
+
+**Force:** A countable unit of text or symbol used for parsing, modeling, or encoding.
+
+### [1056] trust anchor {#rune-1056}
+
+**Status:** canonical
+
+**Force:** A threshold word; it governs who may enter, know, or act.
+
+### [1057] trust boundary {#rune-1057}
+
+**Status:** canonical
+
+**Force:** A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.
+
+### [1058] validate {Sec} {#rune-1058}
+
+**Status:** canonical
+
+**Force:** A gatekeeping word; inputs or outputs are checked against an expected form.
+
+### [1059] verification {Sec} {#rune-1059}
+
+**Status:** canonical
+
+**Force:** A truth-checking word that asks not merely for output, but for justified output.
+
+### [1060] vulnerability {#rune-1060}
+
+**Status:** canonical
+
+**Force:** A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.
+
+### [1061] ward {#rune-1061}
+
+**Status:** canonical
+
+**Force:** A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.
+
+### [1062] webhook signing {#rune-1062}
+
+**Status:** canonical
+
+**Force:** A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.
+
+### [1063] zero trust {#rune-1063}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A trust-boundary word; it matters because compromise often hides inside ordinary-looking names.
+
+**Pocket gloss:** Assume no network location or ambient context deserves automatic trust.

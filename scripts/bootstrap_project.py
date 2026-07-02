@@ -36,6 +36,33 @@ HOUSE_SPECS = [
     ("compound-forms-prefixes-suffixes-and-naming-runes", "Compound Forms, Prefixes, Suffixes, and Naming Runes", 1583, 1645),
 ]
 
+SPELL_RUNES = {
+    "safe-refactoring": [1172, 1088, 1152, 1445, 1430],
+    "bug-diagnosis-from-logs": [1180, 1202, 1204, 598, 943],
+    "api-design": [55, 347, 1461, 978, 1430],
+    "migration-without-data-loss": [926, 943, 347, 1425, 1172],
+    "test-generation": [1152, 1186, 1172, 1485, 1445],
+    "performance-tuning": [1146, 825, 1281, 778, 615],
+}
+
+STACK_RUNES = {
+    "code-generation-and-repair-loop": [1088, 1146, 1172, 1180, 1485],
+    "bug-hunt-stack": [1180, 1204, 1172, 1562, 1445],
+    "safe-refactor-stack": [1172, 1152, 1088, 1430, 1445],
+    "live-migration-stack": [926, 943, 347, 1461, 1567],
+    "release-gate-stack": [1073, 1086, 1146, 1180, 943],
+    "recursive-decomposition-stack": [12, 55, 1172, 1437, 1445],
+}
+
+STACK_RELATED_SPELLS = {
+    "code-generation-and-repair-loop": ["test-generation", "bug-diagnosis-from-logs", "safe-refactoring"],
+    "bug-hunt-stack": ["bug-diagnosis-from-logs", "test-generation"],
+    "safe-refactor-stack": ["safe-refactoring", "test-generation"],
+    "live-migration-stack": ["migration-without-data-loss"],
+    "release-gate-stack": ["bug-diagnosis-from-logs", "performance-tuning"],
+    "recursive-decomposition-stack": ["api-design", "safe-refactoring", "test-generation"],
+}
+
 
 def slugify(value: str) -> str:
     value = value.lower()
@@ -130,6 +157,38 @@ def seal_for(kind: str, record: dict) -> dict:
     }
 
 
+def rune_href(entry: dict, prefix: str = "") -> str:
+    return f"{prefix}reference/house-{entry['house']}.qmd#rune-{entry['sigil']}"
+
+
+def rune_link(entry: dict, prefix: str = "") -> str:
+    label = f"{entry['sigil']} {entry['raw_term']}"
+    return f"[{label}]({rune_href(entry, prefix)})"
+
+
+def links_list(links: list[tuple[str, str]]) -> str:
+    return "\n".join(f"- [{label}]({href})" for label, href in links)
+
+
+def related_section(links: list[tuple[str, str]], heading: str = "Related Pages") -> str:
+    if not links:
+        return ""
+    return f"\n\n## {heading}\n\n" + links_list(links) + "\n"
+
+
+def rune_section(ids: list[int], lex_by_id: dict[int, dict], prefix: str = "", heading: str = "Related Runes") -> str:
+    if not ids:
+        return ""
+    lines = []
+    for ident in ids:
+        entry = lex_by_id.get(ident)
+        if entry:
+            lines.append(f"- {rune_link(entry, prefix)} - {entry['force']}")
+    if not lines:
+        return ""
+    return f"\n\n## {heading}\n\n" + "\n".join(lines) + "\n"
+
+
 def build_houses() -> list[dict]:
     houses = []
     for slug, name, start, end in HOUSE_SPECS:
@@ -219,6 +278,8 @@ def parse_lexicon(public_text: str, houses: list[dict], major: dict[int, dict], 
             "sense": sense,
             "house": house["id"],
             "house_name": house["name"],
+            "anchor": f"rune-{ident:04d}",
+            "page": f"reference/house-{house['id']}.qmd",
             "summary": gloss,
             "force": force,
             "shadow": shadow,
@@ -308,6 +369,7 @@ def build_spells(public_text: str) -> list[dict]:
             "output_contract": limbs.get("output_contract", ""),
             "verification": limbs.get("verification", ""),
             "failure_behavior": limbs.get("failure_behavior", ""),
+            "runes": SPELL_RUNES.get(slug, []),
             "source": "software_magic_grimoire_v3_public_release",
             "source_markdown": body,
         }
@@ -336,7 +398,7 @@ def stack_record(slug: str, title: str, use_when: str, frames: list[dict], loop:
 
 
 def build_stacks(stacks_text: str) -> list[dict]:
-    return [
+    stacks = [
         stack_record(
             "code-generation-and-repair-loop",
             "Code Generation and Repair Loop",
@@ -434,6 +496,12 @@ def build_stacks(stacks_text: str) -> list[dict]:
             "It lets one choreography operate at several scales while preserving contracts at every boundary.",
         ),
     ]
+    for stack in stacks:
+        slug = stack["id"].split(".")[1]
+        stack["runes"] = STACK_RUNES.get(slug, [])
+        stack["related_spells"] = STACK_RELATED_SPELLS.get(slug, [])
+        stack.update(seal_for("stack", stack))
+    return stacks
 
 
 def qmd_table(rows: list[list[str]]) -> str:
@@ -456,7 +524,75 @@ def write_chapters(public_text: str, pocket_text: str, stacks_text: str) -> None
 
 This site is a public field manual and formal reference for AI-assisted software engineering. It teaches spells as structured instruction artifacts, stacks as reusable workflows, and runes as high-force engineering word-senses.
 
-Start with the preface if you want the premise. Use the spell and stack libraries if you want working forms immediately. Use the lexicon when you need stable vocabulary for prompts, reviews, migrations, incidents, and release gates.
+Start with [the guided reader path](reader_path.qmd) if you want an ordered route. Check [porting status](porting-status.qmd) if you want to see what moved from the source manuscripts into the public site. Use the spell and stack libraries if you want working forms immediately. Use the lexicon when you need stable vocabulary for prompts, reviews, migrations, incidents, and release gates.
+""",
+        ),
+    )
+    write_text(
+        ROOT / "reader_path.qmd",
+        page(
+            "Guided Reader Path",
+            """# Guided Reader Path
+
+The site can be read three ways.
+
+## Learn the Theory
+
+1. [Preface](preface.qmd)
+2. [Operative Language](chapters/01-operative-language.qmd)
+3. [What a Spell Is](chapters/02-what-a-spell-is.qmd)
+4. [Crafting Spells](chapters/03-crafting-spells.qmd)
+5. [Sigils, Canonicalization, and Seals](chapters/04-sigils-canonicalization-and-seals.qmd)
+6. [Coil Inspection](chapters/05-coil-inspection.qmd)
+
+## Use It Today
+
+1. [Cast Levels](reference/cast-levels.qmd)
+2. [Canonical Spell Skeleton](reference/spell-skeleton.qmd)
+3. [Spell Library](spells/index.qmd)
+4. [Stack Library](stacks/index.qmd)
+5. [Failure Modes](reference/failure-modes.qmd)
+
+## Build On It
+
+1. [Stack Grammar](reference/stack-grammar.qmd)
+2. [Seals and Sigils](reference/seals-and-sigils.qmd)
+3. [Tooling and Formalization](chapters/09-tooling-and-formalization.qmd)
+4. [Term Index](reference/term-index.qmd)
+5. [Master Lexicon](reference/lexicon.qmd)
+
+## Reference Fast Path
+
+- Start with [the 50 world-running words](reference/major-canon.qmd).
+- Use [the 300-rune pocket canon](reference/pocket-canon.qmd) for daily vocabulary.
+- Use [the canon map](reference/canon-map.qmd) when moving from a task to the right spell, stack, and rune cluster.
+""",
+        ),
+    )
+    write_text(
+        ROOT / "porting-status.qmd",
+        page(
+            "Porting Status",
+            """# Porting Status
+
+The grimoire source corpus has been ported into the public Quarto site and repository.
+
+| Source | Ported form | Status |
+|---|---|---|
+| `software_magic_grimoire_v3_public_release.docx` | Main book chapters, public canon, full lexicon data, generated reference pages | Ported |
+| `pocket_grimoire_software_spellcraft_final.docx` | Pocket field guide, 300-rune pocket canon, quick-reference pages | Ported |
+| `software_spellcraft_addendum_on_stacked_spells.docx` | Stackcraft chapter, stack grammar, six generated stack pages | Ported |
+
+The first public seed was a complete content port. The current pass improves the reading layer: guided paths, rune anchors, term index links, spell-to-rune links, stack-to-spell links, and canon maps.
+
+## What Counts As Complete
+
+- Source text is preserved.
+- Every lexicon entry has a stable sigil, structured data record, generated reference page location, and direct anchor.
+- Major and pocket canon entries link into the master house pages.
+- Spell templates link to relevant runes and supporting reference pages.
+- Stack workflows link to relevant spell templates, runes, and stack grammar.
+- The roadmap distinguishes archival completeness from reader experience completeness.
 """,
         ),
     )
@@ -523,7 +659,48 @@ New additions should improve the public canon, a working template, an executable
 """,
         ),
     ]
+    chapter_links = {
+        "01-operative-language.qmd": [
+            ("The Fifty World-Running Words", "../reference/major-canon.qmd"),
+            ("Master Lexicon", "../reference/lexicon.qmd"),
+            ("Term Index", "../reference/term-index.qmd"),
+        ],
+        "02-what-a-spell-is.qmd": [
+            ("Canonical Spell Skeleton", "../reference/spell-skeleton.qmd"),
+            ("Cast Levels", "../reference/cast-levels.qmd"),
+            ("Spell Library", "../spells/index.qmd"),
+        ],
+        "03-crafting-spells.qmd": [
+            ("Failure Modes", "../reference/failure-modes.qmd"),
+            ("Spell Library", "../spells/index.qmd"),
+            ("Proof by Difference", "../chapters/07-public-canon.qmd#proof-by-difference"),
+        ],
+        "04-sigils-canonicalization-and-seals.qmd": [
+            ("Seals and Sigils", "../reference/seals-and-sigils.qmd"),
+            ("Tooling and Formalization", "../chapters/09-tooling-and-formalization.qmd"),
+        ],
+        "05-coil-inspection.qmd": [
+            ("Canonical Spell Skeleton", "../reference/spell-skeleton.qmd"),
+            ("Failure Modes", "../reference/failure-modes.qmd"),
+        ],
+        "06-field-spells.qmd": [
+            ("Spell Library", "../spells/index.qmd"),
+            ("Stack Library", "../stacks/index.qmd"),
+            ("Related Runes", "../reference/canon-map.qmd"),
+        ],
+        "07-public-canon.qmd": [
+            ("The Fifty World-Running Words", "../reference/major-canon.qmd"),
+            ("Pocket Canon", "../reference/pocket-canon.qmd"),
+            ("Term Index", "../reference/term-index.qmd"),
+        ],
+        "08-stackcraft.qmd": [
+            ("Stack Grammar", "../reference/stack-grammar.qmd"),
+            ("Stack Library", "../stacks/index.qmd"),
+            ("Failure Modes", "../reference/failure-modes.qmd"),
+        ],
+    }
     for filename, title, body in chapter_defs:
+        body = body + related_section(chapter_links.get(filename, []))
         write_text(ROOT / "chapters" / filename, page(title, body))
 
     pocket_quickstart = section_between(pocket_text, "# How to Use This Book", "# VI. Pocket Lexicon")
@@ -533,6 +710,7 @@ New additions should improve the public canon, a working template, an executable
 def write_reference_pages(houses: list[dict], lexicon: list[dict], major: dict[int, dict], pocket: dict[int, dict], spells: list[dict], stacks: list[dict]) -> None:
     rows = [["House", "Range", "Entries"]]
     by_house = {h["id"]: [] for h in houses}
+    lex_by_id = {entry["id"]: entry for entry in lexicon}
     for entry in lexicon:
         by_house[entry["house"]].append(entry)
     for house in houses:
@@ -543,6 +721,10 @@ def write_reference_pages(houses: list[dict], lexicon: list[dict], major: dict[i
         page(
             "Reference",
             "The reference section is generated from structured data. Use it to browse the canon by house, spell, stack, cast level, and failure mode.\n\n"
+            "- [Guided Reader Path](../reader_path.qmd)\n"
+            "- [Canon Map](canon-map.qmd)\n"
+            "- [Term Index](term-index.qmd)\n"
+            "- [Master Lexicon](lexicon.qmd)\n\n"
             + qmd_table(rows)
             + "\n",
         ),
@@ -664,40 +846,144 @@ Common stack failures:
     major_rows = [["Sigil", "Term", "Cluster", "Gloss"]]
     for ident in sorted(major):
         item = major[ident]
-        major_rows.append([f"{ident:04d}", item["term"], item.get("cluster") or "", item["expanded_gloss"]])
+        entry = lex_by_id[ident]
+        major_rows.append([f"{ident:04d}", rune_link(entry, "../"), item.get("cluster") or "", item["expanded_gloss"]])
     write_text(ROOT / "reference" / "major-canon.qmd", page("The Fifty World-Running Words", qmd_table(major_rows)))
 
     pocket_rows = [["Sigil", "Term", "Gloss"]]
     for ident in sorted(pocket):
         item = pocket[ident]
-        pocket_rows.append([f"{ident:04d}", item["term"], item["pocket_gloss"]])
+        entry = lex_by_id[ident]
+        pocket_rows.append([f"{ident:04d}", rune_link(entry, "../"), item["pocket_gloss"]])
     write_text(ROOT / "reference" / "pocket-canon.qmd", page("Pocket Canon", qmd_table(pocket_rows)))
 
     lex_rows = [["Sigil", "Term", "House", "Summary"]]
     for entry in lexicon:
-        lex_rows.append([entry["sigil"], entry["term"], entry["house_name"], entry["summary"]])
+        lex_rows.append([entry["sigil"], rune_link(entry, "../"), f"[{entry['house_name']}](house-{entry['house']}.qmd)", entry["summary"]])
     write_text(ROOT / "reference" / "lexicon.qmd", page("Master Lexicon", qmd_table(lex_rows)))
+
+    term_rows = [["Term", "Sigil", "House", "Status"]]
+    for entry in sorted(lexicon, key=lambda e: (e["term"].lower(), e["id"])):
+        status = ", ".join(label for label, flag in [("major", entry["major"]), ("pocket", entry["pocket"])] if flag) or "canonical"
+        term_rows.append([rune_link(entry, "../"), entry["sigil"], entry["house_name"], status])
+    write_text(ROOT / "reference" / "term-index.qmd", page("Term Index", qmd_table(term_rows)))
+
+    canon_map = """# Canon Map
+
+Use this map to jump from intent to the right reading surface.
+
+## If You Need To Ask An AI To Change Code
+
+- Read [What a Spell Is](../chapters/02-what-a-spell-is.qmd).
+- Use [Canonical Spell Skeleton](spell-skeleton.qmd).
+- Start from [Spell of Safe Refactoring](../spells/safe-refactoring.qmd), [Spell of Test Generation](../spells/test-generation.qmd), or [Code Generation and Repair Loop](../stacks/code-generation-and-repair-loop.qmd).
+- Relevant runes: {safe_refactor_runes}
+
+## If You Need To Diagnose A Failure
+
+- Use [Spell of Bug Diagnosis from Logs](../spells/bug-diagnosis-from-logs.qmd).
+- Use [Bug-Hunt Stack](../stacks/bug-hunt-stack.qmd).
+- Check [Failure Modes](failure-modes.qmd).
+- Relevant runes: {bug_runes}
+
+## If You Need To Change Stored Reality
+
+- Use [Spell of Migration Without Data Loss](../spells/migration-without-data-loss.qmd).
+- Use [Live Migration Stack](../stacks/live-migration-stack.qmd).
+- Relevant runes: {migration_runes}
+
+## If You Need To Ship
+
+- Use [Release Gate Stack](../stacks/release-gate-stack.qmd).
+- Check [Stack Grammar](stack-grammar.qmd).
+- Relevant runes: {release_runes}
+
+## If You Need Vocabulary
+
+- Start with [The Fifty World-Running Words](major-canon.qmd).
+- Use [Pocket Canon](pocket-canon.qmd) for daily vocabulary.
+- Use [Term Index](term-index.qmd) when you know the word.
+- Use [Master Lexicon](lexicon.qmd) when you know the sigil or house.
+""".format(
+        safe_refactor_runes=", ".join(rune_link(lex_by_id[i], "../") for i in [1172, 1088, 1152, 1445]),
+        bug_runes=", ".join(rune_link(lex_by_id[i], "../") for i in [1180, 1204, 1562, 1546]),
+        migration_runes=", ".join(rune_link(lex_by_id[i], "../") for i in [926, 943, 347, 1567]),
+        release_runes=", ".join(rune_link(lex_by_id[i], "../") for i in [1073, 1086, 1180, 943]),
+    )
+    write_text(ROOT / "reference" / "canon-map.qmd", page("Canon Map", canon_map))
 
     for house in houses:
         entries = by_house[house["id"]]
         rows = [["Sigil", "Term", "Summary"]]
         for entry in entries:
-            rows.append([entry["sigil"], entry["raw_term"], entry["summary"]])
-        body = f"# {house['name']}\n\nRange: `{house['range']}`.\n\n" + qmd_table(rows)
+            rows.append([entry["sigil"], f"[{entry['raw_term']}](#rune-{entry['sigil']})", entry["summary"]])
+        details = []
+        for entry in entries:
+            badges = []
+            if entry["major"]:
+                badges.append("major canon")
+            if entry["pocket"]:
+                badges.append("pocket canon")
+            badge_text = f" ({', '.join(badges)})" if badges else ""
+            detail = [
+                f"### [{entry['sigil']}] {entry['raw_term']} {{#rune-{entry['sigil']}}}",
+                "",
+                f"**Status:** {entry['status']}{badge_text}",
+                "",
+                f"**Force:** {entry['force']}",
+            ]
+            if entry.get("shadow"):
+                detail.extend(["", f"**Shadow:** {entry['shadow']}"])
+            if entry.get("expanded_gloss") and entry["expanded_gloss"] != entry["summary"]:
+                detail.extend(["", f"**Major canon note:** {entry['expanded_gloss']}"])
+            if entry.get("pocket_gloss"):
+                detail.extend(["", f"**Pocket gloss:** {entry['pocket_gloss']}"])
+            details.append("\n".join(detail))
+        body = (
+            f"# {house['name']}\n\n"
+            f"Range: `{house['range']}`.\n\n"
+            "Use the summary table for scanning. Each row links to the detailed anchored entry below.\n\n"
+            + qmd_table(rows)
+            + "\n\n## Entries\n\n"
+            + "\n\n".join(details)
+        )
         write_text(ROOT / "reference" / f"house-{house['id']}.qmd", page(house["name"], body))
 
     write_text(
         ROOT / "spells" / "index.qmd",
-        page("Spell Library", "\n".join(f"- [{s['title']}]({slugify(s['title'].replace('Spell of ', ''))}.qmd)" for s in spells)),
+        page(
+            "Spell Library",
+            "Use these as reusable working forms. Each spell page links back to relevant runes and reference pages.\n\n"
+            + "\n".join(f"- [{s['title']}]({slugify(s['title'].replace('Spell of ', ''))}.qmd)" for s in spells),
+        ),
     )
     for spell in spells:
         slug = slugify(spell["title"].replace("Spell of ", ""))
-        body = f"# {spell['title']}\n\n**Working seal:** `{spell['working_seal']}`\n\n**Use when:** {spell['use_when']}\n\n" + spell["source_markdown"]
+        body = (
+            f"# {spell['title']}\n\n"
+            f"**Working seal:** `{spell['working_seal']}`\n\n"
+            f"**Use when:** {spell['use_when']}\n"
+            + rune_section(spell.get("runes", []), lex_by_id, "../")
+            + related_section(
+                [
+                    ("Canonical Spell Skeleton", "../reference/spell-skeleton.qmd"),
+                    ("Cast Levels", "../reference/cast-levels.qmd"),
+                    ("Failure Modes", "../reference/failure-modes.qmd"),
+                    ("Canon Map", "../reference/canon-map.qmd"),
+                ]
+            )
+            + "\n"
+            + spell["source_markdown"]
+        )
         write_text(ROOT / "spells" / f"{slug}.qmd", page(spell["title"], body))
 
     write_text(
         ROOT / "stacks" / "index.qmd",
-        page("Stack Library", "\n".join(f"- [{s['title']}]({slugify(s['title'])}.qmd)" for s in stacks)),
+        page(
+            "Stack Library",
+            "Stacks turn isolated spells into repeatable operations with handoffs, guards, loops, and recovery paths.\n\n"
+            + "\n".join(f"- [{s['title']}]({slugify(s['title'])}.qmd)" for s in stacks),
+        ),
     )
     for stack in stacks:
         rows = [["Step", "Spell", "Artifact", "Advance when"]]
@@ -711,6 +997,16 @@ Common stack failures:
             f"# {stack['title']}\n\n"
             f"**Working seal:** `{stack['working_seal']}`\n\n"
             f"**Enter:** {stack['enter']}\n\n"
+            + rune_section(stack.get("runes", []), lex_by_id, "../")
+            + related_section(
+                [(title.replace("-", " ").title(), f"../spells/{title}.qmd") for title in stack.get("related_spells", [])]
+                + [
+                    ("Stack Grammar", "../reference/stack-grammar.qmd"),
+                    ("Failure Modes", "../reference/failure-modes.qmd"),
+                    ("Canon Map", "../reference/canon-map.qmd"),
+                ],
+                heading="Related Spell Templates and References",
+            )
             + qmd_table(rows)
             + loop_text
             + f"\n\n## On Fail\n\n{stack['on_fail']}\n\n## Why It Works\n\n{stack['why_it_works']}\n"
@@ -723,6 +1019,8 @@ def write_quarto_config(houses: list[dict]) -> None:
     structure = {
         "chapters": [
             "index.qmd",
+            "reader_path.qmd",
+            "porting-status.qmd",
             "preface.qmd",
             "chapters/01-operative-language.qmd",
             "chapters/02-what-a-spell-is.qmd",
@@ -758,9 +1056,11 @@ def write_quarto_config(houses: list[dict]) -> None:
             "reference/stack-grammar.qmd",
             "reference/seals-and-sigils.qmd",
             "reference/failure-modes.qmd",
+            "reference/canon-map.qmd",
             "reference/major-canon.qmd",
             "reference/pocket-canon.qmd",
             "reference/pocket-field-guide.qmd",
+            "reference/term-index.qmd",
             "reference/lexicon.qmd",
         ] + [f"reference/house-{h['id']}.qmd" for h in houses],
     }
@@ -884,4 +1184,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-

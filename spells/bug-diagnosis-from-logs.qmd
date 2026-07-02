@@ -4,9 +4,26 @@ title: "Spell of Bug Diagnosis from Logs"
 
 # Spell of Bug Diagnosis from Logs
 
-**Working seal:** `spell://bug-diagnosis-from-logs/84D6373C2F`
+**Working seal:** `spell://bug-diagnosis-from-logs/2BC4379FD0`
 
 **Use when:** Use when logs are available but the failure mechanism is still uncertain.
+
+
+## Related Runes
+
+- [1180 observability](../reference/house-testing-verification-and-observability.qmd#rune-1180) - Enough internal evidence exists that you can infer what the system is doing from the outside. Not logs alone: legible state under pressure.
+- [1202 telemetry](../reference/house-testing-verification-and-observability.qmd#rune-1202) - Measurements leaving the system in a form other systems can compare, store, and alert on.
+- [1204 trace {Proof}](../reference/house-testing-verification-and-observability.qmd#rune-1204) - A preserved path through execution. Use it when the question is not only what failed, but where the causal thread first bent.
+- [0598 timeout {Ctrl}](../reference/house-control-flow-coordination-and-temporal-logic.qmd#rune-0598) - Waiting is not free and patience must have a boundary. A timeout is a contract with reality about how long uncertainty is allowed to persist.
+- [0943 rollback {DB}](../reference/house-databases-persistence-and-time-binding-words.qmd#rune-0943) - Permission to retreat toward a previously trusted state. A system without rollback mistakes hope for safety.
+
+
+## Related Pages
+
+- [Canonical Spell Skeleton](../reference/spell-skeleton.qmd)
+- [Cast Levels](../reference/cast-levels.qmd)
+- [Failure Modes](../reference/failure-modes.qmd)
+- [Canon Map](../reference/canon-map.qmd)
 
 ## Spell of Bug Diagnosis from Logs
 

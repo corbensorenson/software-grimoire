@@ -4,10 +4,28 @@ title: "Recursive Decomposition Stack"
 
 # Recursive Decomposition Stack
 
-**Working seal:** `stack://recursive-decomposition-stack/10A93D734F`
+**Working seal:** `stack://recursive-decomposition-stack/9E9D03E9C0`
 
 **Enter:** Use when the task is too large for one spell or one session and scope can shrink recursively.
 
+
+## Related Runes
+
+- [0012 boundary](../reference/house-architecture-abstraction-and-design.qmd#rune-0012) - The line that says where one responsibility ends and another begins.
+- [0055 interface {Arch}](../reference/house-architecture-abstraction-and-design.qmd#rune-0055) - A disciplined seam that lets unlike bodies cooperate without swapping internal organs.
+- [1172 invariant](../reference/house-testing-verification-and-observability.qmd#rune-1172) - A law that must remain true while the rest of the system is allowed to move. If you cannot say the invariant, you probably do not yet understand the change.
+- [1437 composable](../reference/house-guarantee-words-quality-attributes-and-behavioral-adjectives.qmd#rune-1437) - A promise adjective; it binds the system to a stronger form of conduct.
+- [1445 deterministic](../reference/house-guarantee-words-quality-attributes-and-behavioral-adjectives.qmd#rune-1445) - Given the same inputs, the same result should return. This is the antidote to drift, heisenbugs, and unreviewable behavior.
+
+
+## Related Spell Templates and References
+
+- [Api Design](../spells/api-design.qmd)
+- [Safe Refactoring](../spells/safe-refactoring.qmd)
+- [Test Generation](../spells/test-generation.qmd)
+- [Stack Grammar](../reference/stack-grammar.qmd)
+- [Failure Modes](../reference/failure-modes.qmd)
+- [Canon Map](../reference/canon-map.qmd)
 | Step | Spell               | Artifact                     | Advance when                                 |
 | ---- | ------------------- | ---------------------------- | -------------------------------------------- |
 | 1    | Define contract     | Parent contract              | Boundary and obligations are clear           |

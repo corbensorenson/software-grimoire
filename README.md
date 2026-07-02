@@ -18,10 +18,13 @@ manuscripts in `source_docs/` and their Markdown extracts in
 Implemented:
 
 - Quarto book/site scaffold.
+- Guided reader path and porting status pages.
 - Manuscript chapters generated from the long public release and stacked-spells
   addendum.
 - Structured JSON data for lexicon houses, full 1,645-entry lexicon, 50-entry
   major canon, 300-entry pocket canon, six field spells, and six worked stacks.
+- Stable rune anchors, term index, canon map, and generated cross-links between
+  chapters, spells, stacks, and lexicon entries.
 - Generated spell, stack, and reference pages.
 - JSON schemas and validation tooling.
 - Working seal generation for spells and stacks.
@@ -46,6 +49,8 @@ python3 scripts/grimoire.py seals
 ```
 
 The generated site is written to `_site/`.
+
+Current render size: 58 Quarto pages.
 
 ## Repository Map
 

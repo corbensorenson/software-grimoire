@@ -6,68 +6,482 @@ title: "Compound Forms, Prefixes, Suffixes, and Naming Runes"
 
 Range: `1583-1645`.
 
-| Sigil | Term                    | Summary                                                                                          |
-| ----- | ----------------------- | ------------------------------------------------------------------------------------------------ |
-| 1583  | -able                   | A compositional word-form; it carries repeated design intent across many contexts.               |
-| 1584  | -aware                  | A compositional word-form; it carries repeated design intent across many contexts.               |
-| 1585  | -by-design              | A semantic affix or compound; it compresses a recurring engineering pattern into a compact mark. |
-| 1586  | -centric                | A compositional word-form; it carries repeated design intent across many contexts.               |
-| 1587  | -complete               | A pattern rune; its power comes from how it modifies neighboring terms.                          |
-| 1588  | -driven                 | A compositional word-form; it carries repeated design intent across many contexts.               |
-| 1589  | -first                  | A compositional word-form; it carries repeated design intent across many contexts.               |
-| 1590  | -free                   | A semantic affix or compound; it compresses a recurring engineering pattern into a compact mark. |
-| 1591  | -friendly               | A pattern rune; its power comes from how it modifies neighboring terms.                          |
-| 1592  | -hard                   | A naming rune; it changes meaning by attachment or compound form.                                |
-| 1593  | -less                   | A naming rune; it changes meaning by attachment or compound form.                                |
-| 1594  | -local                  | A naming rune; it changes meaning by attachment or compound form.                                |
-| 1595  | -native                 | A naming rune; it changes meaning by attachment or compound form.                                |
-| 1596  | -of-record              | A pattern rune; its power comes from how it modifies neighboring terms.                          |
-| 1597  | -oriented               | A semantic affix or compound; it compresses a recurring engineering pattern into a compact mark. |
-| 1598  | -safe                   | A naming rune; it changes meaning by attachment or compound form.                                |
-| 1599  | -sensitive              | A semantic affix or compound; it compresses a recurring engineering pattern into a compact mark. |
-| 1600  | -shaped                 | A pattern rune; its power comes from how it modifies neighboring terms.                          |
-| 1601  | -soft                   | A compositional word-form; it carries repeated design intent across many contexts.               |
-| 1602  | -tolerant               | A pattern rune; its power comes from how it modifies neighboring terms.                          |
-| 1603  | -wide                   | A pattern rune; its power comes from how it modifies neighboring terms.                          |
-| 1604  | actor model             | A pattern rune; its power comes from how it modifies neighboring terms.                          |
-| 1605  | API-first               | A semantic affix or compound; it compresses a recurring engineering pattern into a compact mark. |
-| 1606  | append-only             | A semantic affix or compound; it compresses a recurring engineering pattern into a compact mark. |
-| 1607  | best-effort             | A compositional word-form; it carries repeated design intent across many contexts.               |
-| 1608  | branch-free             | A compositional word-form; it carries repeated design intent across many contexts.               |
-| 1609  | cloud-native            | A semantic affix or compound; it compresses a recurring engineering pattern into a compact mark. |
-| 1610  | command-query           | A pattern rune; its power comes from how it modifies neighboring terms.                          |
-| 1611  | control plane {Rune}    | A compositional word-form; it carries repeated design intent across many contexts.               |
-| 1612  | copy-on-write {Rune}    | A compositional word-form; it carries repeated design intent across many contexts.               |
-| 1613  | crash-only              | A naming rune; it changes meaning by attachment or compound form.                                |
-| 1614  | data plane {Rune}       | A pattern rune; its power comes from how it modifies neighboring terms.                          |
-| 1615  | data-driven             | A semantic affix or compound; it compresses a recurring engineering pattern into a compact mark. |
-| 1616  | default-deny            | A pattern rune; its power comes from how it modifies neighboring terms.                          |
-| 1617  | edge-native             | A compositional word-form; it carries repeated design intent across many contexts.               |
-| 1618  | event-driven            | A semantic affix or compound; it compresses a recurring engineering pattern into a compact mark. |
-| 1619  | eventually consistent   | A semantic affix or compound; it compresses a recurring engineering pattern into a compact mark. |
-| 1620  | fail-fast               | A semantic affix or compound; it compresses a recurring engineering pattern into a compact mark. |
-| 1621  | first-class             | A semantic affix or compound; it compresses a recurring engineering pattern into a compact mark. |
-| 1622  | hot path {Rune}         | A naming rune; it changes meaning by attachment or compound form.                                |
-| 1623  | infrastructure-as-code  | A pattern rune; its power comes from how it modifies neighboring terms.                          |
-| 1624  | least-authority         | A semantic affix or compound; it compresses a recurring engineering pattern into a compact mark. |
-| 1625  | lock-free {Rune}        | A progress word; some thread always moves forward without a lock.                                |
-| 1626  | machine-readable        | A pattern rune; its power comes from how it modifies neighboring terms.                          |
-| 1627  | memory-safe {Rune}      | A compositional word-form; it carries repeated design intent across many contexts.               |
-| 1628  | multi-tenant            | A pattern rune; its power comes from how it modifies neighboring terms.                          |
-| 1629  | negative cache          | A semantic affix or compound; it compresses a recurring engineering pattern into a compact mark. |
-| 1630  | object-capability       | A pattern rune; its power comes from how it modifies neighboring terms.                          |
-| 1631  | offline-first {Rune}    | A naming rune; it changes meaning by attachment or compound form.                                |
-| 1632  | policy-as-code          | A compositional word-form; it carries repeated design intent across many contexts.               |
-| 1633  | queue-backed            | A naming rune; it changes meaning by attachment or compound form.                                |
-| 1634  | read path               | A compositional word-form; it carries repeated design intent across many contexts.               |
-| 1635  | read-through cache      | A pattern rune; its power comes from how it modifies neighboring terms.                          |
-| 1636  | real-time {Rune}        | A naming rune; it changes meaning by attachment or compound form.                                |
-| 1637  | rule-based              | A naming rune; it changes meaning by attachment or compound form.                                |
-| 1638  | side-effect-free {Rune} | A pattern rune; its power comes from how it modifies neighboring terms.                          |
-| 1639  | single source of truth  | A semantic affix or compound; it compresses a recurring engineering pattern into a compact mark. |
-| 1640  | soft delete             | A semantic affix or compound; it compresses a recurring engineering pattern into a compact mark. |
-| 1641  | statefulset             | A naming rune; it changes meaning by attachment or compound form.                                |
-| 1642  | write path              | A naming rune; it changes meaning by attachment or compound form.                                |
-| 1643  | write-through cache     | A compositional word-form; it carries repeated design intent across many contexts.               |
-| 1644  | zero-downtime           | A naming rune; it changes meaning by attachment or compound form.                                |
-| 1645  | zero-knowledge          | A compositional word-form; it carries repeated design intent across many contexts.               |
+Use the summary table for scanning. Each row links to the detailed anchored entry below.
+
+| Sigil | Term                                  | Summary                                                                                          |
+| ----- | ------------------------------------- | ------------------------------------------------------------------------------------------------ |
+| 1583  | [-able](#rune-1583)                   | A compositional word-form; it carries repeated design intent across many contexts.               |
+| 1584  | [-aware](#rune-1584)                  | A compositional word-form; it carries repeated design intent across many contexts.               |
+| 1585  | [-by-design](#rune-1585)              | A semantic affix or compound; it compresses a recurring engineering pattern into a compact mark. |
+| 1586  | [-centric](#rune-1586)                | A compositional word-form; it carries repeated design intent across many contexts.               |
+| 1587  | [-complete](#rune-1587)               | A pattern rune; its power comes from how it modifies neighboring terms.                          |
+| 1588  | [-driven](#rune-1588)                 | A compositional word-form; it carries repeated design intent across many contexts.               |
+| 1589  | [-first](#rune-1589)                  | A compositional word-form; it carries repeated design intent across many contexts.               |
+| 1590  | [-free](#rune-1590)                   | A semantic affix or compound; it compresses a recurring engineering pattern into a compact mark. |
+| 1591  | [-friendly](#rune-1591)               | A pattern rune; its power comes from how it modifies neighboring terms.                          |
+| 1592  | [-hard](#rune-1592)                   | A naming rune; it changes meaning by attachment or compound form.                                |
+| 1593  | [-less](#rune-1593)                   | A naming rune; it changes meaning by attachment or compound form.                                |
+| 1594  | [-local](#rune-1594)                  | A naming rune; it changes meaning by attachment or compound form.                                |
+| 1595  | [-native](#rune-1595)                 | A naming rune; it changes meaning by attachment or compound form.                                |
+| 1596  | [-of-record](#rune-1596)              | A pattern rune; its power comes from how it modifies neighboring terms.                          |
+| 1597  | [-oriented](#rune-1597)               | A semantic affix or compound; it compresses a recurring engineering pattern into a compact mark. |
+| 1598  | [-safe](#rune-1598)                   | A naming rune; it changes meaning by attachment or compound form.                                |
+| 1599  | [-sensitive](#rune-1599)              | A semantic affix or compound; it compresses a recurring engineering pattern into a compact mark. |
+| 1600  | [-shaped](#rune-1600)                 | A pattern rune; its power comes from how it modifies neighboring terms.                          |
+| 1601  | [-soft](#rune-1601)                   | A compositional word-form; it carries repeated design intent across many contexts.               |
+| 1602  | [-tolerant](#rune-1602)               | A pattern rune; its power comes from how it modifies neighboring terms.                          |
+| 1603  | [-wide](#rune-1603)                   | A pattern rune; its power comes from how it modifies neighboring terms.                          |
+| 1604  | [actor model](#rune-1604)             | A pattern rune; its power comes from how it modifies neighboring terms.                          |
+| 1605  | [API-first](#rune-1605)               | A semantic affix or compound; it compresses a recurring engineering pattern into a compact mark. |
+| 1606  | [append-only](#rune-1606)             | A semantic affix or compound; it compresses a recurring engineering pattern into a compact mark. |
+| 1607  | [best-effort](#rune-1607)             | A compositional word-form; it carries repeated design intent across many contexts.               |
+| 1608  | [branch-free](#rune-1608)             | A compositional word-form; it carries repeated design intent across many contexts.               |
+| 1609  | [cloud-native](#rune-1609)            | A semantic affix or compound; it compresses a recurring engineering pattern into a compact mark. |
+| 1610  | [command-query](#rune-1610)           | A pattern rune; its power comes from how it modifies neighboring terms.                          |
+| 1611  | [control plane {Rune}](#rune-1611)    | A compositional word-form; it carries repeated design intent across many contexts.               |
+| 1612  | [copy-on-write {Rune}](#rune-1612)    | A compositional word-form; it carries repeated design intent across many contexts.               |
+| 1613  | [crash-only](#rune-1613)              | A naming rune; it changes meaning by attachment or compound form.                                |
+| 1614  | [data plane {Rune}](#rune-1614)       | A pattern rune; its power comes from how it modifies neighboring terms.                          |
+| 1615  | [data-driven](#rune-1615)             | A semantic affix or compound; it compresses a recurring engineering pattern into a compact mark. |
+| 1616  | [default-deny](#rune-1616)            | A pattern rune; its power comes from how it modifies neighboring terms.                          |
+| 1617  | [edge-native](#rune-1617)             | A compositional word-form; it carries repeated design intent across many contexts.               |
+| 1618  | [event-driven](#rune-1618)            | A semantic affix or compound; it compresses a recurring engineering pattern into a compact mark. |
+| 1619  | [eventually consistent](#rune-1619)   | A semantic affix or compound; it compresses a recurring engineering pattern into a compact mark. |
+| 1620  | [fail-fast](#rune-1620)               | A semantic affix or compound; it compresses a recurring engineering pattern into a compact mark. |
+| 1621  | [first-class](#rune-1621)             | A semantic affix or compound; it compresses a recurring engineering pattern into a compact mark. |
+| 1622  | [hot path {Rune}](#rune-1622)         | A naming rune; it changes meaning by attachment or compound form.                                |
+| 1623  | [infrastructure-as-code](#rune-1623)  | A pattern rune; its power comes from how it modifies neighboring terms.                          |
+| 1624  | [least-authority](#rune-1624)         | A semantic affix or compound; it compresses a recurring engineering pattern into a compact mark. |
+| 1625  | [lock-free {Rune}](#rune-1625)        | A progress word; some thread always moves forward without a lock.                                |
+| 1626  | [machine-readable](#rune-1626)        | A pattern rune; its power comes from how it modifies neighboring terms.                          |
+| 1627  | [memory-safe {Rune}](#rune-1627)      | A compositional word-form; it carries repeated design intent across many contexts.               |
+| 1628  | [multi-tenant](#rune-1628)            | A pattern rune; its power comes from how it modifies neighboring terms.                          |
+| 1629  | [negative cache](#rune-1629)          | A semantic affix or compound; it compresses a recurring engineering pattern into a compact mark. |
+| 1630  | [object-capability](#rune-1630)       | A pattern rune; its power comes from how it modifies neighboring terms.                          |
+| 1631  | [offline-first {Rune}](#rune-1631)    | A naming rune; it changes meaning by attachment or compound form.                                |
+| 1632  | [policy-as-code](#rune-1632)          | A compositional word-form; it carries repeated design intent across many contexts.               |
+| 1633  | [queue-backed](#rune-1633)            | A naming rune; it changes meaning by attachment or compound form.                                |
+| 1634  | [read path](#rune-1634)               | A compositional word-form; it carries repeated design intent across many contexts.               |
+| 1635  | [read-through cache](#rune-1635)      | A pattern rune; its power comes from how it modifies neighboring terms.                          |
+| 1636  | [real-time {Rune}](#rune-1636)        | A naming rune; it changes meaning by attachment or compound form.                                |
+| 1637  | [rule-based](#rune-1637)              | A naming rune; it changes meaning by attachment or compound form.                                |
+| 1638  | [side-effect-free {Rune}](#rune-1638) | A pattern rune; its power comes from how it modifies neighboring terms.                          |
+| 1639  | [single source of truth](#rune-1639)  | A semantic affix or compound; it compresses a recurring engineering pattern into a compact mark. |
+| 1640  | [soft delete](#rune-1640)             | A semantic affix or compound; it compresses a recurring engineering pattern into a compact mark. |
+| 1641  | [statefulset](#rune-1641)             | A naming rune; it changes meaning by attachment or compound form.                                |
+| 1642  | [write path](#rune-1642)              | A naming rune; it changes meaning by attachment or compound form.                                |
+| 1643  | [write-through cache](#rune-1643)     | A compositional word-form; it carries repeated design intent across many contexts.               |
+| 1644  | [zero-downtime](#rune-1644)           | A naming rune; it changes meaning by attachment or compound form.                                |
+| 1645  | [zero-knowledge](#rune-1645)          | A compositional word-form; it carries repeated design intent across many contexts.               |
+
+## Entries
+
+### [1583] -able {#rune-1583}
+
+**Status:** canonical
+
+**Force:** A compositional word-form; it carries repeated design intent across many contexts.
+
+### [1584] -aware {#rune-1584}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A compositional word-form; it carries repeated design intent across many contexts.
+
+**Pocket gloss:** Marks that something notices the surrounding condition it names.
+
+### [1585] -by-design {#rune-1585}
+
+**Status:** canonical
+
+**Force:** A semantic affix or compound; it compresses a recurring engineering pattern into a compact mark.
+
+### [1586] -centric {#rune-1586}
+
+**Status:** canonical
+
+**Force:** A compositional word-form; it carries repeated design intent across many contexts.
+
+### [1587] -complete {#rune-1587}
+
+**Status:** canonical
+
+**Force:** A pattern rune; its power comes from how it modifies neighboring terms.
+
+### [1588] -driven {#rune-1588}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A compositional word-form; it carries repeated design intent across many contexts.
+
+**Pocket gloss:** Signals that behavior is organized around events or causes.
+
+### [1589] -first {#rune-1589}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A compositional word-form; it carries repeated design intent across many contexts.
+
+**Pocket gloss:** Declares priority or design center: security-first, API-first, offline-first.
+
+### [1590] -free {#rune-1590}
+
+**Status:** canonical
+
+**Force:** A semantic affix or compound; it compresses a recurring engineering pattern into a compact mark.
+
+### [1591] -friendly {#rune-1591}
+
+**Status:** canonical
+
+**Force:** A pattern rune; its power comes from how it modifies neighboring terms.
+
+### [1592] -hard {#rune-1592}
+
+**Status:** canonical
+
+**Force:** A naming rune; it changes meaning by attachment or compound form.
+
+### [1593] -less {#rune-1593}
+
+**Status:** canonical
+
+**Force:** A naming rune; it changes meaning by attachment or compound form.
+
+### [1594] -local {#rune-1594}
+
+**Status:** canonical
+
+**Force:** A naming rune; it changes meaning by attachment or compound form.
+
+### [1595] -native {#rune-1595}
+
+**Status:** canonical
+
+**Force:** A naming rune; it changes meaning by attachment or compound form.
+
+### [1596] -of-record {#rune-1596}
+
+**Status:** canonical
+
+**Force:** A pattern rune; its power comes from how it modifies neighboring terms.
+
+### [1597] -oriented {#rune-1597}
+
+**Status:** canonical
+
+**Force:** A semantic affix or compound; it compresses a recurring engineering pattern into a compact mark.
+
+### [1598] -safe {#rune-1598}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A naming rune; it changes meaning by attachment or compound form.
+
+**Pocket gloss:** Asserts a protected behavior such as memory-safe or thread-safe.
+
+### [1599] -sensitive {#rune-1599}
+
+**Status:** canonical
+
+**Force:** A semantic affix or compound; it compresses a recurring engineering pattern into a compact mark.
+
+### [1600] -shaped {#rune-1600}
+
+**Status:** canonical
+
+**Force:** A pattern rune; its power comes from how it modifies neighboring terms.
+
+### [1601] -soft {#rune-1601}
+
+**Status:** canonical
+
+**Force:** A compositional word-form; it carries repeated design intent across many contexts.
+
+### [1602] -tolerant {#rune-1602}
+
+**Status:** canonical
+
+**Force:** A pattern rune; its power comes from how it modifies neighboring terms.
+
+### [1603] -wide {#rune-1603}
+
+**Status:** canonical
+
+**Force:** A pattern rune; its power comes from how it modifies neighboring terms.
+
+### [1604] actor model {#rune-1604}
+
+**Status:** canonical
+
+**Force:** A pattern rune; its power comes from how it modifies neighboring terms.
+
+### [1605] API-first {#rune-1605}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A semantic affix or compound; it compresses a recurring engineering pattern into a compact mark.
+
+**Pocket gloss:** Design the interface surface before the implementations behind it.
+
+### [1606] append-only {#rune-1606}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A semantic affix or compound; it compresses a recurring engineering pattern into a compact mark.
+
+**Pocket gloss:** History grows by addition rather than mutation.
+
+### [1607] best-effort {#rune-1607}
+
+**Status:** canonical
+
+**Force:** A compositional word-form; it carries repeated design intent across many contexts.
+
+### [1608] branch-free {#rune-1608}
+
+**Status:** canonical
+
+**Force:** A compositional word-form; it carries repeated design intent across many contexts.
+
+### [1609] cloud-native {#rune-1609}
+
+**Status:** canonical
+
+**Force:** A semantic affix or compound; it compresses a recurring engineering pattern into a compact mark.
+
+### [1610] command-query {#rune-1610}
+
+**Status:** canonical
+
+**Force:** A pattern rune; its power comes from how it modifies neighboring terms.
+
+### [1611] control plane {Rune} {#rune-1611}
+
+**Status:** canonical
+
+**Force:** A compositional word-form; it carries repeated design intent across many contexts.
+
+### [1612] copy-on-write {Rune} {#rune-1612}
+
+**Status:** canonical
+
+**Force:** A compositional word-form; it carries repeated design intent across many contexts.
+
+### [1613] crash-only {#rune-1613}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A naming rune; it changes meaning by attachment or compound form.
+
+**Pocket gloss:** Only live briefly, start fast, and recover by restart rather than repair.
+
+### [1614] data plane {Rune} {#rune-1614}
+
+**Status:** canonical
+
+**Force:** A pattern rune; its power comes from how it modifies neighboring terms.
+
+### [1615] data-driven {#rune-1615}
+
+**Status:** canonical
+
+**Force:** A semantic affix or compound; it compresses a recurring engineering pattern into a compact mark.
+
+### [1616] default-deny {#rune-1616}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A pattern rune; its power comes from how it modifies neighboring terms.
+
+**Pocket gloss:** Access is forbidden unless explicitly granted.
+
+### [1617] edge-native {#rune-1617}
+
+**Status:** canonical
+
+**Force:** A compositional word-form; it carries repeated design intent across many contexts.
+
+### [1618] event-driven {#rune-1618}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A semantic affix or compound; it compresses a recurring engineering pattern into a compact mark.
+
+**Pocket gloss:** Action propagates from events rather than from direct polling or command loops.
+
+### [1619] eventually consistent {#rune-1619}
+
+**Status:** canonical
+
+**Force:** A semantic affix or compound; it compresses a recurring engineering pattern into a compact mark.
+
+### [1620] fail-fast {#rune-1620}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A semantic affix or compound; it compresses a recurring engineering pattern into a compact mark.
+
+**Pocket gloss:** Abort early when assumptions break instead of smearing damage forward.
+
+### [1621] first-class {#rune-1621}
+
+**Status:** canonical
+
+**Force:** A semantic affix or compound; it compresses a recurring engineering pattern into a compact mark.
+
+### [1622] hot path {Rune} {#rune-1622}
+
+**Status:** canonical
+
+**Force:** A naming rune; it changes meaning by attachment or compound form.
+
+### [1623] infrastructure-as-code {#rune-1623}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A pattern rune; its power comes from how it modifies neighboring terms.
+
+**Pocket gloss:** Operational change expressed as reviewable source.
+
+### [1624] least-authority {#rune-1624}
+
+**Status:** canonical
+
+**Force:** A semantic affix or compound; it compresses a recurring engineering pattern into a compact mark.
+
+### [1625] lock-free {Rune} {#rune-1625}
+
+**Status:** canonical
+
+**Force:** A progress word; some thread always moves forward without a lock.
+
+### [1626] machine-readable {#rune-1626}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A pattern rune; its power comes from how it modifies neighboring terms.
+
+**Pocket gloss:** Structured so software, not only humans, can read it reliably.
+
+### [1627] memory-safe {Rune} {#rune-1627}
+
+**Status:** canonical
+
+**Force:** A compositional word-form; it carries repeated design intent across many contexts.
+
+### [1628] multi-tenant {#rune-1628}
+
+**Status:** canonical
+
+**Force:** A pattern rune; its power comes from how it modifies neighboring terms.
+
+### [1629] negative cache {#rune-1629}
+
+**Status:** canonical
+
+**Force:** A semantic affix or compound; it compresses a recurring engineering pattern into a compact mark.
+
+### [1630] object-capability {#rune-1630}
+
+**Status:** canonical
+
+**Force:** A pattern rune; its power comes from how it modifies neighboring terms.
+
+### [1631] offline-first {Rune} {#rune-1631}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A naming rune; it changes meaning by attachment or compound form.
+
+**Pocket gloss:** Designed to keep working with poor or absent connectivity.
+
+### [1632] policy-as-code {#rune-1632}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A compositional word-form; it carries repeated design intent across many contexts.
+
+**Pocket gloss:** Policy declared as versioned, testable code.
+
+### [1633] queue-backed {#rune-1633}
+
+**Status:** canonical
+
+**Force:** A naming rune; it changes meaning by attachment or compound form.
+
+### [1634] read path {#rune-1634}
+
+**Status:** canonical
+
+**Force:** A compositional word-form; it carries repeated design intent across many contexts.
+
+### [1635] read-through cache {#rune-1635}
+
+**Status:** canonical
+
+**Force:** A pattern rune; its power comes from how it modifies neighboring terms.
+
+### [1636] real-time {Rune} {#rune-1636}
+
+**Status:** canonical
+
+**Force:** A naming rune; it changes meaning by attachment or compound form.
+
+### [1637] rule-based {#rune-1637}
+
+**Status:** canonical
+
+**Force:** A naming rune; it changes meaning by attachment or compound form.
+
+### [1638] side-effect-free {Rune} {#rune-1638}
+
+**Status:** canonical
+
+**Force:** A pattern rune; its power comes from how it modifies neighboring terms.
+
+### [1639] single source of truth {#rune-1639}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A semantic affix or compound; it compresses a recurring engineering pattern into a compact mark.
+
+**Pocket gloss:** One canonical place others are expected to mirror.
+
+### [1640] soft delete {#rune-1640}
+
+**Status:** canonical
+
+**Force:** A semantic affix or compound; it compresses a recurring engineering pattern into a compact mark.
+
+### [1641] statefulset {#rune-1641}
+
+**Status:** canonical
+
+**Force:** A naming rune; it changes meaning by attachment or compound form.
+
+### [1642] write path {#rune-1642}
+
+**Status:** canonical
+
+**Force:** A naming rune; it changes meaning by attachment or compound form.
+
+### [1643] write-through cache {#rune-1643}
+
+**Status:** canonical
+
+**Force:** A compositional word-form; it carries repeated design intent across many contexts.
+
+### [1644] zero-downtime {#rune-1644}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A naming rune; it changes meaning by attachment or compound form.
+
+**Pocket gloss:** Change introduced without taking the service dark.
+
+### [1645] zero-knowledge {#rune-1645}
+
+**Status:** canonical
+
+**Force:** A compositional word-form; it carries repeated design intent across many contexts.

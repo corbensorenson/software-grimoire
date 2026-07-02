@@ -6,76 +6,540 @@ title: "Testing, Verification, and Observability"
 
 Range: `1140-1210`.
 
-| Sigil | Term                | Summary                                                                                                                                                       |
-| ----- | ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 1140  | acceptance test     | A truth-seeking word; it narrows the gap between what is believed and what is known.                                                                          |
-| 1141  | alert               | A proving-word; it asks whether a claim is actually true.                                                                                                     |
-| 1142  | assertion {Proof}   | A proving-word; it asks whether a claim is actually true.                                                                                                     |
-| 1143  | audit log           | A revelation word; it exposes hidden state so a claim can be checked.                                                                                         |
-| 1144  | backtrace           | A proving-word; it asks whether a claim is actually true.                                                                                                     |
-| 1145  | baseline {Proof}    | A truth-seeking word; it narrows the gap between what is believed and what is known.                                                                          |
-| 1146  | benchmark           | A performance claim forced to meet measurement. Benchmarks are where speed rhetoric either cashes out or dies.                                                |
-| 1147  | black-box test      | A truth-seeking word; it narrows the gap between what is believed and what is known.                                                                          |
-| 1148  | canary check        | A proving-word; it asks whether a claim is actually true.                                                                                                     |
-| 1149  | check               | A discipline word; it converts intuition into measurable evidence.                                                                                            |
-| 1150  | code coverage       | A truth-seeking word; it narrows the gap between what is believed and what is known.                                                                          |
-| 1151  | conformance         | A truth-seeking word; it narrows the gap between what is believed and what is known.                                                                          |
-| 1152  | contract test       | A promise checked at the seam between systems. Use it when mocks are too flattering and end-to-end tests are too blunt.                                       |
-| 1153  | core dump {Proof}   | A truth-seeking word; it narrows the gap between what is believed and what is known.                                                                          |
-| 1154  | counter {Proof}     | A proving-word; it asks whether a claim is actually true.                                                                                                     |
-| 1155  | dashboard           | A proving-word; it asks whether a claim is actually true.                                                                                                     |
-| 1156  | debugger            | A seeing word; it arrests motion so hidden state may be inspected.                                                                                            |
-| 1157  | diagnostic          | A revelation word; it exposes hidden state so a claim can be checked.                                                                                         |
-| 1158  | error budget        | A revelation word; it exposes hidden state so a claim can be checked.                                                                                         |
-| 1159  | evaluation {Proof}  | A proving-word; it asks whether a claim is actually true.                                                                                                     |
-| 1160  | expectation         | A proving-word; it asks whether a claim is actually true.                                                                                                     |
-| 1161  | fixture             | A truth-seeking word; it narrows the gap between what is believed and what is known.                                                                          |
-| 1162  | flame graph         | A truth-seeking word; it narrows the gap between what is believed and what is known.                                                                          |
-| 1163  | fuzzing             | A revelation word; it exposes hidden state so a claim can be checked.                                                                                         |
-| 1164  | gauge               | A revelation word; it exposes hidden state so a claim can be checked.                                                                                         |
-| 1165  | golden test         | A revelation word; it exposes hidden state so a claim can be checked.                                                                                         |
-| 1166  | harness             | A proving-word; it asks whether a claim is actually true.                                                                                                     |
-| 1167  | health probe        | A discipline word; it converts intuition into measurable evidence.                                                                                            |
-| 1168  | histogram           | A discipline word; it converts intuition into measurable evidence.                                                                                            |
-| 1169  | hypothesis          | A proving-word; it asks whether a claim is actually true.                                                                                                     |
-| 1170  | incident report     | A discipline word; it converts intuition into measurable evidence.                                                                                            |
-| 1171  | integration test    | A proving-word; it asks whether a claim is actually true.                                                                                                     |
-| 1172  | invariant           | A law that must remain true while the rest of the system is allowed to move. If you cannot say the invariant, you probably do not yet understand the change.  |
-| 1173  | load test           | A proving-word; it asks whether a claim is actually true.                                                                                                     |
-| 1174  | log                 | A remembrance word; events are written so that they may be later inspected or replayed.                                                                       |
-| 1175  | logger              | A proving-word; it asks whether a claim is actually true.                                                                                                     |
-| 1176  | metric              | A proving-word; it asks whether a claim is actually true.                                                                                                     |
-| 1177  | mock                | A discipline word; it converts intuition into measurable evidence.                                                                                            |
-| 1178  | model check         | A truth-seeking word; it narrows the gap between what is believed and what is known.                                                                          |
-| 1179  | monitor             | A proving-word; it asks whether a claim is actually true.                                                                                                     |
-| 1180  | observability       | Enough internal evidence exists that you can infer what the system is doing from the outside. Not logs alone: legible state under pressure.                   |
-| 1181  | oracle              | A discipline word; it converts intuition into measurable evidence.                                                                                            |
-| 1182  | postcondition       | A revelation word; it exposes hidden state so a claim can be checked.                                                                                         |
-| 1183  | precondition        | A discipline word; it converts intuition into measurable evidence.                                                                                            |
-| 1184  | profiler            | A truth-seeking word; it narrows the gap between what is believed and what is known.                                                                          |
-| 1185  | proof               | A discipline word; it converts intuition into measurable evidence.                                                                                            |
-| 1186  | property-based test | Instead of checking one remembered example, ask whether a law survives many generated cases. Use it when you care more about the invariant than the anecdote. |
-| 1187  | regression test     | A revelation word; it exposes hidden state so a claim can be checked.                                                                                         |
-| 1188  | replay              | A revelation word; it exposes hidden state so a claim can be checked.                                                                                         |
-| 1189  | sampling            | A truth-seeking word; it narrows the gap between what is believed and what is known.                                                                          |
-| 1190  | sanity check        | A discipline word; it converts intuition into measurable evidence.                                                                                            |
-| 1191  | simulation          | A revelation word; it exposes hidden state so a claim can be checked.                                                                                         |
-| 1192  | smoke test          | A truth-seeking word; it narrows the gap between what is believed and what is known.                                                                          |
-| 1193  | snapshot test       | A proving-word; it asks whether a claim is actually true.                                                                                                     |
-| 1194  | soak test           | A discipline word; it converts intuition into measurable evidence.                                                                                            |
-| 1195  | solver              | A truth-seeking word; it narrows the gap between what is believed and what is known.                                                                          |
-| 1196  | span                | A discipline word; it converts intuition into measurable evidence.                                                                                            |
-| 1197  | stack trace         | A revelation word; it exposes hidden state so a claim can be checked.                                                                                         |
-| 1198  | static checker      | A revelation word; it exposes hidden state so a claim can be checked.                                                                                         |
-| 1199  | stress test         | A proving-word; it asks whether a claim is actually true.                                                                                                     |
-| 1200  | stub                | A discipline word; it converts intuition into measurable evidence.                                                                                            |
-| 1201  | symbolic execution  | A discipline word; it converts intuition into measurable evidence.                                                                                            |
-| 1202  | telemetry           | Measurements leaving the system in a form other systems can compare, store, and alert on. Shadow: metric exhaust without explanatory power.                   |
-| 1203  | theorem {Proof}     | A proving-word; it asks whether a claim is actually true.                                                                                                     |
-| 1204  | trace {Proof}       | A preserved path through execution. Use it when the question is not only what failed, but where the causal thread first bent.                                 |
-| 1205  | tracer              | A revelation word; it exposes hidden state so a claim can be checked.                                                                                         |
-| 1206  | triage              | A proving-word; it asks whether a claim is actually true.                                                                                                     |
-| 1207  | unit test           | A proving-word; it asks whether a claim is actually true.                                                                                                     |
-| 1208  | validation          | A truth-seeking word; it narrows the gap between what is believed and what is known.                                                                          |
-| 1209  | verifier            | A proving-word; it asks whether a claim is actually true.                                                                                                     |
-| 1210  | white-box test      | A truth-seeking word; it narrows the gap between what is believed and what is known.                                                                          |
+Use the summary table for scanning. Each row links to the detailed anchored entry below.
+
+| Sigil | Term                              | Summary                                                                                                                                                       |
+| ----- | --------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1140  | [acceptance test](#rune-1140)     | A truth-seeking word; it narrows the gap between what is believed and what is known.                                                                          |
+| 1141  | [alert](#rune-1141)               | A proving-word; it asks whether a claim is actually true.                                                                                                     |
+| 1142  | [assertion {Proof}](#rune-1142)   | A proving-word; it asks whether a claim is actually true.                                                                                                     |
+| 1143  | [audit log](#rune-1143)           | A revelation word; it exposes hidden state so a claim can be checked.                                                                                         |
+| 1144  | [backtrace](#rune-1144)           | A proving-word; it asks whether a claim is actually true.                                                                                                     |
+| 1145  | [baseline {Proof}](#rune-1145)    | A truth-seeking word; it narrows the gap between what is believed and what is known.                                                                          |
+| 1146  | [benchmark](#rune-1146)           | A performance claim forced to meet measurement. Benchmarks are where speed rhetoric either cashes out or dies.                                                |
+| 1147  | [black-box test](#rune-1147)      | A truth-seeking word; it narrows the gap between what is believed and what is known.                                                                          |
+| 1148  | [canary check](#rune-1148)        | A proving-word; it asks whether a claim is actually true.                                                                                                     |
+| 1149  | [check](#rune-1149)               | A discipline word; it converts intuition into measurable evidence.                                                                                            |
+| 1150  | [code coverage](#rune-1150)       | A truth-seeking word; it narrows the gap between what is believed and what is known.                                                                          |
+| 1151  | [conformance](#rune-1151)         | A truth-seeking word; it narrows the gap between what is believed and what is known.                                                                          |
+| 1152  | [contract test](#rune-1152)       | A promise checked at the seam between systems. Use it when mocks are too flattering and end-to-end tests are too blunt.                                       |
+| 1153  | [core dump {Proof}](#rune-1153)   | A truth-seeking word; it narrows the gap between what is believed and what is known.                                                                          |
+| 1154  | [counter {Proof}](#rune-1154)     | A proving-word; it asks whether a claim is actually true.                                                                                                     |
+| 1155  | [dashboard](#rune-1155)           | A proving-word; it asks whether a claim is actually true.                                                                                                     |
+| 1156  | [debugger](#rune-1156)            | A seeing word; it arrests motion so hidden state may be inspected.                                                                                            |
+| 1157  | [diagnostic](#rune-1157)          | A revelation word; it exposes hidden state so a claim can be checked.                                                                                         |
+| 1158  | [error budget](#rune-1158)        | A revelation word; it exposes hidden state so a claim can be checked.                                                                                         |
+| 1159  | [evaluation {Proof}](#rune-1159)  | A proving-word; it asks whether a claim is actually true.                                                                                                     |
+| 1160  | [expectation](#rune-1160)         | A proving-word; it asks whether a claim is actually true.                                                                                                     |
+| 1161  | [fixture](#rune-1161)             | A truth-seeking word; it narrows the gap between what is believed and what is known.                                                                          |
+| 1162  | [flame graph](#rune-1162)         | A truth-seeking word; it narrows the gap between what is believed and what is known.                                                                          |
+| 1163  | [fuzzing](#rune-1163)             | A revelation word; it exposes hidden state so a claim can be checked.                                                                                         |
+| 1164  | [gauge](#rune-1164)               | A revelation word; it exposes hidden state so a claim can be checked.                                                                                         |
+| 1165  | [golden test](#rune-1165)         | A revelation word; it exposes hidden state so a claim can be checked.                                                                                         |
+| 1166  | [harness](#rune-1166)             | A proving-word; it asks whether a claim is actually true.                                                                                                     |
+| 1167  | [health probe](#rune-1167)        | A discipline word; it converts intuition into measurable evidence.                                                                                            |
+| 1168  | [histogram](#rune-1168)           | A discipline word; it converts intuition into measurable evidence.                                                                                            |
+| 1169  | [hypothesis](#rune-1169)          | A proving-word; it asks whether a claim is actually true.                                                                                                     |
+| 1170  | [incident report](#rune-1170)     | A discipline word; it converts intuition into measurable evidence.                                                                                            |
+| 1171  | [integration test](#rune-1171)    | A proving-word; it asks whether a claim is actually true.                                                                                                     |
+| 1172  | [invariant](#rune-1172)           | A law that must remain true while the rest of the system is allowed to move. If you cannot say the invariant, you probably do not yet understand the change.  |
+| 1173  | [load test](#rune-1173)           | A proving-word; it asks whether a claim is actually true.                                                                                                     |
+| 1174  | [log](#rune-1174)                 | A remembrance word; events are written so that they may be later inspected or replayed.                                                                       |
+| 1175  | [logger](#rune-1175)              | A proving-word; it asks whether a claim is actually true.                                                                                                     |
+| 1176  | [metric](#rune-1176)              | A proving-word; it asks whether a claim is actually true.                                                                                                     |
+| 1177  | [mock](#rune-1177)                | A discipline word; it converts intuition into measurable evidence.                                                                                            |
+| 1178  | [model check](#rune-1178)         | A truth-seeking word; it narrows the gap between what is believed and what is known.                                                                          |
+| 1179  | [monitor](#rune-1179)             | A proving-word; it asks whether a claim is actually true.                                                                                                     |
+| 1180  | [observability](#rune-1180)       | Enough internal evidence exists that you can infer what the system is doing from the outside. Not logs alone: legible state under pressure.                   |
+| 1181  | [oracle](#rune-1181)              | A discipline word; it converts intuition into measurable evidence.                                                                                            |
+| 1182  | [postcondition](#rune-1182)       | A revelation word; it exposes hidden state so a claim can be checked.                                                                                         |
+| 1183  | [precondition](#rune-1183)        | A discipline word; it converts intuition into measurable evidence.                                                                                            |
+| 1184  | [profiler](#rune-1184)            | A truth-seeking word; it narrows the gap between what is believed and what is known.                                                                          |
+| 1185  | [proof](#rune-1185)               | A discipline word; it converts intuition into measurable evidence.                                                                                            |
+| 1186  | [property-based test](#rune-1186) | Instead of checking one remembered example, ask whether a law survives many generated cases. Use it when you care more about the invariant than the anecdote. |
+| 1187  | [regression test](#rune-1187)     | A revelation word; it exposes hidden state so a claim can be checked.                                                                                         |
+| 1188  | [replay](#rune-1188)              | A revelation word; it exposes hidden state so a claim can be checked.                                                                                         |
+| 1189  | [sampling](#rune-1189)            | A truth-seeking word; it narrows the gap between what is believed and what is known.                                                                          |
+| 1190  | [sanity check](#rune-1190)        | A discipline word; it converts intuition into measurable evidence.                                                                                            |
+| 1191  | [simulation](#rune-1191)          | A revelation word; it exposes hidden state so a claim can be checked.                                                                                         |
+| 1192  | [smoke test](#rune-1192)          | A truth-seeking word; it narrows the gap between what is believed and what is known.                                                                          |
+| 1193  | [snapshot test](#rune-1193)       | A proving-word; it asks whether a claim is actually true.                                                                                                     |
+| 1194  | [soak test](#rune-1194)           | A discipline word; it converts intuition into measurable evidence.                                                                                            |
+| 1195  | [solver](#rune-1195)              | A truth-seeking word; it narrows the gap between what is believed and what is known.                                                                          |
+| 1196  | [span](#rune-1196)                | A discipline word; it converts intuition into measurable evidence.                                                                                            |
+| 1197  | [stack trace](#rune-1197)         | A revelation word; it exposes hidden state so a claim can be checked.                                                                                         |
+| 1198  | [static checker](#rune-1198)      | A revelation word; it exposes hidden state so a claim can be checked.                                                                                         |
+| 1199  | [stress test](#rune-1199)         | A proving-word; it asks whether a claim is actually true.                                                                                                     |
+| 1200  | [stub](#rune-1200)                | A discipline word; it converts intuition into measurable evidence.                                                                                            |
+| 1201  | [symbolic execution](#rune-1201)  | A discipline word; it converts intuition into measurable evidence.                                                                                            |
+| 1202  | [telemetry](#rune-1202)           | Measurements leaving the system in a form other systems can compare, store, and alert on. Shadow: metric exhaust without explanatory power.                   |
+| 1203  | [theorem {Proof}](#rune-1203)     | A proving-word; it asks whether a claim is actually true.                                                                                                     |
+| 1204  | [trace {Proof}](#rune-1204)       | A preserved path through execution. Use it when the question is not only what failed, but where the causal thread first bent.                                 |
+| 1205  | [tracer](#rune-1205)              | A revelation word; it exposes hidden state so a claim can be checked.                                                                                         |
+| 1206  | [triage](#rune-1206)              | A proving-word; it asks whether a claim is actually true.                                                                                                     |
+| 1207  | [unit test](#rune-1207)           | A proving-word; it asks whether a claim is actually true.                                                                                                     |
+| 1208  | [validation](#rune-1208)          | A truth-seeking word; it narrows the gap between what is believed and what is known.                                                                          |
+| 1209  | [verifier](#rune-1209)            | A proving-word; it asks whether a claim is actually true.                                                                                                     |
+| 1210  | [white-box test](#rune-1210)      | A truth-seeking word; it narrows the gap between what is believed and what is known.                                                                          |
+
+## Entries
+
+### [1140] acceptance test {#rune-1140}
+
+**Status:** canonical
+
+**Force:** A truth-seeking word; it narrows the gap between what is believed and what is known.
+
+### [1141] alert {#rune-1141}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A proving-word; it asks whether a claim is actually true.
+
+**Pocket gloss:** A threshold that wakes humans or automation when evidence crosses concern.
+
+### [1142] assertion {Proof} {#rune-1142}
+
+**Status:** canonical
+
+**Force:** A proving-word; it asks whether a claim is actually true.
+
+### [1143] audit log {#rune-1143}
+
+**Status:** canonical
+
+**Force:** A revelation word; it exposes hidden state so a claim can be checked.
+
+### [1144] backtrace {#rune-1144}
+
+**Status:** canonical
+
+**Force:** A proving-word; it asks whether a claim is actually true.
+
+### [1145] baseline {Proof} {#rune-1145}
+
+**Status:** canonical
+
+**Force:** A truth-seeking word; it narrows the gap between what is believed and what is known.
+
+### [1146] benchmark {#rune-1146}
+
+**Status:** canonical (major canon, pocket canon)
+
+**Force:** A performance claim forced to meet measurement. Benchmarks are where speed rhetoric either cashes out or dies.
+
+**Pocket gloss:** Force a performance claim to meet measurement.
+
+### [1147] black-box test {#rune-1147}
+
+**Status:** canonical
+
+**Force:** A truth-seeking word; it narrows the gap between what is believed and what is known.
+
+### [1148] canary check {#rune-1148}
+
+**Status:** canonical
+
+**Force:** A proving-word; it asks whether a claim is actually true.
+
+### [1149] check {#rune-1149}
+
+**Status:** canonical
+
+**Force:** A discipline word; it converts intuition into measurable evidence.
+
+### [1150] code coverage {#rune-1150}
+
+**Status:** canonical
+
+**Force:** A truth-seeking word; it narrows the gap between what is believed and what is known.
+
+### [1151] conformance {#rune-1151}
+
+**Status:** canonical
+
+**Force:** A truth-seeking word; it narrows the gap between what is believed and what is known.
+
+### [1152] contract test {#rune-1152}
+
+**Status:** canonical (major canon, pocket canon)
+
+**Force:** A promise checked at the seam between systems. Use it when mocks are too flattering and end-to-end tests are too blunt.
+
+**Pocket gloss:** A promise checked at the seam between systems.
+
+### [1153] core dump {Proof} {#rune-1153}
+
+**Status:** canonical
+
+**Force:** A truth-seeking word; it narrows the gap between what is believed and what is known.
+
+### [1154] counter {Proof} {#rune-1154}
+
+**Status:** canonical
+
+**Force:** A proving-word; it asks whether a claim is actually true.
+
+### [1155] dashboard {#rune-1155}
+
+**Status:** canonical
+
+**Force:** A proving-word; it asks whether a claim is actually true.
+
+### [1156] debugger {#rune-1156}
+
+**Status:** canonical
+
+**Force:** A seeing word; it arrests motion so hidden state may be inspected.
+
+### [1157] diagnostic {#rune-1157}
+
+**Status:** canonical
+
+**Force:** A revelation word; it exposes hidden state so a claim can be checked.
+
+### [1158] error budget {#rune-1158}
+
+**Status:** canonical
+
+**Force:** A revelation word; it exposes hidden state so a claim can be checked.
+
+### [1159] evaluation {Proof} {#rune-1159}
+
+**Status:** canonical
+
+**Force:** A proving-word; it asks whether a claim is actually true.
+
+### [1160] expectation {#rune-1160}
+
+**Status:** canonical
+
+**Force:** A proving-word; it asks whether a claim is actually true.
+
+### [1161] fixture {#rune-1161}
+
+**Status:** canonical
+
+**Force:** A truth-seeking word; it narrows the gap between what is believed and what is known.
+
+### [1162] flame graph {#rune-1162}
+
+**Status:** canonical
+
+**Force:** A truth-seeking word; it narrows the gap between what is believed and what is known.
+
+### [1163] fuzzing {#rune-1163}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A revelation word; it exposes hidden state so a claim can be checked.
+
+**Pocket gloss:** Throw weird inputs at the system until hidden assumptions break.
+
+### [1164] gauge {#rune-1164}
+
+**Status:** canonical
+
+**Force:** A revelation word; it exposes hidden state so a claim can be checked.
+
+### [1165] golden test {#rune-1165}
+
+**Status:** canonical
+
+**Force:** A revelation word; it exposes hidden state so a claim can be checked.
+
+### [1166] harness {#rune-1166}
+
+**Status:** canonical
+
+**Force:** A proving-word; it asks whether a claim is actually true.
+
+### [1167] health probe {#rune-1167}
+
+**Status:** canonical
+
+**Force:** A discipline word; it converts intuition into measurable evidence.
+
+### [1168] histogram {#rune-1168}
+
+**Status:** canonical
+
+**Force:** A discipline word; it converts intuition into measurable evidence.
+
+### [1169] hypothesis {#rune-1169}
+
+**Status:** canonical
+
+**Force:** A proving-word; it asks whether a claim is actually true.
+
+### [1170] incident report {#rune-1170}
+
+**Status:** canonical
+
+**Force:** A discipline word; it converts intuition into measurable evidence.
+
+### [1171] integration test {#rune-1171}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A proving-word; it asks whether a claim is actually true.
+
+**Pocket gloss:** Test that multiple real parts cooperate correctly together.
+
+### [1172] invariant {#rune-1172}
+
+**Status:** canonical (major canon, pocket canon)
+
+**Force:** A law that must remain true while the rest of the system is allowed to move. If you cannot say the invariant, you probably do not yet understand the change.
+
+**Pocket gloss:** A law that must remain true while the rest of the system moves.
+
+### [1173] load test {#rune-1173}
+
+**Status:** canonical
+
+**Force:** A proving-word; it asks whether a claim is actually true.
+
+### [1174] log {#rune-1174}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A remembrance word; events are written so that they may be later inspected or replayed.
+
+**Pocket gloss:** A recorded stream of events or decisions for later reading.
+
+### [1175] logger {#rune-1175}
+
+**Status:** canonical
+
+**Force:** A proving-word; it asks whether a claim is actually true.
+
+### [1176] metric {#rune-1176}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A proving-word; it asks whether a claim is actually true.
+
+**Pocket gloss:** A numeric measure that can be tracked over time.
+
+### [1177] mock {#rune-1177}
+
+**Status:** canonical
+
+**Force:** A discipline word; it converts intuition into measurable evidence.
+
+### [1178] model check {#rune-1178}
+
+**Status:** canonical
+
+**Force:** A truth-seeking word; it narrows the gap between what is believed and what is known.
+
+### [1179] monitor {#rune-1179}
+
+**Status:** canonical
+
+**Force:** A proving-word; it asks whether a claim is actually true.
+
+### [1180] observability {#rune-1180}
+
+**Status:** canonical (major canon, pocket canon)
+
+**Force:** Enough internal evidence exists that you can infer what the system is doing from the outside. Not logs alone: legible state under pressure.
+
+**Pocket gloss:** Enough evidence exists to infer what the system is doing from the outside.
+
+### [1181] oracle {#rune-1181}
+
+**Status:** canonical
+
+**Force:** A discipline word; it converts intuition into measurable evidence.
+
+### [1182] postcondition {#rune-1182}
+
+**Status:** canonical
+
+**Force:** A revelation word; it exposes hidden state so a claim can be checked.
+
+### [1183] precondition {#rune-1183}
+
+**Status:** canonical
+
+**Force:** A discipline word; it converts intuition into measurable evidence.
+
+### [1184] profiler {#rune-1184}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A truth-seeking word; it narrows the gap between what is believed and what is known.
+
+**Pocket gloss:** A measurement tool that reveals where time or allocation is being spent.
+
+### [1185] proof {#rune-1185}
+
+**Status:** canonical
+
+**Force:** A discipline word; it converts intuition into measurable evidence.
+
+### [1186] property-based test {#rune-1186}
+
+**Status:** canonical (major canon, pocket canon)
+
+**Force:** Instead of checking one remembered example, ask whether a law survives many generated cases. Use it when you care more about the invariant than the anecdote.
+
+**Pocket gloss:** Test the law across many generated cases instead of one remembered example.
+
+### [1187] regression test {#rune-1187}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A revelation word; it exposes hidden state so a claim can be checked.
+
+**Pocket gloss:** A test written so yesterday's bug does not return tomorrow.
+
+### [1188] replay {#rune-1188}
+
+**Status:** canonical
+
+**Force:** A revelation word; it exposes hidden state so a claim can be checked.
+
+### [1189] sampling {#rune-1189}
+
+**Status:** canonical
+
+**Force:** A truth-seeking word; it narrows the gap between what is believed and what is known.
+
+### [1190] sanity check {#rune-1190}
+
+**Status:** canonical
+
+**Force:** A discipline word; it converts intuition into measurable evidence.
+
+### [1191] simulation {#rune-1191}
+
+**Status:** canonical
+
+**Force:** A revelation word; it exposes hidden state so a claim can be checked.
+
+### [1192] smoke test {#rune-1192}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A truth-seeking word; it narrows the gap between what is believed and what is known.
+
+**Pocket gloss:** A fast confidence check that the basic path still breathes.
+
+### [1193] snapshot test {#rune-1193}
+
+**Status:** canonical
+
+**Force:** A proving-word; it asks whether a claim is actually true.
+
+### [1194] soak test {#rune-1194}
+
+**Status:** canonical
+
+**Force:** A discipline word; it converts intuition into measurable evidence.
+
+### [1195] solver {#rune-1195}
+
+**Status:** canonical
+
+**Force:** A truth-seeking word; it narrows the gap between what is believed and what is known.
+
+### [1196] span {#rune-1196}
+
+**Status:** canonical
+
+**Force:** A discipline word; it converts intuition into measurable evidence.
+
+### [1197] stack trace {#rune-1197}
+
+**Status:** canonical
+
+**Force:** A revelation word; it exposes hidden state so a claim can be checked.
+
+### [1198] static checker {#rune-1198}
+
+**Status:** canonical
+
+**Force:** A revelation word; it exposes hidden state so a claim can be checked.
+
+### [1199] stress test {#rune-1199}
+
+**Status:** canonical
+
+**Force:** A proving-word; it asks whether a claim is actually true.
+
+### [1200] stub {#rune-1200}
+
+**Status:** canonical
+
+**Force:** A discipline word; it converts intuition into measurable evidence.
+
+### [1201] symbolic execution {#rune-1201}
+
+**Status:** canonical
+
+**Force:** A discipline word; it converts intuition into measurable evidence.
+
+### [1202] telemetry {#rune-1202}
+
+**Status:** canonical (major canon, pocket canon)
+
+**Force:** Measurements leaving the system in a form other systems can compare, store, and alert on.
+
+**Shadow:** metric exhaust without explanatory power.
+
+**Pocket gloss:** Measurements emitted in a form other systems can store and alert on.
+
+### [1203] theorem {Proof} {#rune-1203}
+
+**Status:** canonical
+
+**Force:** A proving-word; it asks whether a claim is actually true.
+
+### [1204] trace {Proof} {#rune-1204}
+
+**Status:** canonical (major canon, pocket canon)
+
+**Force:** A preserved path through execution. Use it when the question is not only what failed, but where the causal thread first bent.
+
+**Pocket gloss:** A preserved path through execution.
+
+### [1205] tracer {#rune-1205}
+
+**Status:** canonical
+
+**Force:** A revelation word; it exposes hidden state so a claim can be checked.
+
+### [1206] triage {#rune-1206}
+
+**Status:** canonical
+
+**Force:** A proving-word; it asks whether a claim is actually true.
+
+### [1207] unit test {#rune-1207}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A proving-word; it asks whether a claim is actually true.
+
+**Pocket gloss:** Test the smallest meaningful unit in isolation.
+
+### [1208] validation {#rune-1208}
+
+**Status:** canonical
+
+**Force:** A truth-seeking word; it narrows the gap between what is believed and what is known.
+
+### [1209] verifier {#rune-1209}
+
+**Status:** canonical
+
+**Force:** A proving-word; it asks whether a claim is actually true.
+
+### [1210] white-box test {#rune-1210}
+
+**Status:** canonical
+
+**Force:** A truth-seeking word; it narrows the gap between what is believed and what is known.

@@ -4,10 +4,27 @@ title: "Release Gate Stack"
 
 # Release Gate Stack
 
-**Working seal:** `stack://release-gate-stack/B694241159`
+**Working seal:** `stack://release-gate-stack/5798FD1FC7`
 
 **Enter:** Use when a change set is already built and the question is whether it is ready to ship.
 
+
+## Related Runes
+
+- [1073 canary](../reference/house-build-tooling-versioning-and-release.qmd#rune-1073) - A deliberately limited release whose job is to discover whether production reality agrees with the story told in staging.
+- [1086 deploy](../reference/house-build-tooling-versioning-and-release.qmd#rune-1086) - The crossing from forge to world. Many good ideas become bad facts only after they are actually shipped.
+- [1146 benchmark](../reference/house-testing-verification-and-observability.qmd#rune-1146) - A performance claim forced to meet measurement. Benchmarks are where speed rhetoric either cashes out or dies.
+- [1180 observability](../reference/house-testing-verification-and-observability.qmd#rune-1180) - Enough internal evidence exists that you can infer what the system is doing from the outside. Not logs alone: legible state under pressure.
+- [0943 rollback {DB}](../reference/house-databases-persistence-and-time-binding-words.qmd#rune-0943) - Permission to retreat toward a previously trusted state. A system without rollback mistakes hope for safety.
+
+
+## Related Spell Templates and References
+
+- [Bug Diagnosis From Logs](../spells/bug-diagnosis-from-logs.qmd)
+- [Performance Tuning](../spells/performance-tuning.qmd)
+- [Stack Grammar](../reference/stack-grammar.qmd)
+- [Failure Modes](../reference/failure-modes.qmd)
+- [Canon Map](../reference/canon-map.qmd)
 | Step | Spell               | Artifact                                                     | Advance when                                      |
 | ---- | ------------------- | ------------------------------------------------------------ | ------------------------------------------------- |
 | 1    | Assemble candidate  | Frozen release artifact and config                           | Candidate is exact                                |

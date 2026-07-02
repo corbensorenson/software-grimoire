@@ -6,121 +6,863 @@ title: "Networking and Distributed Systems"
 
 Range: `0771-0886`.
 
-| Sigil | Term                 | Summary                                                                                                                                |
-| ----- | -------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
-| 0771  | accept               | A distance-word; it carries intention across boundaries and unreliable space.                                                          |
-| 0772  | acknowledgment       | A distributed-systems word; it manages failure, ordering, or reachability across nodes.                                                |
-| 0773  | anycast              | A distributed-systems word; it manages failure, ordering, or reachability across nodes.                                                |
-| 0774  | API request          | A distributed-systems word; it manages failure, ordering, or reachability across nodes.                                                |
-| 0775  | API response         | A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.                                        |
-| 0776  | availability zone    | A distributed-systems word; it manages failure, ordering, or reachability across nodes.                                                |
-| 0777  | backoff {Net}        | A distance-word; it carries intention across boundaries and unreliable space.                                                          |
-| 0778  | backpressure         | Resistance pushed upstream when demand outruns capacity. Without it, overload spreads faster than truth.                               |
-| 0779  | bandwidth {Net}      | A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.                                        |
-| 0780  | bind                 | A fastening word; it joins a name, port, address, or variable to a concrete referent.                                                  |
-| 0781  | broadcast            | A distributed-systems word; it manages failure, ordering, or reachability across nodes.                                                |
-| 0782  | broker {Net}         | A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.                                        |
-| 0783  | CDN                  | A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.                                        |
-| 0784  | certificate {Net}    | A delegated-trust word; it lets one party assert another's identity by signed authority.                                               |
-| 0785  | checksum handoff     | A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.                                        |
-| 0786  | client {Net}         | A distributed-systems word; it manages failure, ordering, or reachability across nodes.                                                |
-| 0787  | client timeout       | A many-machine word; it coordinates transport, routing, or agreement beyond one process.                                               |
-| 0788  | cluster {Net}        | A many-body word; several machines are treated as one operational unit.                                                                |
-| 0789  | connect              | A many-machine word; it coordinates transport, routing, or agreement beyond one process.                                               |
-| 0790  | connection pool      | A many-machine word; it coordinates transport, routing, or agreement beyond one process.                                               |
-| 0791  | consensus            | A many-machine law-word; it creates shared order without a single unquestioned body.                                                   |
-| 0792  | consistency level    | A many-machine word; it coordinates transport, routing, or agreement beyond one process.                                               |
-| 0793  | control plane {Net}  | A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.                                        |
-| 0794  | CRC                  | A distance-word; it carries intention across boundaries and unreliable space.                                                          |
-| 0795  | datagram             | A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.                                        |
-| 0796  | deadline             | A many-machine word; it coordinates transport, routing, or agreement beyond one process.                                               |
-| 0797  | destination          | A many-machine word; it coordinates transport, routing, or agreement beyond one process.                                               |
-| 0798  | discovery            | A distance-word; it carries intention across boundaries and unreliable space.                                                          |
-| 0799  | DNS                  | A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.                                        |
-| 0800  | DNS record           | A distance-word; it carries intention across boundaries and unreliable space.                                                          |
-| 0801  | edge {Net}           | A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.                                        |
-| 0802  | egress               | A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.                                        |
-| 0803  | election             | A distributed-systems word; it manages failure, ordering, or reachability across nodes.                                                |
-| 0804  | endpoint             | A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.                                        |
-| 0805  | eventual consistency | Agreement postponed rather than denied. Shadow: stale reads treated as if they were fresh truth.                                       |
-| 0806  | failover             | A continuity word; authority or traffic moves when the current holder fails.                                                           |
-| 0807  | fan-out {Net}        | A many-machine word; it coordinates transport, routing, or agreement beyond one process.                                               |
-| 0808  | firewall             | A many-machine word; it coordinates transport, routing, or agreement beyond one process.                                               |
-| 0809  | follower             | A many-machine word; it coordinates transport, routing, or agreement beyond one process.                                               |
-| 0810  | forwarding           | A distributed-systems word; it manages failure, ordering, or reachability across nodes.                                                |
-| 0811  | frame {Net}          | A distributed-systems word; it manages failure, ordering, or reachability across nodes.                                                |
-| 0812  | gateway {Net}        | A many-machine word; it coordinates transport, routing, or agreement beyond one process.                                               |
-| 0813  | gossip               | A rumor-propagation word; state spreads by repeated local exchange.                                                                    |
-| 0814  | gRPC                 | A distance-word; it carries intention across boundaries and unreliable space.                                                          |
-| 0815  | handshake            | A mutual-recognition word used to establish parameters, trust, or shared readiness.                                                    |
-| 0816  | health check         | A distance-word; it carries intention across boundaries and unreliable space.                                                          |
-| 0817  | heartbeat {Net}      | A distance-word; it carries intention across boundaries and unreliable space.                                                          |
-| 0818  | hop                  | A distributed-systems word; it manages failure, ordering, or reachability across nodes.                                                |
-| 0819  | HTTP                 | A distance-word; it carries intention across boundaries and unreliable space.                                                          |
-| 0820  | HTTPS                | A distributed-systems word; it manages failure, ordering, or reachability across nodes.                                                |
-| 0821  | idempotency key      | A many-machine word; it coordinates transport, routing, or agreement beyond one process.                                               |
-| 0822  | ingress              | A distributed-systems word; it manages failure, ordering, or reachability across nodes.                                                |
-| 0823  | jitter {Net}         | A timing-noise word; repeated operations arrive with unstable spacing.                                                                 |
-| 0824  | keepalive            | A many-machine word; it coordinates transport, routing, or agreement beyond one process.                                               |
-| 0825  | latency              | The delay before useful work reaches the caller. Latency is what users feel even when throughput graphs look flattering.               |
-| 0826  | leader               | A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.                                        |
-| 0827  | lease                | A temporary-authority word; a resource is held only for a bounded duration.                                                            |
-| 0828  | load balancer        | A distance-word; it carries intention across boundaries and unreliable space.                                                          |
-| 0829  | loss                 | A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.                                        |
-| 0830  | mailbox              | A distance-word; it carries intention across boundaries and unreliable space.                                                          |
-| 0831  | membership           | A distance-word; it carries intention across boundaries and unreliable space.                                                          |
-| 0832  | mesh {Net}           | A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.                                        |
-| 0833  | message queue        | A many-machine word; it coordinates transport, routing, or agreement beyond one process.                                               |
-| 0834  | mTLS {Net}           | A distance-word; it carries intention across boundaries and unreliable space.                                                          |
-| 0835  | multicast            | A many-machine word; it coordinates transport, routing, or agreement beyond one process.                                               |
-| 0836  | NAT                  | A distributed-systems word; it manages failure, ordering, or reachability across nodes.                                                |
-| 0837  | network partition    | A distance-word; it carries intention across boundaries and unreliable space.                                                          |
-| 0838  | node {Net}           | A many-machine word; it coordinates transport, routing, or agreement beyond one process.                                               |
-| 0839  | origin               | A distance-word; it carries intention across boundaries and unreliable space.                                                          |
-| 0840  | packet               | A distance-word; it carries intention across boundaries and unreliable space.                                                          |
-| 0841  | packet loss {Net}    | A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.                                        |
-| 0842  | peer                 | A distance-word; it carries intention across boundaries and unreliable space.                                                          |
-| 0843  | pipeline depth       | A distributed-systems word; it manages failure, ordering, or reachability across nodes.                                                |
-| 0844  | port {Net}           | A contact word; a defined point of communication or adaptation.                                                                        |
-| 0845  | proxy {Net}          | A stand-in word; one body speaks or receives on behalf of another.                                                                     |
-| 0846  | publish-subscribe    | A many-machine word; it coordinates transport, routing, or agreement beyond one process.                                               |
-| 0847  | QUIC                 | A many-machine word; it coordinates transport, routing, or agreement beyond one process.                                               |
-| 0848  | quorum               | Not everyone must agree, but enough must. This word turns distributed action into a threshold question instead of a unanimous fantasy. |
-| 0849  | rate limit           | A distributed-systems word; it manages failure, ordering, or reachability across nodes.                                                |
-| 0850  | receiver window      | A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.                                        |
-| 0851  | redirect             | A many-machine word; it coordinates transport, routing, or agreement beyond one process.                                               |
-| 0852  | replica              | A mirroring word; state is maintained in more than one place.                                                                          |
-| 0853  | replication          | A many-machine word; it coordinates transport, routing, or agreement beyond one process.                                               |
-| 0854  | request              | A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.                                        |
-| 0855  | request coalescing   | A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.                                        |
-| 0856  | response             | A returning word; the answer carried back across an invoked boundary.                                                                  |
-| 0857  | retry {Net}          | A second-attempt word; failure does not end the ritual if policy allows another try.                                                   |
-| 0858  | reverse proxy        | A many-machine word; it coordinates transport, routing, or agreement beyond one process.                                               |
-| 0859  | route                | A path word; messages or requests are sent by a chosen way rather than all ways.                                                       |
-| 0860  | router {Net}         | A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.                                        |
-| 0861  | routing table        | A distance-word; it carries intention across boundaries and unreliable space.                                                          |
-| 0862  | RPC                  | A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.                                        |
-| 0863  | segment {Net}        | A distributed-systems word; it manages failure, ordering, or reachability across nodes.                                                |
-| 0864  | sequence number      | A many-machine word; it coordinates transport, routing, or agreement beyond one process.                                               |
-| 0865  | service discovery    | A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.                                        |
-| 0866  | service mesh {Net}   | A side-channel governance word for service-to-service traffic.                                                                         |
-| 0867  | shard {Net}          | A splitting word; one logical body is divided across multiple partitions.                                                              |
-| 0868  | sidecar              | A distributed-systems word; it manages failure, ordering, or reachability across nodes.                                                |
-| 0869  | sliding window       | A many-machine word; it coordinates transport, routing, or agreement beyond one process.                                               |
-| 0870  | socket {Net}         | A conduit word; a live endpoint for network communication.                                                                             |
-| 0871  | source               | A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.                                        |
-| 0872  | split-brain {Net}    | A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.                                        |
-| 0873  | stream {Net}         | A flow word; values arrive over time rather than all at once.                                                                          |
-| 0874  | strong consistency   | A sameness word across distance; readers do not see old worlds after new ones commit.                                                  |
-| 0875  | subscription         | A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.                                        |
-| 0876  | TCP                  | A distributed-systems word; it manages failure, ordering, or reachability across nodes.                                                |
-| 0877  | timeout {Net}        | A patience-bound word; after a duration, waiting is no longer allowed.                                                                 |
-| 0878  | TLS                  | A distributed-systems word; it manages failure, ordering, or reachability across nodes.                                                |
-| 0879  | topic                | A distributed-systems word; it manages failure, ordering, or reachability across nodes.                                                |
-| 0880  | tracing header       | A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.                                        |
-| 0881  | UDP                  | A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.                                        |
-| 0882  | unicast              | A distributed-systems word; it manages failure, ordering, or reachability across nodes.                                                |
-| 0883  | virtual IP           | A distance-word; it carries intention across boundaries and unreliable space.                                                          |
-| 0884  | webhook              | A distributed-systems word; it manages failure, ordering, or reachability across nodes.                                                |
-| 0885  | WebSocket            | A distributed-systems word; it manages failure, ordering, or reachability across nodes.                                                |
-| 0886  | wire format          | A distance-word; it carries intention across boundaries and unreliable space.                                                          |
+Use the summary table for scanning. Each row links to the detailed anchored entry below.
+
+| Sigil | Term                               | Summary                                                                                                                                |
+| ----- | ---------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
+| 0771  | [accept](#rune-0771)               | A distance-word; it carries intention across boundaries and unreliable space.                                                          |
+| 0772  | [acknowledgment](#rune-0772)       | A distributed-systems word; it manages failure, ordering, or reachability across nodes.                                                |
+| 0773  | [anycast](#rune-0773)              | A distributed-systems word; it manages failure, ordering, or reachability across nodes.                                                |
+| 0774  | [API request](#rune-0774)          | A distributed-systems word; it manages failure, ordering, or reachability across nodes.                                                |
+| 0775  | [API response](#rune-0775)         | A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.                                        |
+| 0776  | [availability zone](#rune-0776)    | A distributed-systems word; it manages failure, ordering, or reachability across nodes.                                                |
+| 0777  | [backoff {Net}](#rune-0777)        | A distance-word; it carries intention across boundaries and unreliable space.                                                          |
+| 0778  | [backpressure](#rune-0778)         | Resistance pushed upstream when demand outruns capacity. Without it, overload spreads faster than truth.                               |
+| 0779  | [bandwidth {Net}](#rune-0779)      | A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.                                        |
+| 0780  | [bind](#rune-0780)                 | A fastening word; it joins a name, port, address, or variable to a concrete referent.                                                  |
+| 0781  | [broadcast](#rune-0781)            | A distributed-systems word; it manages failure, ordering, or reachability across nodes.                                                |
+| 0782  | [broker {Net}](#rune-0782)         | A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.                                        |
+| 0783  | [CDN](#rune-0783)                  | A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.                                        |
+| 0784  | [certificate {Net}](#rune-0784)    | A delegated-trust word; it lets one party assert another's identity by signed authority.                                               |
+| 0785  | [checksum handoff](#rune-0785)     | A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.                                        |
+| 0786  | [client {Net}](#rune-0786)         | A distributed-systems word; it manages failure, ordering, or reachability across nodes.                                                |
+| 0787  | [client timeout](#rune-0787)       | A many-machine word; it coordinates transport, routing, or agreement beyond one process.                                               |
+| 0788  | [cluster {Net}](#rune-0788)        | A many-body word; several machines are treated as one operational unit.                                                                |
+| 0789  | [connect](#rune-0789)              | A many-machine word; it coordinates transport, routing, or agreement beyond one process.                                               |
+| 0790  | [connection pool](#rune-0790)      | A many-machine word; it coordinates transport, routing, or agreement beyond one process.                                               |
+| 0791  | [consensus](#rune-0791)            | A many-machine law-word; it creates shared order without a single unquestioned body.                                                   |
+| 0792  | [consistency level](#rune-0792)    | A many-machine word; it coordinates transport, routing, or agreement beyond one process.                                               |
+| 0793  | [control plane {Net}](#rune-0793)  | A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.                                        |
+| 0794  | [CRC](#rune-0794)                  | A distance-word; it carries intention across boundaries and unreliable space.                                                          |
+| 0795  | [datagram](#rune-0795)             | A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.                                        |
+| 0796  | [deadline](#rune-0796)             | A many-machine word; it coordinates transport, routing, or agreement beyond one process.                                               |
+| 0797  | [destination](#rune-0797)          | A many-machine word; it coordinates transport, routing, or agreement beyond one process.                                               |
+| 0798  | [discovery](#rune-0798)            | A distance-word; it carries intention across boundaries and unreliable space.                                                          |
+| 0799  | [DNS](#rune-0799)                  | A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.                                        |
+| 0800  | [DNS record](#rune-0800)           | A distance-word; it carries intention across boundaries and unreliable space.                                                          |
+| 0801  | [edge {Net}](#rune-0801)           | A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.                                        |
+| 0802  | [egress](#rune-0802)               | A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.                                        |
+| 0803  | [election](#rune-0803)             | A distributed-systems word; it manages failure, ordering, or reachability across nodes.                                                |
+| 0804  | [endpoint](#rune-0804)             | A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.                                        |
+| 0805  | [eventual consistency](#rune-0805) | Agreement postponed rather than denied. Shadow: stale reads treated as if they were fresh truth.                                       |
+| 0806  | [failover](#rune-0806)             | A continuity word; authority or traffic moves when the current holder fails.                                                           |
+| 0807  | [fan-out {Net}](#rune-0807)        | A many-machine word; it coordinates transport, routing, or agreement beyond one process.                                               |
+| 0808  | [firewall](#rune-0808)             | A many-machine word; it coordinates transport, routing, or agreement beyond one process.                                               |
+| 0809  | [follower](#rune-0809)             | A many-machine word; it coordinates transport, routing, or agreement beyond one process.                                               |
+| 0810  | [forwarding](#rune-0810)           | A distributed-systems word; it manages failure, ordering, or reachability across nodes.                                                |
+| 0811  | [frame {Net}](#rune-0811)          | A distributed-systems word; it manages failure, ordering, or reachability across nodes.                                                |
+| 0812  | [gateway {Net}](#rune-0812)        | A many-machine word; it coordinates transport, routing, or agreement beyond one process.                                               |
+| 0813  | [gossip](#rune-0813)               | A rumor-propagation word; state spreads by repeated local exchange.                                                                    |
+| 0814  | [gRPC](#rune-0814)                 | A distance-word; it carries intention across boundaries and unreliable space.                                                          |
+| 0815  | [handshake](#rune-0815)            | A mutual-recognition word used to establish parameters, trust, or shared readiness.                                                    |
+| 0816  | [health check](#rune-0816)         | A distance-word; it carries intention across boundaries and unreliable space.                                                          |
+| 0817  | [heartbeat {Net}](#rune-0817)      | A distance-word; it carries intention across boundaries and unreliable space.                                                          |
+| 0818  | [hop](#rune-0818)                  | A distributed-systems word; it manages failure, ordering, or reachability across nodes.                                                |
+| 0819  | [HTTP](#rune-0819)                 | A distance-word; it carries intention across boundaries and unreliable space.                                                          |
+| 0820  | [HTTPS](#rune-0820)                | A distributed-systems word; it manages failure, ordering, or reachability across nodes.                                                |
+| 0821  | [idempotency key](#rune-0821)      | A many-machine word; it coordinates transport, routing, or agreement beyond one process.                                               |
+| 0822  | [ingress](#rune-0822)              | A distributed-systems word; it manages failure, ordering, or reachability across nodes.                                                |
+| 0823  | [jitter {Net}](#rune-0823)         | A timing-noise word; repeated operations arrive with unstable spacing.                                                                 |
+| 0824  | [keepalive](#rune-0824)            | A many-machine word; it coordinates transport, routing, or agreement beyond one process.                                               |
+| 0825  | [latency](#rune-0825)              | The delay before useful work reaches the caller. Latency is what users feel even when throughput graphs look flattering.               |
+| 0826  | [leader](#rune-0826)               | A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.                                        |
+| 0827  | [lease](#rune-0827)                | A temporary-authority word; a resource is held only for a bounded duration.                                                            |
+| 0828  | [load balancer](#rune-0828)        | A distance-word; it carries intention across boundaries and unreliable space.                                                          |
+| 0829  | [loss](#rune-0829)                 | A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.                                        |
+| 0830  | [mailbox](#rune-0830)              | A distance-word; it carries intention across boundaries and unreliable space.                                                          |
+| 0831  | [membership](#rune-0831)           | A distance-word; it carries intention across boundaries and unreliable space.                                                          |
+| 0832  | [mesh {Net}](#rune-0832)           | A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.                                        |
+| 0833  | [message queue](#rune-0833)        | A many-machine word; it coordinates transport, routing, or agreement beyond one process.                                               |
+| 0834  | [mTLS {Net}](#rune-0834)           | A distance-word; it carries intention across boundaries and unreliable space.                                                          |
+| 0835  | [multicast](#rune-0835)            | A many-machine word; it coordinates transport, routing, or agreement beyond one process.                                               |
+| 0836  | [NAT](#rune-0836)                  | A distributed-systems word; it manages failure, ordering, or reachability across nodes.                                                |
+| 0837  | [network partition](#rune-0837)    | A distance-word; it carries intention across boundaries and unreliable space.                                                          |
+| 0838  | [node {Net}](#rune-0838)           | A many-machine word; it coordinates transport, routing, or agreement beyond one process.                                               |
+| 0839  | [origin](#rune-0839)               | A distance-word; it carries intention across boundaries and unreliable space.                                                          |
+| 0840  | [packet](#rune-0840)               | A distance-word; it carries intention across boundaries and unreliable space.                                                          |
+| 0841  | [packet loss {Net}](#rune-0841)    | A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.                                        |
+| 0842  | [peer](#rune-0842)                 | A distance-word; it carries intention across boundaries and unreliable space.                                                          |
+| 0843  | [pipeline depth](#rune-0843)       | A distributed-systems word; it manages failure, ordering, or reachability across nodes.                                                |
+| 0844  | [port {Net}](#rune-0844)           | A contact word; a defined point of communication or adaptation.                                                                        |
+| 0845  | [proxy {Net}](#rune-0845)          | A stand-in word; one body speaks or receives on behalf of another.                                                                     |
+| 0846  | [publish-subscribe](#rune-0846)    | A many-machine word; it coordinates transport, routing, or agreement beyond one process.                                               |
+| 0847  | [QUIC](#rune-0847)                 | A many-machine word; it coordinates transport, routing, or agreement beyond one process.                                               |
+| 0848  | [quorum](#rune-0848)               | Not everyone must agree, but enough must. This word turns distributed action into a threshold question instead of a unanimous fantasy. |
+| 0849  | [rate limit](#rune-0849)           | A distributed-systems word; it manages failure, ordering, or reachability across nodes.                                                |
+| 0850  | [receiver window](#rune-0850)      | A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.                                        |
+| 0851  | [redirect](#rune-0851)             | A many-machine word; it coordinates transport, routing, or agreement beyond one process.                                               |
+| 0852  | [replica](#rune-0852)              | A mirroring word; state is maintained in more than one place.                                                                          |
+| 0853  | [replication](#rune-0853)          | A many-machine word; it coordinates transport, routing, or agreement beyond one process.                                               |
+| 0854  | [request](#rune-0854)              | A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.                                        |
+| 0855  | [request coalescing](#rune-0855)   | A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.                                        |
+| 0856  | [response](#rune-0856)             | A returning word; the answer carried back across an invoked boundary.                                                                  |
+| 0857  | [retry {Net}](#rune-0857)          | A second-attempt word; failure does not end the ritual if policy allows another try.                                                   |
+| 0858  | [reverse proxy](#rune-0858)        | A many-machine word; it coordinates transport, routing, or agreement beyond one process.                                               |
+| 0859  | [route](#rune-0859)                | A path word; messages or requests are sent by a chosen way rather than all ways.                                                       |
+| 0860  | [router {Net}](#rune-0860)         | A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.                                        |
+| 0861  | [routing table](#rune-0861)        | A distance-word; it carries intention across boundaries and unreliable space.                                                          |
+| 0862  | [RPC](#rune-0862)                  | A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.                                        |
+| 0863  | [segment {Net}](#rune-0863)        | A distributed-systems word; it manages failure, ordering, or reachability across nodes.                                                |
+| 0864  | [sequence number](#rune-0864)      | A many-machine word; it coordinates transport, routing, or agreement beyond one process.                                               |
+| 0865  | [service discovery](#rune-0865)    | A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.                                        |
+| 0866  | [service mesh {Net}](#rune-0866)   | A side-channel governance word for service-to-service traffic.                                                                         |
+| 0867  | [shard {Net}](#rune-0867)          | A splitting word; one logical body is divided across multiple partitions.                                                              |
+| 0868  | [sidecar](#rune-0868)              | A distributed-systems word; it manages failure, ordering, or reachability across nodes.                                                |
+| 0869  | [sliding window](#rune-0869)       | A many-machine word; it coordinates transport, routing, or agreement beyond one process.                                               |
+| 0870  | [socket {Net}](#rune-0870)         | A conduit word; a live endpoint for network communication.                                                                             |
+| 0871  | [source](#rune-0871)               | A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.                                        |
+| 0872  | [split-brain {Net}](#rune-0872)    | A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.                                        |
+| 0873  | [stream {Net}](#rune-0873)         | A flow word; values arrive over time rather than all at once.                                                                          |
+| 0874  | [strong consistency](#rune-0874)   | A sameness word across distance; readers do not see old worlds after new ones commit.                                                  |
+| 0875  | [subscription](#rune-0875)         | A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.                                        |
+| 0876  | [TCP](#rune-0876)                  | A distributed-systems word; it manages failure, ordering, or reachability across nodes.                                                |
+| 0877  | [timeout {Net}](#rune-0877)        | A patience-bound word; after a duration, waiting is no longer allowed.                                                                 |
+| 0878  | [TLS](#rune-0878)                  | A distributed-systems word; it manages failure, ordering, or reachability across nodes.                                                |
+| 0879  | [topic](#rune-0879)                | A distributed-systems word; it manages failure, ordering, or reachability across nodes.                                                |
+| 0880  | [tracing header](#rune-0880)       | A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.                                        |
+| 0881  | [UDP](#rune-0881)                  | A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.                                        |
+| 0882  | [unicast](#rune-0882)              | A distributed-systems word; it manages failure, ordering, or reachability across nodes.                                                |
+| 0883  | [virtual IP](#rune-0883)           | A distance-word; it carries intention across boundaries and unreliable space.                                                          |
+| 0884  | [webhook](#rune-0884)              | A distributed-systems word; it manages failure, ordering, or reachability across nodes.                                                |
+| 0885  | [WebSocket](#rune-0885)            | A distributed-systems word; it manages failure, ordering, or reachability across nodes.                                                |
+| 0886  | [wire format](#rune-0886)          | A distance-word; it carries intention across boundaries and unreliable space.                                                          |
+
+## Entries
+
+### [0771] accept {#rune-0771}
+
+**Status:** canonical
+
+**Force:** A distance-word; it carries intention across boundaries and unreliable space.
+
+### [0772] acknowledgment {#rune-0772}
+
+**Status:** canonical
+
+**Force:** A distributed-systems word; it manages failure, ordering, or reachability across nodes.
+
+### [0773] anycast {#rune-0773}
+
+**Status:** canonical
+
+**Force:** A distributed-systems word; it manages failure, ordering, or reachability across nodes.
+
+### [0774] API request {#rune-0774}
+
+**Status:** canonical
+
+**Force:** A distributed-systems word; it manages failure, ordering, or reachability across nodes.
+
+### [0775] API response {#rune-0775}
+
+**Status:** canonical
+
+**Force:** A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.
+
+### [0776] availability zone {#rune-0776}
+
+**Status:** canonical
+
+**Force:** A distributed-systems word; it manages failure, ordering, or reachability across nodes.
+
+### [0777] backoff {Net} {#rune-0777}
+
+**Status:** canonical
+
+**Force:** A distance-word; it carries intention across boundaries and unreliable space.
+
+### [0778] backpressure {#rune-0778}
+
+**Status:** canonical (major canon, pocket canon)
+
+**Force:** Resistance pushed upstream when demand outruns capacity. Without it, overload spreads faster than truth.
+
+**Pocket gloss:** Push resistance upstream when demand outruns capacity.
+
+### [0779] bandwidth {Net} {#rune-0779}
+
+**Status:** canonical
+
+**Force:** A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.
+
+### [0780] bind {#rune-0780}
+
+**Status:** canonical
+
+**Force:** A fastening word; it joins a name, port, address, or variable to a concrete referent.
+
+### [0781] broadcast {#rune-0781}
+
+**Status:** canonical
+
+**Force:** A distributed-systems word; it manages failure, ordering, or reachability across nodes.
+
+### [0782] broker {Net} {#rune-0782}
+
+**Status:** canonical
+
+**Force:** A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.
+
+### [0783] CDN {#rune-0783}
+
+**Status:** canonical
+
+**Force:** A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.
+
+### [0784] certificate {Net} {#rune-0784}
+
+**Status:** canonical
+
+**Force:** A delegated-trust word; it lets one party assert another's identity by signed authority.
+
+### [0785] checksum handoff {#rune-0785}
+
+**Status:** canonical
+
+**Force:** A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.
+
+### [0786] client {Net} {#rune-0786}
+
+**Status:** canonical
+
+**Force:** A distributed-systems word; it manages failure, ordering, or reachability across nodes.
+
+### [0787] client timeout {#rune-0787}
+
+**Status:** canonical
+
+**Force:** A many-machine word; it coordinates transport, routing, or agreement beyond one process.
+
+### [0788] cluster {Net} {#rune-0788}
+
+**Status:** canonical
+
+**Force:** A many-body word; several machines are treated as one operational unit.
+
+### [0789] connect {#rune-0789}
+
+**Status:** canonical
+
+**Force:** A many-machine word; it coordinates transport, routing, or agreement beyond one process.
+
+### [0790] connection pool {#rune-0790}
+
+**Status:** canonical
+
+**Force:** A many-machine word; it coordinates transport, routing, or agreement beyond one process.
+
+### [0791] consensus {#rune-0791}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A many-machine law-word; it creates shared order without a single unquestioned body.
+
+**Pocket gloss:** Agreement protocol for shared truth across unreliable nodes.
+
+### [0792] consistency level {#rune-0792}
+
+**Status:** canonical
+
+**Force:** A many-machine word; it coordinates transport, routing, or agreement beyond one process.
+
+### [0793] control plane {Net} {#rune-0793}
+
+**Status:** canonical
+
+**Force:** A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.
+
+### [0794] CRC {#rune-0794}
+
+**Status:** canonical
+
+**Force:** A distance-word; it carries intention across boundaries and unreliable space.
+
+### [0795] datagram {#rune-0795}
+
+**Status:** canonical
+
+**Force:** A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.
+
+### [0796] deadline {#rune-0796}
+
+**Status:** canonical
+
+**Force:** A many-machine word; it coordinates transport, routing, or agreement beyond one process.
+
+### [0797] destination {#rune-0797}
+
+**Status:** canonical
+
+**Force:** A many-machine word; it coordinates transport, routing, or agreement beyond one process.
+
+### [0798] discovery {#rune-0798}
+
+**Status:** canonical
+
+**Force:** A distance-word; it carries intention across boundaries and unreliable space.
+
+### [0799] DNS {#rune-0799}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.
+
+**Pocket gloss:** Translate names into network-reachable locations.
+
+### [0800] DNS record {#rune-0800}
+
+**Status:** canonical
+
+**Force:** A distance-word; it carries intention across boundaries and unreliable space.
+
+### [0801] edge {Net} {#rune-0801}
+
+**Status:** canonical
+
+**Force:** A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.
+
+### [0802] egress {#rune-0802}
+
+**Status:** canonical
+
+**Force:** A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.
+
+### [0803] election {#rune-0803}
+
+**Status:** canonical
+
+**Force:** A distributed-systems word; it manages failure, ordering, or reachability across nodes.
+
+### [0804] endpoint {#rune-0804}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.
+
+**Pocket gloss:** A callable boundary where a service can be reached.
+
+### [0805] eventual consistency {#rune-0805}
+
+**Status:** canonical (major canon, pocket canon)
+
+**Force:** Agreement postponed rather than denied.
+
+**Shadow:** stale reads treated as if they were fresh truth.
+
+**Pocket gloss:** Agreement postponed rather than denied.
+
+### [0806] failover {#rune-0806}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A continuity word; authority or traffic moves when the current holder fails.
+
+**Pocket gloss:** Shift responsibility to a surviving node or path after failure.
+
+### [0807] fan-out {Net} {#rune-0807}
+
+**Status:** canonical
+
+**Force:** A many-machine word; it coordinates transport, routing, or agreement beyond one process.
+
+### [0808] firewall {#rune-0808}
+
+**Status:** canonical
+
+**Force:** A many-machine word; it coordinates transport, routing, or agreement beyond one process.
+
+### [0809] follower {#rune-0809}
+
+**Status:** canonical
+
+**Force:** A many-machine word; it coordinates transport, routing, or agreement beyond one process.
+
+### [0810] forwarding {#rune-0810}
+
+**Status:** canonical
+
+**Force:** A distributed-systems word; it manages failure, ordering, or reachability across nodes.
+
+### [0811] frame {Net} {#rune-0811}
+
+**Status:** canonical
+
+**Force:** A distributed-systems word; it manages failure, ordering, or reachability across nodes.
+
+### [0812] gateway {Net} {#rune-0812}
+
+**Status:** canonical
+
+**Force:** A many-machine word; it coordinates transport, routing, or agreement beyond one process.
+
+### [0813] gossip {#rune-0813}
+
+**Status:** canonical
+
+**Force:** A rumor-propagation word; state spreads by repeated local exchange.
+
+### [0814] gRPC {#rune-0814}
+
+**Status:** canonical
+
+**Force:** A distance-word; it carries intention across boundaries and unreliable space.
+
+### [0815] handshake {#rune-0815}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A mutual-recognition word used to establish parameters, trust, or shared readiness.
+
+**Pocket gloss:** Opening ritual that establishes trust, parameters, or session state.
+
+### [0816] health check {#rune-0816}
+
+**Status:** canonical
+
+**Force:** A distance-word; it carries intention across boundaries and unreliable space.
+
+### [0817] heartbeat {Net} {#rune-0817}
+
+**Status:** canonical
+
+**Force:** A distance-word; it carries intention across boundaries and unreliable space.
+
+### [0818] hop {#rune-0818}
+
+**Status:** canonical
+
+**Force:** A distributed-systems word; it manages failure, ordering, or reachability across nodes.
+
+### [0819] HTTP {#rune-0819}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A distance-word; it carries intention across boundaries and unreliable space.
+
+**Pocket gloss:** The dominant request-response protocol of the web.
+
+### [0820] HTTPS {#rune-0820}
+
+**Status:** canonical
+
+**Force:** A distributed-systems word; it manages failure, ordering, or reachability across nodes.
+
+### [0821] idempotency key {#rune-0821}
+
+**Status:** canonical
+
+**Force:** A many-machine word; it coordinates transport, routing, or agreement beyond one process.
+
+### [0822] ingress {#rune-0822}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A distributed-systems word; it manages failure, ordering, or reachability across nodes.
+
+**Pocket gloss:** Traffic entering a service boundary.
+
+### [0823] jitter {Net} {#rune-0823}
+
+**Status:** canonical
+
+**Force:** A timing-noise word; repeated operations arrive with unstable spacing.
+
+### [0824] keepalive {#rune-0824}
+
+**Status:** canonical
+
+**Force:** A many-machine word; it coordinates transport, routing, or agreement beyond one process.
+
+### [0825] latency {#rune-0825}
+
+**Status:** canonical (major canon, pocket canon)
+
+**Force:** The delay before useful work reaches the caller. Latency is what users feel even when throughput graphs look flattering.
+
+**Pocket gloss:** The delay before useful work reaches the caller.
+
+### [0826] leader {#rune-0826}
+
+**Status:** canonical
+
+**Force:** A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.
+
+### [0827] lease {#rune-0827}
+
+**Status:** canonical
+
+**Force:** A temporary-authority word; a resource is held only for a bounded duration.
+
+### [0828] load balancer {#rune-0828}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A distance-word; it carries intention across boundaries and unreliable space.
+
+**Pocket gloss:** Distribute incoming work across many backends.
+
+### [0829] loss {#rune-0829}
+
+**Status:** canonical
+
+**Force:** A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.
+
+### [0830] mailbox {#rune-0830}
+
+**Status:** canonical
+
+**Force:** A distance-word; it carries intention across boundaries and unreliable space.
+
+### [0831] membership {#rune-0831}
+
+**Status:** canonical
+
+**Force:** A distance-word; it carries intention across boundaries and unreliable space.
+
+### [0832] mesh {Net} {#rune-0832}
+
+**Status:** canonical
+
+**Force:** A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.
+
+### [0833] message queue {#rune-0833}
+
+**Status:** canonical
+
+**Force:** A many-machine word; it coordinates transport, routing, or agreement beyond one process.
+
+### [0834] mTLS {Net} {#rune-0834}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A distance-word; it carries intention across boundaries and unreliable space.
+
+**Pocket gloss:** Mutual certificate-based identity proof on both sides of a connection.
+
+### [0835] multicast {#rune-0835}
+
+**Status:** canonical
+
+**Force:** A many-machine word; it coordinates transport, routing, or agreement beyond one process.
+
+### [0836] NAT {#rune-0836}
+
+**Status:** canonical
+
+**Force:** A distributed-systems word; it manages failure, ordering, or reachability across nodes.
+
+### [0837] network partition {#rune-0837}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A distance-word; it carries intention across boundaries and unreliable space.
+
+**Pocket gloss:** A split network that makes one cluster behave like several worlds.
+
+### [0838] node {Net} {#rune-0838}
+
+**Status:** canonical
+
+**Force:** A many-machine word; it coordinates transport, routing, or agreement beyond one process.
+
+### [0839] origin {#rune-0839}
+
+**Status:** canonical
+
+**Force:** A distance-word; it carries intention across boundaries and unreliable space.
+
+### [0840] packet {#rune-0840}
+
+**Status:** canonical
+
+**Force:** A distance-word; it carries intention across boundaries and unreliable space.
+
+### [0841] packet loss {Net} {#rune-0841}
+
+**Status:** canonical
+
+**Force:** A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.
+
+### [0842] peer {#rune-0842}
+
+**Status:** canonical
+
+**Force:** A distance-word; it carries intention across boundaries and unreliable space.
+
+### [0843] pipeline depth {#rune-0843}
+
+**Status:** canonical
+
+**Force:** A distributed-systems word; it manages failure, ordering, or reachability across nodes.
+
+### [0844] port {Net} {#rune-0844}
+
+**Status:** canonical
+
+**Force:** A contact word; a defined point of communication or adaptation.
+
+### [0845] proxy {Net} {#rune-0845}
+
+**Status:** canonical
+
+**Force:** A stand-in word; one body speaks or receives on behalf of another.
+
+### [0846] publish-subscribe {#rune-0846}
+
+**Status:** canonical
+
+**Force:** A many-machine word; it coordinates transport, routing, or agreement beyond one process.
+
+### [0847] QUIC {#rune-0847}
+
+**Status:** canonical
+
+**Force:** A many-machine word; it coordinates transport, routing, or agreement beyond one process.
+
+### [0848] quorum {#rune-0848}
+
+**Status:** canonical (major canon, pocket canon)
+
+**Force:** Not everyone must agree, but enough must. This word turns distributed action into a threshold question instead of a unanimous fantasy.
+
+**Pocket gloss:** Enough agreement to act without requiring unanimity.
+
+### [0849] rate limit {#rune-0849}
+
+**Status:** canonical
+
+**Force:** A distributed-systems word; it manages failure, ordering, or reachability across nodes.
+
+### [0850] receiver window {#rune-0850}
+
+**Status:** canonical
+
+**Force:** A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.
+
+### [0851] redirect {#rune-0851}
+
+**Status:** canonical
+
+**Force:** A many-machine word; it coordinates transport, routing, or agreement beyond one process.
+
+### [0852] replica {#rune-0852}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A mirroring word; state is maintained in more than one place.
+
+**Pocket gloss:** A copy kept elsewhere for durability, scale, or locality.
+
+### [0853] replication {#rune-0853}
+
+**Status:** canonical
+
+**Force:** A many-machine word; it coordinates transport, routing, or agreement beyond one process.
+
+### [0854] request {#rune-0854}
+
+**Status:** canonical
+
+**Force:** A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.
+
+### [0855] request coalescing {#rune-0855}
+
+**Status:** canonical
+
+**Force:** A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.
+
+### [0856] response {#rune-0856}
+
+**Status:** canonical
+
+**Force:** A returning word; the answer carried back across an invoked boundary.
+
+### [0857] retry {Net} {#rune-0857}
+
+**Status:** canonical
+
+**Force:** A second-attempt word; failure does not end the ritual if policy allows another try.
+
+### [0858] reverse proxy {#rune-0858}
+
+**Status:** canonical
+
+**Force:** A many-machine word; it coordinates transport, routing, or agreement beyond one process.
+
+### [0859] route {#rune-0859}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A path word; messages or requests are sent by a chosen way rather than all ways.
+
+**Pocket gloss:** The chosen path by which traffic should travel.
+
+### [0860] router {Net} {#rune-0860}
+
+**Status:** canonical
+
+**Force:** A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.
+
+### [0861] routing table {#rune-0861}
+
+**Status:** canonical
+
+**Force:** A distance-word; it carries intention across boundaries and unreliable space.
+
+### [0862] RPC {#rune-0862}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.
+
+**Pocket gloss:** Invoke remote behavior as though it were local, with all the risks that implies.
+
+### [0863] segment {Net} {#rune-0863}
+
+**Status:** canonical
+
+**Force:** A distributed-systems word; it manages failure, ordering, or reachability across nodes.
+
+### [0864] sequence number {#rune-0864}
+
+**Status:** canonical
+
+**Force:** A many-machine word; it coordinates transport, routing, or agreement beyond one process.
+
+### [0865] service discovery {#rune-0865}
+
+**Status:** canonical
+
+**Force:** A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.
+
+### [0866] service mesh {Net} {#rune-0866}
+
+**Status:** canonical
+
+**Force:** A side-channel governance word for service-to-service traffic.
+
+### [0867] shard {Net} {#rune-0867}
+
+**Status:** canonical
+
+**Force:** A splitting word; one logical body is divided across multiple partitions.
+
+### [0868] sidecar {#rune-0868}
+
+**Status:** canonical
+
+**Force:** A distributed-systems word; it manages failure, ordering, or reachability across nodes.
+
+### [0869] sliding window {#rune-0869}
+
+**Status:** canonical
+
+**Force:** A many-machine word; it coordinates transport, routing, or agreement beyond one process.
+
+### [0870] socket {Net} {#rune-0870}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A conduit word; a live endpoint for network communication.
+
+**Pocket gloss:** A network communication endpoint bound to protocol and address.
+
+### [0871] source {#rune-0871}
+
+**Status:** canonical
+
+**Force:** A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.
+
+### [0872] split-brain {Net} {#rune-0872}
+
+**Status:** canonical
+
+**Force:** A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.
+
+### [0873] stream {Net} {#rune-0873}
+
+**Status:** canonical
+
+**Force:** A flow word; values arrive over time rather than all at once.
+
+### [0874] strong consistency {#rune-0874}
+
+**Status:** canonical
+
+**Force:** A sameness word across distance; readers do not see old worlds after new ones commit.
+
+### [0875] subscription {#rune-0875}
+
+**Status:** canonical
+
+**Force:** A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.
+
+### [0876] TCP {#rune-0876}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A distributed-systems word; it manages failure, ordering, or reachability across nodes.
+
+**Pocket gloss:** Ordered reliable stream transport with congestion control.
+
+### [0877] timeout {Net} {#rune-0877}
+
+**Status:** canonical
+
+**Force:** A patience-bound word; after a duration, waiting is no longer allowed.
+
+### [0878] TLS {#rune-0878}
+
+**Status:** canonical
+
+**Force:** A distributed-systems word; it manages failure, ordering, or reachability across nodes.
+
+### [0879] topic {#rune-0879}
+
+**Status:** canonical
+
+**Force:** A distributed-systems word; it manages failure, ordering, or reachability across nodes.
+
+### [0880] tracing header {#rune-0880}
+
+**Status:** canonical
+
+**Force:** A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.
+
+### [0881] UDP {#rune-0881}
+
+**Status:** canonical
+
+**Force:** A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.
+
+### [0882] unicast {#rune-0882}
+
+**Status:** canonical
+
+**Force:** A distributed-systems word; it manages failure, ordering, or reachability across nodes.
+
+### [0883] virtual IP {#rune-0883}
+
+**Status:** canonical
+
+**Force:** A distance-word; it carries intention across boundaries and unreliable space.
+
+### [0884] webhook {#rune-0884}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A distributed-systems word; it manages failure, ordering, or reachability across nodes.
+
+**Pocket gloss:** An outbound callback triggered by an event.
+
+### [0885] WebSocket {#rune-0885}
+
+**Status:** canonical
+
+**Force:** A distributed-systems word; it manages failure, ordering, or reachability across nodes.
+
+### [0886] wire format {#rune-0886}
+
+**Status:** canonical
+
+**Force:** A distance-word; it carries intention across boundaries and unreliable space.

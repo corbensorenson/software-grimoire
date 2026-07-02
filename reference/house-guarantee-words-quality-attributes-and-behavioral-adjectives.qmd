@@ -6,97 +6,695 @@ title: "Guarantee Words, Quality Attributes, and Behavioral Adjectives"
 
 Range: `1421-1512`.
 
-| Sigil | Term                    | Summary                                                                                                                                                  |
-| ----- | ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 1421  | accessible              | A property word; it says what kind of behavior should remain true under stress.                                                                          |
-| 1422  | adaptive                | A property word; it says what kind of behavior should remain true under stress.                                                                          |
-| 1423  | amortized               | A virtue word; it names an operational quality that can guide design and evaluation.                                                                     |
-| 1424  | approximate {Qual}      | A property word; it says what kind of behavior should remain true under stress.                                                                          |
-| 1425  | atomic                  | No halfway state is allowed to leak across the line. Use it when partial success would be indistinguishable from corruption.                             |
-| 1426  | auditable               | A virtue word; it names an operational quality that can guide design and evaluation.                                                                     |
-| 1427  | authenticated           | A virtue word; it names an operational quality that can guide design and evaluation.                                                                     |
-| 1428  | authoritative           | A promise adjective; it binds the system to a stronger form of conduct.                                                                                  |
-| 1429  | available               | A promise adjective; it binds the system to a stronger form of conduct.                                                                                  |
-| 1430  | backward-compatible     | A guarantee word; it claims a behavioral law rather than a mere preference.                                                                              |
-| 1431  | balanced                | A property word; it says what kind of behavior should remain true under stress.                                                                          |
-| 1432  | batched                 | A virtue word; it names an operational quality that can guide design and evaluation.                                                                     |
-| 1433  | bounded                 | A promise adjective; it binds the system to a stronger form of conduct.                                                                                  |
-| 1434  | cache-friendly          | A property word; it says what kind of behavior should remain true under stress.                                                                          |
-| 1435  | canonical               | A guarantee word; it claims a behavioral law rather than a mere preference.                                                                              |
-| 1436  | causal                  | A promise adjective; it binds the system to a stronger form of conduct.                                                                                  |
-| 1437  | composable              | A promise adjective; it binds the system to a stronger form of conduct.                                                                                  |
-| 1438  | concurrent              | A virtue word; it names an operational quality that can guide design and evaluation.                                                                     |
-| 1439  | configurable            | A promise adjective; it binds the system to a stronger form of conduct.                                                                                  |
-| 1440  | consistent              | A property word; it says what kind of behavior should remain true under stress.                                                                          |
-| 1441  | convergent              | A virtue word; it names an operational quality that can guide design and evaluation.                                                                     |
-| 1442  | crash-safe              | A promise adjective; it binds the system to a stronger form of conduct.                                                                                  |
-| 1443  | declarative             | A guarantee word; it claims a behavioral law rather than a mere preference.                                                                              |
-| 1444  | deduplicated            | A guarantee word; it claims a behavioral law rather than a mere preference.                                                                              |
-| 1445  | deterministic           | Given the same inputs, the same result should return. This is the antidote to drift, heisenbugs, and unreviewable behavior.                              |
-| 1446  | durable                 | A virtue word; it names an operational quality that can guide design and evaluation.                                                                     |
-| 1447  | eager                   | A guarantee word; it claims a behavioral law rather than a mere preference.                                                                              |
-| 1448  | elastic                 | A promise adjective; it binds the system to a stronger form of conduct.                                                                                  |
-| 1449  | encrypted               | A property word; it says what kind of behavior should remain true under stress.                                                                          |
-| 1450  | eventual                | A guarantee word; it claims a behavioral law rather than a mere preference.                                                                              |
-| 1451  | exact                   | A promise adjective; it binds the system to a stronger form of conduct.                                                                                  |
-| 1452  | exhaustive              | A property word; it says what kind of behavior should remain true under stress.                                                                          |
-| 1453  | extensible              | A virtue word; it names an operational quality that can guide design and evaluation.                                                                     |
-| 1454  | fault-tolerant          | A resilience word; some breakage is expected and survivable.                                                                                             |
-| 1455  | federated               | A guarantee word; it claims a behavioral law rather than a mere preference.                                                                              |
-| 1456  | formal                  | A promise adjective; it binds the system to a stronger form of conduct.                                                                                  |
-| 1457  | generic {Qual}          | A promise adjective; it binds the system to a stronger form of conduct.                                                                                  |
-| 1458  | hardened                | A virtue word; it names an operational quality that can guide design and evaluation.                                                                     |
-| 1459  | hermetic                | A promise adjective; it binds the system to a stronger form of conduct.                                                                                  |
-| 1460  | high-availability       | A guarantee word; it claims a behavioral law rather than a mere preference.                                                                              |
-| 1461  | idempotent              | The word that makes retries survivable: same request, same lasting effect. Shadow: duplicate charges, duplicate emails, and fear of recovery.            |
-| 1462  | immutable               | Once written, this thing does not change in place. Immutability buys clarity, replayability, and safer sharing at the cost of update convenience.        |
-| 1463  | incremental             | A property word; it says what kind of behavior should remain true under stress.                                                                          |
-| 1464  | indexed                 | A promise adjective; it binds the system to a stronger form of conduct.                                                                                  |
-| 1465  | isolated                | A promise adjective; it binds the system to a stronger form of conduct.                                                                                  |
-| 1466  | lazy                    | A guarantee word; it claims a behavioral law rather than a mere preference.                                                                              |
-| 1467  | linearizable            | Every operation behaves as though it took effect at one real instant visible to all observers. Use it rarely, but mean it fully.                         |
-| 1468  | lock-free {Qual}        | A progress word; some thread always moves forward without a lock.                                                                                        |
-| 1469  | lossless                | A guarantee word; it claims a behavioral law rather than a mere preference.                                                                              |
-| 1470  | lossy                   | A property word; it says what kind of behavior should remain true under stress.                                                                          |
-| 1471  | maintainable            | A promise adjective; it binds the system to a stronger form of conduct.                                                                                  |
-| 1472  | memory-safe {Qual}      | A promise that the system will not casually trespass across allocation boundaries. Shadow: leaks, corruption, and security bugs born from illegal touch. |
-| 1473  | modular                 | A guarantee word; it claims a behavioral law rather than a mere preference.                                                                              |
-| 1474  | observable              | A promise adjective; it binds the system to a stronger form of conduct.                                                                                  |
-| 1475  | opaque                  | A virtue word; it names an operational quality that can guide design and evaluation.                                                                     |
-| 1476  | orthogonal              | A promise adjective; it binds the system to a stronger form of conduct.                                                                                  |
-| 1477  | parallel {Qual}         | A promise adjective; it binds the system to a stronger form of conduct.                                                                                  |
-| 1478  | portable                | A promise adjective; it binds the system to a stronger form of conduct.                                                                                  |
-| 1479  | predictable             | A virtue word; it names an operational quality that can guide design and evaluation.                                                                     |
-| 1480  | private                 | A virtue word; it names an operational quality that can guide design and evaluation.                                                                     |
-| 1481  | pure                    | Same inputs, same output, no hidden state smuggled in from the side. Use it to shrink reasoning scope.                                                   |
-| 1482  | reactive                | A virtue word; it names an operational quality that can guide design and evaluation.                                                                     |
-| 1483  | reentrant               | A safe-return word; the same code may be entered again before the first invocation finishes.                                                             |
-| 1484  | reliable                | A guarantee word; it claims a behavioral law rather than a mere preference.                                                                              |
-| 1485  | reproducible            | A guarantee word; it claims a behavioral law rather than a mere preference.                                                                              |
-| 1486  | resilient               | A virtue word; it names an operational quality that can guide design and evaluation.                                                                     |
-| 1487  | responsive              | A property word; it says what kind of behavior should remain true under stress.                                                                          |
-| 1488  | safe                    | A guarded word; some class of failure is explicitly ruled out.                                                                                           |
-| 1489  | sandboxed               | A guarantee word; it claims a behavioral law rather than a mere preference.                                                                              |
-| 1490  | scalable                | A virtue word; it names an operational quality that can guide design and evaluation.                                                                     |
-| 1491  | secure                  | A virtue word; it names an operational quality that can guide design and evaluation.                                                                     |
-| 1492  | serializable {Qual}     | Concurrency forced to behave as though transactions happened in one clean order. Expensive when overused, indispensable when history must remain sane.   |
-| 1493  | sharded                 | A virtue word; it names an operational quality that can guide design and evaluation.                                                                     |
-| 1494  | side-effect-free {Qual} | A property word; it says what kind of behavior should remain true under stress.                                                                          |
-| 1495  | signed                  | A property word; it says what kind of behavior should remain true under stress.                                                                          |
-| 1496  | stable                  | A virtue word; it names an operational quality that can guide design and evaluation.                                                                     |
-| 1497  | stateful                | A guarantee word; it claims a behavioral law rather than a mere preference.                                                                              |
-| 1498  | stateless               | A guarantee word; it claims a behavioral law rather than a mere preference.                                                                              |
-| 1499  | streaming               | A property word; it says what kind of behavior should remain true under stress.                                                                          |
-| 1500  | strict                  | A promise adjective; it binds the system to a stronger form of conduct.                                                                                  |
-| 1501  | synchronized            | A guarantee word; it claims a behavioral law rather than a mere preference.                                                                              |
-| 1502  | testable                | A guarantee word; it claims a behavioral law rather than a mere preference.                                                                              |
-| 1503  | thread-safe             | A guarantee word; it claims a behavioral law rather than a mere preference.                                                                              |
-| 1504  | traceable               | A virtue word; it names an operational quality that can guide design and evaluation.                                                                     |
-| 1505  | transactional           | A virtue word; it names an operational quality that can guide design and evaluation.                                                                     |
-| 1506  | typed                   | A property word; it says what kind of behavior should remain true under stress.                                                                          |
-| 1507  | validated               | A property word; it says what kind of behavior should remain true under stress.                                                                          |
-| 1508  | vectorized              | A virtue word; it names an operational quality that can guide design and evaluation.                                                                     |
-| 1509  | verified                | A property word; it says what kind of behavior should remain true under stress.                                                                          |
-| 1510  | versioned               | A virtue word; it names an operational quality that can guide design and evaluation.                                                                     |
-| 1511  | wait-free {Qual}        | A guarantee word; it claims a behavioral law rather than a mere preference.                                                                              |
-| 1512  | zero-copy {Qual}        | A nearness-and-efficiency word; data moves without redundant duplication.                                                                                |
+Use the summary table for scanning. Each row links to the detailed anchored entry below.
+
+| Sigil | Term                                  | Summary                                                                                                                                                  |
+| ----- | ------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1421  | [accessible](#rune-1421)              | A property word; it says what kind of behavior should remain true under stress.                                                                          |
+| 1422  | [adaptive](#rune-1422)                | A property word; it says what kind of behavior should remain true under stress.                                                                          |
+| 1423  | [amortized](#rune-1423)               | A virtue word; it names an operational quality that can guide design and evaluation.                                                                     |
+| 1424  | [approximate {Qual}](#rune-1424)      | A property word; it says what kind of behavior should remain true under stress.                                                                          |
+| 1425  | [atomic](#rune-1425)                  | No halfway state is allowed to leak across the line. Use it when partial success would be indistinguishable from corruption.                             |
+| 1426  | [auditable](#rune-1426)               | A virtue word; it names an operational quality that can guide design and evaluation.                                                                     |
+| 1427  | [authenticated](#rune-1427)           | A virtue word; it names an operational quality that can guide design and evaluation.                                                                     |
+| 1428  | [authoritative](#rune-1428)           | A promise adjective; it binds the system to a stronger form of conduct.                                                                                  |
+| 1429  | [available](#rune-1429)               | A promise adjective; it binds the system to a stronger form of conduct.                                                                                  |
+| 1430  | [backward-compatible](#rune-1430)     | A guarantee word; it claims a behavioral law rather than a mere preference.                                                                              |
+| 1431  | [balanced](#rune-1431)                | A property word; it says what kind of behavior should remain true under stress.                                                                          |
+| 1432  | [batched](#rune-1432)                 | A virtue word; it names an operational quality that can guide design and evaluation.                                                                     |
+| 1433  | [bounded](#rune-1433)                 | A promise adjective; it binds the system to a stronger form of conduct.                                                                                  |
+| 1434  | [cache-friendly](#rune-1434)          | A property word; it says what kind of behavior should remain true under stress.                                                                          |
+| 1435  | [canonical](#rune-1435)               | A guarantee word; it claims a behavioral law rather than a mere preference.                                                                              |
+| 1436  | [causal](#rune-1436)                  | A promise adjective; it binds the system to a stronger form of conduct.                                                                                  |
+| 1437  | [composable](#rune-1437)              | A promise adjective; it binds the system to a stronger form of conduct.                                                                                  |
+| 1438  | [concurrent](#rune-1438)              | A virtue word; it names an operational quality that can guide design and evaluation.                                                                     |
+| 1439  | [configurable](#rune-1439)            | A promise adjective; it binds the system to a stronger form of conduct.                                                                                  |
+| 1440  | [consistent](#rune-1440)              | A property word; it says what kind of behavior should remain true under stress.                                                                          |
+| 1441  | [convergent](#rune-1441)              | A virtue word; it names an operational quality that can guide design and evaluation.                                                                     |
+| 1442  | [crash-safe](#rune-1442)              | A promise adjective; it binds the system to a stronger form of conduct.                                                                                  |
+| 1443  | [declarative](#rune-1443)             | A guarantee word; it claims a behavioral law rather than a mere preference.                                                                              |
+| 1444  | [deduplicated](#rune-1444)            | A guarantee word; it claims a behavioral law rather than a mere preference.                                                                              |
+| 1445  | [deterministic](#rune-1445)           | Given the same inputs, the same result should return. This is the antidote to drift, heisenbugs, and unreviewable behavior.                              |
+| 1446  | [durable](#rune-1446)                 | A virtue word; it names an operational quality that can guide design and evaluation.                                                                     |
+| 1447  | [eager](#rune-1447)                   | A guarantee word; it claims a behavioral law rather than a mere preference.                                                                              |
+| 1448  | [elastic](#rune-1448)                 | A promise adjective; it binds the system to a stronger form of conduct.                                                                                  |
+| 1449  | [encrypted](#rune-1449)               | A property word; it says what kind of behavior should remain true under stress.                                                                          |
+| 1450  | [eventual](#rune-1450)                | A guarantee word; it claims a behavioral law rather than a mere preference.                                                                              |
+| 1451  | [exact](#rune-1451)                   | A promise adjective; it binds the system to a stronger form of conduct.                                                                                  |
+| 1452  | [exhaustive](#rune-1452)              | A property word; it says what kind of behavior should remain true under stress.                                                                          |
+| 1453  | [extensible](#rune-1453)              | A virtue word; it names an operational quality that can guide design and evaluation.                                                                     |
+| 1454  | [fault-tolerant](#rune-1454)          | A resilience word; some breakage is expected and survivable.                                                                                             |
+| 1455  | [federated](#rune-1455)               | A guarantee word; it claims a behavioral law rather than a mere preference.                                                                              |
+| 1456  | [formal](#rune-1456)                  | A promise adjective; it binds the system to a stronger form of conduct.                                                                                  |
+| 1457  | [generic {Qual}](#rune-1457)          | A promise adjective; it binds the system to a stronger form of conduct.                                                                                  |
+| 1458  | [hardened](#rune-1458)                | A virtue word; it names an operational quality that can guide design and evaluation.                                                                     |
+| 1459  | [hermetic](#rune-1459)                | A promise adjective; it binds the system to a stronger form of conduct.                                                                                  |
+| 1460  | [high-availability](#rune-1460)       | A guarantee word; it claims a behavioral law rather than a mere preference.                                                                              |
+| 1461  | [idempotent](#rune-1461)              | The word that makes retries survivable: same request, same lasting effect. Shadow: duplicate charges, duplicate emails, and fear of recovery.            |
+| 1462  | [immutable](#rune-1462)               | Once written, this thing does not change in place. Immutability buys clarity, replayability, and safer sharing at the cost of update convenience.        |
+| 1463  | [incremental](#rune-1463)             | A property word; it says what kind of behavior should remain true under stress.                                                                          |
+| 1464  | [indexed](#rune-1464)                 | A promise adjective; it binds the system to a stronger form of conduct.                                                                                  |
+| 1465  | [isolated](#rune-1465)                | A promise adjective; it binds the system to a stronger form of conduct.                                                                                  |
+| 1466  | [lazy](#rune-1466)                    | A guarantee word; it claims a behavioral law rather than a mere preference.                                                                              |
+| 1467  | [linearizable](#rune-1467)            | Every operation behaves as though it took effect at one real instant visible to all observers. Use it rarely, but mean it fully.                         |
+| 1468  | [lock-free {Qual}](#rune-1468)        | A progress word; some thread always moves forward without a lock.                                                                                        |
+| 1469  | [lossless](#rune-1469)                | A guarantee word; it claims a behavioral law rather than a mere preference.                                                                              |
+| 1470  | [lossy](#rune-1470)                   | A property word; it says what kind of behavior should remain true under stress.                                                                          |
+| 1471  | [maintainable](#rune-1471)            | A promise adjective; it binds the system to a stronger form of conduct.                                                                                  |
+| 1472  | [memory-safe {Qual}](#rune-1472)      | A promise that the system will not casually trespass across allocation boundaries. Shadow: leaks, corruption, and security bugs born from illegal touch. |
+| 1473  | [modular](#rune-1473)                 | A guarantee word; it claims a behavioral law rather than a mere preference.                                                                              |
+| 1474  | [observable](#rune-1474)              | A promise adjective; it binds the system to a stronger form of conduct.                                                                                  |
+| 1475  | [opaque](#rune-1475)                  | A virtue word; it names an operational quality that can guide design and evaluation.                                                                     |
+| 1476  | [orthogonal](#rune-1476)              | A promise adjective; it binds the system to a stronger form of conduct.                                                                                  |
+| 1477  | [parallel {Qual}](#rune-1477)         | A promise adjective; it binds the system to a stronger form of conduct.                                                                                  |
+| 1478  | [portable](#rune-1478)                | A promise adjective; it binds the system to a stronger form of conduct.                                                                                  |
+| 1479  | [predictable](#rune-1479)             | A virtue word; it names an operational quality that can guide design and evaluation.                                                                     |
+| 1480  | [private](#rune-1480)                 | A virtue word; it names an operational quality that can guide design and evaluation.                                                                     |
+| 1481  | [pure](#rune-1481)                    | Same inputs, same output, no hidden state smuggled in from the side. Use it to shrink reasoning scope.                                                   |
+| 1482  | [reactive](#rune-1482)                | A virtue word; it names an operational quality that can guide design and evaluation.                                                                     |
+| 1483  | [reentrant](#rune-1483)               | A safe-return word; the same code may be entered again before the first invocation finishes.                                                             |
+| 1484  | [reliable](#rune-1484)                | A guarantee word; it claims a behavioral law rather than a mere preference.                                                                              |
+| 1485  | [reproducible](#rune-1485)            | A guarantee word; it claims a behavioral law rather than a mere preference.                                                                              |
+| 1486  | [resilient](#rune-1486)               | A virtue word; it names an operational quality that can guide design and evaluation.                                                                     |
+| 1487  | [responsive](#rune-1487)              | A property word; it says what kind of behavior should remain true under stress.                                                                          |
+| 1488  | [safe](#rune-1488)                    | A guarded word; some class of failure is explicitly ruled out.                                                                                           |
+| 1489  | [sandboxed](#rune-1489)               | A guarantee word; it claims a behavioral law rather than a mere preference.                                                                              |
+| 1490  | [scalable](#rune-1490)                | A virtue word; it names an operational quality that can guide design and evaluation.                                                                     |
+| 1491  | [secure](#rune-1491)                  | A virtue word; it names an operational quality that can guide design and evaluation.                                                                     |
+| 1492  | [serializable {Qual}](#rune-1492)     | Concurrency forced to behave as though transactions happened in one clean order. Expensive when overused, indispensable when history must remain sane.   |
+| 1493  | [sharded](#rune-1493)                 | A virtue word; it names an operational quality that can guide design and evaluation.                                                                     |
+| 1494  | [side-effect-free {Qual}](#rune-1494) | A property word; it says what kind of behavior should remain true under stress.                                                                          |
+| 1495  | [signed](#rune-1495)                  | A property word; it says what kind of behavior should remain true under stress.                                                                          |
+| 1496  | [stable](#rune-1496)                  | A virtue word; it names an operational quality that can guide design and evaluation.                                                                     |
+| 1497  | [stateful](#rune-1497)                | A guarantee word; it claims a behavioral law rather than a mere preference.                                                                              |
+| 1498  | [stateless](#rune-1498)               | A guarantee word; it claims a behavioral law rather than a mere preference.                                                                              |
+| 1499  | [streaming](#rune-1499)               | A property word; it says what kind of behavior should remain true under stress.                                                                          |
+| 1500  | [strict](#rune-1500)                  | A promise adjective; it binds the system to a stronger form of conduct.                                                                                  |
+| 1501  | [synchronized](#rune-1501)            | A guarantee word; it claims a behavioral law rather than a mere preference.                                                                              |
+| 1502  | [testable](#rune-1502)                | A guarantee word; it claims a behavioral law rather than a mere preference.                                                                              |
+| 1503  | [thread-safe](#rune-1503)             | A guarantee word; it claims a behavioral law rather than a mere preference.                                                                              |
+| 1504  | [traceable](#rune-1504)               | A virtue word; it names an operational quality that can guide design and evaluation.                                                                     |
+| 1505  | [transactional](#rune-1505)           | A virtue word; it names an operational quality that can guide design and evaluation.                                                                     |
+| 1506  | [typed](#rune-1506)                   | A property word; it says what kind of behavior should remain true under stress.                                                                          |
+| 1507  | [validated](#rune-1507)               | A property word; it says what kind of behavior should remain true under stress.                                                                          |
+| 1508  | [vectorized](#rune-1508)              | A virtue word; it names an operational quality that can guide design and evaluation.                                                                     |
+| 1509  | [verified](#rune-1509)                | A property word; it says what kind of behavior should remain true under stress.                                                                          |
+| 1510  | [versioned](#rune-1510)               | A virtue word; it names an operational quality that can guide design and evaluation.                                                                     |
+| 1511  | [wait-free {Qual}](#rune-1511)        | A guarantee word; it claims a behavioral law rather than a mere preference.                                                                              |
+| 1512  | [zero-copy {Qual}](#rune-1512)        | A nearness-and-efficiency word; data moves without redundant duplication.                                                                                |
+
+## Entries
+
+### [1421] accessible {#rune-1421}
+
+**Status:** canonical
+
+**Force:** A property word; it says what kind of behavior should remain true under stress.
+
+### [1422] adaptive {#rune-1422}
+
+**Status:** canonical
+
+**Force:** A property word; it says what kind of behavior should remain true under stress.
+
+### [1423] amortized {#rune-1423}
+
+**Status:** canonical
+
+**Force:** A virtue word; it names an operational quality that can guide design and evaluation.
+
+### [1424] approximate {Qual} {#rune-1424}
+
+**Status:** canonical
+
+**Force:** A property word; it says what kind of behavior should remain true under stress.
+
+### [1425] atomic {#rune-1425}
+
+**Status:** canonical (major canon, pocket canon)
+
+**Force:** No halfway state is allowed to leak across the line. Use it when partial success would be indistinguishable from corruption.
+
+**Pocket gloss:** No halfway state is allowed to leak.
+
+### [1426] auditable {#rune-1426}
+
+**Status:** canonical
+
+**Force:** A virtue word; it names an operational quality that can guide design and evaluation.
+
+### [1427] authenticated {#rune-1427}
+
+**Status:** canonical
+
+**Force:** A virtue word; it names an operational quality that can guide design and evaluation.
+
+### [1428] authoritative {#rune-1428}
+
+**Status:** canonical
+
+**Force:** A promise adjective; it binds the system to a stronger form of conduct.
+
+### [1429] available {#rune-1429}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A promise adjective; it binds the system to a stronger form of conduct.
+
+**Pocket gloss:** Reachable and functioning when needed.
+
+### [1430] backward-compatible {#rune-1430}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A guarantee word; it claims a behavioral law rather than a mere preference.
+
+**Pocket gloss:** New versions do not casually break old clients or data.
+
+### [1431] balanced {#rune-1431}
+
+**Status:** canonical
+
+**Force:** A property word; it says what kind of behavior should remain true under stress.
+
+### [1432] batched {#rune-1432}
+
+**Status:** canonical
+
+**Force:** A virtue word; it names an operational quality that can guide design and evaluation.
+
+### [1433] bounded {#rune-1433}
+
+**Status:** canonical
+
+**Force:** A promise adjective; it binds the system to a stronger form of conduct.
+
+### [1434] cache-friendly {#rune-1434}
+
+**Status:** canonical
+
+**Force:** A property word; it says what kind of behavior should remain true under stress.
+
+### [1435] canonical {#rune-1435}
+
+**Status:** canonical
+
+**Force:** A guarantee word; it claims a behavioral law rather than a mere preference.
+
+### [1436] causal {#rune-1436}
+
+**Status:** canonical
+
+**Force:** A promise adjective; it binds the system to a stronger form of conduct.
+
+### [1437] composable {#rune-1437}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A promise adjective; it binds the system to a stronger form of conduct.
+
+**Pocket gloss:** Small parts combine without excessive friction.
+
+### [1438] concurrent {#rune-1438}
+
+**Status:** canonical
+
+**Force:** A virtue word; it names an operational quality that can guide design and evaluation.
+
+### [1439] configurable {#rune-1439}
+
+**Status:** canonical
+
+**Force:** A promise adjective; it binds the system to a stronger form of conduct.
+
+### [1440] consistent {#rune-1440}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A property word; it says what kind of behavior should remain true under stress.
+
+**Pocket gloss:** Different observers are not being told incompatible stories.
+
+### [1441] convergent {#rune-1441}
+
+**Status:** canonical
+
+**Force:** A virtue word; it names an operational quality that can guide design and evaluation.
+
+### [1442] crash-safe {#rune-1442}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A promise adjective; it binds the system to a stronger form of conduct.
+
+**Pocket gloss:** Failure does not leave storage in nonsense.
+
+### [1443] declarative {#rune-1443}
+
+**Status:** canonical
+
+**Force:** A guarantee word; it claims a behavioral law rather than a mere preference.
+
+### [1444] deduplicated {#rune-1444}
+
+**Status:** canonical
+
+**Force:** A guarantee word; it claims a behavioral law rather than a mere preference.
+
+### [1445] deterministic {#rune-1445}
+
+**Status:** canonical (major canon, pocket canon)
+
+**Force:** Given the same inputs, the same result should return. This is the antidote to drift, heisenbugs, and unreviewable behavior.
+
+**Pocket gloss:** Same inputs, same result.
+
+### [1446] durable {#rune-1446}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A virtue word; it names an operational quality that can guide design and evaluation.
+
+**Pocket gloss:** Once acknowledged, the change really sticks.
+
+### [1447] eager {#rune-1447}
+
+**Status:** canonical
+
+**Force:** A guarantee word; it claims a behavioral law rather than a mere preference.
+
+### [1448] elastic {#rune-1448}
+
+**Status:** canonical
+
+**Force:** A promise adjective; it binds the system to a stronger form of conduct.
+
+### [1449] encrypted {#rune-1449}
+
+**Status:** canonical
+
+**Force:** A property word; it says what kind of behavior should remain true under stress.
+
+### [1450] eventual {#rune-1450}
+
+**Status:** canonical
+
+**Force:** A guarantee word; it claims a behavioral law rather than a mere preference.
+
+### [1451] exact {#rune-1451}
+
+**Status:** canonical
+
+**Force:** A promise adjective; it binds the system to a stronger form of conduct.
+
+### [1452] exhaustive {#rune-1452}
+
+**Status:** canonical
+
+**Force:** A property word; it says what kind of behavior should remain true under stress.
+
+### [1453] extensible {#rune-1453}
+
+**Status:** canonical
+
+**Force:** A virtue word; it names an operational quality that can guide design and evaluation.
+
+### [1454] fault-tolerant {#rune-1454}
+
+**Status:** canonical
+
+**Force:** A resilience word; some breakage is expected and survivable.
+
+### [1455] federated {#rune-1455}
+
+**Status:** canonical
+
+**Force:** A guarantee word; it claims a behavioral law rather than a mere preference.
+
+### [1456] formal {#rune-1456}
+
+**Status:** canonical
+
+**Force:** A promise adjective; it binds the system to a stronger form of conduct.
+
+### [1457] generic {Qual} {#rune-1457}
+
+**Status:** canonical
+
+**Force:** A promise adjective; it binds the system to a stronger form of conduct.
+
+### [1458] hardened {#rune-1458}
+
+**Status:** canonical
+
+**Force:** A virtue word; it names an operational quality that can guide design and evaluation.
+
+### [1459] hermetic {#rune-1459}
+
+**Status:** canonical
+
+**Force:** A promise adjective; it binds the system to a stronger form of conduct.
+
+### [1460] high-availability {#rune-1460}
+
+**Status:** canonical
+
+**Force:** A guarantee word; it claims a behavioral law rather than a mere preference.
+
+### [1461] idempotent {#rune-1461}
+
+**Status:** canonical (major canon, pocket canon)
+
+**Force:** The word that makes retries survivable: same request, same lasting effect.
+
+**Shadow:** duplicate charges, duplicate emails, and fear of recovery.
+
+**Pocket gloss:** Same request, same lasting effect.
+
+### [1462] immutable {#rune-1462}
+
+**Status:** canonical (major canon, pocket canon)
+
+**Force:** Once written, this thing does not change in place. Immutability buys clarity, replayability, and safer sharing at the cost of update convenience.
+
+**Pocket gloss:** Written once, then never changed in place.
+
+### [1463] incremental {#rune-1463}
+
+**Status:** canonical
+
+**Force:** A property word; it says what kind of behavior should remain true under stress.
+
+### [1464] indexed {#rune-1464}
+
+**Status:** canonical
+
+**Force:** A promise adjective; it binds the system to a stronger form of conduct.
+
+### [1465] isolated {#rune-1465}
+
+**Status:** canonical
+
+**Force:** A promise adjective; it binds the system to a stronger form of conduct.
+
+### [1466] lazy {#rune-1466}
+
+**Status:** canonical
+
+**Force:** A guarantee word; it claims a behavioral law rather than a mere preference.
+
+### [1467] linearizable {#rune-1467}
+
+**Status:** canonical (major canon, pocket canon)
+
+**Force:** Every operation behaves as though it took effect at one real instant visible to all observers. Use it rarely, but mean it fully.
+
+**Pocket gloss:** Behaves as though each operation took effect at one visible instant.
+
+### [1468] lock-free {Qual} {#rune-1468}
+
+**Status:** canonical
+
+**Force:** A progress word; some thread always moves forward without a lock.
+
+### [1469] lossless {#rune-1469}
+
+**Status:** canonical
+
+**Force:** A guarantee word; it claims a behavioral law rather than a mere preference.
+
+### [1470] lossy {#rune-1470}
+
+**Status:** canonical
+
+**Force:** A property word; it says what kind of behavior should remain true under stress.
+
+### [1471] maintainable {#rune-1471}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A promise adjective; it binds the system to a stronger form of conduct.
+
+**Pocket gloss:** Cheap enough to understand, modify, and keep healthy.
+
+### [1472] memory-safe {Qual} {#rune-1472}
+
+**Status:** canonical (major canon, pocket canon)
+
+**Force:** A promise that the system will not casually trespass across allocation boundaries.
+
+**Shadow:** leaks, corruption, and security bugs born from illegal touch.
+
+**Pocket gloss:** Will not casually trespass across allocation boundaries.
+
+### [1473] modular {#rune-1473}
+
+**Status:** canonical
+
+**Force:** A guarantee word; it claims a behavioral law rather than a mere preference.
+
+### [1474] observable {#rune-1474}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A promise adjective; it binds the system to a stronger form of conduct.
+
+**Pocket gloss:** Structured so internal behavior can be inferred from external evidence.
+
+### [1475] opaque {#rune-1475}
+
+**Status:** canonical
+
+**Force:** A virtue word; it names an operational quality that can guide design and evaluation.
+
+### [1476] orthogonal {#rune-1476}
+
+**Status:** canonical
+
+**Force:** A promise adjective; it binds the system to a stronger form of conduct.
+
+### [1477] parallel {Qual} {#rune-1477}
+
+**Status:** canonical
+
+**Force:** A promise adjective; it binds the system to a stronger form of conduct.
+
+### [1478] portable {#rune-1478}
+
+**Status:** canonical
+
+**Force:** A promise adjective; it binds the system to a stronger form of conduct.
+
+### [1479] predictable {#rune-1479}
+
+**Status:** canonical
+
+**Force:** A virtue word; it names an operational quality that can guide design and evaluation.
+
+### [1480] private {#rune-1480}
+
+**Status:** canonical
+
+**Force:** A virtue word; it names an operational quality that can guide design and evaluation.
+
+### [1481] pure {#rune-1481}
+
+**Status:** canonical (major canon, pocket canon)
+
+**Force:** Same inputs, same output, no hidden state smuggled in from the side. Use it to shrink reasoning scope.
+
+**Pocket gloss:** Same inputs, same output, no hidden side effects.
+
+### [1482] reactive {#rune-1482}
+
+**Status:** canonical
+
+**Force:** A virtue word; it names an operational quality that can guide design and evaluation.
+
+### [1483] reentrant {#rune-1483}
+
+**Status:** canonical
+
+**Force:** A safe-return word; the same code may be entered again before the first invocation finishes.
+
+### [1484] reliable {#rune-1484}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A guarantee word; it claims a behavioral law rather than a mere preference.
+
+**Pocket gloss:** Keeps doing the promised thing under ordinary stress.
+
+### [1485] reproducible {#rune-1485}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A guarantee word; it claims a behavioral law rather than a mere preference.
+
+**Pocket gloss:** Can be rebuilt or rerun and yield the same result again.
+
+### [1486] resilient {#rune-1486}
+
+**Status:** canonical
+
+**Force:** A virtue word; it names an operational quality that can guide design and evaluation.
+
+### [1487] responsive {#rune-1487}
+
+**Status:** canonical
+
+**Force:** A property word; it says what kind of behavior should remain true under stress.
+
+### [1488] safe {#rune-1488}
+
+**Status:** canonical
+
+**Force:** A guarded word; some class of failure is explicitly ruled out.
+
+### [1489] sandboxed {#rune-1489}
+
+**Status:** canonical
+
+**Force:** A guarantee word; it claims a behavioral law rather than a mere preference.
+
+### [1490] scalable {#rune-1490}
+
+**Status:** canonical (pocket canon)
+
+**Force:** A virtue word; it names an operational quality that can guide design and evaluation.
+
+**Pocket gloss:** Can grow without collapsing the qualities that matter.
+
+### [1491] secure {#rune-1491}
+
+**Status:** canonical
+
+**Force:** A virtue word; it names an operational quality that can guide design and evaluation.
+
+### [1492] serializable {Qual} {#rune-1492}
+
+**Status:** canonical (major canon, pocket canon)
+
+**Force:** Concurrency forced to behave as though transactions happened in one clean order. Expensive when overused, indispensable when history must remain sane.
+
+**Pocket gloss:** Concurrency behaves as though transactions happened in one clean order.
+
+### [1493] sharded {#rune-1493}
+
+**Status:** canonical
+
+**Force:** A virtue word; it names an operational quality that can guide design and evaluation.
+
+### [1494] side-effect-free {Qual} {#rune-1494}
+
+**Status:** canonical
+
+**Force:** A property word; it says what kind of behavior should remain true under stress.
+
+### [1495] signed {#rune-1495}
+
+**Status:** canonical
+
+**Force:** A property word; it says what kind of behavior should remain true under stress.
+
+### [1496] stable {#rune-1496}
+
+**Status:** canonical
+
+**Force:** A virtue word; it names an operational quality that can guide design and evaluation.
+
+### [1497] stateful {#rune-1497}
+
+**Status:** canonical
+
+**Force:** A guarantee word; it claims a behavioral law rather than a mere preference.
+
+### [1498] stateless {#rune-1498}
+
+**Status:** canonical
+
+**Force:** A guarantee word; it claims a behavioral law rather than a mere preference.
+
+### [1499] streaming {#rune-1499}
+
+**Status:** canonical
+
+**Force:** A property word; it says what kind of behavior should remain true under stress.
+
+### [1500] strict {#rune-1500}
+
+**Status:** canonical
+
+**Force:** A promise adjective; it binds the system to a stronger form of conduct.
+
+### [1501] synchronized {#rune-1501}
+
+**Status:** canonical
+
+**Force:** A guarantee word; it claims a behavioral law rather than a mere preference.
+
+### [1502] testable {#rune-1502}
+
+**Status:** canonical
+
+**Force:** A guarantee word; it claims a behavioral law rather than a mere preference.
+
+### [1503] thread-safe {#rune-1503}
+
+**Status:** canonical
+
+**Force:** A guarantee word; it claims a behavioral law rather than a mere preference.
+
+### [1504] traceable {#rune-1504}
+
+**Status:** canonical
+
+**Force:** A virtue word; it names an operational quality that can guide design and evaluation.
+
+### [1505] transactional {#rune-1505}
+
+**Status:** canonical
+
+**Force:** A virtue word; it names an operational quality that can guide design and evaluation.
+
+### [1506] typed {#rune-1506}
+
+**Status:** canonical
+
+**Force:** A property word; it says what kind of behavior should remain true under stress.
+
+### [1507] validated {#rune-1507}
+
+**Status:** canonical
+
+**Force:** A property word; it says what kind of behavior should remain true under stress.
+
+### [1508] vectorized {#rune-1508}
+
+**Status:** canonical
+
+**Force:** A virtue word; it names an operational quality that can guide design and evaluation.
+
+### [1509] verified {#rune-1509}
+
+**Status:** canonical
+
+**Force:** A property word; it says what kind of behavior should remain true under stress.
+
+### [1510] versioned {#rune-1510}
+
+**Status:** canonical
+
+**Force:** A virtue word; it names an operational quality that can guide design and evaluation.
+
+### [1511] wait-free {Qual} {#rune-1511}
+
+**Status:** canonical
+
+**Force:** A guarantee word; it claims a behavioral law rather than a mere preference.
+
+### [1512] zero-copy {Qual} {#rune-1512}
+
+**Status:** canonical
+
+**Force:** A nearness-and-efficiency word; data moves without redundant duplication.
