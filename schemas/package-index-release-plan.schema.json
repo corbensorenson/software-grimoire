@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "Software Grimoire Package-Index Release Plan",
   "type": "object",
-  "required": ["version", "policy", "package", "preflight_checks", "build_commands", "testpypi_upload", "pypi_upload", "evidence_rules"],
+  "required": ["version", "policy", "package", "trusted_publishing_workflow", "preflight_checks", "build_commands", "testpypi_upload", "pypi_upload", "evidence_rules"],
   "properties": {
     "version": {"type": "string", "minLength": 1},
     "policy": {"type": "string", "minLength": 1},
@@ -14,6 +14,20 @@
         "current_version": {"type": "string", "minLength": 1},
         "source": {"type": "string", "minLength": 1},
         "upload_status": {"enum": ["not-uploaded-human-required", "uploaded"]}
+      },
+      "additionalProperties": false
+    },
+    "trusted_publishing_workflow": {
+      "type": "object",
+      "required": ["path", "trigger", "authentication", "required_permissions", "environments", "manual_confirmation", "post_publish_reports"],
+      "properties": {
+        "path": {"type": "string", "minLength": 1},
+        "trigger": {"const": "workflow_dispatch"},
+        "authentication": {"const": "PyPI Trusted Publishing via GitHub OIDC"},
+        "required_permissions": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+        "environments": {"type": "array", "minItems": 2, "items": {"enum": ["testpypi", "pypi"]}},
+        "manual_confirmation": {"type": "string", "minLength": 1},
+        "post_publish_reports": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}}
       },
       "additionalProperties": false
     },

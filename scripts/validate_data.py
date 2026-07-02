@@ -976,6 +976,7 @@ def validate_public_package_and_smoke(errors: list[str]) -> None:
     package_path = ROOT / "examples" / "adoption" / "package-check.json"
     package_index_plan_path = ROOT / "examples" / "adoption" / "package-index-release-plan.json"
     package_index_smoke_path = ROOT / "examples" / "adoption" / "package-index-smoke-template.json"
+    package_publish_workflow_path = ROOT / ".github" / "workflows" / "publish-package.yml"
     smoke_path = ROOT / "examples" / "release-gate" / "public-smoke-check.json"
     if not package_path.exists():
         fail(errors, "Missing examples/adoption/package-check.json")
@@ -993,16 +994,42 @@ def validate_public_package_and_smoke(errors: list[str]) -> None:
             fail(errors, "Package check must verify grimoire-check-adoption-intake entry point")
         if not any("grimoire-check-canon-decision --help" in step.get("name", "") for step in package.get("steps", [])):
             fail(errors, "Package check must verify grimoire-check-canon-decision entry point")
+        if not any("grimoire-check-package-publish-workflow --help" in step.get("name", "") for step in package.get("steps", [])):
+            fail(errors, "Package check must verify grimoire-check-package-publish-workflow entry point")
     if not package_index_plan_path.exists():
         fail(errors, "Missing examples/adoption/package-index-release-plan.json")
     else:
         plan = json.loads(package_index_plan_path.read_text(encoding="utf-8"))
+        trusted = plan.get("trusted_publishing_workflow", {})
+        if trusted.get("path") != ".github/workflows/publish-package.yml":
+            fail(errors, "Package-index release plan must point to the manual package publish workflow")
+        if trusted.get("authentication") != "PyPI Trusted Publishing via GitHub OIDC":
+            fail(errors, "Package-index release plan must use PyPI Trusted Publishing via GitHub OIDC")
+        if "id-token: write" not in trusted.get("required_permissions", []):
+            fail(errors, "Package-index release plan must record id-token: write")
         for upload_key in ["testpypi_upload", "pypi_upload"]:
+            command = plan.get(upload_key, {}).get("command", "")
+            if ".github/workflows/publish-package.yml" not in command:
+                fail(errors, f"Package-index release plan {upload_key} must dispatch the manual publish workflow")
             check = plan.get(upload_key, {}).get("post_upload_check", "")
             if "scripts/check_package_index.py" not in check:
                 fail(errors, f"Package-index release plan {upload_key} must use scripts/check_package_index.py")
         if not any("check_package_index.py" in item and "--dry-run" in item for item in plan.get("preflight_checks", [])):
             fail(errors, "Package-index release plan must include a dry-run checker preflight")
+        if not any("check_package_publish_workflow.py" in item for item in plan.get("preflight_checks", [])):
+            fail(errors, "Package-index release plan must validate the publish workflow")
+    if not package_publish_workflow_path.exists():
+        fail(errors, "Missing .github/workflows/publish-package.yml")
+    else:
+        workflow = package_publish_workflow_path.read_text(encoding="utf-8")
+        if "workflow_dispatch:" not in workflow:
+            fail(errors, "Package publish workflow must be manually dispatched")
+        if "pypa/gh-action-pypi-publish@release/v1" not in workflow:
+            fail(errors, "Package publish workflow must use the PyPA trusted publishing action")
+        if "id-token: write" not in workflow:
+            fail(errors, "Package publish workflow must request id-token: write")
+        if "password: ${{ secrets." in workflow or "twine upload" in workflow:
+            fail(errors, "Package publish workflow must not use secret/token upload commands")
     if not package_index_smoke_path.exists():
         fail(errors, "Missing examples/adoption/package-index-smoke-template.json")
     else:

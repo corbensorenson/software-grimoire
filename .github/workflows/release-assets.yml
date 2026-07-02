@@ -32,6 +32,9 @@ jobs:
       - name: Validate generated assets
         run: python scripts/validate_data.py
 
+      - name: Validate package publish workflow
+        run: python scripts/check_package_publish_workflow.py
+
       - name: Run execution bench
         run: python scripts/run_execution_bench.py
 

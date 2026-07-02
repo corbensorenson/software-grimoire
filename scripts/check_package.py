@@ -82,6 +82,7 @@ def main() -> int:
                 [str(venv / "bin" / "grimoire"), "--help"],
                 [str(venv / "bin" / "grimoire-create-adoption-report"), "--help"],
                 [str(venv / "bin" / "grimoire-check-adoption-intake"), "--help"],
+                [str(venv / "bin" / "grimoire-check-package-publish-workflow"), "--help"],
                 [str(venv / "bin" / "grimoire-install-assets"), "--help"],
                 [str(venv / "bin" / "grimoire-run-bench"), "--help"],
                 [str(venv / "bin" / "grimoire-run-hardness-bench"), "--help"],

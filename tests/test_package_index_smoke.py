@@ -74,3 +74,14 @@ def test_package_index_install_command_uses_selected_index() -> None:
     assert "--extra-index-url" not in pypi
     assert "https://test.pypi.org/simple/" in testpypi
     assert "https://pypi.org/simple/" in testpypi
+
+
+def test_package_index_release_plan_uses_manual_trusted_publishing_workflow() -> None:
+    plan = json.loads((ROOT / "examples" / "adoption" / "package-index-release-plan.json").read_text(encoding="utf-8"))
+    trusted = plan["trusted_publishing_workflow"]
+    assert trusted["path"] == ".github/workflows/publish-package.yml"
+    assert trusted["trigger"] == "workflow_dispatch"
+    assert trusted["authentication"] == "PyPI Trusted Publishing via GitHub OIDC"
+    assert any("check_package_publish_workflow.py" in item for item in plan["preflight_checks"])
+    assert ".github/workflows/publish-package.yml" in plan["testpypi_upload"]["command"]
+    assert ".github/workflows/publish-package.yml" in plan["pypi_upload"]["command"]

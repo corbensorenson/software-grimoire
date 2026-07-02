@@ -79,6 +79,10 @@
   `grimoire adoption decision` wrapper, package entry point, smoke coverage,
   and evidence-index wiring so accepted non-maintainer reports can be recorded
   later without counting unpublished drafts as external adoption.
+- Added a manual package publish workflow for PyPI Trusted Publishing, a static
+  workflow validator, package entry point, CI coverage, and release-plan wiring
+  so a named maintainer can publish through GitHub OIDC without secret/token
+  upload paths.
 - Normalized pytest duration text in hardness-ladder execution ledgers so
   repeated deterministic bench runs do not churn committed evidence on timing
   noise alone.

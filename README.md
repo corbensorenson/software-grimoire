@@ -90,6 +90,9 @@ Implemented:
   build, upload, post-upload, package-index smoke tooling, and
   evidence-recording instructions that keep public package availability pending
   until a maintainer performs it.
+- Manual GitHub Actions package publish workflow using PyPI Trusted Publishing
+  and post-upload smoke artifacts; public package-index availability still
+  remains pending until a named maintainer dispatches it and records the smoke.
 - Bench v4 seed hardness ladder with ambiguity, hidden-invariant,
   misleading-context, blast-radius, and agentic executable fixtures,
   weak/repaired seed artifacts, five deterministic repetitions per variant,
@@ -145,6 +148,7 @@ python3 scripts/grimoire.py bench hardness-import examples/evaluations/hardness-
 python3 scripts/grimoire.py canon decision examples/canon/canon-audit-decision-template.json
 python3 scripts/grimoire.py adoption decision examples/adoption/adoption-intake-decision-template.json
 python3 scripts/grimoire.py adoption report -- --id adoption.example-review.v1 --title "Example Review" --provenance reviewer-supplied --task "Describe the real task." --spell-or-stack-used spell.safe-refactoring.v1 --surface "Reviewer workflow" --artifact-produced "Patch or review artifact." --verification-performed "Tests or review checks." --time-cost "Low" --failure-or-friction "Record friction honestly." --reuse-decision reuse --write-report tmp/adoption-report.json
+python3 scripts/check_package_publish_workflow.py
 python3 scripts/grimoire.py install --target cursor --dest tmp/grimoire-assets
 python3 scripts/grimoire.py install --target claude-code --dest tmp/grimoire-assets --write
 python3 scripts/install_assets.py --target cursor --dest tmp/grimoire-assets

@@ -101,6 +101,7 @@ def test_package_and_smoke_checks_pass() -> None:
     assert any("grimoire-check-package-index --help" in step["name"] for step in package["steps"])
     assert any("grimoire-check-adoption-intake --help" in step["name"] for step in package["steps"])
     assert any("grimoire-check-canon-decision --help" in step["name"] for step in package["steps"])
+    assert any("grimoire-check-package-publish-workflow --help" in step["name"] for step in package["steps"])
     assert {
         "index.html",
         "reference/evidence-browser.html",

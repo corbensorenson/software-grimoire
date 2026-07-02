@@ -117,9 +117,10 @@ Current public-site status:
   not count until a named maintainer accepts and publishes a real non-maintainer
   report.
 - Package-index release materials are prepared for human TestPyPI/PyPI upload:
-  preflight checks, build commands, post-upload package-index smoke tooling,
-  evidence rules, schema, generated reference page, and evidence-index entry
-  all preserve upload as pending until a maintainer performs it.
+  preflight checks, build commands, a manual trusted-publishing workflow,
+  post-upload package-index smoke tooling, evidence rules, schema, generated
+  reference page, and evidence-index entry all preserve upload as pending until
+  a maintainer performs it.
 - Human canon review now has a schema-backed decision intake path: a pending
   decision template, validator, package/CLI entry point, public issue form,
   generated reference-page instructions, smoke coverage, and evidence-index
@@ -548,8 +549,9 @@ Absorption status:
 - The v4 implementation slice has moved from scaffold to instrument: repo-local
   scratch hygiene, explicit reviewability-score fields, per-surface/per-tier
   delta reporting, all five local hardness seed rungs, ward-science seed data,
-  package-index release materials, one-step installs, adoption-report
-  generation, adoption intake decisions, bounded canon-review queue,
+  package-index release materials and manual trusted-publishing workflow,
+  one-step installs, adoption-report generation, adoption intake decisions,
+  bounded canon-review queue,
   canon-audit decision intake, methods write-up, Codex trap-tier field-spell
   runs, Codex real warded A/B runs, and Codex Bench v4 model-surface
   hardness-ladder runs are implemented. The remaining open work is Claude Code
@@ -4774,10 +4776,14 @@ can validate acceptance/publication decisions without counting pending drafts.
 The one-step `grimoire install` wrapper is implemented over the dry-run-first
 asset installer, with tests covering repo-local `tmp/` destinations. The
 package-index release plan is prepared as structured release material, but
-actual TestPyPI/PyPI upload remains pending human action. The post-upload
-checker now exists as `scripts/check_package_index.py` and writes a structured
-report only after it can install the named version from the selected public
-index.
+actual TestPyPI/PyPI upload remains pending human action. A manual
+`.github/workflows/publish-package.yml` trusted-publishing workflow and
+`scripts/check_package_publish_workflow.py` validator now exist, but they are
+release path evidence only until a named maintainer configures the public index
+trusted publisher, dispatches the workflow, and records the post-upload smoke.
+The post-upload checker now exists as `scripts/check_package_index.py` and
+writes a structured report only after it can install the named version from the
+selected public index.
 
 Implementation note as of July 2, 2026: Workstream B has a local deterministic
 seed for ward-limb ablation and the six additional defanged attack shapes are
@@ -4793,7 +4799,10 @@ baseline/warded model-surface A/B expansion remains open.
    - README rendering check.
 2. Human uploads remain human:
    - Codex can prepare TestPyPI/PyPI instructions and artifacts;
+   - Codex can prepare the manual trusted-publishing workflow and validator;
    - a named human performs the upload;
+   - PyPI/TestPyPI Trusted Publisher entries must be configured before
+     dispatch;
    - package-index checks run only after the package exists;
    - `scripts/check_package_index.py` records the install proof after upload.
 3. Add one-step local install commands:
@@ -5480,7 +5489,8 @@ The project is complete in the strong sense when:
 71. A usage graph links runes to spells, stacks, benchmarks, adoption reports,
     and accepted external/reviewer evidence.
 72. The CLI is installable from a public package index and passes package-install
-    smoke tests.
+    smoke tests. A manual trusted-publishing workflow exists, but this remains
+    pending until a named maintainer publishes and records public-index smoke.
 73. Public package versioning is tied to evidence milestones, not only internal
     generator changes.
 74. At least three non-maintainer adoption or reviewer reports are accepted and
@@ -5515,7 +5525,8 @@ The project is complete in the strong sense when:
 87. Adoption-report generation produces schema-valid records without counting
     project-owned dogfood as external adoption.
 88. Package-index release materials are ready and package-index smoke checks are
-    added once a human upload exists.
+    added once a human upload exists; the workflow validator now guards the
+    manual trusted-publishing path before upload.
 89. Project commands, docs, tests, and examples do not write scratch output to
     device-global `/tmp`; repo-local scratch output lives under `tmp/`.
 90. A methods write-up is generated from recorded evidence and foregrounds

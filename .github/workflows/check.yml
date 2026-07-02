@@ -30,6 +30,9 @@ jobs:
       - name: Validate data
         run: python scripts/validate_data.py
 
+      - name: Validate package publish workflow
+        run: python scripts/check_package_publish_workflow.py
+
       - name: Run adversarial harness
         run: python scripts/run_adversarial_harness.py
 

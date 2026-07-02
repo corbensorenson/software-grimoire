@@ -489,6 +489,7 @@ PACKAGE_INDEX_RELEASE_PLAN = {
     "preflight_checks": [
         "python3 scripts/bootstrap_project.py",
         "python3 scripts/validate_data.py",
+        "python3 scripts/check_package_publish_workflow.py",
         "python3 -m pytest",
         "python3 scripts/check_package.py",
         "python3 scripts/check_package_index.py --index pypi --dry-run --write-report tmp/package-index-smoke-dry-run.json",
@@ -500,19 +501,32 @@ PACKAGE_INDEX_RELEASE_PLAN = {
         "python3 -m build",
         "python3 -m twine check dist/*",
     ],
+    "trusted_publishing_workflow": {
+        "path": ".github/workflows/publish-package.yml",
+        "trigger": "workflow_dispatch",
+        "authentication": "PyPI Trusted Publishing via GitHub OIDC",
+        "required_permissions": ["id-token: write"],
+        "environments": ["testpypi", "pypi"],
+        "manual_confirmation": "publish software-grimoire",
+        "post_publish_reports": [
+            "tmp/package-index-smoke-testpypi.json",
+            "tmp/package-index-smoke-pypi.json",
+        ],
+    },
     "testpypi_upload": {
         "human_required": True,
-        "command": "python3 -m twine upload --repository testpypi dist/*",
+        "command": "gh workflow run .github/workflows/publish-package.yml -f index=testpypi -f version=3.0.0 -f confirmation='publish software-grimoire'",
         "post_upload_check": "python3 scripts/check_package_index.py --index testpypi --write-report examples/adoption/package-index-smoke.json",
     },
     "pypi_upload": {
         "human_required": True,
-        "command": "python3 -m twine upload dist/*",
+        "command": "gh workflow run .github/workflows/publish-package.yml -f index=pypi -f version=3.0.0 -f confirmation='publish software-grimoire'",
         "post_upload_check": "python3 scripts/check_package_index.py --index pypi --write-report examples/adoption/package-index-smoke.json",
     },
     "evidence_rules": [
         "Do not mark package-index release complete before a human performs upload.",
         "Do not count local wheel install as package-index availability.",
+        "Configure PyPI/TestPyPI Trusted Publisher entries before dispatching the publish workflow.",
         "Commit examples/adoption/package-index-smoke.json only after the checker installs the uploaded version from the selected public index.",
         "Record TestPyPI/PyPI URL, uploader, date, installed version, and post-upload smoke output after upload.",
     ],
@@ -4932,6 +4946,8 @@ def write_package_index_release_pages() -> None:
         ["Version", package["current_version"]],
         ["Upload status", package["upload_status"]],
         ["Human upload required", "true"],
+        ["Workflow", plan["trusted_publishing_workflow"]["path"]],
+        ["Authentication", plan["trusted_publishing_workflow"]["authentication"]],
     ]
     body = """# Package-Index Release Plan
 
@@ -4956,6 +4972,22 @@ valid. It does not prove public package-index availability.
 ```bash
 {build}
 ```
+
+## Trusted Publishing Workflow
+
+Trigger: `{workflow_trigger}`
+
+Authentication: `{workflow_authentication}`
+
+Required environments: `{workflow_environments}`
+
+Required permission: `{workflow_permissions}`
+
+Manual confirmation phrase: `{manual_confirmation}`
+
+Post-publish reports:
+
+{post_publish_reports}
 
 ## TestPyPI
 
@@ -4986,6 +5018,12 @@ Pending smoke template: [package-index-smoke-template.json](../examples/adoption
         status=qmd_table(rows),
         preflight="\n".join(f"- `{item}`" for item in plan["preflight_checks"]),
         build="\n".join(plan["build_commands"]),
+        workflow_trigger=plan["trusted_publishing_workflow"]["trigger"],
+        workflow_authentication=plan["trusted_publishing_workflow"]["authentication"],
+        workflow_environments=", ".join(plan["trusted_publishing_workflow"]["environments"]),
+        workflow_permissions=", ".join(plan["trusted_publishing_workflow"]["required_permissions"]),
+        manual_confirmation=plan["trusted_publishing_workflow"]["manual_confirmation"],
+        post_publish_reports="\n".join(f"- `{item}`" for item in plan["trusted_publishing_workflow"]["post_publish_reports"]),
         test_human=str(plan["testpypi_upload"]["human_required"]).lower(),
         test_command=plan["testpypi_upload"]["command"],
         test_check=plan["testpypi_upload"]["post_upload_check"],

@@ -10,21 +10,22 @@ This page records release-surface checks that sit outside prompt quality: packag
 
 Passed: `True`
 
-| Step                                   | Passed |
-| -------------------------------------- | ------ |
-| build wheel and sdist                  | True   |
-| create venv                            | True   |
-| install wheel                          | True   |
-| python -m pip show software-grimoire   | True   |
-| grimoire --help                        | True   |
-| grimoire-create-adoption-report --help | True   |
-| grimoire-check-adoption-intake --help  | True   |
-| grimoire-install-assets --help         | True   |
-| grimoire-run-bench --help              | True   |
-| grimoire-run-hardness-bench --help     | True   |
-| grimoire-import-hardness-run --help    | True   |
-| grimoire-check-package-index --help    | True   |
-| grimoire-check-canon-decision --help   | True   |
+| Step                                           | Passed |
+| ---------------------------------------------- | ------ |
+| build wheel and sdist                          | True   |
+| create venv                                    | True   |
+| install wheel                                  | True   |
+| python -m pip show software-grimoire           | True   |
+| grimoire --help                                | True   |
+| grimoire-create-adoption-report --help         | True   |
+| grimoire-check-adoption-intake --help          | True   |
+| grimoire-check-package-publish-workflow --help | True   |
+| grimoire-install-assets --help                 | True   |
+| grimoire-run-bench --help                      | True   |
+| grimoire-run-hardness-bench --help             | True   |
+| grimoire-import-hardness-run --help            | True   |
+| grimoire-check-package-index --help            | True   |
+| grimoire-check-canon-decision --help           | True   |
 
 Raw package report: [package-check.json](../examples/adoption/package-check.json)
 
