@@ -47,13 +47,16 @@ Implemented:
 - Surface comparison records that separate project-owned model transcripts from
   repository-owned deterministic graders.
 - Codex-owned measured weak-vs-repaired evaluation runs for all six field
-  spells: executable fixtures, planted ground truth, outcome scores,
-  reviewability scores, and three repetitions per variant.
+  spells across clean and trap tiers: executable fixtures, planted ground
+  truth, outcome scores, reviewability scores, and three repetitions per
+  variant where the surface matrix is complete.
 - Defensive jailbreak-resilience layer: adversarial promptcraft chapter,
   source-mapped reference page, warded spell fields, AI red-team loop, eight
   harmless fixtures, and 24 preserved Codex-owned bench runs.
-- Baseline-vs-warded jailbreak-resilience matrix using defanged fixtures and an
-  explicit project-owned evidence limitation.
+- Baseline-vs-warded jailbreak-resilience matrix using defanged fixtures on
+  Claude Code safe mode and Codex CLI default surfaces, with preserved prompts,
+  redacted transcripts, three repetitions per case/variant/surface cell, and
+  an explicit project-owned evidence limitation.
 - Ward-science seed with deterministic limb ablation over a defanged indirect
   injection shape, resistance/utility/audit/overrefusal scoring, and six
   additional defanged attack-shape designs.
@@ -77,9 +80,9 @@ Implemented:
   reviewer-supplied, or external-user report drafts without automatically
   counting them as external adoption.
 - Evidence taxonomy, calibration separation, real Claude Code second-surface
-  runs, model-produced artifact execution, real warded A/B runs, evidence
-  browser pages, public smoke checks, package install checks, and usage-earned
-  canon audit records.
+  runs, model-produced artifact execution, real cross-surface warded A/B runs,
+  evidence browser pages, public smoke checks, package install checks, and
+  usage-earned canon audit records.
 - Package-index release plan for TestPyPI/PyPI human upload, with preflight,
   build, upload, post-upload, and evidence-recording instructions that keep
   public package availability pending until a maintainer performs it.

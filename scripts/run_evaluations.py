@@ -169,7 +169,7 @@ def next_repetition(existing_runs: list[dict], surface: str, tier: str, variant:
         for run in existing_runs
         if run.get("surface") == surface and run.get("tier", "clean") == tier and run.get("variant") == variant
     ]
-    return (max(prior) if prior else 0) + requested_repetition
+    return (max(prior) if prior else 0) + 1
 
 
 def recompute_case_summary(results: dict) -> None:

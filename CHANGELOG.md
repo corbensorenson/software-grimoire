@@ -45,6 +45,19 @@
 - Added a ward-science seed with deterministic limb ablation, overrefusal-aware
   scoring, six additional defanged attack-shape designs, schema validation,
   generated reference/evidence pages, and smoke coverage.
+- Recorded the missing Codex trap-tier field-spell matrix: all six trap
+  fixtures now have three weak/repaired Codex repetitions with preserved
+  prompts, transcripts, reviewability scores, outcome markers, and per-cell
+  delta summaries.
+- Recorded the missing Codex baseline-versus-warded jailbreak A/B matrix:
+  all eight defanged attack shapes now have three baseline/warded Codex
+  repetitions alongside Claude Code safe-mode runs, with publication redaction
+  and baseline-only failures preserved.
+- Fixed appended field-spell evaluation repetition numbering so future
+  preserved runs advance sequentially.
+- Added append-mode coverage and validation for the real warded A/B runner so
+  future surface additions preserve existing evidence and keep repetition IDs
+  sequential.
 
 ## v3.0.0-evidence-package
 

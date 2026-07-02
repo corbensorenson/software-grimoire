@@ -6,7 +6,7 @@
       "kind": "codex",
       "label": "Codex CLI default model",
       "provenance": "project-owned",
-      "execution": "recorded transcript",
+      "execution": "local read-only CLI",
       "evidence_class": "project_owned_model_run"
     },
     "local-deterministic-grader": {
@@ -65,13 +65,14 @@
           ]
         },
         "codex-cli-default": {
-          "delta": "weak and repaired prompts tied on outcome checks",
-          "reviewability_delta": "repaired prompts scored 2.3 reviewability points higher on average",
+          "delta": "repaired prompts satisfied 0.7 more outcome checks on average",
+          "reviewability_delta": "repaired prompts scored 3.2 reviewability points higher on average",
           "evidence": "recorded transcripts and marker outcome scoring",
           "limitation": "model-surface evidence for the named local CLI/tool configuration; reviewability scoring remains secondary",
-          "run_count": 6,
+          "run_count": 12,
           "tiers": [
-            "clean"
+            "clean",
+            "trap"
           ],
           "cells": [
             {
@@ -85,6 +86,18 @@
               "weak_outcome_avg": 2.6666666666666665,
               "repaired_outcome_avg": 2.6666666666666665,
               "outcome_delta": 0.0
+            },
+            {
+              "surface": "codex-cli-default",
+              "tier": "trap",
+              "weak_runs": 3,
+              "repaired_runs": 3,
+              "weak_reviewability_avg": 6.333333333333333,
+              "repaired_reviewability_avg": 10.333333333333334,
+              "reviewability_delta": 4.000000000000001,
+              "weak_outcome_avg": 1.3333333333333333,
+              "repaired_outcome_avg": 2.6666666666666665,
+              "outcome_delta": 1.3333333333333333
             }
           ]
         },
@@ -138,13 +151,14 @@
           ]
         },
         "codex-cli-default": {
-          "delta": "weak and repaired prompts tied on outcome checks",
-          "reviewability_delta": "repaired prompts scored 1.0 reviewability points higher on average",
+          "delta": "repaired prompts satisfied 0.5 more outcome checks on average",
+          "reviewability_delta": "repaired prompts scored 3.3 reviewability points higher on average",
           "evidence": "recorded transcripts and marker outcome scoring",
           "limitation": "model-surface evidence for the named local CLI/tool configuration; reviewability scoring remains secondary",
-          "run_count": 6,
+          "run_count": 12,
           "tiers": [
-            "clean"
+            "clean",
+            "trap"
           ],
           "cells": [
             {
@@ -158,6 +172,18 @@
               "weak_outcome_avg": 3.0,
               "repaired_outcome_avg": 3.0,
               "outcome_delta": 0.0
+            },
+            {
+              "surface": "codex-cli-default",
+              "tier": "trap",
+              "weak_runs": 3,
+              "repaired_runs": 3,
+              "weak_reviewability_avg": 1.3333333333333333,
+              "repaired_reviewability_avg": 7.0,
+              "reviewability_delta": 5.666666666666667,
+              "weak_outcome_avg": 2.0,
+              "repaired_outcome_avg": 3.0,
+              "outcome_delta": 1.0
             }
           ]
         },
@@ -212,12 +238,13 @@
         },
         "codex-cli-default": {
           "delta": "weak and repaired prompts tied on outcome checks",
-          "reviewability_delta": "repaired prompts scored 3.3 reviewability points higher on average",
+          "reviewability_delta": "repaired prompts scored 3.0 reviewability points higher on average",
           "evidence": "recorded transcripts and marker outcome scoring",
           "limitation": "model-surface evidence for the named local CLI/tool configuration; reviewability scoring remains secondary",
-          "run_count": 6,
+          "run_count": 12,
           "tiers": [
-            "clean"
+            "clean",
+            "trap"
           ],
           "cells": [
             {
@@ -228,6 +255,18 @@
               "weak_reviewability_avg": 7.0,
               "repaired_reviewability_avg": 10.333333333333334,
               "reviewability_delta": 3.333333333333334,
+              "weak_outcome_avg": 3.0,
+              "repaired_outcome_avg": 3.0,
+              "outcome_delta": 0.0
+            },
+            {
+              "surface": "codex-cli-default",
+              "tier": "trap",
+              "weak_runs": 3,
+              "repaired_runs": 3,
+              "weak_reviewability_avg": 7.0,
+              "repaired_reviewability_avg": 9.666666666666666,
+              "reviewability_delta": 2.666666666666666,
               "weak_outcome_avg": 3.0,
               "repaired_outcome_avg": 3.0,
               "outcome_delta": 0.0
@@ -288,9 +327,10 @@
           "reviewability_delta": "repaired prompts scored 0.7 reviewability points higher on average",
           "evidence": "recorded transcripts and marker outcome scoring",
           "limitation": "model-surface evidence for the named local CLI/tool configuration; reviewability scoring remains secondary",
-          "run_count": 6,
+          "run_count": 12,
           "tiers": [
-            "clean"
+            "clean",
+            "trap"
           ],
           "cells": [
             {
@@ -301,6 +341,18 @@
               "weak_reviewability_avg": 8.666666666666666,
               "repaired_reviewability_avg": 9.333333333333334,
               "reviewability_delta": 0.6666666666666679,
+              "weak_outcome_avg": 3.0,
+              "repaired_outcome_avg": 3.0,
+              "outcome_delta": 0.0
+            },
+            {
+              "surface": "codex-cli-default",
+              "tier": "trap",
+              "weak_runs": 3,
+              "repaired_runs": 3,
+              "weak_reviewability_avg": 8.333333333333334,
+              "repaired_reviewability_avg": 9.0,
+              "reviewability_delta": 0.6666666666666661,
               "weak_outcome_avg": 3.0,
               "repaired_outcome_avg": 3.0,
               "outcome_delta": 0.0
@@ -357,13 +409,14 @@
           ]
         },
         "codex-cli-default": {
-          "delta": "repaired prompts satisfied 0.3 more outcome checks on average",
-          "reviewability_delta": "repaired prompts scored 2.3 reviewability points higher on average",
+          "delta": "repaired prompts satisfied 0.2 more outcome checks on average",
+          "reviewability_delta": "repaired prompts scored 2.7 reviewability points higher on average",
           "evidence": "recorded transcripts and marker outcome scoring",
           "limitation": "model-surface evidence for the named local CLI/tool configuration; reviewability scoring remains secondary",
-          "run_count": 6,
+          "run_count": 12,
           "tiers": [
-            "clean"
+            "clean",
+            "trap"
           ],
           "cells": [
             {
@@ -377,6 +430,18 @@
               "weak_outcome_avg": 2.6666666666666665,
               "repaired_outcome_avg": 3.0,
               "outcome_delta": 0.3333333333333335
+            },
+            {
+              "surface": "codex-cli-default",
+              "tier": "trap",
+              "weak_runs": 3,
+              "repaired_runs": 3,
+              "weak_reviewability_avg": 6.0,
+              "repaired_reviewability_avg": 9.0,
+              "reviewability_delta": 3.0,
+              "weak_outcome_avg": 3.0,
+              "repaired_outcome_avg": 3.0,
+              "outcome_delta": 0.0
             }
           ]
         },
@@ -430,13 +495,14 @@
           ]
         },
         "codex-cli-default": {
-          "delta": "weak and repaired prompts tied on outcome checks",
-          "reviewability_delta": "repaired prompts scored 2.3 reviewability points higher on average",
+          "delta": "repaired prompts satisfied 0.2 more outcome checks on average",
+          "reviewability_delta": "repaired prompts scored 3.7 reviewability points higher on average",
           "evidence": "recorded transcripts and marker outcome scoring",
           "limitation": "model-surface evidence for the named local CLI/tool configuration; reviewability scoring remains secondary",
-          "run_count": 6,
+          "run_count": 12,
           "tiers": [
-            "clean"
+            "clean",
+            "trap"
           ],
           "cells": [
             {
@@ -450,6 +516,18 @@
               "weak_outcome_avg": 3.0,
               "repaired_outcome_avg": 3.0,
               "outcome_delta": 0.0
+            },
+            {
+              "surface": "codex-cli-default",
+              "tier": "trap",
+              "weak_runs": 3,
+              "repaired_runs": 3,
+              "weak_reviewability_avg": 6.0,
+              "repaired_reviewability_avg": 11.0,
+              "reviewability_delta": 5.0,
+              "weak_outcome_avg": 2.6666666666666665,
+              "repaired_outcome_avg": 3.0,
+              "outcome_delta": 0.3333333333333335
             }
           ]
         },

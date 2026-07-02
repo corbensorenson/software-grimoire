@@ -10,7 +10,7 @@ title: "API Design Without Hidden Compatibility Traps"
 
 **Observed outcome delta:** weak and repaired prompts tied on outcome checks
 
-**Observed reviewability delta:** repaired prompts scored 3.0 reviewability points higher on average
+**Observed reviewability delta:** repaired prompts scored 2.9 reviewability points higher on average
 
 **Input context:** The fixture describes a public billing API that must remain compatible with slow-upgrading clients.
 
@@ -35,6 +35,7 @@ Ground truth:
 | claude-code-safe  | clean | 1      | 1          | 7.0                | 9.0                    | 2.0                 | 3.0          | 3.0              | 0.0           |
 | claude-code-safe  | trap  | 1      | 1          | 5.0                | 8.0                    | 3.0                 | 3.0          | 3.0              | 0.0           |
 | codex-cli-default | clean | 3      | 3          | 7.0                | 10.3                   | 3.3                 | 3.0          | 3.0              | 0.0           |
+| codex-cli-default | trap  | 3      | 3          | 7.0                | 9.7                    | 2.7                 | 3.0          | 3.0              | 0.0           |
 
 ## Scores
 
@@ -50,6 +51,12 @@ Ground truth:
 | claude-code-safe  | clean | repaired | 1   | 2        | 0         | 2      | 1      | 2       | 2           | 9             | 3       |
 | claude-code-safe  | trap  | weak     | 1   | 2        | 0         | 2      | 0      | 1       | 0           | 5             | 3       |
 | claude-code-safe  | trap  | repaired | 1   | 2        | 0         | 2      | 1      | 2       | 1           | 8             | 3       |
+| codex-cli-default | trap  | weak     | 1   | 2        | 2         | 2      | 0      | 1       | 1           | 8             | 3       |
+| codex-cli-default | trap  | repaired | 1   | 2        | 1         | 2      | 0      | 2       | 2           | 9             | 3       |
+| codex-cli-default | trap  | weak     | 2   | 1        | 1         | 2      | 0      | 1       | 1           | 6             | 3       |
+| codex-cli-default | trap  | repaired | 2   | 2        | 1         | 2      | 0      | 2       | 2           | 9             | 3       |
+| codex-cli-default | trap  | weak     | 3   | 2        | 1         | 2      | 0      | 1       | 1           | 7             | 3       |
+| codex-cli-default | trap  | repaired | 3   | 2        | 1         | 2      | 2      | 2       | 2           | 11            | 3       |
 
 ## Transcripts
 
@@ -1063,4 +1070,669 @@ Use cursor-based pagination only. Offset pagination is banned — it creates pha
 - Removing or renaming fields requires `/v2/` with a **minimum 12-month v1 sunset window** — slow mobile upgrade cadence demands this.
 - v1 and v2 run simultaneously behind the same gateway; both write to the same PostgreSQL schema using views to isolate breaking changes.
 - Deprecation communicated via `Deprecation` and `Sunset` response headers on every v1 response once sunset is announced.
+```
+
+### codex-cli-default - weak r1
+
+- Surface label: Codex CLI default model
+- Run timestamp: `2026-07-02T12:53:07.206640+00:00`
+- Prompt file: [examples/evaluations/runs/codex-cli-default/api-design/trap/r01-weak-prompt.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/api-design/trap/r01-weak-prompt.md)
+- Transcript file: [examples/evaluations/runs/codex-cli-default/api-design/trap/r01-weak-output.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/api-design/trap/r01-weak-output.md)
+- Reviewability total: 8
+- Outcome total: 3
+- Evaluator notes: Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.
+
+```text
+Missing details: billing model, pricing units, tax rules, currencies, payment provider, auth scheme, tenant model, invoice lifecycle, and compliance requirements. Below is a compatibility-safe billing API shape.
+
+**Core Principles**
+
+- All mutating requests support `Idempotency-Key`.
+- Retries with the same key must return the original result, including success or failure.
+- Error responses use one stable envelope across all endpoints.
+- API versioning is explicit: `/v1/...`.
+- New fields may be added, but existing fields and error codes are not removed or retyped.
+
+**Endpoints**
+
+```http
+POST /v1/customers
+POST /v1/subscriptions
+GET  /v1/subscriptions/{subscription_id}
+POST /v1/subscriptions/{subscription_id}/cancel
+POST /v1/invoices
+GET  /v1/invoices/{invoice_id}
+POST /v1/invoices/{invoice_id}/pay
+GET  /v1/payments/{payment_id}
+```
+
+**Idempotency Contract**
+
+Required for all `POST` requests:
+
+```http
+Idempotency-Key: 7f8c9b6e-...
+```
+
+Behavior:
+
+- Same key + same request body returns the same response.
+- Same key + different request body returns `409 idempotency_key_conflict`.
+- Keys are scoped to account/tenant and endpoint.
+- Server stores the final response envelope for replay.
+- Clients may safely retry on network failures, `408`, `409` idempotency conflict only after correction, `429`, and `5xx`.
+
+**Stable Error Envelope**
+
+```json
+{
+  "error": {
+    "code": "payment_declined",
+    "message": "Payment was declined.",
+    "request_id": "req_123",
+    "retryable": false,
+    "details": {
+      "invoice_id": "inv_123"
+    }
+  }
+}
+```
+
+Required fields are always present: `error.code`, `error.message`, `error.request_id`, `error.retryable`.
+
+Error codes are stable API contract values, for example:
+
+- `invalid_request`
+- `not_found`
+- `authentication_failed`
+- `authorization_failed`
+- `idempotency_key_conflict`
+- `payment_declined`
+- `invoice_already_paid`
+- `rate_limited`
+- `internal_error`
+
+**Example: Pay Invoice**
+
+```http
+POST /v1/invoices/inv_123/pay
+Idempotency-Key: pay-inv-123-attempt-1
+```
+
+```json
+{
+  "payment_method_id": "pm_123"
+}
+```
+
+Success:
+
+```json
+{
+  "payment": {
+    "id": "pay_123",
+    "invoice_id": "inv_123",
+    "status": "succeeded"
+  }
+}
+```
+
+This design preserves retry safety and keeps clients insulated from breaking changes through explicit idempotency and stable error envelopes.
+```
+
+### codex-cli-default - repaired r1
+
+- Surface label: Codex CLI default model
+- Run timestamp: `2026-07-02T12:53:30.570021+00:00`
+- Prompt file: [examples/evaluations/runs/codex-cli-default/api-design/trap/r01-repaired-prompt.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/api-design/trap/r01-repaired-prompt.md)
+- Transcript file: [examples/evaluations/runs/codex-cli-default/api-design/trap/r01-repaired-output.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/api-design/trap/r01-repaired-output.md)
+- Reviewability total: 9
+- Outcome total: 3
+- Evaluator notes: Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.
+
+```text
+**Assumptions**
+
+Billing resources are tenant-scoped. Invoices are created by backend/admin clients, payment attempts charge an invoice, and refunds target a successful payment attempt. Currency is ISO-4217 minor units.
+
+**Endpoint Table**
+
+| Method | Path | Purpose |
+|---|---|---|
+| `GET` | `/v1/invoices` | List invoices, paginated |
+| `POST` | `/v1/invoices` | Create invoice |
+| `GET` | `/v1/invoices/{invoice_id}` | Fetch invoice |
+| `POST` | `/v1/invoices/{invoice_id}/payment_attempts` | Attempt payment |
+| `GET` | `/v1/payment_attempts/{attempt_id}` | Fetch payment attempt |
+| `POST` | `/v1/payment_attempts/{attempt_id}/refunds` | Create refund |
+| `GET` | `/v1/refunds/{refund_id}` | Fetch refund |
+
+Pagination: `?limit=50&starting_after=inv_123`. Responses include:
+
+```json
+{
+  "data": [],
+  "has_more": false,
+  "next_cursor": null
+}
+```
+
+**Create Invoice**
+
+```http
+POST /v1/invoices
+Authorization: Bearer <token>
+Idempotency-Key: 4f0b6b8a-...
+Content-Type: application/json
+```
+
+```json
+{
+  "customer_id": "cus_123",
+  "currency": "usd",
+  "amount_due": 2500,
+  "metadata": { "order_id": "ord_456" }
+}
+```
+
+```json
+{
+  "id": "inv_123",
+  "object": "invoice",
+  "status": "open",
+  "currency": "usd",
+  "amount_due": 2500,
+  "amount_paid": 0,
+  "created_at": "2026-07-02T15:04:05Z"
+}
+```
+
+**Payment Attempt**
+
+```json
+{
+  "payment_method_id": "pm_123",
+  "amount": 2500
+}
+```
+
+Response:
+
+```json
+{
+  "id": "pa_123",
+  "object": "payment_attempt",
+  "invoice_id": "inv_123",
+  "status": "succeeded",
+  "amount": 2500
+}
+```
+
+**Stable Error Envelope**
+
+Never change this shape in `/v1`; only add optional fields.
+
+```json
+{
+  "error": {
+    "type": "invalid_request",
+    "code": "invoice_not_open",
+    "message": "Invoice is not open.",
+    "param": "invoice_id",
+    "request_id": "req_123"
+  }
+}
+```
+
+**Auth Notes**
+
+Use OAuth bearer tokens. Require scopes such as `billing:read`, `billing:write`, and tenant isolation from token claims. Return `401` for invalid tokens, `403` for insufficient scope.
+
+**Idempotency Notes**
+
+All unsafe writes require `Idempotency-Key`. Store key, tenant, method, path, request hash, status, and response body in PostgreSQL. Replaying the same key returns the original response, including `4xx` validation errors. Same key with different body returns `409 idempotency_key_conflict`. Keys expire after a documented window, e.g. 24 hours.
+
+**Migration / Versioning**
+
+Use path versions: `/v1`, `/v2`. In `/v1`, do not rename fields, remove fields, change enum meanings, or change error envelopes. Additive fields are allowed. New breaking behavior ships under `/v2`.
+
+**Risks**
+
+Race conditions: concurrent payment attempts can double-charge unless invoice payment is guarded by row locks or unique constraints on successful payment per invoice.
+
+Retry hazards: clients may retry after timeout while the charge succeeded. Idempotency must return the original successful result.
+
+Compatibility risks: mobile clients upgrade slowly, so error codes, enum values, pagination shape, timestamps, and id formats must remain stable in `/v1`.
+```
+
+### codex-cli-default - weak r2
+
+- Surface label: Codex CLI default model
+- Run timestamp: `2026-07-02T12:53:54.228848+00:00`
+- Prompt file: [examples/evaluations/runs/codex-cli-default/api-design/trap/r02-weak-prompt.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/api-design/trap/r02-weak-prompt.md)
+- Transcript file: [examples/evaluations/runs/codex-cli-default/api-design/trap/r02-weak-output.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/api-design/trap/r02-weak-output.md)
+- Reviewability total: 6
+- Outcome total: 3
+- Evaluator notes: Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.
+
+```text
+Missing specifics: billing model, currencies, taxes, discounts, proration, payment processor, auth/tenant model, retry window, and webhook needs.
+
+A compatibility-safe REST shape:
+
+**Core Contract**
+- Base path: `/v1`
+- Auth: bearer token or service token, exact scheme TBD.
+- All mutating requests require `Idempotency-Key`.
+- Reusing the same key with the same payload returns the original status/body.
+- Reusing the same key with a different payload returns a stable conflict error.
+- Error response envelope is never changed incompatibly.
+
+**Stable Error Envelope**
+```json
+{
+  "error": {
+    "code": "invoice_not_found",
+    "type": "not_found",
+    "message": "Invoice was not found.",
+    "request_id": "req_123",
+    "details": {}
+  }
+}
+```
+
+**Resources**
+```http
+POST /v1/customers
+GET /v1/customers/{customer_id}
+
+POST /v1/invoices
+GET /v1/invoices/{invoice_id}
+POST /v1/invoices/{invoice_id}/finalize
+POST /v1/invoices/{invoice_id}/void
+
+POST /v1/payments
+GET /v1/payments/{payment_id}
+POST /v1/payments/{payment_id}/refunds
+
+POST /v1/subscriptions
+GET /v1/subscriptions/{subscription_id}
+PATCH /v1/subscriptions/{subscription_id}
+POST /v1/subscriptions/{subscription_id}/cancel
+```
+
+**Example Mutating Request**
+```http
+POST /v1/payments
+Idempotency-Key: pay_2026_07_02_order_123
+Content-Type: application/json
+```
+
+```json
+{
+  "customer_id": "cus_123",
+  "invoice_id": "inv_123",
+  "amount": 5000,
+  "currency": "USD"
+}
+```
+
+**Compatibility Rules**
+- Existing fields are never renamed, removed, or given new meanings.
+- New fields are additive and optional.
+- Enum expansion is versioned or explicitly documented because clients may switch on values.
+- Retryable failures use the same error envelope.
+- `5xx`, `429`, and network failures are safe to retry with the same `Idempotency-Key`.
+- Webhook/event delivery, if added, must also be idempotent and include stable event IDs.
+
+This is intentionally conservative: billing clients often retry aggressively, so idempotency and stable errors are part of the API contract, not implementation details.
+```
+
+### codex-cli-default - repaired r2
+
+- Surface label: Codex CLI default model
+- Run timestamp: `2026-07-02T12:54:25.519006+00:00`
+- Prompt file: [examples/evaluations/runs/codex-cli-default/api-design/trap/r02-repaired-prompt.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/api-design/trap/r02-repaired-prompt.md)
+- Transcript file: [examples/evaluations/runs/codex-cli-default/api-design/trap/r02-repaired-output.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/api-design/trap/r02-repaired-output.md)
+- Reviewability total: 9
+- Outcome total: 3
+- Evaluator notes: Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.
+
+```text
+**Assumptions**
+
+Invoices belong to an account/customer already modeled elsewhere. Payment attempts charge an invoice through a payment provider. Refunds apply only to succeeded payment attempts.
+
+**Endpoint Table**
+
+| Method | Endpoint | Purpose |
+|---|---|---|
+| `GET` | `/v1/invoices?limit=50&cursor=...` | List invoices, newest first |
+| `GET` | `/v1/invoices/{invoice_id}` | Fetch invoice |
+| `GET` | `/v1/invoices/{invoice_id}/payment_attempts` | List attempts |
+| `POST` | `/v1/invoices/{invoice_id}/payment_attempts` | Create payment attempt |
+| `GET` | `/v1/payment_attempts/{attempt_id}` | Fetch attempt |
+| `POST` | `/v1/payment_attempts/{attempt_id}/refunds` | Create refund |
+| `GET` | `/v1/payment_attempts/{attempt_id}/refunds` | List refunds |
+| `GET` | `/v1/refunds/{refund_id}` | Fetch refund |
+
+**Pagination**
+
+```json
+{
+  "data": [{ "id": "inv_123", "status": "open", "amount_due": 2500, "currency": "USD" }],
+  "page": {
+    "limit": 50,
+    "next_cursor": "eyJpZCI6Imludl8xMjMifQ"
+  }
+}
+```
+
+Use opaque cursor pagination. Never expose offset as the primary contract.
+
+**Create Payment Attempt**
+
+Request:
+
+```http
+POST /v1/invoices/inv_123/payment_attempts
+Authorization: Bearer token
+Idempotency-Key: 1db7b39e-6f0d-4b2d-bc85-9d1df5a7c111
+Content-Type: application/json
+```
+
+```json
+{
+  "payment_method_id": "pm_456",
+  "amount": 2500,
+  "currency": "USD"
+}
+```
+
+Response:
+
+```json
+{
+  "id": "pa_789",
+  "invoice_id": "inv_123",
+  "status": "succeeded",
+  "amount": 2500,
+  "currency": "USD",
+  "created_at": "2026-07-02T15:04:05Z"
+}
+```
+
+**Create Refund**
+
+```json
+{
+  "amount": 1000,
+  "reason": "customer_request"
+}
+```
+
+```json
+{
+  "id": "rf_123",
+  "payment_attempt_id": "pa_789",
+  "status": "succeeded",
+  "amount": 1000,
+  "currency": "USD"
+}
+```
+
+**Stable Error Schema**
+
+All errors use the same envelope across versions:
+
+```json
+{
+  "error": {
+    "code": "invoice_not_payable",
+    "message": "Invoice cannot be paid in its current state.",
+    "details": {
+      "invoice_id": "inv_123",
+      "status": "void"
+    },
+    "request_id": "req_abc",
+    "doc_url": "https://api.example.com/docs/errors#invoice_not_payable"
+  }
+}
+```
+
+Do not rename `error.code`, `message`, `details`, or `request_id`.
+
+**Auth Notes**
+
+Use OAuth 2.0 bearer tokens. Required scopes: `billing.invoices.read`, `billing.payments.write`, `billing.refunds.write`. Authorize every resource by tenant/account ownership, not only by token validity.
+
+**Idempotency Notes**
+
+Require `Idempotency-Key` for all `POST` endpoints. Scope keys by tenant, method, path, and authenticated client. Store request hash and final response status/body in PostgreSQL. Retrying the same key with the same body returns the original response. Same key with different body returns `409 idempotency_key_reused`. Concurrent duplicate requests return `409 idempotency_in_progress` plus `Retry-After`.
+
+Use unique constraints on idempotency records and provider transaction IDs.
+
+**Migration / Versioning Notes**
+
+Use `/v1`. Additive fields are allowed. Never remove or rename fields in `v1`. Avoid changing enum meanings. New enum values are compatibility risks for slow mobile clients, so prefer feature-gated rollout or documented `unknown` handling.
+
+Breaking changes require `/v2`, parallel operation, migration docs, and long deprecation windows.
+
+**Verification Risks**
+
+Race conditions: double payment attempts, over-refunds, invoice state changes during payment. Use row locks or serializable transactions around invoice payment and refund totals.
+
+Retry hazards: network timeout after provider charge but before client response. Persist idempotency state before external charge and reconcile by provider idempotency key.
+
+Compatibility risks: changing error envelopes, pagination shape, status meanings, or required request fields will break old clients.
+```
+
+### codex-cli-default - weak r3
+
+- Surface label: Codex CLI default model
+- Run timestamp: `2026-07-02T12:54:48.720193+00:00`
+- Prompt file: [examples/evaluations/runs/codex-cli-default/api-design/trap/r03-weak-prompt.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/api-design/trap/r03-weak-prompt.md)
+- Transcript file: [examples/evaluations/runs/codex-cli-default/api-design/trap/r03-weak-output.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/api-design/trap/r03-weak-output.md)
+- Reviewability total: 7
+- Outcome total: 3
+- Evaluator notes: Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.
+
+```text
+Missing requirements: billing model, authentication, currencies, tax rules, payment provider, retry window, webhook needs, and compliance constraints.
+
+A safe API shape should make compatibility explicit:
+
+```http
+POST /v1/billing/accounts
+GET  /v1/billing/accounts/{account_id}
+
+POST /v1/billing/invoices
+GET  /v1/billing/invoices/{invoice_id}
+POST /v1/billing/invoices/{invoice_id}/finalize
+POST /v1/billing/invoices/{invoice_id}/void
+
+POST /v1/billing/payments
+GET  /v1/billing/payments/{payment_id}
+
+POST /v1/billing/refunds
+GET  /v1/billing/refunds/{refund_id}
+```
+
+All mutation endpoints must support idempotent retries:
+
+```http
+Idempotency-Key: client-generated-unique-key
+```
+
+Semantics:
+
+- Same key + same authenticated client + same method + same path + same body returns the original response, including status and body.
+- Same key with a different body returns `409 idempotency_key_reused`.
+- Idempotency records must live at least as long as the documented client retry window.
+- Clients can safely retry `POST` requests after timeouts or `5xx` responses.
+- Server-generated side effects must happen at most once per accepted idempotency key.
+
+Stable error envelope:
+
+```json
+{
+  "error": {
+    "code": "invalid_request",
+    "message": "Amount must be greater than zero.",
+    "param": "amount",
+    "request_id": "req_123",
+    "type": "validation_error"
+  }
+}
+```
+
+Compatibility rules:
+
+- Never remove or rename response fields in `/v1`.
+- Additive fields are allowed.
+- Error `code` values are stable API contract, not free-form strings.
+- Clients should branch on `error.code`, not `message`.
+- Deprecated fields remain until a new major version.
+- Every response includes a request ID.
+- Money amounts use integer minor units plus explicit currency, for example `{ "amount": 1299, "currency": "USD" }`.
+
+Example payment request:
+
+```json
+{
+  "account_id": "acct_123",
+  "invoice_id": "inv_123",
+  "amount": 1299,
+  "currency": "USD"
+}
+```
+
+Example response:
+
+```json
+{
+  "id": "pay_123",
+  "status": "succeeded",
+  "amount": 1299,
+  "currency": "USD",
+  "invoice_id": "inv_123"
+}
+```
+```
+
+### codex-cli-default - repaired r3
+
+- Surface label: Codex CLI default model
+- Run timestamp: `2026-07-02T12:55:18.794149+00:00`
+- Prompt file: [examples/evaluations/runs/codex-cli-default/api-design/trap/r03-repaired-prompt.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/api-design/trap/r03-repaired-prompt.md)
+- Transcript file: [examples/evaluations/runs/codex-cli-default/api-design/trap/r03-repaired-output.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/api-design/trap/r03-repaired-output.md)
+- Reviewability total: 11
+- Outcome total: 3
+- Evaluator notes: Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.
+
+```text
+**Assumptions**
+
+Invoices belong to an authenticated tenant/account. Money is stored in minor units with ISO currency. Payment attempts charge an invoice. Refunds apply to successful payment attempts.
+
+**Endpoint Table**
+
+| Method | Path | Purpose |
+|---|---|---|
+| `GET` | `/v1/invoices` | List invoices with cursor pagination |
+| `POST` | `/v1/invoices` | Create draft invoice |
+| `GET` | `/v1/invoices/{invoice_id}` | Fetch invoice |
+| `POST` | `/v1/invoices/{invoice_id}/finalize` | Finalize invoice |
+| `GET` | `/v1/payment_attempts` | List payment attempts |
+| `POST` | `/v1/payment_attempts` | Attempt payment for invoice |
+| `GET` | `/v1/payment_attempts/{attempt_id}` | Fetch attempt |
+| `GET` | `/v1/refunds` | List refunds |
+| `POST` | `/v1/refunds` | Create refund |
+| `GET` | `/v1/refunds/{refund_id}` | Fetch refund |
+
+**Examples**
+
+Create payment attempt:
+
+```http
+POST /v1/payment_attempts
+Authorization: Bearer <token>
+Idempotency-Key: 9b7c1f1a-7e9a-4c0d-bdf0-7e3c8b5b8c22
+Content-Type: application/json
+```
+
+```json
+{
+  "invoice_id": "inv_123",
+  "amount": 2500,
+  "currency": "USD",
+  "payment_method_id": "pm_456"
+}
+```
+
+```json
+{
+  "id": "pa_789",
+  "invoice_id": "inv_123",
+  "status": "succeeded",
+  "amount": 2500,
+  "currency": "USD",
+  "created_at": "2026-07-02T18:30:00Z"
+}
+```
+
+List response:
+
+```json
+{
+  "data": [
+    {
+      "id": "inv_123",
+      "status": "open",
+      "amount_due": 2500,
+      "currency": "USD"
+    }
+  ],
+  "pagination": {
+    "next_cursor": "eyJpZCI6Imludl8xMjMifQ",
+    "has_more": true
+  }
+}
+```
+
+Stable error envelope:
+
+```json
+{
+  "error": {
+    "code": "idempotency_key_conflict",
+    "message": "Idempotency key was reused with a different request body.",
+    "request_id": "req_abc",
+    "field": null,
+    "retryable": false
+  }
+}
+```
+
+**Auth Notes**
+
+Use OAuth bearer tokens. Required scopes: `billing:read`, `billing:write`, `payments:write`, `refunds:write`. Enforce tenant isolation on every query using tenant/account ID from the token, never from client input.
+
+**Idempotency Notes**
+
+All mutating `POST` endpoints require `Idempotency-Key`. Store `(tenant_id, method, path, key, request_hash, response_status, response_body)` in PostgreSQL. Same key plus same request returns the original response, including errors. Same key with different body returns `409 idempotency_key_conflict`.
+
+For in-flight duplicates, either block until the first request completes or return `409 idempotency_in_progress` with `retryable: true`. Never create a second charge/refund after a client timeout.
+
+**Migration / Versioning Notes**
+
+Use `/v1`. Backward-compatible changes are additive only: new nullable fields, new endpoints, new enum values only if clients are documented to ignore unknowns. Do not change existing field meanings, error shape, pagination shape, or idempotency behavior. Breaking changes require `/v2` and long deprecation windows because clients upgrade slowly.
+
+**Verification Risks**
+
+Race conditions: double payment attempts for one invoice, refund total exceeding captured amount, and concurrent finalize/pay flows. Use transactions, row locks, unique constraints, and refund-sum checks.
+
+Retry hazards: network timeout after successful charge, provider webhook arriving before API response, duplicate mobile retries.
+
+Compatibility risks: changing error codes, removing fields, changing cursor format, shortening idempotency retention, or returning a different response for repeated idempotent requests.
 ```

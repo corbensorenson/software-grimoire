@@ -8,9 +8,9 @@ title: "Test Generation Without Overfitting To Implementation"
 
 **Fixture:** [examples/evaluations/fixtures/test-generation](https://github.com/corbensorenson/software-grimoire/tree/main/examples/evaluations/fixtures/test-generation)
 
-**Observed outcome delta:** repaired prompts satisfied 0.6 more outcome checks on average
+**Observed outcome delta:** repaired prompts satisfied 0.4 more outcome checks on average
 
-**Observed reviewability delta:** repaired prompts scored 2.0 reviewability points higher on average
+**Observed reviewability delta:** repaired prompts scored 2.4 reviewability points higher on average
 
 **Input context:** The fixture is a small pricing function with behavior that should be inferred from code and docstring.
 
@@ -34,6 +34,7 @@ Ground truth:
 | claude-code-safe  | clean | 1      | 1          | 8.0                | 6.0                    | -2.0                | 3.0          | 3.0              | 0.0           |
 | claude-code-safe  | trap  | 1      | 1          | 4.0                | 9.0                    | 5.0                 | 1.0          | 3.0              | 2.0           |
 | codex-cli-default | clean | 3      | 3          | 5.0                | 7.3                    | 2.3                 | 2.7          | 3.0              | 0.3           |
+| codex-cli-default | trap  | 3      | 3          | 6.0                | 9.0                    | 3.0                 | 3.0          | 3.0              | 0.0           |
 
 ## Scores
 
@@ -49,6 +50,12 @@ Ground truth:
 | claude-code-safe  | clean | repaired | 1   | 2        | 0         | 0      | 1      | 1       | 2           | 6             | 3       |
 | claude-code-safe  | trap  | weak     | 1   | 2        | 0         | 0      | 1      | 1       | 0           | 4             | 1       |
 | claude-code-safe  | trap  | repaired | 1   | 2        | 0         | 2      | 1      | 2       | 2           | 9             | 3       |
+| codex-cli-default | trap  | weak     | 1   | 2        | 0         | 2      | 1      | 0       | 2           | 7             | 3       |
+| codex-cli-default | trap  | repaired | 1   | 2        | 0         | 2      | 1      | 1       | 1           | 7             | 3       |
+| codex-cli-default | trap  | weak     | 2   | 2        | 0         | 1      | 1      | 0       | 1           | 5             | 3       |
+| codex-cli-default | trap  | repaired | 2   | 2        | 1         | 2      | 1      | 2       | 2           | 10            | 3       |
+| codex-cli-default | trap  | weak     | 3   | 2        | 0         | 2      | 1      | 0       | 1           | 6             | 3       |
+| codex-cli-default | trap  | repaired | 3   | 2        | 2         | 2      | 1      | 2       | 1           | 10            | 3       |
 
 ## Transcripts
 
@@ -769,4 +776,443 @@ def calculate_price(seats: int, coupon: str | None) -> float: ...
 ```
 
 Once the function is available, I can generate the full test file covering nominal, boundary (10 vs. 11 seats), negative-seat rejection, coupon rejection, rounding, and regression cases as requested.
+```
+
+### codex-cli-default - weak r1
+
+- Surface label: Codex CLI default model
+- Run timestamp: `2026-07-02T12:58:55.182822+00:00`
+- Prompt file: [examples/evaluations/runs/codex-cli-default/test-generation/trap/r01-weak-prompt.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/test-generation/trap/r01-weak-prompt.md)
+- Transcript file: [examples/evaluations/runs/codex-cli-default/test-generation/trap/r01-weak-output.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/test-generation/trap/r01-weak-output.md)
+- Reviewability total: 7
+- Outcome total: 3
+- Evaluator notes: Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.
+
+```text
+I can’t write correct executable tests from the provided context alone. The missing pieces are:
+
+- Function source or signature
+- Module/import path
+- Test framework
+- Exact expected prices for 10 and 11 seats
+- Valid coupon names and rejected coupon behavior
+- Rounding rule and return type
+- Exception type/message for invalid seats or coupons
+
+From the trap description, the tests should cover these obligations:
+
+```python
+def test_rejects_negative_seats():
+    ...
+
+def test_rejects_unknown_coupon():
+    ...
+
+def test_rounds_price_to_expected_precision():
+    ...
+
+def test_no_discount_at_10_seats():
+    ...
+
+def test_discount_applies_at_11_seats():
+    ...
+
+def test_10_to_11_boundary_uses_correct_increment():
+    ...
+```
+
+Provide the function body or spec, and I can turn this into a concrete test file with exact assertions.
+```
+
+### codex-cli-default - repaired r1
+
+- Surface label: Codex CLI default model
+- Run timestamp: `2026-07-02T12:59:45.871369+00:00`
+- Prompt file: [examples/evaluations/runs/codex-cli-default/test-generation/trap/r01-repaired-prompt.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/test-generation/trap/r01-repaired-prompt.md)
+- Transcript file: [examples/evaluations/runs/codex-cli-default/test-generation/trap/r01-repaired-output.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/test-generation/trap/r01-repaired-output.md)
+- Reviewability total: 7
+- Outcome total: 3
+- Evaluator notes: Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.
+
+```text
+**Inferred Behaviors**
+
+`price_for(plan, seats, coupon=None)` returns a `Decimal` monthly price quantized to cents. Supported plans appear to be `free`, `team`, and `enterprise`. `team` changes pricing after 10 seats, so 10 and 11 are critical. `ANNUAL10` applies a 10% discount after base/tier pricing. Negative seats, unknown plans, and unknown coupons raise `ValueError`.
+
+**Ambiguities**
+
+Accepted non-integer `seats` types are not specified, so these tests avoid them. Unknown-plan behavior is treated as characterization because the public docs only imply supported plans.
+
+**Test File: `test_pricing.py`**
+
+```python
+from decimal import Decimal
+
+import pytest
+
+from pricing import price_for
+
+
+CENT = Decimal("0.01")
+
+
+def assert_money(actual, expected):
+    assert actual == Decimal(expected)
+    assert actual.same_quantum(CENT)
+
+
+@pytest.mark.parametrize(
+    ("plan", "seats", "expected"),
+    [
+        ("free", 0, "0.00"),
+        ("free", 11, "0.00"),
+        ("team", 0, "0.00"),
+        ("team", 1, "12.00"),
+        ("team", 10, "120.00"),
+        ("team", 11, "130.00"),
+        ("enterprise", 0, "99.00"),
+        ("enterprise", 1, "107.00"),
+    ],
+)
+def test_supported_plan_prices_and_seat_boundaries(plan, seats, expected):
+    assert_money(price_for(plan, seats), expected)
+
+
+def test_annual10_applies_after_team_tier_pricing_regression():
+    assert_money(price_for("team", 11, coupon="ANNUAL10"), "117.00")
+
+
+def test_annual10_returns_cent_quantized_money():
+    assert_money(price_for("enterprise", 1, coupon="ANNUAL10"), "96.30")
+
+
+@pytest.mark.parametrize(
+    ("plan", "seats", "coupon"),
+    [
+        ("team", -1, None),
+        ("team", 1, "BOGUS"),
+    ],
+)
+def test_invalid_seats_and_coupons_raise_value_error(plan, seats, coupon):
+    with pytest.raises(ValueError):
+        price_for(plan, seats, coupon=coupon)
+
+
+def test_unknown_plan_raises_value_error_characterization():
+    with pytest.raises(ValueError):
+        price_for("unknown", 1)
+```
+
+**Rationale**
+
+Nominal cases cover the observed public plans. Boundary cases focus on `0`, `1`, `10`, and `11`, especially the 10-to-11 team discount transition. Error cases cover negative seats and rejected coupons. The regression test locks discount ordering at the tier boundary, where happy-path tests commonly miss bugs.
+```
+
+### codex-cli-default - weak r2
+
+- Surface label: Codex CLI default model
+- Run timestamp: `2026-07-02T13:00:36.479190+00:00`
+- Prompt file: [examples/evaluations/runs/codex-cli-default/test-generation/trap/r02-weak-prompt.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/test-generation/trap/r02-weak-prompt.md)
+- Transcript file: [examples/evaluations/runs/codex-cli-default/test-generation/trap/r02-weak-output.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/test-generation/trap/r02-weak-output.md)
+- Reviewability total: 5
+- Outcome total: 3
+- Evaluator notes: Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.
+
+```text
+I can’t write the file in this read-only sandbox, but the test file should look like this:
+
+```python
+import pytest
+from decimal import Decimal
+
+from pricing import price_for
+
+
+@pytest.mark.parametrize(
+    ("plan", "seats", "coupon", "expected"),
+    [
+        ("free", 0, None, Decimal("0.00")),
+        ("free", 25, "ANNUAL10", Decimal("0.00")),
+        ("team", 0, None, Decimal("0.00")),
+        ("team", 1, None, Decimal("12.00")),
+        ("team", 10, None, Decimal("120.00")),
+        ("team", 11, None, Decimal("130.00")),
+        ("enterprise", 0, None, Decimal("99.00")),
+        ("enterprise", 1, None, Decimal("107.00")),
+        ("team", 10, "ANNUAL10", Decimal("108.00")),
+        ("team", 11, "ANNUAL10", Decimal("117.00")),
+        ("enterprise", 1, "ANNUAL10", Decimal("96.30")),
+    ],
+)
+def test_price_for_public_pricing_cases(plan, seats, coupon, expected):
+    assert price_for(plan, seats, coupon=coupon) == expected
+
+
+def test_team_discount_starts_after_ten_seats():
+    assert price_for("team", 10) == Decimal("120.00")
+    assert price_for("team", 11) == Decimal("130.00")
+    assert price_for("team", 11) - price_for("team", 10) == Decimal("10.00")
+
+
+@pytest.mark.parametrize("seats", [-1, -10])
+def test_negative_seats_raise_value_error(seats):
+    with pytest.raises(ValueError, match="seats"):
+        price_for("team", seats)
+
+
+@pytest.mark.parametrize("coupon", ["SAVE10", "", "annual10"])
+def test_unknown_coupons_raise_value_error(coupon):
+    with pytest.raises(ValueError, match="coupon"):
+        price_for("team", 1, coupon=coupon)
+
+
+def test_unknown_plan_raises_value_error():
+    with pytest.raises(ValueError, match="plan"):
+        price_for("pro", 1)
+
+
+def test_coupon_result_is_quantized_to_cents():
+    result = price_for("enterprise", 1, coupon="ANNUAL10")
+
+    assert result == Decimal("96.30")
+    assert result.same_quantum(Decimal("0.01"))
+```
+
+This covers the trap cases: negative seats, coupon rejection, cent quantization, and the 10-to-11 team discount boundary.
+```
+
+### codex-cli-default - repaired r2
+
+- Surface label: Codex CLI default model
+- Run timestamp: `2026-07-02T13:01:13.064715+00:00`
+- Prompt file: [examples/evaluations/runs/codex-cli-default/test-generation/trap/r02-repaired-prompt.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/test-generation/trap/r02-repaired-prompt.md)
+- Transcript file: [examples/evaluations/runs/codex-cli-default/test-generation/trap/r02-repaired-output.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/test-generation/trap/r02-repaired-output.md)
+- Reviewability total: 10
+- Outcome total: 3
+- Evaluator notes: Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.
+
+```text
+**Missing**
+Function name/import path, call signature, exact pricing table, valid coupon names, rejection mode, and rounding rule are not supplied. Below is a focused pytest file using a one-line adapter so only the import/call needs wiring.
+
+**Inferred Behaviors**
+- Seat count is an input and negative seats are invalid.
+- A discount boundary exists between `10` and `11` seats.
+- Coupons can be valid or rejected.
+- Monetary output must be rounded consistently.
+- Behavior at the 10-to-11 boundary is important enough to guard as regression risk.
+
+**Ambiguities**
+- Whether invalid input raises `ValueError`, returns an error object, or rejects another way.
+- Exact numeric prices and coupon values.
+- Rounding mode: half-up, bankers rounding, cents only, etc.
+
+**Test File**
+
+```python
+# tests/test_pricing_behavior.py
+import pytest
+
+# TODO: replace with the real import.
+# from app.pricing import calculate_total
+
+
+def price(seats, coupon=None):
+    """Adapter: update this only if the public API differs."""
+    return calculate_total(seats=seats, coupon=coupon)
+
+
+def assert_money(value):
+    assert isinstance(value, (int, float))
+    assert round(value, 2) == value
+
+
+@pytest.mark.parametrize("seats", [1, 2, 10])
+def test_nominal_seat_counts_return_non_negative_money(seats):
+    total = price(seats)
+
+    assert_money(total)
+    assert total >= 0
+
+
+def test_valid_coupon_reduces_or_preserves_total_without_invalidating_money():
+    without_coupon = price(3)
+    with_coupon = price(3, coupon="SAVE10")  # replace with documented valid coupon
+
+    assert_money(with_coupon)
+    assert with_coupon <= without_coupon
+
+
+@pytest.mark.parametrize("seats", [-1, -10])
+def test_negative_seats_are_rejected(seats):
+    with pytest.raises((ValueError, TypeError)):
+        price(seats)
+
+
+def test_unknown_coupon_is_rejected():
+    with pytest.raises((ValueError, TypeError)):
+        price(3, coupon="NOT_A_REAL_COUPON")
+
+
+def test_discount_boundary_changes_at_11_seats():
+    ten_total = price(10)
+    eleven_total = price(11)
+
+    assert_money(ten_total)
+    assert_money(eleven_total)
+
+    ten_unit = ten_total / 10
+    eleven_unit = eleven_total / 11
+
+    assert eleven_unit < ten_unit
+
+
+def test_rounding_regression_returns_two_decimal_money_for_fractional_case():
+    total = price(3, coupon="SAVE10")  # choose inputs known to produce fractional cents
+
+    assert_money(total)
+```
+
+**Rationale**
+Nominal tests cover ordinary valid usage without overfitting exact examples. Boundary coverage targets the 10-to-11 seat discount transition. Error tests cover negative seats and invalid coupons. The regression-style rounding test guards against returning unrounded fractional money, but its fixture values should be replaced with documented inputs that actually exercise fractional rounding.
+```
+
+### codex-cli-default - weak r3
+
+- Surface label: Codex CLI default model
+- Run timestamp: `2026-07-02T13:01:29.007473+00:00`
+- Prompt file: [examples/evaluations/runs/codex-cli-default/test-generation/trap/r03-weak-prompt.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/test-generation/trap/r03-weak-prompt.md)
+- Transcript file: [examples/evaluations/runs/codex-cli-default/test-generation/trap/r03-weak-output.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/test-generation/trap/r03-weak-output.md)
+- Reviewability total: 6
+- Outcome total: 3
+- Evaluator notes: Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.
+
+```text
+I can’t write executable tests from the provided context because the function itself is missing.
+
+What’s needed:
+
+- Language and test framework
+- Function name and signature
+- Expected return shape
+- Exact pricing rules
+- Coupon validation rules
+- Error behavior for invalid input
+- Rounding mode and precision
+- Discount rule at the `10` to `11` seat boundary
+
+Based on the trap context, the test suite should explicitly cover:
+
+- Rejecting negative seat counts
+- Rejecting invalid coupons
+- Correct rounding behavior
+- No bulk discount at exactly `10` seats
+- Bulk discount applying at `11` seats
+- Normal happy-path calculation
+
+Without those details, any concrete test code would require inventing behavior.
+```
+
+### codex-cli-default - repaired r3
+
+- Surface label: Codex CLI default model
+- Run timestamp: `2026-07-02T13:01:54.367245+00:00`
+- Prompt file: [examples/evaluations/runs/codex-cli-default/test-generation/trap/r03-repaired-prompt.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/test-generation/trap/r03-repaired-prompt.md)
+- Transcript file: [examples/evaluations/runs/codex-cli-default/test-generation/trap/r03-repaired-output.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/test-generation/trap/r03-repaired-output.md)
+- Reviewability total: 10
+- Outcome total: 3
+- Evaluator notes: Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.
+
+```text
+**Inferred Behaviors**
+
+Only these obligations are inferable from the supplied context:
+
+- Seat count must not allow negative values.
+- Coupon rejection is observable behavior and should be tested.
+- Monetary output likely involves rounding.
+- A discount boundary exists between `10` and `11` seats.
+- Tests should cover nominal, boundary, error, and regression-style behavior.
+
+**Ambiguities / Missing Inputs**
+
+I cannot generate an executable, accurate test file because the supplied function is missing:
+
+- Function name and module path
+- Signature and parameter names
+- Return type and shape
+- Valid coupon values and invalid coupon behavior
+- Pricing formula
+- Expected exception types/messages
+- Exact rounding rule
+- Exact discount rule at `10` vs `11` seats
+
+Because those facts are not provided, asserting exact prices or exceptions would invent behavior.
+
+**Test File**
+
+```python
+# test_pricing_behavior.py
+"""
+Characterization test scaffold.
+
+Replace:
+- `MODULE_UNDER_TEST`
+- `FUNCTION_UNDER_TEST`
+- expected return values
+- expected exception types
+
+with facts from the supplied function's public behavior.
+"""
+
+import pytest
+
+from MODULE_UNDER_TEST import FUNCTION_UNDER_TEST
+
+
+class TestPricingBehavior:
+    def test_nominal_quote_without_coupon(self):
+        """Nominal: valid positive seat count without coupon returns a stable public result."""
+        result = FUNCTION_UNDER_TEST(seats=1)
+
+        assert result == EXPECTED_ONE_SEAT_PRICE
+
+    def test_nominal_quote_with_accepted_coupon(self):
+        """Nominal: accepted coupon affects the observable quoted price."""
+        result = FUNCTION_UNDER_TEST(seats=5, coupon=VALID_COUPON)
+
+        assert result == EXPECTED_FIVE_SEAT_DISCOUNTED_PRICE
+
+    def test_negative_seats_are_rejected(self):
+        """Error: negative seats must not produce a quote."""
+        with pytest.raises(EXPECTED_EXCEPTION_TYPE):
+            FUNCTION_UNDER_TEST(seats=-1)
+
+    def test_invalid_coupon_is_rejected(self):
+        """Error: invalid coupons must not silently apply or be ignored if rejection is required."""
+        with pytest.raises(EXPECTED_EXCEPTION_TYPE):
+            FUNCTION_UNDER_TEST(seats=5, coupon=INVALID_COUPON)
+
+    def test_discount_boundary_at_ten_seats(self):
+        """Boundary: 10 seats should preserve pre-threshold pricing behavior."""
+        result = FUNCTION_UNDER_TEST(seats=10)
+
+        assert result == EXPECTED_TEN_SEAT_PRICE
+
+    def test_discount_boundary_at_eleven_seats(self):
+        """Boundary: 11 seats should exercise the post-threshold discount behavior."""
+        result = FUNCTION_UNDER_TEST(seats=11)
+
+        assert result == EXPECTED_ELEVEN_SEAT_PRICE
+
+    def test_rounding_regression(self):
+        """Regression-style: fractional monetary calculations round according to public behavior."""
+        result = FUNCTION_UNDER_TEST(seats=ROUNDING_TRIGGER_SEATS, coupon=ROUNDING_TRIGGER_COUPON)
+
+        assert result == EXPECTED_ROUNDED_PRICE
+```
+
+**Rationale**
+
+These groups directly target the planted failure modes: negative seats, coupon rejection, rounding, and the `10` to `11` discount boundary. Exact assertions must wait for the actual function contract.
 ```

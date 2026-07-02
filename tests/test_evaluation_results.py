@@ -83,3 +83,35 @@ def test_results_include_honest_non_perfect_outcomes() -> None:
         or case.get("observed_outcome_delta", "").startswith("weak prompts satisfied")
     ]
     assert non_perfect, "evaluation evidence should preserve ties and losses instead of requiring perfect wins"
+
+
+def test_codex_trap_tier_matrix_is_recorded() -> None:
+    results = load_results()
+    for slug, case in results["cases"].items():
+        for variant in {"weak", "repaired"}:
+            runs = [
+                run
+                for run in case["runs"]
+                if run["surface"] == "codex-cli-default"
+                and run.get("tier") == "trap"
+                and run["variant"] == variant
+            ]
+            assert len(runs) == 3, f"{slug} {variant}"
+            assert sorted(run["repetition"] for run in runs) == [1, 2, 3], f"{slug} {variant}"
+            for run in runs:
+                assert (ROOT / run["prompt_path"]).exists()
+                assert (ROOT / run["transcript_path"]).exists()
+                assert run["tool_version"].startswith("codex-cli")
+
+
+def test_append_repetition_ids_are_sequential() -> None:
+    from scripts.run_evaluations import next_repetition
+
+    runs: list[dict] = []
+    observed: list[int] = []
+    for _ in range(3):
+        repetition = next_repetition(runs, "codex-cli-default", "trap", "weak", 1, append=True)
+        observed.append(repetition)
+        runs.append({"surface": "codex-cli-default", "tier": "trap", "variant": "weak", "repetition": repetition})
+
+    assert observed == [1, 2, 3]

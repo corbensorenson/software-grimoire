@@ -8,9 +8,9 @@ title: "Refactor Without Breaking Behavior"
 
 **Fixture:** [examples/evaluations/fixtures/safe-refactoring](https://github.com/corbensorenson/software-grimoire/tree/main/examples/evaluations/fixtures/safe-refactoring)
 
-**Observed outcome delta:** repaired prompts satisfied 0.2 more outcome checks on average
+**Observed outcome delta:** repaired prompts satisfied 0.6 more outcome checks on average
 
-**Observed reviewability delta:** repaired prompts scored 3.0 reviewability points higher on average
+**Observed reviewability delta:** repaired prompts scored 3.4 reviewability points higher on average
 
 **Input context:** The fixture is a Python module at `examples/evaluations/fixtures/safe-refactoring/normalize_user.py`.
 
@@ -32,6 +32,7 @@ Use `python -m pytest examples/evaluations/fixtures/safe-refactoring/check_norma
 | claude-code-safe  | clean | 1      | 1          | 8.0                | 10.0                   | 2.0                 | 3.0          | 2.0              | -1.0          |
 | claude-code-safe  | trap  | 1      | 1          | 5.0                | 11.0                   | 6.0                 | 1.0          | 3.0              | 2.0           |
 | codex-cli-default | clean | 3      | 3          | 7.7                | 10.0                   | 2.3                 | 2.7          | 2.7              | 0.0           |
+| codex-cli-default | trap  | 3      | 3          | 6.3                | 10.3                   | 4.0                 | 1.3          | 2.7              | 1.3           |
 
 ## Scores
 
@@ -47,6 +48,12 @@ Use `python -m pytest examples/evaluations/fixtures/safe-refactoring/check_norma
 | claude-code-safe  | clean | repaired | 1   | 2        | 2         | 2      | 2      | 1       | 1           | 10            | 2       |
 | claude-code-safe  | trap  | weak     | 1   | 2        | 0         | 0      | 1      | 1       | 1           | 5             | 1       |
 | claude-code-safe  | trap  | repaired | 1   | 2        | 2         | 2      | 1      | 2       | 2           | 11            | 3       |
+| codex-cli-default | trap  | weak     | 1   | 1        | 1         | 1      | 0      | 1       | 1           | 5             | 1       |
+| codex-cli-default | trap  | repaired | 1   | 2        | 2         | 2      | 2      | 1       | 1           | 10            | 2       |
+| codex-cli-default | trap  | weak     | 2   | 2        | 2         | 0      | 1      | 1       | 2           | 8             | 1       |
+| codex-cli-default | trap  | repaired | 2   | 2        | 2         | 2      | 2      | 2       | 2           | 12            | 3       |
+| codex-cli-default | trap  | weak     | 3   | 1        | 1         | 1      | 1      | 1       | 1           | 6             | 2       |
+| codex-cli-default | trap  | repaired | 3   | 2        | 2         | 2      | 1      | 1       | 1           | 9             | 3       |
 
 ## Transcripts
 
@@ -939,4 +946,450 @@ Paste the module contents and I will produce:
 1. Minimal patch plan (which duplication to collapse and how)
 2. The refactored module
 3. Full test file covering happy path + the falsy-metadata invariants above
+```
+
+### codex-cli-default - weak r1
+
+- Surface label: Codex CLI default model
+- Run timestamp: `2026-07-02T12:45:37.522022+00:00`
+- Prompt file: [examples/evaluations/runs/codex-cli-default/safe-refactoring/trap/r01-weak-prompt.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/safe-refactoring/trap/r01-weak-prompt.md)
+- Transcript file: [examples/evaluations/runs/codex-cli-default/safe-refactoring/trap/r01-weak-output.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/safe-refactoring/trap/r01-weak-output.md)
+- Reviewability total: 5
+- Outcome total: 1
+- Evaluator notes: Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.
+
+```text
+I couldn’t write the file because this session is read-only, but the cleanup is straightforward: remove the truthiness filter so unknown metadata is preserved exactly.
+
+Patch for [normalize_user.py](/Users/corbensorenson/Documents/software%20grimoire/examples/evaluations/fixtures/safe-refactoring-trap/normalize_user.py):
+
+```python
+def normalize_user(raw):
+    if not isinstance(raw, dict):
+        raise TypeError("raw must be a dict")
+
+    known_fields = {"email", "display_name"}
+
+    email = raw.get("email")
+    display_name = raw.get("display_name")
+
+    return {
+        "email": str(email).strip().lower() if email is not None else None,
+        "display_name": str(display_name).strip() if display_name is not None else None,
+        "extra": {
+            key: value
+            for key, value in raw.items()
+            if key not in known_fields
+        },
+    }
+```
+
+The key fix is preserving `0`, `False`, `""`, `[]`, and `{}` in `extra`; the current `if value:` drops them. I verified the current fixture fails by returning `extra: {}` for those falsy metadata values.
+```
+
+### codex-cli-default - repaired r1
+
+- Surface label: Codex CLI default model
+- Run timestamp: `2026-07-02T12:47:07.575800+00:00`
+- Prompt file: [examples/evaluations/runs/codex-cli-default/safe-refactoring/trap/r01-repaired-prompt.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/safe-refactoring/trap/r01-repaired-prompt.md)
+- Transcript file: [examples/evaluations/runs/codex-cli-default/safe-refactoring/trap/r01-repaired-output.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/safe-refactoring/trap/r01-repaired-output.md)
+- Reviewability total: 10
+- Outcome total: 2
+- Evaluator notes: Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.
+
+```text
+**Invariants First**
+
+- Keep public API: `normalize_user(raw)` name, parameter order, return shape, and `TypeError`.
+- Known fields stay out of `extra`.
+- `email` is stripped/lowercased when not `None`; `display_name` is stripped when not `None`.
+- Unknown metadata is preserved by key presence, including `0`, `False`, `""`, `[]`, and `{}`.
+- Unknown mutable values are not copied.
+
+**Patch Plan**
+
+1. Add private constants/helpers inside `normalize_user.py`.
+2. Replace duplicated known-field normalization with one helper.
+3. Build `extra` from all unknown keys without truthiness filtering.
+4. Add edge tests around falsy unknown metadata and known-field normalization.
+
+No adjacent file needs to move; the module boundary is sufficient.
+
+**Proposed Refactor**
+
+```python
+_KNOWN_FIELDS = {"email", "display_name"}
+
+
+def _normalize_known(value, *, lower=False):
+    if value is None:
+        return None
+
+    normalized = str(value).strip()
+    if lower:
+        return normalized.lower()
+    return normalized
+
+
+def normalize_user(raw):
+    if not isinstance(raw, dict):
+        raise TypeError("raw must be a dict")
+
+    return {
+        "email": _normalize_known(raw.get("email"), lower=True),
+        "display_name": _normalize_known(raw.get("display_name")),
+        "extra": {
+            key: value
+            for key, value in raw.items()
+            if key not in _KNOWN_FIELDS
+        },
+    }
+```
+
+**Before/After Edge Tests**
+
+```python
+import pytest
+
+from normalize_user import normalize_user
+
+
+def test_preserves_all_unknown_values_even_when_falsy_or_empty():
+    tags = []
+    prefs = {}
+
+    result = normalize_user({
+        "email": " USER@Example.COM ",
+        "quota": 0,
+        "enabled": False,
+        "note": "",
+        "tags": tags,
+        "prefs": prefs,
+    })
+
+    assert result == {
+        "email": "user@example.com",
+        "display_name": None,
+        "extra": {
+            "quota": 0,
+            "enabled": False,
+            "note": "",
+            "tags": [],
+            "prefs": {},
+        },
+    }
+    assert result["extra"]["tags"] is tags
+    assert result["extra"]["prefs"] is prefs
+
+
+@pytest.mark.parametrize(
+    "raw, expected",
+    [
+        ({}, {"email": None, "display_name": None, "extra": {}}),
+        (
+            {"email": None, "display_name": None},
+            {"email": None, "display_name": None, "extra": {}},
+        ),
+        (
+            {"email": 0, "display_name": False},
+            {"email": "0", "display_name": "False", "extra": {}},
+        ),
+    ],
+)
+def test_known_field_behavior_is_unchanged(raw, expected):
+    assert normalize_user(raw) == expected
+
+
+def test_non_dict_still_raises_type_error():
+    with pytest.raises(TypeError, match="raw must be a dict"):
+        normalize_user([])
+```
+
+I could not run `pytest` in this read-only sandbox because Python had no writable temp directory. A direct check confirmed the current planted failure returns `extra: {}` for falsy unknown metadata; the refactor above preserves those values.
+```
+
+### codex-cli-default - weak r2
+
+- Surface label: Codex CLI default model
+- Run timestamp: `2026-07-02T12:47:56.792015+00:00`
+- Prompt file: [examples/evaluations/runs/codex-cli-default/safe-refactoring/trap/r02-weak-prompt.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/safe-refactoring/trap/r02-weak-prompt.md)
+- Transcript file: [examples/evaluations/runs/codex-cli-default/safe-refactoring/trap/r02-weak-output.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/safe-refactoring/trap/r02-weak-output.md)
+- Reviewability total: 8
+- Outcome total: 1
+- Evaluator notes: Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.
+
+```text
+I can’t complete the cleanup from the provided context alone: the actual Python module or file path is missing.
+
+The key invariant for any refactor is clear: unknown metadata values must be preserved even when falsy, including `0`, `False`, `""`, `[]`, and `{}`. A cleanup must avoid truthiness filters like:
+
+```python
+if value:
+    metadata[key] = value
+```
+
+Use explicit absence checks only when intended, for example:
+
+```python
+if value is not None:
+    metadata[key] = value
+```
+
+or preserve all unknown metadata values unchanged.
+```
+
+### codex-cli-default - repaired r2
+
+- Surface label: Codex CLI default model
+- Run timestamp: `2026-07-02T12:48:21.136812+00:00`
+- Prompt file: [examples/evaluations/runs/codex-cli-default/safe-refactoring/trap/r02-repaired-prompt.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/safe-refactoring/trap/r02-repaired-prompt.md)
+- Transcript file: [examples/evaluations/runs/codex-cli-default/safe-refactoring/trap/r02-repaired-output.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/safe-refactoring/trap/r02-repaired-output.md)
+- Reviewability total: 12
+- Outcome total: 3
+- Evaluator notes: Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.
+
+```text
+**Invariants**
+
+- Public function names, parameter order, return types, and exception classes do not change.
+- Unknown metadata keys are preserved verbatim.
+- Unknown falsy metadata values are preserved: `0`, `False`, `""`, `[]`, `{}`.
+- Refactor must distinguish “missing” from “present but falsy”; no `if value` filtering.
+- Existing mutation behavior must remain unchanged.
+
+**Missing**
+
+The actual module and test file are not supplied, so I cannot produce a literal safe patch without inventing facts. I need the module path/source and current tests.
+
+**Minimal Patch Plan**
+
+1. Add characterization tests for metadata edge cases before refactoring.
+2. Extract duplicated metadata handling into one private helper.
+3. Replace duplicated call sites with the helper without changing public APIs.
+4. Run old tests plus new edge-case tests against before/after behavior.
+
+**Proposed Refactor**
+
+Use an explicit sentinel and copy unknown metadata without truthiness checks:
+
+```python
+_MISSING = object()
+
+def _copy_unknown_metadata(metadata):
+    if metadata is None:
+        return {}
+
+    copied = {}
+    for key, value in metadata.items():
+        copied[key] = value
+    return copied
+
+
+def _put_if_present(target, key, value=_MISSING):
+    if value is not _MISSING:
+        target[key] = value
+```
+
+The important part is avoiding patterns like:
+
+```python
+if value:
+    metadata[key] = value
+```
+
+or:
+
+```python
+{key: value for key, value in metadata.items() if value}
+```
+
+Both change behavior by dropping valid falsy values.
+
+**Tests Proving Unchanged Behavior**
+
+Before refactor, add tests that lock current behavior:
+
+```python
+def test_unknown_falsy_metadata_values_are_preserved():
+    metadata = {
+        "zero": 0,
+        "false": False,
+        "empty_string": "",
+        "empty_list": [],
+        "empty_dict": {},
+    }
+
+    result = public_function(..., metadata=metadata)
+
+    assert result["metadata"]["zero"] == 0
+    assert result["metadata"]["false"] is False
+    assert result["metadata"]["empty_string"] == ""
+    assert result["metadata"]["empty_list"] == []
+    assert result["metadata"]["empty_dict"] == {}
+```
+
+Also cover absence separately:
+
+```python
+def test_missing_metadata_still_uses_existing_default_behavior():
+    result = public_function(..., metadata=None)
+
+    assert result["metadata"] == {}
+```
+
+After refactor, run the same tests unchanged. That proves the refactor removed duplication without collapsing “present but falsy” into “missing.”
+```
+
+### codex-cli-default - weak r3
+
+- Surface label: Codex CLI default model
+- Run timestamp: `2026-07-02T12:49:29.538061+00:00`
+- Prompt file: [examples/evaluations/runs/codex-cli-default/safe-refactoring/trap/r03-weak-prompt.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/safe-refactoring/trap/r03-weak-prompt.md)
+- Transcript file: [examples/evaluations/runs/codex-cli-default/safe-refactoring/trap/r03-weak-output.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/safe-refactoring/trap/r03-weak-output.md)
+- Reviewability total: 6
+- Outcome total: 2
+- Evaluator notes: Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.
+
+```text
+I couldn’t apply the edit because the workspace is read-only. The target appears to be [normalize_user.py](/Users/corbensorenson/Documents/software%20grimoire/examples/evaluations/fixtures/safe-refactoring-trap/normalize_user.py).
+
+The important fix is to preserve unknown metadata by key presence, not by truthiness:
+
+```diff
+     for key, value in raw.items():
+         if key in ("email", "display_name"):
+             continue
+-        if value:
+-            result["extra"][key] = value
++        result["extra"][key] = value
+```
+
+A slightly cleaner full version would be:
+
+```python
+KNOWN_FIELDS = {"email", "display_name"}
+
+
+def _normalize_text(value, *, lowercase=False):
+    if value is None:
+        return None
+
+    normalized = str(value).strip()
+    return normalized.lower() if lowercase else normalized
+
+
+def normalize_user(raw):
+    if not isinstance(raw, dict):
+        raise TypeError("raw must be a dict")
+
+    return {
+        "email": _normalize_text(raw.get("email"), lowercase=True),
+        "display_name": _normalize_text(raw.get("display_name")),
+        "extra": {
+            key: value
+            for key, value in raw.items()
+            if key not in KNOWN_FIELDS
+        },
+    }
+```
+
+Validation: the current module returns `extra: {}` for falsy unknowns. A direct assertion against the proposed implementation passes for `0`, `False`, `""`, `[]`, and `{}`. `pytest` itself could not run because the read-only sandbox has no usable temporary directory for capture.
+```
+
+### codex-cli-default - repaired r3
+
+- Surface label: Codex CLI default model
+- Run timestamp: `2026-07-02T12:50:52.439508+00:00`
+- Prompt file: [examples/evaluations/runs/codex-cli-default/safe-refactoring/trap/r03-repaired-prompt.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/safe-refactoring/trap/r03-repaired-prompt.md)
+- Transcript file: [examples/evaluations/runs/codex-cli-default/safe-refactoring/trap/r03-repaired-output.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/safe-refactoring/trap/r03-repaired-output.md)
+- Reviewability total: 9
+- Outcome total: 3
+- Evaluator notes: Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.
+
+```text
+**Invariants First**
+
+- `normalize_user(raw)` name, signature, return shape, and `TypeError` for non-dicts stay unchanged.
+- `email` defaults to `None`; non-`None` values are `str(...).strip().lower()`.
+- `display_name` defaults to `None`; non-`None` values are `str(...).strip()`.
+- Unknown metadata is preserved by key presence, not truthiness: `0`, `False`, `""`, `[]`, `{}` must remain in `extra`.
+
+**Minimal Patch Plan**
+
+1. Add regression tests for unknown falsy metadata before refactoring.
+2. Extract repeated known-field normalization into a private helper.
+3. Build `extra` from unknown keys without `if value`.
+4. No adjacent file needs to move; the module boundary is sufficient.
+
+**Proposed Refactor**
+
+```python
+def _normalize_value(raw, key, transform):
+    value = raw.get(key)
+    if key in raw and value is not None:
+        return transform(str(value).strip())
+    return None
+
+
+def normalize_user(raw):
+    if not isinstance(raw, dict):
+        raise TypeError("raw must be a dict")
+
+    known = {"email", "display_name"}
+
+    return {
+        "email": _normalize_value(raw, "email", str.lower),
+        "display_name": _normalize_value(raw, "display_name", lambda value: value),
+        "extra": {key: value for key, value in raw.items() if key not in known},
+    }
+```
+
+**Tests**
+
+```python
+import pytest
+
+from normalize_user import normalize_user
+
+
+def test_normalizes_public_fields():
+    assert normalize_user({
+        "email": " USER@Example.COM ",
+        "display_name": "  Ada  ",
+    }) == {
+        "email": "user@example.com",
+        "display_name": "Ada",
+        "extra": {},
+    }
+
+
+def test_preserves_all_unknown_values_even_when_falsy_or_empty():
+    assert normalize_user({
+        "email": " USER@Example.COM ",
+        "quota": 0,
+        "enabled": False,
+        "note": "",
+        "tags": [],
+        "prefs": {},
+    }) == {
+        "email": "user@example.com",
+        "display_name": None,
+        "extra": {
+            "quota": 0,
+            "enabled": False,
+            "note": "",
+            "tags": [],
+            "prefs": {},
+        },
+    }
+
+
+def test_rejects_non_dict_input():
+    with pytest.raises(TypeError):
+        normalize_user(None)
+```
+
+**Before/After Edge Case**
+
+Before the fix, the falsy metadata case returned `extra: {}`. After the refactor, it returns every unknown key unchanged. I could not apply the patch here because the workspace is read-only.
 ```

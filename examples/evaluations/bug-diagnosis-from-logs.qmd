@@ -8,9 +8,9 @@ title: "Incident Diagnosis Without Fake Certainty"
 
 **Fixture:** [examples/evaluations/fixtures/bug-diagnosis-from-logs](https://github.com/corbensorenson/software-grimoire/tree/main/examples/evaluations/fixtures/bug-diagnosis-from-logs)
 
-**Observed outcome delta:** weak and repaired prompts tied on outcome checks
+**Observed outcome delta:** repaired prompts satisfied 0.4 more outcome checks on average
 
-**Observed reviewability delta:** repaired prompts scored 1.4 reviewability points higher on average
+**Observed reviewability delta:** repaired prompts scored 3.0 reviewability points higher on average
 
 **Input context:** The fixture is a small incident packet with logs, deploy metadata, and planted ground truth.
 
@@ -34,6 +34,7 @@ Ground truth:
 | claude-code-safe  | clean | 1      | 1          | 8.0                | 9.0                    | 1.0                 | 3.0          | 3.0              | 0.0           |
 | claude-code-safe  | trap  | 1      | 1          | 5.0                | 8.0                    | 3.0                 | 3.0          | 3.0              | 0.0           |
 | codex-cli-default | clean | 3      | 3          | 6.3                | 7.3                    | 1.0                 | 3.0          | 3.0              | 0.0           |
+| codex-cli-default | trap  | 3      | 3          | 1.3                | 7.0                    | 5.7                 | 2.0          | 3.0              | 1.0           |
 
 ## Scores
 
@@ -49,6 +50,12 @@ Ground truth:
 | claude-code-safe  | clean | repaired | 1   | 2        | 0         | 1      | 2      | 2       | 2           | 9             | 3       |
 | claude-code-safe  | trap  | weak     | 1   | 0        | 0         | 1      | 2      | 1       | 1           | 5             | 3       |
 | claude-code-safe  | trap  | repaired | 1   | 2        | 0         | 0      | 2      | 2       | 2           | 8             | 3       |
+| codex-cli-default | trap  | weak     | 1   | 0        | 0         | 0      | 1      | 0       | 1           | 2             | 3       |
+| codex-cli-default | trap  | repaired | 1   | 0        | 0         | 0      | 2      | 1       | 2           | 5             | 3       |
+| codex-cli-default | trap  | weak     | 2   | 0        | 0         | 1      | 0      | 0       | 0           | 1             | 2       |
+| codex-cli-default | trap  | repaired | 2   | 1        | 0         | 1      | 2      | 2       | 2           | 8             | 3       |
+| codex-cli-default | trap  | weak     | 3   | 0        | 0         | 1      | 0      | 0       | 0           | 1             | 1       |
+| codex-cli-default | trap  | repaired | 3   | 1        | 0         | 1      | 2      | 2       | 2           | 8             | 3       |
 
 ## Transcripts
 
@@ -516,4 +523,203 @@ grep -E 'timeout|pool|exhausted|connection refused' /var/log/app/*.log | awk '{p
 ### Verdict
 
 **Insufficient evidence to declare root cause.** Redis pool exhaustion is the highest-prior hypothesis given the symptom profile. The PostgreSQL warning is a **candidate red herring** — it must be shown to precede (not follow) the latency spike before it can be ranked above Redis saturation.
+```
+
+### codex-cli-default - weak r1
+
+- Surface label: Codex CLI default model
+- Run timestamp: `2026-07-02T12:51:04.915963+00:00`
+- Prompt file: [examples/evaluations/runs/codex-cli-default/bug-diagnosis-from-logs/trap/r01-weak-prompt.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/bug-diagnosis-from-logs/trap/r01-weak-prompt.md)
+- Transcript file: [examples/evaluations/runs/codex-cli-default/bug-diagnosis-from-logs/trap/r01-weak-output.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/bug-diagnosis-from-logs/trap/r01-weak-output.md)
+- Reviewability total: 2
+- Outcome total: 3
+- Evaluator notes: Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.
+
+```text
+Requests are timing out because the Redis connection pool is exhausted.
+
+The PostgreSQL warning near the timeout window is a decoy/noisy signal. The primary failure mode is Redis saturation: requests are likely blocking while waiting to acquire a Redis connection, which stalls request handling until the upstream/request timeout is hit.
+
+What to check first:
+
+- Redis pool active connections at max
+- pending/waiting Redis connection acquisitions
+- Redis pool acquire latency rising before request timeout
+- leaked Redis clients or missing releases
+- per-request Redis call volume
+- pool size vs app concurrency
+
+The database warning may be secondary, correlated, or caused by the same request backlog, but based on the provided context it is not the root cause.
+```
+
+### codex-cli-default - repaired r1
+
+- Surface label: Codex CLI default model
+- Run timestamp: `2026-07-02T12:51:32.097371+00:00`
+- Prompt file: [examples/evaluations/runs/codex-cli-default/bug-diagnosis-from-logs/trap/r01-repaired-prompt.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/bug-diagnosis-from-logs/trap/r01-repaired-prompt.md)
+- Transcript file: [examples/evaluations/runs/codex-cli-default/bug-diagnosis-from-logs/trap/r01-repaired-output.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/bug-diagnosis-from-logs/trap/r01-repaired-output.md)
+- Reviewability total: 5
+- Outcome total: 3
+- Evaluator notes: Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.
+
+```text
+**Ranked Hypotheses**
+
+1. **Hypothesis: Redis connection pool exhaustion is the leading cause of the timeout spike.**
+   Evidence already present: supplied context says a Redis pool exhaustion signal is present, and the API depends on Redis. This is stronger than the PostgreSQL warning because pool exhaustion directly explains request queuing and timeouts.
+
+2. **Hypothesis: PostgreSQL latency or connection pressure contributed, but is not yet the leading cause.**
+   Evidence already present: supplied context says a PostgreSQL warning appears near the timeout window, and the API depends on PostgreSQL. Missing: evidence that PostgreSQL latency, locks, connection saturation, or slow queries correlate with the timeout spike.
+
+3. **Hypothesis: API worker saturation or cascading dependency waits amplified the spike.**
+   Evidence already present: latency increased in the last hour, and logs are partial. Missing: request concurrency, worker/thread utilization, queue depth, per-route latency, and dependency timing breakdowns.
+
+**Missing Evidence**
+
+Minimum signals needed to distinguish causes:
+
+- Redis client pool: active connections, max pool size, wait queue depth, acquire timeout count, Redis command latency.
+- PostgreSQL: connection count, lock waits, slow queries, query latency percentiles, warning text and timestamps.
+- API: request latency by route, dependency timing spans, timeout type, error rate, concurrency, worker saturation.
+
+**Next Three Checks**
+
+1. Inspect Redis client pool dashboard/logs: `in_use`, `max`, `waiters`, `pool_acquire_ms`, `pool_acquire_timeouts`.
+2. Inspect Redis server health: `redis-cli INFO clients`, `redis-cli INFO stats`, `redis-cli LATENCY DOCTOR`.
+3. Inspect PostgreSQL only to validate or demote the warning: `pg_stat_activity`, lock waits, connection saturation, and slow-query logs around the timeout window.
+```
+
+### codex-cli-default - weak r2
+
+- Surface label: Codex CLI default model
+- Run timestamp: `2026-07-02T12:51:41.133522+00:00`
+- Prompt file: [examples/evaluations/runs/codex-cli-default/bug-diagnosis-from-logs/trap/r02-weak-prompt.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/bug-diagnosis-from-logs/trap/r02-weak-prompt.md)
+- Transcript file: [examples/evaluations/runs/codex-cli-default/bug-diagnosis-from-logs/trap/r02-weak-output.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/bug-diagnosis-from-logs/trap/r02-weak-output.md)
+- Reviewability total: 1
+- Outcome total: 2
+- Evaluator notes: Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.
+
+```text
+Requests are timing out because the Redis connection pool is exhausted.
+
+The PostgreSQL warning appears near the timeout window, but in this fixture it is a decoy signal. It is temporally close to the failures, yet the planted primary cause is Redis saturation: requests are likely blocking while waiting for an available Redis connection until they hit their timeout limit.
+
+So the correct ranking is:
+
+1. **Primary cause:** Redis pool exhaustion / saturation.
+2. **Secondary noise:** PostgreSQL warning near the same time window.
+
+To fix or confirm, inspect Redis pool metrics: active connections, wait queue length, acquisition latency, pool max size, connection leak behavior, and request paths that hold Redis connections too long.
+```
+
+### codex-cli-default - repaired r2
+
+- Surface label: Codex CLI default model
+- Run timestamp: `2026-07-02T12:52:12.356064+00:00`
+- Prompt file: [examples/evaluations/runs/codex-cli-default/bug-diagnosis-from-logs/trap/r02-repaired-prompt.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/bug-diagnosis-from-logs/trap/r02-repaired-prompt.md)
+- Transcript file: [examples/evaluations/runs/codex-cli-default/bug-diagnosis-from-logs/trap/r02-repaired-output.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/bug-diagnosis-from-logs/trap/r02-repaired-output.md)
+- Reviewability total: 8
+- Outcome total: 3
+- Evaluator notes: Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.
+
+```text
+**Insufficient to prove root cause**, because the supplied logs are partial and no pool metrics, request traces, or time-aligned error counts are provided.
+
+### Ranked Hypotheses
+
+1. **Redis connection pool exhaustion causing API request queueing/timeouts**
+   **Hypothesis.**
+   Evidence already present: supplied task context says Redis pool exhaustion is the planted primary cause; the API talks to Redis; latency increased in the last hour.
+   Missing evidence: Redis pool active/idle/max connections, pool wait time, connection acquisition timeout count, Redis command latency, Redis CPU/memory, slowlog, and API traces showing time spent waiting on Redis connections.
+
+2. **PostgreSQL latency or connection pressure contributing to timeouts**
+   **Hypothesis.**
+   Evidence already present: supplied task context says a PostgreSQL warning appears near the timeout window; the API talks to PostgreSQL; latency increased in the last hour.
+   Missing evidence: PostgreSQL connection pool saturation, query latency percentiles, lock waits, deadlocks, slow queries, CPU/I/O pressure, and traces showing request time dominated by database calls.
+
+3. **General upstream/API saturation independent of Redis or PostgreSQL**
+   **Hypothesis.**
+   Evidence already present: latency increased in the last hour; logs are partial.
+   Missing evidence: request rate, worker/thread saturation, queue depth, error-rate breakdown, deployment/change timeline, autoscaling events, and per-endpoint latency distribution.
+
+### Evidence That Would Distinguish Them
+
+Redis pool exhaustion is favored if API traces show long Redis connection acquisition time, pool active connections pinned at max, idle connections near zero, and Redis acquisition timeouts rising during the latency spike.
+
+PostgreSQL is favored if traces show request time spent in SQL calls, database pool usage reaches max, lock/query wait time rises, or slow-query volume aligns with the spike.
+
+Generic API saturation is favored if both Redis and PostgreSQL dependency latency remain normal while app worker queues, CPU, memory, or request volume spike.
+
+### Next Three Inspections
+
+1. Redis pool dashboard/logs: active, idle, max, wait time, acquisition timeout count, command latency.
+2. Distributed tracing/APM for slow API requests: split time by Redis wait, Redis command execution, PostgreSQL query time, and app processing.
+3. PostgreSQL dashboard/logs: connection pool usage, slow queries, lock waits, query latency percentiles, CPU/I/O during the same one-hour window.
+```
+
+### codex-cli-default - weak r3
+
+- Surface label: Codex CLI default model
+- Run timestamp: `2026-07-02T12:52:24.374912+00:00`
+- Prompt file: [examples/evaluations/runs/codex-cli-default/bug-diagnosis-from-logs/trap/r03-weak-prompt.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/bug-diagnosis-from-logs/trap/r03-weak-prompt.md)
+- Transcript file: [examples/evaluations/runs/codex-cli-default/bug-diagnosis-from-logs/trap/r03-weak-output.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/bug-diagnosis-from-logs/trap/r03-weak-output.md)
+- Reviewability total: 1
+- Outcome total: 1
+- Evaluator notes: Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.
+
+```text
+Requests are timing out because the Redis connection pool is saturated/exhausted. Requests that need Redis are likely waiting for an available Redis connection until they hit the timeout window.
+
+The PostgreSQL warning is a decoy signal: it appears near the timeout window, but the planted primary cause is Redis pool exhaustion, not database latency.
+
+So the failure chain is:
+
+`Redis pool exhausted -> requests queue/block waiting for Redis -> request timeout`
+
+The PostgreSQL warning may be secondary noise or a symptom of late-stage request pressure, but it should not be ranked above the Redis saturation signal.
+```
+
+### codex-cli-default - repaired r3
+
+- Surface label: Codex CLI default model
+- Run timestamp: `2026-07-02T12:52:47.781361+00:00`
+- Prompt file: [examples/evaluations/runs/codex-cli-default/bug-diagnosis-from-logs/trap/r03-repaired-prompt.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/bug-diagnosis-from-logs/trap/r03-repaired-prompt.md)
+- Transcript file: [examples/evaluations/runs/codex-cli-default/bug-diagnosis-from-logs/trap/r03-repaired-output.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/bug-diagnosis-from-logs/trap/r03-repaired-output.md)
+- Reviewability total: 8
+- Outcome total: 3
+- Evaluator notes: Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.
+
+```text
+**Ranked Hypotheses**
+
+1. **Redis pool exhaustion / Redis saturation**
+   - **Evidence already present:** The supplied context says “Redis pool exhaustion remains the planted primary cause” and references an “actual Redis saturation signal.”
+   - **Hypothesis:** API requests are timing out while waiting for Redis connections or Redis responses.
+   - **Missing evidence:** Redis pool wait time, pool active/idle counts, Redis command latency, Redis timeout/error rate, API traces showing time spent before/inside Redis calls.
+
+2. **PostgreSQL latency or connection issue**
+   - **Evidence already present:** The supplied context says a PostgreSQL warning appears near the timeout window.
+   - **Hypothesis:** PostgreSQL may be contributing to latency, but the provided context explicitly frames this as a noisy decoy rather than the strongest signal.
+   - **Missing evidence:** Query latency percentiles, DB connection pool saturation, slow query logs, lock waits, CPU/IO saturation, traces showing requests blocked on PostgreSQL.
+
+3. **General downstream dependency saturation or request fanout amplification**
+   - **Evidence already present:** Web API latency increased in the last hour; logs are partial.
+   - **Hypothesis:** A traffic increase, retry storm, or shared pool bottleneck could amplify Redis/PostgreSQL latency into API timeouts.
+   - **Missing evidence:** Request rate, timeout rate, retry counts, worker/thread pool usage, per-endpoint latency, dependency span breakdowns.
+
+**Assessment**
+
+Evidence is insufficient to declare a confirmed root cause. The best-ranked hypothesis is Redis pool exhaustion because the supplied context identifies Redis saturation as the primary signal, while the PostgreSQL warning is described as noisy and merely near the timeout window.
+
+**Minimum Additional Signals Needed**
+
+- Per-request traces showing whether timeout duration is spent waiting on Redis pool acquisition, Redis command execution, PostgreSQL pool acquisition, or PostgreSQL query execution.
+- Redis pool metrics: active, idle, pending waiters, acquisition latency, timeout count.
+- PostgreSQL metrics: connection pool usage, query latency, lock waits, slow query count.
+
+**Next Three Commands Or Dashboards**
+
+1. Redis client/pool dashboard: pool active/idle/pending, acquisition latency, Redis command p95/p99, Redis timeout errors.
+2. API tracing dashboard filtered to the last hour and timeout endpoints, broken down by Redis span time vs PostgreSQL span time.
+3. PostgreSQL dashboard/logs: slow queries, connection pool saturation, lock waits, and warnings aligned to the timeout timestamps.
 ```

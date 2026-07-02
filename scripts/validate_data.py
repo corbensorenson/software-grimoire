@@ -815,12 +815,23 @@ def validate_real_warded_ab(errors: list[str]) -> None:
         fail(errors, "Real warded A/B payload policy must be defanged-fixtures-only")
     if not any(surface.startswith("claude-code-safe") for surface in data.get("surfaces", {})):
         fail(errors, "Real warded A/B should include claude-code-safe as the real second surface")
+    if not any(surface.startswith("codex-cli-default") for surface in data.get("surfaces", {})):
+        fail(errors, "Real warded A/B should include codex-cli-default as the primary Codex surface")
     if not data.get("baseline_failures"):
         fail(errors, "Real warded A/B should preserve baseline failures or weak baseline audit losses")
     for slug, case in data.get("cases", {}).items():
         variants = {run.get("variant") for run in case.get("runs", [])}
         if variants != {"baseline", "warded"}:
             fail(errors, f"Real warded A/B case must include baseline and warded variants: {slug}")
+        for surface in ["claude-code-safe", "codex-cli-default"]:
+            for variant in ["baseline", "warded"]:
+                surface_runs = [
+                    run
+                    for run in case.get("runs", [])
+                    if run.get("base_surface") == surface and run.get("variant") == variant
+                ]
+                if len(surface_runs) < 3:
+                    fail(errors, f"Real warded A/B {slug} needs at least 3 {surface} {variant} runs")
         for run in case.get("runs", []):
             for key in ["fixture_path", "prompt_path", "transcript_path"]:
                 value = run.get(key)

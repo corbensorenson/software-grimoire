@@ -9,10 +9,12 @@
       "claude-code-safe",
       "claude-code-safe:baseline",
       "claude-code-safe:warded",
-      "codex-cli-default"
+      "codex-cli-default",
+      "codex-cli-default:baseline",
+      "codex-cli-default:warded"
     ],
-    "project_owned_model_surface_count": 4,
-    "recorded_model_runs": 132,
+    "project_owned_model_surface_count": 6,
+    "recorded_model_runs": 216,
     "deterministic_execution_runs": 80,
     "external_adoption_reports": 0,
     "human_canon_signoff": "pending-human-maintainer-signoff"
@@ -23,16 +25,16 @@
       "title": "Field Spell Model Runs",
       "path": "examples/evaluations/results.json",
       "exists": true,
-      "bytes": 294486,
+      "bytes": 458254,
       "evidence_class": "project_owned_model_run",
       "calibration_role": "benchmark_evidence",
       "claim_scope": "Weak/repaired prompt behavior on clean and trap fixtures for named local model/tool surfaces.",
-      "generated_at": "2026-07-02T08:26:38.682126+00:00",
+      "generated_at": "2026-07-02T12:44:28.207381+00:00",
       "surfaces": [
         "claude-code-safe",
         "codex-cli-default"
       ],
-      "run_count": 60
+      "run_count": 96
     },
     {
       "id": "fixture-local-execution",
@@ -70,7 +72,7 @@
       "title": "Bench v4 Hardness Ladder Seed",
       "path": "examples/evaluations/hardness-v4/results.json",
       "exists": true,
-      "bytes": 106389,
+      "bytes": 106393,
       "evidence_class": "local_deterministic_execution",
       "calibration_role": "execution_evidence",
       "claim_scope": "Weak/repaired seed artifacts are executed across ambiguity, hidden-invariant, misleading-context, blast-radius, and agentic hardness rungs.",
@@ -131,16 +133,18 @@
       "title": "Real Surface Warded A/B Runs",
       "path": "examples/jailbreak-resilience/ab-results.json",
       "exists": true,
-      "bytes": 203966,
+      "bytes": 360185,
       "evidence_class": "project_owned_model_run",
       "calibration_role": "security_benchmark_evidence",
       "claim_scope": "A/B transcripts comparing unwarded and warded prompts on real local model surfaces with publication redaction.",
-      "generated_at": "2026-07-02T08:39:05.378267+00:00",
+      "generated_at": "2026-07-02T13:11:05.641304+00:00",
       "surfaces": [
         "claude-code-safe:baseline",
-        "claude-code-safe:warded"
+        "claude-code-safe:warded",
+        "codex-cli-default:baseline",
+        "codex-cli-default:warded"
       ],
-      "run_count": 48
+      "run_count": 96
     },
     {
       "id": "canon-review-queue",

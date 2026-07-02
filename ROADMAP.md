@@ -93,6 +93,15 @@ Current public-site status:
   deterministic repetitions each inside repo-local `tmp/` sandboxes. These are
   fixture-contract and local-artifact evidence, not yet model-surface outcome
   evidence.
+- The Codex trap-tier field-spell matrix hole is now closed: all six trap-tier
+  field-spell fixtures have three Codex weak/repaired repetitions with
+  preserved prompts, transcripts, surface metadata, reviewability scores,
+  outcome markers, and per-cell delta summaries.
+- The Codex real warded A/B matrix hole is now closed: all eight defanged
+  jailbreak-resilience attack shapes have three Codex baseline/warded
+  repetitions alongside Claude Code safe-mode runs, with publication redaction,
+  baseline-only failures, and no unredacted fixture canaries or forbidden tool
+  strings in published outputs.
 - The external-reality workstream now has a standalone adoption-report
   generator that creates schema-valid report drafts while keeping publication,
   external-adoption counts, and reviewer acceptance separate from generation.
@@ -492,10 +501,11 @@ Post-v3 external review findings accepted into the roadmap:
 5. The structural rubric should be renamed to **reviewability score** across
    data, scripts, pages, and tests. It is a valid metric, but its name should
    describe what it actually measures.
-6. Matrix holes are now the highest-priority evidence defects: Codex needs
-   trap-tier runs, Codex needs real warded A/B runs, and Claude Code needs the
-   standard warded jailbreak-resilience suite, all with normalized tool-version
-   metadata.
+6. Matrix holes are now the highest-priority evidence defects: the Codex
+   trap-tier field-spell hole and Codex real warded A/B hole are closed, while
+   Claude Code still needs the standard warded jailbreak-resilience suite and
+   the hardness ladder still needs model-surface runs, all with normalized
+   tool-version metadata.
 7. Ward science is the most novel security arc. The project should complete
    baseline/warded coverage across surfaces, add ward-limb ablations, add more
    defanged attack shapes, and publish resistance-versus-utility frontiers
@@ -524,10 +534,11 @@ Absorption status:
   scratch hygiene, explicit reviewability-score fields, per-surface/per-tier
   delta reporting, all five local hardness seed rungs, ward-science seed data,
   package-index release materials, one-step installs, adoption-report
-  generation, bounded canon-review queue, and methods write-up are implemented.
-  The remaining open work is real matrix-completion runs, model-surface
-  hardness-ladder results, human package upload, human canon signoff, and
-  accepted external adoption reports.
+  generation, bounded canon-review queue, methods write-up, Codex trap-tier
+  field-spell runs, and Codex real warded A/B runs are implemented. The
+  remaining open work is Claude Code standard warded jailbreak-resilience runs,
+  model-surface hardness-ladder results, human package upload, human canon
+  signoff, and accepted external adoption reports.
 
 ## 1. End State
 
@@ -4032,8 +4043,10 @@ Implementation evidence:
   with Claude Code CLI 2.1.185 metadata and preserved transcripts.
 - The first second-surface pass covers all six field-spell cases on clean and
   trap tiers for Claude Code safe mode.
-- Remaining v4 matrix gaps: Codex trap-tier runs, Codex warded A/B runs, and
-  Claude Code standard warded jailbreak-resilience runs.
+- Remaining v4 matrix gaps: Claude Code standard warded jailbreak-resilience
+  runs and model-surface hardness-ladder runs. Codex trap-tier field-spell
+  runs and Codex real warded A/B runs are now recorded with three repetitions
+  per relevant variant cell.
 
 Goal:
 
@@ -4597,6 +4610,10 @@ for backward compatibility; project scratch output is routed under repo-local
 `tmp/`. Item A5 now has all five local deterministic seed rungs implemented
 with ambiguity, hidden-invariant, misleading-context, blast-radius, and agentic
 fixtures; model-surface runs over those rungs remain open evidence work.
+Codex trap-tier field-spell runs are now recorded across all six v3 fixtures
+with three weak/repaired repetitions per case. Codex baseline/warded A/B runs
+are also recorded across all eight existing defanged jailbreak-resilience
+fixtures with three repetitions per case/variant.
 
 1. Fix current reporting before adding new cases:
    - report deltas by surface, tier, variant, and repetition cell;
@@ -4613,9 +4630,11 @@ fixtures; model-surface runs over those rungs remain open evidence work.
 3. Normalize tool-version metadata for every run record, not only Claude Code
    records.
 4. Fill the v3 matrix holes:
-   - run the trap tier on `codex-cli-default`;
+   - run the trap tier on `codex-cli-default` (completed for all six field
+     spells with three weak/repaired repetitions);
    - run standard jailbreak-resilience warded runs on `claude-code-safe`;
-   - run real warded A/B on `codex-cli-default`;
+   - run real warded A/B on `codex-cli-default` (completed for all eight
+     existing defanged attack shapes with three baseline/warded repetitions);
    - keep CI free of private credentials by validating shape and preserving
      manual import paths.
 5. Build at least five hardness rungs with fixtures, ground truth, and
@@ -4641,7 +4660,10 @@ fixtures; model-surface runs over those rungs remain open evidence work.
 Workstream B: Ward science
 
 1. Complete real baseline/warded A/B across both primary surfaces and all eight
-   existing defanged attack shapes with at least three repetitions per variant.
+   existing defanged attack shapes with at least three repetitions per variant
+   (completed for Claude Code safe mode and Codex CLI default; baseline
+   failures are preserved and warded failures remain absent in the current
+   evidence record).
 2. Add a ward-limb ablation ladder:
    - constraints-only;
    - verification-only;
@@ -5473,8 +5495,8 @@ soften the claim.
 Do this first:
 
 1. Close the most important real model-surface matrix holes:
-   - Codex trap-tier field-spell runs;
-   - Codex real warded A/B runs;
+   - Codex trap-tier field-spell runs (completed);
+   - Codex real warded A/B runs (completed);
    - Claude Code standard warded jailbreak-resilience runs.
 2. Run the five Bench v4 hardness rungs against recorded model outputs:
    - ambiguity;

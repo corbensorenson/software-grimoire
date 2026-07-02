@@ -8,7 +8,7 @@ title: "Online Migration Without Data Loss"
 
 **Fixture:** [examples/evaluations/fixtures/migration-without-data-loss](https://github.com/corbensorenson/software-grimoire/tree/main/examples/evaluations/fixtures/migration-without-data-loss)
 
-**Observed outcome delta:** repaired prompts satisfied 0.2 more outcome checks on average
+**Observed outcome delta:** repaired prompts satisfied 0.1 more outcome checks on average
 
 **Observed reviewability delta:** repaired prompts scored 0.6 reviewability points higher on average
 
@@ -35,6 +35,7 @@ Ground truth:
 | claude-code-safe  | clean | 1      | 1          | 9.0                | 9.0                    | 0.0                 | 3.0          | 3.0              | 0.0           |
 | claude-code-safe  | trap  | 1      | 1          | 7.0                | 8.0                    | 1.0                 | 2.0          | 3.0              | 1.0           |
 | codex-cli-default | clean | 3      | 3          | 8.7                | 9.3                    | 0.7                 | 3.0          | 3.0              | 0.0           |
+| codex-cli-default | trap  | 3      | 3          | 8.3                | 9.0                    | 0.7                 | 3.0          | 3.0              | 0.0           |
 
 ## Scores
 
@@ -50,6 +51,12 @@ Ground truth:
 | claude-code-safe  | clean | repaired | 1   | 2        | 1         | 2      | 1      | 2       | 1           | 9             | 3       |
 | claude-code-safe  | trap  | weak     | 1   | 1        | 0         | 2      | 1      | 1       | 2           | 7             | 2       |
 | claude-code-safe  | trap  | repaired | 1   | 2        | 0         | 2      | 1      | 2       | 1           | 8             | 3       |
+| codex-cli-default | trap  | weak     | 1   | 1        | 1         | 2      | 1      | 2       | 2           | 9             | 3       |
+| codex-cli-default | trap  | repaired | 1   | 2        | 0         | 2      | 1      | 2       | 2           | 9             | 3       |
+| codex-cli-default | trap  | weak     | 2   | 1        | 0         | 2      | 2      | 1       | 2           | 8             | 3       |
+| codex-cli-default | trap  | repaired | 2   | 1        | 1         | 2      | 1      | 2       | 1           | 8             | 3       |
+| codex-cli-default | trap  | weak     | 3   | 1        | 1         | 2      | 1      | 1       | 2           | 8             | 3       |
+| codex-cli-default | trap  | repaired | 3   | 2        | 2         | 2      | 0      | 2       | 2           | 10            | 3       |
 
 ## Transcripts
 
@@ -1172,4 +1179,632 @@ ALTER TABLE users RENAME COLUMN birthdate_date TO birthdate;
 | 3–4   | Revert app to read VARCHAR; backfill is non-destructive |
 | 5     | Redeploy prior app version reading VARCHAR |
 | 6     | **No rollback** — keep a pre-cleanup snapshot if required |
+```
+
+### codex-cli-default - weak r1
+
+- Surface label: Codex CLI default model
+- Run timestamp: `2026-07-02T12:55:48.796747+00:00`
+- Prompt file: [examples/evaluations/runs/codex-cli-default/migration-without-data-loss/trap/r01-weak-prompt.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/migration-without-data-loss/trap/r01-weak-prompt.md)
+- Transcript file: [examples/evaluations/runs/codex-cli-default/migration-without-data-loss/trap/r01-weak-output.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/migration-without-data-loss/trap/r01-weak-output.md)
+- Reviewability total: 9
+- Outcome total: 3
+- Evaluator notes: Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.
+
+```text
+This is underspecified for a safe migration.
+
+Do **not** directly convert `users.birthdate` from string to date yet. The dirty-row policy has to be explicit first, because birthdates are calendar dates and dirty strings can look parseable until timezone, partial-date, and unknown-value handling are defined.
+
+Missing requirements:
+
+- Database/ORM migration system
+- Existing `birthdate` formats in production
+- Accepted canonical format going forward
+- Timezone policy for datetime-like strings
+- Partial-date policy for values like `1990` or `1990-05`
+- Unknown-value policy for `unknown`, `N/A`, empty string, `0000-00-00`, etc.
+- Whether `birthdate` may be `NULL`
+- Whether original raw values must be retained
+- Rollout constraints and rollback expectations
+
+Safe migration shape:
+
+1. Add a new nullable date column, e.g. `users.birthdate_date`.
+2. Backfill only rows that match explicitly accepted full-date formats.
+3. Quarantine dirty rows into a separate table/report with `user_id`, raw value, and failure reason.
+4. Run parity checks:
+   - total users unchanged
+   - valid parsed count + quarantined count + null/empty count equals source count
+   - sampled valid rows match expected calendar dates
+   - no timezone-derived date shifts
+5. Update reads/writes to use the new date column.
+6. After verification, rename/drop the old string column in a later migration.
+
+Policy examples that need confirmation:
+
+```text
+YYYY-MM-DD          -> accepted
+datetime + timezone -> rejected or converted using explicit timezone rule
+YYYY or YYYY-MM     -> quarantined unless partial dates are supported separately
+unknown/N/A/empty   -> NULL or quarantined, depending on product policy
+invalid dates       -> quarantined
+```
+
+Once those policies and the database stack are known, the actual migration can be written.
+```
+
+### codex-cli-default - repaired r1
+
+- Surface label: Codex CLI default model
+- Run timestamp: `2026-07-02T12:56:19.895545+00:00`
+- Prompt file: [examples/evaluations/runs/codex-cli-default/migration-without-data-loss/trap/r01-repaired-prompt.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/migration-without-data-loss/trap/r01-repaired-prompt.md)
+- Transcript file: [examples/evaluations/runs/codex-cli-default/migration-without-data-loss/trap/r01-repaired-output.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/migration-without-data-loss/trap/r01-repaired-output.md)
+- Reviewability total: 9
+- Outcome total: 3
+- Evaluator notes: Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.
+
+```text
+Missing facts: actual PK name, write path count, and business policy for partial/unknown values. Plan below assumes `users.id` is PK and uses a conservative policy: only exact valid `YYYY-MM-DD` becomes `DATE`; empty/unknown/partial/timestamp/timezone-bearing values are quarantined, not guessed.
+
+**1. Schema Expand**
+
+```sql
+ALTER TABLE users ADD COLUMN birthdate_new DATE;
+
+CREATE TABLE users_birthdate_quarantine (
+  user_id BIGINT PRIMARY KEY,
+  original_birthdate VARCHAR,
+  reason TEXT NOT NULL,
+  quarantined_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+```
+
+Optional helper parser:
+
+```sql
+CREATE OR REPLACE FUNCTION parse_birthdate_strict(v TEXT)
+RETURNS DATE
+LANGUAGE plpgsql
+IMMUTABLE
+AS $$
+DECLARE d DATE;
+BEGIN
+  IF v IS NULL OR btrim(v) = '' THEN
+    RETURN NULL;
+  END IF;
+
+  IF v !~ '^\d{4}-\d{2}-\d{2}$' THEN
+    RETURN NULL;
+  END IF;
+
+  d := v::date;
+
+  IF to_char(d, 'YYYY-MM-DD') <> v THEN
+    RETURN NULL;
+  END IF;
+
+  RETURN d;
+EXCEPTION WHEN others THEN
+  RETURN NULL;
+END;
+$$;
+```
+
+**2. App Deploy 1: Dual Write, Read Old**
+
+On every create/update, write both columns.
+
+App parsing policy must match SQL exactly:
+
+```text
+valid: exact YYYY-MM-DD calendar date
+null: original value is null or blank
+invalid/quarantine: partial dates, unknown markers, timestamps, timezone-bearing values, malformed dates
+```
+
+Reads still use `users.birthdate`.
+
+**3. Backfill With Quarantine First**
+
+Do not cast directly.
+
+```sql
+INSERT INTO users_birthdate_quarantine (user_id, original_birthdate, reason)
+SELECT id, birthdate,
+       CASE
+         WHEN birthdate IS NULL OR btrim(birthdate) = '' THEN 'null_or_blank'
+         WHEN birthdate !~ '^\d{4}-\d{2}-\d{2}$' THEN 'not_exact_yyyy_mm_dd'
+         WHEN parse_birthdate_strict(birthdate) IS NULL THEN 'invalid_calendar_date'
+       END
+FROM users
+WHERE birthdate_new IS NULL
+  AND birthdate IS NOT NULL
+  AND btrim(birthdate) <> ''
+  AND parse_birthdate_strict(birthdate) IS NULL
+ON CONFLICT (user_id) DO NOTHING;
+```
+
+Then backfill valid rows in batches:
+
+```sql
+UPDATE users
+SET birthdate_new = parse_birthdate_strict(birthdate)
+WHERE id IN (
+  SELECT id
+  FROM users
+  WHERE birthdate_new IS NULL
+    AND parse_birthdate_strict(birthdate) IS NOT NULL
+  ORDER BY id
+  LIMIT 10000
+);
+```
+
+Repeat until zero rows remain.
+
+**4. Validation Queries**
+
+Invalid rows:
+
+```sql
+SELECT reason, count(*) FROM users_birthdate_quarantine GROUP BY reason;
+```
+
+Null behavior:
+
+```sql
+SELECT count(*) AS old_nullish
+FROM users
+WHERE birthdate IS NULL OR btrim(birthdate) = '';
+
+SELECT count(*) AS new_null
+FROM users
+WHERE birthdate_new IS NULL;
+```
+
+Row-count parity:
+
+```sql
+SELECT
+  count(*) AS total,
+  count(birthdate) AS old_non_null,
+  count(birthdate_new) AS new_non_null
+FROM users;
+```
+
+Value parity for valid rows:
+
+```sql
+SELECT count(*) AS mismatches
+FROM users
+WHERE parse_birthdate_strict(birthdate) IS NOT NULL
+  AND birthdate_new IS DISTINCT FROM parse_birthdate_strict(birthdate);
+```
+
+**Stop condition:** if quarantine count exceeds the agreed risk threshold, or includes partial/unknown values needing business interpretation, stop rollout before read switch.
+
+**5. App Deploy 2: Read Switch**
+
+After validation passes, switch reads to `birthdate_new`. Keep dual writes enabled.
+
+Post-cutover consistency:
+
+```sql
+SELECT count(*)
+FROM users
+WHERE parse_birthdate_strict(birthdate) IS NOT NULL
+  AND birthdate_new IS DISTINCT FROM parse_birthdate_strict(birthdate);
+```
+
+**6. Cleanup**
+
+After a stable observation window:
+
+```sql
+ALTER TABLE users RENAME COLUMN birthdate TO birthdate_old;
+ALTER TABLE users RENAME COLUMN birthdate_new TO birthdate;
+```
+
+Later, after rollback window:
+
+```sql
+ALTER TABLE users DROP COLUMN birthdate_old;
+DROP FUNCTION parse_birthdate_strict(TEXT);
+```
+
+**Rollback**
+
+Before cleanup, rollback is app-only: switch reads back to old `birthdate`; keep both columns. If bad data is found after read switch, stop cleanup, repair/quarantine rows, and rerun parity checks.
+```
+
+### codex-cli-default - weak r2
+
+- Surface label: Codex CLI default model
+- Run timestamp: `2026-07-02T12:56:39.464633+00:00`
+- Prompt file: [examples/evaluations/runs/codex-cli-default/migration-without-data-loss/trap/r02-weak-prompt.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/migration-without-data-loss/trap/r02-weak-prompt.md)
+- Transcript file: [examples/evaluations/runs/codex-cli-default/migration-without-data-loss/trap/r02-weak-output.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/migration-without-data-loss/trap/r02-weak-output.md)
+- Reviewability total: 8
+- Outcome total: 3
+- Evaluator notes: Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.
+
+```text
+This is underspecified for an actual migration. Missing details:
+
+- database/ORM/migration framework
+- existing `users.birthdate` string formats
+- whether values may contain timestamps/timezones
+- policy for partial dates like `1990`, `1990-05`, `05/1990`
+- policy for unknown/sentinel values like `unknown`, `N/A`, `0000-00-00`, empty string
+- whether invalid rows should block deploy, become `NULL`, or be quarantined
+
+I would not do a direct `ALTER COLUMN birthdate TYPE date USING birthdate::date`.
+
+Safe migration shape:
+
+1. Add a new nullable `users.birthdate_date` column.
+2. Add a quarantine table/report for dirty rows: `user_id`, original `birthdate`, parse failure reason, detected format.
+3. Define explicit parse policy before backfill:
+   - accepted full-date formats only
+   - timezone handling for timestamp-like strings
+   - partial dates rejected or mapped by an approved rule
+   - unknown/sentinel values rejected or converted to `NULL` by an approved rule
+4. Backfill only rows that pass policy.
+5. Run parity checks:
+   - total rows examined
+   - clean rows converted
+   - quarantined rows count
+   - sampled original-to-date conversions
+   - no unexpected `NULL` increase
+6. Update application reads/writes to use `birthdate_date`.
+7. After validation, rename/drop the old string column in a later migration.
+
+Without those policies, the correct answer is to stop before conversion and quarantine/measure the dirty data first.
+```
+
+### codex-cli-default - repaired r2
+
+- Surface label: Codex CLI default model
+- Run timestamp: `2026-07-02T12:57:13.136278+00:00`
+- Prompt file: [examples/evaluations/runs/codex-cli-default/migration-without-data-loss/trap/r02-repaired-prompt.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/migration-without-data-loss/trap/r02-repaired-prompt.md)
+- Transcript file: [examples/evaluations/runs/codex-cli-default/migration-without-data-loss/trap/r02-repaired-output.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/migration-without-data-loss/trap/r02-repaired-output.md)
+- Reviewability total: 8
+- Outcome total: 3
+- Evaluator notes: Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.
+
+```text
+Below is a safe expand-and-contract plan. Policy: `birthdate` is a civil date, so no timezone conversion. Automatic backfill only accepts complete ISO `YYYY-MM-DD` dates that round-trip exactly. Partial dates, empty strings, `unknown`, `0000-00-00`, locale dates, and invalid dates are quarantined unless product/data owners approve a rule.
+
+**1. Schema Expand**
+
+```sql
+ALTER TABLE users ADD COLUMN birthdate_date date;
+
+CREATE TABLE users_birthdate_quarantine (
+  user_id bigint PRIMARY KEY,
+  raw_birthdate varchar,
+  reason text NOT NULL,
+  quarantined_at timestamptz NOT NULL DEFAULT now()
+);
+```
+
+Optional, only if reads/filtering need it:
+
+```sql
+CREATE INDEX CONCURRENTLY idx_users_birthdate_date
+ON users (birthdate_date);
+```
+
+**2. Deploy 1: Dual Write, Read Old**
+
+Application writes both columns for new/updated users.
+
+Rules:
+
+```text
+input full ISO date -> write users.birthdate = raw string, users.birthdate_date = parsed DATE
+input NULL -> write both NULL
+partial/unknown/invalid input -> reject write or store old varchar only and emit validation error
+reads continue from users.birthdate
+```
+
+**3. Backfill In Batches**
+
+First quarantine dirty rows before casting:
+
+```sql
+INSERT INTO users_birthdate_quarantine (user_id, raw_birthdate, reason)
+SELECT id, birthdate,
+  CASE
+    WHEN birthdate IS NULL THEN 'null'
+    WHEN btrim(birthdate) = '' THEN 'blank'
+    WHEN lower(btrim(birthdate)) IN ('unknown', 'n/a', 'na', 'null') THEN 'unknown-token'
+    WHEN birthdate !~ '^\d{4}-\d{2}-\d{2}$' THEN 'not-full-iso-date'
+    WHEN to_char(to_date(birthdate, 'YYYY-MM-DD'), 'YYYY-MM-DD') <> birthdate THEN 'invalid-date'
+    ELSE 'unexpected'
+  END
+FROM users
+WHERE birthdate_date IS NULL
+  AND birthdate IS NOT NULL
+  AND (
+    btrim(birthdate) = ''
+    OR lower(btrim(birthdate)) IN ('unknown', 'n/a', 'na', 'null')
+    OR birthdate !~ '^\d{4}-\d{2}-\d{2}$'
+    OR to_char(to_date(birthdate, 'YYYY-MM-DD'), 'YYYY-MM-DD') <> birthdate
+  )
+ON CONFLICT (user_id) DO NOTHING;
+```
+
+Then backfill only clean rows, repeatedly in small batches:
+
+```sql
+WITH batch AS (
+  SELECT id
+  FROM users
+  WHERE birthdate_date IS NULL
+    AND birthdate ~ '^\d{4}-\d{2}-\d{2}$'
+    AND to_char(to_date(birthdate, 'YYYY-MM-DD'), 'YYYY-MM-DD') = birthdate
+  ORDER BY id
+  LIMIT 10000
+)
+UPDATE users u
+SET birthdate_date = u.birthdate::date
+FROM batch
+WHERE u.id = batch.id;
+```
+
+**4. Validation Queries**
+
+Invalid/quarantine count:
+
+```sql
+SELECT reason, count(*) FROM users_birthdate_quarantine GROUP BY reason;
+```
+
+Null behavior:
+
+```sql
+SELECT
+  count(*) FILTER (WHERE birthdate IS NULL) AS old_nulls,
+  count(*) FILTER (WHERE birthdate_date IS NULL) AS new_nulls
+FROM users;
+```
+
+Row-count parity for clean parseable rows:
+
+```sql
+SELECT
+  count(*) AS clean_old_rows,
+  count(birthdate_date) AS populated_new_rows
+FROM users
+WHERE birthdate ~ '^\d{4}-\d{2}-\d{2}$'
+  AND to_char(to_date(birthdate, 'YYYY-MM-DD'), 'YYYY-MM-DD') = birthdate;
+```
+
+Mismatch check:
+
+```sql
+SELECT id, birthdate, birthdate_date
+FROM users
+WHERE birthdate ~ '^\d{4}-\d{2}-\d{2}$'
+  AND to_char(to_date(birthdate, 'YYYY-MM-DD'), 'YYYY-MM-DD') = birthdate
+  AND birthdate::date IS DISTINCT FROM birthdate_date
+LIMIT 100;
+```
+
+If quarantine volume is too large, or contains business-significant partial dates such as `1980-05` or `1980`, stop here. Do not auto-cast. Decide manually whether to preserve partial precision elsewhere, normalize to a chosen date, or leave `birthdate_date` NULL.
+
+**5. Deploy 2: Read Switch**
+
+After zero mismatches and accepted quarantine policy, read from `birthdate_date`. Keep dual writes and old column for rollback.
+
+Post-cutover consistency:
+
+```sql
+SELECT count(*)
+FROM users
+WHERE birthdate_date IS DISTINCT FROM birthdate::date
+  AND birthdate ~ '^\d{4}-\d{2}-\d{2}$';
+```
+
+**6. Cleanup**
+
+After observation window:
+
+```sql
+ALTER TABLE users DROP COLUMN birthdate;
+ALTER TABLE users RENAME COLUMN birthdate_date TO birthdate;
+```
+
+**Rollback**
+
+Before cleanup, rollback app reads to old `users.birthdate`. Keep dual writes enabled. If needed:
+
+```sql
+UPDATE users
+SET birthdate_date = NULL
+WHERE id IN (SELECT user_id FROM users_birthdate_quarantine);
+```
+```
+
+### codex-cli-default - weak r3
+
+- Surface label: Codex CLI default model
+- Run timestamp: `2026-07-02T12:57:32.955133+00:00`
+- Prompt file: [examples/evaluations/runs/codex-cli-default/migration-without-data-loss/trap/r03-weak-prompt.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/migration-without-data-loss/trap/r03-weak-prompt.md)
+- Transcript file: [examples/evaluations/runs/codex-cli-default/migration-without-data-loss/trap/r03-weak-output.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/migration-without-data-loss/trap/r03-weak-output.md)
+- Reviewability total: 8
+- Outcome total: 3
+- Evaluator notes: Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.
+
+```text
+I can’t safely complete this migration from the given context. The key missing decisions are exactly the risky ones:
+
+- Accepted source formats for `users.birthdate`
+- Timezone policy for any timestamp-like strings
+- Policy for partial dates like `YYYY`, `YYYY-MM`, or missing day/month
+- Policy for unknown placeholders like `unknown`, `N/A`, empty string, `0000-00-00`
+- Whether invalid/ambiguous rows should become `NULL`, be rejected, or be quarantined
+- Database engine and migration framework
+- Whether `birthdate` is nullable and whether app code already depends on string values
+
+A safe migration should not directly cast the column. The correct shape is:
+
+1. Add a new nullable date column, e.g. `birthdate_date`.
+2. Backfill only rows that pass an explicit strict parser.
+3. Quarantine dirty or ambiguous rows into a separate table with:
+   - `user_id`
+   - original `birthdate`
+   - failure reason
+   - migration batch timestamp
+4. Run parity checks:
+   - total row count unchanged
+   - parsed row count + quarantined row count = original non-null source count
+   - no unexpected null inflation
+   - sampled valid dates match expected parsed values
+5. Fix or approve quarantined rows according to explicit policy.
+6. Switch application reads/writes to the new date column.
+7. Add constraints only after parity passes.
+8. Drop or rename the old string column in a later migration.
+
+Until timezone, partial-date, and unknown-value policies are defined, the migration should stop at quarantine/parity design rather than converting data destructively.
+```
+
+### codex-cli-default - repaired r3
+
+- Surface label: Codex CLI default model
+- Run timestamp: `2026-07-02T12:58:03.960473+00:00`
+- Prompt file: [examples/evaluations/runs/codex-cli-default/migration-without-data-loss/trap/r03-repaired-prompt.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/migration-without-data-loss/trap/r03-repaired-prompt.md)
+- Transcript file: [examples/evaluations/runs/codex-cli-default/migration-without-data-loss/trap/r03-repaired-output.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/migration-without-data-loss/trap/r03-repaired-output.md)
+- Reviewability total: 10
+- Outcome total: 3
+- Evaluator notes: Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.
+
+```text
+Assumption: `users(id)` is the stable primary key.
+
+**1. Schema Expand**
+
+```sql
+ALTER TABLE users ADD COLUMN birthdate_date date;
+
+CREATE TABLE users_birthdate_quarantine (
+  user_id bigint PRIMARY KEY,
+  birthdate_raw varchar,
+  reason text NOT NULL,
+  quarantined_at timestamptz NOT NULL DEFAULT now()
+);
+```
+
+Policy: only exact `YYYY-MM-DD` strings that round-trip to the same date are auto-converted. `NULL`, blank, `unknown`, `n/a` become `NULL` but remain distinguishable in original `users.birthdate`. Partial dates like `1980`, `1980-05`, timezone-like strings, and ambiguous formats are quarantined.
+
+**2. App Deploy 1: Dual Write**
+
+Writes must populate both columns:
+
+- `birthdate`: preserve the original/current string contract.
+- `birthdate_date`: set only from canonical `YYYY-MM-DD`.
+- Do not parse through timezone-aware `DateTime`; `DATE` is calendar-only.
+- Invalid, partial, or unknown values should either be rejected for new writes or written to `birthdate` with `birthdate_date = NULL` and logged for remediation.
+
+Reads still use `birthdate`.
+
+**3. Backfill In Batches**
+
+```sql
+WITH batch AS (
+  SELECT id, birthdate
+  FROM users
+  WHERE birthdate_date IS NULL
+    AND birthdate IS NOT NULL
+  ORDER BY id
+  LIMIT 10000
+),
+classified AS (
+  SELECT
+    id,
+    birthdate,
+    CASE
+      WHEN btrim(birthdate) = '' THEN 'blank'
+      WHEN lower(btrim(birthdate)) IN ('unknown', 'n/a', 'na') THEN 'unknown'
+      WHEN birthdate !~ '^\d{4}-\d{2}-\d{2}$' THEN 'invalid_or_partial'
+      WHEN to_char(to_date(birthdate, 'YYYY-MM-DD'), 'YYYY-MM-DD') <> birthdate THEN 'invalid_calendar_date'
+      ELSE NULL
+    END AS reason
+  FROM batch
+)
+UPDATE users u
+SET birthdate_date = to_date(c.birthdate, 'YYYY-MM-DD')
+FROM classified c
+WHERE u.id = c.id
+  AND c.reason IS NULL;
+
+INSERT INTO users_birthdate_quarantine (user_id, birthdate_raw, reason)
+SELECT id, birthdate, reason
+FROM classified
+WHERE reason IS NOT NULL
+ON CONFLICT (user_id) DO UPDATE
+SET birthdate_raw = EXCLUDED.birthdate_raw,
+    reason = EXCLUDED.reason,
+    quarantined_at = now();
+```
+
+Repeat until no eligible rows remain.
+
+**4. Validation Queries**
+
+```sql
+-- invalid / partial / unknown rows
+SELECT reason, count(*)
+FROM users_birthdate_quarantine
+GROUP BY reason;
+
+-- null behavior
+SELECT
+  count(*) FILTER (WHERE birthdate IS NULL) AS old_nulls,
+  count(*) FILTER (WHERE birthdate_date IS NULL) AS new_nulls,
+  count(*) FILTER (WHERE birthdate IS NOT NULL AND birthdate_date IS NULL) AS unresolved_non_nulls
+FROM users;
+
+-- row-count parity
+SELECT
+  (SELECT count(*) FROM users) AS users_count,
+  (SELECT count(*) FROM users WHERE birthdate_date IS NOT NULL)
+  + (SELECT count(*) FROM users WHERE birthdate IS NULL)
+  + (SELECT count(*) FROM users_birthdate_quarantine) AS accounted_count;
+
+-- converted value parity
+SELECT id, birthdate, birthdate_date
+FROM users
+WHERE birthdate ~ '^\d{4}-\d{2}-\d{2}$'
+  AND birthdate_date IS DISTINCT FROM to_date(birthdate, 'YYYY-MM-DD')
+LIMIT 100;
+```
+
+If quarantine volume is too large or contains business-meaningful partial dates, stop here. Manual decision boundary: product/data owners must define whether partial or unknown dates become `NULL`, stay unresolved, or require a new precision model.
+
+**5. App Deploy 2: Read Switch**
+
+After validation passes, read from `birthdate_date`. Keep dual writes and old column unchanged for rollback.
+
+Post-cutover consistency:
+
+```sql
+SELECT count(*)
+FROM users
+WHERE birthdate_date IS NOT NULL
+  AND to_char(birthdate_date, 'YYYY-MM-DD') IS DISTINCT FROM birthdate;
+```
+
+**6. Cleanup**
+
+Only after a full stable window:
+
+```sql
+ALTER TABLE users DROP COLUMN birthdate;
+ALTER TABLE users RENAME COLUMN birthdate_date TO birthdate;
+```
+
+**Rollback**
+
+Before cleanup, revert app reads to `users.birthdate`. Because the original column is untouched and dual-written, rollback is application-only.
 ```

@@ -8,9 +8,9 @@ title: "Performance Tuning Without Micro-Optimization Drift"
 
 **Fixture:** [examples/evaluations/fixtures/performance-tuning](https://github.com/corbensorenson/software-grimoire/tree/main/examples/evaluations/fixtures/performance-tuning)
 
-**Observed outcome delta:** repaired prompts satisfied 0.6 more outcome checks on average
+**Observed outcome delta:** repaired prompts satisfied 0.5 more outcome checks on average
 
-**Observed reviewability delta:** repaired prompts scored 3.0 reviewability points higher on average
+**Observed reviewability delta:** repaired prompts scored 3.8 reviewability points higher on average
 
 **Input context:** The fixture is a report endpoint performance packet.
 
@@ -33,6 +33,7 @@ Ground truth:
 | claude-code-safe  | clean | 1      | 1          | 10.0               | 8.0                    | -2.0                | 3.0          | 3.0              | 0.0           |
 | claude-code-safe  | trap  | 1      | 1          | 1.0                | 11.0                   | 10.0                | 0.0          | 3.0              | 3.0           |
 | codex-cli-default | clean | 3      | 3          | 8.7                | 11.0                   | 2.3                 | 3.0          | 3.0              | 0.0           |
+| codex-cli-default | trap  | 3      | 3          | 6.0                | 11.0                   | 5.0                 | 2.7          | 3.0              | 0.3           |
 
 ## Scores
 
@@ -48,6 +49,12 @@ Ground truth:
 | claude-code-safe  | clean | repaired | 1   | 2        | 0         | 1      | 2      | 2       | 1           | 8             | 3       |
 | claude-code-safe  | trap  | weak     | 1   | 0        | 0         | 1      | 0      | 0       | 0           | 1             | 0       |
 | claude-code-safe  | trap  | repaired | 1   | 2        | 1         | 2      | 2      | 2       | 2           | 11            | 3       |
+| codex-cli-default | trap  | weak     | 1   | 2        | 0         | 1      | 2      | 1       | 1           | 7             | 3       |
+| codex-cli-default | trap  | repaired | 1   | 2        | 1         | 2      | 2      | 2       | 2           | 11            | 3       |
+| codex-cli-default | trap  | weak     | 2   | 2        | 0         | 0      | 2      | 0       | 0           | 4             | 3       |
+| codex-cli-default | trap  | repaired | 2   | 2        | 1         | 2      | 2      | 2       | 2           | 11            | 3       |
+| codex-cli-default | trap  | weak     | 3   | 2        | 0         | 1      | 2      | 1       | 1           | 7             | 2       |
+| codex-cli-default | trap  | repaired | 3   | 2        | 1         | 2      | 2      | 2       | 2           | 11            | 3       |
 
 ## Transcripts
 
@@ -580,4 +587,318 @@ A visible Python loop is a candidate for #5 only after #1–#4 are ruled out.
 **Success**: p99 latency within budget; query count per request ≤ O(1) or bounded constant.
 **Regressions to watch**: correctness of results (stale cache reads), connection pool exhaustion under higher concurrency, increased memory from eager-loading large associations.
 **Rollback**: feature flag or deployment revert; DB index drops are fast if no benefit is confirmed.
+```
+
+### codex-cli-default - weak r1
+
+- Surface label: Codex CLI default model
+- Run timestamp: `2026-07-02T13:02:27.950192+00:00`
+- Prompt file: [examples/evaluations/runs/codex-cli-default/performance-tuning/trap/r01-weak-prompt.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/performance-tuning/trap/r01-weak-prompt.md)
+- Transcript file: [examples/evaluations/runs/codex-cli-default/performance-tuning/trap/r01-weak-output.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/performance-tuning/trap/r01-weak-output.md)
+- Reviewability total: 7
+- Outcome total: 3
+- Evaluator notes: Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.
+
+```text
+I can’t safely make a code change from the provided context: the endpoint/function, ORM/database access code, schema, trace, and tests are missing, and this workspace is read-only.
+
+What is clear from the fixture is the likely target: don’t micro-optimize the visible Python loop first. The planted bottleneck is repeated database access.
+
+The faster fix should start by measuring and reducing I/O:
+
+1. Instrument per-request query count, DB time, query fingerprints, rows read, and Python CPU time.
+2. Look for N+1 patterns inside the loop: one query per project/task/user/item.
+3. Replace repeated reads with batched queries, eager loading, joins, or precomputed aggregates.
+4. Add/verify indexes only after the query shape is known.
+5. Add a regression test that asserts bounded query count for a representative large input.
+6. Re-profile after DB access is fixed; only then tune local Python loops if they remain material.
+
+Missing to implement the patch: the actual Python code, database/ORM layer, schema/indexes, and a representative workload or trace.
+```
+
+### codex-cli-default - repaired r1
+
+- Surface label: Codex CLI default model
+- Run timestamp: `2026-07-02T13:02:47.319234+00:00`
+- Prompt file: [examples/evaluations/runs/codex-cli-default/performance-tuning/trap/r01-repaired-prompt.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/performance-tuning/trap/r01-repaired-prompt.md)
+- Transcript file: [examples/evaluations/runs/codex-cli-default/performance-tuning/trap/r01-repaired-output.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/performance-tuning/trap/r01-repaired-output.md)
+- Reviewability total: 11
+- Outcome total: 3
+- Evaluator notes: Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.
+
+```text
+**Bottleneck Hypotheses**
+
+1. **Repeated database access / N+1 query pattern**: Most likely production bottleneck. Even if a Python loop appears slow locally, repeated DB round trips can dominate latency on commodity cloud hardware.
+2. **I/O wait and network latency to the database**: Query count, connection reuse, lock waits, and result size may be driving tail latency.
+3. **Inefficient data access shape**: Fetching too much data, missing indexes, or repeated lookups inside request paths.
+4. **Allocation or serialization overhead**: Possible secondary cost if large result sets are materialized repeatedly.
+5. **Python loop cost**: Do not optimize yet. Only consider after query count, DB time, network time, and allocation costs are isolated.
+
+**What To Measure**
+
+Need the following before recommending code-level tuning:
+
+- Per-request query count.
+- Total DB time per request.
+- Individual query latency distribution: p50, p95, p99.
+- Duplicate query fingerprints within a request.
+- Rows scanned, rows returned, and execution plans.
+- Connection pool wait time and saturation.
+- Network round-trip time to DB.
+- CPU time vs wall-clock time in the application.
+- Allocation volume and serialization/deserialization time.
+- End-to-end request traces with spans for app code, DB, cache, and network.
+
+**Ranked Optimization Options**
+
+1. **Eliminate repeated DB calls**
+   - Batch queries, prefetch related records, or replace per-item lookups with set-based queries.
+   - Expected benefit: very high.
+   - Risk: medium, because data-shape changes can affect correctness.
+
+2. **Add or fix database indexes based on query plans**
+   - Only after confirming slow scans or poor plans.
+   - Expected benefit: high.
+   - Risk: medium; watch write amplification and migration impact.
+
+3. **Cache stable or repeated reads**
+   - Request-scoped cache first, then shared cache if safe.
+   - Expected benefit: medium to high.
+   - Risk: medium; stale data and invalidation complexity.
+
+4. **Reduce payload and materialization cost**
+   - Select only needed columns, paginate, stream large results.
+   - Expected benefit: medium.
+   - Risk: low to medium.
+
+5. **Optimize Python loop**
+   - Only after I/O, DB, allocation, and network effects are separated.
+   - Expected benefit: unknown, likely lower.
+   - Risk: low, but can waste effort and obscure the real issue.
+
+**Benchmark Plan**
+
+Create representative load tests with production-like data volume. Capture baseline p50/p95/p99 latency, throughput, query count, DB time, CPU, memory, and error rate. Test each optimization independently behind a feature flag or isolated branch. Compare against baseline under equal concurrency.
+
+**Success Measurement**
+
+Success means lower p95/p99 latency, fewer DB round trips, reduced DB time per request, and stable or improved throughput without increased errors.
+
+**Regressions To Watch**
+
+Watch correctness, stale reads, increased memory, connection pool saturation, DB CPU, lock waits, write latency, cache miss storms, and worse tail latency.
+
+**Rollback Criteria**
+
+Rollback if p95/p99 latency worsens, error rate rises, DB load increases materially, memory grows unexpectedly, or correctness checks fail.
+```
+
+### codex-cli-default - weak r2
+
+- Surface label: Codex CLI default model
+- Run timestamp: `2026-07-02T13:03:27.779580+00:00`
+- Prompt file: [examples/evaluations/runs/codex-cli-default/performance-tuning/trap/r02-weak-prompt.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/performance-tuning/trap/r02-weak-prompt.md)
+- Transcript file: [examples/evaluations/runs/codex-cli-default/performance-tuning/trap/r02-weak-output.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/performance-tuning/trap/r02-weak-output.md)
+- Reviewability total: 4
+- Outcome total: 3
+- Evaluator notes: Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.
+
+```text
+I can’t safely make a code change from the provided fixture alone. The available context only says the bottleneck is repeated database access, not the visible Python loop; it does not include the endpoint/function, ORM code, schema, trace, benchmark, or tests.
+
+The correct fix is to measure and reduce query count first:
+
+1. Add per-request query count and DB-time instrumentation.
+2. Find N+1 lookups inside the loop.
+3. Replace per-item queries with batched/eager-loaded reads, e.g. `WHERE id IN (...)`, joins, `select_related`, or `prefetch_related`.
+4. Add a regression test asserting bounded query count for a large fixture.
+5. Only consider Python loop micro-optimization after DB time is no longer dominant.
+
+No files were changed because the workspace is read-only and the task context lacks implementation details.
+```
+
+### codex-cli-default - repaired r2
+
+- Surface label: Codex CLI default model
+- Run timestamp: `2026-07-02T13:03:48.567547+00:00`
+- Prompt file: [examples/evaluations/runs/codex-cli-default/performance-tuning/trap/r02-repaired-prompt.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/performance-tuning/trap/r02-repaired-prompt.md)
+- Transcript file: [examples/evaluations/runs/codex-cli-default/performance-tuning/trap/r02-repaired-output.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/performance-tuning/trap/r02-repaired-output.md)
+- Reviewability total: 11
+- Outcome total: 3
+- Evaluator notes: Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.
+
+```text
+**Bottleneck Hypotheses**
+
+1. **Repeated database access / N+1 queries**: Most likely highest-impact bottleneck. On commodity cloud hardware with strict latency, query count, round trips, lock waits, and connection-pool contention usually dominate a visible Python loop.
+2. **Network and I/O latency**: Remote DB/cache/service calls may be adding tail latency, especially if serialized.
+3. **Database query shape**: Missing indexes, inefficient joins, large result sets, or per-request repeated reads could hurt both latency and throughput.
+4. **Allocation / serialization overhead**: Large object creation, JSON encoding/decoding, ORM hydration, or copying may matter after I/O is separated.
+5. **Python loop CPU cost**: Only investigate after confirming the request is CPU-bound and DB/network/allocation effects are not dominant.
+
+Evidence is currently insufficient for code-level recommendations. Before changing implementation, collect request traces, query counts, DB timing, CPU profiles, allocation profiles, and representative load-test data.
+
+**What To Measure**
+
+- Per-request query count and total DB time.
+- DB round trips, slow queries, lock waits, rows scanned/returned, index usage.
+- Connection-pool wait time and saturation.
+- External network call count, latency, retries, and timeout rates.
+- CPU wall time versus CPU active time.
+- Allocation rate, GC pressure, serialization/deserialization time.
+- p50, p95, p99 latency and throughput under realistic concurrency.
+- Cache hit rate, if caching exists.
+
+**Ranked Optimization Options**
+
+1. **Eliminate repeated DB access**
+   - Batch queries, prefetch related data, use joins where appropriate, remove N+1 patterns.
+   - Expected benefit: very high.
+   - Risk: medium, because data-shape changes can affect correctness.
+
+2. **Improve query plans and indexing**
+   - Add or adjust indexes based on actual `EXPLAIN` plans and production-like cardinality.
+   - Expected benefit: high.
+   - Risk: medium, due to write overhead and migration risk.
+
+3. **Reduce unnecessary I/O**
+   - Cache stable reads, avoid duplicate calls within a request, coalesce remote requests.
+   - Expected benefit: high.
+   - Risk: medium-high if cache invalidation is subtle.
+
+4. **Control concurrency and pooling**
+   - Tune DB pool size, request concurrency, and timeouts based on saturation data.
+   - Expected benefit: medium-high.
+   - Risk: medium.
+
+5. **Reduce allocation / serialization cost**
+   - Return narrower payloads, stream large responses, avoid unnecessary object hydration.
+   - Expected benefit: medium.
+   - Risk: low-medium.
+
+6. **Optimize Python loop**
+   - Consider vectorization or compiled paths only if profiling proves CPU-bound loop cost is material.
+   - Expected benefit: unknown, likely lower.
+   - Risk: low-medium, but premature.
+
+**Benchmark Plan**
+
+Use a production-like dataset and traffic mix. Capture baseline p50/p95/p99 latency, throughput, CPU, memory, DB time, query count, and error rate. Apply one optimization at a time. Run steady-state and burst tests at expected and peak concurrency.
+
+**Rollback Criteria**
+
+Rollback if p95/p99 latency worsens, error rate rises, DB CPU/locks increase materially, cache inconsistency appears, memory grows unexpectedly, or correctness tests fail.
+
+**Success Verification**
+
+Success means meeting the latency budget at target throughput with reduced DB round trips or I/O time, stable error rates, no correctness regressions, and no tail-latency degradation. Watch regressions in stale data, lock contention, write latency, memory use, and operational complexity.
+```
+
+### codex-cli-default - weak r3
+
+- Surface label: Codex CLI default model
+- Run timestamp: `2026-07-02T13:04:05.900377+00:00`
+- Prompt file: [examples/evaluations/runs/codex-cli-default/performance-tuning/trap/r03-weak-prompt.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/performance-tuning/trap/r03-weak-prompt.md)
+- Transcript file: [examples/evaluations/runs/codex-cli-default/performance-tuning/trap/r03-weak-output.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/performance-tuning/trap/r03-weak-output.md)
+- Reviewability total: 7
+- Outcome total: 2
+- Evaluator notes: Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.
+
+```text
+I can’t make a concrete code change from this context alone. What’s missing is the actual code path, profiling output, database query count, and representative input size/workload.
+
+Given the trap context, the right next step is not to micro-optimize the visible Python loop. I would first measure production-shaped performance and specifically check for repeated database access, such as an N+1 query pattern.
+
+The likely fix would be one of:
+
+- Batch database reads instead of querying inside the loop.
+- Use `select_related` / `prefetch_related` if this is Django.
+- Use joins/eager loading if this is SQLAlchemy or another ORM.
+- Fetch all needed rows once into a map keyed by ID, then do the Python loop over in-memory data.
+- Add or verify indexes for the queried columns.
+- Add instrumentation/tests that assert query count does not grow with item count.
+
+To proceed, I need the slow function or endpoint, the ORM/database layer being used, and ideally one profile or query log showing runtime and query count.
+```
+
+### codex-cli-default - repaired r3
+
+- Surface label: Codex CLI default model
+- Run timestamp: `2026-07-02T13:04:24.685258+00:00`
+- Prompt file: [examples/evaluations/runs/codex-cli-default/performance-tuning/trap/r03-repaired-prompt.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/performance-tuning/trap/r03-repaired-prompt.md)
+- Transcript file: [examples/evaluations/runs/codex-cli-default/performance-tuning/trap/r03-repaired-output.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/performance-tuning/trap/r03-repaired-output.md)
+- Reviewability total: 11
+- Outcome total: 3
+- Evaluator notes: Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.
+
+```text
+**Bottleneck Hypotheses**
+
+1. **Repeated database access / N+1 query pattern**
+   Most likely high-benefit bottleneck. A visible Python loop may look slow locally, but if it performs or triggers repeated DB calls, latency is dominated by I/O, query planning, network round trips, locks, or connection pool contention.
+
+2. **Database query inefficiency**
+   Slow queries, missing indexes, large result scans, excessive joins, or poor pagination may dominate request latency.
+
+3. **Network and service dependency latency**
+   Any per-item remote call inside the request path can amplify tail latency.
+
+4. **Allocation / serialization overhead**
+   Large object construction, JSON encoding, ORM hydration, or repeated data copying may matter after I/O is separated.
+
+5. **Local Python loop cost**
+   Only evaluate after confirming query count, DB time, network time, allocation, and serialization are not dominant.
+
+**What To Measure**
+
+- Per-request query count.
+- Total DB time per request and per-query latency distribution.
+- Number of network calls per request.
+- p50/p95/p99 request latency.
+- Connection pool wait time.
+- Rows scanned vs returned.
+- CPU time vs wall time.
+- Allocation / GC pressure.
+- Flamegraph or trace segmented by DB, network, CPU, serialization, and queueing.
+
+If this data is unavailable, collect production-like traces, DB query logs, and an end-to-end benchmark before recommending code-level tuning.
+
+**Ranked Optimization Options**
+
+1. **Batch or prefetch database access**
+   Expected benefit: high. Risk: medium.
+   Replace repeated per-item DB access with bulk queries, joins, prefetching, or request-scoped loading.
+
+2. **Reduce query count and round trips**
+   Expected benefit: high. Risk: low-medium.
+   Cache stable lookups within the request, remove duplicate queries, and avoid ORM lazy-loading in hot paths.
+
+3. **Optimize slow queries / indexes**
+   Expected benefit: high. Risk: medium.
+   Use query plans before adding indexes or rewriting SQL.
+
+4. **Introduce bounded caching**
+   Expected benefit: medium-high. Risk: medium.
+   Use only where freshness requirements are clear.
+
+5. **Reduce serialization/allocation overhead**
+   Expected benefit: medium. Risk: low-medium.
+   Apply after I/O is no longer dominant.
+
+6. **Micro-optimize Python loop**
+   Expected benefit: unknown/likely low. Risk: low but distracting.
+   Defer until measured CPU-bound evidence exists.
+
+**Benchmark Plan**
+
+Use production-shaped data, realistic concurrency, warm and cold cache runs, and compare baseline vs each change independently. Record latency percentiles, throughput, DB load, query count, CPU, memory, and error rate.
+
+**Rollback Criteria**
+
+Rollback if p95/p99 latency worsens, error rate increases, DB CPU/locks rise materially, memory grows unexpectedly, cache staleness causes incorrect behavior, or throughput drops under target load.
+
+**Success Measurement**
+
+Success means meeting the strict latency budget at target concurrency with reduced query count/DB time and no regressions in correctness, tail latency, memory, or dependency load.
 ```
