@@ -6,7 +6,7 @@
 Operative vocabulary, prompt-spells, and stackcraft for AI-assisted software
 engineering.
 
-This repository is the v2.1 roadmap-completion release of the Software
+This repository is the v2.5 roadmap-completion release of the Software
 Grimoire: a public Quarto site, structured reference canon, reusable spell and
 stack templates, measured evaluation bench, jailbreak-resilience harness,
 installable prompt/rule exports, package manifests, visual review instruments,
@@ -17,7 +17,7 @@ enough to inspect.
 
 ## Current Status
 
-This is the public v2.1 release generated from the three source DOCX
+This is the public v2.5 release generated from the three source DOCX
 manuscripts in `source_docs/` and their Markdown extracts in
 `source_extracts/`.
 
@@ -42,21 +42,30 @@ Implemented:
   visual grammar, task chooser, and reference pages.
 - Bench v2 surface contract, deterministic scoring notes, manual import
   template, and `grimoire bench import` validation.
+- Execution-graded clean/trap bench contract, trap-tier fixtures for all six
+  field spells, and runnable artifact grading for the safe-refactoring fixture.
+- Surface comparison records that separate project-owned model transcripts from
+  repository-owned deterministic graders.
 - Codex-owned measured weak-vs-repaired evaluation runs for all six field
   spells: executable fixtures, planted ground truth, outcome scores, structural
   scores, and three repetitions per variant.
 - Defensive jailbreak-resilience layer: adversarial promptcraft chapter,
   source-mapped reference page, warded spell fields, AI red-team loop, eight
   harmless fixtures, and 24 preserved Codex-owned bench runs.
+- Baseline-vs-warded jailbreak-resilience matrix using defanged fixtures and an
+  explicit project-owned evidence limitation.
 - Adversarial harness v2 for simulated tool mediation, retrieval taint,
   multi-turn scope creep, long-context drift, canary redaction, and overrefusal.
+- Semantic promotion ladder for moving generated-draft vocabulary into reviewed
+  and canonical status, with the first two lexicon houses fully reviewed.
 - Raw prompt assets in `prompts/` for the seven spells and seven stack
   workflows.
 - Installable generated exports in `exports/` for Markdown, Codex task
-  templates, Cursor rules, and stack workflows, with library manifest,
-  checksums, release bundles, and a dry-run-first installer.
+  templates, Cursor rules, Claude Code skills, and stack workflows, with
+  library manifest, checksums, release bundles, and a dry-run-first installer.
 - Python packaging metadata for editable local use of `grimoire`,
-  `grimoire-install-assets`, `grimoire-run-bench`, and
+  `grimoire-install-assets`, `grimoire-run-bench`,
+  `grimoire-run-execution-bench`, and
   `grimoire-run-adversarial-harness`.
 - Release-gate stack dogfood record tied to the public GitHub Pages workflow.
 - Project-owned adoption evidence records, adoption report template, and public
@@ -88,15 +97,18 @@ python3 scripts/grimoire.py new spell /tmp/my-spell.json
 python3 scripts/grimoire.py validate /tmp/my-spell.json
 python3 scripts/grimoire.py seal /tmp/my-spell.json
 python3 scripts/grimoire.py export --target cursor
+python3 scripts/grimoire.py export --target claude-code
+python3 scripts/grimoire.py bench execution
 python3 scripts/grimoire.py bench import examples/evaluations/manual-import-template.json
 python3 scripts/install_assets.py --target cursor --dest /tmp/grimoire-assets
+python3 scripts/install_assets.py --target claude-code --dest /tmp/grimoire-assets
 python3 scripts/install_assets.py --target cursor --dest /tmp/grimoire-assets --write
 python3 scripts/grimoire.py all
 ```
 
 The generated site is written to `_site/`.
 
-Current render size: 95 Quarto pages.
+Current render size: 99 Quarto pages.
 
 ## Repository Map
 
@@ -106,7 +118,8 @@ Current render size: 95 Quarto pages.
 - `stacks/`: reusable stack workflows.
 - `prompts/`: raw spell and stack assets for use in AI tools and prompt
   registries.
-- `exports/`: generated installable Markdown, Codex, Cursor, and stack assets.
+- `exports/`: generated installable Markdown, Codex, Cursor, Claude Code, and
+  stack assets.
 - `assets/diagrams/generated/`: generated visual review diagrams.
 - `data/`: structured canon data.
 - `schemas/`: JSON schemas for validation.

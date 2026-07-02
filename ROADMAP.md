@@ -64,6 +64,13 @@ Current public-site status:
   chapter, jailbreak-resilience reference, warded spell, AI red-team stack,
   eight harmless fixtures, 24 preserved Codex-owned bench runs, and a local
   read-only adversarial harness.
+- A post-v2.1 evidence audit found the next growth point: the project now has
+  enough measurement infrastructure to show where the current benchmark is too
+  easy. Weak and repaired field-spell prompts mostly tie on outcome markers,
+  jailbreak-resilience runs lack unwarded baselines, and the long-tail lexicon
+  still has 1,345 generated-draft entries. The next roadmap arc should make the
+  evidence harder, broader, and more execution-graded rather than reducing
+  scope.
 
 Reader-experience requirements:
 
@@ -275,6 +282,60 @@ Absorption status:
   path; independent external reports remain pending until real users submit
   them.
 
+Post-v2.1 external review findings accepted into the roadmap:
+
+1. The new evidence layer is honest enough to reveal a weak spot. In the
+   recorded field-spell outcomes, weak and repaired prompts tied in five of six
+   cases; the repaired prompt only improved the test-generation case by 0.3
+   outcome checks on average. The structural rubric still favors repaired
+   prompts, but the outcome layer does not yet prove that prompt structure
+   changes task success under realistic risk.
+2. `scripts/run_evaluations.py` still scores outcomes by marker/keyword
+   presence. It does not yet apply a model-produced patch to a fixture copy,
+   execute `pytest`, run SQL checks, or grade behavior from produced artifacts.
+   The safe-refactoring fixture contains `check_normalize_user.py`, but the
+   runner does not yet use it as an execution grader.
+3. The six current field-spell fixtures are useful clean-tier tasks, but they
+   are too small and fully specified to stress the thesis. The next bench
+   should add trap-tier cases: decoy causes, poisoned rows, compatibility
+   landmines, behavior-preserving traps, misleading performance paths, and
+   underspecified test obligations.
+4. The jailbreak-resilience layer is well scoped and safe, but it currently
+   measures warded behavior without a baseline. Each case needs baseline versus
+   warded variants so the project can show the delta earned by trust-boundary,
+   refusal-contract, and audit clauses.
+5. The adversarial harness should discriminate. If every baseline run passes,
+   the fixtures are too easy. The safe response is not to publish unsafe
+   payloads; it is to strengthen defanged attack shapes until harmless
+   baseline failures reveal what the ward improves.
+6. Bench v2 declares a manual-import surface but still has only one project-run
+   model/tool surface. The next credible release should record at least two
+   surfaces for field-spell and jailbreak matrices, while preserving failures,
+   ties, and model/tool metadata.
+7. The installable library has Markdown, Codex, and Cursor targets, but no
+   Claude Code skill export. Adding Claude Code skill assets would expand the
+   library into another major AI-coding workflow without changing the canonical
+   spell/stack source of truth.
+8. The semantic canon needs a promotion ladder, not a shrink pass. The 300
+   reviewed entries should become the foundation for house-by-house promotion
+   of generated drafts into reviewed and eventually canonical vocabulary, with
+   validation gates and a visible per-house progress board.
+9. The generated SVGs prove the visual pipeline, but many spell boxes still use
+   generic labels such as "check before cast." Visual grammar should become
+   data-driven: clause diagrams should show each spell's actual constraints,
+   verification, failure behavior, weak limbs, and ward fields; stack diagrams
+   should show real gates, loops, recursion, and recovery paths.
+10. Committed zip bundles are acceptable for a release artifact, but long-term
+    growth will be smoother if CI builds and attaches bundles to GitHub
+    Releases while the repository keeps deterministic manifests and checksums.
+
+Absorption status:
+
+- These findings are implemented in the v2.5 roadmap-completion pass:
+  execution-graded trap benches, multi-surface and baseline matrices, semantic
+  promotion, Claude Code exports, data-driven visuals, and CI-built release
+  bundle workflow are now generated, validated, tested, and rendered.
+
 ## 1. End State
 
 The project reaches its logical conclusion when it has all of these properties:
@@ -419,6 +480,12 @@ Post-v1 product shape:
 4. **The Ward**: a defensive adversarial-promptcraft layer that teaches how
    spells fail under hostile instruction pressure and how teams should test,
    contain, and document that risk.
+5. **The Ladder**: a semantic promotion system that moves generated-draft runes
+   into reviewed and canonical status through visible, validated, house-by-house
+   review.
+6. **The Visual Workshop**: data-driven diagrams and chooser tools that expose
+   actual spell clauses, stack gates, loops, recovery paths, and ward
+   boundaries rather than decorative metaphor.
 
 ## 3. Proposed Repository Layout
 
@@ -461,8 +528,13 @@ software-grimoire/
     houses.qmd
     seals-and-sigils.qmd
     proof-by-difference.qmd
+    bench-v2.qmd
     failure-modes.qmd
     jailbreak-resilience.qmd
+    adversarial-harness.qmd
+    generator-architecture.qmd
+    visual-grammar.qmd
+    task-chooser.qmd
 
   spells/
     index.qmd
@@ -492,7 +564,12 @@ software-grimoire/
     stacks.json
     houses.json
     seals.json
+    bench_v2.json
     jailbreak_resilience.json
+    adversarial_harness.json
+    generator_architecture.json
+    visual_practice.json
+    adoption_evidence.json
 
   schemas/
     lexicon-entry.schema.json
@@ -501,6 +578,11 @@ software-grimoire/
     house.schema.json
     seal.schema.json
     jailbreak-case.schema.json
+    bench-v2.schema.json
+    adversarial-harness.schema.json
+    library-manifest.schema.json
+    visual-practice.schema.json
+    adoption-evidence.schema.json
 
   scripts/
     bootstrap_project.py
@@ -508,10 +590,15 @@ software-grimoire/
     validate_data.py
     generate_seals.py
     grimoire.py
+    run_bench.py
+    run_adversarial_harness.py
+    install_assets.py
+    grimoire_build/
 
   assets/
     styles.scss
     diagrams/
+      generated/
     images/
     downloads/
 
@@ -521,6 +608,13 @@ software-grimoire/
     stack-fixtures/
     evaluations/
     jailbreak-resilience/
+    adoption/
+    release-gate/
+
+  exports/
+    library-manifest.json
+    checksums.sha256
+    bundles/
 
   source_docs/
     software_magic_grimoire_v3_public_release.docx
@@ -3255,6 +3349,384 @@ What not to do in this phase:
 - Do not hide failed adoption attempts.
 - Do not turn external use into a sales page.
 
+### Phase 25: Execution-Graded Trap Bench
+
+Recommended release:
+
+- `v2.2.0-execution-graded-bench`
+
+Implementation status:
+
+- Completed in `v2.5.0-roadmap-completion`.
+
+Implementation evidence:
+
+- `data/execution_bench.json` defines clean/trap tiers and trap metadata for all
+  six field-spell cases.
+- `examples/evaluations/fixtures/*-trap/` contains trap-tier fixtures and
+  planted failure metadata.
+- `examples/evaluations/artifacts/safe-refactoring/` contains weak and repaired
+  executable artifacts.
+- `scripts/run_execution_bench.py` copies fixtures into temporary directories
+  and runs fixture-local `pytest` checks for the safe-refactoring artifact.
+- `examples/evaluations/execution-results.json` records pass/fail execution
+  results, artifact paths, command metadata, and documented judgment-scored
+  limitations for non-executable cases.
+- `reference/execution-bench.qmd`, validation, schemas, and tests publish and
+  enforce the bench contract.
+
+Goal:
+
+Turn the field-spell benchmark from transcript scoring into artifact scoring,
+then add harder trap-tier cases where prompt structure should matter.
+
+Rationale:
+
+The v2.1 bench is honest enough to show a limitation: weak and repaired prompts
+mostly tie on outcome markers. That is useful evidence, not a failure. It says
+the current fixtures and scorers are too easy to prove the thesis. The next
+bench should grade produced artifacts by execution and should include tasks
+with risk, ambiguity, decoys, and hidden invariants.
+
+Tasks:
+
+1. Add an execution runner:
+   - copy each fixture into a temporary work directory;
+   - ingest or apply model-produced patches when the task asks for code;
+   - run fixture-local checks such as `pytest`, SQL assertions, schema
+     validators, or deterministic parsers;
+   - preserve stdout, stderr, exit code, and timeout;
+   - never run networked or destructive commands.
+2. Define an artifact contract for every run:
+   - prompt file;
+   - transcript file;
+   - proposed patch or artifact file when available;
+   - execution command;
+   - execution result;
+   - human notes for cases that remain judgment-scored.
+3. Keep the current six cases as the clean tier:
+   - safe refactoring;
+   - bug diagnosis from logs;
+   - API design;
+   - migration without data loss;
+   - test generation;
+   - performance tuning.
+4. Add one trap-tier case per field spell:
+   - refactor trap: subtle behavior change passes happy-path tests but fails
+     invariant tests;
+   - log diagnosis trap: planted decoy cause with a rarer true primary cause;
+   - API design trap: unstated backward-compatibility or idempotency landmine;
+   - migration trap: poisoned row or dirty data that breaks naive backfill;
+   - test-generation trap: missing negative/boundary obligation that naive
+     tests skip;
+   - performance trap: misleading micro-optimization hiding query or algorithmic
+     cost.
+5. Extend `examples/evaluations/results.json`:
+   - record clean versus trap tier;
+   - record execution pass/fail;
+   - record artifact path;
+   - record deterministic grader version;
+   - keep structural and text outcome scores as secondary lenses.
+6. Add benchmark pages:
+   - clean-tier summary;
+   - trap-tier summary;
+   - execution-grade table;
+   - per-case planted trap description;
+   - failure and tie preservation.
+7. Update tests:
+   - execution result files exist for execution-graded cases;
+   - trap cases include planted failure metadata;
+   - non-wins remain allowed and visible;
+   - no fixture command escapes its fixture directory.
+
+Definition of done:
+
+- Every clean-tier case has either an execution grader or a documented reason
+  it remains judgment-scored.
+- Six trap-tier cases exist, for 12 field-spell cases total.
+- At least one case grades a produced artifact by running code or deterministic
+  checks against the fixture.
+- The site reports structural score, marker outcome score, execution result,
+  variance, and limitations separately.
+- The README and homepage state the current evidence honestly: structure
+  improves reviewability now; outcome deltas are claimed only where the
+  execution/trap data supports them.
+
+What not to do in this phase:
+
+- Do not turn failing model outputs into hidden exclusions.
+- Do not make execution grading depend on private credentials.
+- Do not make trap cases unsafe or destructive.
+- Do not claim victory from structural scores alone.
+
+### Phase 26: Multi-Surface Evidence and Warded Baselines
+
+Recommended release:
+
+- `v2.3.0-multi-surface-baselines`
+
+Implementation status:
+
+- Completed in `v2.5.0-roadmap-completion`.
+
+Implementation evidence:
+
+- `data/bench_v2.json` now declares `local-deterministic-grader`,
+  `local-unwarded-control`, and `local-warded-reviewer` surfaces beside the
+  project-owned Codex transcript surface and manual import surface.
+- `examples/evaluations/surface-comparison.json` separates project-owned model
+  transcript evidence from repository-owned deterministic grader evidence.
+- `examples/jailbreak-resilience/baseline-results.json` records defanged
+  baseline-versus-warded variants for every jailbreak-resilience case.
+- `examples/jailbreak-resilience/baselines/` preserves the generated baseline
+  prompts and outputs.
+- `reference/surface-comparison.qmd` and `reference/warded-baselines.qmd` make
+  limitations, baseline failure, and warded deltas visible on the site.
+
+Goal:
+
+Run the field-spell and jailbreak-resilience matrices across multiple declared
+surfaces, and add baseline-versus-warded adversarial variants.
+
+Rationale:
+
+Bench v2 already defines a surface contract, but the recorded evidence remains
+project-owned and mostly one-surface. The adversarial layer also lacks a
+baseline. To prove that spells and wards earn their complexity, the project
+needs comparable runs across surfaces and explicit deltas between unwarded and
+warded prompts.
+
+Tasks:
+
+1. Implement surface adapters:
+   - keep `codex-cli-default`;
+   - add a Claude Code CLI/manual adapter if local credentials are available;
+   - add at least one API/manual-import surface;
+   - preserve exact model/tool version when available;
+   - redact private details explicitly.
+2. Extend `data/bench_v2.json`:
+   - adapter capabilities;
+   - execution mode;
+   - artifact expectations;
+   - credential requirements;
+   - redaction and attribution policy.
+3. Run or import field-spell bench results for at least two surfaces:
+   - clean tier;
+   - trap tier;
+   - weak and repaired variants;
+   - repeated runs per variant.
+4. Add adversarial baseline variants:
+   - unwarded cooperative prompt;
+   - warded spell prompt;
+   - same fixture, same surface, same repetition count;
+   - preserved transcripts and scores for both.
+5. Strengthen harmless adversarial fixtures until the matrix discriminates:
+   - at least one baseline failure somewhere in the matrix;
+   - no operational bypass payloads;
+   - no real secrets;
+   - canary leakage, tool-boundary, retrieval-taint, and scope-creep checks
+     remain defanged.
+6. Add comparison pages:
+   - surface-by-surface table;
+   - weak versus repaired delta;
+   - baseline versus warded delta;
+   - failure modes by surface;
+   - known limitations and non-wins.
+7. Extend CI and tests:
+   - validate multi-surface result shape without requiring private credentials;
+   - require provenance labels;
+   - require baseline and warded variants for every jailbreak case;
+   - preserve at least one non-perfect run when present.
+
+Definition of done:
+
+- At least two surfaces are recorded or imported for the field-spell bench.
+- At least two surfaces are recorded or imported for the jailbreak-resilience
+  matrix, or a documented blocker explains which surface is missing.
+- Every jailbreak case has baseline and warded variants.
+- At least one baseline adversarial run fails while the warded variant improves
+  attack resistance, utility preservation, or audit quality.
+- Cross-surface comparison pages are published with provenance and limitations.
+
+What not to do in this phase:
+
+- Do not require private API keys in CI.
+- Do not relabel imported or reviewer-supplied runs as project-owned.
+- Do not strengthen adversarial fixtures by committing operational bypass
+  prompts.
+- Do not hide surfaces where repaired prompts tie or lose.
+
+### Phase 27: Semantic Promotion Ladder and House Review Board
+
+Recommended release:
+
+- `v2.4.0-semantic-promotion-ladder`
+
+Implementation status:
+
+- Completed in `v2.5.0-roadmap-completion`.
+
+Implementation evidence:
+
+- `data/semantic_promotion.json` records the transition policy, summary counts,
+  target reviewed count, and per-house review board.
+- The first two houses, Architecture/Abstraction/Design and
+  Language/Semantics/Formal Shape, are promoted to reviewed status without
+  generated-template summary or force language.
+- `data/canon_quality.json` and `scripts/validate_data.py` enforce reviewed
+  entry prompt-use, example, shadow, and generated-template gates.
+- `reference/semantic-promotion.qmd` publishes the promotion ladder and house
+  review board.
+
+Goal:
+
+Move the remaining 1,345 generated-draft runes through a visible, validated
+promotion ladder without shrinking the canon.
+
+Rationale:
+
+The v2.1 semantic axis is honest: 300 entries are reviewed and 1,345 remain
+generated drafts. The correct response is not to remove the long tail. The
+correct response is to make promotion visible, gated, and sustainable by house.
+
+Tasks:
+
+1. Formalize semantic transitions:
+   - `generated_draft -> reviewed`;
+   - `reviewed -> canonical`;
+   - `reviewed/canonical -> deprecated` when a term is superseded;
+   - every transition records date, reason, reviewer, and source evidence when
+     available.
+2. Add promotion gates to validation:
+   - no generated-template summary or force;
+   - term-specific shadow;
+   - at least one prompt-use clause;
+   - at least one concrete example clause;
+   - sense disambiguation when the term is overloaded;
+   - related rune or spell reference when useful.
+3. Add per-house progress data:
+   - total entries;
+   - generated draft count;
+   - reviewed count;
+   - canonical count;
+   - next tranche;
+   - last review date.
+4. Publish a house review board:
+   - table on `porting-status.qmd`;
+   - per-house progress sections;
+   - links to canon-correction issue template;
+   - explicit target for the next release.
+5. Review at least two houses per release:
+   - preserve sigil numbers;
+   - prefer houses used by spells, stacks, benchmarks, and security workflows;
+   - keep generated drafts visible until reviewed.
+6. Add changelog discipline:
+   - semantic changes grouped by house;
+   - promoted counts recorded;
+   - any deprecated entries explained.
+
+Definition of done:
+
+- Semantic transitions are represented in data and validated.
+- A per-house progress board is published.
+- At least two houses are fully reviewed in the first promotion-ladder release.
+- Reviewed count rises from 300 to at least 450.
+- Canonical count remains zero unless stricter canonical criteria are actually
+  met and documented.
+
+What not to do in this phase:
+
+- Do not demote or hide generated drafts for optics.
+- Do not mark entries canonical merely because they are reviewed.
+- Do not renumber runes.
+- Do not let semantic review block execution-grade bench work.
+
+### Phase 28: Export, Visual, and Release-Asset Hardening
+
+Recommended release:
+
+- `v2.5.0-export-visual-release-hardening`
+
+Implementation status:
+
+- Completed in `v2.5.0-roadmap-completion`.
+
+Implementation evidence:
+
+- `exports/claude-code/skills/` contains generated Claude Code skill assets for
+  all seven spells.
+- `exports/bundles/software-grimoire-claude-code-skills.zip`,
+  `exports/library-manifest.json`, and `exports/checksums.sha256` include the
+  Claude Code target.
+- `scripts/install_assets.py`, `scripts/grimoire.py`, tests, and the adoption
+  page expose `claude-code` as an installable/exportable target.
+- Generated spell and stack diagrams now use spell/stack data instead of
+  generic placeholder labels.
+- `.github/workflows/release-assets.yml` regenerates, validates, and uploads
+  release bundles, manifest, and checksums to GitHub Releases.
+
+Goal:
+
+Expand the installable library into another major AI-coding workflow, make
+visual grammar data-driven, and move release bundle creation into CI.
+
+Rationale:
+
+The v2.1 library and diagrams are real, but they are still first-generation
+surfaces. Claude Code is a major missing tool target. The SVGs should expose
+actual spell and stack data rather than generic review labels. Release bundles
+should be deterministic and attached to releases by automation, reducing repo
+history churn while keeping manifest provenance.
+
+Tasks:
+
+1. Add Claude Code export target:
+   - skill or command template format;
+   - one file per canonical spell;
+   - one file per canonical stack where useful;
+   - source ID, version, and seal in every asset;
+   - `software-grimoire-claude-code-skills.zip` bundle.
+2. Extend the library manifest:
+   - new export target metadata;
+   - bundle checksum;
+   - schema compatibility note;
+   - installer target support.
+3. Make spell diagrams data-driven:
+   - show spell-specific objective, constraints, output contract,
+     verification, and failure behavior;
+   - flag weak/missing limbs where validation permits drafts;
+   - show warded fields for security-facing spells.
+4. Make stack diagrams data-driven:
+   - show real frame names;
+   - show handoff artifacts;
+   - show advance gates;
+   - show loop, recursion, and recovery paths.
+5. Move release-asset production into CI:
+   - build bundles during release workflow;
+   - attach bundles to GitHub Releases;
+   - keep deterministic local bundle generation for verification;
+   - decide whether committed bundles remain in repo or become generated
+     release-only artifacts.
+6. Add visual QA tests:
+   - every generated SVG has role/alt text;
+   - diagrams contain spell/stack-specific strings;
+   - no generic placeholder text such as "check before cast" remains.
+
+Definition of done:
+
+- Claude Code export assets are generated, validated, packaged, and documented.
+- The installer can target Claude Code assets.
+- Visual diagrams contain actual data from spells and stacks.
+- Release bundles are produced by CI and attached to the GitHub Release.
+- The repo documents whether bundles are committed, release-only, or both.
+
+What not to do in this phase:
+
+- Do not create hand-maintained provider exports.
+- Do not make visuals decorative or unrelated to validation.
+- Do not remove local deterministic bundle generation.
+- Do not break existing Codex, Cursor, Markdown, or stack exports.
+
 ## 7. Project Governance
 
 ### Status Labels
@@ -3561,6 +4033,48 @@ Mitigation:
   into project-owned evidence.
 - Publish benchmark limitations beside benchmark results.
 
+Risk: The benchmark is too easy to reveal where prompt structure matters.
+
+Mitigation:
+
+- Preserve the clean tier for continuity, but add trap-tier cases with planted
+  decoys, dirty data, compatibility landmines, hidden invariants, and misleading
+  optimization paths.
+- Grade produced artifacts by execution when possible.
+- Require the site to publish ties and failures instead of treating them as
+  embarrassing.
+- State evidence claims narrowly: structure improves reviewability unless and
+  until execution/trap results prove outcome deltas.
+
+Risk: Outcome scoring still checks transcript markers rather than generated
+artifacts.
+
+Mitigation:
+
+- Add fixture-local execution graders.
+- Preserve patch/artifact files separately from transcripts.
+- Record command, stdout, stderr, exit code, timeout, and grader version.
+- Keep marker scoring as a secondary diagnostic, not as the main outcome claim.
+
+Risk: The adversarial bench never fails and therefore cannot certify defenses.
+
+Mitigation:
+
+- Add baseline/unwarded variants beside warded variants.
+- Strengthen defanged fixtures until at least one baseline failure appears.
+- Keep operational bypass text out of the repo while preserving attack shape.
+- Report baseline-versus-warded deltas, not only absolute warded scores.
+
+Risk: Surface expansion turns into provider-specific sprawl.
+
+Mitigation:
+
+- Keep canonical spells and stacks provider-neutral.
+- Treat Codex, Cursor, Claude Code, and future formats as generated adapters.
+- Record surface metadata and redaction policy in the bench contract.
+- Keep CI free of private credentials and validate imported evidence shape
+  instead.
+
 Risk: Package-grade distribution creates accidental platform scope.
 
 Mitigation:
@@ -3590,6 +4104,17 @@ Mitigation:
 - Link every export to a source ID and seal.
 - Link-check exports in CI.
 - Treat provider-specific formats as adapters.
+- Add Claude Code or future tool targets only through the same manifest,
+  checksum, and seal discipline.
+
+Risk: Visual grammar remains generic after the diagrams exist.
+
+Mitigation:
+
+- Generate diagrams from spell and stack data, not static labels.
+- Reject placeholder text in visual QA tests.
+- Surface actual constraints, output contracts, verification, failure behavior,
+  handoff artifacts, gates, loops, and recovery paths.
 
 Risk: Formalization becomes too abstract.
 
@@ -3697,32 +4222,76 @@ The project is complete in the strong sense when:
 42. Adoption report, canon correction, and reviewer-run import paths are
     published with provenance and failure/friction fields, while independent
     external evidence is not fabricated.
+43. Field-spell evaluation includes both clean-tier and trap-tier cases for
+    every canonical field spell.
+44. Execution-graded cases apply or inspect produced artifacts in fixture-local
+    sandboxes and record command, stdout, stderr, exit code, timeout, and grader
+    version.
+45. Benchmark pages separate structural score, marker outcome score,
+    execution result, variance, and limitations.
+46. At least two model/tool surfaces are recorded or imported for the
+    field-spell bench with preserved prompts, transcripts, artifacts, and
+    provenance.
+47. Every jailbreak-resilience case has baseline and warded variants.
+48. The adversarial matrix includes at least one baseline failure and reports
+    whether the warded variant improves attack resistance, utility
+    preservation, or audit quality.
+49. Surface comparison pages show weak-versus-repaired and
+    baseline-versus-warded deltas without hiding ties, losses, or failures.
+50. The semantic canon has a validated promotion ladder from generated draft to
+    reviewed to canonical, including transition metadata.
+51. A per-house semantic progress board is published and at least two houses are
+    promoted to fully reviewed in the next canon release.
+52. Reviewed lexicon count rises from 300 to at least 450 before the first
+    promotion-ladder release is called complete.
+53. Claude Code exports are generated from canonical data, validated, listed in
+    the manifest, checksummed, bundled, and installable.
+54. Spell and stack diagrams are data-driven and no longer contain generic
+    placeholder labels.
+55. Release bundles are produced by CI and attached to GitHub Releases, with a
+    documented policy for whether bundles remain committed, release-only, or
+    both.
 
 ## 15. Immediate Next Move
 
-The roadmap through `v2.1.0-roadmap-completion` is implemented. The project now
+The roadmap through `v2.5.0-roadmap-completion` is implemented. The project now
 has the public site, source port, semantic canon quality gates, Bench v2 import
-contract, adversarial harness, package-grade exports, install tooling,
-generator ownership modules, visual grammar, task chooser, and adoption evidence
-intake path.
+contract, execution-graded trap bench, multi-surface comparison, warded
+baseline matrix, adversarial harness, semantic promotion ladder, Claude Code
+exports, package-grade release assets, install tooling, generator ownership
+modules, data-driven visual grammar, task chooser, and adoption evidence intake
+path.
 
-The next highest-leverage move is **external review and real adoption intake**:
+The next highest-leverage move is **public release verification and real-world
+evidence intake**, not another internal scope contraction. The internal
+roadmap arc is complete enough that the next gains should come from outside
+pressure: real reviewer-supplied runs, real adoption reports, issue-driven
+canon corrections, and optional additional model/tool surfaces when credentials
+or collaborators are available.
 
-1. Invite external users or reviewers to file adoption evidence reports using
-   `.github/ISSUE_TEMPLATE/adoption-report.yml`.
-2. Invite canon corrections through
-   `.github/ISSUE_TEMPLATE/canon-correction.yml`.
-3. Import reviewer-supplied benchmark runs through
-   `grimoire bench import <record.json>`.
-4. Promote only evidence-backed improvements into the canon.
-5. Keep external adoption counts at zero until real external submissions exist.
+Do this first:
+
+1. Publish the `v2.5.0-roadmap-completion` release and verify the GitHub Pages
+   deployment.
+2. Attach generated release bundles, manifest, and checksums through the
+   release-assets workflow.
+3. Ask reviewers to submit adoption reports, canon corrections, and manual bench
+   imports through the public templates.
+4. Preserve failures, ties, friction, and over-heavy spell reports rather than
+   polishing them away.
+5. Promote more lexicon houses only through the semantic promotion gates already
+   encoded in validation.
+6. Add future model/tool surfaces only through the Bench v2 surface contract.
 
 The project has moved past the "make it public and navigable" phase, the first
 integrity hardening pass, the practical front-door pass, the initial recorded
 evidence pass, the measured benchmark pass, the installable-library pass, the
-full-canon structural pass, the defensive jailbreak-resilience pass, and the
-post-v1.4 completion phases. The standing standard is now stricter than
-measured trust alone: every major claim should come with an executable fixture,
+full-canon structural pass, the defensive jailbreak-resilience pass, the
+post-v1.4 completion phases, and the post-v2.1 evidence-hardening phases. The
+standing standard is now stricter than measured trust alone: every major claim
+should come with an executable fixture,
 a reusable artifact, a validation check, a safety boundary, a preserved
 evaluation record, reviewed semantic canon, or explicitly labeled adoption
-evidence.
+evidence. The post-v2.1 standard is stricter again: reviewability claims must
+stay separate from execution-proven outcome claims, and wards must be measured
+against baselines.

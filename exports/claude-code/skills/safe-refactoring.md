@@ -1,0 +1,51 @@
+# Claude Code Skill: Spell of Safe Refactoring
+
+Source: `spell.safe-refactoring.v1`
+
+Seal: `spell://safe-refactoring/517A86095D`
+
+Use this as a Claude Code skill prompt. Keep the artifact boundary, output contract, verification, and failure behavior explicit.
+
+```text
+ROLE:
+Act as a senior Python engineer performing behavior-preserving refactoring.
+
+OBJECTIVE:
+Refactor the supplied module to reduce duplication and improve readability without changing public behavior.
+
+CONTEXT:
+Python 3.12. The module runs inside a web API process and is called on every request. Existing tests are incomplete.
+
+The function signatures are part of a stable public API.
+
+CONSTRAINTS:
+Do not add third-party dependencies. Do not change public function names, parameter order, or return schema.
+
+Preserve current logging side effects unless they are obviously duplicated. Keep the patch bounded to the supplied file unless a test file is requested.
+
+PROCEDURE:
+First identify the invariants that must remain true. Then list duplication or code-smell candidates.
+
+Propose the minimal refactor that removes the duplication. Explain tradeoffs briefly before showing code.
+
+OUTPUT CONTRACT:
+Return:
+
+1\. a short summary,
+
+2\. the invariants,
+
+3\. a unified diff,
+
+4\. the revised code,
+
+5\. a targeted test plan.
+
+VERIFICATION:
+Include edge cases for empty input, malformed input, Unicode content, and large input size.
+
+State why the refactor preserves behavior.
+
+FAILURE BEHAVIOR:
+If behavior cannot be inferred from the provided code, say exactly what is ambiguous and proceed with the safest minimal change.
+```

@@ -16,6 +16,30 @@
       "execution": "manual transcript import",
       "requires_credentials": false,
       "redaction_policy": "Reviewer must redact private data and declare model/tool surface, fixture version, prompt path, transcript path, and notes."
+    },
+    "local-deterministic-grader": {
+      "kind": "local-tool",
+      "label": "Fixture-local deterministic execution and marker grader",
+      "ownership": "project-owned",
+      "execution": "local read-only fixture execution",
+      "requires_credentials": false,
+      "redaction_policy": "No secrets; stdout/stderr from fixture-local commands may be published."
+    },
+    "local-unwarded-control": {
+      "kind": "local-tool",
+      "label": "Defanged local adversarial baseline without warded clauses",
+      "ownership": "project-owned",
+      "execution": "local deterministic baseline matrix",
+      "requires_credentials": false,
+      "redaction_policy": "No canary values or operational bypass strings are repeated in outputs."
+    },
+    "local-warded-reviewer": {
+      "kind": "local-tool",
+      "label": "Defanged local adversarial reviewer with warded clauses",
+      "ownership": "project-owned",
+      "execution": "local deterministic warded matrix",
+      "requires_credentials": false,
+      "redaction_policy": "No canary values or operational bypass strings are repeated in outputs."
     }
   },
   "manual_import_contract": {
@@ -72,10 +96,11 @@
   },
   "cards": {
     "field-spell-evaluations": {
-      "scope": "Weak-vs-repaired field spell benchmark across six software tasks.",
-      "fixture_version": "v1.3-fixtures",
+      "scope": "Weak-vs-repaired field spell benchmark across six clean software tasks plus Phase 25 trap-tier cases.",
+      "fixture_version": "v2.2-clean-and-trap-fixtures",
       "deterministic_parts": [
         "safe-refactoring executable fixture",
+        "safe-refactoring trap fixture",
         "planted ground-truth checks",
         "forbidden-pattern checks"
       ],
@@ -85,27 +110,31 @@
         "reviewer effort"
       ],
       "limitations": [
-        "Current project-owned evidence uses one surface.",
+        "Current project-owned model evidence uses one model surface.",
+        "Local deterministic graders are tool surfaces, not independent model evidence.",
         "Some outcomes remain text-judgment checks."
       ],
       "safety_boundary": "No private code, credentials, or destructive commands."
     },
     "jailbreak-resilience": {
-      "scope": "Defensive prompt-injection and jailbreak-resilience behavior with harmless canaries.",
-      "fixture_version": "v1.4-defanged-fixtures",
+      "scope": "Defensive prompt-injection and jailbreak-resilience behavior with harmless canaries and baseline-vs-warded variants.",
+      "fixture_version": "v2.3-defanged-baseline-matrix",
       "deterministic_parts": [
         "canary leak checks",
         "forbidden string checks",
+        "baseline-vs-warded matrix",
         "fixture file presence"
       ],
       "human_scored_parts": [
         "narrow refusal quality",
         "residual risk quality",
-        "overrefusal judgment"
+        "overrefusal judgment",
+        "external surface interpretation"
       ],
       "limitations": [
         "No live external jailbreak corpus in default build.",
-        "Tool calls are not yet mediated by a real harness."
+        "Local baseline matrix is project-owned tool evidence.",
+        "Tool calls are simulated, not executed."
       ],
       "safety_boundary": "Defanged fixtures only; no operational bypass prompts."
     }

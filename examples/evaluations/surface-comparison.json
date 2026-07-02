@@ -1,0 +1,109 @@
+{
+  "version": "2.3.0-multi-surface-baselines",
+  "policy": "Local deterministic surfaces are labeled as tools, not external human adoption or model-provider evidence.",
+  "surfaces": {
+    "codex-cli-default": {
+      "kind": "codex",
+      "label": "Project-owned Codex CLI recorded transcripts",
+      "provenance": "project-owned"
+    },
+    "local-deterministic-grader": {
+      "kind": "local-tool",
+      "label": "Fixture-local deterministic execution and marker grader",
+      "provenance": "project-owned",
+      "limitation": "This is a repository-owned tool surface, not an independent model surface."
+    }
+  },
+  "field_spell_matrix": {
+    "safe-refactoring": {
+      "title": "Refactor Without Breaking Behavior",
+      "surfaces": {
+        "codex-cli-default": {
+          "delta": "weak and repaired prompts tied on outcome checks",
+          "evidence": "recorded transcripts and marker outcome scoring",
+          "limitation": "single model/tool surface; marker scoring remains secondary"
+        },
+        "local-deterministic-grader": {
+          "delta": "repaired artifact passes where weak artifact fails",
+          "evidence": "fixture-local artifact execution where grader exists",
+          "limitation": "repository-owned deterministic tool surface, not independent model evidence"
+        }
+      }
+    },
+    "bug-diagnosis-from-logs": {
+      "title": "Incident Diagnosis Without Fake Certainty",
+      "surfaces": {
+        "codex-cli-default": {
+          "delta": "weak and repaired prompts tied on outcome checks",
+          "evidence": "recorded transcripts and marker outcome scoring",
+          "limitation": "single model/tool surface; marker scoring remains secondary"
+        },
+        "local-deterministic-grader": {
+          "delta": "execution delta pending",
+          "evidence": "fixture-local artifact execution where grader exists",
+          "limitation": "repository-owned deterministic tool surface, not independent model evidence"
+        }
+      }
+    },
+    "api-design": {
+      "title": "API Design Without Hidden Compatibility Traps",
+      "surfaces": {
+        "codex-cli-default": {
+          "delta": "weak and repaired prompts tied on outcome checks",
+          "evidence": "recorded transcripts and marker outcome scoring",
+          "limitation": "single model/tool surface; marker scoring remains secondary"
+        },
+        "local-deterministic-grader": {
+          "delta": "execution delta pending",
+          "evidence": "fixture-local artifact execution where grader exists",
+          "limitation": "repository-owned deterministic tool surface, not independent model evidence"
+        }
+      }
+    },
+    "migration-without-data-loss": {
+      "title": "Online Migration Without Data Loss",
+      "surfaces": {
+        "codex-cli-default": {
+          "delta": "weak and repaired prompts tied on outcome checks",
+          "evidence": "recorded transcripts and marker outcome scoring",
+          "limitation": "single model/tool surface; marker scoring remains secondary"
+        },
+        "local-deterministic-grader": {
+          "delta": "execution delta pending",
+          "evidence": "fixture-local artifact execution where grader exists",
+          "limitation": "repository-owned deterministic tool surface, not independent model evidence"
+        }
+      }
+    },
+    "test-generation": {
+      "title": "Test Generation Without Overfitting To Implementation",
+      "surfaces": {
+        "codex-cli-default": {
+          "delta": "repaired prompts satisfied 0.3 more outcome checks on average",
+          "evidence": "recorded transcripts and marker outcome scoring",
+          "limitation": "single model/tool surface; marker scoring remains secondary"
+        },
+        "local-deterministic-grader": {
+          "delta": "execution delta pending",
+          "evidence": "fixture-local artifact execution where grader exists",
+          "limitation": "repository-owned deterministic tool surface, not independent model evidence"
+        }
+      }
+    },
+    "performance-tuning": {
+      "title": "Performance Tuning Without Micro-Optimization Drift",
+      "surfaces": {
+        "codex-cli-default": {
+          "delta": "weak and repaired prompts tied on outcome checks",
+          "evidence": "recorded transcripts and marker outcome scoring",
+          "limitation": "single model/tool surface; marker scoring remains secondary"
+        },
+        "local-deterministic-grader": {
+          "delta": "execution delta pending",
+          "evidence": "fixture-local artifact execution where grader exists",
+          "limitation": "repository-owned deterministic tool surface, not independent model evidence"
+        }
+      }
+    }
+  }
+}

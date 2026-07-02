@@ -110,6 +110,7 @@ def export_assets(target: str) -> int:
         "markdown": ROOT / "exports" / "markdown",
         "codex": ROOT / "exports" / "codex",
         "cursor": ROOT / "exports" / "cursor" / "rules",
+        "claude-code": ROOT / "exports" / "claude-code" / "skills",
         "all": ROOT / "exports",
     }
     base = targets[target]
@@ -138,11 +139,13 @@ def main(argv: list[str] | None = None) -> int:
     new_spell = new_sub.add_parser("spell", help="create a spell JSON skeleton")
     new_spell.add_argument("path", nargs="?", help="optional output path")
     export_parser = sub.add_parser("export", help="list generated installable exports")
-    export_parser.add_argument("--target", choices=["all", "markdown", "codex", "cursor"], default="all")
+    export_parser.add_argument("--target", choices=["all", "markdown", "codex", "cursor", "claude-code"], default="all")
     bench_parser = sub.add_parser("bench", help="bench utilities")
     bench_sub = bench_parser.add_subparsers(dest="bench_command", required=True)
     bench_import = bench_sub.add_parser("import", help="validate a manual benchmark import record")
     bench_import.add_argument("path", help="manual import JSON path")
+    bench_execution = bench_sub.add_parser("execution", help="run execution-graded trap bench")
+    bench_execution.add_argument("args", nargs=argparse.REMAINDER, help="arguments forwarded to run_execution_bench.py")
     sub.add_parser("seals", help="regenerate seal summary data")
     sub.add_parser("render", help="render the Quarto site")
     sub.add_parser("test", help="run repository tests")
@@ -166,6 +169,8 @@ def main(argv: list[str] | None = None) -> int:
     if args.command == "bench":
         if args.bench_command == "import":
             return run([sys.executable, "scripts/run_bench.py", "import", args.path])
+        if args.bench_command == "execution":
+            return run([sys.executable, "scripts/run_bench.py", "execution", *args.args])
         return 2
     if args.command == "seals":
         return run([sys.executable, "scripts/generate_seals.py"])
@@ -177,6 +182,7 @@ def main(argv: list[str] | None = None) -> int:
         for command in [
             [sys.executable, "scripts/bootstrap_project.py"],
             [sys.executable, "scripts/validate_data.py"],
+            [sys.executable, "scripts/run_execution_bench.py"],
             ["quarto", "render"],
             [sys.executable, "-m", "pytest"],
         ]:

@@ -10,6 +10,7 @@ def library_bundle_specs(root: Path) -> dict[str, list[Path]]:
         "software-grimoire-prompts.zip": [root / "prompts"],
         "software-grimoire-codex-templates.zip": [root / "exports" / "codex"],
         "software-grimoire-cursor-rules.zip": [root / "exports" / "cursor" / "rules"],
+        "software-grimoire-claude-code-skills.zip": [root / "exports" / "claude-code" / "skills"],
         "software-grimoire-stacks.zip": [root / "exports" / "markdown" / "stacks", root / "prompts" / "stacks"],
     }
 
@@ -20,5 +21,6 @@ def library_asset_roots(root: Path) -> list[Path]:
         root / "exports" / "markdown",
         root / "exports" / "codex",
         root / "exports" / "cursor",
+        root / "exports" / "claude-code",
         root / "exports" / "README.md",
     ]

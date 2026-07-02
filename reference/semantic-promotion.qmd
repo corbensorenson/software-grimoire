@@ -1,0 +1,54 @@
+---
+title: "Semantic Promotion Ladder"
+---
+
+# Semantic Promotion Ladder
+
+The grimoire keeps generated-draft vocabulary visible while moving entries into reviewed and canonical status through explicit gates. This is a promotion pipeline, not a shrink pass.
+
+## Summary
+
+- Total entries: `1645`
+- Generated drafts: `1135`
+- Reviewed or canonical: `510`
+- Fully reviewed houses: `2`
+- First target reviewed count: `450`
+
+## Promotion Gates
+
+Generated draft to reviewed:
+
+- no generated-template summary or force
+- term-specific shadow
+- at least one prompt-use clause
+- at least one concrete example clause
+- sense disambiguation for overloaded terms
+
+Reviewed to canonical:
+
+- used by a spell, stack, benchmark, or accepted external report
+- stable across at least one release
+- no unresolved canon-correction issue
+
+## House Review Board
+
+| House                                                          | Total | Generated Draft | Reviewed | Canonical | Status         | Next Tranche                                                     |
+| -------------------------------------------------------------- | ----- | --------------- | -------- | --------- | -------------- | ---------------------------------------------------------------- |
+| Architecture, Abstraction, and Design                          | 112   | 0               | 112      | 0         | fully reviewed | complete                                                         |
+| Language, Semantics, and Formal Shape                          | 137   | 0               | 137      | 0         | fully reviewed | complete                                                         |
+| Data, State, and Representation                                | 122   | 104             | 18       | 0         | in progress    | review generated_draft entries with prompt-use and example gates |
+| Transformation, Algorithms, and Working Verbs                  | 140   | 120             | 20       | 0         | in progress    | review generated_draft entries with prompt-use and example gates |
+| Control Flow, Coordination, and Temporal Logic                 | 97    | 79              | 18       | 0         | in progress    | review generated_draft entries with prompt-use and example gates |
+| Runtime, Memory, and Execution                                 | 76    | 62              | 14       | 0         | in progress    | review generated_draft entries with prompt-use and example gates |
+| Systems Programming and Operating-System Words                 | 86    | 74              | 12       | 0         | in progress    | review generated_draft entries with prompt-use and example gates |
+| Networking and Distributed Systems                             | 116   | 96              | 20       | 0         | in progress    | review generated_draft entries with prompt-use and example gates |
+| Databases, Persistence, and Time-Binding Words                 | 82    | 66              | 16       | 0         | in progress    | review generated_draft entries with prompt-use and example gates |
+| Security, Trust, and Warding Words                             | 95    | 77              | 18       | 0         | in progress    | review generated_draft entries with prompt-use and example gates |
+| Build, Tooling, Versioning, and Release                        | 76    | 60              | 16       | 0         | in progress    | review generated_draft entries with prompt-use and example gates |
+| Testing, Verification, and Observability                       | 71    | 55              | 16       | 0         | in progress    | review generated_draft entries with prompt-use and example gates |
+| Hardware, Embedded, and Performance-Near Words                 | 80    | 66              | 14       | 0         | in progress    | review generated_draft entries with prompt-use and example gates |
+| Interface, UX, and Human-Facing Words                          | 60    | 50              | 10       | 0         | in progress    | review generated_draft entries with prompt-use and example gates |
+| Promptcraft, AI-Oriented Engineering, and Spell Structure      | 70    | 56              | 14       | 0         | in progress    | review generated_draft entries with prompt-use and example gates |
+| Guarantee Words, Quality Attributes, and Behavioral Adjectives | 92    | 73              | 19       | 0         | in progress    | review generated_draft entries with prompt-use and example gates |
+| Failure Words, Pathologies, and Counter-Spells                 | 70    | 50              | 20       | 0         | in progress    | review generated_draft entries with prompt-use and example gates |
+| Compound Forms, Prefixes, Suffixes, and Naming Runes           | 63    | 47              | 16       | 0         | in progress    | review generated_draft entries with prompt-use and example gates |

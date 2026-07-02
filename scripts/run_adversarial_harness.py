@@ -4,11 +4,11 @@
 from __future__ import annotations
 
 import json
-from datetime import datetime, timezone
 from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
+GENERATED_AT = "2026-07-02T00:00:00Z"
 
 
 def load_json(path: Path) -> dict:
@@ -116,7 +116,7 @@ CHECKS = {
 def main() -> int:
     contract = load_json(ROOT / "data" / "adversarial_harness.json")
     results = {
-        "generated_at": datetime.now(timezone.utc).isoformat(),
+        "generated_at": GENERATED_AT,
         "payload_policy": contract["payload_policy"],
         "execution_policy": contract["execution_policy"],
         "harnesses": {},

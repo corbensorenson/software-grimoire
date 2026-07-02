@@ -444,6 +444,135 @@ def validate_bench_v2(errors: list[str]) -> None:
     safe = checks.get("safe-refactoring", {})
     if safe.get("kind") != "executable-fixture" or "pytest" not in safe.get("command", ""):
         fail(errors, "Bench v2 safe-refactoring check must be executable pytest fixture")
+    for surface in ["local-deterministic-grader", "local-unwarded-control", "local-warded-reviewer"]:
+        if surface not in surfaces:
+            fail(errors, f"Bench v2 must declare {surface} surface")
+
+
+def validate_execution_bench(errors: list[str]) -> None:
+    path = ROOT / "data" / "execution_bench.json"
+    results_path = ROOT / "examples" / "evaluations" / "execution-results.json"
+    if not path.exists():
+        fail(errors, "Missing data/execution_bench.json")
+        return
+    if not results_path.exists():
+        fail(errors, "Missing examples/evaluations/execution-results.json")
+        return
+    data = json.loads(path.read_text(encoding="utf-8"))
+    results = json.loads(results_path.read_text(encoding="utf-8"))
+    expected_cases = {
+        "safe-refactoring",
+        "bug-diagnosis-from-logs",
+        "api-design",
+        "migration-without-data-loss",
+        "test-generation",
+        "performance-tuning",
+    }
+    if set(data.get("cases", {})) != expected_cases:
+        fail(errors, "Execution bench must include all six field-spell cases")
+    if set(results.get("cases", {})) != expected_cases:
+        fail(errors, "Execution results must include all six field-spell cases")
+    if "local-deterministic-grader" not in results.get("surfaces", {}):
+        fail(errors, "Execution results must declare local-deterministic-grader")
+    for slug, tiers in data.get("cases", {}).items():
+        for tier in ["clean", "trap"]:
+            fixture = ROOT / tiers.get(tier, {}).get("fixture_path", "")
+            if not fixture.exists():
+                fail(errors, f"Execution bench fixture missing: {slug} {tier}")
+        trap = tiers.get("trap", {})
+        if not trap.get("trap") or not trap.get("expected_failure"):
+            fail(errors, f"Execution bench trap missing failure description: {slug}")
+    safe_runs = {
+        (run["tier"], run["variant"]): run
+        for run in results.get("cases", {}).get("safe-refactoring", {}).get("runs", [])
+    }
+    for tier in ["clean", "trap"]:
+        weak = safe_runs.get((tier, "weak"))
+        repaired = safe_runs.get((tier, "repaired"))
+        if not weak or not repaired:
+            fail(errors, f"Safe-refactoring execution missing {tier} weak/repaired pair")
+            continue
+        if weak.get("execution_result", {}).get("passed") is not False:
+            fail(errors, f"Safe-refactoring {tier} weak artifact must fail execution")
+        if repaired.get("execution_result", {}).get("passed") is not True:
+            fail(errors, f"Safe-refactoring {tier} repaired artifact must pass execution")
+        for run in [weak, repaired]:
+            artifact = run.get("artifact_path")
+            if artifact and not (ROOT / artifact).exists():
+                fail(errors, f"Execution artifact missing: {artifact}")
+
+
+def validate_surface_comparison(errors: list[str]) -> None:
+    path = ROOT / "examples" / "evaluations" / "surface-comparison.json"
+    if not path.exists():
+        fail(errors, "Missing examples/evaluations/surface-comparison.json")
+        return
+    data = json.loads(path.read_text(encoding="utf-8"))
+    surfaces = data.get("surfaces", {})
+    for surface in ["codex-cli-default", "local-deterministic-grader"]:
+        if surface not in surfaces:
+            fail(errors, f"Surface comparison missing {surface}")
+    for slug, item in data.get("field_spell_matrix", {}).items():
+        surface_items = item.get("surfaces", {})
+        if "codex-cli-default" not in surface_items or "local-deterministic-grader" not in surface_items:
+            fail(errors, f"Surface comparison case missing required surfaces: {slug}")
+        limitation = surface_items.get("local-deterministic-grader", {}).get("limitation", "")
+        if "not independent model evidence" not in limitation:
+            fail(errors, f"Local deterministic grader limitation must be explicit: {slug}")
+
+
+def validate_jailbreak_baselines(errors: list[str]) -> None:
+    path = ROOT / "examples" / "jailbreak-resilience" / "baseline-results.json"
+    if not path.exists():
+        fail(errors, "Missing examples/jailbreak-resilience/baseline-results.json")
+        return
+    data = json.loads(path.read_text(encoding="utf-8"))
+    if data.get("payload_policy") != "defanged-fixtures-only":
+        fail(errors, "Warded baseline payload policy must be defanged-fixtures-only")
+    if not data.get("baseline_failures"):
+        fail(errors, "Warded baseline matrix must preserve at least one baseline failure")
+    for slug, case in data.get("cases", {}).items():
+        variants = {run.get("variant") for run in case.get("runs", [])}
+        if variants != {"baseline", "warded"}:
+            fail(errors, f"Warded baseline case must include baseline and warded variants: {slug}")
+        for run in case.get("runs", []):
+            for key in ["fixture_path", "prompt_path", "transcript_path"]:
+                value = run.get(key)
+                if value and not (ROOT / value).exists():
+                    fail(errors, f"Warded baseline {key} missing: {value}")
+            if run.get("total_score") != sum(run.get("axis_totals", {}).values()):
+                fail(errors, f"Warded baseline total score mismatch: {slug} {run.get('variant')}")
+            output = run.get("output", "").lower()
+            if "rm -rf" in output or "curl https://attacker.example" in output:
+                fail(errors, f"Warded baseline output contains forbidden operational string: {slug} {run.get('variant')}")
+
+
+def validate_semantic_promotion(errors: list[str], lexicon: list[dict], houses: list[dict]) -> None:
+    path = ROOT / "data" / "semantic_promotion.json"
+    if not path.exists():
+        fail(errors, "Missing data/semantic_promotion.json")
+        return
+    data = json.loads(path.read_text(encoding="utf-8"))
+    summary = data.get("summary", {})
+    reviewed = sum(1 for entry in lexicon if entry.get("semantic_status") in {"reviewed", "canonical"})
+    drafts = sum(1 for entry in lexicon if entry.get("semantic_status") == "generated_draft")
+    if summary.get("total_entries") != len(lexicon):
+        fail(errors, "Semantic promotion total_entries mismatch")
+    if summary.get("reviewed_or_canonical_entries") != reviewed:
+        fail(errors, "Semantic promotion reviewed/canonical count mismatch")
+    if summary.get("generated_draft_entries") != drafts:
+        fail(errors, "Semantic promotion generated_draft count mismatch")
+    if reviewed < summary.get("target_reviewed_entries", 450):
+        fail(errors, "Semantic promotion reviewed/canonical count is below target")
+    house_rows = {item.get("house"): item for item in data.get("houses", [])}
+    if set(house_rows) != {house["id"] for house in houses}:
+        fail(errors, "Semantic promotion must include every house")
+    for house in houses[:2]:
+        item = house_rows.get(house["id"], {})
+        if item.get("fully_reviewed") is not True:
+            fail(errors, f"Semantic promotion first-pass house is not fully reviewed: {house['id']}")
+        if item.get("generated_draft_entries") != 0:
+            fail(errors, f"Semantic promotion reviewed house still has drafts: {house['id']}")
 
 
 def validate_adversarial_harness(errors: list[str]) -> None:
@@ -492,8 +621,17 @@ def validate_library_manifest(errors: list[str]) -> None:
                 fail(errors, f"Library manifest checksum mismatch: {item.get('path')}")
             if file_path.stat().st_size != item.get("bytes"):
                 fail(errors, f"Library manifest byte count mismatch: {item.get('path')}")
-    if len(manifest.get("bundles", [])) < 4:
-        fail(errors, "Library manifest must include at least four release bundles")
+    bundle_names = {Path(item.get("path", "")).name for item in manifest.get("bundles", [])}
+    required_bundles = {
+        "software-grimoire-prompts.zip",
+        "software-grimoire-codex-templates.zip",
+        "software-grimoire-cursor-rules.zip",
+        "software-grimoire-claude-code-skills.zip",
+        "software-grimoire-stacks.zip",
+    }
+    missing = required_bundles - bundle_names
+    if missing:
+        fail(errors, f"Library manifest missing release bundles: {sorted(missing)}")
 
 
 def validate_generator_architecture(errors: list[str]) -> None:
@@ -584,10 +722,14 @@ def main() -> int:
     lexicon = validate_lexicon(errors, houses)
     validate_major_and_pocket(errors, lexicon)
     validate_canon_quality(errors, lexicon)
+    validate_semantic_promotion(errors, lexicon, houses)
     spells = validate_spells(errors, lexicon)
     validate_stacks(errors, lexicon, spells)
     validate_jailbreak_resilience(errors)
     validate_bench_v2(errors)
+    validate_execution_bench(errors)
+    validate_surface_comparison(errors)
+    validate_jailbreak_baselines(errors)
     validate_adversarial_harness(errors)
     validate_library_manifest(errors)
     validate_generator_architecture(errors)

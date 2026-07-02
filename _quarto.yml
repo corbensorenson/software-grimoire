@@ -9,11 +9,16 @@ project:
     - assets/diagrams/generated/**
     - examples/evaluations/manual-import-template.json
     - examples/evaluations/results.json
+    - examples/evaluations/execution-results.json
+    - examples/evaluations/surface-comparison.json
+    - examples/evaluations/artifacts/**
     - examples/evaluations/fixtures/**
     - examples/evaluations/runs/**
     - examples/adoption/**
     - examples/jailbreak-resilience/fixtures/**
     - examples/jailbreak-resilience/results.json
+    - examples/jailbreak-resilience/baseline-results.json
+    - examples/jailbreak-resilience/baselines/**
     - examples/jailbreak-resilience/harness-results.json
     - examples/jailbreak-resilience/runs/**
     - examples/release-gate/**
@@ -110,8 +115,12 @@ book:
         - reference/failure-modes.qmd
         - reference/proof-by-difference.qmd
         - reference/bench-v2.qmd
+        - reference/execution-bench.qmd
+        - reference/surface-comparison.qmd
         - reference/jailbreak-resilience.qmd
         - reference/adversarial-harness.qmd
+        - reference/warded-baselines.qmd
+        - reference/semantic-promotion.qmd
         - reference/generator-architecture.qmd
         - reference/visual-grammar.qmd
         - reference/task-chooser.qmd

@@ -1,5 +1,26 @@
 # Changelog
 
+## v2.5.0-roadmap-completion
+
+- Added execution-graded clean/trap bench data, trap-tier fixtures for all six
+  field spells, safe-refactoring artifact variants, `scripts/run_execution_bench.py`,
+  and generated execution-bench pages/results.
+- Added multi-surface comparison records separating project-owned model
+  transcripts from repository-owned deterministic graders.
+- Added defanged baseline-vs-warded jailbreak-resilience matrix, transcript
+  artifacts, generated page, and validation preserving an explicit baseline
+  failure without operational payloads.
+- Promoted the first two lexicon houses through the semantic review ladder,
+  added `data/semantic_promotion.json`, and generated the house review board.
+- Added Claude Code skill exports, installer/CLI targets, package bundle,
+  manifest/checksum coverage, and deterministic generation tests.
+- Replaced generic diagram labels with data-derived spell and stack labels.
+- Added CI execution-bench checks and a release-assets workflow that uploads
+  generated bundles, manifest, and checksums to GitHub releases.
+- Expanded schemas, validation, and pytest coverage for the new bench,
+  semantic-promotion, surface-comparison, baseline, export, and release assets.
+- Rendered site size is now 99 Quarto pages.
+
 ## v2.1.0-roadmap-completion
 
 - Added semantic canon status for all 1,645 lexicon entries, including

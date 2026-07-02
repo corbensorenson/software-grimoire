@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Software Grimoire Semantic Promotion",
+  "type": "object",
+  "required": ["version", "transition_policy", "summary", "houses"],
+  "properties": {
+    "version": {"type": "string", "minLength": 1},
+    "transition_policy": {
+      "type": "object",
+      "required": ["generated_draft_to_reviewed", "reviewed_to_canonical"],
+      "properties": {
+        "generated_draft_to_reviewed": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+        "reviewed_to_canonical": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}}
+      },
+      "additionalProperties": false
+    },
+    "summary": {
+      "type": "object",
+      "required": ["total_entries", "generated_draft_entries", "reviewed_or_canonical_entries", "fully_reviewed_houses", "target_reviewed_entries"],
+      "properties": {
+        "total_entries": {"type": "integer", "minimum": 1},
+        "generated_draft_entries": {"type": "integer", "minimum": 0},
+        "reviewed_or_canonical_entries": {"type": "integer", "minimum": 0},
+        "fully_reviewed_houses": {"type": "integer", "minimum": 0},
+        "target_reviewed_entries": {"type": "integer", "minimum": 1}
+      },
+      "additionalProperties": false
+    },
+    "houses": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["house", "house_name", "total_entries", "generated_draft_entries", "reviewed_entries", "canonical_entries", "fully_reviewed", "next_tranche", "last_review_release"],
+        "properties": {
+          "house": {"type": "string", "minLength": 1},
+          "house_name": {"type": "string", "minLength": 1},
+          "total_entries": {"type": "integer", "minimum": 1},
+          "generated_draft_entries": {"type": "integer", "minimum": 0},
+          "reviewed_entries": {"type": "integer", "minimum": 0},
+          "canonical_entries": {"type": "integer", "minimum": 0},
+          "fully_reviewed": {"type": "boolean"},
+          "next_tranche": {"type": "string", "minLength": 1},
+          "last_review_release": {"type": "string", "minLength": 1}
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

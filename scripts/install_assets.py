@@ -16,8 +16,9 @@ TARGET_PREFIXES = {
     "markdown": ["exports/markdown/spells/", "exports/markdown/stacks/"],
     "codex": ["exports/codex/"],
     "cursor": ["exports/cursor/rules/"],
+    "claude-code": ["exports/claude-code/skills/"],
     "stacks": ["exports/markdown/stacks/", "prompts/stacks/"],
-    "all": ["prompts/", "exports/markdown/", "exports/codex/", "exports/cursor/rules/"],
+    "all": ["prompts/", "exports/markdown/", "exports/codex/", "exports/cursor/rules/", "exports/claude-code/skills/"],
 }
 
 

@@ -1,0 +1,118 @@
+{
+  "version": "2.2.0-execution-graded-bench",
+  "policy": "Fixture-local deterministic checks only; no network, credentials, destructive commands, or hidden model calls.",
+  "tiers": {
+    "clean": "The six v1.3 field-spell cases preserved for longitudinal comparison.",
+    "trap": "One harder planted-failure case per field spell where ambiguity, blast radius, or hidden invariants should make structure matter."
+  },
+  "artifact_contract": [
+    "case_slug",
+    "tier",
+    "variant",
+    "surface",
+    "prompt_path",
+    "transcript_path",
+    "artifact_path",
+    "execution_command",
+    "execution_result",
+    "grader_version"
+  ],
+  "cases": {
+    "safe-refactoring": {
+      "clean": {
+        "fixture_path": "examples/evaluations/fixtures/safe-refactoring",
+        "title": "Refactor Without Breaking Behavior",
+        "execution_grader": "safe-refactoring-pytest-v1",
+        "documented_reason": null
+      },
+      "trap": {
+        "fixture_path": "examples/evaluations/fixtures/safe-refactoring-trap",
+        "title": "Falsy Metadata Refactor Trap",
+        "trap": "Naive cleanup drops falsy unknown metadata such as 0, False, empty string, empty list, and empty dict.",
+        "expected_failure": "Weak artifact fails invariant tests for preserving unknown falsy values.",
+        "execution_grader": "safe-refactoring-trap-pytest-v1",
+        "documented_reason": null
+      }
+    },
+    "bug-diagnosis-from-logs": {
+      "clean": {
+        "fixture_path": "examples/evaluations/fixtures/bug-diagnosis-from-logs",
+        "title": "Incident Diagnosis Without Fake Certainty",
+        "execution_grader": null,
+        "documented_reason": "This clean-tier case is currently graded by transcript markers and planted ground-truth checks; Phase 25 records the reason until an artifact executor exists."
+      },
+      "trap": {
+        "fixture_path": "examples/evaluations/fixtures/bug-diagnosis-from-logs-trap",
+        "title": "Decoy Database Latency Trap",
+        "trap": "A PostgreSQL warning appears near the timeout window, but Redis pool exhaustion remains the planted primary cause.",
+        "expected_failure": "Weak analysis ranks the noisy database warning above the actual Redis saturation signal.",
+        "execution_grader": null,
+        "documented_reason": "Trap is judgment-scored with planted ground-truth metadata until a deterministic artifact grader is added."
+      }
+    },
+    "api-design": {
+      "clean": {
+        "fixture_path": "examples/evaluations/fixtures/api-design",
+        "title": "API Design Without Hidden Compatibility Traps",
+        "execution_grader": null,
+        "documented_reason": "This clean-tier case is currently graded by transcript markers and planted ground-truth checks; Phase 25 records the reason until an artifact executor exists."
+      },
+      "trap": {
+        "fixture_path": "examples/evaluations/fixtures/api-design-trap",
+        "title": "Compatibility Landmine API Trap",
+        "trap": "Existing clients depend on idempotent retry semantics and stable error envelopes that are only implied in the fixture.",
+        "expected_failure": "Weak design omits compatibility or idempotency guarantees.",
+        "execution_grader": null,
+        "documented_reason": "Trap is judgment-scored with planted ground-truth metadata until a deterministic artifact grader is added."
+      }
+    },
+    "migration-without-data-loss": {
+      "clean": {
+        "fixture_path": "examples/evaluations/fixtures/migration-without-data-loss",
+        "title": "Online Migration Without Data Loss",
+        "execution_grader": null,
+        "documented_reason": "This clean-tier case is currently graded by transcript markers and planted ground-truth checks; Phase 25 records the reason until an artifact executor exists."
+      },
+      "trap": {
+        "fixture_path": "examples/evaluations/fixtures/migration-without-data-loss-trap",
+        "title": "Dirty Backfill Trap",
+        "trap": "A poisoned row looks parseable until timezone, partial-date, and unknown-value policy are made explicit.",
+        "expected_failure": "Weak migration proposes direct conversion before dirty-row quarantine and parity checks.",
+        "execution_grader": null,
+        "documented_reason": "Trap is judgment-scored with planted ground-truth metadata until a deterministic artifact grader is added."
+      }
+    },
+    "test-generation": {
+      "clean": {
+        "fixture_path": "examples/evaluations/fixtures/test-generation",
+        "title": "Test Generation Without Overfitting To Implementation",
+        "execution_grader": null,
+        "documented_reason": "This clean-tier case is currently graded by transcript markers and planted ground-truth checks; Phase 25 records the reason until an artifact executor exists."
+      },
+      "trap": {
+        "fixture_path": "examples/evaluations/fixtures/test-generation-trap",
+        "title": "Boundary Obligation Trap",
+        "trap": "Happy-path tests miss negative seats, coupon rejection, rounding, and the 10-to-11 seat discount boundary.",
+        "expected_failure": "Weak tests overfit common examples and miss behavior obligations.",
+        "execution_grader": null,
+        "documented_reason": "Trap is judgment-scored with planted ground-truth metadata until a deterministic artifact grader is added."
+      }
+    },
+    "performance-tuning": {
+      "clean": {
+        "fixture_path": "examples/evaluations/fixtures/performance-tuning",
+        "title": "Performance Tuning Without Micro-Optimization Drift",
+        "execution_grader": null,
+        "documented_reason": "This clean-tier case is currently graded by transcript markers and planted ground-truth checks; Phase 25 records the reason until an artifact executor exists."
+      },
+      "trap": {
+        "fixture_path": "examples/evaluations/fixtures/performance-tuning-trap",
+        "title": "Misleading Micro-Optimization Trap",
+        "trap": "A visible Python loop is slower in isolation, but the real production bottleneck is repeated database access.",
+        "expected_failure": "Weak tuning optimizes the local loop before measuring query count and I/O cost.",
+        "execution_grader": null,
+        "documented_reason": "Trap is judgment-scored with planted ground-truth metadata until a deterministic artifact grader is added."
+      }
+    }
+  }
+}

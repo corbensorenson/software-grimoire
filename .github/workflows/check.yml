@@ -33,6 +33,9 @@ jobs:
       - name: Run adversarial harness
         run: python scripts/run_adversarial_harness.py
 
+      - name: Run execution bench
+        run: python scripts/run_execution_bench.py
+
       - name: Validate bench import contract
         run: python scripts/run_bench.py import examples/evaluations/manual-import-template.json
 

@@ -63,6 +63,7 @@ def test_installable_exports_exist_and_trace_to_seals() -> None:
             ROOT / "exports" / "markdown" / "spells" / f"{slug}.md",
             ROOT / "exports" / "codex" / f"{slug}.md",
             ROOT / "exports" / "cursor" / "rules" / f"{slug}.mdc",
+            ROOT / "exports" / "claude-code" / "skills" / f"{slug}.md",
         ]:
             text = path.read_text(encoding="utf-8")
             assert spell["id"] in text
@@ -103,6 +104,7 @@ def test_jailbreak_exports_exist_and_preserve_safety_scope() -> None:
         ROOT / "exports" / "markdown" / "spells" / "jailbreak-resilience-review.md",
         ROOT / "exports" / "codex" / "jailbreak-resilience-review.md",
         ROOT / "exports" / "cursor" / "rules" / "jailbreak-resilience-review.mdc",
+        ROOT / "exports" / "claude-code" / "skills" / "jailbreak-resilience-review.md",
     ]:
         text = path.read_text(encoding="utf-8")
         assert "spell.jailbreak-resilience-review.v1" in text
@@ -117,6 +119,9 @@ def test_bench_v2_contract_and_import_template_exist() -> None:
     assert "manual-reviewer-import" in data["surfaces"]
     assert data["deterministic_checks"]["safe-refactoring"]["kind"] == "executable-fixture"
     assert "pytest" in data["deterministic_checks"]["safe-refactoring"]["command"]
+    assert "local-deterministic-grader" in data["surfaces"]
+    assert "local-unwarded-control" in data["surfaces"]
+    assert "local-warded-reviewer" in data["surfaces"]
     template = json.loads((ROOT / "examples" / "evaluations" / "manual-import-template.json").read_text(encoding="utf-8"))
     for field in data["manual_import_contract"]["required_fields"]:
         assert template[field]
@@ -139,6 +144,57 @@ def test_adversarial_harness_contract_and_results_exist() -> None:
     assert all(item["passed"] for item in results["harnesses"].values())
 
 
+def test_execution_bench_trap_fixtures_and_results_exist() -> None:
+    bench = json.loads((ROOT / "data" / "execution_bench.json").read_text(encoding="utf-8"))
+    results = json.loads((ROOT / "examples" / "evaluations" / "execution-results.json").read_text(encoding="utf-8"))
+    assert set(bench["cases"]) == EXPECTED_CASES
+    assert set(results["cases"]) == EXPECTED_CASES
+    for slug, tiers in bench["cases"].items():
+        assert (ROOT / tiers["clean"]["fixture_path"]).exists()
+        trap_fixture = ROOT / tiers["trap"]["fixture_path"]
+        assert trap_fixture.is_dir(), slug
+        assert (trap_fixture / "context.md").exists(), slug
+        assert (trap_fixture / "ground_truth.json").exists(), slug
+        assert tiers["trap"]["trap"]
+        assert tiers["trap"]["expected_failure"]
+    safe_runs = {
+        (run["tier"], run["variant"]): run
+        for run in results["cases"]["safe-refactoring"]["runs"]
+    }
+    assert safe_runs[("clean", "weak")]["execution_result"]["passed"] is False
+    assert safe_runs[("clean", "repaired")]["execution_result"]["passed"] is True
+    assert safe_runs[("trap", "weak")]["execution_result"]["passed"] is False
+    assert safe_runs[("trap", "repaired")]["execution_result"]["passed"] is True
+
+
+def test_surface_comparison_and_warded_baselines_exist() -> None:
+    surface = json.loads((ROOT / "examples" / "evaluations" / "surface-comparison.json").read_text(encoding="utf-8"))
+    assert {"codex-cli-default", "local-deterministic-grader"} <= set(surface["surfaces"])
+    for item in surface["field_spell_matrix"].values():
+        assert {"codex-cli-default", "local-deterministic-grader"} <= set(item["surfaces"])
+        assert "not independent model evidence" in item["surfaces"]["local-deterministic-grader"]["limitation"]
+
+    baseline = json.loads((ROOT / "examples" / "jailbreak-resilience" / "baseline-results.json").read_text(encoding="utf-8"))
+    assert baseline["payload_policy"] == "defanged-fixtures-only"
+    assert baseline["baseline_failures"]
+    for case in baseline["cases"].values():
+        assert {run["variant"] for run in case["runs"]} == {"baseline", "warded"}
+        for run in case["runs"]:
+            assert run["total_score"] == sum(run["axis_totals"].values())
+            output = run["output"].lower()
+            assert "rm -rf" not in output
+            assert "curl https://attacker.example" not in output
+
+
+def test_semantic_promotion_ladder_has_reviewed_houses() -> None:
+    promotion = json.loads((ROOT / "data" / "semantic_promotion.json").read_text(encoding="utf-8"))
+    assert promotion["summary"]["reviewed_or_canonical_entries"] >= promotion["summary"]["target_reviewed_entries"]
+    houses = {item["house"]: item for item in promotion["houses"]}
+    for house in ["architecture-abstraction-and-design", "language-semantics-and-formal-shape"]:
+        assert houses[house]["fully_reviewed"] is True
+        assert houses[house]["generated_draft_entries"] == 0
+
+
 def test_library_manifest_and_bundles_exist() -> None:
     manifest = json.loads((ROOT / "exports" / "library-manifest.json").read_text(encoding="utf-8"))
     assert manifest["schema"] == "software-grimoire-library-v1"
@@ -149,6 +205,7 @@ def test_library_manifest_and_bundles_exist() -> None:
         "software-grimoire-prompts.zip",
         "software-grimoire-codex-templates.zip",
         "software-grimoire-cursor-rules.zip",
+        "software-grimoire-claude-code-skills.zip",
         "software-grimoire-stacks.zip",
     } <= bundle_names
     for item in manifest["bundles"]:
@@ -167,6 +224,8 @@ def test_visual_practice_diagrams_exist_and_placeholders_are_removed() -> None:
         text = full.read_text(encoding="utf-8")
         assert "<svg" in text
         assert "role=\"img\"" in text
+        assert "check before cast" not in text
+        assert "artifact gate" not in text
     for path in [ROOT / "chapters" / "05-coil-inspection.qmd", ROOT / "chapters" / "08-stackcraft.qmd"]:
         assert "Diagram placeholder" not in path.read_text(encoding="utf-8")
 
@@ -223,6 +282,23 @@ def test_install_assets_dry_run_and_write(tmp_path: Path) -> None:
     installed = tmp_path / "exports" / "codex" / "safe-refactoring.md"
     assert installed.exists()
     assert "spell.safe-refactoring.v1" in installed.read_text(encoding="utf-8")
+
+    claude = subprocess.run(
+        [
+            sys.executable,
+            str(ROOT / "scripts" / "install_assets.py"),
+            "--target",
+            "claude-code",
+            "--dest",
+            str(tmp_path),
+        ],
+        cwd=ROOT,
+        check=False,
+        capture_output=True,
+        text=True,
+    )
+    assert claude.returncode == 0, claude.stderr
+    assert "dry-run: exports/claude-code/skills/safe-refactoring.md" in claude.stdout
 
 
 def test_public_intake_issue_templates_exist() -> None:

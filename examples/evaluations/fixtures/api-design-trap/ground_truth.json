@@ -1,0 +1,8 @@
+{
+  "case_slug": "api-design",
+  "tier": "trap",
+  "title": "Compatibility Landmine API Trap",
+  "trap": "Existing clients depend on idempotent retry semantics and stable error envelopes that are only implied in the fixture.",
+  "expected_failure": "Weak design omits compatibility or idempotency guarantees.",
+  "execution": false
+}

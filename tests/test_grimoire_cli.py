@@ -50,8 +50,18 @@ def test_export_command_lists_generated_assets() -> None:
     assert exported.returncode == 0, exported.stderr
     assert "exports/cursor/rules/safe-refactoring.mdc" in exported.stdout
 
+    claude = run_cli("export", "--target", "claude-code")
+    assert claude.returncode == 0, claude.stderr
+    assert "exports/claude-code/skills/safe-refactoring.md" in claude.stdout
+
 
 def test_bench_import_command_validates_template() -> None:
     imported = run_cli("bench", "import", "examples/evaluations/manual-import-template.json")
     assert imported.returncode == 0, imported.stderr
     assert "Bench import record is valid" in imported.stdout
+
+
+def test_bench_execution_command_runs_fixture() -> None:
+    executed = run_cli("bench", "execution")
+    assert executed.returncode == 0, executed.stderr
+    assert "execution-results.json" in executed.stdout

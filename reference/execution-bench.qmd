@@ -1,0 +1,37 @@
+---
+title: "Execution-Graded Bench"
+---
+
+# Execution-Graded Bench
+
+This page is the Phase 25 bench contract: keep the clean tier for longitudinal comparison, add trap-tier cases, and grade produced artifacts by fixture-local execution wherever possible.
+
+## Policy
+
+Fixture-local deterministic checks only; no network, credentials, destructive commands, or hidden model calls.
+
+## Artifact Contract
+
+- `case_slug`
+- `tier`
+- `variant`
+- `surface`
+- `prompt_path`
+- `transcript_path`
+- `artifact_path`
+- `execution_command`
+- `execution_result`
+- `grader_version`
+
+## Trap Matrix
+
+| Case                                                                                                  | Clean Grader               | Trap                                                                                                                   | Weak Exec       | Repaired Exec   | Reason                                                                                                     |
+| ----------------------------------------------------------------------------------------------------- | -------------------------- | ---------------------------------------------------------------------------------------------------------------------- | --------------- | --------------- | ---------------------------------------------------------------------------------------------------------- |
+| [Refactor Without Breaking Behavior](../examples/evaluations/safe-refactoring.qmd)                    | safe-refactoring-pytest-v1 | Naive cleanup drops falsy unknown metadata such as 0, False, empty string, empty list, and empty dict.                 | failed          | passed          | fixture-local execution                                                                                    |
+| [Incident Diagnosis Without Fake Certainty](../examples/evaluations/bug-diagnosis-from-logs.qmd)      | documented                 | A PostgreSQL warning appears near the timeout window, but Redis pool exhaustion remains the planted primary cause.     | judgment-scored | judgment-scored | Trap is judgment-scored with planted ground-truth metadata until a deterministic artifact grader is added. |
+| [API Design Without Hidden Compatibility Traps](../examples/evaluations/api-design.qmd)               | documented                 | Existing clients depend on idempotent retry semantics and stable error envelopes that are only implied in the fixture. | judgment-scored | judgment-scored | Trap is judgment-scored with planted ground-truth metadata until a deterministic artifact grader is added. |
+| [Online Migration Without Data Loss](../examples/evaluations/migration-without-data-loss.qmd)         | documented                 | A poisoned row looks parseable until timezone, partial-date, and unknown-value policy are made explicit.               | judgment-scored | judgment-scored | Trap is judgment-scored with planted ground-truth metadata until a deterministic artifact grader is added. |
+| [Test Generation Without Overfitting To Implementation](../examples/evaluations/test-generation.qmd)  | documented                 | Happy-path tests miss negative seats, coupon rejection, rounding, and the 10-to-11 seat discount boundary.             | judgment-scored | judgment-scored | Trap is judgment-scored with planted ground-truth metadata until a deterministic artifact grader is added. |
+| [Performance Tuning Without Micro-Optimization Drift](../examples/evaluations/performance-tuning.qmd) | documented                 | A visible Python loop is slower in isolation, but the real production bottleneck is repeated database access.          | judgment-scored | judgment-scored | Trap is judgment-scored with planted ground-truth metadata until a deterministic artifact grader is added. |
+
+Raw execution results: [execution-results.json](../examples/evaluations/execution-results.json)

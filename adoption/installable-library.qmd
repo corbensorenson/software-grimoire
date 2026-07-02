@@ -12,6 +12,7 @@ The installable library is generated from canonical spell and stack data. It giv
 - [Plain Markdown stacks](../exports/markdown/stacks)
 - [Codex task templates](../exports/codex)
 - [Cursor rules](../exports/cursor/rules)
+- [Claude Code skills](../exports/claude-code/skills)
 - [Export index](../exports/README.md)
 - [Library manifest](../exports/library-manifest.json)
 - [Checksums](../exports/checksums.sha256)
@@ -36,8 +37,10 @@ Installable console scripts are declared in `pyproject.toml` for editable local 
 ```bash
 python3 -m pip install -e .
 grimoire export --target cursor
+grimoire export --target claude-code
 grimoire bench import examples/evaluations/manual-import-template.json
 grimoire-install-assets --target cursor --dest /tmp/grimoire-assets --write
+grimoire-install-assets --target claude-code --dest /tmp/grimoire-assets --write
 ```
 
 ## Rules

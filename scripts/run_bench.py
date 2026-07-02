@@ -51,8 +51,10 @@ def main(argv: list[str] | None = None) -> int:
     eval_parser.add_argument("args", nargs=argparse.REMAINDER, help="arguments forwarded to run_evaluations.py")
     jail_parser = sub.add_parser("jailbreak-resilience", help="run jailbreak-resilience bench")
     jail_parser.add_argument("args", nargs=argparse.REMAINDER, help="arguments forwarded to run_jailbreak_resilience.py")
-    all_parser = sub.add_parser("all", help="run both project-owned benches")
-    all_parser.add_argument("args", nargs=argparse.REMAINDER, help="arguments forwarded to both bench runners")
+    execution_parser = sub.add_parser("execution", help="run execution-graded clean/trap bench")
+    execution_parser.add_argument("args", nargs=argparse.REMAINDER, help="arguments forwarded to run_execution_bench.py")
+    all_parser = sub.add_parser("all", help="run all project-owned benches")
+    all_parser.add_argument("args", nargs=argparse.REMAINDER, help="arguments forwarded to bench runners")
     import_parser = sub.add_parser("import", help="validate a manual reviewer-supplied run record")
     import_parser.add_argument("path", help="path to manual import JSON")
     args = parser.parse_args(argv)
@@ -61,11 +63,16 @@ def main(argv: list[str] | None = None) -> int:
         return run([sys.executable, "scripts/run_evaluations.py", *args.args])
     if args.command == "jailbreak-resilience":
         return run([sys.executable, "scripts/run_jailbreak_resilience.py", *args.args])
+    if args.command == "execution":
+        return run([sys.executable, "scripts/run_execution_bench.py", *args.args])
     if args.command == "all":
         code = run([sys.executable, "scripts/run_evaluations.py", *args.args])
         if code:
             return code
-        return run([sys.executable, "scripts/run_jailbreak_resilience.py", *args.args])
+        code = run([sys.executable, "scripts/run_jailbreak_resilience.py", *args.args])
+        if code:
+            return code
+        return run([sys.executable, "scripts/run_execution_bench.py", *args.args])
     if args.command == "import":
         return validate_import(Path(args.path))
     return 2

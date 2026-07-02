@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Software Grimoire Execution Bench",
+  "type": "object",
+  "required": ["version", "policy", "tiers", "artifact_contract", "cases"],
+  "properties": {
+    "version": {"type": "string", "minLength": 1},
+    "policy": {"type": "string", "minLength": 1},
+    "tiers": {
+      "type": "object",
+      "required": ["clean", "trap"],
+      "properties": {
+        "clean": {"type": "string", "minLength": 1},
+        "trap": {"type": "string", "minLength": 1}
+      },
+      "additionalProperties": false
+    },
+    "artifact_contract": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"type": "string", "minLength": 1}
+    },
+    "cases": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+        "type": "object",
+        "required": ["clean", "trap"],
+        "properties": {
+          "clean": {"$ref": "#/$defs/tier"},
+          "trap": {
+            "allOf": [
+              {"$ref": "#/$defs/tier"},
+              {
+                "type": "object",
+                "required": ["title", "trap", "expected_failure"]
+              }
+            ]
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "$defs": {
+    "tier": {
+      "type": "object",
+      "required": ["fixture_path", "execution_grader", "documented_reason"],
+      "properties": {
+        "fixture_path": {"type": "string", "minLength": 1},
+        "execution_grader": {"type": ["string", "null"]},
+        "documented_reason": {"type": ["string", "null"]}
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": false
+}

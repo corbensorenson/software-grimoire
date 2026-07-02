@@ -70,6 +70,26 @@ def test_bench_v2_matches_schema() -> None:
     assert not errors, "\n".join(errors[:25])
 
 
+def test_execution_bench_matches_schema() -> None:
+    errors = collect_errors("schemas/execution-bench.schema.json", [load_json("data/execution_bench.json")], "execution_bench")
+    assert not errors, "\n".join(errors[:25])
+
+
+def test_surface_comparison_matches_schema() -> None:
+    errors = collect_errors("schemas/surface-comparison.schema.json", [load_json("examples/evaluations/surface-comparison.json")], "surface_comparison")
+    assert not errors, "\n".join(errors[:25])
+
+
+def test_warded_baseline_matches_schema() -> None:
+    errors = collect_errors("schemas/warded-baseline.schema.json", [load_json("examples/jailbreak-resilience/baseline-results.json")], "warded_baseline")
+    assert not errors, "\n".join(errors[:25])
+
+
+def test_semantic_promotion_matches_schema() -> None:
+    errors = collect_errors("schemas/semantic-promotion.schema.json", [load_json("data/semantic_promotion.json")], "semantic_promotion")
+    assert not errors, "\n".join(errors[:25])
+
+
 def test_adversarial_harness_matches_schema() -> None:
     errors = collect_errors("schemas/adversarial-harness.schema.json", [load_json("data/adversarial_harness.json")], "adversarial_harness")
     assert not errors, "\n".join(errors[:25])
