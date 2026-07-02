@@ -1,0 +1,2789 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>109&nbsp; Interface, UX, and Human-Facing Words – The Grimoire of Software Magic Words</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../reference/house-promptcraft-ai-oriented-engineering-and-spell-structure.html" rel="next">
+<link href="../reference/house-hardware-embedded-and-performance-near-words.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-39ac65d2ba81e8f361d24188b4938e12.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../reference/lexicon.html">Master Lexicon</a></li><li class="breadcrumb-item"><a href="../reference/house-interface-ux-and-human-facing-words.html"><span class="chapter-number">109</span>&nbsp; <span class="chapter-title">Interface, UX, and Human-Facing Words</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">The Grimoire of Software Magic Words</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/corbensorenson/software-grimoire" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">The Grimoire of Software Magic Words</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../quick_start.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">First Spell in Five Minutes</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reader_path.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Guided Reader Path</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Core Grimoire</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../porting-status.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Porting Status</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../preface.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Preface</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/01-operative-language.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Operative Language</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/02-what-a-spell-is.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">What a Spell Is</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/03-crafting-spells.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Crafting Spells</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/04-sigils-canonicalization-and-seals.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Sigils, Canonicalization, and Seals</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/05-coil-inspection.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Coil Inspection</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/06-field-spells.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Field Spells</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/07-public-canon.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">The Public Canon</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/08-stackcraft.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Stackcraft</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/09-tooling-and-formalization.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Tooling and Formalization</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/10-living-practice.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Living Practice</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/11-adversarial-promptcraft.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Adversarial Promptcraft</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Spell Library</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../spells/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Spell Library</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../spells/safe-refactoring.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Spell of Safe Refactoring</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../spells/bug-diagnosis-from-logs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Spell of Bug Diagnosis from Logs</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../spells/api-design.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Spell of API Design</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../spells/migration-without-data-loss.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Spell of Migration Without Data Loss</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../spells/test-generation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Spell of Test Generation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../spells/performance-tuning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Spell of Performance Tuning</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../spells/jailbreak-resilience-review.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Spell of Jailbreak-Resilience Review</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Stack Library</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stacks/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Stack Library</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stacks/code-generation-and-repair-loop.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Code Generation and Repair Loop</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stacks/bug-hunt-stack.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Bug-Hunt Stack</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stacks/safe-refactor-stack.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Safe Refactor Stack</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stacks/live-migration-stack.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Live Migration Stack</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stacks/release-gate-stack.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Release Gate Stack</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stacks/recursive-decomposition-stack.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Recursive Decomposition Stack</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stacks/ai-red-team-loop.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">AI Red-Team Loop</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Proof by Difference Cases</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../examples/weak-vs-repaired/safe-refactoring.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Refactor Without Breaking Behavior</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../examples/weak-vs-repaired/bug-diagnosis-from-logs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Incident Diagnosis Without Fake Certainty</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../examples/weak-vs-repaired/api-design.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">API Design Without Hidden Compatibility Traps</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../examples/weak-vs-repaired/migration-without-data-loss.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Online Migration Without Data Loss</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../examples/weak-vs-repaired/test-generation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Test Generation Without Overfitting To Implementation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../examples/weak-vs-repaired/performance-tuning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Performance Tuning Without Micro-Optimization Drift</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Recorded Evaluations</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../examples/evaluations/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">Recorded Evaluations</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../examples/evaluations/safe-refactoring.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">Refactor Without Breaking Behavior</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../examples/evaluations/bug-diagnosis-from-logs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">Incident Diagnosis Without Fake Certainty</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../examples/evaluations/api-design.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">42</span>&nbsp; <span class="chapter-title">API Design Without Hidden Compatibility Traps</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../examples/evaluations/migration-without-data-loss.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">43</span>&nbsp; <span class="chapter-title">Online Migration Without Data Loss</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../examples/evaluations/test-generation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">44</span>&nbsp; <span class="chapter-title">Test Generation Without Overfitting To Implementation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../examples/evaluations/performance-tuning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">45</span>&nbsp; <span class="chapter-title">Performance Tuning Without Micro-Optimization Drift</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Jailbreak Resilience</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../examples/jailbreak-resilience/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">46</span>&nbsp; <span class="chapter-title">Jailbreak-Resilience Bench</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../examples/jailbreak-resilience/indirect-readme-injection.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">47</span>&nbsp; <span class="chapter-title">Indirect README Injection</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../examples/jailbreak-resilience/tainted-log-instruction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">48</span>&nbsp; <span class="chapter-title">Tainted Log Instruction</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../examples/jailbreak-resilience/rag-chunk-override.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">49</span>&nbsp; <span class="chapter-title">RAG Chunk Override</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../examples/jailbreak-resilience/system-prompt-leak-request.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">50</span>&nbsp; <span class="chapter-title">System-Prompt Leak Request</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../examples/jailbreak-resilience/multi-turn-scope-creep.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">51</span>&nbsp; <span class="chapter-title">Multi-Turn Scope Creep</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../examples/jailbreak-resilience/many-shot-policy-drift.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">52</span>&nbsp; <span class="chapter-title">Many-Shot Policy Drift</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../examples/jailbreak-resilience/forbidden-tool-call.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">53</span>&nbsp; <span class="chapter-title">Forbidden Tool Call</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../examples/jailbreak-resilience/canary-leakage.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">54</span>&nbsp; <span class="chapter-title">Canary Leakage</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
+ <span class="menu-text">Adoption Kit</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../adoption/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">55</span>&nbsp; <span class="chapter-title">Adoption Kit</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../adoption/installable-library.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">56</span>&nbsp; <span class="chapter-title">Installable Library</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../adoption/evidence.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">57</span>&nbsp; <span class="chapter-title">Adoption Evidence</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../adoption/playbook.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">58</span>&nbsp; <span class="chapter-title">Adoption Playbook</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../adoption/external-walkthrough.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">59</span>&nbsp; <span class="chapter-title">External Walkthrough</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true">
+ <span class="menu-text">Reference</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">60</span>&nbsp; <span class="chapter-title">Reference</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/cast-levels.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">61</span>&nbsp; <span class="chapter-title">Cast Levels</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/spell-skeleton.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">62</span>&nbsp; <span class="chapter-title">Canonical Spell Skeleton</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/stack-grammar.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">63</span>&nbsp; <span class="chapter-title">Stack Grammar</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/seals-and-sigils.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">64</span>&nbsp; <span class="chapter-title">Seals and Sigils</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/failure-modes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">65</span>&nbsp; <span class="chapter-title">Failure Modes</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/proof-by-difference.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">66</span>&nbsp; <span class="chapter-title">Proof by Difference</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/evidence-browser.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">67</span>&nbsp; <span class="chapter-title">Evidence Browser</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/calibration.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">68</span>&nbsp; <span class="chapter-title">Calibration</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/bench-v2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">69</span>&nbsp; <span class="chapter-title">Bench v2</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/execution-bench.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">70</span>&nbsp; <span class="chapter-title">Execution-Graded Bench</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/hardness-v4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">71</span>&nbsp; <span class="chapter-title">Bench v4 Hardness Ladder</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/model-artifact-execution.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">72</span>&nbsp; <span class="chapter-title">Model Artifact Execution</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/surface-comparison.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">73</span>&nbsp; <span class="chapter-title">Surface Comparison</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/jailbreak-resilience.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">74</span>&nbsp; <span class="chapter-title">Jailbreak Resilience</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/adversarial-harness.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">75</span>&nbsp; <span class="chapter-title">Adversarial Harness v2</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/warded-baselines.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">76</span>&nbsp; <span class="chapter-title">Warded Baselines</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/ward-science.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">77</span>&nbsp; <span class="chapter-title">Ward Science</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/warded-ab-evidence.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">78</span>&nbsp; <span class="chapter-title">Warded A/B Evidence</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/semantic-promotion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">79</span>&nbsp; <span class="chapter-title">Semantic Promotion Ladder</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/canon-audit.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">80</span>&nbsp; <span class="chapter-title">Canon Audit</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/usage-earned-canon.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">81</span>&nbsp; <span class="chapter-title">Usage-Earned Canon</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/canon-review-queue.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">82</span>&nbsp; <span class="chapter-title">Canon Review Queue</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/methods-structure-reviewability-warding.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">83</span>&nbsp; <span class="chapter-title">Methods: Structure, Reviewability, and Warding</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/logical-conclusion-status.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">84</span>&nbsp; <span class="chapter-title">Logical Conclusion Status</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/public-smoke-checks.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">85</span>&nbsp; <span class="chapter-title">Public Smoke Checks</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/package-index-release.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">86</span>&nbsp; <span class="chapter-title">Package-Index Release Plan</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/generator-architecture.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">87</span>&nbsp; <span class="chapter-title">Generator Architecture</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/visual-grammar.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">88</span>&nbsp; <span class="chapter-title">Visual Grammar</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/task-chooser.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">89</span>&nbsp; <span class="chapter-title">Task Chooser</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/canon-map.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">90</span>&nbsp; <span class="chapter-title">Canon Map</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/major-canon.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">91</span>&nbsp; <span class="chapter-title">The Fifty World-Running Words</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/pocket-canon.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">92</span>&nbsp; <span class="chapter-title">Pocket Canon</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/pocket-field-guide.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">93</span>&nbsp; <span class="chapter-title">Pocket Field Guide</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/term-index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">94</span>&nbsp; <span class="chapter-title">Term Index</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true">
+ <span class="menu-text">Master Lexicon</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/lexicon.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">95</span>&nbsp; <span class="chapter-title">Master Lexicon</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/house-architecture-abstraction-and-design.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">96</span>&nbsp; <span class="chapter-title">Architecture, Abstraction, and Design</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/house-language-semantics-and-formal-shape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">97</span>&nbsp; <span class="chapter-title">Language, Semantics, and Formal Shape</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/house-data-state-and-representation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">98</span>&nbsp; <span class="chapter-title">Data, State, and Representation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/house-transformation-algorithms-and-working-verbs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">99</span>&nbsp; <span class="chapter-title">Transformation, Algorithms, and Working Verbs</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/house-control-flow-coordination-and-temporal-logic.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">100</span>&nbsp; <span class="chapter-title">Control Flow, Coordination, and Temporal Logic</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/house-runtime-memory-and-execution.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">101</span>&nbsp; <span class="chapter-title">Runtime, Memory, and Execution</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/house-systems-programming-and-operating-system-words.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">102</span>&nbsp; <span class="chapter-title">Systems Programming and Operating-System Words</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/house-networking-and-distributed-systems.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">103</span>&nbsp; <span class="chapter-title">Networking and Distributed Systems</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/house-databases-persistence-and-time-binding-words.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">104</span>&nbsp; <span class="chapter-title">Databases, Persistence, and Time-Binding Words</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/house-security-trust-and-warding-words.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">105</span>&nbsp; <span class="chapter-title">Security, Trust, and Warding Words</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/house-build-tooling-versioning-and-release.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">106</span>&nbsp; <span class="chapter-title">Build, Tooling, Versioning, and Release</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/house-testing-verification-and-observability.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">107</span>&nbsp; <span class="chapter-title">Testing, Verification, and Observability</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/house-hardware-embedded-and-performance-near-words.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">108</span>&nbsp; <span class="chapter-title">Hardware, Embedded, and Performance-Near Words</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/house-interface-ux-and-human-facing-words.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">109</span>&nbsp; <span class="chapter-title">Interface, UX, and Human-Facing Words</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/house-promptcraft-ai-oriented-engineering-and-spell-structure.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">110</span>&nbsp; <span class="chapter-title">Promptcraft, AI-Oriented Engineering, and Spell Structure</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/house-guarantee-words-quality-attributes-and-behavioral-adjectives.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">111</span>&nbsp; <span class="chapter-title">Guarantee Words, Quality Attributes, and Behavioral Adjectives</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/house-failure-words-pathologies-and-counter-spells.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">112</span>&nbsp; <span class="chapter-title">Failure Words, Pathologies, and Counter-Spells</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/house-compound-forms-prefixes-suffixes-and-naming-runes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">113</span>&nbsp; <span class="chapter-title">Compound Forms, Prefixes, Suffixes, and Naming Runes</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#interface-ux-and-human-facing-words" id="toc-interface-ux-and-human-facing-words" class="nav-link active" data-scroll-target="#interface-ux-and-human-facing-words"><span class="header-section-number">110</span> Interface, UX, and Human-Facing Words</a>
+  <ul class="collapse">
+  <li><a href="#completion" id="toc-completion" class="nav-link" data-scroll-target="#completion"><span class="header-section-number">110.1</span> Completion</a></li>
+  <li><a href="#entries" id="toc-entries" class="nav-link" data-scroll-target="#entries"><span class="header-section-number">110.2</span> Entries</a>
+  <ul class="collapse">
+  <li><a href="#rune-1291" id="toc-rune-1291" class="nav-link" data-scroll-target="#rune-1291"><span class="header-section-number">110.2.1</span> [1291] accessibility</a></li>
+  <li><a href="#rune-1292" id="toc-rune-1292" class="nav-link" data-scroll-target="#rune-1292"><span class="header-section-number">110.2.2</span> [1292] adaptive layout</a></li>
+  <li><a href="#rune-1293" id="toc-rune-1293" class="nav-link" data-scroll-target="#rune-1293"><span class="header-section-number">110.2.3</span> [1293] affordance</a></li>
+  <li><a href="#rune-1294" id="toc-rune-1294" class="nav-link" data-scroll-target="#rune-1294"><span class="header-section-number">110.2.4</span> [1294] animation</a></li>
+  <li><a href="#rune-1295" id="toc-rune-1295" class="nav-link" data-scroll-target="#rune-1295"><span class="header-section-number">110.2.5</span> [1295] app shell</a></li>
+  <li><a href="#rune-1296" id="toc-rune-1296" class="nav-link" data-scroll-target="#rune-1296"><span class="header-section-number">110.2.6</span> [1296] breadcrumb</a></li>
+  <li><a href="#rune-1297" id="toc-rune-1297" class="nav-link" data-scroll-target="#rune-1297"><span class="header-section-number">110.2.7</span> [1297] call to action</a></li>
+  <li><a href="#rune-1298" id="toc-rune-1298" class="nav-link" data-scroll-target="#rune-1298"><span class="header-section-number">110.2.8</span> [1298] click target</a></li>
+  <li><a href="#rune-1299" id="toc-rune-1299" class="nav-link" data-scroll-target="#rune-1299"><span class="header-section-number">110.2.9</span> [1299] component {UX}</a></li>
+  <li><a href="#rune-1300" id="toc-rune-1300" class="nav-link" data-scroll-target="#rune-1300"><span class="header-section-number">110.2.10</span> [1300] confirmation</a></li>
+  <li><a href="#rune-1301" id="toc-rune-1301" class="nav-link" data-scroll-target="#rune-1301"><span class="header-section-number">110.2.11</span> [1301] copy</a></li>
+  <li><a href="#rune-1302" id="toc-rune-1302" class="nav-link" data-scroll-target="#rune-1302"><span class="header-section-number">110.2.12</span> [1302] dark mode</a></li>
+  <li><a href="#rune-1303" id="toc-rune-1303" class="nav-link" data-scroll-target="#rune-1303"><span class="header-section-number">110.2.13</span> [1303] discoverability</a></li>
+  <li><a href="#rune-1304" id="toc-rune-1304" class="nav-link" data-scroll-target="#rune-1304"><span class="header-section-number">110.2.14</span> [1304] empty state</a></li>
+  <li><a href="#rune-1305" id="toc-rune-1305" class="nav-link" data-scroll-target="#rune-1305"><span class="header-section-number">110.2.15</span> [1305] error state</a></li>
+  <li><a href="#rune-1306" id="toc-rune-1306" class="nav-link" data-scroll-target="#rune-1306"><span class="header-section-number">110.2.16</span> [1306] feedback</a></li>
+  <li><a href="#rune-1307" id="toc-rune-1307" class="nav-link" data-scroll-target="#rune-1307"><span class="header-section-number">110.2.17</span> [1307] focus state</a></li>
+  <li><a href="#rune-1308" id="toc-rune-1308" class="nav-link" data-scroll-target="#rune-1308"><span class="header-section-number">110.2.18</span> [1308] form validation</a></li>
+  <li><a href="#rune-1309" id="toc-rune-1309" class="nav-link" data-scroll-target="#rune-1309"><span class="header-section-number">110.2.19</span> [1309] gesture</a></li>
+  <li><a href="#rune-1310" id="toc-rune-1310" class="nav-link" data-scroll-target="#rune-1310"><span class="header-section-number">110.2.20</span> [1310] grid</a></li>
+  <li><a href="#rune-1311" id="toc-rune-1311" class="nav-link" data-scroll-target="#rune-1311"><span class="header-section-number">110.2.21</span> [1311] hierarchy {UX}</a></li>
+  <li><a href="#rune-1312" id="toc-rune-1312" class="nav-link" data-scroll-target="#rune-1312"><span class="header-section-number">110.2.22</span> [1312] hover state</a></li>
+  <li><a href="#rune-1313" id="toc-rune-1313" class="nav-link" data-scroll-target="#rune-1313"><span class="header-section-number">110.2.23</span> [1313] hydration</a></li>
+  <li><a href="#rune-1314" id="toc-rune-1314" class="nav-link" data-scroll-target="#rune-1314"><span class="header-section-number">110.2.24</span> [1314] input field</a></li>
+  <li><a href="#rune-1315" id="toc-rune-1315" class="nav-link" data-scroll-target="#rune-1315"><span class="header-section-number">110.2.25</span> [1315] interaction</a></li>
+  <li><a href="#rune-1316" id="toc-rune-1316" class="nav-link" data-scroll-target="#rune-1316"><span class="header-section-number">110.2.26</span> [1316] internationalization</a></li>
+  <li><a href="#rune-1317" id="toc-rune-1317" class="nav-link" data-scroll-target="#rune-1317"><span class="header-section-number">110.2.27</span> [1317] keyboard navigation</a></li>
+  <li><a href="#rune-1318" id="toc-rune-1318" class="nav-link" data-scroll-target="#rune-1318"><span class="header-section-number">110.2.28</span> [1318] label {UX}</a></li>
+  <li><a href="#rune-1319" id="toc-rune-1319" class="nav-link" data-scroll-target="#rune-1319"><span class="header-section-number">110.2.29</span> [1319] layout {UX}</a></li>
+  <li><a href="#rune-1320" id="toc-rune-1320" class="nav-link" data-scroll-target="#rune-1320"><span class="header-section-number">110.2.30</span> [1320] localization</a></li>
+  <li><a href="#rune-1321" id="toc-rune-1321" class="nav-link" data-scroll-target="#rune-1321"><span class="header-section-number">110.2.31</span> [1321] menu</a></li>
+  <li><a href="#rune-1322" id="toc-rune-1322" class="nav-link" data-scroll-target="#rune-1322"><span class="header-section-number">110.2.32</span> [1322] microcopy</a></li>
+  <li><a href="#rune-1323" id="toc-rune-1323" class="nav-link" data-scroll-target="#rune-1323"><span class="header-section-number">110.2.33</span> [1323] modal</a></li>
+  <li><a href="#rune-1324" id="toc-rune-1324" class="nav-link" data-scroll-target="#rune-1324"><span class="header-section-number">110.2.34</span> [1324] navigation</a></li>
+  <li><a href="#rune-1325" id="toc-rune-1325" class="nav-link" data-scroll-target="#rune-1325"><span class="header-section-number">110.2.35</span> [1325] offline-first {UX}</a></li>
+  <li><a href="#rune-1326" id="toc-rune-1326" class="nav-link" data-scroll-target="#rune-1326"><span class="header-section-number">110.2.36</span> [1326] onboarding</a></li>
+  <li><a href="#rune-1327" id="toc-rune-1327" class="nav-link" data-scroll-target="#rune-1327"><span class="header-section-number">110.2.37</span> [1327] output view</a></li>
+  <li><a href="#rune-1328" id="toc-rune-1328" class="nav-link" data-scroll-target="#rune-1328"><span class="header-section-number">110.2.38</span> [1328] pagination control</a></li>
+  <li><a href="#rune-1329" id="toc-rune-1329" class="nav-link" data-scroll-target="#rune-1329"><span class="header-section-number">110.2.39</span> [1329] panel</a></li>
+  <li><a href="#rune-1330" id="toc-rune-1330" class="nav-link" data-scroll-target="#rune-1330"><span class="header-section-number">110.2.40</span> [1330] placeholder</a></li>
+  <li><a href="#rune-1331" id="toc-rune-1331" class="nav-link" data-scroll-target="#rune-1331"><span class="header-section-number">110.2.41</span> [1331] progressive disclosure</a></li>
+  <li><a href="#rune-1332" id="toc-rune-1332" class="nav-link" data-scroll-target="#rune-1332"><span class="header-section-number">110.2.42</span> [1332] prompt surface {UX}</a></li>
+  <li><a href="#rune-1333" id="toc-rune-1333" class="nav-link" data-scroll-target="#rune-1333"><span class="header-section-number">110.2.43</span> [1333] responsive design</a></li>
+  <li><a href="#rune-1334" id="toc-rune-1334" class="nav-link" data-scroll-target="#rune-1334"><span class="header-section-number">110.2.44</span> [1334] screen</a></li>
+  <li><a href="#rune-1335" id="toc-rune-1335" class="nav-link" data-scroll-target="#rune-1335"><span class="header-section-number">110.2.45</span> [1335] scroll state</a></li>
+  <li><a href="#rune-1336" id="toc-rune-1336" class="nav-link" data-scroll-target="#rune-1336"><span class="header-section-number">110.2.46</span> [1336] search box</a></li>
+  <li><a href="#rune-1337" id="toc-rune-1337" class="nav-link" data-scroll-target="#rune-1337"><span class="header-section-number">110.2.47</span> [1337] selection</a></li>
+  <li><a href="#rune-1338" id="toc-rune-1338" class="nav-link" data-scroll-target="#rune-1338"><span class="header-section-number">110.2.48</span> [1338] skeleton state</a></li>
+  <li><a href="#rune-1339" id="toc-rune-1339" class="nav-link" data-scroll-target="#rune-1339"><span class="header-section-number">110.2.49</span> [1339] state transition</a></li>
+  <li><a href="#rune-1340" id="toc-rune-1340" class="nav-link" data-scroll-target="#rune-1340"><span class="header-section-number">110.2.50</span> [1340] stepper</a></li>
+  <li><a href="#rune-1341" id="toc-rune-1341" class="nav-link" data-scroll-target="#rune-1341"><span class="header-section-number">110.2.51</span> [1341] sync state</a></li>
+  <li><a href="#rune-1342" id="toc-rune-1342" class="nav-link" data-scroll-target="#rune-1342"><span class="header-section-number">110.2.52</span> [1342] table view</a></li>
+  <li><a href="#rune-1343" id="toc-rune-1343" class="nav-link" data-scroll-target="#rune-1343"><span class="header-section-number">110.2.53</span> [1343] theme</a></li>
+  <li><a href="#rune-1344" id="toc-rune-1344" class="nav-link" data-scroll-target="#rune-1344"><span class="header-section-number">110.2.54</span> [1344] tooltip</a></li>
+  <li><a href="#rune-1345" id="toc-rune-1345" class="nav-link" data-scroll-target="#rune-1345"><span class="header-section-number">110.2.55</span> [1345] typography</a></li>
+  <li><a href="#rune-1346" id="toc-rune-1346" class="nav-link" data-scroll-target="#rune-1346"><span class="header-section-number">110.2.56</span> [1346] user flow</a></li>
+  <li><a href="#rune-1347" id="toc-rune-1347" class="nav-link" data-scroll-target="#rune-1347"><span class="header-section-number">110.2.57</span> [1347] validation message</a></li>
+  <li><a href="#rune-1348" id="toc-rune-1348" class="nav-link" data-scroll-target="#rune-1348"><span class="header-section-number">110.2.58</span> [1348] view model</a></li>
+  <li><a href="#rune-1349" id="toc-rune-1349" class="nav-link" data-scroll-target="#rune-1349"><span class="header-section-number">110.2.59</span> [1349] viewport</a></li>
+  <li><a href="#rune-1350" id="toc-rune-1350" class="nav-link" data-scroll-target="#rune-1350"><span class="header-section-number">110.2.60</span> [1350] visual hierarchy</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/corbensorenson/software-grimoire/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li><li><a href="https://github.com/corbensorenson/software-grimoire/blob/main/reference/house-interface-ux-and-human-facing-words.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../reference/lexicon.html">Master Lexicon</a></li><li class="breadcrumb-item"><a href="../reference/house-interface-ux-and-human-facing-words.html"><span class="chapter-number">109</span>&nbsp; <span class="chapter-title">Interface, UX, and Human-Facing Words</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">109</span>&nbsp; <span class="chapter-title">Interface, UX, and Human-Facing Words</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="interface-ux-and-human-facing-words" class="level1" data-number="110">
+<h1 data-number="110"><span class="header-section-number">110</span> Interface, UX, and Human-Facing Words</h1>
+<p>Range: <code>1291-1350</code>.</p>
+<section id="completion" class="level2" data-number="110.1">
+<h2 data-number="110.1" class="anchored" data-anchor-id="completion"><span class="header-section-number">110.1</span> Completion</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Status</th>
+<th>Count</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>authored</td>
+<td>60</td>
+</tr>
+</tbody>
+</table>
+<p>Use the summary table for scanning. Each row links to the detailed anchored entry below.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Sigil</th>
+<th>Term</th>
+<th>Completion</th>
+<th>Semantic</th>
+<th>Summary</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1291</td>
+<td><a href="#rune-1291">accessibility</a></td>
+<td>authored</td>
+<td>reviewed</td>
+<td>Make the system usable by people with varied bodies, senses, and tools.</td>
+</tr>
+<tr class="even">
+<td>1292</td>
+<td><a href="#rune-1292">adaptive layout</a></td>
+<td>authored</td>
+<td>generated_draft</td>
+<td><code>adaptive layout</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the adaptive layout obligation named before work proceeds.</td>
+</tr>
+<tr class="odd">
+<td>1293</td>
+<td><a href="#rune-1293">affordance</a></td>
+<td>authored</td>
+<td>reviewed</td>
+<td>A cue that suggests what action is possible here.</td>
+</tr>
+<tr class="even">
+<td>1294</td>
+<td><a href="#rune-1294">animation</a></td>
+<td>authored</td>
+<td>generated_draft</td>
+<td><code>animation</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the animation obligation named before work proceeds.</td>
+</tr>
+<tr class="odd">
+<td>1295</td>
+<td><a href="#rune-1295">app shell</a></td>
+<td>authored</td>
+<td>generated_draft</td>
+<td><code>app shell</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the app shell obligation named before work proceeds.</td>
+</tr>
+<tr class="even">
+<td>1296</td>
+<td><a href="#rune-1296">breadcrumb</a></td>
+<td>authored</td>
+<td>generated_draft</td>
+<td><code>breadcrumb</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the breadcrumb obligation named before work proceeds.</td>
+</tr>
+<tr class="odd">
+<td>1297</td>
+<td><a href="#rune-1297">call to action</a></td>
+<td>authored</td>
+<td>generated_draft</td>
+<td><code>call to action</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the call to action obligation named before work proceeds.</td>
+</tr>
+<tr class="even">
+<td>1298</td>
+<td><a href="#rune-1298">click target</a></td>
+<td>authored</td>
+<td>generated_draft</td>
+<td><code>click target</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the click target obligation named before work proceeds.</td>
+</tr>
+<tr class="odd">
+<td>1299</td>
+<td><a href="#rune-1299">component {UX}</a></td>
+<td>authored</td>
+<td>generated_draft</td>
+<td><code>component</code> in its UX sense is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the component obligation named before work proceeds.</td>
+</tr>
+<tr class="even">
+<td>1300</td>
+<td><a href="#rune-1300">confirmation</a></td>
+<td>authored</td>
+<td>generated_draft</td>
+<td><code>confirmation</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the confirmation obligation named before work proceeds.</td>
+</tr>
+<tr class="odd">
+<td>1301</td>
+<td><a href="#rune-1301">copy</a></td>
+<td>authored</td>
+<td>generated_draft</td>
+<td><code>copy</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the copy obligation named before work proceeds.</td>
+</tr>
+<tr class="even">
+<td>1302</td>
+<td><a href="#rune-1302">dark mode</a></td>
+<td>authored</td>
+<td>generated_draft</td>
+<td><code>dark mode</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the dark mode obligation named before work proceeds.</td>
+</tr>
+<tr class="odd">
+<td>1303</td>
+<td><a href="#rune-1303">discoverability</a></td>
+<td>authored</td>
+<td>reviewed</td>
+<td>How easily a user can find what the system can do.</td>
+</tr>
+<tr class="even">
+<td>1304</td>
+<td><a href="#rune-1304">empty state</a></td>
+<td>authored</td>
+<td>generated_draft</td>
+<td><code>empty state</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the empty state obligation named before work proceeds.</td>
+</tr>
+<tr class="odd">
+<td>1305</td>
+<td><a href="#rune-1305">error state</a></td>
+<td>authored</td>
+<td>generated_draft</td>
+<td><code>error state</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the error state obligation named before work proceeds.</td>
+</tr>
+<tr class="even">
+<td>1306</td>
+<td><a href="#rune-1306">feedback</a></td>
+<td>authored</td>
+<td>reviewed</td>
+<td>The system speaking back after the user acts.</td>
+</tr>
+<tr class="odd">
+<td>1307</td>
+<td><a href="#rune-1307">focus state</a></td>
+<td>authored</td>
+<td>generated_draft</td>
+<td><code>focus state</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the focus state obligation named before work proceeds.</td>
+</tr>
+<tr class="even">
+<td>1308</td>
+<td><a href="#rune-1308">form validation</a></td>
+<td>authored</td>
+<td>reviewed</td>
+<td>Validation at the form boundary so bad input is caught legibly.</td>
+</tr>
+<tr class="odd">
+<td>1309</td>
+<td><a href="#rune-1309">gesture</a></td>
+<td>authored</td>
+<td>generated_draft</td>
+<td><code>gesture</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the gesture obligation named before work proceeds.</td>
+</tr>
+<tr class="even">
+<td>1310</td>
+<td><a href="#rune-1310">grid</a></td>
+<td>authored</td>
+<td>generated_draft</td>
+<td><code>grid</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the grid obligation named before work proceeds.</td>
+</tr>
+<tr class="odd">
+<td>1311</td>
+<td><a href="#rune-1311">hierarchy {UX}</a></td>
+<td>authored</td>
+<td>generated_draft</td>
+<td><code>hierarchy</code> in its UX sense is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the hierarchy obligation named before work proceeds.</td>
+</tr>
+<tr class="even">
+<td>1312</td>
+<td><a href="#rune-1312">hover state</a></td>
+<td>authored</td>
+<td>generated_draft</td>
+<td><code>hover state</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the hover state obligation named before work proceeds.</td>
+</tr>
+<tr class="odd">
+<td>1313</td>
+<td><a href="#rune-1313">hydration</a></td>
+<td>authored</td>
+<td>generated_draft</td>
+<td><code>hydration</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the hydration obligation named before work proceeds.</td>
+</tr>
+<tr class="even">
+<td>1314</td>
+<td><a href="#rune-1314">input field</a></td>
+<td>authored</td>
+<td>generated_draft</td>
+<td><code>input field</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the input field obligation named before work proceeds.</td>
+</tr>
+<tr class="odd">
+<td>1315</td>
+<td><a href="#rune-1315">interaction</a></td>
+<td>authored</td>
+<td>generated_draft</td>
+<td><code>interaction</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the interaction obligation named before work proceeds.</td>
+</tr>
+<tr class="even">
+<td>1316</td>
+<td><a href="#rune-1316">internationalization</a></td>
+<td>authored</td>
+<td>generated_draft</td>
+<td><code>internationalization</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the internationalization obligation named before work proceeds.</td>
+</tr>
+<tr class="odd">
+<td>1317</td>
+<td><a href="#rune-1317">keyboard navigation</a></td>
+<td>authored</td>
+<td>reviewed</td>
+<td>Make the interface fully operable without a mouse.</td>
+</tr>
+<tr class="even">
+<td>1318</td>
+<td><a href="#rune-1318">label {UX}</a></td>
+<td>authored</td>
+<td>generated_draft</td>
+<td><code>label</code> in its UX sense is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the label obligation named before work proceeds.</td>
+</tr>
+<tr class="odd">
+<td>1319</td>
+<td><a href="#rune-1319">layout {UX}</a></td>
+<td>authored</td>
+<td>generated_draft</td>
+<td><code>layout</code> in its UX sense is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the layout obligation named before work proceeds.</td>
+</tr>
+<tr class="even">
+<td>1320</td>
+<td><a href="#rune-1320">localization</a></td>
+<td>authored</td>
+<td>generated_draft</td>
+<td><code>localization</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the localization obligation named before work proceeds.</td>
+</tr>
+<tr class="odd">
+<td>1321</td>
+<td><a href="#rune-1321">menu</a></td>
+<td>authored</td>
+<td>generated_draft</td>
+<td><code>menu</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the menu obligation named before work proceeds.</td>
+</tr>
+<tr class="even">
+<td>1322</td>
+<td><a href="#rune-1322">microcopy</a></td>
+<td>authored</td>
+<td>generated_draft</td>
+<td><code>microcopy</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the microcopy obligation named before work proceeds.</td>
+</tr>
+<tr class="odd">
+<td>1323</td>
+<td><a href="#rune-1323">modal</a></td>
+<td>authored</td>
+<td>generated_draft</td>
+<td><code>modal</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the modal obligation named before work proceeds.</td>
+</tr>
+<tr class="even">
+<td>1324</td>
+<td><a href="#rune-1324">navigation</a></td>
+<td>authored</td>
+<td>generated_draft</td>
+<td><code>navigation</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the navigation obligation named before work proceeds.</td>
+</tr>
+<tr class="odd">
+<td>1325</td>
+<td><a href="#rune-1325">offline-first {UX}</a></td>
+<td>authored</td>
+<td>generated_draft</td>
+<td><code>offline-first</code> in its UX sense is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the offline-first obligation named before work proceeds.</td>
+</tr>
+<tr class="even">
+<td>1326</td>
+<td><a href="#rune-1326">onboarding</a></td>
+<td>authored</td>
+<td>generated_draft</td>
+<td><code>onboarding</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the onboarding obligation named before work proceeds.</td>
+</tr>
+<tr class="odd">
+<td>1327</td>
+<td><a href="#rune-1327">output view</a></td>
+<td>authored</td>
+<td>generated_draft</td>
+<td><code>output view</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the output view obligation named before work proceeds.</td>
+</tr>
+<tr class="even">
+<td>1328</td>
+<td><a href="#rune-1328">pagination control</a></td>
+<td>authored</td>
+<td>generated_draft</td>
+<td><code>pagination control</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the pagination control obligation named before work proceeds.</td>
+</tr>
+<tr class="odd">
+<td>1329</td>
+<td><a href="#rune-1329">panel</a></td>
+<td>authored</td>
+<td>generated_draft</td>
+<td><code>panel</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the panel obligation named before work proceeds.</td>
+</tr>
+<tr class="even">
+<td>1330</td>
+<td><a href="#rune-1330">placeholder</a></td>
+<td>authored</td>
+<td>generated_draft</td>
+<td><code>placeholder</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the placeholder obligation named before work proceeds.</td>
+</tr>
+<tr class="odd">
+<td>1331</td>
+<td><a href="#rune-1331">progressive disclosure</a></td>
+<td>authored</td>
+<td>reviewed</td>
+<td>Reveal complexity in stages rather than all at once.</td>
+</tr>
+<tr class="even">
+<td>1332</td>
+<td><a href="#rune-1332">prompt surface {UX}</a></td>
+<td>authored</td>
+<td>generated_draft</td>
+<td><code>prompt surface</code> in its UX sense is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the prompt surface obligation named before work proceeds.</td>
+</tr>
+<tr class="odd">
+<td>1333</td>
+<td><a href="#rune-1333">responsive design</a></td>
+<td>authored</td>
+<td>reviewed</td>
+<td>Layout that adapts gracefully to device or viewport size.</td>
+</tr>
+<tr class="even">
+<td>1334</td>
+<td><a href="#rune-1334">screen</a></td>
+<td>authored</td>
+<td>generated_draft</td>
+<td><code>screen</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the screen obligation named before work proceeds.</td>
+</tr>
+<tr class="odd">
+<td>1335</td>
+<td><a href="#rune-1335">scroll state</a></td>
+<td>authored</td>
+<td>generated_draft</td>
+<td><code>scroll state</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the scroll state obligation named before work proceeds.</td>
+</tr>
+<tr class="even">
+<td>1336</td>
+<td><a href="#rune-1336">search box</a></td>
+<td>authored</td>
+<td>generated_draft</td>
+<td><code>search box</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the search box obligation named before work proceeds.</td>
+</tr>
+<tr class="odd">
+<td>1337</td>
+<td><a href="#rune-1337">selection</a></td>
+<td>authored</td>
+<td>generated_draft</td>
+<td><code>selection</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the selection obligation named before work proceeds.</td>
+</tr>
+<tr class="even">
+<td>1338</td>
+<td><a href="#rune-1338">skeleton state</a></td>
+<td>authored</td>
+<td>generated_draft</td>
+<td><code>skeleton state</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the skeleton state obligation named before work proceeds.</td>
+</tr>
+<tr class="odd">
+<td>1339</td>
+<td><a href="#rune-1339">state transition</a></td>
+<td>authored</td>
+<td>generated_draft</td>
+<td><code>state transition</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the state transition obligation named before work proceeds.</td>
+</tr>
+<tr class="even">
+<td>1340</td>
+<td><a href="#rune-1340">stepper</a></td>
+<td>authored</td>
+<td>generated_draft</td>
+<td><code>stepper</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the stepper obligation named before work proceeds.</td>
+</tr>
+<tr class="odd">
+<td>1341</td>
+<td><a href="#rune-1341">sync state</a></td>
+<td>authored</td>
+<td>generated_draft</td>
+<td><code>sync state</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the sync state obligation named before work proceeds.</td>
+</tr>
+<tr class="even">
+<td>1342</td>
+<td><a href="#rune-1342">table view</a></td>
+<td>authored</td>
+<td>generated_draft</td>
+<td><code>table view</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the table view obligation named before work proceeds.</td>
+</tr>
+<tr class="odd">
+<td>1343</td>
+<td><a href="#rune-1343">theme</a></td>
+<td>authored</td>
+<td>generated_draft</td>
+<td><code>theme</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the theme obligation named before work proceeds.</td>
+</tr>
+<tr class="even">
+<td>1344</td>
+<td><a href="#rune-1344">tooltip</a></td>
+<td>authored</td>
+<td>generated_draft</td>
+<td><code>tooltip</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the tooltip obligation named before work proceeds.</td>
+</tr>
+<tr class="odd">
+<td>1345</td>
+<td><a href="#rune-1345">typography</a></td>
+<td>authored</td>
+<td>generated_draft</td>
+<td><code>typography</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the typography obligation named before work proceeds.</td>
+</tr>
+<tr class="even">
+<td>1346</td>
+<td><a href="#rune-1346">user flow</a></td>
+<td>authored</td>
+<td>reviewed</td>
+<td>The path a user walks through the product to finish a task.</td>
+</tr>
+<tr class="odd">
+<td>1347</td>
+<td><a href="#rune-1347">validation message</a></td>
+<td>authored</td>
+<td>generated_draft</td>
+<td><code>validation message</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the validation message obligation named before work proceeds.</td>
+</tr>
+<tr class="even">
+<td>1348</td>
+<td><a href="#rune-1348">view model</a></td>
+<td>authored</td>
+<td>generated_draft</td>
+<td><code>view model</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the view model obligation named before work proceeds.</td>
+</tr>
+<tr class="odd">
+<td>1349</td>
+<td><a href="#rune-1349">viewport</a></td>
+<td>authored</td>
+<td>generated_draft</td>
+<td><code>viewport</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the viewport obligation named before work proceeds.</td>
+</tr>
+<tr class="even">
+<td>1350</td>
+<td><a href="#rune-1350">visual hierarchy</a></td>
+<td>authored</td>
+<td>reviewed</td>
+<td>Arrange attention so the right thing is seen first.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="entries" class="level2" data-number="110.2">
+<h2 data-number="110.2" class="anchored" data-anchor-id="entries"><span class="header-section-number">110.2</span> Entries</h2>
+<section id="rune-1291" class="level3" data-number="110.2.1">
+<h3 data-number="110.2.1" class="anchored" data-anchor-id="rune-1291"><span class="header-section-number">110.2.1</span> [1291] accessibility</h3>
+<p><strong>Status:</strong> canonical (pocket canon)</p>
+<p><strong>Completion:</strong> authored</p>
+<p><strong>Semantic status:</strong> reviewed</p>
+<p><strong>Force:</strong> Make the system usable by people with varied bodies, senses, and tools.</p>
+<p><strong>Shadow:</strong> misusing <code>accessibility</code> at rune 1291 in the interface-ux lane can let the surface can make the wrong action easier than the safe one; verify by requiring the caster to state the user task, feedback, affordance, and error recovery path.</p>
+<p><strong>Prompt uses:</strong></p>
+<ul>
+<li>Name <code>accessibility</code> when the prompt needs this obligation made explicit: Make the system usable by people with varied bodies, senses, and tools.</li>
+<li>Ask the assistant to state the <code>accessibility</code> shadow before proposing changes.</li>
+</ul>
+<p><strong>Example clause:</strong></p>
+<p>Before editing, state the <code>accessibility</code> obligation, the evidence that satisfies it, and the failure mode if it is missing.</p>
+<p><strong>Pocket gloss:</strong> Make the system usable by people with varied bodies, senses, and tools.</p>
+</section>
+<section id="rune-1292" class="level3" data-number="110.2.2">
+<h3 data-number="110.2.2" class="anchored" data-anchor-id="rune-1292"><span class="header-section-number">110.2.2</span> [1292] adaptive layout</h3>
+<p><strong>Status:</strong> canonical</p>
+<p><strong>Completion:</strong> authored</p>
+<p><strong>Semantic status:</strong> generated_draft</p>
+<p><strong>Force:</strong> <code>adaptive layout</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the adaptive layout obligation named before work proceeds.</p>
+<p><strong>Shadow:</strong> misusing <code>adaptive layout</code> at rune 1292 in the interface-ux lane can let the surface can make the wrong action easier than the safe one; verify by requiring the caster to state the user task, feedback, affordance, and error recovery path.</p>
+<p><strong>Prompt uses:</strong></p>
+<ul>
+<li>Name <code>adaptive layout</code> when the prompt needs this obligation made explicit: <code>adaptive layout</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the adaptive layout obligation named before work proceeds.</li>
+<li>Ask the assistant to state the <code>adaptive layout</code> shadow before proposing changes.</li>
+</ul>
+<p><strong>Example clause:</strong></p>
+<p>Before editing, state the <code>adaptive layout</code> obligation, the evidence that satisfies it, and the failure mode if it is missing.</p>
+</section>
+<section id="rune-1293" class="level3" data-number="110.2.3">
+<h3 data-number="110.2.3" class="anchored" data-anchor-id="rune-1293"><span class="header-section-number">110.2.3</span> [1293] affordance</h3>
+<p><strong>Status:</strong> canonical (pocket canon)</p>
+<p><strong>Completion:</strong> authored</p>
+<p><strong>Semantic status:</strong> reviewed</p>
+<p><strong>Force:</strong> A cue that suggests what action is possible here.</p>
+<p><strong>Shadow:</strong> misusing <code>affordance</code> at rune 1293 in the interface-ux lane can let the surface can make the wrong action easier than the safe one; verify by requiring the caster to state the user task, feedback, affordance, and error recovery path.</p>
+<p><strong>Prompt uses:</strong></p>
+<ul>
+<li>Name <code>affordance</code> when the prompt needs this obligation made explicit: A cue that suggests what action is possible here.</li>
+<li>Ask the assistant to state the <code>affordance</code> shadow before proposing changes.</li>
+</ul>
+<p><strong>Example clause:</strong></p>
+<p>Before editing, state the <code>affordance</code> obligation, the evidence that satisfies it, and the failure mode if it is missing.</p>
+<p><strong>Pocket gloss:</strong> A cue that suggests what action is possible here.</p>
+</section>
+<section id="rune-1294" class="level3" data-number="110.2.4">
+<h3 data-number="110.2.4" class="anchored" data-anchor-id="rune-1294"><span class="header-section-number">110.2.4</span> [1294] animation</h3>
+<p><strong>Status:</strong> canonical</p>
+<p><strong>Completion:</strong> authored</p>
+<p><strong>Semantic status:</strong> generated_draft</p>
+<p><strong>Force:</strong> <code>animation</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the animation obligation named before work proceeds.</p>
+<p><strong>Shadow:</strong> misusing <code>animation</code> at rune 1294 in the interface-ux lane can let the surface can make the wrong action easier than the safe one; verify by requiring the caster to state the user task, feedback, affordance, and error recovery path.</p>
+<p><strong>Prompt uses:</strong></p>
+<ul>
+<li>Name <code>animation</code> when the prompt needs this obligation made explicit: <code>animation</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the animation obligation named before work proceeds.</li>
+<li>Ask the assistant to state the <code>animation</code> shadow before proposing changes.</li>
+</ul>
+<p><strong>Example clause:</strong></p>
+<p>Before editing, state the <code>animation</code> obligation, the evidence that satisfies it, and the failure mode if it is missing.</p>
+</section>
+<section id="rune-1295" class="level3" data-number="110.2.5">
+<h3 data-number="110.2.5" class="anchored" data-anchor-id="rune-1295"><span class="header-section-number">110.2.5</span> [1295] app shell</h3>
+<p><strong>Status:</strong> canonical</p>
+<p><strong>Completion:</strong> authored</p>
+<p><strong>Semantic status:</strong> generated_draft</p>
+<p><strong>Force:</strong> <code>app shell</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the app shell obligation named before work proceeds.</p>
+<p><strong>Shadow:</strong> misusing <code>app shell</code> at rune 1295 in the interface-ux lane can let the surface can make the wrong action easier than the safe one; verify by requiring the caster to state the user task, feedback, affordance, and error recovery path.</p>
+<p><strong>Prompt uses:</strong></p>
+<ul>
+<li>Name <code>app shell</code> when the prompt needs this obligation made explicit: <code>app shell</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the app shell obligation named before work proceeds.</li>
+<li>Ask the assistant to state the <code>app shell</code> shadow before proposing changes.</li>
+</ul>
+<p><strong>Example clause:</strong></p>
+<p>Before editing, state the <code>app shell</code> obligation, the evidence that satisfies it, and the failure mode if it is missing.</p>
+</section>
+<section id="rune-1296" class="level3" data-number="110.2.6">
+<h3 data-number="110.2.6" class="anchored" data-anchor-id="rune-1296"><span class="header-section-number">110.2.6</span> [1296] breadcrumb</h3>
+<p><strong>Status:</strong> canonical</p>
+<p><strong>Completion:</strong> authored</p>
+<p><strong>Semantic status:</strong> generated_draft</p>
+<p><strong>Force:</strong> <code>breadcrumb</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the breadcrumb obligation named before work proceeds.</p>
+<p><strong>Shadow:</strong> misusing <code>breadcrumb</code> at rune 1296 in the interface-ux lane can let the surface can make the wrong action easier than the safe one; verify by requiring the caster to state the user task, feedback, affordance, and error recovery path.</p>
+<p><strong>Prompt uses:</strong></p>
+<ul>
+<li>Name <code>breadcrumb</code> when the prompt needs this obligation made explicit: <code>breadcrumb</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the breadcrumb obligation named before work proceeds.</li>
+<li>Ask the assistant to state the <code>breadcrumb</code> shadow before proposing changes.</li>
+</ul>
+<p><strong>Example clause:</strong></p>
+<p>Before editing, state the <code>breadcrumb</code> obligation, the evidence that satisfies it, and the failure mode if it is missing.</p>
+</section>
+<section id="rune-1297" class="level3" data-number="110.2.7">
+<h3 data-number="110.2.7" class="anchored" data-anchor-id="rune-1297"><span class="header-section-number">110.2.7</span> [1297] call to action</h3>
+<p><strong>Status:</strong> canonical</p>
+<p><strong>Completion:</strong> authored</p>
+<p><strong>Semantic status:</strong> generated_draft</p>
+<p><strong>Force:</strong> <code>call to action</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the call to action obligation named before work proceeds.</p>
+<p><strong>Shadow:</strong> misusing <code>call to action</code> at rune 1297 in the interface-ux lane can let the surface can make the wrong action easier than the safe one; verify by requiring the caster to state the user task, feedback, affordance, and error recovery path.</p>
+<p><strong>Prompt uses:</strong></p>
+<ul>
+<li>Name <code>call to action</code> when the prompt needs this obligation made explicit: <code>call to action</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the call to action obligation named before work proceeds.</li>
+<li>Ask the assistant to state the <code>call to action</code> shadow before proposing changes.</li>
+</ul>
+<p><strong>Example clause:</strong></p>
+<p>Before editing, state the <code>call to action</code> obligation, the evidence that satisfies it, and the failure mode if it is missing.</p>
+</section>
+<section id="rune-1298" class="level3" data-number="110.2.8">
+<h3 data-number="110.2.8" class="anchored" data-anchor-id="rune-1298"><span class="header-section-number">110.2.8</span> [1298] click target</h3>
+<p><strong>Status:</strong> canonical</p>
+<p><strong>Completion:</strong> authored</p>
+<p><strong>Semantic status:</strong> generated_draft</p>
+<p><strong>Force:</strong> <code>click target</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the click target obligation named before work proceeds.</p>
+<p><strong>Shadow:</strong> misusing <code>click target</code> at rune 1298 in the interface-ux lane can let the surface can make the wrong action easier than the safe one; verify by requiring the caster to state the user task, feedback, affordance, and error recovery path.</p>
+<p><strong>Prompt uses:</strong></p>
+<ul>
+<li>Name <code>click target</code> when the prompt needs this obligation made explicit: <code>click target</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the click target obligation named before work proceeds.</li>
+<li>Ask the assistant to state the <code>click target</code> shadow before proposing changes.</li>
+</ul>
+<p><strong>Example clause:</strong></p>
+<p>Before editing, state the <code>click target</code> obligation, the evidence that satisfies it, and the failure mode if it is missing.</p>
+</section>
+<section id="rune-1299" class="level3" data-number="110.2.9">
+<h3 data-number="110.2.9" class="anchored" data-anchor-id="rune-1299"><span class="header-section-number">110.2.9</span> [1299] component {UX}</h3>
+<p><strong>Status:</strong> canonical</p>
+<p><strong>Completion:</strong> authored</p>
+<p><strong>Semantic status:</strong> generated_draft</p>
+<p><strong>Force:</strong> <code>component</code> in its UX sense is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the component obligation named before work proceeds.</p>
+<p><strong>Shadow:</strong> misusing <code>component</code> at rune 1299 in the UX lane can let the surface can make the wrong action easier than the safe one; verify by requiring the caster to state the user task, feedback, affordance, and error recovery path.</p>
+<p><strong>Prompt uses:</strong></p>
+<ul>
+<li>Name <code>component</code> when the prompt needs this obligation made explicit: <code>component</code> in its UX sense is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the component obligation named before work proceeds.</li>
+<li>Ask the assistant to state the <code>component</code> shadow before proposing changes.</li>
+</ul>
+<p><strong>Example clause:</strong></p>
+<p>Before editing, state the <code>component</code> obligation, the evidence that satisfies it, and the failure mode if it is missing.</p>
+</section>
+<section id="rune-1300" class="level3" data-number="110.2.10">
+<h3 data-number="110.2.10" class="anchored" data-anchor-id="rune-1300"><span class="header-section-number">110.2.10</span> [1300] confirmation</h3>
+<p><strong>Status:</strong> canonical</p>
+<p><strong>Completion:</strong> authored</p>
+<p><strong>Semantic status:</strong> generated_draft</p>
+<p><strong>Force:</strong> <code>confirmation</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the confirmation obligation named before work proceeds.</p>
+<p><strong>Shadow:</strong> misusing <code>confirmation</code> at rune 1300 in the interface-ux lane can let the surface can make the wrong action easier than the safe one; verify by requiring the caster to state the user task, feedback, affordance, and error recovery path.</p>
+<p><strong>Prompt uses:</strong></p>
+<ul>
+<li>Name <code>confirmation</code> when the prompt needs this obligation made explicit: <code>confirmation</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the confirmation obligation named before work proceeds.</li>
+<li>Ask the assistant to state the <code>confirmation</code> shadow before proposing changes.</li>
+</ul>
+<p><strong>Example clause:</strong></p>
+<p>Before editing, state the <code>confirmation</code> obligation, the evidence that satisfies it, and the failure mode if it is missing.</p>
+</section>
+<section id="rune-1301" class="level3" data-number="110.2.11">
+<h3 data-number="110.2.11" class="anchored" data-anchor-id="rune-1301"><span class="header-section-number">110.2.11</span> [1301] copy</h3>
+<p><strong>Status:</strong> canonical</p>
+<p><strong>Completion:</strong> authored</p>
+<p><strong>Semantic status:</strong> generated_draft</p>
+<p><strong>Force:</strong> <code>copy</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the copy obligation named before work proceeds.</p>
+<p><strong>Shadow:</strong> misusing <code>copy</code> at rune 1301 in the interface-ux lane can let the surface can make the wrong action easier than the safe one; verify by requiring the caster to state the user task, feedback, affordance, and error recovery path.</p>
+<p><strong>Prompt uses:</strong></p>
+<ul>
+<li>Name <code>copy</code> when the prompt needs this obligation made explicit: <code>copy</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the copy obligation named before work proceeds.</li>
+<li>Ask the assistant to state the <code>copy</code> shadow before proposing changes.</li>
+</ul>
+<p><strong>Example clause:</strong></p>
+<p>Before editing, state the <code>copy</code> obligation, the evidence that satisfies it, and the failure mode if it is missing.</p>
+</section>
+<section id="rune-1302" class="level3" data-number="110.2.12">
+<h3 data-number="110.2.12" class="anchored" data-anchor-id="rune-1302"><span class="header-section-number">110.2.12</span> [1302] dark mode</h3>
+<p><strong>Status:</strong> canonical</p>
+<p><strong>Completion:</strong> authored</p>
+<p><strong>Semantic status:</strong> generated_draft</p>
+<p><strong>Force:</strong> <code>dark mode</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the dark mode obligation named before work proceeds.</p>
+<p><strong>Shadow:</strong> misusing <code>dark mode</code> at rune 1302 in the interface-ux lane can let the surface can make the wrong action easier than the safe one; verify by requiring the caster to state the user task, feedback, affordance, and error recovery path.</p>
+<p><strong>Prompt uses:</strong></p>
+<ul>
+<li>Name <code>dark mode</code> when the prompt needs this obligation made explicit: <code>dark mode</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the dark mode obligation named before work proceeds.</li>
+<li>Ask the assistant to state the <code>dark mode</code> shadow before proposing changes.</li>
+</ul>
+<p><strong>Example clause:</strong></p>
+<p>Before editing, state the <code>dark mode</code> obligation, the evidence that satisfies it, and the failure mode if it is missing.</p>
+</section>
+<section id="rune-1303" class="level3" data-number="110.2.13">
+<h3 data-number="110.2.13" class="anchored" data-anchor-id="rune-1303"><span class="header-section-number">110.2.13</span> [1303] discoverability</h3>
+<p><strong>Status:</strong> canonical (pocket canon)</p>
+<p><strong>Completion:</strong> authored</p>
+<p><strong>Semantic status:</strong> reviewed</p>
+<p><strong>Force:</strong> How easily a user can find what the system can do.</p>
+<p><strong>Shadow:</strong> misusing <code>discoverability</code> at rune 1303 in the interface-ux lane can let the surface can make the wrong action easier than the safe one; verify by requiring the caster to state the user task, feedback, affordance, and error recovery path.</p>
+<p><strong>Prompt uses:</strong></p>
+<ul>
+<li>Name <code>discoverability</code> when the prompt needs this obligation made explicit: How easily a user can find what the system can do.</li>
+<li>Ask the assistant to state the <code>discoverability</code> shadow before proposing changes.</li>
+</ul>
+<p><strong>Example clause:</strong></p>
+<p>Before editing, state the <code>discoverability</code> obligation, the evidence that satisfies it, and the failure mode if it is missing.</p>
+<p><strong>Pocket gloss:</strong> How easily a user can find what the system can do.</p>
+</section>
+<section id="rune-1304" class="level3" data-number="110.2.14">
+<h3 data-number="110.2.14" class="anchored" data-anchor-id="rune-1304"><span class="header-section-number">110.2.14</span> [1304] empty state</h3>
+<p><strong>Status:</strong> canonical</p>
+<p><strong>Completion:</strong> authored</p>
+<p><strong>Semantic status:</strong> generated_draft</p>
+<p><strong>Force:</strong> <code>empty state</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the empty state obligation named before work proceeds.</p>
+<p><strong>Shadow:</strong> misusing <code>empty state</code> at rune 1304 in the interface-ux lane can let the surface can make the wrong action easier than the safe one; verify by requiring the caster to state the user task, feedback, affordance, and error recovery path.</p>
+<p><strong>Prompt uses:</strong></p>
+<ul>
+<li>Name <code>empty state</code> when the prompt needs this obligation made explicit: <code>empty state</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the empty state obligation named before work proceeds.</li>
+<li>Ask the assistant to state the <code>empty state</code> shadow before proposing changes.</li>
+</ul>
+<p><strong>Example clause:</strong></p>
+<p>Before editing, state the <code>empty state</code> obligation, the evidence that satisfies it, and the failure mode if it is missing.</p>
+</section>
+<section id="rune-1305" class="level3" data-number="110.2.15">
+<h3 data-number="110.2.15" class="anchored" data-anchor-id="rune-1305"><span class="header-section-number">110.2.15</span> [1305] error state</h3>
+<p><strong>Status:</strong> canonical</p>
+<p><strong>Completion:</strong> authored</p>
+<p><strong>Semantic status:</strong> generated_draft</p>
+<p><strong>Force:</strong> <code>error state</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the error state obligation named before work proceeds.</p>
+<p><strong>Shadow:</strong> misusing <code>error state</code> at rune 1305 in the interface-ux lane can let the surface can make the wrong action easier than the safe one; verify by requiring the caster to state the user task, feedback, affordance, and error recovery path.</p>
+<p><strong>Prompt uses:</strong></p>
+<ul>
+<li>Name <code>error state</code> when the prompt needs this obligation made explicit: <code>error state</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the error state obligation named before work proceeds.</li>
+<li>Ask the assistant to state the <code>error state</code> shadow before proposing changes.</li>
+</ul>
+<p><strong>Example clause:</strong></p>
+<p>Before editing, state the <code>error state</code> obligation, the evidence that satisfies it, and the failure mode if it is missing.</p>
+</section>
+<section id="rune-1306" class="level3" data-number="110.2.16">
+<h3 data-number="110.2.16" class="anchored" data-anchor-id="rune-1306"><span class="header-section-number">110.2.16</span> [1306] feedback</h3>
+<p><strong>Status:</strong> canonical (pocket canon)</p>
+<p><strong>Completion:</strong> authored</p>
+<p><strong>Semantic status:</strong> reviewed</p>
+<p><strong>Force:</strong> The system speaking back after the user acts.</p>
+<p><strong>Shadow:</strong> misusing <code>feedback</code> at rune 1306 in the interface-ux lane can let the surface can make the wrong action easier than the safe one; verify by requiring the caster to state the user task, feedback, affordance, and error recovery path.</p>
+<p><strong>Prompt uses:</strong></p>
+<ul>
+<li>Name <code>feedback</code> when the prompt needs this obligation made explicit: The system speaking back after the user acts.</li>
+<li>Ask the assistant to state the <code>feedback</code> shadow before proposing changes.</li>
+</ul>
+<p><strong>Example clause:</strong></p>
+<p>Before editing, state the <code>feedback</code> obligation, the evidence that satisfies it, and the failure mode if it is missing.</p>
+<p><strong>Pocket gloss:</strong> The system speaking back after the user acts.</p>
+</section>
+<section id="rune-1307" class="level3" data-number="110.2.17">
+<h3 data-number="110.2.17" class="anchored" data-anchor-id="rune-1307"><span class="header-section-number">110.2.17</span> [1307] focus state</h3>
+<p><strong>Status:</strong> canonical</p>
+<p><strong>Completion:</strong> authored</p>
+<p><strong>Semantic status:</strong> generated_draft</p>
+<p><strong>Force:</strong> <code>focus state</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the focus state obligation named before work proceeds.</p>
+<p><strong>Shadow:</strong> misusing <code>focus state</code> at rune 1307 in the interface-ux lane can let the surface can make the wrong action easier than the safe one; verify by requiring the caster to state the user task, feedback, affordance, and error recovery path.</p>
+<p><strong>Prompt uses:</strong></p>
+<ul>
+<li>Name <code>focus state</code> when the prompt needs this obligation made explicit: <code>focus state</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the focus state obligation named before work proceeds.</li>
+<li>Ask the assistant to state the <code>focus state</code> shadow before proposing changes.</li>
+</ul>
+<p><strong>Example clause:</strong></p>
+<p>Before editing, state the <code>focus state</code> obligation, the evidence that satisfies it, and the failure mode if it is missing.</p>
+</section>
+<section id="rune-1308" class="level3" data-number="110.2.18">
+<h3 data-number="110.2.18" class="anchored" data-anchor-id="rune-1308"><span class="header-section-number">110.2.18</span> [1308] form validation</h3>
+<p><strong>Status:</strong> canonical (pocket canon)</p>
+<p><strong>Completion:</strong> authored</p>
+<p><strong>Semantic status:</strong> reviewed</p>
+<p><strong>Force:</strong> Validation at the form boundary so bad input is caught legibly.</p>
+<p><strong>Shadow:</strong> misusing <code>form validation</code> at rune 1308 in the interface-ux lane can let the surface can make the wrong action easier than the safe one; verify by requiring the caster to state the user task, feedback, affordance, and error recovery path.</p>
+<p><strong>Prompt uses:</strong></p>
+<ul>
+<li>Name <code>form validation</code> when the prompt needs this obligation made explicit: Validation at the form boundary so bad input is caught legibly.</li>
+<li>Ask the assistant to state the <code>form validation</code> shadow before proposing changes.</li>
+</ul>
+<p><strong>Example clause:</strong></p>
+<p>Before editing, state the <code>form validation</code> obligation, the evidence that satisfies it, and the failure mode if it is missing.</p>
+<p><strong>Pocket gloss:</strong> Validation at the form boundary so bad input is caught legibly.</p>
+</section>
+<section id="rune-1309" class="level3" data-number="110.2.19">
+<h3 data-number="110.2.19" class="anchored" data-anchor-id="rune-1309"><span class="header-section-number">110.2.19</span> [1309] gesture</h3>
+<p><strong>Status:</strong> canonical</p>
+<p><strong>Completion:</strong> authored</p>
+<p><strong>Semantic status:</strong> generated_draft</p>
+<p><strong>Force:</strong> <code>gesture</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the gesture obligation named before work proceeds.</p>
+<p><strong>Shadow:</strong> misusing <code>gesture</code> at rune 1309 in the interface-ux lane can let the surface can make the wrong action easier than the safe one; verify by requiring the caster to state the user task, feedback, affordance, and error recovery path.</p>
+<p><strong>Prompt uses:</strong></p>
+<ul>
+<li>Name <code>gesture</code> when the prompt needs this obligation made explicit: <code>gesture</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the gesture obligation named before work proceeds.</li>
+<li>Ask the assistant to state the <code>gesture</code> shadow before proposing changes.</li>
+</ul>
+<p><strong>Example clause:</strong></p>
+<p>Before editing, state the <code>gesture</code> obligation, the evidence that satisfies it, and the failure mode if it is missing.</p>
+</section>
+<section id="rune-1310" class="level3" data-number="110.2.20">
+<h3 data-number="110.2.20" class="anchored" data-anchor-id="rune-1310"><span class="header-section-number">110.2.20</span> [1310] grid</h3>
+<p><strong>Status:</strong> canonical</p>
+<p><strong>Completion:</strong> authored</p>
+<p><strong>Semantic status:</strong> generated_draft</p>
+<p><strong>Force:</strong> <code>grid</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the grid obligation named before work proceeds.</p>
+<p><strong>Shadow:</strong> misusing <code>grid</code> at rune 1310 in the interface-ux lane can let the surface can make the wrong action easier than the safe one; verify by requiring the caster to state the user task, feedback, affordance, and error recovery path.</p>
+<p><strong>Prompt uses:</strong></p>
+<ul>
+<li>Name <code>grid</code> when the prompt needs this obligation made explicit: <code>grid</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the grid obligation named before work proceeds.</li>
+<li>Ask the assistant to state the <code>grid</code> shadow before proposing changes.</li>
+</ul>
+<p><strong>Example clause:</strong></p>
+<p>Before editing, state the <code>grid</code> obligation, the evidence that satisfies it, and the failure mode if it is missing.</p>
+</section>
+<section id="rune-1311" class="level3" data-number="110.2.21">
+<h3 data-number="110.2.21" class="anchored" data-anchor-id="rune-1311"><span class="header-section-number">110.2.21</span> [1311] hierarchy {UX}</h3>
+<p><strong>Status:</strong> canonical</p>
+<p><strong>Completion:</strong> authored</p>
+<p><strong>Semantic status:</strong> generated_draft</p>
+<p><strong>Force:</strong> <code>hierarchy</code> in its UX sense is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the hierarchy obligation named before work proceeds.</p>
+<p><strong>Shadow:</strong> misusing <code>hierarchy</code> at rune 1311 in the UX lane can let the surface can make the wrong action easier than the safe one; verify by requiring the caster to state the user task, feedback, affordance, and error recovery path.</p>
+<p><strong>Prompt uses:</strong></p>
+<ul>
+<li>Name <code>hierarchy</code> when the prompt needs this obligation made explicit: <code>hierarchy</code> in its UX sense is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the hierarchy obligation named before work proceeds.</li>
+<li>Ask the assistant to state the <code>hierarchy</code> shadow before proposing changes.</li>
+</ul>
+<p><strong>Example clause:</strong></p>
+<p>Before editing, state the <code>hierarchy</code> obligation, the evidence that satisfies it, and the failure mode if it is missing.</p>
+</section>
+<section id="rune-1312" class="level3" data-number="110.2.22">
+<h3 data-number="110.2.22" class="anchored" data-anchor-id="rune-1312"><span class="header-section-number">110.2.22</span> [1312] hover state</h3>
+<p><strong>Status:</strong> canonical</p>
+<p><strong>Completion:</strong> authored</p>
+<p><strong>Semantic status:</strong> generated_draft</p>
+<p><strong>Force:</strong> <code>hover state</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the hover state obligation named before work proceeds.</p>
+<p><strong>Shadow:</strong> misusing <code>hover state</code> at rune 1312 in the interface-ux lane can let the surface can make the wrong action easier than the safe one; verify by requiring the caster to state the user task, feedback, affordance, and error recovery path.</p>
+<p><strong>Prompt uses:</strong></p>
+<ul>
+<li>Name <code>hover state</code> when the prompt needs this obligation made explicit: <code>hover state</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the hover state obligation named before work proceeds.</li>
+<li>Ask the assistant to state the <code>hover state</code> shadow before proposing changes.</li>
+</ul>
+<p><strong>Example clause:</strong></p>
+<p>Before editing, state the <code>hover state</code> obligation, the evidence that satisfies it, and the failure mode if it is missing.</p>
+</section>
+<section id="rune-1313" class="level3" data-number="110.2.23">
+<h3 data-number="110.2.23" class="anchored" data-anchor-id="rune-1313"><span class="header-section-number">110.2.23</span> [1313] hydration</h3>
+<p><strong>Status:</strong> canonical</p>
+<p><strong>Completion:</strong> authored</p>
+<p><strong>Semantic status:</strong> generated_draft</p>
+<p><strong>Force:</strong> <code>hydration</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the hydration obligation named before work proceeds.</p>
+<p><strong>Shadow:</strong> misusing <code>hydration</code> at rune 1313 in the interface-ux lane can let the surface can make the wrong action easier than the safe one; verify by requiring the caster to state the user task, feedback, affordance, and error recovery path.</p>
+<p><strong>Prompt uses:</strong></p>
+<ul>
+<li>Name <code>hydration</code> when the prompt needs this obligation made explicit: <code>hydration</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the hydration obligation named before work proceeds.</li>
+<li>Ask the assistant to state the <code>hydration</code> shadow before proposing changes.</li>
+</ul>
+<p><strong>Example clause:</strong></p>
+<p>Before editing, state the <code>hydration</code> obligation, the evidence that satisfies it, and the failure mode if it is missing.</p>
+</section>
+<section id="rune-1314" class="level3" data-number="110.2.24">
+<h3 data-number="110.2.24" class="anchored" data-anchor-id="rune-1314"><span class="header-section-number">110.2.24</span> [1314] input field</h3>
+<p><strong>Status:</strong> canonical</p>
+<p><strong>Completion:</strong> authored</p>
+<p><strong>Semantic status:</strong> generated_draft</p>
+<p><strong>Force:</strong> <code>input field</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the input field obligation named before work proceeds.</p>
+<p><strong>Shadow:</strong> misusing <code>input field</code> at rune 1314 in the interface-ux lane can let the surface can make the wrong action easier than the safe one; verify by requiring the caster to state the user task, feedback, affordance, and error recovery path.</p>
+<p><strong>Prompt uses:</strong></p>
+<ul>
+<li>Name <code>input field</code> when the prompt needs this obligation made explicit: <code>input field</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the input field obligation named before work proceeds.</li>
+<li>Ask the assistant to state the <code>input field</code> shadow before proposing changes.</li>
+</ul>
+<p><strong>Example clause:</strong></p>
+<p>Before editing, state the <code>input field</code> obligation, the evidence that satisfies it, and the failure mode if it is missing.</p>
+</section>
+<section id="rune-1315" class="level3" data-number="110.2.25">
+<h3 data-number="110.2.25" class="anchored" data-anchor-id="rune-1315"><span class="header-section-number">110.2.25</span> [1315] interaction</h3>
+<p><strong>Status:</strong> canonical</p>
+<p><strong>Completion:</strong> authored</p>
+<p><strong>Semantic status:</strong> generated_draft</p>
+<p><strong>Force:</strong> <code>interaction</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the interaction obligation named before work proceeds.</p>
+<p><strong>Shadow:</strong> misusing <code>interaction</code> at rune 1315 in the interface-ux lane can let the surface can make the wrong action easier than the safe one; verify by requiring the caster to state the user task, feedback, affordance, and error recovery path.</p>
+<p><strong>Prompt uses:</strong></p>
+<ul>
+<li>Name <code>interaction</code> when the prompt needs this obligation made explicit: <code>interaction</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the interaction obligation named before work proceeds.</li>
+<li>Ask the assistant to state the <code>interaction</code> shadow before proposing changes.</li>
+</ul>
+<p><strong>Example clause:</strong></p>
+<p>Before editing, state the <code>interaction</code> obligation, the evidence that satisfies it, and the failure mode if it is missing.</p>
+</section>
+<section id="rune-1316" class="level3" data-number="110.2.26">
+<h3 data-number="110.2.26" class="anchored" data-anchor-id="rune-1316"><span class="header-section-number">110.2.26</span> [1316] internationalization</h3>
+<p><strong>Status:</strong> canonical</p>
+<p><strong>Completion:</strong> authored</p>
+<p><strong>Semantic status:</strong> generated_draft</p>
+<p><strong>Force:</strong> <code>internationalization</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the internationalization obligation named before work proceeds.</p>
+<p><strong>Shadow:</strong> misusing <code>internationalization</code> at rune 1316 in the interface-ux lane can let the surface can make the wrong action easier than the safe one; verify by requiring the caster to state the user task, feedback, affordance, and error recovery path.</p>
+<p><strong>Prompt uses:</strong></p>
+<ul>
+<li>Name <code>internationalization</code> when the prompt needs this obligation made explicit: <code>internationalization</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the internationalization obligation named before work proceeds.</li>
+<li>Ask the assistant to state the <code>internationalization</code> shadow before proposing changes.</li>
+</ul>
+<p><strong>Example clause:</strong></p>
+<p>Before editing, state the <code>internationalization</code> obligation, the evidence that satisfies it, and the failure mode if it is missing.</p>
+</section>
+<section id="rune-1317" class="level3" data-number="110.2.27">
+<h3 data-number="110.2.27" class="anchored" data-anchor-id="rune-1317"><span class="header-section-number">110.2.27</span> [1317] keyboard navigation</h3>
+<p><strong>Status:</strong> canonical (pocket canon)</p>
+<p><strong>Completion:</strong> authored</p>
+<p><strong>Semantic status:</strong> reviewed</p>
+<p><strong>Force:</strong> Make the interface fully operable without a mouse.</p>
+<p><strong>Shadow:</strong> misusing <code>keyboard navigation</code> at rune 1317 in the interface-ux lane can let the surface can make the wrong action easier than the safe one; verify by requiring the caster to state the user task, feedback, affordance, and error recovery path.</p>
+<p><strong>Prompt uses:</strong></p>
+<ul>
+<li>Name <code>keyboard navigation</code> when the prompt needs this obligation made explicit: Make the interface fully operable without a mouse.</li>
+<li>Ask the assistant to state the <code>keyboard navigation</code> shadow before proposing changes.</li>
+</ul>
+<p><strong>Example clause:</strong></p>
+<p>Before editing, state the <code>keyboard navigation</code> obligation, the evidence that satisfies it, and the failure mode if it is missing.</p>
+<p><strong>Pocket gloss:</strong> Make the interface fully operable without a mouse.</p>
+</section>
+<section id="rune-1318" class="level3" data-number="110.2.28">
+<h3 data-number="110.2.28" class="anchored" data-anchor-id="rune-1318"><span class="header-section-number">110.2.28</span> [1318] label {UX}</h3>
+<p><strong>Status:</strong> canonical</p>
+<p><strong>Completion:</strong> authored</p>
+<p><strong>Semantic status:</strong> generated_draft</p>
+<p><strong>Force:</strong> <code>label</code> in its UX sense is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the label obligation named before work proceeds.</p>
+<p><strong>Shadow:</strong> misusing <code>label</code> at rune 1318 in the UX lane can let the surface can make the wrong action easier than the safe one; verify by requiring the caster to state the user task, feedback, affordance, and error recovery path.</p>
+<p><strong>Prompt uses:</strong></p>
+<ul>
+<li>Name <code>label</code> when the prompt needs this obligation made explicit: <code>label</code> in its UX sense is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the label obligation named before work proceeds.</li>
+<li>Ask the assistant to state the <code>label</code> shadow before proposing changes.</li>
+</ul>
+<p><strong>Example clause:</strong></p>
+<p>Before editing, state the <code>label</code> obligation, the evidence that satisfies it, and the failure mode if it is missing.</p>
+</section>
+<section id="rune-1319" class="level3" data-number="110.2.29">
+<h3 data-number="110.2.29" class="anchored" data-anchor-id="rune-1319"><span class="header-section-number">110.2.29</span> [1319] layout {UX}</h3>
+<p><strong>Status:</strong> canonical</p>
+<p><strong>Completion:</strong> authored</p>
+<p><strong>Semantic status:</strong> generated_draft</p>
+<p><strong>Force:</strong> <code>layout</code> in its UX sense is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the layout obligation named before work proceeds.</p>
+<p><strong>Shadow:</strong> misusing <code>layout</code> at rune 1319 in the UX lane can let the surface can make the wrong action easier than the safe one; verify by requiring the caster to state the user task, feedback, affordance, and error recovery path.</p>
+<p><strong>Prompt uses:</strong></p>
+<ul>
+<li>Name <code>layout</code> when the prompt needs this obligation made explicit: <code>layout</code> in its UX sense is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the layout obligation named before work proceeds.</li>
+<li>Ask the assistant to state the <code>layout</code> shadow before proposing changes.</li>
+</ul>
+<p><strong>Example clause:</strong></p>
+<p>Before editing, state the <code>layout</code> obligation, the evidence that satisfies it, and the failure mode if it is missing.</p>
+</section>
+<section id="rune-1320" class="level3" data-number="110.2.30">
+<h3 data-number="110.2.30" class="anchored" data-anchor-id="rune-1320"><span class="header-section-number">110.2.30</span> [1320] localization</h3>
+<p><strong>Status:</strong> canonical</p>
+<p><strong>Completion:</strong> authored</p>
+<p><strong>Semantic status:</strong> generated_draft</p>
+<p><strong>Force:</strong> <code>localization</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the localization obligation named before work proceeds.</p>
+<p><strong>Shadow:</strong> misusing <code>localization</code> at rune 1320 in the interface-ux lane can let the surface can make the wrong action easier than the safe one; verify by requiring the caster to state the user task, feedback, affordance, and error recovery path.</p>
+<p><strong>Prompt uses:</strong></p>
+<ul>
+<li>Name <code>localization</code> when the prompt needs this obligation made explicit: <code>localization</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the localization obligation named before work proceeds.</li>
+<li>Ask the assistant to state the <code>localization</code> shadow before proposing changes.</li>
+</ul>
+<p><strong>Example clause:</strong></p>
+<p>Before editing, state the <code>localization</code> obligation, the evidence that satisfies it, and the failure mode if it is missing.</p>
+</section>
+<section id="rune-1321" class="level3" data-number="110.2.31">
+<h3 data-number="110.2.31" class="anchored" data-anchor-id="rune-1321"><span class="header-section-number">110.2.31</span> [1321] menu</h3>
+<p><strong>Status:</strong> canonical</p>
+<p><strong>Completion:</strong> authored</p>
+<p><strong>Semantic status:</strong> generated_draft</p>
+<p><strong>Force:</strong> <code>menu</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the menu obligation named before work proceeds.</p>
+<p><strong>Shadow:</strong> misusing <code>menu</code> at rune 1321 in the interface-ux lane can let the surface can make the wrong action easier than the safe one; verify by requiring the caster to state the user task, feedback, affordance, and error recovery path.</p>
+<p><strong>Prompt uses:</strong></p>
+<ul>
+<li>Name <code>menu</code> when the prompt needs this obligation made explicit: <code>menu</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the menu obligation named before work proceeds.</li>
+<li>Ask the assistant to state the <code>menu</code> shadow before proposing changes.</li>
+</ul>
+<p><strong>Example clause:</strong></p>
+<p>Before editing, state the <code>menu</code> obligation, the evidence that satisfies it, and the failure mode if it is missing.</p>
+</section>
+<section id="rune-1322" class="level3" data-number="110.2.32">
+<h3 data-number="110.2.32" class="anchored" data-anchor-id="rune-1322"><span class="header-section-number">110.2.32</span> [1322] microcopy</h3>
+<p><strong>Status:</strong> canonical</p>
+<p><strong>Completion:</strong> authored</p>
+<p><strong>Semantic status:</strong> generated_draft</p>
+<p><strong>Force:</strong> <code>microcopy</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the microcopy obligation named before work proceeds.</p>
+<p><strong>Shadow:</strong> misusing <code>microcopy</code> at rune 1322 in the interface-ux lane can let the surface can make the wrong action easier than the safe one; verify by requiring the caster to state the user task, feedback, affordance, and error recovery path.</p>
+<p><strong>Prompt uses:</strong></p>
+<ul>
+<li>Name <code>microcopy</code> when the prompt needs this obligation made explicit: <code>microcopy</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the microcopy obligation named before work proceeds.</li>
+<li>Ask the assistant to state the <code>microcopy</code> shadow before proposing changes.</li>
+</ul>
+<p><strong>Example clause:</strong></p>
+<p>Before editing, state the <code>microcopy</code> obligation, the evidence that satisfies it, and the failure mode if it is missing.</p>
+</section>
+<section id="rune-1323" class="level3" data-number="110.2.33">
+<h3 data-number="110.2.33" class="anchored" data-anchor-id="rune-1323"><span class="header-section-number">110.2.33</span> [1323] modal</h3>
+<p><strong>Status:</strong> canonical</p>
+<p><strong>Completion:</strong> authored</p>
+<p><strong>Semantic status:</strong> generated_draft</p>
+<p><strong>Force:</strong> <code>modal</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the modal obligation named before work proceeds.</p>
+<p><strong>Shadow:</strong> misusing <code>modal</code> at rune 1323 in the interface-ux lane can let the surface can make the wrong action easier than the safe one; verify by requiring the caster to state the user task, feedback, affordance, and error recovery path.</p>
+<p><strong>Prompt uses:</strong></p>
+<ul>
+<li>Name <code>modal</code> when the prompt needs this obligation made explicit: <code>modal</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the modal obligation named before work proceeds.</li>
+<li>Ask the assistant to state the <code>modal</code> shadow before proposing changes.</li>
+</ul>
+<p><strong>Example clause:</strong></p>
+<p>Before editing, state the <code>modal</code> obligation, the evidence that satisfies it, and the failure mode if it is missing.</p>
+</section>
+<section id="rune-1324" class="level3" data-number="110.2.34">
+<h3 data-number="110.2.34" class="anchored" data-anchor-id="rune-1324"><span class="header-section-number">110.2.34</span> [1324] navigation</h3>
+<p><strong>Status:</strong> canonical</p>
+<p><strong>Completion:</strong> authored</p>
+<p><strong>Semantic status:</strong> generated_draft</p>
+<p><strong>Force:</strong> <code>navigation</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the navigation obligation named before work proceeds.</p>
+<p><strong>Shadow:</strong> misusing <code>navigation</code> at rune 1324 in the interface-ux lane can let the surface can make the wrong action easier than the safe one; verify by requiring the caster to state the user task, feedback, affordance, and error recovery path.</p>
+<p><strong>Prompt uses:</strong></p>
+<ul>
+<li>Name <code>navigation</code> when the prompt needs this obligation made explicit: <code>navigation</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the navigation obligation named before work proceeds.</li>
+<li>Ask the assistant to state the <code>navigation</code> shadow before proposing changes.</li>
+</ul>
+<p><strong>Example clause:</strong></p>
+<p>Before editing, state the <code>navigation</code> obligation, the evidence that satisfies it, and the failure mode if it is missing.</p>
+</section>
+<section id="rune-1325" class="level3" data-number="110.2.35">
+<h3 data-number="110.2.35" class="anchored" data-anchor-id="rune-1325"><span class="header-section-number">110.2.35</span> [1325] offline-first {UX}</h3>
+<p><strong>Status:</strong> canonical</p>
+<p><strong>Completion:</strong> authored</p>
+<p><strong>Semantic status:</strong> generated_draft</p>
+<p><strong>Force:</strong> <code>offline-first</code> in its UX sense is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the offline-first obligation named before work proceeds.</p>
+<p><strong>Shadow:</strong> misusing <code>offline-first</code> at rune 1325 in the UX lane can let the surface can make the wrong action easier than the safe one; verify by requiring the caster to state the user task, feedback, affordance, and error recovery path.</p>
+<p><strong>Prompt uses:</strong></p>
+<ul>
+<li>Name <code>offline-first</code> when the prompt needs this obligation made explicit: <code>offline-first</code> in its UX sense is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the offline-first obligation named before work proceeds.</li>
+<li>Ask the assistant to state the <code>offline-first</code> shadow before proposing changes.</li>
+</ul>
+<p><strong>Example clause:</strong></p>
+<p>Before editing, state the <code>offline-first</code> obligation, the evidence that satisfies it, and the failure mode if it is missing.</p>
+</section>
+<section id="rune-1326" class="level3" data-number="110.2.36">
+<h3 data-number="110.2.36" class="anchored" data-anchor-id="rune-1326"><span class="header-section-number">110.2.36</span> [1326] onboarding</h3>
+<p><strong>Status:</strong> canonical</p>
+<p><strong>Completion:</strong> authored</p>
+<p><strong>Semantic status:</strong> generated_draft</p>
+<p><strong>Force:</strong> <code>onboarding</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the onboarding obligation named before work proceeds.</p>
+<p><strong>Shadow:</strong> misusing <code>onboarding</code> at rune 1326 in the interface-ux lane can let the surface can make the wrong action easier than the safe one; verify by requiring the caster to state the user task, feedback, affordance, and error recovery path.</p>
+<p><strong>Prompt uses:</strong></p>
+<ul>
+<li>Name <code>onboarding</code> when the prompt needs this obligation made explicit: <code>onboarding</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the onboarding obligation named before work proceeds.</li>
+<li>Ask the assistant to state the <code>onboarding</code> shadow before proposing changes.</li>
+</ul>
+<p><strong>Example clause:</strong></p>
+<p>Before editing, state the <code>onboarding</code> obligation, the evidence that satisfies it, and the failure mode if it is missing.</p>
+</section>
+<section id="rune-1327" class="level3" data-number="110.2.37">
+<h3 data-number="110.2.37" class="anchored" data-anchor-id="rune-1327"><span class="header-section-number">110.2.37</span> [1327] output view</h3>
+<p><strong>Status:</strong> canonical</p>
+<p><strong>Completion:</strong> authored</p>
+<p><strong>Semantic status:</strong> generated_draft</p>
+<p><strong>Force:</strong> <code>output view</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the output view obligation named before work proceeds.</p>
+<p><strong>Shadow:</strong> misusing <code>output view</code> at rune 1327 in the interface-ux lane can let the surface can make the wrong action easier than the safe one; verify by requiring the caster to state the user task, feedback, affordance, and error recovery path.</p>
+<p><strong>Prompt uses:</strong></p>
+<ul>
+<li>Name <code>output view</code> when the prompt needs this obligation made explicit: <code>output view</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the output view obligation named before work proceeds.</li>
+<li>Ask the assistant to state the <code>output view</code> shadow before proposing changes.</li>
+</ul>
+<p><strong>Example clause:</strong></p>
+<p>Before editing, state the <code>output view</code> obligation, the evidence that satisfies it, and the failure mode if it is missing.</p>
+</section>
+<section id="rune-1328" class="level3" data-number="110.2.38">
+<h3 data-number="110.2.38" class="anchored" data-anchor-id="rune-1328"><span class="header-section-number">110.2.38</span> [1328] pagination control</h3>
+<p><strong>Status:</strong> canonical</p>
+<p><strong>Completion:</strong> authored</p>
+<p><strong>Semantic status:</strong> generated_draft</p>
+<p><strong>Force:</strong> <code>pagination control</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the pagination control obligation named before work proceeds.</p>
+<p><strong>Shadow:</strong> misusing <code>pagination control</code> at rune 1328 in the interface-ux lane can let the surface can make the wrong action easier than the safe one; verify by requiring the caster to state the user task, feedback, affordance, and error recovery path.</p>
+<p><strong>Prompt uses:</strong></p>
+<ul>
+<li>Name <code>pagination control</code> when the prompt needs this obligation made explicit: <code>pagination control</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the pagination control obligation named before work proceeds.</li>
+<li>Ask the assistant to state the <code>pagination control</code> shadow before proposing changes.</li>
+</ul>
+<p><strong>Example clause:</strong></p>
+<p>Before editing, state the <code>pagination control</code> obligation, the evidence that satisfies it, and the failure mode if it is missing.</p>
+</section>
+<section id="rune-1329" class="level3" data-number="110.2.39">
+<h3 data-number="110.2.39" class="anchored" data-anchor-id="rune-1329"><span class="header-section-number">110.2.39</span> [1329] panel</h3>
+<p><strong>Status:</strong> canonical</p>
+<p><strong>Completion:</strong> authored</p>
+<p><strong>Semantic status:</strong> generated_draft</p>
+<p><strong>Force:</strong> <code>panel</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the panel obligation named before work proceeds.</p>
+<p><strong>Shadow:</strong> misusing <code>panel</code> at rune 1329 in the interface-ux lane can let the surface can make the wrong action easier than the safe one; verify by requiring the caster to state the user task, feedback, affordance, and error recovery path.</p>
+<p><strong>Prompt uses:</strong></p>
+<ul>
+<li>Name <code>panel</code> when the prompt needs this obligation made explicit: <code>panel</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the panel obligation named before work proceeds.</li>
+<li>Ask the assistant to state the <code>panel</code> shadow before proposing changes.</li>
+</ul>
+<p><strong>Example clause:</strong></p>
+<p>Before editing, state the <code>panel</code> obligation, the evidence that satisfies it, and the failure mode if it is missing.</p>
+</section>
+<section id="rune-1330" class="level3" data-number="110.2.40">
+<h3 data-number="110.2.40" class="anchored" data-anchor-id="rune-1330"><span class="header-section-number">110.2.40</span> [1330] placeholder</h3>
+<p><strong>Status:</strong> canonical</p>
+<p><strong>Completion:</strong> authored</p>
+<p><strong>Semantic status:</strong> generated_draft</p>
+<p><strong>Force:</strong> <code>placeholder</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the placeholder obligation named before work proceeds.</p>
+<p><strong>Shadow:</strong> misusing <code>placeholder</code> at rune 1330 in the interface-ux lane can let the surface can make the wrong action easier than the safe one; verify by requiring the caster to state the user task, feedback, affordance, and error recovery path.</p>
+<p><strong>Prompt uses:</strong></p>
+<ul>
+<li>Name <code>placeholder</code> when the prompt needs this obligation made explicit: <code>placeholder</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the placeholder obligation named before work proceeds.</li>
+<li>Ask the assistant to state the <code>placeholder</code> shadow before proposing changes.</li>
+</ul>
+<p><strong>Example clause:</strong></p>
+<p>Before editing, state the <code>placeholder</code> obligation, the evidence that satisfies it, and the failure mode if it is missing.</p>
+</section>
+<section id="rune-1331" class="level3" data-number="110.2.41">
+<h3 data-number="110.2.41" class="anchored" data-anchor-id="rune-1331"><span class="header-section-number">110.2.41</span> [1331] progressive disclosure</h3>
+<p><strong>Status:</strong> canonical (pocket canon)</p>
+<p><strong>Completion:</strong> authored</p>
+<p><strong>Semantic status:</strong> reviewed</p>
+<p><strong>Force:</strong> Reveal complexity in stages rather than all at once.</p>
+<p><strong>Shadow:</strong> misusing <code>progressive disclosure</code> at rune 1331 in the interface-ux lane can let the surface can make the wrong action easier than the safe one; verify by requiring the caster to state the user task, feedback, affordance, and error recovery path.</p>
+<p><strong>Prompt uses:</strong></p>
+<ul>
+<li>Name <code>progressive disclosure</code> when the prompt needs this obligation made explicit: Reveal complexity in stages rather than all at once.</li>
+<li>Ask the assistant to state the <code>progressive disclosure</code> shadow before proposing changes.</li>
+</ul>
+<p><strong>Example clause:</strong></p>
+<p>Before editing, state the <code>progressive disclosure</code> obligation, the evidence that satisfies it, and the failure mode if it is missing.</p>
+<p><strong>Pocket gloss:</strong> Reveal complexity in stages rather than all at once.</p>
+</section>
+<section id="rune-1332" class="level3" data-number="110.2.42">
+<h3 data-number="110.2.42" class="anchored" data-anchor-id="rune-1332"><span class="header-section-number">110.2.42</span> [1332] prompt surface {UX}</h3>
+<p><strong>Status:</strong> canonical</p>
+<p><strong>Completion:</strong> authored</p>
+<p><strong>Semantic status:</strong> generated_draft</p>
+<p><strong>Force:</strong> <code>prompt surface</code> in its UX sense is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the prompt surface obligation named before work proceeds.</p>
+<p><strong>Shadow:</strong> misusing <code>prompt surface</code> at rune 1332 in the UX lane can let the surface can make the wrong action easier than the safe one; verify by requiring the caster to state the user task, feedback, affordance, and error recovery path.</p>
+<p><strong>Prompt uses:</strong></p>
+<ul>
+<li>Name <code>prompt surface</code> when the prompt needs this obligation made explicit: <code>prompt surface</code> in its UX sense is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the prompt surface obligation named before work proceeds.</li>
+<li>Ask the assistant to state the <code>prompt surface</code> shadow before proposing changes.</li>
+</ul>
+<p><strong>Example clause:</strong></p>
+<p>Before editing, state the <code>prompt surface</code> obligation, the evidence that satisfies it, and the failure mode if it is missing.</p>
+</section>
+<section id="rune-1333" class="level3" data-number="110.2.43">
+<h3 data-number="110.2.43" class="anchored" data-anchor-id="rune-1333"><span class="header-section-number">110.2.43</span> [1333] responsive design</h3>
+<p><strong>Status:</strong> canonical (pocket canon)</p>
+<p><strong>Completion:</strong> authored</p>
+<p><strong>Semantic status:</strong> reviewed</p>
+<p><strong>Force:</strong> Layout that adapts gracefully to device or viewport size.</p>
+<p><strong>Shadow:</strong> misusing <code>responsive design</code> at rune 1333 in the interface-ux lane can let the surface can make the wrong action easier than the safe one; verify by requiring the caster to state the user task, feedback, affordance, and error recovery path.</p>
+<p><strong>Prompt uses:</strong></p>
+<ul>
+<li>Name <code>responsive design</code> when the prompt needs this obligation made explicit: Layout that adapts gracefully to device or viewport size.</li>
+<li>Ask the assistant to state the <code>responsive design</code> shadow before proposing changes.</li>
+</ul>
+<p><strong>Example clause:</strong></p>
+<p>Before editing, state the <code>responsive design</code> obligation, the evidence that satisfies it, and the failure mode if it is missing.</p>
+<p><strong>Pocket gloss:</strong> Layout that adapts gracefully to device or viewport size.</p>
+</section>
+<section id="rune-1334" class="level3" data-number="110.2.44">
+<h3 data-number="110.2.44" class="anchored" data-anchor-id="rune-1334"><span class="header-section-number">110.2.44</span> [1334] screen</h3>
+<p><strong>Status:</strong> canonical</p>
+<p><strong>Completion:</strong> authored</p>
+<p><strong>Semantic status:</strong> generated_draft</p>
+<p><strong>Force:</strong> <code>screen</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the screen obligation named before work proceeds.</p>
+<p><strong>Shadow:</strong> misusing <code>screen</code> at rune 1334 in the interface-ux lane can let the surface can make the wrong action easier than the safe one; verify by requiring the caster to state the user task, feedback, affordance, and error recovery path.</p>
+<p><strong>Prompt uses:</strong></p>
+<ul>
+<li>Name <code>screen</code> when the prompt needs this obligation made explicit: <code>screen</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the screen obligation named before work proceeds.</li>
+<li>Ask the assistant to state the <code>screen</code> shadow before proposing changes.</li>
+</ul>
+<p><strong>Example clause:</strong></p>
+<p>Before editing, state the <code>screen</code> obligation, the evidence that satisfies it, and the failure mode if it is missing.</p>
+</section>
+<section id="rune-1335" class="level3" data-number="110.2.45">
+<h3 data-number="110.2.45" class="anchored" data-anchor-id="rune-1335"><span class="header-section-number">110.2.45</span> [1335] scroll state</h3>
+<p><strong>Status:</strong> canonical</p>
+<p><strong>Completion:</strong> authored</p>
+<p><strong>Semantic status:</strong> generated_draft</p>
+<p><strong>Force:</strong> <code>scroll state</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the scroll state obligation named before work proceeds.</p>
+<p><strong>Shadow:</strong> misusing <code>scroll state</code> at rune 1335 in the interface-ux lane can let the surface can make the wrong action easier than the safe one; verify by requiring the caster to state the user task, feedback, affordance, and error recovery path.</p>
+<p><strong>Prompt uses:</strong></p>
+<ul>
+<li>Name <code>scroll state</code> when the prompt needs this obligation made explicit: <code>scroll state</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the scroll state obligation named before work proceeds.</li>
+<li>Ask the assistant to state the <code>scroll state</code> shadow before proposing changes.</li>
+</ul>
+<p><strong>Example clause:</strong></p>
+<p>Before editing, state the <code>scroll state</code> obligation, the evidence that satisfies it, and the failure mode if it is missing.</p>
+</section>
+<section id="rune-1336" class="level3" data-number="110.2.46">
+<h3 data-number="110.2.46" class="anchored" data-anchor-id="rune-1336"><span class="header-section-number">110.2.46</span> [1336] search box</h3>
+<p><strong>Status:</strong> canonical</p>
+<p><strong>Completion:</strong> authored</p>
+<p><strong>Semantic status:</strong> generated_draft</p>
+<p><strong>Force:</strong> <code>search box</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the search box obligation named before work proceeds.</p>
+<p><strong>Shadow:</strong> misusing <code>search box</code> at rune 1336 in the interface-ux lane can let the surface can make the wrong action easier than the safe one; verify by requiring the caster to state the user task, feedback, affordance, and error recovery path.</p>
+<p><strong>Prompt uses:</strong></p>
+<ul>
+<li>Name <code>search box</code> when the prompt needs this obligation made explicit: <code>search box</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the search box obligation named before work proceeds.</li>
+<li>Ask the assistant to state the <code>search box</code> shadow before proposing changes.</li>
+</ul>
+<p><strong>Example clause:</strong></p>
+<p>Before editing, state the <code>search box</code> obligation, the evidence that satisfies it, and the failure mode if it is missing.</p>
+</section>
+<section id="rune-1337" class="level3" data-number="110.2.47">
+<h3 data-number="110.2.47" class="anchored" data-anchor-id="rune-1337"><span class="header-section-number">110.2.47</span> [1337] selection</h3>
+<p><strong>Status:</strong> canonical</p>
+<p><strong>Completion:</strong> authored</p>
+<p><strong>Semantic status:</strong> generated_draft</p>
+<p><strong>Force:</strong> <code>selection</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the selection obligation named before work proceeds.</p>
+<p><strong>Shadow:</strong> misusing <code>selection</code> at rune 1337 in the interface-ux lane can let the surface can make the wrong action easier than the safe one; verify by requiring the caster to state the user task, feedback, affordance, and error recovery path.</p>
+<p><strong>Prompt uses:</strong></p>
+<ul>
+<li>Name <code>selection</code> when the prompt needs this obligation made explicit: <code>selection</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the selection obligation named before work proceeds.</li>
+<li>Ask the assistant to state the <code>selection</code> shadow before proposing changes.</li>
+</ul>
+<p><strong>Example clause:</strong></p>
+<p>Before editing, state the <code>selection</code> obligation, the evidence that satisfies it, and the failure mode if it is missing.</p>
+</section>
+<section id="rune-1338" class="level3" data-number="110.2.48">
+<h3 data-number="110.2.48" class="anchored" data-anchor-id="rune-1338"><span class="header-section-number">110.2.48</span> [1338] skeleton state</h3>
+<p><strong>Status:</strong> canonical</p>
+<p><strong>Completion:</strong> authored</p>
+<p><strong>Semantic status:</strong> generated_draft</p>
+<p><strong>Force:</strong> <code>skeleton state</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the skeleton state obligation named before work proceeds.</p>
+<p><strong>Shadow:</strong> misusing <code>skeleton state</code> at rune 1338 in the interface-ux lane can let the surface can make the wrong action easier than the safe one; verify by requiring the caster to state the user task, feedback, affordance, and error recovery path.</p>
+<p><strong>Prompt uses:</strong></p>
+<ul>
+<li>Name <code>skeleton state</code> when the prompt needs this obligation made explicit: <code>skeleton state</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the skeleton state obligation named before work proceeds.</li>
+<li>Ask the assistant to state the <code>skeleton state</code> shadow before proposing changes.</li>
+</ul>
+<p><strong>Example clause:</strong></p>
+<p>Before editing, state the <code>skeleton state</code> obligation, the evidence that satisfies it, and the failure mode if it is missing.</p>
+</section>
+<section id="rune-1339" class="level3" data-number="110.2.49">
+<h3 data-number="110.2.49" class="anchored" data-anchor-id="rune-1339"><span class="header-section-number">110.2.49</span> [1339] state transition</h3>
+<p><strong>Status:</strong> canonical</p>
+<p><strong>Completion:</strong> authored</p>
+<p><strong>Semantic status:</strong> generated_draft</p>
+<p><strong>Force:</strong> <code>state transition</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the state transition obligation named before work proceeds.</p>
+<p><strong>Shadow:</strong> misusing <code>state transition</code> at rune 1339 in the interface-ux lane can let the surface can make the wrong action easier than the safe one; verify by requiring the caster to state the user task, feedback, affordance, and error recovery path.</p>
+<p><strong>Prompt uses:</strong></p>
+<ul>
+<li>Name <code>state transition</code> when the prompt needs this obligation made explicit: <code>state transition</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the state transition obligation named before work proceeds.</li>
+<li>Ask the assistant to state the <code>state transition</code> shadow before proposing changes.</li>
+</ul>
+<p><strong>Example clause:</strong></p>
+<p>Before editing, state the <code>state transition</code> obligation, the evidence that satisfies it, and the failure mode if it is missing.</p>
+</section>
+<section id="rune-1340" class="level3" data-number="110.2.50">
+<h3 data-number="110.2.50" class="anchored" data-anchor-id="rune-1340"><span class="header-section-number">110.2.50</span> [1340] stepper</h3>
+<p><strong>Status:</strong> canonical</p>
+<p><strong>Completion:</strong> authored</p>
+<p><strong>Semantic status:</strong> generated_draft</p>
+<p><strong>Force:</strong> <code>stepper</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the stepper obligation named before work proceeds.</p>
+<p><strong>Shadow:</strong> misusing <code>stepper</code> at rune 1340 in the interface-ux lane can let the surface can make the wrong action easier than the safe one; verify by requiring the caster to state the user task, feedback, affordance, and error recovery path.</p>
+<p><strong>Prompt uses:</strong></p>
+<ul>
+<li>Name <code>stepper</code> when the prompt needs this obligation made explicit: <code>stepper</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the stepper obligation named before work proceeds.</li>
+<li>Ask the assistant to state the <code>stepper</code> shadow before proposing changes.</li>
+</ul>
+<p><strong>Example clause:</strong></p>
+<p>Before editing, state the <code>stepper</code> obligation, the evidence that satisfies it, and the failure mode if it is missing.</p>
+</section>
+<section id="rune-1341" class="level3" data-number="110.2.51">
+<h3 data-number="110.2.51" class="anchored" data-anchor-id="rune-1341"><span class="header-section-number">110.2.51</span> [1341] sync state</h3>
+<p><strong>Status:</strong> canonical</p>
+<p><strong>Completion:</strong> authored</p>
+<p><strong>Semantic status:</strong> generated_draft</p>
+<p><strong>Force:</strong> <code>sync state</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the sync state obligation named before work proceeds.</p>
+<p><strong>Shadow:</strong> misusing <code>sync state</code> at rune 1341 in the interface-ux lane can let the surface can make the wrong action easier than the safe one; verify by requiring the caster to state the user task, feedback, affordance, and error recovery path.</p>
+<p><strong>Prompt uses:</strong></p>
+<ul>
+<li>Name <code>sync state</code> when the prompt needs this obligation made explicit: <code>sync state</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the sync state obligation named before work proceeds.</li>
+<li>Ask the assistant to state the <code>sync state</code> shadow before proposing changes.</li>
+</ul>
+<p><strong>Example clause:</strong></p>
+<p>Before editing, state the <code>sync state</code> obligation, the evidence that satisfies it, and the failure mode if it is missing.</p>
+</section>
+<section id="rune-1342" class="level3" data-number="110.2.52">
+<h3 data-number="110.2.52" class="anchored" data-anchor-id="rune-1342"><span class="header-section-number">110.2.52</span> [1342] table view</h3>
+<p><strong>Status:</strong> canonical</p>
+<p><strong>Completion:</strong> authored</p>
+<p><strong>Semantic status:</strong> generated_draft</p>
+<p><strong>Force:</strong> <code>table view</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the table view obligation named before work proceeds.</p>
+<p><strong>Shadow:</strong> misusing <code>table view</code> at rune 1342 in the interface-ux lane can let the surface can make the wrong action easier than the safe one; verify by requiring the caster to state the user task, feedback, affordance, and error recovery path.</p>
+<p><strong>Prompt uses:</strong></p>
+<ul>
+<li>Name <code>table view</code> when the prompt needs this obligation made explicit: <code>table view</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the table view obligation named before work proceeds.</li>
+<li>Ask the assistant to state the <code>table view</code> shadow before proposing changes.</li>
+</ul>
+<p><strong>Example clause:</strong></p>
+<p>Before editing, state the <code>table view</code> obligation, the evidence that satisfies it, and the failure mode if it is missing.</p>
+</section>
+<section id="rune-1343" class="level3" data-number="110.2.53">
+<h3 data-number="110.2.53" class="anchored" data-anchor-id="rune-1343"><span class="header-section-number">110.2.53</span> [1343] theme</h3>
+<p><strong>Status:</strong> canonical</p>
+<p><strong>Completion:</strong> authored</p>
+<p><strong>Semantic status:</strong> generated_draft</p>
+<p><strong>Force:</strong> <code>theme</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the theme obligation named before work proceeds.</p>
+<p><strong>Shadow:</strong> misusing <code>theme</code> at rune 1343 in the interface-ux lane can let the surface can make the wrong action easier than the safe one; verify by requiring the caster to state the user task, feedback, affordance, and error recovery path.</p>
+<p><strong>Prompt uses:</strong></p>
+<ul>
+<li>Name <code>theme</code> when the prompt needs this obligation made explicit: <code>theme</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the theme obligation named before work proceeds.</li>
+<li>Ask the assistant to state the <code>theme</code> shadow before proposing changes.</li>
+</ul>
+<p><strong>Example clause:</strong></p>
+<p>Before editing, state the <code>theme</code> obligation, the evidence that satisfies it, and the failure mode if it is missing.</p>
+</section>
+<section id="rune-1344" class="level3" data-number="110.2.54">
+<h3 data-number="110.2.54" class="anchored" data-anchor-id="rune-1344"><span class="header-section-number">110.2.54</span> [1344] tooltip</h3>
+<p><strong>Status:</strong> canonical</p>
+<p><strong>Completion:</strong> authored</p>
+<p><strong>Semantic status:</strong> generated_draft</p>
+<p><strong>Force:</strong> <code>tooltip</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the tooltip obligation named before work proceeds.</p>
+<p><strong>Shadow:</strong> misusing <code>tooltip</code> at rune 1344 in the interface-ux lane can let the surface can make the wrong action easier than the safe one; verify by requiring the caster to state the user task, feedback, affordance, and error recovery path.</p>
+<p><strong>Prompt uses:</strong></p>
+<ul>
+<li>Name <code>tooltip</code> when the prompt needs this obligation made explicit: <code>tooltip</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the tooltip obligation named before work proceeds.</li>
+<li>Ask the assistant to state the <code>tooltip</code> shadow before proposing changes.</li>
+</ul>
+<p><strong>Example clause:</strong></p>
+<p>Before editing, state the <code>tooltip</code> obligation, the evidence that satisfies it, and the failure mode if it is missing.</p>
+</section>
+<section id="rune-1345" class="level3" data-number="110.2.55">
+<h3 data-number="110.2.55" class="anchored" data-anchor-id="rune-1345"><span class="header-section-number">110.2.55</span> [1345] typography</h3>
+<p><strong>Status:</strong> canonical</p>
+<p><strong>Completion:</strong> authored</p>
+<p><strong>Semantic status:</strong> generated_draft</p>
+<p><strong>Force:</strong> <code>typography</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the typography obligation named before work proceeds.</p>
+<p><strong>Shadow:</strong> misusing <code>typography</code> at rune 1345 in the interface-ux lane can let the surface can make the wrong action easier than the safe one; verify by requiring the caster to state the user task, feedback, affordance, and error recovery path.</p>
+<p><strong>Prompt uses:</strong></p>
+<ul>
+<li>Name <code>typography</code> when the prompt needs this obligation made explicit: <code>typography</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the typography obligation named before work proceeds.</li>
+<li>Ask the assistant to state the <code>typography</code> shadow before proposing changes.</li>
+</ul>
+<p><strong>Example clause:</strong></p>
+<p>Before editing, state the <code>typography</code> obligation, the evidence that satisfies it, and the failure mode if it is missing.</p>
+</section>
+<section id="rune-1346" class="level3" data-number="110.2.56">
+<h3 data-number="110.2.56" class="anchored" data-anchor-id="rune-1346"><span class="header-section-number">110.2.56</span> [1346] user flow</h3>
+<p><strong>Status:</strong> canonical (pocket canon)</p>
+<p><strong>Completion:</strong> authored</p>
+<p><strong>Semantic status:</strong> reviewed</p>
+<p><strong>Force:</strong> The path a user walks through the product to finish a task.</p>
+<p><strong>Shadow:</strong> misusing <code>user flow</code> at rune 1346 in the interface-ux lane can let the surface can make the wrong action easier than the safe one; verify by requiring the caster to state the user task, feedback, affordance, and error recovery path.</p>
+<p><strong>Prompt uses:</strong></p>
+<ul>
+<li>Name <code>user flow</code> when the prompt needs this obligation made explicit: The path a user walks through the product to finish a task.</li>
+<li>Ask the assistant to state the <code>user flow</code> shadow before proposing changes.</li>
+</ul>
+<p><strong>Example clause:</strong></p>
+<p>Before editing, state the <code>user flow</code> obligation, the evidence that satisfies it, and the failure mode if it is missing.</p>
+<p><strong>Pocket gloss:</strong> The path a user walks through the product to finish a task.</p>
+</section>
+<section id="rune-1347" class="level3" data-number="110.2.57">
+<h3 data-number="110.2.57" class="anchored" data-anchor-id="rune-1347"><span class="header-section-number">110.2.57</span> [1347] validation message</h3>
+<p><strong>Status:</strong> canonical</p>
+<p><strong>Completion:</strong> authored</p>
+<p><strong>Semantic status:</strong> generated_draft</p>
+<p><strong>Force:</strong> <code>validation message</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the validation message obligation named before work proceeds.</p>
+<p><strong>Shadow:</strong> misusing <code>validation message</code> at rune 1347 in the interface-ux lane can let the surface can make the wrong action easier than the safe one; verify by requiring the caster to state the user task, feedback, affordance, and error recovery path.</p>
+<p><strong>Prompt uses:</strong></p>
+<ul>
+<li>Name <code>validation message</code> when the prompt needs this obligation made explicit: <code>validation message</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the validation message obligation named before work proceeds.</li>
+<li>Ask the assistant to state the <code>validation message</code> shadow before proposing changes.</li>
+</ul>
+<p><strong>Example clause:</strong></p>
+<p>Before editing, state the <code>validation message</code> obligation, the evidence that satisfies it, and the failure mode if it is missing.</p>
+</section>
+<section id="rune-1348" class="level3" data-number="110.2.58">
+<h3 data-number="110.2.58" class="anchored" data-anchor-id="rune-1348"><span class="header-section-number">110.2.58</span> [1348] view model</h3>
+<p><strong>Status:</strong> canonical</p>
+<p><strong>Completion:</strong> authored</p>
+<p><strong>Semantic status:</strong> generated_draft</p>
+<p><strong>Force:</strong> <code>view model</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the view model obligation named before work proceeds.</p>
+<p><strong>Shadow:</strong> misusing <code>view model</code> at rune 1348 in the interface-ux lane can let the surface can make the wrong action easier than the safe one; verify by requiring the caster to state the user task, feedback, affordance, and error recovery path.</p>
+<p><strong>Prompt uses:</strong></p>
+<ul>
+<li>Name <code>view model</code> when the prompt needs this obligation made explicit: <code>view model</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the view model obligation named before work proceeds.</li>
+<li>Ask the assistant to state the <code>view model</code> shadow before proposing changes.</li>
+</ul>
+<p><strong>Example clause:</strong></p>
+<p>Before editing, state the <code>view model</code> obligation, the evidence that satisfies it, and the failure mode if it is missing.</p>
+</section>
+<section id="rune-1349" class="level3" data-number="110.2.59">
+<h3 data-number="110.2.59" class="anchored" data-anchor-id="rune-1349"><span class="header-section-number">110.2.59</span> [1349] viewport</h3>
+<p><strong>Status:</strong> canonical</p>
+<p><strong>Completion:</strong> authored</p>
+<p><strong>Semantic status:</strong> generated_draft</p>
+<p><strong>Force:</strong> <code>viewport</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the viewport obligation named before work proceeds.</p>
+<p><strong>Shadow:</strong> misusing <code>viewport</code> at rune 1349 in the interface-ux lane can let the surface can make the wrong action easier than the safe one; verify by requiring the caster to state the user task, feedback, affordance, and error recovery path.</p>
+<p><strong>Prompt uses:</strong></p>
+<ul>
+<li>Name <code>viewport</code> when the prompt needs this obligation made explicit: <code>viewport</code> is a interface and user experience rune for shape human attention, action, recovery, and comprehension; use it when the artifact needs the viewport obligation named before work proceeds.</li>
+<li>Ask the assistant to state the <code>viewport</code> shadow before proposing changes.</li>
+</ul>
+<p><strong>Example clause:</strong></p>
+<p>Before editing, state the <code>viewport</code> obligation, the evidence that satisfies it, and the failure mode if it is missing.</p>
+</section>
+<section id="rune-1350" class="level3" data-number="110.2.60">
+<h3 data-number="110.2.60" class="anchored" data-anchor-id="rune-1350"><span class="header-section-number">110.2.60</span> [1350] visual hierarchy</h3>
+<p><strong>Status:</strong> canonical (pocket canon)</p>
+<p><strong>Completion:</strong> authored</p>
+<p><strong>Semantic status:</strong> reviewed</p>
+<p><strong>Force:</strong> Arrange attention so the right thing is seen first.</p>
+<p><strong>Shadow:</strong> misusing <code>visual hierarchy</code> at rune 1350 in the interface-ux lane can let the surface can make the wrong action easier than the safe one; verify by requiring the caster to state the user task, feedback, affordance, and error recovery path.</p>
+<p><strong>Prompt uses:</strong></p>
+<ul>
+<li>Name <code>visual hierarchy</code> when the prompt needs this obligation made explicit: Arrange attention so the right thing is seen first.</li>
+<li>Ask the assistant to state the <code>visual hierarchy</code> shadow before proposing changes.</li>
+</ul>
+<p><strong>Example clause:</strong></p>
+<p>Before editing, state the <code>visual hierarchy</code> obligation, the evidence that satisfies it, and the failure mode if it is missing.</p>
+<p><strong>Pocket gloss:</strong> Arrange attention so the right thing is seen first.</p>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/corbensorenson\.github\.io\/software-grimoire\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../reference/house-hardware-embedded-and-performance-near-words.html" class="pagination-link" aria-label="Hardware, Embedded, and Performance-Near Words">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">108</span>&nbsp; <span class="chapter-title">Hardware, Embedded, and Performance-Near Words</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../reference/house-promptcraft-ai-oriented-engineering-and-spell-structure.html" class="pagination-link" aria-label="Promptcraft, AI-Oriented Engineering, and Spell Structure">
+        <span class="nav-page-text"><span class="chapter-number">110</span>&nbsp; <span class="chapter-title">Promptcraft, AI-Oriented Engineering, and Spell Structure</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/corbensorenson/software-grimoire/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li><li><a href="https://github.com/corbensorenson/software-grimoire/blob/main/reference/house-interface-ux-and-human-facing-words.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div></div></footer></body></html>

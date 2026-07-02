@@ -1,0 +1,32 @@
+{
+  "schema_version": "4.0.0-adoption-intake-decision",
+  "decision_id": "adoption-intake.example-reviewer-run-template.v1",
+  "generated_at": "pending-maintainer",
+  "status": "pending-maintainer",
+  "policy": "This template validates adoption-report intake structure. It does not count as external adoption until a named maintainer accepts and publishes a reviewer-supplied or external-user report.",
+  "report_path": "examples/adoption/adoption-report-template.json",
+  "report_id": "adoption.example-reviewer-run.v1",
+  "provenance": "reviewer-supplied",
+  "maintainer": "",
+  "review_date": "",
+  "decision": "pending",
+  "evidence_checked": [
+    {
+      "kind": "report",
+      "path_or_url": "examples/adoption/adoption-report-template.json",
+      "notes": "Schema-valid report template only; replace with a real non-maintainer report before acceptance."
+    },
+    {
+      "kind": "artifact",
+      "path_or_url": "data/adoption_evidence.json",
+      "notes": "Current adoption ledger and external-count policy."
+    }
+  ],
+  "publication": {
+    "status": "not-published",
+    "url_or_path": ""
+  },
+  "acceptance_notes": "Pending maintainer review; this is not external adoption evidence.",
+  "counts_as_external_adoption": false,
+  "blocks_external_adoption_credit": true
+}

@@ -1,0 +1,31 @@
+{
+  "schema_version": "4.0.0-hardness-manual-import",
+  "surface_id": "manual-reviewer-import",
+  "surface_label": "Reviewer supplied model/tool transcript",
+  "surface_kind": "manual-import",
+  "tool_name": "declared-by-reviewer",
+  "tool_version": "declared-by-reviewer",
+  "model_name": "declared-by-reviewer",
+  "provenance": "project-owned",
+  "evidence_class": "project_owned_model_run",
+  "redaction_policy": "Public fixtures only; no secrets intentionally supplied.",
+  "redaction_statement": "Template uses an existing public project-owned run. Real reviewer imports must declare any redactions.",
+  "reviewer_id": "project-template",
+  "reviewer_date": "2026-07-02",
+  "benchmark": "hardness-v4-model-surface",
+  "case_slug": "ambiguity-disabled-status",
+  "variant": "weak",
+  "repetition": 1,
+  "run_timestamp": "2026-07-02T14:36:00Z",
+  "fixture_path": "examples/evaluations/hardness-v4/fixtures/ambiguity-disabled-status",
+  "prompt_path": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/ambiguity-disabled-status/weak/r01-prompt.md",
+  "transcript_path": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/ambiguity-disabled-status/weak/r01-output.md",
+  "artifact_root": "examples/evaluations/hardness-v4/model-runs/codex-cli-default/ambiguity-disabled-status/weak/r01-artifacts",
+  "artifact_files": [
+    "account_status.py"
+  ],
+  "execution_command": "python -m pytest -q check_account_status.py",
+  "safety_statement": "No private code, credentials, live jailbreak payloads, or device-global scratch paths are included.",
+  "maintainer_decision": "pending",
+  "evaluator_notes": "Template validates the import contract only. It does not count as reviewer-supplied evidence."
+}

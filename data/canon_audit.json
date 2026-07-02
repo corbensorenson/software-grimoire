@@ -1,0 +1,38 @@
+{
+  "version": "3.0.0-human-canon-audit",
+  "status": "pending-human-maintainer-signoff",
+  "policy": "Codex can prepare audit records and preflight evidence, but canonical human review requires a named human maintainer decision.",
+  "required_human_fields": [
+    "reviewer",
+    "review_date",
+    "decision",
+    "scope",
+    "notes"
+  ],
+  "audit_queue": [
+    {
+      "id": "canon.major-50.shadow-review",
+      "scope": "50 major canon entries",
+      "prepared_evidence": "data/canon_quality.json shows 50/50 reviewed major-canon shadows.",
+      "ai_pre_audit": "No doubled shadow labels and no generated-template language detected.",
+      "human_signoff_status": "pending",
+      "blocker": "A named human maintainer must decide whether these reviewed shadows are canonically accepted."
+    },
+    {
+      "id": "canon.pocket-300.prompt-use-review",
+      "scope": "300 pocket canon entries",
+      "prepared_evidence": "Every reviewed entry has prompt uses and examples.",
+      "ai_pre_audit": "Pocket entries are structurally ready for human sampling and correction.",
+      "human_signoff_status": "pending",
+      "blocker": "Usage-earned promotion needs maintainer acceptance and issue-driven correction path."
+    },
+    {
+      "id": "canon.first-two-houses.reviewed-tranche",
+      "scope": "Architecture and language/semantics houses",
+      "prepared_evidence": "data/semantic_promotion.json marks the first two houses fully reviewed.",
+      "ai_pre_audit": "Generated-template summaries were removed for the tranche.",
+      "human_signoff_status": "pending",
+      "blocker": "Canonical status remains blocked on human review notes."
+    }
+  ]
+}

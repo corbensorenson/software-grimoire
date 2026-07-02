@@ -1,0 +1,12 @@
+{
+  "endpoint": "/reports/account-summary",
+  "p95_ms": 9000,
+  "query_count": 1842,
+  "python_assembly_ms": 430,
+  "db_ms": 8110,
+  "largest_patterns": [
+    {"query": "select * from tasks where project_id=$1", "calls": 620},
+    {"query": "select * from comments where task_id=$1", "calls": 1100},
+    {"query": "select * from users where id=$1", "calls": 122}
+  ]
+}

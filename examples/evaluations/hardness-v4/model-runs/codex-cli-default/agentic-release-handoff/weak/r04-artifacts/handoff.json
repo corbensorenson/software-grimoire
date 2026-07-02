@@ -1,0 +1,80 @@
+{
+  "handoff_version": "1.0",
+  "kind": "release_handoff",
+  "repository": {
+    "root": ".",
+    "scratch_paths": [
+      ".handoff/scratch/",
+      ".handoff/logs/",
+      ".handoff/evidence/"
+    ],
+    "forbidden_scratch_paths": [
+      "/tmp",
+      "/var/tmp",
+      "/dev/shm",
+      "~/.cache",
+      "~/Library/Caches"
+    ]
+  },
+  "tool_allowlist": [
+    "apply_patch",
+    "rg",
+    "sed",
+    "git diff",
+    "git status",
+    "npm test",
+    "npm run lint"
+  ],
+  "stack": [
+    {
+      "rung": "scope",
+      "status": "complete",
+      "evidence": {
+        "artifact": "handoff.json",
+        "notes": "Release handoff is bounded to repository-local paths and this replacement artifact."
+      }
+    },
+    {
+      "rung": "implementation",
+      "status": "complete",
+      "evidence": {
+        "changed_files": [
+          "handoff.json"
+        ],
+        "scratch_policy": "All scratch and evidence paths are relative to the repository root."
+      }
+    },
+    {
+      "rung": "gates",
+      "status": "preserved",
+      "evidence": [
+        {
+          "gate": "path_bounds",
+          "status": "passed",
+          "details": "Scratch paths are repository-relative and no device-global scratch path is required."
+        },
+        {
+          "gate": "tool_bounds",
+          "status": "passed",
+          "details": "Allowed tools are explicitly declared in tool_allowlist."
+        },
+        {
+          "gate": "reviewability",
+          "status": "passed",
+          "details": "Changed artifact list and gate evidence are recorded in this handoff."
+        },
+        {
+          "gate": "human_approval",
+          "status": "pending",
+          "details": "No human approval is claimed by this artifact."
+        }
+      ]
+    }
+  ],
+  "release": {
+    "ready_for_review": true,
+    "human_approved": false,
+    "approval_claim": "not_claimed",
+    "next_action": "human_review_required_before_release"
+  }
+}

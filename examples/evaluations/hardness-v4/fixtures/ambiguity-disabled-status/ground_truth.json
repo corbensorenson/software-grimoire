@@ -1,0 +1,13 @@
+{
+  "case_slug": "ambiguity-disabled-status",
+  "rung": "ambiguity",
+  "title": "Disabled Account Status Ambiguity",
+  "artifact": "account_status.py",
+  "test_file": "check_account_status.py",
+  "hidden_obligations": [
+    "disabled_at takes precedence over recent activity",
+    "missing last_seen_at returns unknown",
+    "timezone-naive datetimes are rejected instead of guessed",
+    "UTC interval comparison uses the supplied now value"
+  ]
+}

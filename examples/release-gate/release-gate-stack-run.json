@@ -1,0 +1,18 @@
+{
+  "stack_id": "stack.release-gate-stack.v1",
+  "working_seal": "stack://release-gate-stack/5798FD1FC7",
+  "workflow": "Publish Quarto Site",
+  "workflow_url": "https://github.com/corbensorenson/software-grimoire/actions/workflows/publish.yml",
+  "gates": [
+    "generate reference content",
+    "validate data",
+    "render site",
+    "test generated site and data",
+    "deploy pages"
+  ],
+  "human_review": [
+    "review roadmap and release scope",
+    "confirm generated evidence and lexicon claims are honest",
+    "inspect live site after deployment"
+  ]
+}

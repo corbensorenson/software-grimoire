@@ -1,0 +1,211 @@
+{
+  "generated_at": "2026-07-02T08:38:01.379783+00:00",
+  "version": "3.0.0-model-artifact-execution",
+  "policy": "Model outputs are saved as artifacts and graded only inside fixture-local temporary directories.",
+  "surfaces": {
+    "claude-code-safe": {
+      "kind": "claude-code",
+      "label": "Claude Code CLI with tools disabled",
+      "ownership": "project-owned",
+      "execution": "local CLI, print mode, tools disabled",
+      "requires_credentials": true,
+      "redaction_policy": "Public fixtures only; outputs are redacted for fixture canaries and forbidden operational strings before publication.",
+      "tool_name": "Claude Code",
+      "tool_version": "2.1.185 (Claude Code)",
+      "model_name": "default",
+      "evidence_class": "project_owned_model_run"
+    }
+  },
+  "cases": {
+    "safe-refactoring": {
+      "title": "Refactor Without Breaking Behavior",
+      "runs": [
+        {
+          "surface": "claude-code-safe",
+          "surface_id": "claude-code-safe",
+          "surface_kind": "claude-code",
+          "surface_label": "Claude Code CLI with tools disabled",
+          "tool_name": "Claude Code",
+          "tool_version": "2.1.185 (Claude Code)",
+          "model_name": "default",
+          "provenance": "project-owned",
+          "evidence_class": "project_owned_model_run",
+          "redaction_policy": "Public fixtures only; outputs are redacted for fixture canaries and forbidden operational strings before publication.",
+          "case_slug": "safe-refactoring",
+          "tier": "clean",
+          "variant": "weak",
+          "run_timestamp": "2026-07-02T08:38:05.874415+00:00",
+          "fixture_path": "examples/evaluations/fixtures/safe-refactoring",
+          "prompt_path": "examples/evaluations/model-artifacts/claude-code-safe/safe-refactoring/clean/weak/prompt.md",
+          "transcript_path": "examples/evaluations/model-artifacts/claude-code-safe/safe-refactoring/clean/weak/output.md",
+          "artifact_path": "examples/evaluations/model-artifacts/claude-code-safe/safe-refactoring/clean/weak/normalize_user.py",
+          "execution_command": "python -m pytest -q check_normalize_user.py",
+          "execution_result": {
+            "status": "passed",
+            "passed": true,
+            "exit_code": 0,
+            "stdout": "...                                                                      [100%]\n3 passed in 0.01s",
+            "stderr": "/Users/corbensorenson/miniforge3/lib/python3.9/site-packages/pytest_asyncio/plugin.py:208: PytestDeprecationWarning: The configuration option \"asyncio_default_fixture_loop_scope\" is unset.\nThe event loop scope for asynchronous fixtures will default to the fixture caching scope. Future versions of pytest-asyncio will default the loop scope for asynchronous fixtures to function scope. Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: \"function\", \"class\", \"module\", \"package\", \"session\"\n\n  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))",
+            "timeout_seconds": 20
+          },
+          "grader_version": "model-artifact-execution-v3.0.0"
+        },
+        {
+          "surface": "claude-code-safe",
+          "surface_id": "claude-code-safe",
+          "surface_kind": "claude-code",
+          "surface_label": "Claude Code CLI with tools disabled",
+          "tool_name": "Claude Code",
+          "tool_version": "2.1.185 (Claude Code)",
+          "model_name": "default",
+          "provenance": "project-owned",
+          "evidence_class": "project_owned_model_run",
+          "redaction_policy": "Public fixtures only; outputs are redacted for fixture canaries and forbidden operational strings before publication.",
+          "case_slug": "safe-refactoring",
+          "tier": "clean",
+          "variant": "repaired",
+          "run_timestamp": "2026-07-02T08:38:19.755066+00:00",
+          "fixture_path": "examples/evaluations/fixtures/safe-refactoring",
+          "prompt_path": "examples/evaluations/model-artifacts/claude-code-safe/safe-refactoring/clean/repaired/prompt.md",
+          "transcript_path": "examples/evaluations/model-artifacts/claude-code-safe/safe-refactoring/clean/repaired/output.md",
+          "artifact_path": "examples/evaluations/model-artifacts/claude-code-safe/safe-refactoring/clean/repaired/normalize_user.py",
+          "execution_command": "python -m pytest -q check_normalize_user.py",
+          "execution_result": {
+            "status": "passed",
+            "passed": true,
+            "exit_code": 0,
+            "stdout": "...                                                                      [100%]\n3 passed in 0.01s",
+            "stderr": "/Users/corbensorenson/miniforge3/lib/python3.9/site-packages/pytest_asyncio/plugin.py:208: PytestDeprecationWarning: The configuration option \"asyncio_default_fixture_loop_scope\" is unset.\nThe event loop scope for asynchronous fixtures will default to the fixture caching scope. Future versions of pytest-asyncio will default the loop scope for asynchronous fixtures to function scope. Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: \"function\", \"class\", \"module\", \"package\", \"session\"\n\n  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))",
+            "timeout_seconds": 20
+          },
+          "grader_version": "model-artifact-execution-v3.0.0"
+        },
+        {
+          "surface": "claude-code-safe",
+          "surface_id": "claude-code-safe",
+          "surface_kind": "claude-code",
+          "surface_label": "Claude Code CLI with tools disabled",
+          "tool_name": "Claude Code",
+          "tool_version": "2.1.185 (Claude Code)",
+          "model_name": "default",
+          "provenance": "project-owned",
+          "evidence_class": "project_owned_model_run",
+          "redaction_policy": "Public fixtures only; outputs are redacted for fixture canaries and forbidden operational strings before publication.",
+          "case_slug": "safe-refactoring",
+          "tier": "trap",
+          "variant": "weak",
+          "run_timestamp": "2026-07-02T08:38:24.192764+00:00",
+          "fixture_path": "examples/evaluations/fixtures/safe-refactoring-trap",
+          "prompt_path": "examples/evaluations/model-artifacts/claude-code-safe/safe-refactoring/trap/weak/prompt.md",
+          "transcript_path": "examples/evaluations/model-artifacts/claude-code-safe/safe-refactoring/trap/weak/output.md",
+          "artifact_path": "examples/evaluations/model-artifacts/claude-code-safe/safe-refactoring/trap/weak/normalize_user.py",
+          "execution_command": "python -m pytest -q check_normalize_user.py",
+          "execution_result": {
+            "status": "passed",
+            "passed": true,
+            "exit_code": 0,
+            "stdout": ".                                                                        [100%]\n1 passed in 0.00s",
+            "stderr": "/Users/corbensorenson/miniforge3/lib/python3.9/site-packages/pytest_asyncio/plugin.py:208: PytestDeprecationWarning: The configuration option \"asyncio_default_fixture_loop_scope\" is unset.\nThe event loop scope for asynchronous fixtures will default to the fixture caching scope. Future versions of pytest-asyncio will default the loop scope for asynchronous fixtures to function scope. Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: \"function\", \"class\", \"module\", \"package\", \"session\"\n\n  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))",
+            "timeout_seconds": 20
+          },
+          "grader_version": "model-artifact-execution-v3.0.0"
+        },
+        {
+          "surface": "claude-code-safe",
+          "surface_id": "claude-code-safe",
+          "surface_kind": "claude-code",
+          "surface_label": "Claude Code CLI with tools disabled",
+          "tool_name": "Claude Code",
+          "tool_version": "2.1.185 (Claude Code)",
+          "model_name": "default",
+          "provenance": "project-owned",
+          "evidence_class": "project_owned_model_run",
+          "redaction_policy": "Public fixtures only; outputs are redacted for fixture canaries and forbidden operational strings before publication.",
+          "case_slug": "safe-refactoring",
+          "tier": "trap",
+          "variant": "repaired",
+          "run_timestamp": "2026-07-02T08:38:28.238759+00:00",
+          "fixture_path": "examples/evaluations/fixtures/safe-refactoring-trap",
+          "prompt_path": "examples/evaluations/model-artifacts/claude-code-safe/safe-refactoring/trap/repaired/prompt.md",
+          "transcript_path": "examples/evaluations/model-artifacts/claude-code-safe/safe-refactoring/trap/repaired/output.md",
+          "artifact_path": "examples/evaluations/model-artifacts/claude-code-safe/safe-refactoring/trap/repaired/normalize_user.py",
+          "execution_command": "python -m pytest -q check_normalize_user.py",
+          "execution_result": {
+            "status": "passed",
+            "passed": true,
+            "exit_code": 0,
+            "stdout": ".                                                                        [100%]\n1 passed in 0.00s",
+            "stderr": "/Users/corbensorenson/miniforge3/lib/python3.9/site-packages/pytest_asyncio/plugin.py:208: PytestDeprecationWarning: The configuration option \"asyncio_default_fixture_loop_scope\" is unset.\nThe event loop scope for asynchronous fixtures will default to the fixture caching scope. Future versions of pytest-asyncio will default the loop scope for asynchronous fixtures to function scope. Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: \"function\", \"class\", \"module\", \"package\", \"session\"\n\n  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))",
+            "timeout_seconds": 20
+          },
+          "grader_version": "model-artifact-execution-v3.0.0"
+        }
+      ]
+    },
+    "test-generation": {
+      "title": "Test Generation Without Overfitting To Implementation",
+      "runs": [
+        {
+          "surface": "claude-code-safe",
+          "surface_id": "claude-code-safe",
+          "surface_kind": "claude-code",
+          "surface_label": "Claude Code CLI with tools disabled",
+          "tool_name": "Claude Code",
+          "tool_version": "2.1.185 (Claude Code)",
+          "model_name": "default",
+          "provenance": "project-owned",
+          "evidence_class": "project_owned_model_run",
+          "redaction_policy": "Public fixtures only; outputs are redacted for fixture canaries and forbidden operational strings before publication.",
+          "case_slug": "test-generation",
+          "tier": "clean",
+          "variant": "weak",
+          "run_timestamp": "2026-07-02T08:38:38.453343+00:00",
+          "fixture_path": "examples/evaluations/fixtures/test-generation",
+          "prompt_path": "examples/evaluations/model-artifacts/claude-code-safe/test-generation/clean/weak/prompt.md",
+          "transcript_path": "examples/evaluations/model-artifacts/claude-code-safe/test-generation/clean/weak/output.md",
+          "artifact_path": "examples/evaluations/model-artifacts/claude-code-safe/test-generation/clean/weak/test_pricing.py",
+          "execution_command": "python -m pytest -q test_pricing.py",
+          "execution_result": {
+            "status": "passed",
+            "passed": true,
+            "exit_code": 0,
+            "stdout": "...................                                                      [100%]\n19 passed in 0.02s",
+            "stderr": "/Users/corbensorenson/miniforge3/lib/python3.9/site-packages/pytest_asyncio/plugin.py:208: PytestDeprecationWarning: The configuration option \"asyncio_default_fixture_loop_scope\" is unset.\nThe event loop scope for asynchronous fixtures will default to the fixture caching scope. Future versions of pytest-asyncio will default the loop scope for asynchronous fixtures to function scope. Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: \"function\", \"class\", \"module\", \"package\", \"session\"\n\n  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))",
+            "timeout_seconds": 20
+          },
+          "grader_version": "model-artifact-execution-v3.0.0"
+        },
+        {
+          "surface": "claude-code-safe",
+          "surface_id": "claude-code-safe",
+          "surface_kind": "claude-code",
+          "surface_label": "Claude Code CLI with tools disabled",
+          "tool_name": "Claude Code",
+          "tool_version": "2.1.185 (Claude Code)",
+          "model_name": "default",
+          "provenance": "project-owned",
+          "evidence_class": "project_owned_model_run",
+          "redaction_policy": "Public fixtures only; outputs are redacted for fixture canaries and forbidden operational strings before publication.",
+          "case_slug": "test-generation",
+          "tier": "clean",
+          "variant": "repaired",
+          "run_timestamp": "2026-07-02T08:38:50.902522+00:00",
+          "fixture_path": "examples/evaluations/fixtures/test-generation",
+          "prompt_path": "examples/evaluations/model-artifacts/claude-code-safe/test-generation/clean/repaired/prompt.md",
+          "transcript_path": "examples/evaluations/model-artifacts/claude-code-safe/test-generation/clean/repaired/output.md",
+          "artifact_path": "examples/evaluations/model-artifacts/claude-code-safe/test-generation/clean/repaired/test_pricing.py",
+          "execution_command": "python -m pytest -q test_pricing.py",
+          "execution_result": {
+            "status": "passed",
+            "passed": true,
+            "exit_code": 0,
+            "stdout": ".................                                                        [100%]\n17 passed in 0.02s",
+            "stderr": "/Users/corbensorenson/miniforge3/lib/python3.9/site-packages/pytest_asyncio/plugin.py:208: PytestDeprecationWarning: The configuration option \"asyncio_default_fixture_loop_scope\" is unset.\nThe event loop scope for asynchronous fixtures will default to the fixture caching scope. Future versions of pytest-asyncio will default the loop scope for asynchronous fixtures to function scope. Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: \"function\", \"class\", \"module\", \"package\", \"session\"\n\n  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))",
+            "timeout_seconds": 20
+          },
+          "grader_version": "model-artifact-execution-v3.0.0"
+        }
+      ]
+    }
+  }
+}

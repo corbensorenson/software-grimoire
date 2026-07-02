@@ -1,0 +1,2149 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>13&nbsp; Stackcraft – The Grimoire of Software Magic Words</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../chapters/09-tooling-and-formalization.html" rel="next">
+<link href="../chapters/07-public-canon.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-39ac65d2ba81e8f361d24188b4938e12.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../porting-status.html">Core Grimoire</a></li><li class="breadcrumb-item"><a href="../chapters/08-stackcraft.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Stackcraft</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">The Grimoire of Software Magic Words</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/corbensorenson/software-grimoire" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">The Grimoire of Software Magic Words</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../quick_start.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">First Spell in Five Minutes</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reader_path.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Guided Reader Path</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Core Grimoire</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../porting-status.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Porting Status</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../preface.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Preface</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/01-operative-language.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Operative Language</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/02-what-a-spell-is.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">What a Spell Is</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/03-crafting-spells.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Crafting Spells</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/04-sigils-canonicalization-and-seals.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Sigils, Canonicalization, and Seals</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/05-coil-inspection.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Coil Inspection</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/06-field-spells.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Field Spells</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/07-public-canon.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">The Public Canon</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/08-stackcraft.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Stackcraft</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/09-tooling-and-formalization.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Tooling and Formalization</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/10-living-practice.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Living Practice</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/11-adversarial-promptcraft.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Adversarial Promptcraft</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Spell Library</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../spells/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Spell Library</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../spells/safe-refactoring.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Spell of Safe Refactoring</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../spells/bug-diagnosis-from-logs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Spell of Bug Diagnosis from Logs</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../spells/api-design.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Spell of API Design</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../spells/migration-without-data-loss.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Spell of Migration Without Data Loss</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../spells/test-generation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Spell of Test Generation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../spells/performance-tuning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Spell of Performance Tuning</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../spells/jailbreak-resilience-review.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Spell of Jailbreak-Resilience Review</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Stack Library</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stacks/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Stack Library</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stacks/code-generation-and-repair-loop.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Code Generation and Repair Loop</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stacks/bug-hunt-stack.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Bug-Hunt Stack</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stacks/safe-refactor-stack.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Safe Refactor Stack</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stacks/live-migration-stack.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Live Migration Stack</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stacks/release-gate-stack.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Release Gate Stack</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stacks/recursive-decomposition-stack.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Recursive Decomposition Stack</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stacks/ai-red-team-loop.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">AI Red-Team Loop</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Proof by Difference Cases</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../examples/weak-vs-repaired/safe-refactoring.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Refactor Without Breaking Behavior</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../examples/weak-vs-repaired/bug-diagnosis-from-logs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Incident Diagnosis Without Fake Certainty</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../examples/weak-vs-repaired/api-design.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">API Design Without Hidden Compatibility Traps</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../examples/weak-vs-repaired/migration-without-data-loss.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Online Migration Without Data Loss</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../examples/weak-vs-repaired/test-generation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Test Generation Without Overfitting To Implementation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../examples/weak-vs-repaired/performance-tuning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Performance Tuning Without Micro-Optimization Drift</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Recorded Evaluations</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../examples/evaluations/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">Recorded Evaluations</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../examples/evaluations/safe-refactoring.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">Refactor Without Breaking Behavior</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../examples/evaluations/bug-diagnosis-from-logs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">Incident Diagnosis Without Fake Certainty</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../examples/evaluations/api-design.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">42</span>&nbsp; <span class="chapter-title">API Design Without Hidden Compatibility Traps</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../examples/evaluations/migration-without-data-loss.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">43</span>&nbsp; <span class="chapter-title">Online Migration Without Data Loss</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../examples/evaluations/test-generation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">44</span>&nbsp; <span class="chapter-title">Test Generation Without Overfitting To Implementation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../examples/evaluations/performance-tuning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">45</span>&nbsp; <span class="chapter-title">Performance Tuning Without Micro-Optimization Drift</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Jailbreak Resilience</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../examples/jailbreak-resilience/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">46</span>&nbsp; <span class="chapter-title">Jailbreak-Resilience Bench</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../examples/jailbreak-resilience/indirect-readme-injection.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">47</span>&nbsp; <span class="chapter-title">Indirect README Injection</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../examples/jailbreak-resilience/tainted-log-instruction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">48</span>&nbsp; <span class="chapter-title">Tainted Log Instruction</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../examples/jailbreak-resilience/rag-chunk-override.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">49</span>&nbsp; <span class="chapter-title">RAG Chunk Override</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../examples/jailbreak-resilience/system-prompt-leak-request.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">50</span>&nbsp; <span class="chapter-title">System-Prompt Leak Request</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../examples/jailbreak-resilience/multi-turn-scope-creep.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">51</span>&nbsp; <span class="chapter-title">Multi-Turn Scope Creep</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../examples/jailbreak-resilience/many-shot-policy-drift.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">52</span>&nbsp; <span class="chapter-title">Many-Shot Policy Drift</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../examples/jailbreak-resilience/forbidden-tool-call.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">53</span>&nbsp; <span class="chapter-title">Forbidden Tool Call</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../examples/jailbreak-resilience/canary-leakage.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">54</span>&nbsp; <span class="chapter-title">Canary Leakage</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
+ <span class="menu-text">Adoption Kit</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../adoption/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">55</span>&nbsp; <span class="chapter-title">Adoption Kit</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../adoption/installable-library.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">56</span>&nbsp; <span class="chapter-title">Installable Library</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../adoption/evidence.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">57</span>&nbsp; <span class="chapter-title">Adoption Evidence</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../adoption/playbook.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">58</span>&nbsp; <span class="chapter-title">Adoption Playbook</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../adoption/external-walkthrough.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">59</span>&nbsp; <span class="chapter-title">External Walkthrough</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true">
+ <span class="menu-text">Reference</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">60</span>&nbsp; <span class="chapter-title">Reference</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/cast-levels.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">61</span>&nbsp; <span class="chapter-title">Cast Levels</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/spell-skeleton.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">62</span>&nbsp; <span class="chapter-title">Canonical Spell Skeleton</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/stack-grammar.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">63</span>&nbsp; <span class="chapter-title">Stack Grammar</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/seals-and-sigils.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">64</span>&nbsp; <span class="chapter-title">Seals and Sigils</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/failure-modes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">65</span>&nbsp; <span class="chapter-title">Failure Modes</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/proof-by-difference.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">66</span>&nbsp; <span class="chapter-title">Proof by Difference</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/evidence-browser.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">67</span>&nbsp; <span class="chapter-title">Evidence Browser</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/calibration.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">68</span>&nbsp; <span class="chapter-title">Calibration</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/bench-v2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">69</span>&nbsp; <span class="chapter-title">Bench v2</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/execution-bench.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">70</span>&nbsp; <span class="chapter-title">Execution-Graded Bench</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/hardness-v4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">71</span>&nbsp; <span class="chapter-title">Bench v4 Hardness Ladder</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/model-artifact-execution.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">72</span>&nbsp; <span class="chapter-title">Model Artifact Execution</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/surface-comparison.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">73</span>&nbsp; <span class="chapter-title">Surface Comparison</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/jailbreak-resilience.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">74</span>&nbsp; <span class="chapter-title">Jailbreak Resilience</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/adversarial-harness.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">75</span>&nbsp; <span class="chapter-title">Adversarial Harness v2</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/warded-baselines.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">76</span>&nbsp; <span class="chapter-title">Warded Baselines</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/ward-science.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">77</span>&nbsp; <span class="chapter-title">Ward Science</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/warded-ab-evidence.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">78</span>&nbsp; <span class="chapter-title">Warded A/B Evidence</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/semantic-promotion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">79</span>&nbsp; <span class="chapter-title">Semantic Promotion Ladder</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/canon-audit.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">80</span>&nbsp; <span class="chapter-title">Canon Audit</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/usage-earned-canon.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">81</span>&nbsp; <span class="chapter-title">Usage-Earned Canon</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/canon-review-queue.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">82</span>&nbsp; <span class="chapter-title">Canon Review Queue</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/methods-structure-reviewability-warding.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">83</span>&nbsp; <span class="chapter-title">Methods: Structure, Reviewability, and Warding</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/logical-conclusion-status.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">84</span>&nbsp; <span class="chapter-title">Logical Conclusion Status</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/public-smoke-checks.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">85</span>&nbsp; <span class="chapter-title">Public Smoke Checks</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/package-index-release.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">86</span>&nbsp; <span class="chapter-title">Package-Index Release Plan</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/generator-architecture.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">87</span>&nbsp; <span class="chapter-title">Generator Architecture</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/visual-grammar.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">88</span>&nbsp; <span class="chapter-title">Visual Grammar</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/task-chooser.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">89</span>&nbsp; <span class="chapter-title">Task Chooser</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/canon-map.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">90</span>&nbsp; <span class="chapter-title">Canon Map</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/major-canon.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">91</span>&nbsp; <span class="chapter-title">The Fifty World-Running Words</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/pocket-canon.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">92</span>&nbsp; <span class="chapter-title">Pocket Canon</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/pocket-field-guide.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">93</span>&nbsp; <span class="chapter-title">Pocket Field Guide</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/term-index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">94</span>&nbsp; <span class="chapter-title">Term Index</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true">
+ <span class="menu-text">Master Lexicon</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/lexicon.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">95</span>&nbsp; <span class="chapter-title">Master Lexicon</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/house-architecture-abstraction-and-design.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">96</span>&nbsp; <span class="chapter-title">Architecture, Abstraction, and Design</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/house-language-semantics-and-formal-shape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">97</span>&nbsp; <span class="chapter-title">Language, Semantics, and Formal Shape</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/house-data-state-and-representation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">98</span>&nbsp; <span class="chapter-title">Data, State, and Representation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/house-transformation-algorithms-and-working-verbs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">99</span>&nbsp; <span class="chapter-title">Transformation, Algorithms, and Working Verbs</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/house-control-flow-coordination-and-temporal-logic.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">100</span>&nbsp; <span class="chapter-title">Control Flow, Coordination, and Temporal Logic</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/house-runtime-memory-and-execution.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">101</span>&nbsp; <span class="chapter-title">Runtime, Memory, and Execution</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/house-systems-programming-and-operating-system-words.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">102</span>&nbsp; <span class="chapter-title">Systems Programming and Operating-System Words</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/house-networking-and-distributed-systems.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">103</span>&nbsp; <span class="chapter-title">Networking and Distributed Systems</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/house-databases-persistence-and-time-binding-words.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">104</span>&nbsp; <span class="chapter-title">Databases, Persistence, and Time-Binding Words</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/house-security-trust-and-warding-words.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">105</span>&nbsp; <span class="chapter-title">Security, Trust, and Warding Words</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/house-build-tooling-versioning-and-release.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">106</span>&nbsp; <span class="chapter-title">Build, Tooling, Versioning, and Release</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/house-testing-verification-and-observability.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">107</span>&nbsp; <span class="chapter-title">Testing, Verification, and Observability</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/house-hardware-embedded-and-performance-near-words.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">108</span>&nbsp; <span class="chapter-title">Hardware, Embedded, and Performance-Near Words</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/house-interface-ux-and-human-facing-words.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">109</span>&nbsp; <span class="chapter-title">Interface, UX, and Human-Facing Words</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/house-promptcraft-ai-oriented-engineering-and-spell-structure.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">110</span>&nbsp; <span class="chapter-title">Promptcraft, AI-Oriented Engineering, and Spell Structure</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/house-guarantee-words-quality-attributes-and-behavioral-adjectives.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">111</span>&nbsp; <span class="chapter-title">Guarantee Words, Quality Attributes, and Behavioral Adjectives</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/house-failure-words-pathologies-and-counter-spells.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">112</span>&nbsp; <span class="chapter-title">Failure Words, Pathologies, and Counter-Spells</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/house-compound-forms-prefixes-suffixes-and-naming-runes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">113</span>&nbsp; <span class="chapter-title">Compound Forms, Prefixes, Suffixes, and Naming Runes</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#i.-why-stacks-exist" id="toc-i.-why-stacks-exist" class="nav-link active" data-scroll-target="#i.-why-stacks-exist"><span class="header-section-number">14</span> I. Why Stacks Exist</a></li>
+  <li><a href="#ii.-definitions" id="toc-ii.-definitions" class="nav-link" data-scroll-target="#ii.-definitions"><span class="header-section-number">15</span> II. Definitions</a></li>
+  <li><a href="#iii.-relation-to-the-existing-system" id="toc-iii.-relation-to-the-existing-system" class="nav-link" data-scroll-target="#iii.-relation-to-the-existing-system"><span class="header-section-number">16</span> III. Relation to the Existing System</a>
+  <ul class="collapse">
+  <li><a href="#a-compact-formalization-is-useful" id="toc-a-compact-formalization-is-useful" class="nav-link" data-scroll-target="#a-compact-formalization-is-useful"><span class="header-section-number">16.0.1</span> A compact formalization is useful:</a></li>
+  </ul></li>
+  <li><a href="#iv.-stack-grammar-and-notation" id="toc-iv.-stack-grammar-and-notation" class="nav-link" data-scroll-target="#iv.-stack-grammar-and-notation"><span class="header-section-number">17</span> IV. Stack Grammar and Notation</a>
+  <ul class="collapse">
+  <li><a href="#useful-control-operators" id="toc-useful-control-operators" class="nav-link" data-scroll-target="#useful-control-operators"><span class="header-section-number">17.0.1</span> Useful control operators:</a></li>
+  </ul></li>
+  <li><a href="#v.-the-laws-of-stackcraft" id="toc-v.-the-laws-of-stackcraft" class="nav-link" data-scroll-target="#v.-the-laws-of-stackcraft"><span class="header-section-number">18</span> V. The Laws of Stackcraft</a></li>
+  <li><a href="#vi.-canonical-forms" id="toc-vi.-canonical-forms" class="nav-link" data-scroll-target="#vi.-canonical-forms"><span class="header-section-number">19</span> VI. Canonical Forms</a></li>
+  <li><a href="#vii.-looped-stacks-and-recursive-stacks" id="toc-vii.-looped-stacks-and-recursive-stacks" class="nav-link" data-scroll-target="#vii.-looped-stacks-and-recursive-stacks"><span class="header-section-number">20</span> VII. Looped Stacks and Recursive Stacks</a></li>
+  <li><a href="#viii.-worked-spell-stacks" id="toc-viii.-worked-spell-stacks" class="nav-link" data-scroll-target="#viii.-worked-spell-stacks"><span class="header-section-number">21</span> VIII. Worked Spell Stacks</a>
+  <ul class="collapse">
+  <li><a href="#code-generation-and-repair-loop" id="toc-code-generation-and-repair-loop" class="nav-link" data-scroll-target="#code-generation-and-repair-loop"><span class="header-section-number">21.1</span> 1. Code Generation and Repair Loop</a></li>
+  <li><a href="#bug-hunt-stack" id="toc-bug-hunt-stack" class="nav-link" data-scroll-target="#bug-hunt-stack"><span class="header-section-number">21.2</span> 2. Bug-Hunt Stack</a></li>
+  <li><a href="#safe-refactor-stack" id="toc-safe-refactor-stack" class="nav-link" data-scroll-target="#safe-refactor-stack"><span class="header-section-number">21.3</span> 3. Safe Refactor Stack</a></li>
+  <li><a href="#live-migration-stack" id="toc-live-migration-stack" class="nav-link" data-scroll-target="#live-migration-stack"><span class="header-section-number">21.4</span> 4. Live Migration Stack</a></li>
+  <li><a href="#release-gate-stack" id="toc-release-gate-stack" class="nav-link" data-scroll-target="#release-gate-stack"><span class="header-section-number">21.5</span> 5. Release Gate Stack</a></li>
+  <li><a href="#recursive-decomposition-stack" id="toc-recursive-decomposition-stack" class="nav-link" data-scroll-target="#recursive-decomposition-stack"><span class="header-section-number">21.6</span> 6. Recursive Decomposition Stack</a></li>
+  <li><a href="#a-higher-order-example-macro-stacks" id="toc-a-higher-order-example-macro-stacks" class="nav-link" data-scroll-target="#a-higher-order-example-macro-stacks"><span class="header-section-number">21.7</span> A higher-order example: macro-stacks</a></li>
+  </ul></li>
+  <li><a href="#ix.-canonicalization-seals-and-numbering-for-stacks" id="toc-ix.-canonicalization-seals-and-numbering-for-stacks" class="nav-link" data-scroll-target="#ix.-canonicalization-seals-and-numbering-for-stacks"><span class="header-section-number">22</span> IX. Canonicalization, Seals, and Numbering for Stacks</a></li>
+  <li><a href="#x.-failure-modes-of-stacks" id="toc-x.-failure-modes-of-stacks" class="nav-link" data-scroll-target="#x.-failure-modes-of-stacks"><span class="header-section-number">23</span> X. Failure Modes of Stacks</a></li>
+  <li><a href="#xi.-closing-note" id="toc-xi.-closing-note" class="nav-link" data-scroll-target="#xi.-closing-note"><span class="header-section-number">24</span> XI. Closing Note</a>
+  <ul class="collapse">
+  <li><a href="#related-pages" id="toc-related-pages" class="nav-link" data-scroll-target="#related-pages"><span class="header-section-number">24.1</span> Related Pages</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/corbensorenson/software-grimoire/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li><li><a href="https://github.com/corbensorenson/software-grimoire/blob/main/chapters/08-stackcraft.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../porting-status.html">Core Grimoire</a></li><li class="breadcrumb-item"><a href="../chapters/08-stackcraft.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Stackcraft</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Stackcraft</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Addendum I</p>
+<p>On Stacked Spells</p>
+<p>Queues, Loops, and Recursive Rituals for Software Spellcraft</p>
+<p>A companion to Software Magic Grimoire v3 and Pocket Grimoire: Software Spellcraft</p>
+<p>Version 1.0 - March 2026</p>
+<table>
+<colgroup>
+<col style="width: 100%">
+</colgroup>
+<thead>
+<tr>
+<th>
+<p>
+<strong>Abstract</strong>
+</p>
+<p>
+The original grimoire defines the spell as the basic unit of software-operative language. This addendum introduces the spell stack: a named, reusable queue of spells cast in stable order with explicit handoffs, guards, and termination rules. Spell stacks are the missing middle layer between a single prompt and a full engineering campaign. They explain why competent AI-assisted software work rarely comes from one giant incantation. Real work alternates between discovery, design, generation, verification, repair, release, and rollback readiness. Stacks encode those alternations. This addendum defines stack structure, laws, notation, and composite seals, then gives examples of linear, guarded, looped, and recursive stacks. Looped stacks repeat until a measurable exit condition is satisfied. Recursive stacks call themselves on smaller scopes until a base case is reached. Together they extend the spell system from isolated prompts to reproducible multi-step operations.
+</p>
+</th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<p><em>A spell chooses a mode of action; a stack chooses an order of operations.</em></p>
+<section id="i.-why-stacks-exist" class="level1" data-number="14">
+<h1 data-number="14"><span class="header-section-number">14</span> I. Why Stacks Exist</h1>
+<p>A single spell can be powerful, but software work almost never stays in one cognitive mode for long. The same task may begin with discovery, pass into design, descend into implementation, halt for verification, and then branch into repair or release. When all of those modes are packed into one giant prompt, the model is asked to reason, decide, generate, critique, and certify all at once. That usually produces mush: too much breadth, too little accountability, and no obvious place to inspect failure.</p>
+<p>Spell stacks solve this by turning one large wish into a named procession of smaller casts. Each spell in the sequence has a job, an artifact to hand forward, and a condition that authorizes the next move. In ordinary engineering language, a stack is part playbook, part pipeline, part queue, part review discipline. In grimoire language, it is a repeatable choreography of force.</p>
+<p>The common case is simple: first this spell, then that one. But once the pattern is made explicit, richer forms appear naturally. Some sequences wait on guards. Some loop until a measurement clears a threshold. Some recurse into smaller scopes. Some are made of whole sub-stacks rather than single spells. Stacks are to spells what procedures are to statements, what release trains are to single commands, and what incident playbooks are to individual instincts.</p>
+</section>
+<section id="ii.-definitions" class="level1" data-number="15">
+<h1 data-number="15"><span class="header-section-number">15</span> II. Definitions</h1>
+<p>The terminology below makes spell stacks precise without draining them of usability.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Term</strong></th>
+<th><strong>Meaning</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Spell</strong></td>
+<td>A bounded operative instruction. In the grimoire, a spell is usually expressed through the limbs of role, objective, context, constraints, procedure, output, verification, and failure behavior.</td>
+</tr>
+<tr class="even">
+<td><strong>Spell stack</strong></td>
+<td>A named, reusable queue of spells cast in stable order. A stack includes handoffs, guards, and explicit entry and exit rules.</td>
+</tr>
+<tr class="odd">
+<td><strong>Stack frame</strong></td>
+<td>One invocation of one spell inside a stack, together with the local artifacts and state it receives.</td>
+</tr>
+<tr class="even">
+<td><strong>Handoff artifact</strong></td>
+<td>The concrete output passed from one spell to the next: a plan, a patch, a failing test, a metrics snapshot, a schema diff, an evidence bundle.</td>
+</tr>
+<tr class="odd">
+<td><strong>Guard</strong></td>
+<td>A condition that must be satisfied before the next spell may fire. Guards are usually verification, parity, approval, or threshold checks.</td>
+</tr>
+<tr class="even">
+<td><strong>Loop</strong></td>
+<td>A substack that repeats on the same scope until a measurable exit condition is met.</td>
+</tr>
+<tr class="odd">
+<td><strong>Recursion</strong></td>
+<td>A stack that calls itself on smaller scope until a base case is reached.</td>
+</tr>
+<tr class="even">
+<td><strong>Recovery path</strong></td>
+<td>The spell or substack invoked when the main line fails, stalls, or violates a guard.</td>
+</tr>
+</tbody>
+</table>
+<p>Despite the name, most spell stacks behave like queues in time: first cast, first handoff, next cast. They are called stacks because the spells accumulate, may nest, and may themselves be composed into higher-order structures. So the image is layered; the execution is usually sequential.</p>
+</section>
+<section id="iii.-relation-to-the-existing-system" class="level1" data-number="16">
+<h1 data-number="16"><span class="header-section-number">16</span> III. Relation to the Existing System</h1>
+<p>Spell stacks do not replace the spell. They sit above it. The individual spell remains the atomic unit of force; the stack is the reusable choreography that binds several spells into one operation.</p>
+<p><strong>1. Limbs are preserved.</strong> Each spell in a stack still carries whatever limbs it needs. Some frames are fast casts with only role, objective, context, and verify; others are full rituals with all eight limbs.</p>
+<p><strong>2. Cast levels become local.</strong> A single stack may contain minor casts for drafting, working casts for generation, and ritual casts for verification, migration, or release gating.</p>
+<p><strong>3. Sigils become composite.</strong> If a spell has a canonical form, then a stack has one too: an ordered composition of spell seals, transition operators, entry conditions, exit rules, and recovery paths.</p>
+<p><strong>4. Coils gain time.</strong> The coil diagram inspects the internal geometry of one spell. A stack can be thought of as a procession or braid of such coils through time. Repeated transitions become stable paths; loops create re-entry arcs; recursion creates nested descent.</p>
+<p><strong>5. The canon becomes operational.</strong> The lexicon lists words of force. Stacks are where those words are repeatedly made to work together: reproduce, instrument, patch, verify; expand, backfill, compare, cut over, rollback.</p>
+<section id="a-compact-formalization-is-useful" class="level3" data-number="16.0.1">
+<h3 data-number="16.0.1" class="anchored" data-anchor-id="a-compact-formalization-is-useful"><span class="header-section-number">16.0.1</span> A compact formalization is useful:</h3>
+<table>
+<colgroup>
+<col style="width: 100%">
+</colgroup>
+<thead>
+<tr>
+<th>
+<p>
+Let a spell be Sigma = (R, O, C, K, P, U, V, F),
+</p>
+<p>
+where omitted limbs are simply left blank in a lighter cast.
+</p>
+<p>
+Then a stack T may be written as:
+</p>
+<p>
+T = (E, Sigma1, tau1, Sigma2, tau2, … , tau(n-1), Sigman, X, Q)
+</p>
+<p>
+E = entry condition
+</p>
+<p>
+tau_i = transition rule or guard between spells
+</p>
+<p>
+X = exit condition
+</p>
+<p>
+Q = recovery map or failure path
+</p>
+</th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+</section>
+</section>
+<section id="iv.-stack-grammar-and-notation" class="level1" data-number="17">
+<h1 data-number="17"><span class="header-section-number">17</span> IV. Stack Grammar and Notation</h1>
+<p>A practical stack template should be readable by humans, castable by AI systems, and cleanly canonicalized for tooling.</p>
+<table>
+<colgroup>
+<col style="width: 100%">
+</colgroup>
+<thead>
+<tr>
+<th>
+<p>
+STACK &lt;Name&gt; v&lt;Version&gt;
+</p>
+<p>
+ENTER: &lt;when this stack is appropriate&gt;
+</p>
+<p>
+IN: &lt;artifacts or context required&gt;
+</p>
+<p>
+</p><ol type="1">
+<li>&lt;Spell Name&gt; [minor|working|ritual]
+<p></p>
+<p>
+OUT: &lt;artifact emitted&gt;
+</p>
+<p>
+ADVANCE WHEN: &lt;guard or transition rule&gt;
+</p>
+<p>
+</p><ol start="2" type="1">
+<li>&lt;Spell Name&gt; [cast level]
+<p></p>
+<p>
+OUT: &lt;artifact emitted&gt;
+</p>
+<p>
+ADVANCE WHEN: &lt;guard or transition rule&gt;
+</p>
+<p>
+LOOP &lt;steps a..b&gt; UNTIL &lt;exit condition&gt; # optional
+</p>
+<p>
+CALL &lt;Stack Name&gt;(&lt;smaller scope&gt;) # optional
+</p>
+<p>
+ON FAIL -&gt; &lt;Recovery Spell or Recovery Stack&gt; # optional
+</p>
+<p>
+EXIT: &lt;success condition&gt;
+</p>
+</li></ol></li></ol></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+
+
+<section id="useful-control-operators" class="level3" data-number="17.0.1">
+<h3 data-number="17.0.1" class="anchored" data-anchor-id="useful-control-operators"><span class="header-section-number">17.0.1</span> Useful control operators:</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Operator</strong></th>
+<th><strong>Meaning</strong></th>
+<th><strong>Typical use</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>-&gt;</strong></td>
+<td>Then / hand off</td>
+<td>Move from one spell to the next after the stated artifact is produced.</td>
+</tr>
+<tr class="even">
+<td><strong>[guard]</strong></td>
+<td>Gate before advance</td>
+<td>Require tests, approval, parity, or threshold checks before the next step.</td>
+</tr>
+<tr class="odd">
+<td><strong>LOOP</strong></td>
+<td>Repeat substack</td>
+<td>Use for debugging, optimization, repair, and parity verification.</td>
+</tr>
+<tr class="even">
+<td><strong>CALL</strong></td>
+<td>Recursive descent</td>
+<td>Invoke the same stack on a smaller module, service, file, or decision scope.</td>
+</tr>
+<tr class="odd">
+<td><strong>ON FAIL</strong></td>
+<td>Recovery path</td>
+<td>Rollback, escalate, preserve evidence, or switch to a repair stack.</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="v.-the-laws-of-stackcraft" class="level1" data-number="18">
+<h1 data-number="18"><span class="header-section-number">18</span> V. The Laws of Stackcraft</h1>
+<p><strong>1. Separate incompatible modes.</strong> Do not ask the same spell to discover facts, design the solution, implement code, and certify safety all at once.</p>
+<p><strong>2. Make every handoff concrete.</strong> A stack should pass artifacts, not vibes. Plans, diffs, traces, tests, and parity reports are better than vague summaries.</p>
+<p><strong>3. Name the gate between spells.</strong> Every meaningful transition should say what authorizes the next step.</p>
+<p><strong>4. Verify before irreversible action.</strong> Cutovers, deletes, merges, and releases should not happen on the same breath that invented them.</p>
+<p><strong>5. Loop on evidence, not on hope.</strong> A repeated substack must name the metric or observation that tells you whether progress is real.</p>
+<p><strong>6. Recurse only when scope narrows.</strong> If a recursive call is not moving to a smaller or simpler problem, it is not recursion; it is wandering.</p>
+<p><strong>7. Keep recovery nearby.</strong> Risky stacks should define rollback, escalation, or evidence-preservation spells before anything goes wrong.</p>
+<p><strong>8. Version repeated stacks.</strong> Once a choreography is reused, give it a name, a version, and a canonical seal.</p>
+</section>
+<section id="vi.-canonical-forms" class="level1" data-number="19">
+<h1 data-number="19"><span class="header-section-number">19</span> VI. Canonical Forms</h1>
+<p>Most practical stacks fall into a small set of recurring shapes.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Form</strong></th>
+<th><strong>Shape</strong></th>
+<th><strong>Best for</strong></th>
+<th><strong>Primary hazard</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Linear</strong></td>
+<td>A fixed queue of spells.</td>
+<td>Release, onboarding, migration, checklists.</td>
+<td>Hidden assumptions between steps.</td>
+</tr>
+<tr class="even">
+<td><strong>Guarded</strong></td>
+<td>A queue with explicit gates.</td>
+<td>Risky actions, deploys, schema changes.</td>
+<td>Skipping the gate under time pressure.</td>
+</tr>
+<tr class="odd">
+<td><strong>Branched</strong></td>
+<td>A queue that chooses from a few next spells.</td>
+<td>Triage, incident routing, support diagnosis.</td>
+<td>Branch explosion.</td>
+</tr>
+<tr class="even">
+<td><strong>Looped</strong></td>
+<td>A repeated substack on the same scope.</td>
+<td>Debugging, optimization, repair.</td>
+<td>Infinite spin without measurable progress.</td>
+</tr>
+<tr class="odd">
+<td><strong>Recursive</strong></td>
+<td>The same stack called on smaller scope.</td>
+<td>Large refactors, subsystem design, tree search.</td>
+<td>No base case or no scope reduction.</td>
+</tr>
+<tr class="even">
+<td><strong>Macro-stack</strong></td>
+<td>A stack made of named sub-stacks.</td>
+<td>Feature delivery, incident programs, agentic workflows.</td>
+<td>Process bloat.</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Source diagram reference preserved for the generated visual grammar: <code>media/image1.png</code>.</p>
+</div>
+</div>
+<p><em>Figure 1. Canonical spell stack forms. Linear stacks dominate ordinary work. Looped and recursive forms are advanced but extremely powerful when their exit rules are explicit.</em></p>
+</section>
+<section id="vii.-looped-stacks-and-recursive-stacks" class="level1" data-number="20">
+<h1 data-number="20"><span class="header-section-number">20</span> VII. Looped Stacks and Recursive Stacks</h1>
+<p>These two advanced forms are related but not identical. A loop revisits the same problem at the same level with improved evidence. Recursion descends into a smaller problem and then returns upward.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Question</strong></th>
+<th><strong>Looped stack</strong></th>
+<th><strong>Recursive stack</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>What repeats?</strong></td>
+<td>A substack on the same scope.</td>
+<td>The whole stack on smaller scope.</td>
+</tr>
+<tr class="even">
+<td><strong>What changes each pass?</strong></td>
+<td>Evidence, metrics, patch candidate, test state.</td>
+<td>Problem size, module boundary, search depth.</td>
+</tr>
+<tr class="odd">
+<td><strong>What ends it?</strong></td>
+<td>A measurable exit condition or attempt budget.</td>
+<td>A base case: small enough scope, solved leaf, or maximum depth.</td>
+</tr>
+<tr class="even">
+<td><strong>Typical use</strong></td>
+<td>Bug repair, performance tuning, backfill verification.</td>
+<td>Large refactors, subsystem decomposition, agentic planning trees.</td>
+</tr>
+<tr class="odd">
+<td><strong>Failure mode</strong></td>
+<td>Spin without progress.</td>
+<td>Explode in depth or lose contract consistency.</td>
+</tr>
+</tbody>
+</table>
+<p>The two can be combined. A recursive implementation stack may descend into smaller modules, while each leaf module uses a looped build-test-repair stack until its local verification passes.</p>
+</section>
+<section id="viii.-worked-spell-stacks" class="level1" data-number="21">
+<h1 data-number="21"><span class="header-section-number">21</span> VIII. Worked Spell Stacks</h1>
+<p>The examples below are intentionally practical. Each one names the queue, the handoff logic, and the exit rule. These are not the only valid stacks, but they are strong default choreographies for common software work.</p>
+<section id="code-generation-and-repair-loop" class="level2" data-number="21.1">
+<h2 data-number="21.1" class="anchored" data-anchor-id="code-generation-and-repair-loop"><span class="header-section-number">21.1</span> 1. Code Generation and Repair Loop</h2>
+<p>Use when an AI system is helping write or modify software and you want generation to stay tied to real execution evidence.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><strong>#</strong></th>
+<th><strong>Spell</strong></th>
+<th><strong>Artifact and advance rule</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><strong>1</strong></td>
+<td><strong>Specify</strong></td>
+<td>Emit a precise task statement, constraints, interfaces, and non-goals. Advance when the target is testable.</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><strong>2</strong></td>
+<td><strong>Draft</strong></td>
+<td>Produce the smallest plausible implementation or patch. Advance when the code compiles in principle and names assumptions.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><strong>3</strong></td>
+<td><strong>Run</strong></td>
+<td>Execute build, tests, linters, or type checks. Advance when the actual failures are captured verbatim.</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><strong>4</strong></td>
+<td><strong>Diagnose</strong></td>
+<td>Interpret failures using only the emitted evidence. Advance when the likely cause and repair surface are stated.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><strong>5</strong></td>
+<td><strong>Repair</strong></td>
+<td>Apply the smallest diff that addresses the diagnosed cause. Advance when the patch is explicit.</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><strong>6</strong></td>
+<td><strong>Verify</strong></td>
+<td>Re-run checks and summarize residual risk. Advance when the exit condition holds.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Loop rule:</strong> Repeat steps 3 through 6 until the checks pass, the error surface stabilizes without progress, or the attempt budget is exhausted.</p>
+<p><strong>On fail:</strong> Escalate with the full evidence bundle: spec, code diff, failing output, diagnostic notes, and unresolved assumptions.</p>
+<p><strong>Why it works:</strong> It separates invention from judgment. The model is allowed to generate code, but only a later spell is allowed to interpret the results.</p>
+</section>
+<section id="bug-hunt-stack" class="level2" data-number="21.2">
+<h2 data-number="21.2" class="anchored" data-anchor-id="bug-hunt-stack"><span class="header-section-number">21.2</span> 2. Bug-Hunt Stack</h2>
+<p>Use when a defect is real but the cause is not yet localized.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><strong>#</strong></th>
+<th><strong>Spell</strong></th>
+<th><strong>Artifact and advance rule</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><strong>1</strong></td>
+<td><strong>Reproduce</strong></td>
+<td>Create or tighten a stable reproduction. Advance when the failure can be triggered on demand.</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><strong>2</strong></td>
+<td><strong>Localize</strong></td>
+<td>Narrow the suspect surface to component, file, feature flag, or request path. Advance when the search field is smaller.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><strong>3</strong></td>
+<td><strong>Instrument</strong></td>
+<td>Add logging, traces, asserts, or counters. Advance when new evidence can distinguish hypotheses.</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><strong>4</strong></td>
+<td><strong>Hypothesize</strong></td>
+<td>State the likely failure mechanism and the smallest repair surface.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><strong>5</strong></td>
+<td><strong>Patch</strong></td>
+<td>Apply the minimal change that addresses the current hypothesis.</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><strong>6</strong></td>
+<td><strong>Verify</strong></td>
+<td>Confirm the defect is gone and run a regression sweep on neighboring behavior.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Loop rule:</strong> Repeat steps 2 through 6 until the bug is eliminated or the evidence stops improving.</p>
+<p><strong>On fail:</strong> Escalate to a deeper diagnostic stack; preserve the reproduction, traces, and last rejected hypotheses.</p>
+<p><strong>Why it works:</strong> The stack prevents the classic failure mode of patching before localization.</p>
+</section>
+<section id="safe-refactor-stack" class="level2" data-number="21.3">
+<h2 data-number="21.3" class="anchored" data-anchor-id="safe-refactor-stack"><span class="header-section-number">21.3</span> 3. Safe Refactor Stack</h2>
+<p>Use when the code structure must improve without changing externally visible behavior.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><strong>#</strong></th>
+<th><strong>Spell</strong></th>
+<th><strong>Artifact and advance rule</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><strong>1</strong></td>
+<td><strong>Freeze invariants</strong></td>
+<td>Name what must not change: API behavior, outputs, performance envelope, data semantics.</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><strong>2</strong></td>
+<td><strong>Characterize</strong></td>
+<td>Write or collect tests that pin current behavior.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><strong>3</strong></td>
+<td><strong>Reshape</strong></td>
+<td>Extract, rename, split, or simplify structure.</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><strong>4</strong></td>
+<td><strong>Static verify</strong></td>
+<td>Run type checks, linters, and architecture rules.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><strong>5</strong></td>
+<td><strong>Behavior verify</strong></td>
+<td>Run characterization tests and inspect semantic diffs.</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><strong>6</strong></td>
+<td><strong>Review</strong></td>
+<td>Look for leaky abstractions, drift, or renamed confusion before merge.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Loop rule:</strong> Repeat steps 3 through 5 until the desired structure is reached without invariant breakage.</p>
+<p><strong>On fail:</strong> Revert to the last green state and restate the invariants more precisely.</p>
+<p><strong>Why it works:</strong> It puts behavioral contracts in front of structural ambition.</p>
+</section>
+<section id="live-migration-stack" class="level2" data-number="21.4">
+<h2 data-number="21.4" class="anchored" data-anchor-id="live-migration-stack"><span class="header-section-number">21.4</span> 4. Live Migration Stack</h2>
+<p>Use when data, schemas, or infrastructure are changing in a live environment.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><strong>#</strong></th>
+<th><strong>Spell</strong></th>
+<th><strong>Artifact and advance rule</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><strong>1</strong></td>
+<td><strong>Inventory</strong></td>
+<td>Map the moving parts, dependencies, rollback boundary, and blast radius.</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><strong>2</strong></td>
+<td><strong>Prepare rollback</strong></td>
+<td>Take backups, snapshots, feature flags, or dual-read capability. Advance only when reversal is real.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><strong>3</strong></td>
+<td><strong>Expand compatibly</strong></td>
+<td>Add the new structure in a backward-compatible form.</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><strong>4</strong></td>
+<td><strong>Backfill</strong></td>
+<td>Populate the new representation without cutting off the old one.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><strong>5</strong></td>
+<td><strong>Compare parity</strong></td>
+<td>Measure whether old and new paths agree on real traffic or replayed fixtures.</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><strong>6</strong></td>
+<td><strong>Cut over</strong></td>
+<td>Switch reads or writes only after parity holds and rollback is live.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><strong>7</strong></td>
+<td><strong>Observe</strong></td>
+<td>Monitor errors, latency, drift, and rollback triggers during the live window.</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><strong>8</strong></td>
+<td><strong>Contract</strong></td>
+<td>Remove old paths after the safety window closes.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Loop rule:</strong> Repeat parity checks and observation windows until confidence is sufficient for cutover and contraction.</p>
+<p><strong>On fail:</strong> Rollback immediately using the prepared boundary; preserve divergence samples for the postmortem.</p>
+<p><strong>Why it works:</strong> The stack forces reversibility to exist before forward motion becomes expensive.</p>
+</section>
+<section id="release-gate-stack" class="level2" data-number="21.5">
+<h2 data-number="21.5" class="anchored" data-anchor-id="release-gate-stack"><span class="header-section-number">21.5</span> 5. Release Gate Stack</h2>
+<p>Use when a change set is already built and the question is whether it is ready to ship.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><strong>#</strong></th>
+<th><strong>Spell</strong></th>
+<th><strong>Artifact and advance rule</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><strong>1</strong></td>
+<td><strong>Assemble candidate</strong></td>
+<td>Freeze the release artifact and the exact config that will ship.</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><strong>2</strong></td>
+<td><strong>Quality gate</strong></td>
+<td>Run tests, static checks, dependency scans, and rollout prerequisites.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><strong>3</strong></td>
+<td><strong>Stage deploy</strong></td>
+<td>Ship to a staging or canary environment.</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><strong>4</strong></td>
+<td><strong>Observe</strong></td>
+<td>Inspect metrics, logs, traces, dashboards, and user-critical flows.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><strong>5</strong></td>
+<td><strong>Promote or rollback</strong></td>
+<td>Advance to broad release only if the guard remains green.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>On fail:</strong> Rollback the candidate and open a repair stack instead of arguing from hope.</p>
+<p><strong>Why it works:</strong> This is the shortest stack in the set, but it is one of the most important because it resists shipping by narrative alone.</p>
+</section>
+<section id="recursive-decomposition-stack" class="level2" data-number="21.6">
+<h2 data-number="21.6" class="anchored" data-anchor-id="recursive-decomposition-stack"><span class="header-section-number">21.6</span> 6. Recursive Decomposition Stack</h2>
+<p>Use when the task is too large for one spell or one session: a subsystem rewrite, a multi-package extraction, or an agentic planning tree. The trick is to recurse only while the scope is truly shrinking.</p>
+<table>
+<colgroup>
+<col style="width: 100%">
+</colgroup>
+<thead>
+<tr>
+<th>
+<p>
+STACK Implement-Subsystem(scope)
+</p>
+<p>
+ENTER: scope is too large, risky, or entangled for a one-pass spell
+</p>
+<p>
+IF scope &lt;= base_case:
+</p>
+<p>
+CAST Design-Implement-Verify(scope)
+</p>
+<p>
+RETURN
+</p>
+<p>
+CAST Define-Contract(scope)
+</p>
+<p>
+CAST Split-Into-Children(scope)
+</p>
+<p>
+FOR child IN children(scope):
+</p>
+<p>
+CALL Implement-Subsystem(child)
+</p>
+<p>
+CAST Integrate(scope)
+</p>
+<p>
+CAST System-Verify(scope)
+</p>
+<p>
+EXIT: children are green and the parent contract still holds
+</p>
+</th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<p>Base case: a scope small enough to be understood, implemented, and verified in one bounded pass.</p>
+<p>Primary hazard: fake recursion. If each descent merely renames the same giant problem, the stack will grow without solving anything.</p>
+<p>Why it works: it lets one named choreography operate at several scales while preserving contracts at every boundary.</p>
+</section>
+<section id="a-higher-order-example-macro-stacks" class="level2" data-number="21.7">
+<h2 data-number="21.7" class="anchored" data-anchor-id="a-higher-order-example-macro-stacks"><span class="header-section-number">21.7</span> A higher-order example: macro-stacks</h2>
+<p>Stacks can themselves be queued. A feature-delivery campaign, for example, can be modeled as:</p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 100%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Discovery Stack -&gt; Design Stack -&gt; Build Stack -&gt; Verification Stack -&gt; Release Stack</th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<p>That is a stack made of named sub-stacks rather than leaf spells. Once a team begins naming these macro-stacks, prompt practice starts to look less like ad hoc querying and more like versioned operational craft.</p>
+</section>
+</section>
+<section id="ix.-canonicalization-seals-and-numbering-for-stacks" class="level1" data-number="22">
+<h1 data-number="22"><span class="header-section-number">22</span> IX. Canonicalization, Seals, and Numbering for Stacks</h1>
+<p>Because the grimoire already defines canonical forms for individual spells, spell stacks can inherit the same discipline.</p>
+<p>A practical stack seal should be derived from a canonical stack stream. The stream should include, in order: the stack name and version, the entry condition, the ordered spell seals, the transition operators and guards between them, the exit rule, and the recovery path.</p>
+<table>
+<colgroup>
+<col style="width: 100%">
+</colgroup>
+<thead>
+<tr>
+<th>
+<p>
+Canonical stream example:
+</p>
+<p>
+STACK|CODE-REPAIR-LOOP|v1|ENTER:failing tests or precise spec|SPECIFY|THEN|DRAFT|THEN|RUN|THEN|DIAGNOSE|THEN|REPAIR|THEN|VERIFY|LOOP(3..6)|UNTIL:checks pass or budget exhausted|FAIL:escalate-with-evidence
+</p>
+<p>
+Formal sigil: Godel-encode the canonical token stream.
+</p>
+<p>
+Working seal: derive a short digest from that same stream for everyday use.
+</p>
+</th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<p>This keeps the theory and the practice aligned. The formal sigil provides exactness; the working seal provides usability. The numbers themselves may become astronomical, which is expected. In ordinary use, teams should handle the short seal, the name, and the version. The important part is that stack identity is determined by ordered choreography, not just by a title.</p>
+</section>
+<section id="x.-failure-modes-of-stacks" class="level1" data-number="23">
+<h1 data-number="23"><span class="header-section-number">23</span> X. Failure Modes of Stacks</h1>
+<p><strong>Monolithic relapse.</strong> A team names a stack but still hides most of the work in one bloated spell.</p>
+<p><strong>Invisible handoffs.</strong> The next spell depends on information that was never emitted as an artifact.</p>
+<p><strong>Gate skipping.</strong> A release, cutover, or merge advances without satisfying the stated guard.</p>
+<p><strong>Spin loops.</strong> A loop repeats without a metric, a budget, or a way to tell whether progress occurred.</p>
+<p><strong>Infinite descent.</strong> A recursive stack has no real base case or keeps re-creating the same scale of problem.</p>
+<p><strong>Process bloat.</strong> A tiny task is forced through a heavyweight stack that costs more than it saves.</p>
+<p><strong>Seal drift.</strong> The stack changes order or exit logic but keeps the old name and version, defeating reuse.</p>
+</section>
+<section id="xi.-closing-note" class="level1" data-number="24">
+<h1 data-number="24"><span class="header-section-number">24</span> XI. Closing Note</h1>
+<p>The single spell remains the elemental unit of software-operative language. The spell stack is the next layer up: the point where isolated prompts become repeatable craft.</p>
+<p>Once a sequence of casts is used again and again in stable order, it deserves a name. Once it has a name, it can be versioned. Once it is versioned, it can be taught, compared, sealed, and improved.</p>
+<p>That is the purpose of stacked spells. They let teams stop pretending that software work happens in one breath. They give shape to the real rhythm of engineering: discover, define, generate, test, repair, verify, release, recover.</p>
+<p><strong>Name the queue. Guard the transitions. Repeat only with evidence. Recurse only with a base case.</strong></p>
+<section id="related-pages" class="level2" data-number="24.1">
+<h2 data-number="24.1" class="anchored" data-anchor-id="related-pages"><span class="header-section-number">24.1</span> Related Pages</h2>
+<ul>
+<li><a href="../reference/stack-grammar.html">Stack Grammar</a></li>
+<li><a href="../stacks/index.html">Stack Library</a></li>
+<li><a href="../reference/failure-modes.html">Failure Modes</a></li>
+</ul>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/corbensorenson\.github\.io\/software-grimoire\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../chapters/07-public-canon.html" class="pagination-link" aria-label="The Public Canon">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">The Public Canon</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../chapters/09-tooling-and-formalization.html" class="pagination-link" aria-label="Tooling and Formalization">
+        <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Tooling and Formalization</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/corbensorenson/software-grimoire/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li><li><a href="https://github.com/corbensorenson/software-grimoire/blob/main/chapters/08-stackcraft.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div></div></footer></body></html>

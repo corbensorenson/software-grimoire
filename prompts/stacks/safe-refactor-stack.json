@@ -1,0 +1,76 @@
+{
+  "id": "stack.safe-refactor-stack.v1",
+  "title": "Safe Refactor Stack",
+  "version": 1,
+  "status": "canonical",
+  "enter": "Use when structure must improve without changing externally visible behavior.",
+  "inputs": [
+    "Task context",
+    "Relevant artifacts",
+    "Constraints",
+    "Verification expectations"
+  ],
+  "frames": [
+    {
+      "step": 1,
+      "spell": "Freeze invariants",
+      "artifact": "Behavior and data contracts",
+      "advance_when": "What must not change is named"
+    },
+    {
+      "step": 2,
+      "spell": "Characterize",
+      "artifact": "Tests or characterization evidence",
+      "advance_when": "Current behavior is pinned"
+    },
+    {
+      "step": 3,
+      "spell": "Reshape",
+      "artifact": "Structural patch",
+      "advance_when": "Structure improves without intentional behavior change"
+    },
+    {
+      "step": 4,
+      "spell": "Static verify",
+      "artifact": "Type, lint, and architecture check output",
+      "advance_when": "Static checks pass"
+    },
+    {
+      "step": 5,
+      "spell": "Behavior verify",
+      "artifact": "Characterization test output",
+      "advance_when": "Behavior evidence stays green"
+    },
+    {
+      "step": 6,
+      "spell": "Review",
+      "artifact": "Human review notes",
+      "advance_when": "No leaky abstractions, drift, or renamed confusion remain"
+    }
+  ],
+  "loop": {
+    "steps": [
+      3,
+      4,
+      5
+    ],
+    "until": "Desired structure is reached without invariant breakage"
+  },
+  "on_fail": "Revert to the last green state and restate invariants more precisely.",
+  "exit": "No leaky abstractions, drift, or renamed confusion remain",
+  "why_it_works": "It puts behavioral contracts in front of structural ambition.",
+  "source": "software_spellcraft_addendum_on_stacked_spells",
+  "human_title": "Safe Refactor Stack",
+  "working_seal": "stack://safe-refactor-stack/E351AC61F4",
+  "runes": [
+    1172,
+    1152,
+    1088,
+    1430,
+    1445
+  ],
+  "related_spells": [
+    "safe-refactoring",
+    "test-generation"
+  ]
+}

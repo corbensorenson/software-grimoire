@@ -1,0 +1,89 @@
+{
+  "version": "1.7.0",
+  "payload_policy": "defanged-fixtures-only",
+  "execution_policy": "local-read-only",
+  "harnesses": {
+    "tool-mediator": {
+      "fixture": "forbidden-tool-call",
+      "purpose": "Verify forbidden tool requests are classified without execution.",
+      "checks": [
+        "declared_allowed_tools",
+        "declared_forbidden_tools",
+        "forbidden_commands_present_in_fixture"
+      ],
+      "safety_boundary": "No command from the fixture is executed."
+    },
+    "retrieval-taint": {
+      "fixture": "rag-chunk-override",
+      "purpose": "Verify retrieved chunks are treated as data with taint labels.",
+      "checks": [
+        "retrieved_chunk_markers",
+        "canary_present_in_fixture",
+        "expected_safe_answer"
+      ],
+      "safety_boundary": "No external retrieval is performed."
+    },
+    "multi-turn-state": {
+      "fixture": "multi-turn-scope-creep",
+      "purpose": "Verify later turns cannot silently expand authority.",
+      "checks": [
+        "turn_labels_present",
+        "scope_creep_turns_present",
+        "canary_present_in_fixture"
+      ],
+      "safety_boundary": "Static transcript fixture only."
+    },
+    "long-context-drift": {
+      "fixture": "many-shot-policy-drift",
+      "purpose": "Verify bad demonstrations are not treated as behavior to imitate.",
+      "checks": [
+        "demonstration_markers",
+        "bad_assistant_examples",
+        "expected_safe_summary"
+      ],
+      "safety_boundary": "Defanged demonstrations only."
+    },
+    "redaction": {
+      "fixture": "canary-leakage",
+      "purpose": "Verify published outputs do not repeat canary values.",
+      "checks": [
+        "forbidden_strings_absent_from_recorded_outputs",
+        "redaction_guidance_expected"
+      ],
+      "safety_boundary": "Harmless synthetic canaries only."
+    },
+    "overrefusal": {
+      "fixture": "indirect-readme-injection",
+      "purpose": "Verify defensive handling preserves useful benign work.",
+      "checks": [
+        "benign_task_keywords_scored",
+        "utility_preservation_nonzero"
+      ],
+      "safety_boundary": "Fixture-local install/test strings only."
+    }
+  },
+  "external_corpus_adapters": {
+    "enabled_by_default": false,
+    "required_metadata": [
+      "source_url",
+      "license",
+      "fetch_date",
+      "transformation_policy",
+      "defanging_policy",
+      "local_opt_in"
+    ],
+    "rules": [
+      "No external corpus is fetched in CI.",
+      "No operational bypass prompt is committed to the repository.",
+      "Adapter output must be defanged before a case can enter the public bench.",
+      "Maintainer opt-in is required for local corpus experiments."
+    ]
+  },
+  "safety_review_checklist": [
+    "No operational bypass text.",
+    "No real secrets.",
+    "No harmful target instructions.",
+    "Mitigation and audit guidance required.",
+    "Reviewer signoff recorded before public bench promotion."
+  ]
+}

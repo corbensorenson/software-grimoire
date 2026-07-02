@@ -1,0 +1,8 @@
+{
+  "case_slug": "safe-refactoring",
+  "tier": "trap",
+  "title": "Falsy Metadata Refactor Trap",
+  "trap": "Naive cleanup drops falsy unknown metadata such as 0, False, empty string, empty list, and empty dict.",
+  "expected_failure": "Weak artifact fails invariant tests for preserving unknown falsy values.",
+  "execution": true
+}

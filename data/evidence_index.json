@@ -1,0 +1,291 @@
+{
+  "version": "3.0.0-evidence-index",
+  "generated_at": "2026-07-02T00:00:00Z",
+  "policy": "Calibration fixtures, project-owned model runs, local deterministic checks, reviewer imports, human audit, and adoption reports must remain separately labeled.",
+  "summary": {
+    "artifact_count": 18,
+    "available_artifacts": 18,
+    "project_owned_model_surfaces": [
+      "claude-code-safe",
+      "claude-code-safe:baseline",
+      "claude-code-safe:warded",
+      "codex-cli-default",
+      "codex-cli-default:baseline",
+      "codex-cli-default:warded"
+    ],
+    "project_owned_model_surface_count": 6,
+    "recorded_model_runs": 266,
+    "deterministic_execution_runs": 80,
+    "external_adoption_reports": 0,
+    "human_canon_signoff": "pending-human-maintainer-signoff"
+  },
+  "artifacts": [
+    {
+      "id": "field-spell-model-runs",
+      "title": "Field Spell Model Runs",
+      "path": "examples/evaluations/results.json",
+      "exists": true,
+      "bytes": 458254,
+      "evidence_class": "project_owned_model_run",
+      "calibration_role": "benchmark_evidence",
+      "claim_scope": "Weak/repaired prompt behavior on clean and trap fixtures for named local model/tool surfaces.",
+      "generated_at": "2026-07-02T12:44:28.207381+00:00",
+      "surfaces": [
+        "claude-code-safe",
+        "codex-cli-default"
+      ],
+      "run_count": 96
+    },
+    {
+      "id": "fixture-local-execution",
+      "title": "Fixture-Local Execution Results",
+      "path": "examples/evaluations/execution-results.json",
+      "exists": true,
+      "bytes": 27174,
+      "evidence_class": "local_deterministic_execution",
+      "calibration_role": "execution_evidence",
+      "claim_scope": "Saved project artifacts pass or fail fixture-local checks; non-executable cases state documented reasons.",
+      "generated_at": "2026-07-02T00:00:00Z",
+      "surfaces": [
+        "codex-cli-default",
+        "local-deterministic-grader"
+      ],
+      "run_count": 24
+    },
+    {
+      "id": "model-produced-artifact-execution",
+      "title": "Model-Produced Artifact Execution",
+      "path": "examples/evaluations/model-execution-results.json",
+      "exists": true,
+      "bytes": 14946,
+      "evidence_class": "local_deterministic_execution",
+      "calibration_role": "execution_evidence",
+      "claim_scope": "Model outputs are extracted into files and graded inside repo-local fixture sandboxes.",
+      "generated_at": "2026-07-02T08:38:01.379783+00:00",
+      "surfaces": [
+        "claude-code-safe"
+      ],
+      "run_count": 6
+    },
+    {
+      "id": "hardness-v4-seed",
+      "title": "Bench v4 Hardness Ladder Seed",
+      "path": "examples/evaluations/hardness-v4/results.json",
+      "exists": true,
+      "bytes": 116940,
+      "evidence_class": "local_deterministic_execution",
+      "calibration_role": "execution_evidence",
+      "claim_scope": "Weak/repaired seed artifacts are executed across ambiguity, hidden-invariant, misleading-context, blast-radius, and agentic hardness rungs.",
+      "generated_at": "2026-07-02T00:00:00Z",
+      "surfaces": [
+        "local-deterministic-grader"
+      ],
+      "run_count": 50
+    },
+    {
+      "id": "hardness-v4-model-surfaces",
+      "title": "Bench v4 Model-Surface Hardness Runs",
+      "path": "examples/evaluations/hardness-v4/model-surface-results.json",
+      "exists": true,
+      "bytes": 174918,
+      "evidence_class": "project_owned_model_run",
+      "calibration_role": "benchmark_evidence",
+      "claim_scope": "Model-produced artifacts are extracted from named local model/tool surfaces and graded against hidden Bench v4 fixture checks.",
+      "generated_at": "2026-07-02T14:19:12.649306+00:00",
+      "surfaces": [
+        "codex-cli-default"
+      ],
+      "run_count": 50
+    },
+    {
+      "id": "hardness-intake-decision-template",
+      "title": "Bench v4 Hardness Intake Decision Template",
+      "path": "examples/evaluations/hardness-v4/hardness-intake-decision-template.json",
+      "exists": true,
+      "bytes": 1553,
+      "evidence_class": "reviewer_supplied_model_run",
+      "calibration_role": "external_hardness_intake",
+      "claim_scope": "Schema-valid pending maintainer decision template for accepting and publishing real non-Codex or reviewer-supplied Bench v4 hardness imports; does not count as cross-surface evidence.",
+      "generated_at": "pending-maintainer",
+      "surfaces": [],
+      "run_count": 2,
+      "passed": false
+    },
+    {
+      "id": "jailbreak-resilience-model-runs",
+      "title": "Jailbreak-Resilience Model Runs",
+      "path": "examples/jailbreak-resilience/results.json",
+      "exists": true,
+      "bytes": 81059,
+      "evidence_class": "project_owned_model_run",
+      "calibration_role": "security_benchmark_evidence",
+      "claim_scope": "Defensive red-team transcripts over defanged fixtures for named local model/tool surfaces.",
+      "generated_at": "2026-07-02T05:50:55.111586+00:00",
+      "surfaces": [
+        "codex-cli-default"
+      ],
+      "run_count": 24
+    },
+    {
+      "id": "local-warded-baseline",
+      "title": "Local Warded Baseline Matrix",
+      "path": "examples/jailbreak-resilience/baseline-results.json",
+      "exists": true,
+      "bytes": 20089,
+      "evidence_class": "local_deterministic_control",
+      "calibration_role": "control_evidence",
+      "claim_scope": "Repository-owned unwarded/warded controls over defanged fixtures.",
+      "generated_at": null,
+      "surfaces": [
+        "local-unwarded-control",
+        "local-warded-reviewer"
+      ],
+      "run_count": 16
+    },
+    {
+      "id": "ward-science-seed",
+      "title": "Ward Science Seed",
+      "path": "examples/jailbreak-resilience/ward-science-results.json",
+      "exists": true,
+      "bytes": 4513,
+      "evidence_class": "local_deterministic_control",
+      "calibration_role": "control_evidence",
+      "claim_scope": "Deterministic ward-limb ablation seed and additional defanged attack-shape catalog.",
+      "generated_at": null,
+      "surfaces": [
+        "local-ward-limb-control"
+      ],
+      "run_count": 6
+    },
+    {
+      "id": "real-warded-ab",
+      "title": "Real Surface Warded A/B Runs",
+      "path": "examples/jailbreak-resilience/ab-results.json",
+      "exists": true,
+      "bytes": 360185,
+      "evidence_class": "project_owned_model_run",
+      "calibration_role": "security_benchmark_evidence",
+      "claim_scope": "A/B transcripts comparing unwarded and warded prompts on real local model surfaces with publication redaction.",
+      "generated_at": "2026-07-02T13:11:05.641304+00:00",
+      "surfaces": [
+        "claude-code-safe:baseline",
+        "claude-code-safe:warded",
+        "codex-cli-default:baseline",
+        "codex-cli-default:warded"
+      ],
+      "run_count": 96
+    },
+    {
+      "id": "adoption-intake-decision-template",
+      "title": "Adoption Intake Decision Template",
+      "path": "examples/adoption/adoption-intake-decision-template.json",
+      "exists": true,
+      "bytes": 1287,
+      "evidence_class": "adoption_report",
+      "calibration_role": "external_adoption_intake",
+      "claim_scope": "Schema-valid pending maintainer decision template for accepting and publishing real non-maintainer adoption reports; does not count as adoption evidence.",
+      "generated_at": "pending-maintainer",
+      "surfaces": [],
+      "run_count": 2,
+      "passed": false
+    },
+    {
+      "id": "canon-review-queue",
+      "title": "Canon Review Queue",
+      "path": "data/canon_review_queue.json",
+      "exists": true,
+      "bytes": 27477,
+      "evidence_class": "human_audit_pending",
+      "calibration_role": "governance_evidence",
+      "claim_scope": "Bounded usage-earned canonical review queue prepared for human maintainer decisions.",
+      "generated_at": "2026-07-02T00:00:00Z",
+      "surfaces": [],
+      "run_count": 19,
+      "passed": false
+    },
+    {
+      "id": "canon-audit-decision-template",
+      "title": "Canon Audit Decision Template",
+      "path": "examples/canon/canon-audit-decision-template.json",
+      "exists": true,
+      "bytes": 1403,
+      "evidence_class": "human_audit_pending",
+      "calibration_role": "governance_evidence",
+      "claim_scope": "Schema-valid pending template and validator target for a named maintainer canon-audit decision; does not prove signoff.",
+      "generated_at": "pending-human-maintainer",
+      "surfaces": [],
+      "run_count": 3,
+      "passed": false
+    },
+    {
+      "id": "logical-conclusion-status",
+      "title": "Logical Conclusion Status",
+      "path": "data/logical_conclusion_status.json",
+      "exists": true,
+      "bytes": 40971,
+      "evidence_class": "roadmap_acceptance_status",
+      "calibration_role": "release_readiness",
+      "claim_scope": "All 90 roadmap acceptance criteria are mapped to evidence, explicit blockers, and non-fabrication gates.",
+      "generated_at": "2026-07-02T00:00:00Z",
+      "surfaces": [],
+      "run_count": 90,
+      "passed": false
+    },
+    {
+      "id": "package-check",
+      "title": "Public Package Build and Install Check",
+      "path": "examples/adoption/package-check.json",
+      "exists": true,
+      "bytes": 20229,
+      "evidence_class": "packaging_or_release_check",
+      "calibration_role": "release_evidence",
+      "claim_scope": "The wheel/sdist build, temporary install, and console scripts work in the current environment.",
+      "generated_at": "2026-07-02T20:04:55.781098+00:00",
+      "surfaces": [],
+      "run_count": 15,
+      "passed": true
+    },
+    {
+      "id": "package-index-release-plan",
+      "title": "Package-Index Release Plan",
+      "path": "examples/adoption/package-index-release-plan.json",
+      "exists": true,
+      "bytes": 2629,
+      "evidence_class": "packaging_or_release_check",
+      "calibration_role": "release_materials",
+      "claim_scope": "Human-upload package-index release instructions and checks are prepared; upload remains pending.",
+      "generated_at": null,
+      "surfaces": [],
+      "run_count": 11,
+      "passed": false
+    },
+    {
+      "id": "package-index-smoke-template",
+      "title": "Package-Index Smoke Template",
+      "path": "examples/adoption/package-index-smoke-template.json",
+      "exists": true,
+      "bytes": 924,
+      "evidence_class": "packaging_or_release_check",
+      "calibration_role": "release_materials",
+      "claim_scope": "Schema-valid pending template for post-human-upload public-index install smoke evidence; does not prove upload.",
+      "generated_at": "pending-human-upload",
+      "surfaces": [],
+      "run_count": 1,
+      "passed": false
+    },
+    {
+      "id": "public-smoke-check",
+      "title": "Public Site Smoke Check",
+      "path": "examples/release-gate/public-smoke-check.json",
+      "exists": true,
+      "bytes": 3608,
+      "evidence_class": "packaging_or_release_check",
+      "calibration_role": "release_evidence",
+      "claim_scope": "Rendered local site resources and optionally live GitHub Pages URLs resolve.",
+      "generated_at": "2026-07-02T20:08:24.139997+00:00",
+      "surfaces": [],
+      "run_count": 28,
+      "passed": true
+    }
+  ]
+}

@@ -1,0 +1,48 @@
+```json path=handoff.json
+{
+  "release_handoff": {
+    "artifact_boundary": {
+      "allowed_output_paths": [
+        "handoff.json"
+      ],
+      "out_of_scope_files_preserved": []
+    },
+    "scratch": {
+      "root": ".bench/scratch/release-handoff",
+      "policy": "repo-local-only"
+    },
+    "tool_allowlist": [
+      "apply_patch",
+      "cat",
+      "git diff",
+      "jq",
+      "rg"
+    ],
+    "gates": [
+      {
+        "name": "artifact_path_check",
+        "status": "passed",
+        "evidence": "Only handoff.json is included in the replacement artifact."
+      },
+      {
+        "name": "scratch_path_check",
+        "status": "passed",
+        "evidence": "Scratch root is .bench/scratch/release-handoff, a repository-relative path."
+      },
+      {
+        "name": "approval_claim_check",
+        "status": "passed",
+        "evidence": "No human approval, external signoff, network access, or device-global scratch path is claimed."
+      }
+    ],
+    "human_approval": {
+      "claimed": false,
+      "status": "not_requested"
+    },
+    "network_access": {
+      "required": false,
+      "used": false
+    }
+  }
+}
+```

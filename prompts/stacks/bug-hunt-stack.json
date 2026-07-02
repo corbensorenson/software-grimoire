@@ -1,0 +1,78 @@
+{
+  "id": "stack.bug-hunt-stack.v1",
+  "title": "Bug-Hunt Stack",
+  "version": 1,
+  "status": "canonical",
+  "enter": "Use when a defect is real but the cause is not yet localized.",
+  "inputs": [
+    "Task context",
+    "Relevant artifacts",
+    "Constraints",
+    "Verification expectations"
+  ],
+  "frames": [
+    {
+      "step": 1,
+      "spell": "Reproduce",
+      "artifact": "Stable reproduction",
+      "advance_when": "The failure can be triggered on demand"
+    },
+    {
+      "step": 2,
+      "spell": "Localize",
+      "artifact": "Smaller suspect surface",
+      "advance_when": "The search field is smaller"
+    },
+    {
+      "step": 3,
+      "spell": "Instrument",
+      "artifact": "Logs, traces, asserts, or counters",
+      "advance_when": "New evidence can distinguish hypotheses"
+    },
+    {
+      "step": 4,
+      "spell": "Hypothesize",
+      "artifact": "Likely failure mechanism",
+      "advance_when": "Repair surface is stated"
+    },
+    {
+      "step": 5,
+      "spell": "Patch",
+      "artifact": "Minimal change",
+      "advance_when": "Patch matches current hypothesis"
+    },
+    {
+      "step": 6,
+      "spell": "Verify",
+      "artifact": "Regression sweep",
+      "advance_when": "Defect is gone and neighboring behavior is checked"
+    }
+  ],
+  "loop": {
+    "steps": [
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "until": "The bug is eliminated or evidence stops improving"
+  },
+  "on_fail": "Escalate to a deeper diagnostic stack and preserve reproduction, traces, and rejected hypotheses.",
+  "exit": "Defect is gone and neighboring behavior is checked",
+  "why_it_works": "It prevents patching before localization.",
+  "source": "software_spellcraft_addendum_on_stacked_spells",
+  "human_title": "Bug-Hunt Stack",
+  "working_seal": "stack://bug-hunt-stack/08B5079286",
+  "runes": [
+    1180,
+    1204,
+    1172,
+    1562,
+    1445
+  ],
+  "related_spells": [
+    "bug-diagnosis-from-logs",
+    "test-generation"
+  ]
+}

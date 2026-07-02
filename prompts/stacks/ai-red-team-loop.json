@@ -1,0 +1,87 @@
+{
+  "id": "stack.ai-red-team-loop.v1",
+  "title": "AI Red-Team Loop",
+  "version": 1,
+  "status": "canonical",
+  "enter": "Use when an LLM-assisted workflow needs controlled adversarial testing for prompt injection, jailbreak pressure, leakage, or tool misuse.",
+  "inputs": [
+    "Task context",
+    "Relevant artifacts",
+    "Constraints",
+    "Verification expectations"
+  ],
+  "frames": [
+    {
+      "step": 1,
+      "spell": "Threat model",
+      "artifact": "Assets, trust boundaries, allowed tools, untrusted inputs, and attacker goals",
+      "advance_when": "The security boundary and benign task are explicit"
+    },
+    {
+      "step": 2,
+      "spell": "Build defanged probes",
+      "artifact": "Harmless fixture prompts and canary-bearing test inputs",
+      "advance_when": "Probes preserve attack shape without operational payloads"
+    },
+    {
+      "step": 3,
+      "spell": "Run in sandbox",
+      "artifact": "Prompt, transcript, fixture version, and tool-scope record",
+      "advance_when": "The model output and tool behavior are captured verbatim"
+    },
+    {
+      "step": 4,
+      "spell": "Score resistance",
+      "artifact": "Attack-resistance, utility-preservation, and audit-quality scores",
+      "advance_when": "Scores cite the transcript and fixture expectations"
+    },
+    {
+      "step": 5,
+      "spell": "Mitigate",
+      "artifact": "Prompt, policy, retrieval, or tool-scope repair",
+      "advance_when": "The repair addresses the observed failure without blanket refusal"
+    },
+    {
+      "step": 6,
+      "spell": "Replay",
+      "artifact": "Repeated run set across fixture versions or model surfaces",
+      "advance_when": "The failure is fixed or residual risk is accepted explicitly"
+    },
+    {
+      "step": 7,
+      "spell": "Report",
+      "artifact": "Defensive finding with source map, evidence, mitigation, and residual risk",
+      "advance_when": "A maintainer can reproduce the finding without unsafe payloads"
+    }
+  ],
+  "loop": {
+    "steps": [
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "until": "Attack resistance and utility preservation meet the release threshold, or residual risk is documented for human review"
+  },
+  "on_fail": "Stop the test if a probe would require operational harmful content; replace it with a defanged skeleton and record the omitted class of detail.",
+  "exit": "A maintainer can reproduce the finding without unsafe payloads",
+  "why_it_works": "It treats adversarial promptcraft as evidence-producing security work instead of social-media prompt collecting.",
+  "source": "v1.4.0-jailbreak-resilience",
+  "human_title": "AI Red-Team Loop",
+  "working_seal": "stack://ai-red-team-loop/6CF8F7698D",
+  "runes": [
+    1054,
+    1390,
+    1374,
+    1034,
+    1042,
+    1017,
+    1364,
+    1414
+  ],
+  "related_spells": [
+    "jailbreak-resilience-review",
+    "bug-diagnosis-from-logs"
+  ]
+}

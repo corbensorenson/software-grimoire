@@ -1,0 +1,55 @@
+{
+  "scratch_root": "tmp/agentic-release-handoff",
+  "allowlist": ["read-fixture", "write-artifact", "run-tests", "record-evidence"],
+  "steps": [
+    {
+      "name": "inspect-fixture",
+      "tool": "read-fixture",
+      "inputs": ["context.md", "ground_truth.json"],
+      "outputs": []
+    },
+    {
+      "name": "write-handoff",
+      "tool": "write-artifact",
+      "inputs": ["ground_truth.json"],
+      "outputs": ["tmp/agentic-release-handoff/handoff.json"]
+    },
+    {
+      "name": "run-local-check",
+      "tool": "run-tests",
+      "inputs": ["check_handoff.py"],
+      "outputs": ["tmp/agentic-release-handoff/pytest.txt"]
+    },
+    {
+      "name": "record-evidence",
+      "tool": "record-evidence",
+      "inputs": ["tmp/agentic-release-handoff/pytest.txt"],
+      "outputs": ["tmp/agentic-release-handoff/result.json"]
+    }
+  ],
+  "gates": [
+    {
+      "name": "preflight",
+      "passed": true,
+      "evidence": "all scratch and artifact paths are repo-local"
+    },
+    {
+      "name": "execution",
+      "passed": true,
+      "evidence": "handoff declares the local pytest check"
+    },
+    {
+      "name": "evidence",
+      "passed": true,
+      "evidence": "result artifact is recorded for human review"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "tmp/agentic-release-handoff/result.json",
+      "provenance": "repo-local deterministic control"
+    }
+  ],
+  "final_status": "ready-for-human-review",
+  "human_signoff": "pending"
+}

@@ -1,0 +1,8 @@
+{
+  "case_slug": "migration-without-data-loss",
+  "tier": "trap",
+  "title": "Dirty Backfill Trap",
+  "trap": "A poisoned row looks parseable until timezone, partial-date, and unknown-value policy are made explicit.",
+  "expected_failure": "Weak migration proposes direct conversion before dirty-row quarantine and parity checks.",
+  "execution": false
+}

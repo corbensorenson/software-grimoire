@@ -1,0 +1,78 @@
+{
+  "id": "stack.code-generation-and-repair-loop.v1",
+  "title": "Code Generation and Repair Loop",
+  "version": 1,
+  "status": "canonical",
+  "enter": "Use when an AI system is helping write or modify software and generation should stay tied to execution evidence.",
+  "inputs": [
+    "Task context",
+    "Relevant artifacts",
+    "Constraints",
+    "Verification expectations"
+  ],
+  "frames": [
+    {
+      "step": 1,
+      "spell": "Specify",
+      "artifact": "Precise task statement, constraints, interfaces, and non-goals",
+      "advance_when": "The target is testable"
+    },
+    {
+      "step": 2,
+      "spell": "Draft",
+      "artifact": "Smallest plausible implementation or patch",
+      "advance_when": "The code compiles in principle and names assumptions"
+    },
+    {
+      "step": 3,
+      "spell": "Run",
+      "artifact": "Build, test, lint, or type-check output",
+      "advance_when": "Actual failures are captured verbatim"
+    },
+    {
+      "step": 4,
+      "spell": "Diagnose",
+      "artifact": "Likely cause and repair surface",
+      "advance_when": "The diagnosis uses only emitted evidence"
+    },
+    {
+      "step": 5,
+      "spell": "Repair",
+      "artifact": "Smallest diff addressing the diagnosed cause",
+      "advance_when": "The patch is explicit"
+    },
+    {
+      "step": 6,
+      "spell": "Verify",
+      "artifact": "Check results and residual risk",
+      "advance_when": "Checks pass or residual risk is clearly bounded"
+    }
+  ],
+  "loop": {
+    "steps": [
+      3,
+      4,
+      5,
+      6
+    ],
+    "until": "Checks pass, error surface stabilizes without progress, or attempt budget is exhausted"
+  },
+  "on_fail": "Escalate with spec, code diff, failing output, diagnostic notes, and unresolved assumptions.",
+  "exit": "Checks pass or residual risk is clearly bounded",
+  "why_it_works": "It separates invention from judgment and binds repair to execution evidence.",
+  "source": "software_spellcraft_addendum_on_stacked_spells",
+  "human_title": "Code Generation and Repair Loop",
+  "working_seal": "stack://code-generation-and-repair-loop/DBD637DB96",
+  "runes": [
+    1088,
+    1146,
+    1172,
+    1180,
+    1485
+  ],
+  "related_spells": [
+    "test-generation",
+    "bug-diagnosis-from-logs",
+    "safe-refactoring"
+  ]
+}

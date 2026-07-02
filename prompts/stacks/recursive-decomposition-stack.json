@@ -1,0 +1,67 @@
+{
+  "id": "stack.recursive-decomposition-stack.v1",
+  "title": "Recursive Decomposition Stack",
+  "version": 1,
+  "status": "canonical",
+  "enter": "Use when the task is too large for one spell or one session and scope can shrink recursively.",
+  "inputs": [
+    "Task context",
+    "Relevant artifacts",
+    "Constraints",
+    "Verification expectations"
+  ],
+  "frames": [
+    {
+      "step": 1,
+      "spell": "Define contract",
+      "artifact": "Parent contract",
+      "advance_when": "Boundary and obligations are clear"
+    },
+    {
+      "step": 2,
+      "spell": "Split into children",
+      "artifact": "Smaller scopes",
+      "advance_when": "Every child is smaller than parent scope"
+    },
+    {
+      "step": 3,
+      "spell": "Call child stack",
+      "artifact": "Solved child scope",
+      "advance_when": "Child base case or child verification passes"
+    },
+    {
+      "step": 4,
+      "spell": "Integrate",
+      "artifact": "Integrated parent scope",
+      "advance_when": "Children compose under parent contract"
+    },
+    {
+      "step": 5,
+      "spell": "System verify",
+      "artifact": "Parent verification evidence",
+      "advance_when": "Children are green and parent contract holds"
+    }
+  ],
+  "loop": {
+    "recursive": true,
+    "base_case": "Scope is small enough to understand, implement, and verify in one bounded pass"
+  },
+  "on_fail": "Stop descent if child scopes do not shrink or contract consistency is lost.",
+  "exit": "Children are green and parent contract holds",
+  "why_it_works": "It lets one choreography operate at several scales while preserving contracts at every boundary.",
+  "source": "software_spellcraft_addendum_on_stacked_spells",
+  "human_title": "Recursive Decomposition Stack",
+  "working_seal": "stack://recursive-decomposition-stack/9E9D03E9C0",
+  "runes": [
+    12,
+    55,
+    1172,
+    1437,
+    1445
+  ],
+  "related_spells": [
+    "api-design",
+    "safe-refactoring",
+    "test-generation"
+  ]
+}

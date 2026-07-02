@@ -1,0 +1,2386 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>41&nbsp; Incident Diagnosis Without Fake Certainty – The Grimoire of Software Magic Words</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../examples/evaluations/api-design.html" rel="next">
+<link href="../../examples/evaluations/safe-refactoring.html" rel="prev">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-39ac65d2ba81e8f361d24188b4938e12.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../examples/evaluations/index.html">Recorded Evaluations</a></li><li class="breadcrumb-item"><a href="../../examples/evaluations/bug-diagnosis-from-logs.html"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">Incident Diagnosis Without Fake Certainty</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../../">The Grimoire of Software Magic Words</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/corbensorenson/software-grimoire" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">The Grimoire of Software Magic Words</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../quick_start.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">First Spell in Five Minutes</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../reader_path.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Guided Reader Path</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Core Grimoire</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../porting-status.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Porting Status</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../preface.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Preface</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/01-operative-language.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Operative Language</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/02-what-a-spell-is.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">What a Spell Is</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/03-crafting-spells.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Crafting Spells</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/04-sigils-canonicalization-and-seals.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Sigils, Canonicalization, and Seals</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/05-coil-inspection.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Coil Inspection</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/06-field-spells.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Field Spells</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/07-public-canon.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">The Public Canon</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/08-stackcraft.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Stackcraft</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/09-tooling-and-formalization.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Tooling and Formalization</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/10-living-practice.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Living Practice</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/11-adversarial-promptcraft.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Adversarial Promptcraft</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Spell Library</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../spells/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Spell Library</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../spells/safe-refactoring.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Spell of Safe Refactoring</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../spells/bug-diagnosis-from-logs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Spell of Bug Diagnosis from Logs</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../spells/api-design.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Spell of API Design</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../spells/migration-without-data-loss.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Spell of Migration Without Data Loss</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../spells/test-generation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Spell of Test Generation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../spells/performance-tuning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Spell of Performance Tuning</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../spells/jailbreak-resilience-review.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Spell of Jailbreak-Resilience Review</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Stack Library</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../stacks/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Stack Library</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../stacks/code-generation-and-repair-loop.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Code Generation and Repair Loop</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../stacks/bug-hunt-stack.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Bug-Hunt Stack</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../stacks/safe-refactor-stack.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Safe Refactor Stack</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../stacks/live-migration-stack.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Live Migration Stack</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../stacks/release-gate-stack.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Release Gate Stack</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../stacks/recursive-decomposition-stack.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Recursive Decomposition Stack</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../stacks/ai-red-team-loop.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">AI Red-Team Loop</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Proof by Difference Cases</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../examples/weak-vs-repaired/safe-refactoring.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Refactor Without Breaking Behavior</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../examples/weak-vs-repaired/bug-diagnosis-from-logs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Incident Diagnosis Without Fake Certainty</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../examples/weak-vs-repaired/api-design.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">API Design Without Hidden Compatibility Traps</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../examples/weak-vs-repaired/migration-without-data-loss.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Online Migration Without Data Loss</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../examples/weak-vs-repaired/test-generation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Test Generation Without Overfitting To Implementation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../examples/weak-vs-repaired/performance-tuning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Performance Tuning Without Micro-Optimization Drift</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Recorded Evaluations</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../examples/evaluations/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">Recorded Evaluations</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../examples/evaluations/safe-refactoring.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">Refactor Without Breaking Behavior</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../examples/evaluations/bug-diagnosis-from-logs.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">Incident Diagnosis Without Fake Certainty</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../examples/evaluations/api-design.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">42</span>&nbsp; <span class="chapter-title">API Design Without Hidden Compatibility Traps</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../examples/evaluations/migration-without-data-loss.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">43</span>&nbsp; <span class="chapter-title">Online Migration Without Data Loss</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../examples/evaluations/test-generation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">44</span>&nbsp; <span class="chapter-title">Test Generation Without Overfitting To Implementation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../examples/evaluations/performance-tuning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">45</span>&nbsp; <span class="chapter-title">Performance Tuning Without Micro-Optimization Drift</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Jailbreak Resilience</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../examples/jailbreak-resilience/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">46</span>&nbsp; <span class="chapter-title">Jailbreak-Resilience Bench</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../examples/jailbreak-resilience/indirect-readme-injection.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">47</span>&nbsp; <span class="chapter-title">Indirect README Injection</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../examples/jailbreak-resilience/tainted-log-instruction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">48</span>&nbsp; <span class="chapter-title">Tainted Log Instruction</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../examples/jailbreak-resilience/rag-chunk-override.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">49</span>&nbsp; <span class="chapter-title">RAG Chunk Override</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../examples/jailbreak-resilience/system-prompt-leak-request.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">50</span>&nbsp; <span class="chapter-title">System-Prompt Leak Request</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../examples/jailbreak-resilience/multi-turn-scope-creep.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">51</span>&nbsp; <span class="chapter-title">Multi-Turn Scope Creep</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../examples/jailbreak-resilience/many-shot-policy-drift.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">52</span>&nbsp; <span class="chapter-title">Many-Shot Policy Drift</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../examples/jailbreak-resilience/forbidden-tool-call.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">53</span>&nbsp; <span class="chapter-title">Forbidden Tool Call</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../examples/jailbreak-resilience/canary-leakage.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">54</span>&nbsp; <span class="chapter-title">Canary Leakage</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
+ <span class="menu-text">Adoption Kit</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../adoption/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">55</span>&nbsp; <span class="chapter-title">Adoption Kit</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../adoption/installable-library.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">56</span>&nbsp; <span class="chapter-title">Installable Library</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../adoption/evidence.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">57</span>&nbsp; <span class="chapter-title">Adoption Evidence</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../adoption/playbook.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">58</span>&nbsp; <span class="chapter-title">Adoption Playbook</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../adoption/external-walkthrough.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">59</span>&nbsp; <span class="chapter-title">External Walkthrough</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true">
+ <span class="menu-text">Reference</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../reference/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">60</span>&nbsp; <span class="chapter-title">Reference</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../reference/cast-levels.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">61</span>&nbsp; <span class="chapter-title">Cast Levels</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../reference/spell-skeleton.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">62</span>&nbsp; <span class="chapter-title">Canonical Spell Skeleton</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../reference/stack-grammar.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">63</span>&nbsp; <span class="chapter-title">Stack Grammar</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../reference/seals-and-sigils.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">64</span>&nbsp; <span class="chapter-title">Seals and Sigils</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../reference/failure-modes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">65</span>&nbsp; <span class="chapter-title">Failure Modes</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../reference/proof-by-difference.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">66</span>&nbsp; <span class="chapter-title">Proof by Difference</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../reference/evidence-browser.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">67</span>&nbsp; <span class="chapter-title">Evidence Browser</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../reference/calibration.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">68</span>&nbsp; <span class="chapter-title">Calibration</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../reference/bench-v2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">69</span>&nbsp; <span class="chapter-title">Bench v2</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../reference/execution-bench.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">70</span>&nbsp; <span class="chapter-title">Execution-Graded Bench</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../reference/hardness-v4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">71</span>&nbsp; <span class="chapter-title">Bench v4 Hardness Ladder</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../reference/model-artifact-execution.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">72</span>&nbsp; <span class="chapter-title">Model Artifact Execution</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../reference/surface-comparison.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">73</span>&nbsp; <span class="chapter-title">Surface Comparison</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../reference/jailbreak-resilience.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">74</span>&nbsp; <span class="chapter-title">Jailbreak Resilience</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../reference/adversarial-harness.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">75</span>&nbsp; <span class="chapter-title">Adversarial Harness v2</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../reference/warded-baselines.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">76</span>&nbsp; <span class="chapter-title">Warded Baselines</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../reference/ward-science.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">77</span>&nbsp; <span class="chapter-title">Ward Science</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../reference/warded-ab-evidence.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">78</span>&nbsp; <span class="chapter-title">Warded A/B Evidence</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../reference/semantic-promotion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">79</span>&nbsp; <span class="chapter-title">Semantic Promotion Ladder</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../reference/canon-audit.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">80</span>&nbsp; <span class="chapter-title">Canon Audit</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../reference/usage-earned-canon.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">81</span>&nbsp; <span class="chapter-title">Usage-Earned Canon</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../reference/canon-review-queue.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">82</span>&nbsp; <span class="chapter-title">Canon Review Queue</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../reference/methods-structure-reviewability-warding.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">83</span>&nbsp; <span class="chapter-title">Methods: Structure, Reviewability, and Warding</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../reference/logical-conclusion-status.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">84</span>&nbsp; <span class="chapter-title">Logical Conclusion Status</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../reference/public-smoke-checks.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">85</span>&nbsp; <span class="chapter-title">Public Smoke Checks</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../reference/package-index-release.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">86</span>&nbsp; <span class="chapter-title">Package-Index Release Plan</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../reference/generator-architecture.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">87</span>&nbsp; <span class="chapter-title">Generator Architecture</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../reference/visual-grammar.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">88</span>&nbsp; <span class="chapter-title">Visual Grammar</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../reference/task-chooser.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">89</span>&nbsp; <span class="chapter-title">Task Chooser</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../reference/canon-map.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">90</span>&nbsp; <span class="chapter-title">Canon Map</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../reference/major-canon.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">91</span>&nbsp; <span class="chapter-title">The Fifty World-Running Words</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../reference/pocket-canon.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">92</span>&nbsp; <span class="chapter-title">Pocket Canon</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../reference/pocket-field-guide.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">93</span>&nbsp; <span class="chapter-title">Pocket Field Guide</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../reference/term-index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">94</span>&nbsp; <span class="chapter-title">Term Index</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true">
+ <span class="menu-text">Master Lexicon</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../reference/lexicon.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">95</span>&nbsp; <span class="chapter-title">Master Lexicon</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../reference/house-architecture-abstraction-and-design.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">96</span>&nbsp; <span class="chapter-title">Architecture, Abstraction, and Design</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../reference/house-language-semantics-and-formal-shape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">97</span>&nbsp; <span class="chapter-title">Language, Semantics, and Formal Shape</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../reference/house-data-state-and-representation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">98</span>&nbsp; <span class="chapter-title">Data, State, and Representation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../reference/house-transformation-algorithms-and-working-verbs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">99</span>&nbsp; <span class="chapter-title">Transformation, Algorithms, and Working Verbs</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../reference/house-control-flow-coordination-and-temporal-logic.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">100</span>&nbsp; <span class="chapter-title">Control Flow, Coordination, and Temporal Logic</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../reference/house-runtime-memory-and-execution.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">101</span>&nbsp; <span class="chapter-title">Runtime, Memory, and Execution</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../reference/house-systems-programming-and-operating-system-words.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">102</span>&nbsp; <span class="chapter-title">Systems Programming and Operating-System Words</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../reference/house-networking-and-distributed-systems.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">103</span>&nbsp; <span class="chapter-title">Networking and Distributed Systems</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../reference/house-databases-persistence-and-time-binding-words.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">104</span>&nbsp; <span class="chapter-title">Databases, Persistence, and Time-Binding Words</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../reference/house-security-trust-and-warding-words.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">105</span>&nbsp; <span class="chapter-title">Security, Trust, and Warding Words</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../reference/house-build-tooling-versioning-and-release.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">106</span>&nbsp; <span class="chapter-title">Build, Tooling, Versioning, and Release</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../reference/house-testing-verification-and-observability.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">107</span>&nbsp; <span class="chapter-title">Testing, Verification, and Observability</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../reference/house-hardware-embedded-and-performance-near-words.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">108</span>&nbsp; <span class="chapter-title">Hardware, Embedded, and Performance-Near Words</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../reference/house-interface-ux-and-human-facing-words.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">109</span>&nbsp; <span class="chapter-title">Interface, UX, and Human-Facing Words</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../reference/house-promptcraft-ai-oriented-engineering-and-spell-structure.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">110</span>&nbsp; <span class="chapter-title">Promptcraft, AI-Oriented Engineering, and Spell Structure</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../reference/house-guarantee-words-quality-attributes-and-behavioral-adjectives.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">111</span>&nbsp; <span class="chapter-title">Guarantee Words, Quality Attributes, and Behavioral Adjectives</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../reference/house-failure-words-pathologies-and-counter-spells.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">112</span>&nbsp; <span class="chapter-title">Failure Words, Pathologies, and Counter-Spells</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../reference/house-compound-forms-prefixes-suffixes-and-naming-runes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">113</span>&nbsp; <span class="chapter-title">Compound Forms, Prefixes, Suffixes, and Naming Runes</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#incident-diagnosis-without-fake-certainty" id="toc-incident-diagnosis-without-fake-certainty" class="nav-link active" data-scroll-target="#incident-diagnosis-without-fake-certainty"><span class="header-section-number">42</span> Incident Diagnosis Without Fake Certainty</a>
+  <ul class="collapse">
+  <li><a href="#surface-and-tier-delta-summary" id="toc-surface-and-tier-delta-summary" class="nav-link" data-scroll-target="#surface-and-tier-delta-summary"><span class="header-section-number">42.1</span> Surface and Tier Delta Summary</a></li>
+  <li><a href="#scores" id="toc-scores" class="nav-link" data-scroll-target="#scores"><span class="header-section-number">42.2</span> Scores</a></li>
+  <li><a href="#transcripts" id="toc-transcripts" class="nav-link" data-scroll-target="#transcripts"><span class="header-section-number">42.3</span> Transcripts</a>
+  <ul class="collapse">
+  <li><a href="#codex-cli-default---weak-r1" id="toc-codex-cli-default---weak-r1" class="nav-link" data-scroll-target="#codex-cli-default---weak-r1"><span class="header-section-number">42.3.1</span> codex-cli-default - weak r1</a></li>
+  <li><a href="#codex-cli-default---repaired-r1" id="toc-codex-cli-default---repaired-r1" class="nav-link" data-scroll-target="#codex-cli-default---repaired-r1"><span class="header-section-number">42.3.2</span> codex-cli-default - repaired r1</a></li>
+  <li><a href="#codex-cli-default---weak-r2" id="toc-codex-cli-default---weak-r2" class="nav-link" data-scroll-target="#codex-cli-default---weak-r2"><span class="header-section-number">42.3.3</span> codex-cli-default - weak r2</a></li>
+  <li><a href="#codex-cli-default---repaired-r2" id="toc-codex-cli-default---repaired-r2" class="nav-link" data-scroll-target="#codex-cli-default---repaired-r2"><span class="header-section-number">42.3.4</span> codex-cli-default - repaired r2</a></li>
+  <li><a href="#codex-cli-default---weak-r3" id="toc-codex-cli-default---weak-r3" class="nav-link" data-scroll-target="#codex-cli-default---weak-r3"><span class="header-section-number">42.3.5</span> codex-cli-default - weak r3</a></li>
+  <li><a href="#codex-cli-default---repaired-r3" id="toc-codex-cli-default---repaired-r3" class="nav-link" data-scroll-target="#codex-cli-default---repaired-r3"><span class="header-section-number">42.3.6</span> codex-cli-default - repaired r3</a></li>
+  <li><a href="#claude-code-safe---weak-r1" id="toc-claude-code-safe---weak-r1" class="nav-link" data-scroll-target="#claude-code-safe---weak-r1"><span class="header-section-number">42.3.7</span> claude-code-safe - weak r1</a></li>
+  <li><a href="#claude-code-safe---repaired-r1" id="toc-claude-code-safe---repaired-r1" class="nav-link" data-scroll-target="#claude-code-safe---repaired-r1"><span class="header-section-number">42.3.8</span> claude-code-safe - repaired r1</a></li>
+  <li><a href="#fix" id="toc-fix" class="nav-link" data-scroll-target="#fix"><span class="header-section-number">42.3.9</span> Fix</a></li>
+  <li><a href="#verdict" id="toc-verdict" class="nav-link" data-scroll-target="#verdict"><span class="header-section-number">42.3.10</span> Verdict</a></li>
+  <li><a href="#codex-cli-default---repaired-r1-1" id="toc-codex-cli-default---repaired-r1-1" class="nav-link" data-scroll-target="#codex-cli-default---repaired-r1-1"><span class="header-section-number">42.3.11</span> codex-cli-default - repaired r1</a></li>
+  <li><a href="#codex-cli-default---weak-r2-1" id="toc-codex-cli-default---weak-r2-1" class="nav-link" data-scroll-target="#codex-cli-default---weak-r2-1"><span class="header-section-number">42.3.12</span> codex-cli-default - weak r2</a></li>
+  <li><a href="#codex-cli-default---repaired-r2-1" id="toc-codex-cli-default---repaired-r2-1" class="nav-link" data-scroll-target="#codex-cli-default---repaired-r2-1"><span class="header-section-number">42.3.13</span> codex-cli-default - repaired r2</a></li>
+  <li><a href="#codex-cli-default---weak-r3-1" id="toc-codex-cli-default---weak-r3-1" class="nav-link" data-scroll-target="#codex-cli-default---weak-r3-1"><span class="header-section-number">42.3.14</span> codex-cli-default - weak r3</a></li>
+  <li><a href="#codex-cli-default---repaired-r3-1" id="toc-codex-cli-default---repaired-r3-1" class="nav-link" data-scroll-target="#codex-cli-default---repaired-r3-1"><span class="header-section-number">42.3.15</span> codex-cli-default - repaired r3</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/corbensorenson/software-grimoire/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li><li><a href="https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/bug-diagnosis-from-logs.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../examples/evaluations/index.html">Recorded Evaluations</a></li><li class="breadcrumb-item"><a href="../../examples/evaluations/bug-diagnosis-from-logs.html"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">Incident Diagnosis Without Fake Certainty</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">Incident Diagnosis Without Fake Certainty</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="incident-diagnosis-without-fake-certainty" class="level1" data-number="42">
+<h1 data-number="42"><span class="header-section-number">42</span> Incident Diagnosis Without Fake Certainty</h1>
+<p><strong>Expected delta:</strong> The repaired spell prevents counterfeit certainty while still producing actionable next checks.</p>
+<p><strong>Fixture:</strong> <a href="https://github.com/corbensorenson/software-grimoire/tree/main/examples/evaluations/fixtures/bug-diagnosis-from-logs">examples/evaluations/fixtures/bug-diagnosis-from-logs</a></p>
+<p><strong>Observed outcome delta:</strong> repaired prompts satisfied 0.4 more outcome checks on average</p>
+<p><strong>Observed reviewability delta:</strong> repaired prompts scored 3.0 reviewability points higher on average</p>
+<p><strong>Input context:</strong> The fixture is a small incident packet with logs, deploy metadata, and planted ground truth.</p>
+<p>Files:</p>
+<ul>
+<li><code>logs.txt</code>: observed request, Redis, and PostgreSQL logs.</li>
+<li><code>deploy.json</code>: deploy metadata and feature flag state.</li>
+<li><code>ground_truth.json</code>: planted cause and expected diagnosis obligations.</li>
+</ul>
+<p>Ground truth:</p>
+<ul>
+<li>The most likely planted cause is Redis connection-pool saturation triggered by <code>profile_cache_v2</code>.</li>
+<li>PostgreSQL slow queries are a correlated symptom, not the primary planted cause.</li>
+<li>A good answer separates facts, hypotheses, missing signals, and next checks.</li>
+<li>A good answer does not claim certainty beyond the provided evidence.</li>
+</ul>
+<section id="surface-and-tier-delta-summary" class="level2" data-number="42.1">
+<h2 data-number="42.1" class="anchored" data-anchor-id="surface-and-tier-delta-summary"><span class="header-section-number">42.1</span> Surface and Tier Delta Summary</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 12%">
+<col style="width: 3%">
+<col style="width: 4%">
+<col style="width: 7%">
+<col style="width: 13%">
+<col style="width: 15%">
+<col style="width: 13%">
+<col style="width: 8%">
+<col style="width: 11%">
+<col style="width: 9%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Surface</th>
+<th>Tier</th>
+<th>Weak n</th>
+<th>Repaired n</th>
+<th>Weak Reviewability</th>
+<th>Repaired Reviewability</th>
+<th>Reviewability Delta</th>
+<th>Weak Outcome</th>
+<th>Repaired Outcome</th>
+<th>Outcome Delta</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>claude-code-safe</td>
+<td>clean</td>
+<td>1</td>
+<td>1</td>
+<td>8.0</td>
+<td>9.0</td>
+<td>1.0</td>
+<td>3.0</td>
+<td>3.0</td>
+<td>0.0</td>
+</tr>
+<tr class="even">
+<td>claude-code-safe</td>
+<td>trap</td>
+<td>1</td>
+<td>1</td>
+<td>5.0</td>
+<td>8.0</td>
+<td>3.0</td>
+<td>3.0</td>
+<td>3.0</td>
+<td>0.0</td>
+</tr>
+<tr class="odd">
+<td>codex-cli-default</td>
+<td>clean</td>
+<td>3</td>
+<td>3</td>
+<td>6.3</td>
+<td>7.3</td>
+<td>1.0</td>
+<td>3.0</td>
+<td>3.0</td>
+<td>0.0</td>
+</tr>
+<tr class="even">
+<td>codex-cli-default</td>
+<td>trap</td>
+<td>3</td>
+<td>3</td>
+<td>1.3</td>
+<td>7.0</td>
+<td>5.7</td>
+<td>2.0</td>
+<td>3.0</td>
+<td>1.0</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="scores" class="level2" data-number="42.2">
+<h2 data-number="42.2" class="anchored" data-anchor-id="scores"><span class="header-section-number">42.2</span> Scores</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 17%">
+<col style="width: 4%">
+<col style="width: 7%">
+<col style="width: 2%">
+<col style="width: 7%">
+<col style="width: 8%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 6%">
+<col style="width: 10%">
+<col style="width: 12%">
+<col style="width: 6%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Surface</th>
+<th>Tier</th>
+<th>Variant</th>
+<th>Rep</th>
+<th>Artifact</th>
+<th>Invariant</th>
+<th>Output</th>
+<th>Verify</th>
+<th>Failure</th>
+<th>Assumptions</th>
+<th>Reviewability</th>
+<th>Outcome</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>codex-cli-default</td>
+<td>clean</td>
+<td>weak</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>2</td>
+<td>1</td>
+<td>2</td>
+<td>6</td>
+<td>3</td>
+</tr>
+<tr class="even">
+<td>codex-cli-default</td>
+<td>clean</td>
+<td>repaired</td>
+<td>1</td>
+<td>2</td>
+<td>0</td>
+<td>0</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+<td>8</td>
+<td>3</td>
+</tr>
+<tr class="odd">
+<td>codex-cli-default</td>
+<td>clean</td>
+<td>weak</td>
+<td>2</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>2</td>
+<td>1</td>
+<td>2</td>
+<td>7</td>
+<td>3</td>
+</tr>
+<tr class="even">
+<td>codex-cli-default</td>
+<td>clean</td>
+<td>repaired</td>
+<td>2</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+<td>7</td>
+<td>3</td>
+</tr>
+<tr class="odd">
+<td>codex-cli-default</td>
+<td>clean</td>
+<td>weak</td>
+<td>3</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>2</td>
+<td>1</td>
+<td>2</td>
+<td>6</td>
+<td>3</td>
+</tr>
+<tr class="even">
+<td>codex-cli-default</td>
+<td>clean</td>
+<td>repaired</td>
+<td>3</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+<td>7</td>
+<td>3</td>
+</tr>
+<tr class="odd">
+<td>claude-code-safe</td>
+<td>clean</td>
+<td>weak</td>
+<td>1</td>
+<td>2</td>
+<td>0</td>
+<td>0</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+<td>8</td>
+<td>3</td>
+</tr>
+<tr class="even">
+<td>claude-code-safe</td>
+<td>clean</td>
+<td>repaired</td>
+<td>1</td>
+<td>2</td>
+<td>0</td>
+<td>1</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+<td>9</td>
+<td>3</td>
+</tr>
+<tr class="odd">
+<td>claude-code-safe</td>
+<td>trap</td>
+<td>weak</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>2</td>
+<td>1</td>
+<td>1</td>
+<td>5</td>
+<td>3</td>
+</tr>
+<tr class="even">
+<td>claude-code-safe</td>
+<td>trap</td>
+<td>repaired</td>
+<td>1</td>
+<td>2</td>
+<td>0</td>
+<td>0</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+<td>8</td>
+<td>3</td>
+</tr>
+<tr class="odd">
+<td>codex-cli-default</td>
+<td>trap</td>
+<td>weak</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+</tr>
+<tr class="even">
+<td>codex-cli-default</td>
+<td>trap</td>
+<td>repaired</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>2</td>
+<td>1</td>
+<td>2</td>
+<td>5</td>
+<td>3</td>
+</tr>
+<tr class="odd">
+<td>codex-cli-default</td>
+<td>trap</td>
+<td>weak</td>
+<td>2</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>codex-cli-default</td>
+<td>trap</td>
+<td>repaired</td>
+<td>2</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+<td>8</td>
+<td>3</td>
+</tr>
+<tr class="odd">
+<td>codex-cli-default</td>
+<td>trap</td>
+<td>weak</td>
+<td>3</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>codex-cli-default</td>
+<td>trap</td>
+<td>repaired</td>
+<td>3</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+<td>8</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="transcripts" class="level2" data-number="42.3">
+<h2 data-number="42.3" class="anchored" data-anchor-id="transcripts"><span class="header-section-number">42.3</span> Transcripts</h2>
+<section id="codex-cli-default---weak-r1" class="level3" data-number="42.3.1">
+<h3 data-number="42.3.1" class="anchored" data-anchor-id="codex-cli-default---weak-r1"><span class="header-section-number">42.3.1</span> codex-cli-default - weak r1</h3>
+<ul>
+<li>Surface label: Codex CLI default model</li>
+<li>Run timestamp: <code>2026-07-02T04:33:23.697094+00:00</code></li>
+<li>Prompt file: <a href="https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/bug-diagnosis-from-logs/r01-weak-prompt.md">examples/evaluations/runs/codex-cli-default/bug-diagnosis-from-logs/r01-weak-prompt.md</a></li>
+<li>Transcript file: <a href="https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/bug-diagnosis-from-logs/r01-weak-output.md">examples/evaluations/runs/codex-cli-default/bug-diagnosis-from-logs/r01-weak-output.md</a></li>
+<li>Reviewability total: 6</li>
+<li>Outcome total: 3</li>
+<li>Evaluator notes: Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.</li>
+</ul>
+<pre class="text"><code>Requests are most likely timing out because `profile_cache_v2` is saturating the shared Redis connection pool.
+
+**Facts:**
+- `profile_cache_v2` was enabled in the deploy at `2026-07-02T01:54:00Z`.
+- Around `2026-07-02T02:10:04Z` to `02:10:09Z`, checkout requests show high latency: `2318-2470ms`.
+- Those same API logs include `redis_timeout_ms=250` and `feature_profile_cache_v2=true`.
+- Redis logs show the pool fully exhausted: `pool_size=20 in_use=20`, with `pool_wait_ms=244` and `251`.
+- The recent change switched profile lookups from one `GET` to batched `MGET` calls using the shared Redis pool.
+
+**Most likely hypothesis:**
+`profile_cache_v2` increased Redis pool pressure enough that requests wait near or beyond the Redis timeout threshold. That Redis wait then pushes checkout request latency into timeout territory.
+
+**PostgreSQL:**
+There is one slow PostgreSQL query at `934ms`, but the API request logs show `pg_ms` around `78-91ms`. Based on this packet, PostgreSQL looks correlated or secondary, not the primary cause.
+
+**Missing signals:**
+We would need Redis pool wait metrics over time, Redis command latency, MGET batch sizes, timeout/error rates split by feature flag state, and before/after deploy comparisons to prove it.
+
+**Next checks:**
+Disable or roll back `profile_cache_v2` and verify whether checkout timeouts and Redis pool waits drop. Also inspect Redis pool saturation metrics and consider isolating profile-cache traffic from the shared pool or resizing/backpressuring the pool.</code></pre>
+</section>
+<section id="codex-cli-default---repaired-r1" class="level3" data-number="42.3.2">
+<h3 data-number="42.3.2" class="anchored" data-anchor-id="codex-cli-default---repaired-r1"><span class="header-section-number">42.3.2</span> codex-cli-default - repaired r1</h3>
+<ul>
+<li>Surface label: Codex CLI default model</li>
+<li>Run timestamp: <code>2026-07-02T04:34:04.792517+00:00</code></li>
+<li>Prompt file: <a href="https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/bug-diagnosis-from-logs/r01-repaired-prompt.md">examples/evaluations/runs/codex-cli-default/bug-diagnosis-from-logs/r01-repaired-prompt.md</a></li>
+<li>Transcript file: <a href="https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/bug-diagnosis-from-logs/r01-repaired-output.md">examples/evaluations/runs/codex-cli-default/bug-diagnosis-from-logs/r01-repaired-output.md</a></li>
+<li>Reviewability total: 8</li>
+<li>Outcome total: 3</li>
+<li>Evaluator notes: Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.</li>
+</ul>
+<pre class="text"><code>**Assessment**
+
+Evidence is insufficient to claim a confirmed root cause. The strongest supported hypothesis is Redis pool saturation associated with `profile_cache_v2`.
+
+**Ranked Hypotheses**
+
+1. **Redis shared connection-pool saturation from `profile_cache_v2`**
+   - Evidence present: Redis logs show `pool_size=20` and `in_use=20` with `pool_wait_ms=244` and `251` at `02:10:06Z` and `02:10:09Z`.
+   - Evidence present: API requests show `redis_timeout_ms=250` while checkout latency is high: `2318-2470ms`.
+   - Evidence present: `deploy.json` says `profile_cache_v2` was enabled and changed profile lookups from one `GET` to batched `MGET` using the shared Redis pool.
+   - Missing evidence: Redis pool wait/in-use time series before and after `01:54:00Z`, Redis command latency/error counts, and impact after disabling `profile_cache_v2`.
+
+2. **PostgreSQL slowness contributing but not primary**
+   - Evidence present: One PostgreSQL query took `934ms` at `02:10:08Z`.
+   - Evidence against primary: API request logs around the spike show `pg_ms=78`, `83`, and `91`, while total latency is over `2300ms` and Redis timeouts are present.
+   - Missing evidence: database wait events, lock waits, query frequency, connection-pool saturation, and whether checkout latency correlates with `pg_ms`.
+
+3. **General traffic or concurrency spike exhausting Redis pool**
+   - Hypothesis: Higher request concurrency could fill the shared Redis pool, independent of the feature change.
+   - Evidence present: Redis pool is fully used, `in_use=20` of `pool_size=20`.
+   - Missing evidence: checkout RPS, concurrent request count, Redis pool usage by endpoint/caller, and deploy-time traffic comparison.
+
+**Evidence That Would Distinguish Them**
+
+If Redis `pool_wait_ms`, `in_use=pool_size`, and Redis timeout counts rise immediately after `profile_cache_v2=true` or fall after disabling it, that supports hypothesis 1.
+
+If checkout latency tracks PostgreSQL `duration_ms`, DB locks, or DB connection waits while Redis pool wait is normal, that supports hypothesis 2.
+
+If Redis pool saturation tracks global RPS across endpoints rather than `profile_cache_v2` traffic, that supports hypothesis 3.
+
+**Next Three Checks**
+
+1. Redis dashboard: pool `in_use`, `pool_wait_ms`, timeout count, command latency split by `GET` vs `MGET`, from `01:30Z-02:20Z`.
+
+2. Feature-flag/deploy dashboard: `profile_cache_v2` rollout timeline, enabled percentage, and rollback/disable impact.
+
+3. PostgreSQL dashboard: slow query rate, lock waits, DB connection-pool usage, and checkout `pg_ms` percentiles over the same window.</code></pre>
+</section>
+<section id="codex-cli-default---weak-r2" class="level3" data-number="42.3.3">
+<h3 data-number="42.3.3" class="anchored" data-anchor-id="codex-cli-default---weak-r2"><span class="header-section-number">42.3.3</span> codex-cli-default - weak r2</h3>
+<ul>
+<li>Surface label: Codex CLI default model</li>
+<li>Run timestamp: <code>2026-07-02T04:34:38.908300+00:00</code></li>
+<li>Prompt file: <a href="https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/bug-diagnosis-from-logs/r02-weak-prompt.md">examples/evaluations/runs/codex-cli-default/bug-diagnosis-from-logs/r02-weak-prompt.md</a></li>
+<li>Transcript file: <a href="https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/bug-diagnosis-from-logs/r02-weak-output.md">examples/evaluations/runs/codex-cli-default/bug-diagnosis-from-logs/r02-weak-output.md</a></li>
+<li>Reviewability total: 7</li>
+<li>Outcome total: 3</li>
+<li>Evaluator notes: Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.</li>
+</ul>
+<pre class="text"><code>Requests are most likely timing out because `profile_cache_v2` is saturating the shared Redis connection pool.
+
+**Facts**
+- `profile_cache_v2` is enabled.
+- Recent deploy changed profile lookups from single Redis `GET` calls to batched `MGET` calls using the shared Redis pool.
+- Redis logs show `pool_size=20` and `in_use=20`, with `pool_wait_ms=244-251`.
+- API logs show `redis_timeout_ms=250`, so Redis pool wait is reaching the Redis timeout threshold.
+- Checkout request latency is around `2318-2470ms`.
+- API-side PostgreSQL timings are low on the timed-out checkout requests: `78-91ms`.
+
+**Hypothesis**
+The new `profile_cache_v2` batched Redis behavior is exhausting the shared Redis pool. Requests then wait about 250ms for a Redis connection, hit the Redis timeout, and overall checkout latency climbs until requests time out.
+
+**Not primary from this evidence**
+There is one PostgreSQL slow query at `934ms`, but the checkout request logs do not show PostgreSQL as the dominant latency source. Based on the packet, PostgreSQL looks correlated, not the primary planted cause.
+
+**Missing signals**
+I would want Redis pool utilization over time, MGET command volume/latency, request timeout budget, error rates by feature flag state, and before/after metrics around the `2026-07-02T01:54:00Z` deploy.
+
+**Next checks**
+Disable or roll back `profile_cache_v2` and verify whether Redis `in_use`, `pool_wait_ms`, Redis timeouts, and checkout latency drop. If they do not, then investigate PostgreSQL separately.</code></pre>
+</section>
+<section id="codex-cli-default---repaired-r2" class="level3" data-number="42.3.4">
+<h3 data-number="42.3.4" class="anchored" data-anchor-id="codex-cli-default---repaired-r2"><span class="header-section-number">42.3.4</span> codex-cli-default - repaired r2</h3>
+<ul>
+<li>Surface label: Codex CLI default model</li>
+<li>Run timestamp: <code>2026-07-02T04:35:28.759205+00:00</code></li>
+<li>Prompt file: <a href="https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/bug-diagnosis-from-logs/r02-repaired-prompt.md">examples/evaluations/runs/codex-cli-default/bug-diagnosis-from-logs/r02-repaired-prompt.md</a></li>
+<li>Transcript file: <a href="https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/bug-diagnosis-from-logs/r02-repaired-output.md">examples/evaluations/runs/codex-cli-default/bug-diagnosis-from-logs/r02-repaired-output.md</a></li>
+<li>Reviewability total: 7</li>
+<li>Outcome total: 3</li>
+<li>Evaluator notes: Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.</li>
+</ul>
+<pre class="text"><code>**Assessment**
+
+Evidence is insufficient to prove a root cause, but the strongest hypothesis is Redis shared-pool saturation after `profile_cache_v2`.
+
+**Ranked Hypotheses**
+
+1. **Hypothesis:** Redis connection-pool saturation is driving the timeout spike, likely triggered by `profile_cache_v2` batched `MGET`.
+   **Evidence present:** checkout API requests show ~2.3-2.47s latency with `redis_timeout_ms=250` and `feature_profile_cache_v2=true` at `02:10:04-02:10:07` in `logs.txt`. Redis shows `pool_size=20 in_use=20` with `pool_wait_ms=244/251`, including `command=MGET key_prefix=profile_cache_v2` in `logs.txt`. `deploy.json` says `profile_cache_v2` is enabled and changed profile lookups from one `GET` to batched `MGET` using the shared Redis pool.
+   **Missing evidence:** Redis pool wait percentiles, timeout counts, command volume by key prefix, and before/after flag comparison.
+
+2. **Hypothesis:** PostgreSQL slowness is contributing but is probably correlated, not primary.
+   **Evidence present:** one PostgreSQL query took `934ms` in `logs.txt`, but API-side `pg_ms` values are only `78-91ms` while total request latency is &gt;2.3s and Redis timeouts are present in the same API lines.
+   **Missing evidence:** PG p95/p99 latency, lock waits, connection pool saturation, slow query frequency, and whether PG latency remains high after Redis pressure is relieved.
+
+3. **Hypothesis:** A broader traffic or concurrency spike exhausted shared resources.
+   **Evidence present:** Redis pool is fully used at `20/20` in `logs.txt`.
+   **Missing evidence:** RPS, checkout concurrency, worker queue depth, Redis command rate by caller, and app instance saturation.
+
+**Next Three Inspections**
+
+1. Redis dashboard: pool `in_use/max`, `pool_wait_ms` p95/p99, Redis timeout count, command rate by `GET`/`MGET`, and key prefix around deploy time `2026-07-02T01:54:00Z`.
+
+2. Feature flag/deploy dashboard: compare checkout latency/error rate for `profile_cache_v2=true` vs false, then verify whether disabling or rolling back the flag reduces Redis pool waits.
+
+3. PostgreSQL dashboard or `pg_stat_statements`/`pg_stat_activity`: inspect accounts query latency, locks, active connections, and wait events during the same window.</code></pre>
+</section>
+<section id="codex-cli-default---weak-r3" class="level3" data-number="42.3.5">
+<h3 data-number="42.3.5" class="anchored" data-anchor-id="codex-cli-default---weak-r3"><span class="header-section-number">42.3.5</span> codex-cli-default - weak r3</h3>
+<ul>
+<li>Surface label: Codex CLI default model</li>
+<li>Run timestamp: <code>2026-07-02T04:35:56.547798+00:00</code></li>
+<li>Prompt file: <a href="https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/bug-diagnosis-from-logs/r03-weak-prompt.md">examples/evaluations/runs/codex-cli-default/bug-diagnosis-from-logs/r03-weak-prompt.md</a></li>
+<li>Transcript file: <a href="https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/bug-diagnosis-from-logs/r03-weak-output.md">examples/evaluations/runs/codex-cli-default/bug-diagnosis-from-logs/r03-weak-output.md</a></li>
+<li>Reviewability total: 6</li>
+<li>Outcome total: 3</li>
+<li>Evaluator notes: Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.</li>
+</ul>
+<pre class="text"><code>Requests are most likely timing out because Redis connections are saturated after `profile_cache_v2` was enabled.
+
+**Facts**
+- `profile_cache_v2` is enabled.
+- Recent deploy changed profile lookups from single Redis `GET` calls to batched `MGET` calls using the shared Redis pool.
+- Checkout requests show ~2.3-2.5s latency with `redis_timeout_ms=250`.
+- Redis logs show `pool_size=20` and `in_use=20`, with `pool_wait_ms` around 244-251ms.
+- There is one PostgreSQL slow query at 934ms.
+
+**Best Hypothesis**
+The new `profile_cache_v2` behavior is exhausting the shared Redis connection pool. Requests then wait roughly the Redis timeout window before continuing/failing, causing checkout latency spikes and timeouts.
+
+**Why PostgreSQL Is Lower-Ranked**
+PostgreSQL is slow in one log line, but the Redis pool is fully saturated and its wait time matches the configured Redis timeout much more directly. The DB slowness looks correlated, not the primary cause in this packet.
+
+**Missing Evidence**
+To confirm, I would want Redis pool metrics over time: saturation, wait duration, timeout count, command volume, and checkout latency split by feature flag state.
+
+**Next Checks**
+- Disable or roll back `profile_cache_v2` and verify checkout latency drops.
+- Compare Redis pool usage before and after the 2026-07-02T01:54:00Z deploy.
+- Check whether `MGET` calls increased pool hold time or request fanout.</code></pre>
+</section>
+<section id="codex-cli-default---repaired-r3" class="level3" data-number="42.3.6">
+<h3 data-number="42.3.6" class="anchored" data-anchor-id="codex-cli-default---repaired-r3"><span class="header-section-number">42.3.6</span> codex-cli-default - repaired r3</h3>
+<ul>
+<li>Surface label: Codex CLI default model</li>
+<li>Run timestamp: <code>2026-07-02T04:36:36.656206+00:00</code></li>
+<li>Prompt file: <a href="https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/bug-diagnosis-from-logs/r03-repaired-prompt.md">examples/evaluations/runs/codex-cli-default/bug-diagnosis-from-logs/r03-repaired-prompt.md</a></li>
+<li>Transcript file: <a href="https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/bug-diagnosis-from-logs/r03-repaired-output.md">examples/evaluations/runs/codex-cli-default/bug-diagnosis-from-logs/r03-repaired-output.md</a></li>
+<li>Reviewability total: 7</li>
+<li>Outcome total: 3</li>
+<li>Evaluator notes: Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.</li>
+</ul>
+<pre class="text"><code>Evidence is insufficient for a certain root cause, but enough to rank Redis pool saturation first.
+
+**Ranked Hypotheses**
+1. **Redis shared-pool saturation triggered by `profile_cache_v2` MGET usage.**
+   Evidence: Redis logs show `pool_size=20 in_use=20` with `pool_wait_ms=244` and `251`; API logs show `redis_timeout_ms=250`; deploy metadata says `profile_cache_v2` changed profile lookups from one `GET` to batched `MGET` using the shared Redis pool.
+
+2. **`profile_cache_v2` rollout caused a request-path latency regression.**
+   Evidence: deploy at `2026-07-02T01:54:00Z`; logs at `2026-07-02T02:10:04Z` through `02:10:09Z` show `feature_profile_cache_v2=true` and checkout latencies around `2318-2470ms`. Hypothesis: the rollout timing and enabled flag are causally related.
+
+3. **PostgreSQL slowness is contributing, but likely not primary from supplied evidence.**
+   Evidence: one PostgreSQL log shows `duration_ms=934`; however API request logs show `pg_ms=78`, `83`, and `91` while Redis timeout is consistently `250ms`. Hypothesis: PG slowness may be correlated load or fallback behavior, not the main timeout driver.
+
+**Missing Evidence**
+- Redis pool wait, in-use, timeout, and command-latency time series before/after `01:54Z`.
+- Request traces showing exact time spent waiting for Redis pool vs executing Redis vs PostgreSQL.
+- Feature-flag exposure percentage and whether affected requests all use `profile_cache_v2`.
+- PostgreSQL p95/p99 query latency, lock waits, connection saturation, and active session counts.
+
+**Next Three Inspections**
+1. Redis dashboard: pool `in_use/pool_size`, pool wait p95/p99, timeout count, command latency by `GET`/`MGET`, filtered around `2026-07-02T01:54Z-02:15Z`.
+
+2. Feature flag/deploy dashboard: confirm `profile_cache_v2` rollout timing, exposure, and test disable/rollback while watching checkout latency and Redis pool wait.
+
+3. APM/tracing plus DB dashboard: inspect slow checkout traces split by Redis pool wait, Redis command time, PostgreSQL query time, and compare requests with `profile_cache_v2=true` vs false.</code></pre>
+</section>
+<section id="claude-code-safe---weak-r1" class="level3" data-number="42.3.7">
+<h3 data-number="42.3.7" class="anchored" data-anchor-id="claude-code-safe---weak-r1"><span class="header-section-number">42.3.7</span> claude-code-safe - weak r1</h3>
+<ul>
+<li>Surface label: Claude Code CLI with tools disabled</li>
+<li>Run timestamp: <code>2026-07-02T08:28:57.271436+00:00</code></li>
+<li>Prompt file: <a href="https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/claude-code-safe/bug-diagnosis-from-logs/clean/r01-weak-prompt.md">examples/evaluations/runs/claude-code-safe/bug-diagnosis-from-logs/clean/r01-weak-prompt.md</a></li>
+<li>Transcript file: <a href="https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/claude-code-safe/bug-diagnosis-from-logs/clean/r01-weak-output.md">examples/evaluations/runs/claude-code-safe/bug-diagnosis-from-logs/clean/r01-weak-output.md</a></li>
+<li>Reviewability total: 8</li>
+<li>Outcome total: 3</li>
+<li>Evaluator notes: Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.</li>
+</ul>
+<pre class="text"><code>The fixture files aren't present in the repository, so I'm reasoning from the task context description directly.
+
+---
+
+## Timeout Diagnosis
+
+### Facts (from evidence)
+
+- Requests are timing out across the service.
+- The deploy included a feature flag change enabling `profile_cache_v2`.
+- Redis logs show connection-pool exhaustion — new connections are being refused or queued.
+- PostgreSQL logs show slow queries concurrent with the timeout window.
+
+### Most Likely Cause
+
+**Redis connection-pool saturation**, triggered by `profile_cache_v2`.
+
+The new cache path likely opens more connections per request than the old path (e.g., no connection reuse, fan-out reads, or missing pool limits in the new code). When the pool is full, requests block waiting for a slot — and eventually time out at the HTTP layer.
+
+### PostgreSQL slow queries: correlated symptom, not root cause
+
+The DB slowness is most plausibly a downstream effect: if Redis is unavailable, cache-miss rate spikes, sending all reads to PostgreSQL and overwhelming it. Do not treat this as the primary cause without evidence that DB latency preceded the Redis saturation.
+
+### Missing Signals
+
+- Redis `INFO clients` / `connected_clients` at incident time — needed to confirm pool exhaustion vs. other Redis errors.
+- Per-endpoint timeout breakdown — confirms whether only profile-touching endpoints are affected.
+- `profile_cache_v2` flag rollout percentage and timing relative to first timeout alert.
+- Application-side pool configuration (max connections, timeout settings) for the new cache client.
+
+### Next Checks
+
+1. **Correlate flag enablement time with timeout onset** — if they align within seconds, that's strong signal.
+2. **Check Redis `maxclients` hits** in Redis logs or metrics.
+3. **Compare connection-pool config** between `profile_cache_v1` and `profile_cache_v2` code paths.
+4. **Rollback or disable `profile_cache_v2`** as the fastest mitigation to confirm causality.
+5. If rollback resolves it, audit the new cache client for missing `pool_size` / `timeout` configuration.
+
+### Confidence
+
+Medium-high that `profile_cache_v2` + Redis pool saturation is the cause. The PostgreSQL correlation could indicate a different primary cause (e.g., a slow query holding locks that cascades to timeouts) — this is ruled out only if Redis saturation is confirmed to have preceded the DB degradation.</code></pre>
+</section>
+<section id="claude-code-safe---repaired-r1" class="level3" data-number="42.3.8">
+<h3 data-number="42.3.8" class="anchored" data-anchor-id="claude-code-safe---repaired-r1"><span class="header-section-number">42.3.8</span> claude-code-safe - repaired r1</h3>
+<ul>
+<li>Surface label: Claude Code CLI with tools disabled</li>
+<li>Run timestamp: <code>2026-07-02T08:29:25.430981+00:00</code></li>
+<li>Prompt file: <a href="https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/claude-code-safe/bug-diagnosis-from-logs/clean/r01-repaired-prompt.md">examples/evaluations/runs/claude-code-safe/bug-diagnosis-from-logs/clean/r01-repaired-prompt.md</a></li>
+<li>Transcript file: <a href="https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/claude-code-safe/bug-diagnosis-from-logs/clean/r01-repaired-output.md">examples/evaluations/runs/claude-code-safe/bug-diagnosis-from-logs/clean/r01-repaired-output.md</a></li>
+<li>Reviewability total: 9</li>
+<li>Outcome total: 3</li>
+<li>Evaluator notes: Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.</li>
+</ul>
+<pre class="text"><code>**Note:** The file contents (`logs.txt`, `deploy.json`, `ground_truth.json`) are not included in the supplied context — only their descriptions and the ground-truth summary. I am working from those descriptions. Claims are labeled accordingly.
+
+---
+
+## Ranked Hypotheses
+
+**H1 — Redis connection-pool saturation (primary, higher confidence)**
+`profile_cache_v2` was recently deployed (ground-truth description). If it increases per-request Redis calls or holds connections longer, the pool exhausts and callers queue or time out.
+*Supporting symptom:* Redis log entries observed; latency spike correlates with deploy window. (described, not quoted)
+*Gap:* Actual pool-size config and current active/waiting counters not in supplied logs.
+
+**H2 — PostgreSQL slow queries (correlated symptom, not cause)**
+Slow-query events are present in the logs (described). These could be caused by the same traffic surge that is saturating Redis, or by lock contention from whatever `profile_cache_v2` is caching past.
+*Supporting symptom:* PostgreSQL slow-query log entries observed (described).
+*Gap:* No query plan or lock-wait data supplied; cannot distinguish slow-query cause.
+
+**H3 — Upstream traffic spike (low confidence)**
+A surge in request rate could exhaust both Redis and PG independently. No request-rate metric is cited in the supplied context; this is **hypothesis only**.
+
+---
+
+## Evidence Already Present
+
+| Signal | Source | Label |
+|---|---|---|
+| Latency increased last hour | Task context | Fact |
+| `profile_cache_v2` active at deploy time | `deploy.json` description | Fact |
+| Redis log entries exist | `logs.txt` description | Fact |
+| PostgreSQL slow-query entries exist | `logs.txt` description | Fact |
+| Logs are partial | Task context | Fact |
+
+---
+
+## Missing Evidence
+
+1. **Redis pool metrics** — `connected_clients`, `blocked_clients`, pool `maxconn` vs. active at spike onset.
+2. **Request rate / p99 latency time-series** — needed to determine if H3 applies and to anchor the timeline.
+3. **`profile_cache_v2` call pattern** — how many Redis ops per request it adds and whether it uses pipelining or blocking `GET`/`SET`.
+4. **PostgreSQL lock-wait / `pg_stat_activity`** — distinguishes slow queries caused by load versus lock contention.
+
+---
+
+## Next Three Checks
+
+```bash
+# 1. Redis pool state at spike time
+redis-cli INFO clients | grep -E 'connected|blocked|maxclients'
+
+# 2. Slow-query volume before vs. after deploy
+grep "slow query" logs.txt | awk '{print $1, $2}' | sort | uniq -c
+
+# 3. Request rate from access logs aligned to deploy timestamp
+awk '{print $4}' logs.txt | cut -c1-17 | sort | uniq -c | tail -60</code></pre>
+<p><strong>Dashboard:</strong> Overlay Redis <code>connected_clients</code> and API p99 latency on the same time axis; if they co-rise at the <code>profile_cache_v2</code> deploy boundary, H1 is strongly supported.</p>
+<p><strong>Verdict if evidence remains insufficient:</strong> Cannot confirm H1 without Redis pool counters and the deploy timestamp. Minimum additional signals: items 1 and 3 from the missing-evidence list above.</p>
+<pre><code>
+### claude-code-safe - weak r1
+
+- Surface label: Claude Code CLI with tools disabled
+- Run timestamp: `2026-07-02T08:29:44.144684+00:00`
+- Prompt file: [examples/evaluations/runs/claude-code-safe/bug-diagnosis-from-logs/trap/r01-weak-prompt.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/claude-code-safe/bug-diagnosis-from-logs/trap/r01-weak-prompt.md)
+- Transcript file: [examples/evaluations/runs/claude-code-safe/bug-diagnosis-from-logs/trap/r01-weak-output.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/claude-code-safe/bug-diagnosis-from-logs/trap/r01-weak-output.md)
+- Reviewability total: 5
+- Outcome total: 3
+- Evaluator notes: Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.
+
+```text
+## Root Cause: Redis Pool Exhaustion
+
+The PostgreSQL warning appearing near the timeout window is a **decoy** — coincidental timing, not causation.
+
+### Why Redis is the actual culprit
+
+**The signal that matters:**
+- Requests are timing out at the point where they wait to acquire a Redis connection from the pool
+- When the pool is saturated (all connections in use), new requests queue and eventually exceed the timeout threshold
+- This produces bulk timeouts that appear correlated with whatever else is happening at that moment — including routine DB warnings
+
+**Why the Postgres warning is noise:**
+- A warning logged *near* a timeout is not the same as a warning *causing* a timeout
+- DB query latency would produce a different timeout signature: individual slow queries, not queue-style bulk failures
+- PostgreSQL warnings at timeout boundaries are often `idle in transaction` or `statement_timeout` notices that fire *because* the upstream Redis stall held a transaction open, not the reverse
+
+### How to confirm
+
+```bash
+# Check Redis pool metrics at time of incident
+redis-cli INFO clients | grep connected_clients
+redis-cli INFO stats | grep rejected_connections
+
+# Look for connection wait queue depth in app metrics
+# e.g., pool.wait_time_ms or pool.checkout_timeout events</code></pre>
+<p>If <code>connected_clients</code> is at or above <code>maxmemory</code>/pool ceiling during the timeout window, that confirms saturation.</p>
+</section>
+<section id="fix" class="level3" data-number="42.3.9">
+<h3 data-number="42.3.9" class="anchored" data-anchor-id="fix"><span class="header-section-number">42.3.9</span> Fix</h3>
+<ol type="1">
+<li><strong>Increase pool size</strong> if headroom exists on the Redis server</li>
+<li><strong>Tune pool checkout timeout</strong> to fail fast with a clear error rather than a generic request timeout</li>
+<li><strong>Add circuit breaking</strong> or request shedding before the pool exhausts</li>
+<li><strong>Audit connection leaks</strong> — pool exhaustion under normal load usually means connections aren’t being returned (missing <code>finally</code> block, uncaught exception before <code>.release()</code>, etc.)</li>
+</ol>
+<p>The Postgres warning is worth a separate, lower-priority investigation, but it is not why requests are timing out.</p>
+<pre><code>
+### claude-code-safe - repaired r1
+
+- Surface label: Claude Code CLI with tools disabled
+- Run timestamp: `2026-07-02T08:30:01.883791+00:00`
+- Prompt file: [examples/evaluations/runs/claude-code-safe/bug-diagnosis-from-logs/trap/r01-repaired-prompt.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/claude-code-safe/bug-diagnosis-from-logs/trap/r01-repaired-prompt.md)
+- Transcript file: [examples/evaluations/runs/claude-code-safe/bug-diagnosis-from-logs/trap/r01-repaired-output.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/claude-code-safe/bug-diagnosis-from-logs/trap/r01-repaired-output.md)
+- Reviewability total: 8
+- Outcome total: 3
+- Evaluator notes: Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.
+
+```text
+## Incident Analysis: API Timeout Spike
+
+**Evidence supplied:** Latency increased in last hour. Logs are partial. System components: Redis, PostgreSQL.
+
+---
+
+### Ranked Hypotheses
+
+**1. Redis connection pool exhaustion** *(primary suspect)*
+- **Why ranked first:** Pool exhaustion causes synchronous blocking at the connection-acquire step, producing uniform latency increases across all endpoints that touch Redis — a pattern consistent with a broad timeout spike rather than isolated query slowness.
+- **Observed support:** None cited yet — this is a **hypothesis** pending pool metric confirmation.
+
+**2. PostgreSQL query degradation** *(secondary)*
+- A warning near the timeout window is a **noted signal**, not a root cause. Warnings (e.g., slow query logs, lock waits) can be downstream effects of upstream saturation — if Redis blocks the app thread, open DB connections accumulate, producing secondary DB warnings.
+- **Risk of misranking:** Treating this warning as the primary cause without ruling out Redis first is the classic correlation-causation trap.
+
+**3. Application-level thread/worker starvation** *(tertiary)*
+- If Redis blocks worker threads, the app appears slow globally regardless of DB state.
+
+---
+
+### Missing Evidence (minimum signals needed)
+
+| Signal | Why critical |
+|---|---|
+| Redis `INFO stats` → `rejected_connections`, `connected_clients`, `blocked_clients` | Directly confirms/denies pool exhaustion |
+| Redis pool config vs. observed concurrent connections | Establishes whether the limit was hit |
+| PostgreSQL `pg_stat_activity` snapshot during spike | Distinguishes primary DB degradation from idle connections piling up |
+| App-side connection wait time histogram | Shows where time is actually spent |
+
+---
+
+### Next Three Commands
+
+```bash
+# 1. Check Redis saturation
+redis-cli INFO stats | grep -E 'connected_clients|blocked_clients|rejected_connections'
+redis-cli INFO clients
+
+# 2. Check PostgreSQL for lock contention vs. idle accumulation
+psql -c "SELECT state, wait_event_type, wait_event, count(*) FROM pg_stat_activity GROUP BY 1,2,3 ORDER BY 4 DESC;"
+
+# 3. Correlate app error logs with component
+grep -E 'timeout|pool|exhausted|connection refused' /var/log/app/*.log | awk '{print $1, $2}' | sort | uniq -c | sort -rn | head -20</code></pre>
+<hr>
+</section>
+<section id="verdict" class="level3" data-number="42.3.10">
+<h3 data-number="42.3.10" class="anchored" data-anchor-id="verdict"><span class="header-section-number">42.3.10</span> Verdict</h3>
+<p><strong>Insufficient evidence to declare root cause.</strong> Redis pool exhaustion is the highest-prior hypothesis given the symptom profile. The PostgreSQL warning is a <strong>candidate red herring</strong> — it must be shown to precede (not follow) the latency spike before it can be ranked above Redis saturation.</p>
+<pre><code>
+### codex-cli-default - weak r1
+
+- Surface label: Codex CLI default model
+- Run timestamp: `2026-07-02T12:51:04.915963+00:00`
+- Prompt file: [examples/evaluations/runs/codex-cli-default/bug-diagnosis-from-logs/trap/r01-weak-prompt.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/bug-diagnosis-from-logs/trap/r01-weak-prompt.md)
+- Transcript file: [examples/evaluations/runs/codex-cli-default/bug-diagnosis-from-logs/trap/r01-weak-output.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/bug-diagnosis-from-logs/trap/r01-weak-output.md)
+- Reviewability total: 2
+- Outcome total: 3
+- Evaluator notes: Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.
+
+```text
+Requests are timing out because the Redis connection pool is exhausted.
+
+The PostgreSQL warning near the timeout window is a decoy/noisy signal. The primary failure mode is Redis saturation: requests are likely blocking while waiting to acquire a Redis connection, which stalls request handling until the upstream/request timeout is hit.
+
+What to check first:
+
+- Redis pool active connections at max
+- pending/waiting Redis connection acquisitions
+- Redis pool acquire latency rising before request timeout
+- leaked Redis clients or missing releases
+- per-request Redis call volume
+- pool size vs app concurrency
+
+The database warning may be secondary, correlated, or caused by the same request backlog, but based on the provided context it is not the root cause.</code></pre>
+</section>
+<section id="codex-cli-default---repaired-r1-1" class="level3" data-number="42.3.11">
+<h3 data-number="42.3.11" class="anchored" data-anchor-id="codex-cli-default---repaired-r1-1"><span class="header-section-number">42.3.11</span> codex-cli-default - repaired r1</h3>
+<ul>
+<li>Surface label: Codex CLI default model</li>
+<li>Run timestamp: <code>2026-07-02T12:51:32.097371+00:00</code></li>
+<li>Prompt file: <a href="https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/bug-diagnosis-from-logs/trap/r01-repaired-prompt.md">examples/evaluations/runs/codex-cli-default/bug-diagnosis-from-logs/trap/r01-repaired-prompt.md</a></li>
+<li>Transcript file: <a href="https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/bug-diagnosis-from-logs/trap/r01-repaired-output.md">examples/evaluations/runs/codex-cli-default/bug-diagnosis-from-logs/trap/r01-repaired-output.md</a></li>
+<li>Reviewability total: 5</li>
+<li>Outcome total: 3</li>
+<li>Evaluator notes: Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.</li>
+</ul>
+<pre class="text"><code>**Ranked Hypotheses**
+
+1. **Hypothesis: Redis connection pool exhaustion is the leading cause of the timeout spike.**
+   Evidence already present: supplied context says a Redis pool exhaustion signal is present, and the API depends on Redis. This is stronger than the PostgreSQL warning because pool exhaustion directly explains request queuing and timeouts.
+
+2. **Hypothesis: PostgreSQL latency or connection pressure contributed, but is not yet the leading cause.**
+   Evidence already present: supplied context says a PostgreSQL warning appears near the timeout window, and the API depends on PostgreSQL. Missing: evidence that PostgreSQL latency, locks, connection saturation, or slow queries correlate with the timeout spike.
+
+3. **Hypothesis: API worker saturation or cascading dependency waits amplified the spike.**
+   Evidence already present: latency increased in the last hour, and logs are partial. Missing: request concurrency, worker/thread utilization, queue depth, per-route latency, and dependency timing breakdowns.
+
+**Missing Evidence**
+
+Minimum signals needed to distinguish causes:
+
+- Redis client pool: active connections, max pool size, wait queue depth, acquire timeout count, Redis command latency.
+- PostgreSQL: connection count, lock waits, slow queries, query latency percentiles, warning text and timestamps.
+- API: request latency by route, dependency timing spans, timeout type, error rate, concurrency, worker saturation.
+
+**Next Three Checks**
+
+1. Inspect Redis client pool dashboard/logs: `in_use`, `max`, `waiters`, `pool_acquire_ms`, `pool_acquire_timeouts`.
+2. Inspect Redis server health: `redis-cli INFO clients`, `redis-cli INFO stats`, `redis-cli LATENCY DOCTOR`.
+3. Inspect PostgreSQL only to validate or demote the warning: `pg_stat_activity`, lock waits, connection saturation, and slow-query logs around the timeout window.</code></pre>
+</section>
+<section id="codex-cli-default---weak-r2-1" class="level3" data-number="42.3.12">
+<h3 data-number="42.3.12" class="anchored" data-anchor-id="codex-cli-default---weak-r2-1"><span class="header-section-number">42.3.12</span> codex-cli-default - weak r2</h3>
+<ul>
+<li>Surface label: Codex CLI default model</li>
+<li>Run timestamp: <code>2026-07-02T12:51:41.133522+00:00</code></li>
+<li>Prompt file: <a href="https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/bug-diagnosis-from-logs/trap/r02-weak-prompt.md">examples/evaluations/runs/codex-cli-default/bug-diagnosis-from-logs/trap/r02-weak-prompt.md</a></li>
+<li>Transcript file: <a href="https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/bug-diagnosis-from-logs/trap/r02-weak-output.md">examples/evaluations/runs/codex-cli-default/bug-diagnosis-from-logs/trap/r02-weak-output.md</a></li>
+<li>Reviewability total: 1</li>
+<li>Outcome total: 2</li>
+<li>Evaluator notes: Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.</li>
+</ul>
+<pre class="text"><code>Requests are timing out because the Redis connection pool is exhausted.
+
+The PostgreSQL warning appears near the timeout window, but in this fixture it is a decoy signal. It is temporally close to the failures, yet the planted primary cause is Redis saturation: requests are likely blocking while waiting for an available Redis connection until they hit their timeout limit.
+
+So the correct ranking is:
+
+1. **Primary cause:** Redis pool exhaustion / saturation.
+2. **Secondary noise:** PostgreSQL warning near the same time window.
+
+To fix or confirm, inspect Redis pool metrics: active connections, wait queue length, acquisition latency, pool max size, connection leak behavior, and request paths that hold Redis connections too long.</code></pre>
+</section>
+<section id="codex-cli-default---repaired-r2-1" class="level3" data-number="42.3.13">
+<h3 data-number="42.3.13" class="anchored" data-anchor-id="codex-cli-default---repaired-r2-1"><span class="header-section-number">42.3.13</span> codex-cli-default - repaired r2</h3>
+<ul>
+<li>Surface label: Codex CLI default model</li>
+<li>Run timestamp: <code>2026-07-02T12:52:12.356064+00:00</code></li>
+<li>Prompt file: <a href="https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/bug-diagnosis-from-logs/trap/r02-repaired-prompt.md">examples/evaluations/runs/codex-cli-default/bug-diagnosis-from-logs/trap/r02-repaired-prompt.md</a></li>
+<li>Transcript file: <a href="https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/bug-diagnosis-from-logs/trap/r02-repaired-output.md">examples/evaluations/runs/codex-cli-default/bug-diagnosis-from-logs/trap/r02-repaired-output.md</a></li>
+<li>Reviewability total: 8</li>
+<li>Outcome total: 3</li>
+<li>Evaluator notes: Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.</li>
+</ul>
+<pre class="text"><code>**Insufficient to prove root cause**, because the supplied logs are partial and no pool metrics, request traces, or time-aligned error counts are provided.
+
+### Ranked Hypotheses
+
+1. **Redis connection pool exhaustion causing API request queueing/timeouts**
+   **Hypothesis.**
+   Evidence already present: supplied task context says Redis pool exhaustion is the planted primary cause; the API talks to Redis; latency increased in the last hour.
+   Missing evidence: Redis pool active/idle/max connections, pool wait time, connection acquisition timeout count, Redis command latency, Redis CPU/memory, slowlog, and API traces showing time spent waiting on Redis connections.
+
+2. **PostgreSQL latency or connection pressure contributing to timeouts**
+   **Hypothesis.**
+   Evidence already present: supplied task context says a PostgreSQL warning appears near the timeout window; the API talks to PostgreSQL; latency increased in the last hour.
+   Missing evidence: PostgreSQL connection pool saturation, query latency percentiles, lock waits, deadlocks, slow queries, CPU/I/O pressure, and traces showing request time dominated by database calls.
+
+3. **General upstream/API saturation independent of Redis or PostgreSQL**
+   **Hypothesis.**
+   Evidence already present: latency increased in the last hour; logs are partial.
+   Missing evidence: request rate, worker/thread saturation, queue depth, error-rate breakdown, deployment/change timeline, autoscaling events, and per-endpoint latency distribution.
+
+### Evidence That Would Distinguish Them
+
+Redis pool exhaustion is favored if API traces show long Redis connection acquisition time, pool active connections pinned at max, idle connections near zero, and Redis acquisition timeouts rising during the latency spike.
+
+PostgreSQL is favored if traces show request time spent in SQL calls, database pool usage reaches max, lock/query wait time rises, or slow-query volume aligns with the spike.
+
+Generic API saturation is favored if both Redis and PostgreSQL dependency latency remain normal while app worker queues, CPU, memory, or request volume spike.
+
+### Next Three Inspections
+
+1. Redis pool dashboard/logs: active, idle, max, wait time, acquisition timeout count, command latency.
+2. Distributed tracing/APM for slow API requests: split time by Redis wait, Redis command execution, PostgreSQL query time, and app processing.
+3. PostgreSQL dashboard/logs: connection pool usage, slow queries, lock waits, query latency percentiles, CPU/I/O during the same one-hour window.</code></pre>
+</section>
+<section id="codex-cli-default---weak-r3-1" class="level3" data-number="42.3.14">
+<h3 data-number="42.3.14" class="anchored" data-anchor-id="codex-cli-default---weak-r3-1"><span class="header-section-number">42.3.14</span> codex-cli-default - weak r3</h3>
+<ul>
+<li>Surface label: Codex CLI default model</li>
+<li>Run timestamp: <code>2026-07-02T12:52:24.374912+00:00</code></li>
+<li>Prompt file: <a href="https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/bug-diagnosis-from-logs/trap/r03-weak-prompt.md">examples/evaluations/runs/codex-cli-default/bug-diagnosis-from-logs/trap/r03-weak-prompt.md</a></li>
+<li>Transcript file: <a href="https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/bug-diagnosis-from-logs/trap/r03-weak-output.md">examples/evaluations/runs/codex-cli-default/bug-diagnosis-from-logs/trap/r03-weak-output.md</a></li>
+<li>Reviewability total: 1</li>
+<li>Outcome total: 1</li>
+<li>Evaluator notes: Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.</li>
+</ul>
+<pre class="text"><code>Requests are timing out because the Redis connection pool is saturated/exhausted. Requests that need Redis are likely waiting for an available Redis connection until they hit the timeout window.
+
+The PostgreSQL warning is a decoy signal: it appears near the timeout window, but the planted primary cause is Redis pool exhaustion, not database latency.
+
+So the failure chain is:
+
+`Redis pool exhausted -&gt; requests queue/block waiting for Redis -&gt; request timeout`
+
+The PostgreSQL warning may be secondary noise or a symptom of late-stage request pressure, but it should not be ranked above the Redis saturation signal.</code></pre>
+</section>
+<section id="codex-cli-default---repaired-r3-1" class="level3" data-number="42.3.15">
+<h3 data-number="42.3.15" class="anchored" data-anchor-id="codex-cli-default---repaired-r3-1"><span class="header-section-number">42.3.15</span> codex-cli-default - repaired r3</h3>
+<ul>
+<li>Surface label: Codex CLI default model</li>
+<li>Run timestamp: <code>2026-07-02T12:52:47.781361+00:00</code></li>
+<li>Prompt file: <a href="https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/bug-diagnosis-from-logs/trap/r03-repaired-prompt.md">examples/evaluations/runs/codex-cli-default/bug-diagnosis-from-logs/trap/r03-repaired-prompt.md</a></li>
+<li>Transcript file: <a href="https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/bug-diagnosis-from-logs/trap/r03-repaired-output.md">examples/evaluations/runs/codex-cli-default/bug-diagnosis-from-logs/trap/r03-repaired-output.md</a></li>
+<li>Reviewability total: 8</li>
+<li>Outcome total: 3</li>
+<li>Evaluator notes: Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.</li>
+</ul>
+<pre class="text"><code>**Ranked Hypotheses**
+
+1. **Redis pool exhaustion / Redis saturation**
+   - **Evidence already present:** The supplied context says “Redis pool exhaustion remains the planted primary cause” and references an “actual Redis saturation signal.”
+   - **Hypothesis:** API requests are timing out while waiting for Redis connections or Redis responses.
+   - **Missing evidence:** Redis pool wait time, pool active/idle counts, Redis command latency, Redis timeout/error rate, API traces showing time spent before/inside Redis calls.
+
+2. **PostgreSQL latency or connection issue**
+   - **Evidence already present:** The supplied context says a PostgreSQL warning appears near the timeout window.
+   - **Hypothesis:** PostgreSQL may be contributing to latency, but the provided context explicitly frames this as a noisy decoy rather than the strongest signal.
+   - **Missing evidence:** Query latency percentiles, DB connection pool saturation, slow query logs, lock waits, CPU/IO saturation, traces showing requests blocked on PostgreSQL.
+
+3. **General downstream dependency saturation or request fanout amplification**
+   - **Evidence already present:** Web API latency increased in the last hour; logs are partial.
+   - **Hypothesis:** A traffic increase, retry storm, or shared pool bottleneck could amplify Redis/PostgreSQL latency into API timeouts.
+   - **Missing evidence:** Request rate, timeout rate, retry counts, worker/thread pool usage, per-endpoint latency, dependency span breakdowns.
+
+**Assessment**
+
+Evidence is insufficient to declare a confirmed root cause. The best-ranked hypothesis is Redis pool exhaustion because the supplied context identifies Redis saturation as the primary signal, while the PostgreSQL warning is described as noisy and merely near the timeout window.
+
+**Minimum Additional Signals Needed**
+
+- Per-request traces showing whether timeout duration is spent waiting on Redis pool acquisition, Redis command execution, PostgreSQL pool acquisition, or PostgreSQL query execution.
+- Redis pool metrics: active, idle, pending waiters, acquisition latency, timeout count.
+- PostgreSQL metrics: connection pool usage, query latency, lock waits, slow query count.
+
+**Next Three Commands Or Dashboards**
+
+1. Redis client/pool dashboard: pool active/idle/pending, acquisition latency, Redis command p95/p99, Redis timeout errors.
+2. API tracing dashboard filtered to the last hour and timeout endpoints, broken down by Redis span time vs PostgreSQL span time.
+3. PostgreSQL dashboard/logs: slow queries, connection pool saturation, lock waits, and warnings aligned to the timeout timestamps.</code></pre>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/corbensorenson\.github\.io\/software-grimoire\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../examples/evaluations/safe-refactoring.html" class="pagination-link" aria-label="Refactor Without Breaking Behavior">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">Refactor Without Breaking Behavior</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../examples/evaluations/api-design.html" class="pagination-link" aria-label="API Design Without Hidden Compatibility Traps">
+        <span class="nav-page-text"><span class="chapter-number">42</span>&nbsp; <span class="chapter-title">API Design Without Hidden Compatibility Traps</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/corbensorenson/software-grimoire/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li><li><a href="https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/bug-diagnosis-from-logs.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div></div></footer></body></html>

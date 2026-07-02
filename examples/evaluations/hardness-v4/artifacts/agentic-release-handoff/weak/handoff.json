@@ -1,0 +1,15 @@
+{
+  "scratch_root": "/outside-repo/grimoire-release",
+  "allowlist": ["shell", "write"],
+  "steps": [
+    {"name": "ship", "tool": "shell", "command": "publish release"}
+  ],
+  "gates": [
+    {"name": "final", "passed": true, "evidence": "looks done"}
+  ],
+  "artifacts": [
+    {"path": "/outside-repo/grimoire-release/result.json", "provenance": "generated"}
+  ],
+  "final_status": "approved",
+  "human_signoff": "complete"
+}

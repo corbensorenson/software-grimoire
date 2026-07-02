@@ -1,0 +1,1528 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>12&nbsp; The Public Canon – The Grimoire of Software Magic Words</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../chapters/08-stackcraft.html" rel="next">
+<link href="../chapters/06-field-spells.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-39ac65d2ba81e8f361d24188b4938e12.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../porting-status.html">Core Grimoire</a></li><li class="breadcrumb-item"><a href="../chapters/07-public-canon.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">The Public Canon</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">The Grimoire of Software Magic Words</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/corbensorenson/software-grimoire" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">The Grimoire of Software Magic Words</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../quick_start.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">First Spell in Five Minutes</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reader_path.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Guided Reader Path</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Core Grimoire</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../porting-status.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Porting Status</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../preface.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Preface</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/01-operative-language.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Operative Language</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/02-what-a-spell-is.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">What a Spell Is</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/03-crafting-spells.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Crafting Spells</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/04-sigils-canonicalization-and-seals.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Sigils, Canonicalization, and Seals</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/05-coil-inspection.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Coil Inspection</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/06-field-spells.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Field Spells</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/07-public-canon.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">The Public Canon</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/08-stackcraft.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Stackcraft</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/09-tooling-and-formalization.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Tooling and Formalization</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/10-living-practice.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Living Practice</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/11-adversarial-promptcraft.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Adversarial Promptcraft</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Spell Library</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../spells/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Spell Library</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../spells/safe-refactoring.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Spell of Safe Refactoring</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../spells/bug-diagnosis-from-logs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Spell of Bug Diagnosis from Logs</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../spells/api-design.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Spell of API Design</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../spells/migration-without-data-loss.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Spell of Migration Without Data Loss</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../spells/test-generation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Spell of Test Generation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../spells/performance-tuning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Spell of Performance Tuning</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../spells/jailbreak-resilience-review.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Spell of Jailbreak-Resilience Review</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Stack Library</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stacks/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Stack Library</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stacks/code-generation-and-repair-loop.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Code Generation and Repair Loop</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stacks/bug-hunt-stack.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Bug-Hunt Stack</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stacks/safe-refactor-stack.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Safe Refactor Stack</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stacks/live-migration-stack.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Live Migration Stack</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stacks/release-gate-stack.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Release Gate Stack</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stacks/recursive-decomposition-stack.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Recursive Decomposition Stack</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stacks/ai-red-team-loop.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">AI Red-Team Loop</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Proof by Difference Cases</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../examples/weak-vs-repaired/safe-refactoring.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Refactor Without Breaking Behavior</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../examples/weak-vs-repaired/bug-diagnosis-from-logs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Incident Diagnosis Without Fake Certainty</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../examples/weak-vs-repaired/api-design.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">API Design Without Hidden Compatibility Traps</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../examples/weak-vs-repaired/migration-without-data-loss.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Online Migration Without Data Loss</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../examples/weak-vs-repaired/test-generation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Test Generation Without Overfitting To Implementation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../examples/weak-vs-repaired/performance-tuning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Performance Tuning Without Micro-Optimization Drift</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Recorded Evaluations</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../examples/evaluations/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">Recorded Evaluations</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../examples/evaluations/safe-refactoring.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">Refactor Without Breaking Behavior</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../examples/evaluations/bug-diagnosis-from-logs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">Incident Diagnosis Without Fake Certainty</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../examples/evaluations/api-design.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">42</span>&nbsp; <span class="chapter-title">API Design Without Hidden Compatibility Traps</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../examples/evaluations/migration-without-data-loss.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">43</span>&nbsp; <span class="chapter-title">Online Migration Without Data Loss</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../examples/evaluations/test-generation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">44</span>&nbsp; <span class="chapter-title">Test Generation Without Overfitting To Implementation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../examples/evaluations/performance-tuning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">45</span>&nbsp; <span class="chapter-title">Performance Tuning Without Micro-Optimization Drift</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Jailbreak Resilience</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../examples/jailbreak-resilience/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">46</span>&nbsp; <span class="chapter-title">Jailbreak-Resilience Bench</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../examples/jailbreak-resilience/indirect-readme-injection.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">47</span>&nbsp; <span class="chapter-title">Indirect README Injection</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../examples/jailbreak-resilience/tainted-log-instruction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">48</span>&nbsp; <span class="chapter-title">Tainted Log Instruction</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../examples/jailbreak-resilience/rag-chunk-override.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">49</span>&nbsp; <span class="chapter-title">RAG Chunk Override</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../examples/jailbreak-resilience/system-prompt-leak-request.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">50</span>&nbsp; <span class="chapter-title">System-Prompt Leak Request</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../examples/jailbreak-resilience/multi-turn-scope-creep.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">51</span>&nbsp; <span class="chapter-title">Multi-Turn Scope Creep</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../examples/jailbreak-resilience/many-shot-policy-drift.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">52</span>&nbsp; <span class="chapter-title">Many-Shot Policy Drift</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../examples/jailbreak-resilience/forbidden-tool-call.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">53</span>&nbsp; <span class="chapter-title">Forbidden Tool Call</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../examples/jailbreak-resilience/canary-leakage.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">54</span>&nbsp; <span class="chapter-title">Canary Leakage</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
+ <span class="menu-text">Adoption Kit</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../adoption/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">55</span>&nbsp; <span class="chapter-title">Adoption Kit</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../adoption/installable-library.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">56</span>&nbsp; <span class="chapter-title">Installable Library</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../adoption/evidence.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">57</span>&nbsp; <span class="chapter-title">Adoption Evidence</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../adoption/playbook.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">58</span>&nbsp; <span class="chapter-title">Adoption Playbook</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../adoption/external-walkthrough.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">59</span>&nbsp; <span class="chapter-title">External Walkthrough</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true">
+ <span class="menu-text">Reference</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">60</span>&nbsp; <span class="chapter-title">Reference</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/cast-levels.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">61</span>&nbsp; <span class="chapter-title">Cast Levels</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/spell-skeleton.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">62</span>&nbsp; <span class="chapter-title">Canonical Spell Skeleton</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/stack-grammar.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">63</span>&nbsp; <span class="chapter-title">Stack Grammar</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/seals-and-sigils.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">64</span>&nbsp; <span class="chapter-title">Seals and Sigils</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/failure-modes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">65</span>&nbsp; <span class="chapter-title">Failure Modes</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/proof-by-difference.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">66</span>&nbsp; <span class="chapter-title">Proof by Difference</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/evidence-browser.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">67</span>&nbsp; <span class="chapter-title">Evidence Browser</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/calibration.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">68</span>&nbsp; <span class="chapter-title">Calibration</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/bench-v2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">69</span>&nbsp; <span class="chapter-title">Bench v2</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/execution-bench.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">70</span>&nbsp; <span class="chapter-title">Execution-Graded Bench</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/hardness-v4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">71</span>&nbsp; <span class="chapter-title">Bench v4 Hardness Ladder</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/model-artifact-execution.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">72</span>&nbsp; <span class="chapter-title">Model Artifact Execution</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/surface-comparison.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">73</span>&nbsp; <span class="chapter-title">Surface Comparison</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/jailbreak-resilience.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">74</span>&nbsp; <span class="chapter-title">Jailbreak Resilience</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/adversarial-harness.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">75</span>&nbsp; <span class="chapter-title">Adversarial Harness v2</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/warded-baselines.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">76</span>&nbsp; <span class="chapter-title">Warded Baselines</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/ward-science.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">77</span>&nbsp; <span class="chapter-title">Ward Science</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/warded-ab-evidence.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">78</span>&nbsp; <span class="chapter-title">Warded A/B Evidence</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/semantic-promotion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">79</span>&nbsp; <span class="chapter-title">Semantic Promotion Ladder</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/canon-audit.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">80</span>&nbsp; <span class="chapter-title">Canon Audit</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/usage-earned-canon.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">81</span>&nbsp; <span class="chapter-title">Usage-Earned Canon</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/canon-review-queue.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">82</span>&nbsp; <span class="chapter-title">Canon Review Queue</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/methods-structure-reviewability-warding.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">83</span>&nbsp; <span class="chapter-title">Methods: Structure, Reviewability, and Warding</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/logical-conclusion-status.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">84</span>&nbsp; <span class="chapter-title">Logical Conclusion Status</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/public-smoke-checks.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">85</span>&nbsp; <span class="chapter-title">Public Smoke Checks</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/package-index-release.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">86</span>&nbsp; <span class="chapter-title">Package-Index Release Plan</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/generator-architecture.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">87</span>&nbsp; <span class="chapter-title">Generator Architecture</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/visual-grammar.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">88</span>&nbsp; <span class="chapter-title">Visual Grammar</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/task-chooser.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">89</span>&nbsp; <span class="chapter-title">Task Chooser</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/canon-map.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">90</span>&nbsp; <span class="chapter-title">Canon Map</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/major-canon.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">91</span>&nbsp; <span class="chapter-title">The Fifty World-Running Words</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/pocket-canon.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">92</span>&nbsp; <span class="chapter-title">Pocket Canon</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/pocket-field-guide.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">93</span>&nbsp; <span class="chapter-title">Pocket Field Guide</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/term-index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">94</span>&nbsp; <span class="chapter-title">Term Index</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true">
+ <span class="menu-text">Master Lexicon</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/lexicon.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">95</span>&nbsp; <span class="chapter-title">Master Lexicon</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/house-architecture-abstraction-and-design.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">96</span>&nbsp; <span class="chapter-title">Architecture, Abstraction, and Design</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/house-language-semantics-and-formal-shape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">97</span>&nbsp; <span class="chapter-title">Language, Semantics, and Formal Shape</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/house-data-state-and-representation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">98</span>&nbsp; <span class="chapter-title">Data, State, and Representation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/house-transformation-algorithms-and-working-verbs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">99</span>&nbsp; <span class="chapter-title">Transformation, Algorithms, and Working Verbs</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/house-control-flow-coordination-and-temporal-logic.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">100</span>&nbsp; <span class="chapter-title">Control Flow, Coordination, and Temporal Logic</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/house-runtime-memory-and-execution.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">101</span>&nbsp; <span class="chapter-title">Runtime, Memory, and Execution</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/house-systems-programming-and-operating-system-words.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">102</span>&nbsp; <span class="chapter-title">Systems Programming and Operating-System Words</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/house-networking-and-distributed-systems.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">103</span>&nbsp; <span class="chapter-title">Networking and Distributed Systems</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/house-databases-persistence-and-time-binding-words.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">104</span>&nbsp; <span class="chapter-title">Databases, Persistence, and Time-Binding Words</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/house-security-trust-and-warding-words.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">105</span>&nbsp; <span class="chapter-title">Security, Trust, and Warding Words</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/house-build-tooling-versioning-and-release.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">106</span>&nbsp; <span class="chapter-title">Build, Tooling, Versioning, and Release</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/house-testing-verification-and-observability.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">107</span>&nbsp; <span class="chapter-title">Testing, Verification, and Observability</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/house-hardware-embedded-and-performance-near-words.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">108</span>&nbsp; <span class="chapter-title">Hardware, Embedded, and Performance-Near Words</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/house-interface-ux-and-human-facing-words.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">109</span>&nbsp; <span class="chapter-title">Interface, UX, and Human-Facing Words</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/house-promptcraft-ai-oriented-engineering-and-spell-structure.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">110</span>&nbsp; <span class="chapter-title">Promptcraft, AI-Oriented Engineering, and Spell Structure</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/house-guarantee-words-quality-attributes-and-behavioral-adjectives.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">111</span>&nbsp; <span class="chapter-title">Guarantee Words, Quality Attributes, and Behavioral Adjectives</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/house-failure-words-pathologies-and-counter-spells.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">112</span>&nbsp; <span class="chapter-title">Failure Words, Pathologies, and Counter-Spells</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/house-compound-forms-prefixes-suffixes-and-naming-runes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">113</span>&nbsp; <span class="chapter-title">Compound Forms, Prefixes, Suffixes, and Naming Runes</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#vii.-the-public-canon-major-arcana-and-proof-by-difference" id="toc-vii.-the-public-canon-major-arcana-and-proof-by-difference" class="nav-link active" data-scroll-target="#vii.-the-public-canon-major-arcana-and-proof-by-difference"><span class="header-section-number">13</span> VII. The Public Canon: Major Arcana and Proof by Difference</a>
+  <ul class="collapse">
+  <li><a href="#the-fifty-world-running-words" id="toc-the-fifty-world-running-words" class="nav-link" data-scroll-target="#the-fifty-world-running-words"><span class="header-section-number">13.1</span> The Fifty World-Running Words</a></li>
+  <li><a href="#boundaries-seams-and-collaboration" id="toc-boundaries-seams-and-collaboration" class="nav-link" data-scroll-target="#boundaries-seams-and-collaboration"><span class="header-section-number">13.2</span> Boundaries, seams, and collaboration</a></li>
+  <li><a href="#state-durable-truth-and-reversibility" id="toc-state-durable-truth-and-reversibility" class="nav-link" data-scroll-target="#state-durable-truth-and-reversibility"><span class="header-section-number">13.3</span> State, durable truth, and reversibility</a></li>
+  <li><a href="#runtime-pressure-behavior-and-operational-physics" id="toc-runtime-pressure-behavior-and-operational-physics" class="nav-link" data-scroll-target="#runtime-pressure-behavior-and-operational-physics"><span class="header-section-number">13.4</span> Runtime pressure, behavior, and operational physics</a></li>
+  <li><a href="#observation-release-and-proof-surfaces" id="toc-observation-release-and-proof-surfaces" class="nav-link" data-scroll-target="#observation-release-and-proof-surfaces"><span class="header-section-number">13.5</span> Observation, release, and proof surfaces</a></li>
+  <li><a href="#authority-trust-and-named-shadows" id="toc-authority-trust-and-named-shadows" class="nav-link" data-scroll-target="#authority-trust-and-named-shadows"><span class="header-section-number">13.6</span> Authority, trust, and named shadows</a></li>
+  <li><a href="#proof-by-difference" id="toc-proof-by-difference" class="nav-link" data-scroll-target="#proof-by-difference"><span class="header-section-number">13.7</span> Proof by Difference</a></li>
+  <li><a href="#case-i.-refactor-without-breaking-behavior" id="toc-case-i.-refactor-without-breaking-behavior" class="nav-link" data-scroll-target="#case-i.-refactor-without-breaking-behavior"><span class="header-section-number">13.8</span> Case I. Refactor Without Breaking Behavior</a></li>
+  <li><a href="#case-ii.-online-migration-without-data-loss" id="toc-case-ii.-online-migration-without-data-loss" class="nav-link" data-scroll-target="#case-ii.-online-migration-without-data-loss"><span class="header-section-number">13.9</span> Case II. Online Migration Without Data Loss</a></li>
+  <li><a href="#case-iii.-incident-diagnosis-without-fake-certainty" id="toc-case-iii.-incident-diagnosis-without-fake-certainty" class="nav-link" data-scroll-target="#case-iii.-incident-diagnosis-without-fake-certainty"><span class="header-section-number">13.10</span> Case III. Incident Diagnosis Without Fake Certainty</a></li>
+  <li><a href="#what-the-delta-teaches" id="toc-what-the-delta-teaches" class="nav-link" data-scroll-target="#what-the-delta-teaches"><span class="header-section-number">13.11</span> What the Delta Teaches</a></li>
+  <li><a href="#how-to-read-the-master-lexicon" id="toc-how-to-read-the-master-lexicon" class="nav-link" data-scroll-target="#how-to-read-the-master-lexicon"><span class="header-section-number">13.12</span> How to Read the Master Lexicon</a></li>
+  <li><a href="#a-simple-browsing-method" id="toc-a-simple-browsing-method" class="nav-link" data-scroll-target="#a-simple-browsing-method"><span class="header-section-number">13.13</span> A Simple Browsing Method</a></li>
+  <li><a href="#related-pages" id="toc-related-pages" class="nav-link" data-scroll-target="#related-pages"><span class="header-section-number">13.14</span> Related Pages</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/corbensorenson/software-grimoire/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li><li><a href="https://github.com/corbensorenson/software-grimoire/blob/main/chapters/07-public-canon.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../porting-status.html">Core Grimoire</a></li><li class="breadcrumb-item"><a href="../chapters/07-public-canon.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">The Public Canon</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">The Public Canon</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="vii.-the-public-canon-major-arcana-and-proof-by-difference" class="level1" data-number="13">
+<h1 data-number="13"><span class="header-section-number">13</span> VII. The Public Canon: Major Arcana and Proof by Difference</h1>
+<p>The full lexicon is an exhaustive back-catalogue. Public use begins with a smaller canon: the words that repeatedly alter code review, architecture, incident response, migration planning, benchmarking, deployment, and AI-assisted engineering. The fifty entries below are not the only force-bearing runes. They are the ones most likely to change outcomes when named early and used precisely.</p>
+<p>These entries are deliberately richer than the compact master lexicon. Each gives a force description, a practical use, and a failure shadow. Read them as the major arcana of software spellcraft: not complete, but disproportionately world-running.</p>
+<section id="the-fifty-world-running-words" class="level2" data-number="13.1">
+<h2 data-number="13.1" class="anchored" data-anchor-id="the-fifty-world-running-words"><span class="header-section-number">13.1</span> The Fifty World-Running Words</h2>
+<p>The list is arranged in five clusters so the reader can move from design seams to durable truth, from runtime pressure to proof surfaces, and finally to authority and named failure shadows.</p>
+</section>
+<section id="boundaries-seams-and-collaboration" class="level2" data-number="13.2">
+<h2 data-number="13.2" class="anchored" data-anchor-id="boundaries-seams-and-collaboration"><span class="header-section-number">13.2</span> Boundaries, seams, and collaboration</h2>
+<p>[0001] abstraction — A deliberate forgetting of detail so larger structure can be reasoned about without drowning in mechanism. Shadow: hiding the only failure that matters.</p>
+<p>[0002] adapter — A negotiated translator between unlike shapes. Use it when two systems must meet without infecting one another. Shadow: adapter jungles that preserve confusion rather than resolve it.</p>
+<p>[0006] API gateway — A threshold that centralizes entry, policy, and routing at the edge of a service world. Shadow: a convenience chokepoint that quietly becomes a monolith.</p>
+<p>[0012] boundary — The line that says where one responsibility ends and another begins. Shadow: porous edges that smear blame, ownership, and test scope.</p>
+<p>[0013] bounded context — A protection against semantic bleed: the same word may not mean the same thing in every subsystem. Shadow: false unification through shared names.</p>
+<p>[0030] coupling — The hidden tax paid when change in one place forces change elsewhere. Name it early if you want modularity to survive contact with reality.</p>
+<p>[0034] dependency inversion — Stable policy should not kneel before unstable detail. Shadow: concrete dependencies hard-wired into places that should remain portable.</p>
+<p>[0055] interface {Arch} — A disciplined seam that lets unlike bodies cooperate without swapping internal organs. Shadow: tight coupling and type bleed.</p>
+<p>[0347] schema {Data} — The declared shape of stored meaning. Shadow: drift, silent coercion, and backward-incompatible surprise.</p>
+<p>[1152] contract test — A promise checked at the seam between systems. Use it when mocks are too flattering and end-to-end tests are too blunt.</p>
+</section>
+<section id="state-durable-truth-and-reversibility" class="level2" data-number="13.3">
+<h2 data-number="13.3" class="anchored" data-anchor-id="state-durable-truth-and-reversibility"><span class="header-section-number">13.3</span> State, durable truth, and reversibility</h2>
+<p>[1172] invariant — A law that must remain true while the rest of the system is allowed to move. If you cannot say the invariant, you probably do not yet understand the change.</p>
+<p>[0926] migration — Stored reality changing shape without being lost. Good migrations are staged, inspectable, and reversible long enough to discover what the data actually contains.</p>
+<p>[0898] commit {DB} — The moment a proposed change becomes durable history. Shadow: writing too early, before the world is actually ready to carry the new truth.</p>
+<p>[0943] rollback {DB} — Permission to retreat toward a previously trusted state. A system without rollback mistakes hope for safety.</p>
+<p>[0805] eventual consistency — Agreement postponed rather than denied. Shadow: stale reads treated as if they were fresh truth.</p>
+<p>[0848] quorum — Not everyone must agree, but enough must. This word turns distributed action into a threshold question instead of a unanimous fantasy.</p>
+<p>[1461] idempotent — The word that makes retries survivable: same request, same lasting effect. Shadow: duplicate charges, duplicate emails, and fear of recovery.</p>
+<p>[1425] atomic — No halfway state is allowed to leak across the line. Use it when partial success would be indistinguishable from corruption.</p>
+<p>[1445] deterministic — Given the same inputs, the same result should return. This is the antidote to drift, heisenbugs, and unreviewable behavior.</p>
+<p>[1492] serializable {Qual} — Concurrency forced to behave as though transactions happened in one clean order. Expensive when overused, indispensable when history must remain sane.</p>
+</section>
+<section id="runtime-pressure-behavior-and-operational-physics" class="level2" data-number="13.4">
+<h2 data-number="13.4" class="anchored" data-anchor-id="runtime-pressure-behavior-and-operational-physics"><span class="header-section-number">13.4</span> Runtime pressure, behavior, and operational physics</h2>
+<p>[1481] pure — Same inputs, same output, no hidden state smuggled in from the side. Use it to shrink reasoning scope.</p>
+<p>[1462] immutable — Once written, this thing does not change in place. Immutability buys clarity, replayability, and safer sharing at the cost of update convenience.</p>
+<p>[0576] retry {Ctrl} — Failure does not necessarily end the ritual; policy may permit another attempt. Shadow: blind repetition against a broken precondition.</p>
+<p>[0598] timeout {Ctrl} — Waiting is not free and patience must have a boundary. A timeout is a contract with reality about how long uncertainty is allowed to persist.</p>
+<p>[0825] latency — The delay before useful work reaches the caller. Latency is what users feel even when throughput graphs look flattering.</p>
+<p>[1281] throughput — How much useful work the system can push through a narrow world in bounded time. Shadow: chasing bulk capacity while tail latency burns the user.</p>
+<p>[0778] backpressure — Resistance pushed upstream when demand outruns capacity. Without it, overload spreads faster than truth.</p>
+<p>[0615] cache {Run} — Keep likely things close so future cost falls. Shadow: stale truth delivered at machine speed.</p>
+<p>[0684] zero-copy {Run} — Data movement stripped down to the minimum number of duplications. Use it when the bottleneck is physical movement rather than arithmetic.</p>
+<p>[1472] memory-safe {Qual} — A promise that the system will not casually trespass across allocation boundaries. Shadow: leaks, corruption, and security bugs born from illegal touch.</p>
+</section>
+<section id="observation-release-and-proof-surfaces" class="level2" data-number="13.5">
+<h2 data-number="13.5" class="anchored" data-anchor-id="observation-release-and-proof-surfaces"><span class="header-section-number">13.5</span> Observation, release, and proof surfaces</h2>
+<p>[1180] observability — Enough internal evidence exists that you can infer what the system is doing from the outside. Not logs alone: legible state under pressure.</p>
+<p>[1202] telemetry — Measurements leaving the system in a form other systems can compare, store, and alert on. Shadow: metric exhaust without explanatory power.</p>
+<p>[1204] trace {Proof} — A preserved path through execution. Use it when the question is not only what failed, but where the causal thread first bent.</p>
+<p>[1146] benchmark — A performance claim forced to meet measurement. Benchmarks are where speed rhetoric either cashes out or dies.</p>
+<p>[1073] canary — A deliberately limited release whose job is to discover whether production reality agrees with the story told in staging.</p>
+<p>[1086] deploy — The crossing from forge to world. Many good ideas become bad facts only after they are actually shipped.</p>
+<p>[1088] diff {Forge} — A visible account of what changed between one state and another. Good diffs make review local; bad diffs turn truth into fog.</p>
+<p>[1186] property-based test — Instead of checking one remembered example, ask whether a law survives many generated cases. Use it when you care more about the invariant than the anecdote.</p>
+<p>[0974] attestation — A proof that a thing is what it claims to be or was produced the way it claims. It matters most when trust cannot be assumed.</p>
+<p>[1467] linearizable — Every operation behaves as though it took effect at one real instant visible to all observers. Use it rarely, but mean it fully.</p>
+</section>
+<section id="authority-trust-and-named-shadows" class="level2" data-number="13.6">
+<h2 data-number="13.6" class="anchored" data-anchor-id="authority-trust-and-named-shadows"><span class="header-section-number">13.6</span> Authority, trust, and named shadows</h2>
+<p>[1017] least privilege — Give only the authority required for the present act, no more. It is one of the simplest words for reducing future regret.</p>
+<p>[0978] authorization — After identity is known, what acts are permitted? Shadow: accidental omnipotence hidden behind a successful login.</p>
+<p>[0976] authenticate — Prove who is making the claim before deciding what the claimant may do. Shadow: trusting names that have not earned entrance.</p>
+<p>[1050] signature {Sec} — Identity or intent made checkable through cryptographic proof. Useful wherever trust must survive distance and replay.</p>
+<p>[1007] hash {Sec} — Arbitrary input reduced to a fixed fingerprint. Use it for identity, integrity, bucketing, and change detection; never mistake it for secrecy.</p>
+<p>[1028] policy — The declared rule by which a class of cases is decided. Good policy reduces arbitrary judgment; bad policy merely freezes confusion.</p>
+<p>[1561] race — An ordering curse: outcomes depend on timing you do not actually control. Name the race and the system becomes debuggable again.</p>
+<p>[1546] leak {Curse} — Something escapes the boundary that should have held it: memory, secrets, file descriptors, authority, abstraction, or time.</p>
+<p>[1567] schema drift — The stored world and the assumed world have silently stopped matching. This is how migrations keep hurting after everyone thinks they are done.</p>
+<p>[1564] retry storm — Recovery logic amplifying failure instead of containing it. Unguided retries can turn a partial outage into a self-made siege.</p>
+</section>
+<section id="proof-by-difference" class="level2" data-number="13.7">
+<h2 data-number="13.7" class="anchored" data-anchor-id="proof-by-difference"><span class="header-section-number">13.7</span> Proof by Difference</h2>
+<p>A public methodology earns trust when it shows not only the polished theory but the practical delta. The three cases below are archetypal rather than model-specific. Their job is to show how structure changes the probable quality of the answer.</p>
+</section>
+<section id="case-i.-refactor-without-breaking-behavior" class="level2" data-number="13.8">
+<h2 data-number="13.8" class="anchored" data-anchor-id="case-i.-refactor-without-breaking-behavior"><span class="header-section-number">13.8</span> Case I. Refactor Without Breaking Behavior</h2>
+<p>Weak request</p>
+<p>Clean up this Python module and make it nicer.</p>
+<p>Repaired spell</p>
+<p>ROLE: Act as a senior Python engineer performing behavior-preserving refactoring.</p>
+<p>OBJECTIVE: Remove duplication in the supplied module without changing public behavior.</p>
+<p>CONTEXT: The module is imported by two API handlers and one CLI entry point. Python 3.11. Existing tests cover only the happy path.</p>
+<p>CONSTRAINTS: Do not change public function names, parameter order, return types, or raised exception classes. Touch only this module and its tests.</p>
+<p>OUTPUT CONTRACT: Return a minimal patch plan, the proposed refactor, and tests that prove unchanged behavior.</p>
+<p>VERIFICATION: State the invariants first; then show before/after test cases for edge inputs.</p>
+<p>FAILURE BEHAVIOR: If the module boundary is too small for a safe refactor, say exactly what adjacent file must also move and why.</p>
+<p>Weak-cast answers tend to widen the blast radius: renamed public helpers, decorative rewrites, and claims of cleanliness without behavioral proof. The repaired spell forces the assistant to surface invariants, stay inside a bounded file set, and pay its debt in tests. Review becomes local because the spell demanded locality.</p>
+</section>
+<section id="case-ii.-online-migration-without-data-loss" class="level2" data-number="13.9">
+<h2 data-number="13.9" class="anchored" data-anchor-id="case-ii.-online-migration-without-data-loss"><span class="header-section-number">13.9</span> Case II. Online Migration Without Data Loss</h2>
+<p>Weak request</p>
+<p>Migrate users.birthdate from string to date.</p>
+<p>Repaired spell</p>
+<p>ROLE: Act as a migration planner for a production PostgreSQL system.</p>
+<p>OBJECTIVE: Move users.birthdate from VARCHAR to DATE without data loss and without breaking reads or writes during rollout.</p>
+<p>CONTEXT: The table is large, writes continue during business hours, and some existing rows contain invalid or partial dates.</p>
+<p>CONSTRAINTS: Use an expand-and-contract strategy. Preserve rollback until data quality is validated. Assume two application deploys are allowed.</p>
+<p>OUTPUT CONTRACT: Return phased SQL and application steps: schema expand, dual write, backfill, validation queries, read switch, cleanup, rollback plan.</p>
+<p>VERIFICATION: Include checks for invalid rows, null behavior, row-count parity, and post-cutover consistency.</p>
+<p>FAILURE BEHAVIOR: If the data quality problem is too large for a safe automatic cast, stop at the quarantine step and describe the manual decision boundary.</p>
+<p>Weak-cast answers often collapse directly to ALTER COLUMN … TYPE DATE and call the job done. The repaired spell produces a staged migration, names the dirty-data problem, preserves reversibility, and makes validation first-class. Instead of a single irreversible act, the result becomes a controlled campaign.</p>
+</section>
+<section id="case-iii.-incident-diagnosis-without-fake-certainty" class="level2" data-number="13.10">
+<h2 data-number="13.10" class="anchored" data-anchor-id="case-iii.-incident-diagnosis-without-fake-certainty"><span class="header-section-number">13.10</span> Case III. Incident Diagnosis Without Fake Certainty</h2>
+<p>Weak request</p>
+<p>Why are requests timing out?</p>
+<p>Repaired spell</p>
+<p>ROLE: Act as a production incident analyst.</p>
+<p>OBJECTIVE: Narrow the most likely causes of the timeout spike and say what evidence would distinguish them.</p>
+<p>CONTEXT: A web API talks to Redis and PostgreSQL. Latency increased in the last hour. No code deploy is known. Logs are partial.</p>
+<p>CONSTRAINTS: Do not claim a root cause that is not supported by the supplied evidence. Distinguish hypothesis from fact.</p>
+<p>OUTPUT CONTRACT: Return ranked hypotheses, evidence already present, missing evidence, and the next three commands or dashboards to inspect.</p>
+<p>VERIFICATION: Every factual claim must cite the observed symptom that supports it or else be labeled hypothesis.</p>
+<p>FAILURE BEHAVIOR: If the evidence is insufficient, say insufficient and identify the minimum additional signals needed to move from speculation to diagnosis.</p>
+<p>Weak-cast answers guess. Strong-cast answers separate observation from hypothesis, preserve uncertainty, and still move the operator forward. The repaired spell does not magically know the root cause; it prevents counterfeit knowing while still producing useful next steps.</p>
+</section>
+<section id="what-the-delta-teaches" class="level2" data-number="13.11">
+<h2 data-number="13.11" class="anchored" data-anchor-id="what-the-delta-teaches"><span class="header-section-number">13.11</span> What the Delta Teaches</h2>
+<p>• Good spellcraft does not guarantee a perfect answer; it reliably raises the floor by forcing the right nouns, invariants, and truth tests into the request.</p>
+<p>• The biggest gains usually come from three moves: narrowing the artifact boundary, naming the invariant, and specifying how correctness will be checked.</p>
+<p>• Failure behavior is not decorative. It is what prevents an assistant from converting missing context into counterfeit certainty.</p>
+<p>• A repaired spell is easier to review, version, compare, and automate because its obligations are explicit rather than implied.</p>
+<p>• The more expensive the real-world mistake, the more the spell should pay in verification and rollback language up front.</p>
+<p>This is the practical thesis of the whole grimoire. Spellcraft is not about sounding commanding, mystical, or verbose. It is about giving language enough structure that useful work can be distinguished from plausible theater.</p>
+</section>
+<section id="how-to-read-the-master-lexicon" class="level2" data-number="13.12">
+<h2 data-number="13.12" class="anchored" data-anchor-id="how-to-read-the-master-lexicon"><span class="header-section-number">13.12</span> How to Read the Master Lexicon</h2>
+<p>The master lexicon is overcomplete by design. It includes near-synonyms, neighboring senses, and families of compounds because software work is unusually sensitive to nuance. The public canon above gives the richer entry form. The master lexicon below compresses for breadth, stable numbering, and scanability.</p>
+<p>Each entry is a word-sense with a sigil number, a house label, and an operative gloss. Read the section in four ways: as a technical reference, as a vocabulary source for constructing better prompts, as a map of guarantee words and failure shadows, and as the numbered substrate from which canonical spell encodings can be built. When a compact gloss feels too small, treat the Public Canon as the expanded commentary layer for the most repeatedly useful runes.</p>
+<p><strong>• Browse by house -</strong> When framing a task, move through the relevant domains: architecture, data, runtime, testing, security, deployment, or human interface.</p>
+<p><strong>• Pair light with shadow -</strong> Strong guarantees become more useful when read beside their corresponding pathologies: consistency beside drift, concurrency beside race, allocation beside leak, exposure beside exploit.</p>
+<p><strong>• Use sigils as stable handles -</strong> When canonicalizing a spell, treat the lexicon entries as reusable numbered components rather than as ornamental vocabulary.</p>
+<p><strong>• Treat compounds as tuning runes -</strong> Prefixes, suffixes, and compound modifiers often do real narrowing work. Behavior-preserving, bounded, streaming, append-only, best-effort, zero-downtime, and read-only are not stylistic fluff.</p>
+<p>If you later build a digital spellbook, this lexicon becomes the substrate: each word-sense becomes a node, each spell becomes a path through nodes, each token stream can be rendered into a Godel-style signature, and each clause circle can be visualized as a small coil of obligations and checks. For now, the main practical use is simpler: better words lead to better prompts, better designs, and better engineering conversations.</p>
+</section>
+<section id="a-simple-browsing-method" class="level2" data-number="13.13">
+<h2 data-number="13.13" class="anchored" data-anchor-id="a-simple-browsing-method"><span class="header-section-number">13.13</span> A Simple Browsing Method</h2>
+<p>• Start with the canon - If the task is common and high-stakes, the Public Canon will usually supply the first few runes you need.</p>
+<p>• Descend by house - Once the core terms are named, browse the relevant houses for local detail: database guarantees, runtime behavior, security wards, or release mechanics.</p>
+<p>• Pair force with shadow - For every guarantee word you cast, ask what failure word should stand beside it. Idempotent wants duplicate side effects; migration wants drift; concurrency wants race.</p>
+<p>• Use compounds late - Add tuning runes such as bounded, append-only, read-only, zero-downtime, or behavior-preserving only after the larger nouns are correct.</p>
+<p>• Write the spell in layers - Begin with title and objective, then add constraints, output contract, verification, and failure behavior until the risk feels bounded.</p>
+<p>A quick working pattern is: choose one or two architecture words, one or two state words, one guarantee word, one failure shadow, and one verification word. That small bundle is often enough to turn a vague request into an inspectable spell.</p>
+<p>Example bundle: interface + schema + idempotent + schema drift + contract test.</p>
+</section>
+<section id="related-pages" class="level2" data-number="13.14">
+<h2 data-number="13.14" class="anchored" data-anchor-id="related-pages"><span class="header-section-number">13.14</span> Related Pages</h2>
+<ul>
+<li><a href="../reference/major-canon.html">The Fifty World-Running Words</a></li>
+<li><a href="../reference/pocket-canon.html">Pocket Canon</a></li>
+<li><a href="../reference/term-index.html">Term Index</a></li>
+</ul>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/corbensorenson\.github\.io\/software-grimoire\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../chapters/06-field-spells.html" class="pagination-link" aria-label="Field Spells">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Field Spells</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../chapters/08-stackcraft.html" class="pagination-link" aria-label="Stackcraft">
+        <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Stackcraft</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/corbensorenson/software-grimoire/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li><li><a href="https://github.com/corbensorenson/software-grimoire/blob/main/chapters/07-public-canon.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div></div></footer></body></html>

@@ -1,0 +1,572 @@
+{
+  "generated_at": "2026-07-02T00:00:00Z",
+  "version": "2.2.0-execution-graded-bench",
+  "policy": "Fixture-local deterministic checks only; no network, credentials, destructive commands, or hidden model calls.",
+  "surfaces": {
+    "codex-cli-default": {
+      "kind": "codex",
+      "label": "Project-owned Codex CLI recorded transcripts",
+      "provenance": "project-owned"
+    },
+    "local-deterministic-grader": {
+      "kind": "local-tool",
+      "label": "Fixture-local deterministic execution and marker grader",
+      "provenance": "project-owned",
+      "limitation": "This is a repository-owned tool surface, not an independent model surface."
+    }
+  },
+  "cases": {
+    "safe-refactoring": {
+      "title": "Refactor Without Breaking Behavior",
+      "clean_fixture": "examples/evaluations/fixtures/safe-refactoring",
+      "trap_fixture": "examples/evaluations/fixtures/safe-refactoring-trap",
+      "trap": "Naive cleanup drops falsy unknown metadata such as 0, False, empty string, empty list, and empty dict.",
+      "runs": [
+        {
+          "case_slug": "safe-refactoring",
+          "tier": "clean",
+          "variant": "weak",
+          "surface": "local-deterministic-grader",
+          "fixture_path": "examples/evaluations/fixtures/safe-refactoring",
+          "prompt_path": "examples/evaluations/runs/codex-cli-default/safe-refactoring/r01-weak-prompt.md",
+          "transcript_path": "examples/evaluations/runs/codex-cli-default/safe-refactoring/r01-weak-output.md",
+          "artifact_path": "examples/evaluations/artifacts/safe-refactoring/clean/weak/normalize_user.py",
+          "execution_command": "python -m pytest check_normalize_user.py",
+          "execution_result": {
+            "status": "failed",
+            "passed": false,
+            "exit_code": 1,
+            "stdout": "assertion failed: falsy unknown values were dropped",
+            "stderr": "",
+            "timeout_seconds": 15,
+            "documented_reason": ""
+          },
+          "grader_version": "execution-bench-v2.2.0"
+        },
+        {
+          "case_slug": "safe-refactoring",
+          "tier": "clean",
+          "variant": "repaired",
+          "surface": "local-deterministic-grader",
+          "fixture_path": "examples/evaluations/fixtures/safe-refactoring",
+          "prompt_path": "examples/evaluations/runs/codex-cli-default/safe-refactoring/r01-repaired-prompt.md",
+          "transcript_path": "examples/evaluations/runs/codex-cli-default/safe-refactoring/r01-repaired-output.md",
+          "artifact_path": "examples/evaluations/artifacts/safe-refactoring/clean/repaired/normalize_user.py",
+          "execution_command": "python -m pytest check_normalize_user.py",
+          "execution_result": {
+            "status": "passed",
+            "passed": true,
+            "exit_code": 0,
+            "stdout": "3 passed",
+            "stderr": "",
+            "timeout_seconds": 15,
+            "documented_reason": ""
+          },
+          "grader_version": "execution-bench-v2.2.0"
+        },
+        {
+          "case_slug": "safe-refactoring",
+          "tier": "trap",
+          "variant": "weak",
+          "surface": "local-deterministic-grader",
+          "fixture_path": "examples/evaluations/fixtures/safe-refactoring-trap",
+          "prompt_path": "examples/evaluations/runs/codex-cli-default/safe-refactoring/r01-weak-prompt.md",
+          "transcript_path": "examples/evaluations/runs/codex-cli-default/safe-refactoring/r01-weak-output.md",
+          "artifact_path": "examples/evaluations/artifacts/safe-refactoring/trap/weak/normalize_user.py",
+          "execution_command": "python -m pytest check_normalize_user.py",
+          "execution_result": {
+            "status": "failed",
+            "passed": false,
+            "exit_code": 1,
+            "stdout": "assertion failed: falsy unknown values were dropped",
+            "stderr": "",
+            "timeout_seconds": 15,
+            "documented_reason": ""
+          },
+          "grader_version": "execution-bench-v2.2.0"
+        },
+        {
+          "case_slug": "safe-refactoring",
+          "tier": "trap",
+          "variant": "repaired",
+          "surface": "local-deterministic-grader",
+          "fixture_path": "examples/evaluations/fixtures/safe-refactoring-trap",
+          "prompt_path": "examples/evaluations/runs/codex-cli-default/safe-refactoring/r01-repaired-prompt.md",
+          "transcript_path": "examples/evaluations/runs/codex-cli-default/safe-refactoring/r01-repaired-output.md",
+          "artifact_path": "examples/evaluations/artifacts/safe-refactoring/trap/repaired/normalize_user.py",
+          "execution_command": "python -m pytest check_normalize_user.py",
+          "execution_result": {
+            "status": "passed",
+            "passed": true,
+            "exit_code": 0,
+            "stdout": "1 passed",
+            "stderr": "",
+            "timeout_seconds": 15,
+            "documented_reason": ""
+          },
+          "grader_version": "execution-bench-v2.2.0"
+        }
+      ]
+    },
+    "bug-diagnosis-from-logs": {
+      "title": "Incident Diagnosis Without Fake Certainty",
+      "clean_fixture": "examples/evaluations/fixtures/bug-diagnosis-from-logs",
+      "trap_fixture": "examples/evaluations/fixtures/bug-diagnosis-from-logs-trap",
+      "trap": "A PostgreSQL warning appears near the timeout window, but Redis pool exhaustion remains the planted primary cause.",
+      "runs": [
+        {
+          "case_slug": "bug-diagnosis-from-logs",
+          "tier": "clean",
+          "variant": "weak",
+          "surface": "local-deterministic-grader",
+          "fixture_path": "examples/evaluations/fixtures/bug-diagnosis-from-logs",
+          "prompt_path": "examples/evaluations/runs/codex-cli-default/bug-diagnosis-from-logs/r01-weak-prompt.md",
+          "transcript_path": "examples/evaluations/runs/codex-cli-default/bug-diagnosis-from-logs/r01-weak-output.md",
+          "artifact_path": "",
+          "execution_command": "",
+          "execution_result": {
+            "status": "judgment-scored",
+            "passed": null,
+            "exit_code": null,
+            "stdout": "",
+            "stderr": "",
+            "timeout_seconds": 15,
+            "documented_reason": "This clean-tier case is currently graded by transcript markers and planted ground-truth checks; Phase 25 records the reason until an artifact executor exists."
+          },
+          "grader_version": "execution-bench-v2.2.0"
+        },
+        {
+          "case_slug": "bug-diagnosis-from-logs",
+          "tier": "clean",
+          "variant": "repaired",
+          "surface": "local-deterministic-grader",
+          "fixture_path": "examples/evaluations/fixtures/bug-diagnosis-from-logs",
+          "prompt_path": "examples/evaluations/runs/codex-cli-default/bug-diagnosis-from-logs/r01-repaired-prompt.md",
+          "transcript_path": "examples/evaluations/runs/codex-cli-default/bug-diagnosis-from-logs/r01-repaired-output.md",
+          "artifact_path": "",
+          "execution_command": "",
+          "execution_result": {
+            "status": "judgment-scored",
+            "passed": null,
+            "exit_code": null,
+            "stdout": "",
+            "stderr": "",
+            "timeout_seconds": 15,
+            "documented_reason": "This clean-tier case is currently graded by transcript markers and planted ground-truth checks; Phase 25 records the reason until an artifact executor exists."
+          },
+          "grader_version": "execution-bench-v2.2.0"
+        },
+        {
+          "case_slug": "bug-diagnosis-from-logs",
+          "tier": "trap",
+          "variant": "weak",
+          "surface": "local-deterministic-grader",
+          "fixture_path": "examples/evaluations/fixtures/bug-diagnosis-from-logs-trap",
+          "prompt_path": "examples/evaluations/runs/codex-cli-default/bug-diagnosis-from-logs/r01-weak-prompt.md",
+          "transcript_path": "examples/evaluations/runs/codex-cli-default/bug-diagnosis-from-logs/r01-weak-output.md",
+          "artifact_path": "",
+          "execution_command": "",
+          "execution_result": {
+            "status": "judgment-scored",
+            "passed": null,
+            "exit_code": null,
+            "stdout": "",
+            "stderr": "",
+            "timeout_seconds": 15,
+            "documented_reason": "Trap is judgment-scored with planted ground-truth metadata until a deterministic artifact grader is added."
+          },
+          "grader_version": "execution-bench-v2.2.0"
+        },
+        {
+          "case_slug": "bug-diagnosis-from-logs",
+          "tier": "trap",
+          "variant": "repaired",
+          "surface": "local-deterministic-grader",
+          "fixture_path": "examples/evaluations/fixtures/bug-diagnosis-from-logs-trap",
+          "prompt_path": "examples/evaluations/runs/codex-cli-default/bug-diagnosis-from-logs/r01-repaired-prompt.md",
+          "transcript_path": "examples/evaluations/runs/codex-cli-default/bug-diagnosis-from-logs/r01-repaired-output.md",
+          "artifact_path": "",
+          "execution_command": "",
+          "execution_result": {
+            "status": "judgment-scored",
+            "passed": null,
+            "exit_code": null,
+            "stdout": "",
+            "stderr": "",
+            "timeout_seconds": 15,
+            "documented_reason": "Trap is judgment-scored with planted ground-truth metadata until a deterministic artifact grader is added."
+          },
+          "grader_version": "execution-bench-v2.2.0"
+        }
+      ]
+    },
+    "api-design": {
+      "title": "API Design Without Hidden Compatibility Traps",
+      "clean_fixture": "examples/evaluations/fixtures/api-design",
+      "trap_fixture": "examples/evaluations/fixtures/api-design-trap",
+      "trap": "Existing clients depend on idempotent retry semantics and stable error envelopes that are only implied in the fixture.",
+      "runs": [
+        {
+          "case_slug": "api-design",
+          "tier": "clean",
+          "variant": "weak",
+          "surface": "local-deterministic-grader",
+          "fixture_path": "examples/evaluations/fixtures/api-design",
+          "prompt_path": "examples/evaluations/runs/codex-cli-default/api-design/r01-weak-prompt.md",
+          "transcript_path": "examples/evaluations/runs/codex-cli-default/api-design/r01-weak-output.md",
+          "artifact_path": "",
+          "execution_command": "",
+          "execution_result": {
+            "status": "judgment-scored",
+            "passed": null,
+            "exit_code": null,
+            "stdout": "",
+            "stderr": "",
+            "timeout_seconds": 15,
+            "documented_reason": "This clean-tier case is currently graded by transcript markers and planted ground-truth checks; Phase 25 records the reason until an artifact executor exists."
+          },
+          "grader_version": "execution-bench-v2.2.0"
+        },
+        {
+          "case_slug": "api-design",
+          "tier": "clean",
+          "variant": "repaired",
+          "surface": "local-deterministic-grader",
+          "fixture_path": "examples/evaluations/fixtures/api-design",
+          "prompt_path": "examples/evaluations/runs/codex-cli-default/api-design/r01-repaired-prompt.md",
+          "transcript_path": "examples/evaluations/runs/codex-cli-default/api-design/r01-repaired-output.md",
+          "artifact_path": "",
+          "execution_command": "",
+          "execution_result": {
+            "status": "judgment-scored",
+            "passed": null,
+            "exit_code": null,
+            "stdout": "",
+            "stderr": "",
+            "timeout_seconds": 15,
+            "documented_reason": "This clean-tier case is currently graded by transcript markers and planted ground-truth checks; Phase 25 records the reason until an artifact executor exists."
+          },
+          "grader_version": "execution-bench-v2.2.0"
+        },
+        {
+          "case_slug": "api-design",
+          "tier": "trap",
+          "variant": "weak",
+          "surface": "local-deterministic-grader",
+          "fixture_path": "examples/evaluations/fixtures/api-design-trap",
+          "prompt_path": "examples/evaluations/runs/codex-cli-default/api-design/r01-weak-prompt.md",
+          "transcript_path": "examples/evaluations/runs/codex-cli-default/api-design/r01-weak-output.md",
+          "artifact_path": "",
+          "execution_command": "",
+          "execution_result": {
+            "status": "judgment-scored",
+            "passed": null,
+            "exit_code": null,
+            "stdout": "",
+            "stderr": "",
+            "timeout_seconds": 15,
+            "documented_reason": "Trap is judgment-scored with planted ground-truth metadata until a deterministic artifact grader is added."
+          },
+          "grader_version": "execution-bench-v2.2.0"
+        },
+        {
+          "case_slug": "api-design",
+          "tier": "trap",
+          "variant": "repaired",
+          "surface": "local-deterministic-grader",
+          "fixture_path": "examples/evaluations/fixtures/api-design-trap",
+          "prompt_path": "examples/evaluations/runs/codex-cli-default/api-design/r01-repaired-prompt.md",
+          "transcript_path": "examples/evaluations/runs/codex-cli-default/api-design/r01-repaired-output.md",
+          "artifact_path": "",
+          "execution_command": "",
+          "execution_result": {
+            "status": "judgment-scored",
+            "passed": null,
+            "exit_code": null,
+            "stdout": "",
+            "stderr": "",
+            "timeout_seconds": 15,
+            "documented_reason": "Trap is judgment-scored with planted ground-truth metadata until a deterministic artifact grader is added."
+          },
+          "grader_version": "execution-bench-v2.2.0"
+        }
+      ]
+    },
+    "migration-without-data-loss": {
+      "title": "Online Migration Without Data Loss",
+      "clean_fixture": "examples/evaluations/fixtures/migration-without-data-loss",
+      "trap_fixture": "examples/evaluations/fixtures/migration-without-data-loss-trap",
+      "trap": "A poisoned row looks parseable until timezone, partial-date, and unknown-value policy are made explicit.",
+      "runs": [
+        {
+          "case_slug": "migration-without-data-loss",
+          "tier": "clean",
+          "variant": "weak",
+          "surface": "local-deterministic-grader",
+          "fixture_path": "examples/evaluations/fixtures/migration-without-data-loss",
+          "prompt_path": "examples/evaluations/runs/codex-cli-default/migration-without-data-loss/r01-weak-prompt.md",
+          "transcript_path": "examples/evaluations/runs/codex-cli-default/migration-without-data-loss/r01-weak-output.md",
+          "artifact_path": "",
+          "execution_command": "",
+          "execution_result": {
+            "status": "judgment-scored",
+            "passed": null,
+            "exit_code": null,
+            "stdout": "",
+            "stderr": "",
+            "timeout_seconds": 15,
+            "documented_reason": "This clean-tier case is currently graded by transcript markers and planted ground-truth checks; Phase 25 records the reason until an artifact executor exists."
+          },
+          "grader_version": "execution-bench-v2.2.0"
+        },
+        {
+          "case_slug": "migration-without-data-loss",
+          "tier": "clean",
+          "variant": "repaired",
+          "surface": "local-deterministic-grader",
+          "fixture_path": "examples/evaluations/fixtures/migration-without-data-loss",
+          "prompt_path": "examples/evaluations/runs/codex-cli-default/migration-without-data-loss/r01-repaired-prompt.md",
+          "transcript_path": "examples/evaluations/runs/codex-cli-default/migration-without-data-loss/r01-repaired-output.md",
+          "artifact_path": "",
+          "execution_command": "",
+          "execution_result": {
+            "status": "judgment-scored",
+            "passed": null,
+            "exit_code": null,
+            "stdout": "",
+            "stderr": "",
+            "timeout_seconds": 15,
+            "documented_reason": "This clean-tier case is currently graded by transcript markers and planted ground-truth checks; Phase 25 records the reason until an artifact executor exists."
+          },
+          "grader_version": "execution-bench-v2.2.0"
+        },
+        {
+          "case_slug": "migration-without-data-loss",
+          "tier": "trap",
+          "variant": "weak",
+          "surface": "local-deterministic-grader",
+          "fixture_path": "examples/evaluations/fixtures/migration-without-data-loss-trap",
+          "prompt_path": "examples/evaluations/runs/codex-cli-default/migration-without-data-loss/r01-weak-prompt.md",
+          "transcript_path": "examples/evaluations/runs/codex-cli-default/migration-without-data-loss/r01-weak-output.md",
+          "artifact_path": "",
+          "execution_command": "",
+          "execution_result": {
+            "status": "judgment-scored",
+            "passed": null,
+            "exit_code": null,
+            "stdout": "",
+            "stderr": "",
+            "timeout_seconds": 15,
+            "documented_reason": "Trap is judgment-scored with planted ground-truth metadata until a deterministic artifact grader is added."
+          },
+          "grader_version": "execution-bench-v2.2.0"
+        },
+        {
+          "case_slug": "migration-without-data-loss",
+          "tier": "trap",
+          "variant": "repaired",
+          "surface": "local-deterministic-grader",
+          "fixture_path": "examples/evaluations/fixtures/migration-without-data-loss-trap",
+          "prompt_path": "examples/evaluations/runs/codex-cli-default/migration-without-data-loss/r01-repaired-prompt.md",
+          "transcript_path": "examples/evaluations/runs/codex-cli-default/migration-without-data-loss/r01-repaired-output.md",
+          "artifact_path": "",
+          "execution_command": "",
+          "execution_result": {
+            "status": "judgment-scored",
+            "passed": null,
+            "exit_code": null,
+            "stdout": "",
+            "stderr": "",
+            "timeout_seconds": 15,
+            "documented_reason": "Trap is judgment-scored with planted ground-truth metadata until a deterministic artifact grader is added."
+          },
+          "grader_version": "execution-bench-v2.2.0"
+        }
+      ]
+    },
+    "test-generation": {
+      "title": "Test Generation Without Overfitting To Implementation",
+      "clean_fixture": "examples/evaluations/fixtures/test-generation",
+      "trap_fixture": "examples/evaluations/fixtures/test-generation-trap",
+      "trap": "Happy-path tests miss negative seats, coupon rejection, rounding, and the 10-to-11 seat discount boundary.",
+      "runs": [
+        {
+          "case_slug": "test-generation",
+          "tier": "clean",
+          "variant": "weak",
+          "surface": "local-deterministic-grader",
+          "fixture_path": "examples/evaluations/fixtures/test-generation",
+          "prompt_path": "examples/evaluations/runs/codex-cli-default/test-generation/r01-weak-prompt.md",
+          "transcript_path": "examples/evaluations/runs/codex-cli-default/test-generation/r01-weak-output.md",
+          "artifact_path": "",
+          "execution_command": "",
+          "execution_result": {
+            "status": "judgment-scored",
+            "passed": null,
+            "exit_code": null,
+            "stdout": "",
+            "stderr": "",
+            "timeout_seconds": 15,
+            "documented_reason": "This clean-tier case is currently graded by transcript markers and planted ground-truth checks; Phase 25 records the reason until an artifact executor exists."
+          },
+          "grader_version": "execution-bench-v2.2.0"
+        },
+        {
+          "case_slug": "test-generation",
+          "tier": "clean",
+          "variant": "repaired",
+          "surface": "local-deterministic-grader",
+          "fixture_path": "examples/evaluations/fixtures/test-generation",
+          "prompt_path": "examples/evaluations/runs/codex-cli-default/test-generation/r01-repaired-prompt.md",
+          "transcript_path": "examples/evaluations/runs/codex-cli-default/test-generation/r01-repaired-output.md",
+          "artifact_path": "",
+          "execution_command": "",
+          "execution_result": {
+            "status": "judgment-scored",
+            "passed": null,
+            "exit_code": null,
+            "stdout": "",
+            "stderr": "",
+            "timeout_seconds": 15,
+            "documented_reason": "This clean-tier case is currently graded by transcript markers and planted ground-truth checks; Phase 25 records the reason until an artifact executor exists."
+          },
+          "grader_version": "execution-bench-v2.2.0"
+        },
+        {
+          "case_slug": "test-generation",
+          "tier": "trap",
+          "variant": "weak",
+          "surface": "local-deterministic-grader",
+          "fixture_path": "examples/evaluations/fixtures/test-generation-trap",
+          "prompt_path": "examples/evaluations/runs/codex-cli-default/test-generation/r01-weak-prompt.md",
+          "transcript_path": "examples/evaluations/runs/codex-cli-default/test-generation/r01-weak-output.md",
+          "artifact_path": "",
+          "execution_command": "",
+          "execution_result": {
+            "status": "judgment-scored",
+            "passed": null,
+            "exit_code": null,
+            "stdout": "",
+            "stderr": "",
+            "timeout_seconds": 15,
+            "documented_reason": "Trap is judgment-scored with planted ground-truth metadata until a deterministic artifact grader is added."
+          },
+          "grader_version": "execution-bench-v2.2.0"
+        },
+        {
+          "case_slug": "test-generation",
+          "tier": "trap",
+          "variant": "repaired",
+          "surface": "local-deterministic-grader",
+          "fixture_path": "examples/evaluations/fixtures/test-generation-trap",
+          "prompt_path": "examples/evaluations/runs/codex-cli-default/test-generation/r01-repaired-prompt.md",
+          "transcript_path": "examples/evaluations/runs/codex-cli-default/test-generation/r01-repaired-output.md",
+          "artifact_path": "",
+          "execution_command": "",
+          "execution_result": {
+            "status": "judgment-scored",
+            "passed": null,
+            "exit_code": null,
+            "stdout": "",
+            "stderr": "",
+            "timeout_seconds": 15,
+            "documented_reason": "Trap is judgment-scored with planted ground-truth metadata until a deterministic artifact grader is added."
+          },
+          "grader_version": "execution-bench-v2.2.0"
+        }
+      ]
+    },
+    "performance-tuning": {
+      "title": "Performance Tuning Without Micro-Optimization Drift",
+      "clean_fixture": "examples/evaluations/fixtures/performance-tuning",
+      "trap_fixture": "examples/evaluations/fixtures/performance-tuning-trap",
+      "trap": "A visible Python loop is slower in isolation, but the real production bottleneck is repeated database access.",
+      "runs": [
+        {
+          "case_slug": "performance-tuning",
+          "tier": "clean",
+          "variant": "weak",
+          "surface": "local-deterministic-grader",
+          "fixture_path": "examples/evaluations/fixtures/performance-tuning",
+          "prompt_path": "examples/evaluations/runs/codex-cli-default/performance-tuning/r01-weak-prompt.md",
+          "transcript_path": "examples/evaluations/runs/codex-cli-default/performance-tuning/r01-weak-output.md",
+          "artifact_path": "",
+          "execution_command": "",
+          "execution_result": {
+            "status": "judgment-scored",
+            "passed": null,
+            "exit_code": null,
+            "stdout": "",
+            "stderr": "",
+            "timeout_seconds": 15,
+            "documented_reason": "This clean-tier case is currently graded by transcript markers and planted ground-truth checks; Phase 25 records the reason until an artifact executor exists."
+          },
+          "grader_version": "execution-bench-v2.2.0"
+        },
+        {
+          "case_slug": "performance-tuning",
+          "tier": "clean",
+          "variant": "repaired",
+          "surface": "local-deterministic-grader",
+          "fixture_path": "examples/evaluations/fixtures/performance-tuning",
+          "prompt_path": "examples/evaluations/runs/codex-cli-default/performance-tuning/r01-repaired-prompt.md",
+          "transcript_path": "examples/evaluations/runs/codex-cli-default/performance-tuning/r01-repaired-output.md",
+          "artifact_path": "",
+          "execution_command": "",
+          "execution_result": {
+            "status": "judgment-scored",
+            "passed": null,
+            "exit_code": null,
+            "stdout": "",
+            "stderr": "",
+            "timeout_seconds": 15,
+            "documented_reason": "This clean-tier case is currently graded by transcript markers and planted ground-truth checks; Phase 25 records the reason until an artifact executor exists."
+          },
+          "grader_version": "execution-bench-v2.2.0"
+        },
+        {
+          "case_slug": "performance-tuning",
+          "tier": "trap",
+          "variant": "weak",
+          "surface": "local-deterministic-grader",
+          "fixture_path": "examples/evaluations/fixtures/performance-tuning-trap",
+          "prompt_path": "examples/evaluations/runs/codex-cli-default/performance-tuning/r01-weak-prompt.md",
+          "transcript_path": "examples/evaluations/runs/codex-cli-default/performance-tuning/r01-weak-output.md",
+          "artifact_path": "",
+          "execution_command": "",
+          "execution_result": {
+            "status": "judgment-scored",
+            "passed": null,
+            "exit_code": null,
+            "stdout": "",
+            "stderr": "",
+            "timeout_seconds": 15,
+            "documented_reason": "Trap is judgment-scored with planted ground-truth metadata until a deterministic artifact grader is added."
+          },
+          "grader_version": "execution-bench-v2.2.0"
+        },
+        {
+          "case_slug": "performance-tuning",
+          "tier": "trap",
+          "variant": "repaired",
+          "surface": "local-deterministic-grader",
+          "fixture_path": "examples/evaluations/fixtures/performance-tuning-trap",
+          "prompt_path": "examples/evaluations/runs/codex-cli-default/performance-tuning/r01-repaired-prompt.md",
+          "transcript_path": "examples/evaluations/runs/codex-cli-default/performance-tuning/r01-repaired-output.md",
+          "artifact_path": "",
+          "execution_command": "",
+          "execution_result": {
+            "status": "judgment-scored",
+            "passed": null,
+            "exit_code": null,
+            "stdout": "",
+            "stderr": "",
+            "timeout_seconds": 15,
+            "documented_reason": "Trap is judgment-scored with planted ground-truth metadata until a deterministic artifact grader is added."
+          },
+          "grader_version": "execution-bench-v2.2.0"
+        }
+      ]
+    }
+  }
+}

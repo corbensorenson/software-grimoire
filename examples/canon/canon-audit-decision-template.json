@@ -1,0 +1,35 @@
+{
+  "schema_version": "4.0.0-canon-audit-decision",
+  "decision_id": "canon-audit.first-two-houses-template.v1",
+  "generated_at": "pending-human-maintainer",
+  "status": "pending-human-maintainer",
+  "policy": "This template is structured intake for a named maintainer decision. It does not prove human signoff until status is human-signed and reviewer, review_date, decision, notes, and evidence are real.",
+  "audit_id": "canon.first-two-houses.reviewed-tranche",
+  "queue_source": "data/canon_audit.json",
+  "scope": "Architecture and language/semantics houses",
+  "reviewer": "",
+  "review_date": "",
+  "decision": "pending",
+  "evidence_checked": [
+    {
+      "kind": "data",
+      "path": "data/canon_audit.json",
+      "notes": "Prepared audit queue and required human fields."
+    },
+    {
+      "kind": "data",
+      "path": "data/semantic_promotion.json",
+      "notes": "Reviewed-house promotion state for the first two houses."
+    },
+    {
+      "kind": "data",
+      "path": "data/canon_review_queue.json",
+      "notes": "Usage-earned canonical review candidates and pending decisions."
+    }
+  ],
+  "corrections": [],
+  "signoff_statement": "Pending named maintainer decision; this is not canonical signoff.",
+  "maintainer_notes": "Replace this template with a human-signed decision record after real review.",
+  "accepted_as_canonical": false,
+  "blocks_canonical_promotion": true
+}

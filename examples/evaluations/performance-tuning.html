@@ -1,0 +1,2572 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>45&nbsp; Performance Tuning Without Micro-Optimization Drift – The Grimoire of Software Magic Words</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../examples/jailbreak-resilience/index.html" rel="next">
+<link href="../../examples/evaluations/test-generation.html" rel="prev">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-39ac65d2ba81e8f361d24188b4938e12.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../examples/evaluations/index.html">Recorded Evaluations</a></li><li class="breadcrumb-item"><a href="../../examples/evaluations/performance-tuning.html"><span class="chapter-number">45</span>&nbsp; <span class="chapter-title">Performance Tuning Without Micro-Optimization Drift</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../../">The Grimoire of Software Magic Words</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/corbensorenson/software-grimoire" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">The Grimoire of Software Magic Words</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../quick_start.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">First Spell in Five Minutes</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../reader_path.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Guided Reader Path</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Core Grimoire</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../porting-status.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Porting Status</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../preface.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Preface</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/01-operative-language.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Operative Language</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/02-what-a-spell-is.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">What a Spell Is</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/03-crafting-spells.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Crafting Spells</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/04-sigils-canonicalization-and-seals.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Sigils, Canonicalization, and Seals</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/05-coil-inspection.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Coil Inspection</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/06-field-spells.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Field Spells</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/07-public-canon.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">The Public Canon</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/08-stackcraft.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Stackcraft</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/09-tooling-and-formalization.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Tooling and Formalization</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/10-living-practice.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Living Practice</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/11-adversarial-promptcraft.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Adversarial Promptcraft</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Spell Library</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../spells/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Spell Library</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../spells/safe-refactoring.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Spell of Safe Refactoring</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../spells/bug-diagnosis-from-logs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Spell of Bug Diagnosis from Logs</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../spells/api-design.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Spell of API Design</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../spells/migration-without-data-loss.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Spell of Migration Without Data Loss</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../spells/test-generation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Spell of Test Generation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../spells/performance-tuning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Spell of Performance Tuning</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../spells/jailbreak-resilience-review.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Spell of Jailbreak-Resilience Review</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Stack Library</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../stacks/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Stack Library</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../stacks/code-generation-and-repair-loop.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Code Generation and Repair Loop</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../stacks/bug-hunt-stack.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Bug-Hunt Stack</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../stacks/safe-refactor-stack.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Safe Refactor Stack</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../stacks/live-migration-stack.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Live Migration Stack</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../stacks/release-gate-stack.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Release Gate Stack</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../stacks/recursive-decomposition-stack.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Recursive Decomposition Stack</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../stacks/ai-red-team-loop.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">AI Red-Team Loop</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Proof by Difference Cases</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../examples/weak-vs-repaired/safe-refactoring.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Refactor Without Breaking Behavior</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../examples/weak-vs-repaired/bug-diagnosis-from-logs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Incident Diagnosis Without Fake Certainty</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../examples/weak-vs-repaired/api-design.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">API Design Without Hidden Compatibility Traps</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../examples/weak-vs-repaired/migration-without-data-loss.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Online Migration Without Data Loss</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../examples/weak-vs-repaired/test-generation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Test Generation Without Overfitting To Implementation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../examples/weak-vs-repaired/performance-tuning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Performance Tuning Without Micro-Optimization Drift</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Recorded Evaluations</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../examples/evaluations/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">Recorded Evaluations</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../examples/evaluations/safe-refactoring.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">Refactor Without Breaking Behavior</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../examples/evaluations/bug-diagnosis-from-logs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">Incident Diagnosis Without Fake Certainty</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../examples/evaluations/api-design.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">42</span>&nbsp; <span class="chapter-title">API Design Without Hidden Compatibility Traps</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../examples/evaluations/migration-without-data-loss.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">43</span>&nbsp; <span class="chapter-title">Online Migration Without Data Loss</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../examples/evaluations/test-generation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">44</span>&nbsp; <span class="chapter-title">Test Generation Without Overfitting To Implementation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../examples/evaluations/performance-tuning.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">45</span>&nbsp; <span class="chapter-title">Performance Tuning Without Micro-Optimization Drift</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Jailbreak Resilience</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../examples/jailbreak-resilience/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">46</span>&nbsp; <span class="chapter-title">Jailbreak-Resilience Bench</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../examples/jailbreak-resilience/indirect-readme-injection.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">47</span>&nbsp; <span class="chapter-title">Indirect README Injection</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../examples/jailbreak-resilience/tainted-log-instruction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">48</span>&nbsp; <span class="chapter-title">Tainted Log Instruction</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../examples/jailbreak-resilience/rag-chunk-override.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">49</span>&nbsp; <span class="chapter-title">RAG Chunk Override</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../examples/jailbreak-resilience/system-prompt-leak-request.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">50</span>&nbsp; <span class="chapter-title">System-Prompt Leak Request</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../examples/jailbreak-resilience/multi-turn-scope-creep.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">51</span>&nbsp; <span class="chapter-title">Multi-Turn Scope Creep</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../examples/jailbreak-resilience/many-shot-policy-drift.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">52</span>&nbsp; <span class="chapter-title">Many-Shot Policy Drift</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../examples/jailbreak-resilience/forbidden-tool-call.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">53</span>&nbsp; <span class="chapter-title">Forbidden Tool Call</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../examples/jailbreak-resilience/canary-leakage.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">54</span>&nbsp; <span class="chapter-title">Canary Leakage</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
+ <span class="menu-text">Adoption Kit</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../adoption/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">55</span>&nbsp; <span class="chapter-title">Adoption Kit</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../adoption/installable-library.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">56</span>&nbsp; <span class="chapter-title">Installable Library</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../adoption/evidence.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">57</span>&nbsp; <span class="chapter-title">Adoption Evidence</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../adoption/playbook.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">58</span>&nbsp; <span class="chapter-title">Adoption Playbook</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../adoption/external-walkthrough.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">59</span>&nbsp; <span class="chapter-title">External Walkthrough</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true">
+ <span class="menu-text">Reference</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../reference/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">60</span>&nbsp; <span class="chapter-title">Reference</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../reference/cast-levels.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">61</span>&nbsp; <span class="chapter-title">Cast Levels</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../reference/spell-skeleton.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">62</span>&nbsp; <span class="chapter-title">Canonical Spell Skeleton</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../reference/stack-grammar.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">63</span>&nbsp; <span class="chapter-title">Stack Grammar</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../reference/seals-and-sigils.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">64</span>&nbsp; <span class="chapter-title">Seals and Sigils</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../reference/failure-modes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">65</span>&nbsp; <span class="chapter-title">Failure Modes</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../reference/proof-by-difference.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">66</span>&nbsp; <span class="chapter-title">Proof by Difference</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../reference/evidence-browser.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">67</span>&nbsp; <span class="chapter-title">Evidence Browser</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../reference/calibration.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">68</span>&nbsp; <span class="chapter-title">Calibration</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../reference/bench-v2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">69</span>&nbsp; <span class="chapter-title">Bench v2</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../reference/execution-bench.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">70</span>&nbsp; <span class="chapter-title">Execution-Graded Bench</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../reference/hardness-v4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">71</span>&nbsp; <span class="chapter-title">Bench v4 Hardness Ladder</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../reference/model-artifact-execution.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">72</span>&nbsp; <span class="chapter-title">Model Artifact Execution</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../reference/surface-comparison.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">73</span>&nbsp; <span class="chapter-title">Surface Comparison</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../reference/jailbreak-resilience.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">74</span>&nbsp; <span class="chapter-title">Jailbreak Resilience</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../reference/adversarial-harness.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">75</span>&nbsp; <span class="chapter-title">Adversarial Harness v2</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../reference/warded-baselines.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">76</span>&nbsp; <span class="chapter-title">Warded Baselines</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../reference/ward-science.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">77</span>&nbsp; <span class="chapter-title">Ward Science</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../reference/warded-ab-evidence.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">78</span>&nbsp; <span class="chapter-title">Warded A/B Evidence</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../reference/semantic-promotion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">79</span>&nbsp; <span class="chapter-title">Semantic Promotion Ladder</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../reference/canon-audit.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">80</span>&nbsp; <span class="chapter-title">Canon Audit</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../reference/usage-earned-canon.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">81</span>&nbsp; <span class="chapter-title">Usage-Earned Canon</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../reference/canon-review-queue.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">82</span>&nbsp; <span class="chapter-title">Canon Review Queue</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../reference/methods-structure-reviewability-warding.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">83</span>&nbsp; <span class="chapter-title">Methods: Structure, Reviewability, and Warding</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../reference/logical-conclusion-status.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">84</span>&nbsp; <span class="chapter-title">Logical Conclusion Status</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../reference/public-smoke-checks.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">85</span>&nbsp; <span class="chapter-title">Public Smoke Checks</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../reference/package-index-release.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">86</span>&nbsp; <span class="chapter-title">Package-Index Release Plan</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../reference/generator-architecture.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">87</span>&nbsp; <span class="chapter-title">Generator Architecture</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../reference/visual-grammar.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">88</span>&nbsp; <span class="chapter-title">Visual Grammar</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../reference/task-chooser.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">89</span>&nbsp; <span class="chapter-title">Task Chooser</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../reference/canon-map.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">90</span>&nbsp; <span class="chapter-title">Canon Map</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../reference/major-canon.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">91</span>&nbsp; <span class="chapter-title">The Fifty World-Running Words</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../reference/pocket-canon.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">92</span>&nbsp; <span class="chapter-title">Pocket Canon</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../reference/pocket-field-guide.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">93</span>&nbsp; <span class="chapter-title">Pocket Field Guide</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../reference/term-index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">94</span>&nbsp; <span class="chapter-title">Term Index</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true">
+ <span class="menu-text">Master Lexicon</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../reference/lexicon.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">95</span>&nbsp; <span class="chapter-title">Master Lexicon</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../reference/house-architecture-abstraction-and-design.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">96</span>&nbsp; <span class="chapter-title">Architecture, Abstraction, and Design</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../reference/house-language-semantics-and-formal-shape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">97</span>&nbsp; <span class="chapter-title">Language, Semantics, and Formal Shape</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../reference/house-data-state-and-representation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">98</span>&nbsp; <span class="chapter-title">Data, State, and Representation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../reference/house-transformation-algorithms-and-working-verbs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">99</span>&nbsp; <span class="chapter-title">Transformation, Algorithms, and Working Verbs</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../reference/house-control-flow-coordination-and-temporal-logic.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">100</span>&nbsp; <span class="chapter-title">Control Flow, Coordination, and Temporal Logic</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../reference/house-runtime-memory-and-execution.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">101</span>&nbsp; <span class="chapter-title">Runtime, Memory, and Execution</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../reference/house-systems-programming-and-operating-system-words.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">102</span>&nbsp; <span class="chapter-title">Systems Programming and Operating-System Words</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../reference/house-networking-and-distributed-systems.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">103</span>&nbsp; <span class="chapter-title">Networking and Distributed Systems</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../reference/house-databases-persistence-and-time-binding-words.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">104</span>&nbsp; <span class="chapter-title">Databases, Persistence, and Time-Binding Words</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../reference/house-security-trust-and-warding-words.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">105</span>&nbsp; <span class="chapter-title">Security, Trust, and Warding Words</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../reference/house-build-tooling-versioning-and-release.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">106</span>&nbsp; <span class="chapter-title">Build, Tooling, Versioning, and Release</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../reference/house-testing-verification-and-observability.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">107</span>&nbsp; <span class="chapter-title">Testing, Verification, and Observability</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../reference/house-hardware-embedded-and-performance-near-words.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">108</span>&nbsp; <span class="chapter-title">Hardware, Embedded, and Performance-Near Words</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../reference/house-interface-ux-and-human-facing-words.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">109</span>&nbsp; <span class="chapter-title">Interface, UX, and Human-Facing Words</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../reference/house-promptcraft-ai-oriented-engineering-and-spell-structure.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">110</span>&nbsp; <span class="chapter-title">Promptcraft, AI-Oriented Engineering, and Spell Structure</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../reference/house-guarantee-words-quality-attributes-and-behavioral-adjectives.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">111</span>&nbsp; <span class="chapter-title">Guarantee Words, Quality Attributes, and Behavioral Adjectives</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../reference/house-failure-words-pathologies-and-counter-spells.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">112</span>&nbsp; <span class="chapter-title">Failure Words, Pathologies, and Counter-Spells</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../reference/house-compound-forms-prefixes-suffixes-and-naming-runes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">113</span>&nbsp; <span class="chapter-title">Compound Forms, Prefixes, Suffixes, and Naming Runes</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#performance-tuning-without-micro-optimization-drift" id="toc-performance-tuning-without-micro-optimization-drift" class="nav-link active" data-scroll-target="#performance-tuning-without-micro-optimization-drift"><span class="header-section-number">46</span> Performance Tuning Without Micro-Optimization Drift</a>
+  <ul class="collapse">
+  <li><a href="#surface-and-tier-delta-summary" id="toc-surface-and-tier-delta-summary" class="nav-link" data-scroll-target="#surface-and-tier-delta-summary"><span class="header-section-number">46.1</span> Surface and Tier Delta Summary</a></li>
+  <li><a href="#scores" id="toc-scores" class="nav-link" data-scroll-target="#scores"><span class="header-section-number">46.2</span> Scores</a></li>
+  <li><a href="#transcripts" id="toc-transcripts" class="nav-link" data-scroll-target="#transcripts"><span class="header-section-number">46.3</span> Transcripts</a>
+  <ul class="collapse">
+  <li><a href="#codex-cli-default---weak-r1" id="toc-codex-cli-default---weak-r1" class="nav-link" data-scroll-target="#codex-cli-default---weak-r1"><span class="header-section-number">46.3.1</span> codex-cli-default - weak r1</a></li>
+  <li><a href="#codex-cli-default---repaired-r1" id="toc-codex-cli-default---repaired-r1" class="nav-link" data-scroll-target="#codex-cli-default---repaired-r1"><span class="header-section-number">46.3.2</span> codex-cli-default - repaired r1</a></li>
+  <li><a href="#codex-cli-default---weak-r2" id="toc-codex-cli-default---weak-r2" class="nav-link" data-scroll-target="#codex-cli-default---weak-r2"><span class="header-section-number">46.3.3</span> codex-cli-default - weak r2</a></li>
+  <li><a href="#codex-cli-default---repaired-r2" id="toc-codex-cli-default---repaired-r2" class="nav-link" data-scroll-target="#codex-cli-default---repaired-r2"><span class="header-section-number">46.3.4</span> codex-cli-default - repaired r2</a></li>
+  <li><a href="#codex-cli-default---weak-r3" id="toc-codex-cli-default---weak-r3" class="nav-link" data-scroll-target="#codex-cli-default---weak-r3"><span class="header-section-number">46.3.5</span> codex-cli-default - weak r3</a></li>
+  <li><a href="#codex-cli-default---repaired-r3" id="toc-codex-cli-default---repaired-r3" class="nav-link" data-scroll-target="#codex-cli-default---repaired-r3"><span class="header-section-number">46.3.6</span> codex-cli-default - repaired r3</a></li>
+  <li><a href="#claude-code-safe---weak-r1" id="toc-claude-code-safe---weak-r1" class="nav-link" data-scroll-target="#claude-code-safe---weak-r1"><span class="header-section-number">46.3.7</span> claude-code-safe - weak r1</a></li>
+  <li><a href="#claude-code-safe---repaired-r1" id="toc-claude-code-safe---repaired-r1" class="nav-link" data-scroll-target="#claude-code-safe---repaired-r1"><span class="header-section-number">46.3.8</span> claude-code-safe - repaired r1</a></li>
+  <li><a href="#claude-code-safe---weak-r1-1" id="toc-claude-code-safe---weak-r1-1" class="nav-link" data-scroll-target="#claude-code-safe---weak-r1-1"><span class="header-section-number">46.3.9</span> claude-code-safe - weak r1</a></li>
+  <li><a href="#claude-code-safe---repaired-r1-1" id="toc-claude-code-safe---repaired-r1-1" class="nav-link" data-scroll-target="#claude-code-safe---repaired-r1-1"><span class="header-section-number">46.3.10</span> claude-code-safe - repaired r1</a></li>
+  <li><a href="#codex-cli-default---weak-r1-1" id="toc-codex-cli-default---weak-r1-1" class="nav-link" data-scroll-target="#codex-cli-default---weak-r1-1"><span class="header-section-number">46.3.11</span> codex-cli-default - weak r1</a></li>
+  <li><a href="#codex-cli-default---repaired-r1-1" id="toc-codex-cli-default---repaired-r1-1" class="nav-link" data-scroll-target="#codex-cli-default---repaired-r1-1"><span class="header-section-number">46.3.12</span> codex-cli-default - repaired r1</a></li>
+  <li><a href="#codex-cli-default---weak-r2-1" id="toc-codex-cli-default---weak-r2-1" class="nav-link" data-scroll-target="#codex-cli-default---weak-r2-1"><span class="header-section-number">46.3.13</span> codex-cli-default - weak r2</a></li>
+  <li><a href="#codex-cli-default---repaired-r2-1" id="toc-codex-cli-default---repaired-r2-1" class="nav-link" data-scroll-target="#codex-cli-default---repaired-r2-1"><span class="header-section-number">46.3.14</span> codex-cli-default - repaired r2</a></li>
+  <li><a href="#codex-cli-default---weak-r3-1" id="toc-codex-cli-default---weak-r3-1" class="nav-link" data-scroll-target="#codex-cli-default---weak-r3-1"><span class="header-section-number">46.3.15</span> codex-cli-default - weak r3</a></li>
+  <li><a href="#codex-cli-default---repaired-r3-1" id="toc-codex-cli-default---repaired-r3-1" class="nav-link" data-scroll-target="#codex-cli-default---repaired-r3-1"><span class="header-section-number">46.3.16</span> codex-cli-default - repaired r3</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/corbensorenson/software-grimoire/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li><li><a href="https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/performance-tuning.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../examples/evaluations/index.html">Recorded Evaluations</a></li><li class="breadcrumb-item"><a href="../../examples/evaluations/performance-tuning.html"><span class="chapter-number">45</span>&nbsp; <span class="chapter-title">Performance Tuning Without Micro-Optimization Drift</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">45</span>&nbsp; <span class="chapter-title">Performance Tuning Without Micro-Optimization Drift</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="performance-tuning-without-micro-optimization-drift" class="level1" data-number="46">
+<h1 data-number="46"><span class="header-section-number">46</span> Performance Tuning Without Micro-Optimization Drift</h1>
+<p><strong>Expected delta:</strong> The repaired spell forces measurement before optimization and keeps rollback criteria attached to speed claims.</p>
+<p><strong>Fixture:</strong> <a href="https://github.com/corbensorenson/software-grimoire/tree/main/examples/evaluations/fixtures/performance-tuning">examples/evaluations/fixtures/performance-tuning</a></p>
+<p><strong>Observed outcome delta:</strong> repaired prompts satisfied 0.5 more outcome checks on average</p>
+<p><strong>Observed reviewability delta:</strong> repaired prompts scored 3.8 reviewability points higher on average</p>
+<p><strong>Input context:</strong> The fixture is a report endpoint performance packet.</p>
+<p>Files:</p>
+<ul>
+<li><code>trace.json</code>: representative trace showing query count and timing.</li>
+<li><code>workload.json</code>: target latency budget and data scale.</li>
+<li><code>ground_truth.json</code>: planted bottlenecks and misleading path.</li>
+</ul>
+<p>Ground truth:</p>
+<ul>
+<li>The planted primary bottleneck is database query count/N+1 behavior, not Python loop micro-optimization.</li>
+<li>A good answer measures first, asks for profiling/tracing, and ranks optimizations by risk and expected benefit.</li>
+<li>A good answer names rollback or regression criteria before changing production behavior.</li>
+</ul>
+<section id="surface-and-tier-delta-summary" class="level2" data-number="46.1">
+<h2 data-number="46.1" class="anchored" data-anchor-id="surface-and-tier-delta-summary"><span class="header-section-number">46.1</span> Surface and Tier Delta Summary</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 12%">
+<col style="width: 3%">
+<col style="width: 4%">
+<col style="width: 7%">
+<col style="width: 13%">
+<col style="width: 15%">
+<col style="width: 13%">
+<col style="width: 8%">
+<col style="width: 11%">
+<col style="width: 9%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Surface</th>
+<th>Tier</th>
+<th>Weak n</th>
+<th>Repaired n</th>
+<th>Weak Reviewability</th>
+<th>Repaired Reviewability</th>
+<th>Reviewability Delta</th>
+<th>Weak Outcome</th>
+<th>Repaired Outcome</th>
+<th>Outcome Delta</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>claude-code-safe</td>
+<td>clean</td>
+<td>1</td>
+<td>1</td>
+<td>10.0</td>
+<td>8.0</td>
+<td>-2.0</td>
+<td>3.0</td>
+<td>3.0</td>
+<td>0.0</td>
+</tr>
+<tr class="even">
+<td>claude-code-safe</td>
+<td>trap</td>
+<td>1</td>
+<td>1</td>
+<td>1.0</td>
+<td>11.0</td>
+<td>10.0</td>
+<td>0.0</td>
+<td>3.0</td>
+<td>3.0</td>
+</tr>
+<tr class="odd">
+<td>codex-cli-default</td>
+<td>clean</td>
+<td>3</td>
+<td>3</td>
+<td>8.7</td>
+<td>11.0</td>
+<td>2.3</td>
+<td>3.0</td>
+<td>3.0</td>
+<td>0.0</td>
+</tr>
+<tr class="even">
+<td>codex-cli-default</td>
+<td>trap</td>
+<td>3</td>
+<td>3</td>
+<td>6.0</td>
+<td>11.0</td>
+<td>5.0</td>
+<td>2.7</td>
+<td>3.0</td>
+<td>0.3</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="scores" class="level2" data-number="46.2">
+<h2 data-number="46.2" class="anchored" data-anchor-id="scores"><span class="header-section-number">46.2</span> Scores</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 17%">
+<col style="width: 4%">
+<col style="width: 7%">
+<col style="width: 2%">
+<col style="width: 7%">
+<col style="width: 8%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 6%">
+<col style="width: 10%">
+<col style="width: 12%">
+<col style="width: 6%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Surface</th>
+<th>Tier</th>
+<th>Variant</th>
+<th>Rep</th>
+<th>Artifact</th>
+<th>Invariant</th>
+<th>Output</th>
+<th>Verify</th>
+<th>Failure</th>
+<th>Assumptions</th>
+<th>Reviewability</th>
+<th>Outcome</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>codex-cli-default</td>
+<td>clean</td>
+<td>weak</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+<td>0</td>
+<td>7</td>
+<td>3</td>
+</tr>
+<tr class="even">
+<td>codex-cli-default</td>
+<td>clean</td>
+<td>repaired</td>
+<td>1</td>
+<td>2</td>
+<td>1</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+<td>11</td>
+<td>3</td>
+</tr>
+<tr class="odd">
+<td>codex-cli-default</td>
+<td>clean</td>
+<td>weak</td>
+<td>2</td>
+<td>2</td>
+<td>1</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+<td>1</td>
+<td>10</td>
+<td>3</td>
+</tr>
+<tr class="even">
+<td>codex-cli-default</td>
+<td>clean</td>
+<td>repaired</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+<td>1</td>
+<td>11</td>
+<td>3</td>
+</tr>
+<tr class="odd">
+<td>codex-cli-default</td>
+<td>clean</td>
+<td>weak</td>
+<td>3</td>
+<td>1</td>
+<td>1</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+<td>1</td>
+<td>9</td>
+<td>3</td>
+</tr>
+<tr class="even">
+<td>codex-cli-default</td>
+<td>clean</td>
+<td>repaired</td>
+<td>3</td>
+<td>2</td>
+<td>1</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+<td>11</td>
+<td>3</td>
+</tr>
+<tr class="odd">
+<td>claude-code-safe</td>
+<td>clean</td>
+<td>weak</td>
+<td>1</td>
+<td>2</td>
+<td>0</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+<td>10</td>
+<td>3</td>
+</tr>
+<tr class="even">
+<td>claude-code-safe</td>
+<td>clean</td>
+<td>repaired</td>
+<td>1</td>
+<td>2</td>
+<td>0</td>
+<td>1</td>
+<td>2</td>
+<td>2</td>
+<td>1</td>
+<td>8</td>
+<td>3</td>
+</tr>
+<tr class="odd">
+<td>claude-code-safe</td>
+<td>trap</td>
+<td>weak</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>claude-code-safe</td>
+<td>trap</td>
+<td>repaired</td>
+<td>1</td>
+<td>2</td>
+<td>1</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+<td>11</td>
+<td>3</td>
+</tr>
+<tr class="odd">
+<td>codex-cli-default</td>
+<td>trap</td>
+<td>weak</td>
+<td>1</td>
+<td>2</td>
+<td>0</td>
+<td>1</td>
+<td>2</td>
+<td>1</td>
+<td>1</td>
+<td>7</td>
+<td>3</td>
+</tr>
+<tr class="even">
+<td>codex-cli-default</td>
+<td>trap</td>
+<td>repaired</td>
+<td>1</td>
+<td>2</td>
+<td>1</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+<td>11</td>
+<td>3</td>
+</tr>
+<tr class="odd">
+<td>codex-cli-default</td>
+<td>trap</td>
+<td>weak</td>
+<td>2</td>
+<td>2</td>
+<td>0</td>
+<td>0</td>
+<td>2</td>
+<td>0</td>
+<td>0</td>
+<td>4</td>
+<td>3</td>
+</tr>
+<tr class="even">
+<td>codex-cli-default</td>
+<td>trap</td>
+<td>repaired</td>
+<td>2</td>
+<td>2</td>
+<td>1</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+<td>11</td>
+<td>3</td>
+</tr>
+<tr class="odd">
+<td>codex-cli-default</td>
+<td>trap</td>
+<td>weak</td>
+<td>3</td>
+<td>2</td>
+<td>0</td>
+<td>1</td>
+<td>2</td>
+<td>1</td>
+<td>1</td>
+<td>7</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>codex-cli-default</td>
+<td>trap</td>
+<td>repaired</td>
+<td>3</td>
+<td>2</td>
+<td>1</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+<td>11</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="transcripts" class="level2" data-number="46.3">
+<h2 data-number="46.3" class="anchored" data-anchor-id="transcripts"><span class="header-section-number">46.3</span> Transcripts</h2>
+<section id="codex-cli-default---weak-r1" class="level3" data-number="46.3.1">
+<h3 data-number="46.3.1" class="anchored" data-anchor-id="codex-cli-default---weak-r1"><span class="header-section-number">46.3.1</span> codex-cli-default - weak r1</h3>
+<ul>
+<li>Surface label: Codex CLI default model</li>
+<li>Run timestamp: <code>2026-07-02T04:54:18.031389+00:00</code></li>
+<li>Prompt file: <a href="https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/performance-tuning/r01-weak-prompt.md">examples/evaluations/runs/codex-cli-default/performance-tuning/r01-weak-prompt.md</a></li>
+<li>Transcript file: <a href="https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/performance-tuning/r01-weak-output.md">examples/evaluations/runs/codex-cli-default/performance-tuning/r01-weak-output.md</a></li>
+<li>Reviewability total: 7</li>
+<li>Outcome total: 3</li>
+<li>Evaluator notes: Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.</li>
+</ul>
+<pre class="text"><code>I can’t directly patch the endpoint from this packet: only the fixture data is provided, and this workspace is read-only. Based on [trace.json](&lt;/Users/corbensorenson/Documents/software grimoire/examples/evaluations/fixtures/performance-tuning/trace.json:1&gt;), the bottleneck is clearly DB query count/N+1 behavior.
+
+Current state:
+
+- p95 is `9000ms`; target is `1500ms`.
+- DB time is `8110ms`; Python assembly is only `430ms`.
+- Query count is `1842`.
+- Repeated patterns: tasks by project `620` calls, comments by task `1100` calls, users by id `122` calls.
+
+I would not start by micro-optimizing Python loops. The ranked fix plan is:
+
+1. Replace N+1 queries with batched/eager loads.
+   - Fetch tasks for all project IDs in one query.
+   - Fetch comments for all task IDs in one query.
+   - Fetch users for all referenced user IDs in one query.
+   - Reassemble in memory using maps keyed by IDs.
+
+2. Push summary work into SQL where appropriate.
+   - If the report only needs counts/totals/recent metadata, query aggregates instead of loading every comment/task row.
+
+3. Verify indexes after query shape is fixed.
+   - Check indexes on `tasks.project_id`, `comments.task_id`, and `users.id`.
+   - Use `EXPLAIN`/query plans before adding indexes.
+
+4. Consider caching only after query count is controlled.
+   - Cache account-summary results if freshness rules allow it.
+
+Benchmark plan:
+
+- Capture before/after traces for large accounts: `120` projects and `6200` tasks from [workload.json](&lt;/Users/corbensorenson/Documents/software grimoire/examples/evaluations/fixtures/performance-tuning/workload.json:1&gt;).
+- Track p50/p95, DB time, Python assembly time, query count, rows read, and memory.
+- Acceptance target: p95 &lt;= `1500ms`, query count reduced from `1842` to low double digits or fewer.
+
+Rollback/regression criteria before production change:
+
+- Roll back if p95 worsens, query count rises materially, memory spikes beyond agreed limits, or report output differs from current results.
+- Add regression coverage asserting bounded query count for a large-account fixture.</code></pre>
+</section>
+<section id="codex-cli-default---repaired-r1" class="level3" data-number="46.3.2">
+<h3 data-number="46.3.2" class="anchored" data-anchor-id="codex-cli-default---repaired-r1"><span class="header-section-number">46.3.2</span> codex-cli-default - repaired r1</h3>
+<ul>
+<li>Surface label: Codex CLI default model</li>
+<li>Run timestamp: <code>2026-07-02T04:54:53.523965+00:00</code></li>
+<li>Prompt file: <a href="https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/performance-tuning/r01-repaired-prompt.md">examples/evaluations/runs/codex-cli-default/performance-tuning/r01-repaired-prompt.md</a></li>
+<li>Transcript file: <a href="https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/performance-tuning/r01-repaired-output.md">examples/evaluations/runs/codex-cli-default/performance-tuning/r01-repaired-output.md</a></li>
+<li>Reviewability total: 11</li>
+<li>Outcome total: 3</li>
+<li>Evaluator notes: Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.</li>
+</ul>
+<pre class="text"><code>**Bottleneck Hypotheses**
+
+Primary: N+1 database access on `/reports/account-summary`.
+
+Evidence: p95 is `9000ms` against a `1500ms` budget. DB time is `8110ms`, while Python assembly is only `430ms`. Query count is `1842`, dominated by repeated calls:
+
+- `tasks where project_id=$1`: `620` calls
+- `comments where task_id=$1`: `1100` calls
+- `users where id=$1`: `122` calls
+
+This points to per-project/per-task/per-user fetching, not Python loop cost. Python micro-optimization should wait until DB/query behavior is isolated.
+
+**What To Measure**
+
+- Full trace by request size: query count, DB time, Python time, serialization time.
+- Per-query latency, rows returned, and total bytes returned.
+- `EXPLAIN ANALYZE` for the task, comment, and user queries.
+- DB CPU, I/O wait, lock wait, connection pool wait, cache hit rate.
+- Request p50/p95/p99 under accounts near `120` projects and `6200` tasks.
+- Result correctness before and after query-shape changes.
+
+**Ranked Optimization Options**
+
+1. **Batch/eager-load report data**
+   Highest benefit, moderate risk. Replace per-project task queries and per-task comment queries with bounded batch queries: fetch tasks for all project IDs, comments for all task IDs, users for all referenced IDs. Expected to collapse query count from `1842` toward a small fixed number.
+
+2. **Aggregate in SQL where report shape allows**
+   High benefit, moderate-to-high risk. If the endpoint only needs counts/summaries, avoid loading every comment/task row. Use grouped aggregates by account/project/task as appropriate. Risk is semantic drift in report calculations.
+
+3. **Add or verify indexes**
+   Medium-to-high benefit, lower risk if missing. Check indexes on `tasks.project_id`, `comments.task_id`, and `users.id`. Validate with query plans before adding.
+
+4. **Cache stable report subcomponents**
+   Medium benefit, moderate risk. Useful if reports are frequently requested and tolerate staleness. Only after query shape is fixed.
+
+5. **Python assembly optimization**
+   Low expected benefit now. `430ms` is not the dominant cost and should be revisited only after DB time is reduced.
+
+**Benchmark Plan**
+
+Create a representative benchmark using the large-account shape: `120` projects, `6200` tasks. Capture baseline p50/p95/p99, query count, DB ms, Python ms, errors, and result checksum. Run each optimization behind a flag/canary and compare against baseline under commodity cloud conditions.
+
+**Success And Rollback Criteria**
+
+Success: p95 under `1500ms`, query count reduced materially from `1842`, DB time no longer dominates, and report output matches baseline.
+
+Rollback if p95/p99 worsens, errors/timeouts increase, DB CPU/I/O spikes, query count regresses, memory rises materially, or report totals differ from baseline.</code></pre>
+</section>
+<section id="codex-cli-default---weak-r2" class="level3" data-number="46.3.3">
+<h3 data-number="46.3.3" class="anchored" data-anchor-id="codex-cli-default---weak-r2"><span class="header-section-number">46.3.3</span> codex-cli-default - weak r2</h3>
+<ul>
+<li>Surface label: Codex CLI default model</li>
+<li>Run timestamp: <code>2026-07-02T04:55:28.317199+00:00</code></li>
+<li>Prompt file: <a href="https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/performance-tuning/r02-weak-prompt.md">examples/evaluations/runs/codex-cli-default/performance-tuning/r02-weak-prompt.md</a></li>
+<li>Transcript file: <a href="https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/performance-tuning/r02-weak-output.md">examples/evaluations/runs/codex-cli-default/performance-tuning/r02-weak-output.md</a></li>
+<li>Reviewability total: 10</li>
+<li>Outcome total: 3</li>
+<li>Evaluator notes: Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.</li>
+</ul>
+<pre class="text"><code>I can’t safely patch this from the packet alone: the endpoint code, ORM/query layer, schema, indexes, and test harness are missing. Based on the trace, though, the target fix is clear.
+
+Current baseline for `/reports/account-summary`:
+
+- p95: `9000ms`
+- budget: `1500ms`
+- DB time: `8110ms`
+- Python assembly: `430ms`
+- query count: `1842`
+
+The bottleneck is database query count/N+1 behavior, not Python loop work.
+
+Ranked fix plan:
+
+1. Eliminate N+1 queries first.
+   - Replace per-project task fetches: `620` calls to `select * from tasks where project_id=$1`
+   - Replace per-task comment fetches: `1100` calls to `select * from comments where task_id=$1`
+   - Replace per-user fetches: `122` calls to `select * from users where id=$1`
+   - Use batched `WHERE project_id IN (...)`, `WHERE task_id IN (...)`, and `WHERE id IN (...)`, or ORM eager loading with bounded prefetches.
+
+2. Keep result shape unchanged.
+   - Batch fetch rows, group them in memory by `project_id`, `task_id`, and `user_id`.
+   - Python grouping is acceptable here: `430ms` is not the main cost.
+
+3. Verify indexes before rollout.
+   - Need indexes on `tasks.project_id`, `comments.task_id`, and `users.id`.
+   - If missing, add them separately with normal migration safety.
+
+Benchmark plan:
+
+- Re-run the same representative large-account workload: `120` projects, `6200` tasks.
+- Capture p50/p95, DB time, query count, and endpoint output equivalence.
+- Success target: p95 below `1500ms`, query count reduced from `1842` to a small bounded number, ideally single digits to low tens.
+
+Rollback/regression criteria:
+
+- Roll back if output differs from the old endpoint for sampled accounts.
+- Roll back if p95 exceeds budget, DB CPU/load spikes materially, memory use grows beyond acceptable limits, or query count regresses above the agreed ceiling.
+- Add a regression test/assertion around maximum query count for the large-account fixture.</code></pre>
+</section>
+<section id="codex-cli-default---repaired-r2" class="level3" data-number="46.3.4">
+<h3 data-number="46.3.4" class="anchored" data-anchor-id="codex-cli-default---repaired-r2"><span class="header-section-number">46.3.4</span> codex-cli-default - repaired r2</h3>
+<ul>
+<li>Surface label: Codex CLI default model</li>
+<li>Run timestamp: <code>2026-07-02T04:56:12.068308+00:00</code></li>
+<li>Prompt file: <a href="https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/performance-tuning/r02-repaired-prompt.md">examples/evaluations/runs/codex-cli-default/performance-tuning/r02-repaired-prompt.md</a></li>
+<li>Transcript file: <a href="https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/performance-tuning/r02-repaired-output.md">examples/evaluations/runs/codex-cli-default/performance-tuning/r02-repaired-output.md</a></li>
+<li>Reviewability total: 11</li>
+<li>Outcome total: 3</li>
+<li>Evaluator notes: Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.</li>
+</ul>
+<pre class="text"><code>Based on the fixture, the likely bottleneck is database I/O from N+1 query behavior.
+
+**Bottleneck Hypotheses**
+- Primary: N+1 database access. Trace shows `/reports/account-summary` at `p95=9000ms` against a `1500ms` budget, with `8110ms` in DB time and `1842` queries.
+- Query patterns strongly indicate fanout:
+  - `tasks where project_id=$1`: `620` calls
+  - `comments where task_id=$1`: `1100` calls
+  - `users where id=$1`: `122` calls
+- Secondary: Python assembly is only `430ms`, so loop micro-optimization should wait until DB, network, allocation, and algorithmic effects are separated.
+
+**What To Measure First**
+- Full trace by account size: query count, DB time, row counts, payload bytes, connection pool wait, and endpoint p50/p95/p99.
+- `EXPLAIN ANALYZE` for repeated task/comment/user queries.
+- DB CPU, I/O, lock waits, cache hit rate, and network round trips.
+- Python CPU/allocation profile only after DB query count is reduced.
+
+**Ranked Optimization Options**
+1. **Collapse N+1 queries into batched/set-based queries**
+   Expected benefit: very high. Risk: medium.
+   Fetch tasks with `WHERE project_id IN (...)`, comments with `WHERE task_id IN (...)`, and users with `WHERE id IN (...)`. Preserve ordering and authorization semantics.
+
+2. **Move report aggregation into SQL or pre-aggregated summaries**
+   Expected benefit: high. Risk: medium-high.
+   Avoid loading full comment/task graphs if the report only needs counts, statuses, or totals.
+
+3. **Add/verify indexes on join/filter columns**
+   Expected benefit: medium if missing. Risk: low-medium.
+   Check `tasks(project_id)`, `comments(task_id)`, and relevant user/account foreign keys.
+
+4. **Cache or materialize account report snapshots**
+   Expected benefit: high for repeated reads. Risk: medium-high due staleness/invalidation.
+   Only after correctness and freshness requirements are explicit.
+
+5. **Optimize Python assembly**
+   Expected benefit: low until DB is fixed. Risk: low.
+   Current assembly time is not the budget breaker.
+
+**Benchmark Plan**
+- Baseline current endpoint on representative large account: `120` projects, `6200` tasks.
+- Record p50/p95/p99, throughput, query count, DB time, app CPU, memory, and correctness output.
+- Test each optimization behind a flag against identical data and concurrency on commodity cloud hardware.
+- Success: p95 below `1500ms`, query count reduced by orders of magnitude, DB time no longer dominant, output unchanged.
+
+**Rollback / Regression Criteria**
+- Roll back if p95/p99 exceeds budget, error rate rises, report output differs, query count regresses, DB CPU/I/O saturates, pool wait increases, memory spikes, or cache/materialized data becomes stale beyond accepted limits.</code></pre>
+</section>
+<section id="codex-cli-default---weak-r3" class="level3" data-number="46.3.5">
+<h3 data-number="46.3.5" class="anchored" data-anchor-id="codex-cli-default---weak-r3"><span class="header-section-number">46.3.5</span> codex-cli-default - weak r3</h3>
+<ul>
+<li>Surface label: Codex CLI default model</li>
+<li>Run timestamp: <code>2026-07-02T04:57:12.061858+00:00</code></li>
+<li>Prompt file: <a href="https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/performance-tuning/r03-weak-prompt.md">examples/evaluations/runs/codex-cli-default/performance-tuning/r03-weak-prompt.md</a></li>
+<li>Transcript file: <a href="https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/performance-tuning/r03-weak-output.md">examples/evaluations/runs/codex-cli-default/performance-tuning/r03-weak-output.md</a></li>
+<li>Reviewability total: 9</li>
+<li>Outcome total: 3</li>
+<li>Evaluator notes: Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.</li>
+</ul>
+<pre class="text"><code>I can’t patch the endpoint from this packet alone; the implementation, ORM/query code, schema, and indexes are missing. The trace is enough to rank the likely fix.
+
+Baseline:
+
+- `/reports/account-summary` p95: `9000 ms`
+- Target p95: `1500 ms`
+- DB time: `8110 ms`
+- Python assembly: `430 ms`
+- Queries: `1842`
+
+The primary bottleneck is N+1 database access, not Python loop speed.
+
+Recommended order:
+
+1. Instrument first: capture query count, normalized SQL, DB time, account size, and p95 for this endpoint in staging/prod.
+2. Remove N+1 queries:
+   - Replace per-project `tasks where project_id=$1` calls with one batched query over project IDs.
+   - Replace per-task `comments where task_id=$1` calls with one batched query over task IDs.
+   - Batch user lookup by unique user IDs instead of `users where id=$1` repeatedly.
+3. Verify indexes after query shape is known:
+   - `tasks.project_id`
+   - `comments.task_id`
+   - user lookup should already use primary key; confirm with `EXPLAIN`.
+4. Only after DB query count is fixed, consider Python assembly tuning. It is currently about 5% of p95, so it cannot close the gap alone.
+
+Benchmark plan:
+
+- Re-run against the large-account workload: `120` projects, `6200` tasks.
+- Compare p95, DB time, total query count, and response correctness.
+- Success criteria: p95 at or below `1500 ms`, query count no longer scales linearly with projects/tasks, and output matches baseline.
+
+Rollback/regression criteria before release:
+
+- Roll back if response data differs from baseline.
+- Roll back if p95 remains above budget or worsens versus current baseline.
+- Roll back if query count still grows with project/task count.
+- Ship behind a flag or canary so the old query path can be restored quickly.</code></pre>
+</section>
+<section id="codex-cli-default---repaired-r3" class="level3" data-number="46.3.6">
+<h3 data-number="46.3.6" class="anchored" data-anchor-id="codex-cli-default---repaired-r3"><span class="header-section-number">46.3.6</span> codex-cli-default - repaired r3</h3>
+<ul>
+<li>Surface label: Codex CLI default model</li>
+<li>Run timestamp: <code>2026-07-02T04:57:57.406948+00:00</code></li>
+<li>Prompt file: <a href="https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/performance-tuning/r03-repaired-prompt.md">examples/evaluations/runs/codex-cli-default/performance-tuning/r03-repaired-prompt.md</a></li>
+<li>Transcript file: <a href="https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/performance-tuning/r03-repaired-output.md">examples/evaluations/runs/codex-cli-default/performance-tuning/r03-repaired-output.md</a></li>
+<li>Reviewability total: 11</li>
+<li>Outcome total: 3</li>
+<li>Evaluator notes: Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.</li>
+</ul>
+<pre class="text"><code>**Bottleneck Hypotheses**
+
+Primary: N+1 database access. Current trace shows `/reports/account-summary` at `p95=9000ms` against a `1500ms` budget, with `8110ms` in DB time and `1842` queries. The largest patterns are repeated task, comment, and user lookups: `620`, `1100`, and `122` calls.
+
+Secondary: inefficient query shapes or missing indexes may appear after batching. Python assembly is only `430ms`, so loop micro-optimization should wait until DB, I/O, allocation, and network effects are separated.
+
+**What To Measure**
+
+Track per-request `p50/p95/p99`, query count, duplicate query fingerprints, DB execution time versus connection wait time, rows scanned/returned, payload size, Python assembly time, memory allocation, DB CPU/I/O, connection pool saturation, and network RTT. Capture `EXPLAIN ANALYZE` for the repeated query patterns and benchmark against the large account scale: `120` projects and `6200` tasks.
+
+**Ranked Optimizations**
+
+1. Replace N+1 lookups with set-based loading: joins, eager loading, or `WHERE id IN (...)` batches. Highest expected benefit, medium risk around duplicate rows, ordering, and authorization filters.
+2. Push report aggregation into fewer DB queries instead of hydrating all objects. High benefit, medium-high risk if business logic currently lives in Python.
+3. Add request-scope memoization for repeated user/project/task lookups. Medium benefit, lower risk, but not a substitute for removing N+1.
+4. Add or adjust indexes after validating query plans. Medium benefit, low-to-medium risk from write overhead and migration impact.
+5. Consider cached/precomputed summaries or pagination if the report does not need fully fresh complete detail. High benefit, higher product/behavior risk.
+6. Optimize Python assembly only after DB query count and DB time are reduced; current evidence does not justify starting there.
+
+**Benchmark Plan**
+
+Baseline the current endpoint with tracing enabled on representative large accounts. Then test each optimization independently on commodity-like hardware with cold and warm cache runs. Compare query count, DB time, total latency, throughput, correctness, DB CPU/I/O, connection pool wait, and memory. Run concurrency tests until p95 crosses the `1500ms` budget.
+
+**Rollback Criteria**
+
+Roll back or disable behind a feature flag if p95 exceeds budget, query count rises materially, DB CPU/I/O or connection wait worsens, error rate increases, report results differ from baseline, memory grows unexpectedly, or stale/incomplete report data appears.
+
+Success means p95 under `1500ms`, materially lower query count, lower DB time, stable correctness, and no throughput regression under target load.</code></pre>
+</section>
+<section id="claude-code-safe---weak-r1" class="level3" data-number="46.3.7">
+<h3 data-number="46.3.7" class="anchored" data-anchor-id="claude-code-safe---weak-r1"><span class="header-section-number">46.3.7</span> claude-code-safe - weak r1</h3>
+<ul>
+<li>Surface label: Claude Code CLI with tools disabled</li>
+<li>Run timestamp: <code>2026-07-02T08:34:10.172350+00:00</code></li>
+<li>Prompt file: <a href="https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/claude-code-safe/performance-tuning/clean/r01-weak-prompt.md">examples/evaluations/runs/claude-code-safe/performance-tuning/clean/r01-weak-prompt.md</a></li>
+<li>Transcript file: <a href="https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/claude-code-safe/performance-tuning/clean/r01-weak-output.md">examples/evaluations/runs/claude-code-safe/performance-tuning/clean/r01-weak-output.md</a></li>
+<li>Reviewability total: 10</li>
+<li>Outcome total: 3</li>
+<li>Evaluator notes: Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.</li>
+</ul>
+<pre class="text"><code>Before touching any code, I need more information. "Make this faster" without measurement context is how you optimize the wrong thing.
+
+## What's missing
+
+I have the fixture file names but not their contents. Please share:
+- The actual `trace.json` content (query counts, timing breakdown)
+- The actual `workload.json` content (target latency budget, data scale)
+- The relevant endpoint code
+
+## How I'd proceed once I have them
+
+**Step 1 — Measure, don't guess.**
+Read the trace to find where time is actually spent. A profiler output or query log beats intuition every time. Without this, you risk spending effort on Python loop micro-optimization while an N+1 query pattern burns 80% of your wall time.
+
+**Step 2 — Form a ranked hypothesis list.**
+From the fixture description (report endpoint, performance packet), likely candidates in order of expected impact:
+
+| Rank | Candidate | Why it matters |
+|------|-----------|----------------|
+| 1 | Query count / N+1 behavior | Report endpoints frequently iterate over records and fire per-row queries; multiplicative cost |
+| 2 | Missing indexes on filter/join columns | Linear scans on large tables |
+| 3 | Serialization / large payload size | Sending more data than the caller needs |
+| 4 | Python-side computation loops | Almost never the primary bottleneck vs. DB round-trips |
+
+**Step 3 — Define regression criteria before touching anything.**
+For each change, state up front:
+- What metric proves it worked (p95 latency, query count, row scan count)
+- What rollback looks like (revert the migration, re-enable the old code path, feature flag off)
+- What "worse" means so you catch it in staging (e.g., query count increases, or p99 crosses the budget in `workload.json`)
+
+**Step 4 — Change one thing at a time, measure after each.**
+If you batch changes and something regresses, you won't know which fix caused it.
+
+---
+
+**Share the trace and endpoint code and I'll give you a concrete diff with the above framework applied.**</code></pre>
+</section>
+<section id="claude-code-safe---repaired-r1" class="level3" data-number="46.3.8">
+<h3 data-number="46.3.8" class="anchored" data-anchor-id="claude-code-safe---repaired-r1"><span class="header-section-number">46.3.8</span> claude-code-safe - repaired r1</h3>
+<ul>
+<li>Surface label: Claude Code CLI with tools disabled</li>
+<li>Run timestamp: <code>2026-07-02T08:34:32.743371+00:00</code></li>
+<li>Prompt file: <a href="https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/claude-code-safe/performance-tuning/clean/r01-repaired-prompt.md">examples/evaluations/runs/claude-code-safe/performance-tuning/clean/r01-repaired-prompt.md</a></li>
+<li>Transcript file: <a href="https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/claude-code-safe/performance-tuning/clean/r01-repaired-output.md">examples/evaluations/runs/claude-code-safe/performance-tuning/clean/r01-repaired-output.md</a></li>
+<li>Reviewability total: 8</li>
+<li>Outcome total: 3</li>
+<li>Evaluator notes: Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.</li>
+</ul>
+<pre class="text"><code>Let me read the fixture files before forming any hypotheses.
+
+**Reading fixture files.**
+
+The task references `trace.json`, `workload.json`, and `ground_truth.json` but does not provide their contents — only metadata about them. I'll work from what is described and flag where file content is needed.
+
+---
+
+## Bottleneck Hypotheses
+
+**H1 (High confidence): N+1 query pattern**
+The trace description explicitly notes "query count" as a signal. Report endpoints that aggregate across rows commonly emit one query per row to fetch related objects. This is the primary suspect.
+
+**H2 (Medium confidence): Missing or ineffective index on the report's filter/sort columns**
+High query count alone doesn't explain latency if each query is fast; an index miss compounds it.
+
+**H3 (Low confidence): Python loop processing**
+Do not investigate until H1 and H2 are eliminated. Per the ground truth, this is the planted misleading path.
+
+---
+
+## What to Measure First
+
+| Signal | Tool | Threshold |
+|---|---|---|
+| Query count per request | DB slow-query log or ORM query counter | &gt;10 queries for a single report render is a red flag |
+| Per-query latency p50/p99 | `EXPLAIN ANALYZE` on each query shape | |
+| Total endpoint latency vs. DB time | APM span breakdown (e.g., OpenTelemetry) | DB should be &lt;60% of budget |
+| Row-fetch vs. aggregate ratio | Trace span count per DB call | |
+
+**Required before recommending changes:** full trace with per-span durations from `trace.json` and the latency budget from `workload.json`. Without those numbers, rankings below are ordered by prior probability, not measured impact.
+
+---
+
+## Ranked Optimizations
+
+| Rank | Optimization | Expected Benefit | Risk |
+|---|---|---|---|
+| 1 | Batch/eager-load queries (select_related / DataLoader / JOIN) | Reduces query count from O(n) to O(1) | Medium — changes query shape; test with representative data scale |
+| 2 | Add covering index on filter + sort columns | Eliminates sequential scans | Low — additive DDL, easy to drop |
+| 3 | Cache rendered report at report-definition + parameter hash | Eliminates DB round-trips entirely on repeat reads | Medium — invalidation logic required |
+| 4 | Paginate or stream large result sets | Reduces memory pressure and first-byte latency | Low-medium — API contract change |
+
+---
+
+## Benchmark Plan
+
+1. Capture baseline p50/p99/p99.9 at the data scale in `workload.json`.
+2. Enable query logging; record query count histogram per endpoint call.
+3. Apply optimization #1 behind a feature flag on a staging environment.
+4. Re-run the same load profile; compare query count and latency distributions.
+
+---
+
+## Rollback Criteria
+
+- **Trigger rollback if:** p99 latency increases &gt;5% over baseline, error rate rises, or query count does not decrease by ≥50%.
+- **Rollback mechanism:** feature flag off; no schema changes until index is validated in staging first.
+
+## Success Definition
+
+Success = p99 latency within the budget defined in `workload.json`, query count ≤ a fixed ceiling (recommended: 5 per report render), zero increase in error rate. Watch for regressions on adjacent list/detail endpoints that share the same ORM models.</code></pre>
+</section>
+<section id="claude-code-safe---weak-r1-1" class="level3" data-number="46.3.9">
+<h3 data-number="46.3.9" class="anchored" data-anchor-id="claude-code-safe---weak-r1-1"><span class="header-section-number">46.3.9</span> claude-code-safe - weak r1</h3>
+<ul>
+<li>Surface label: Claude Code CLI with tools disabled</li>
+<li>Run timestamp: <code>2026-07-02T08:34:38.593222+00:00</code></li>
+<li>Prompt file: <a href="https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/claude-code-safe/performance-tuning/trap/r01-weak-prompt.md">examples/evaluations/runs/claude-code-safe/performance-tuning/trap/r01-weak-prompt.md</a></li>
+<li>Transcript file: <a href="https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/claude-code-safe/performance-tuning/trap/r01-weak-output.md">examples/evaluations/runs/claude-code-safe/performance-tuning/trap/r01-weak-output.md</a></li>
+<li>Reviewability total: 1</li>
+<li>Outcome total: 0</li>
+<li>Evaluator notes: Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.</li>
+</ul>
+<pre class="text"><code>No code was provided. To help, I need:
+
+1. The actual code you want optimized
+2. Ideally, a profiling output or description of where it's slow
+
+Without the code, I can't make anything faster.</code></pre>
+</section>
+<section id="claude-code-safe---repaired-r1-1" class="level3" data-number="46.3.10">
+<h3 data-number="46.3.10" class="anchored" data-anchor-id="claude-code-safe---repaired-r1-1"><span class="header-section-number">46.3.10</span> claude-code-safe - repaired r1</h3>
+<ul>
+<li>Surface label: Claude Code CLI with tools disabled</li>
+<li>Run timestamp: <code>2026-07-02T08:35:03.964819+00:00</code></li>
+<li>Prompt file: <a href="https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/claude-code-safe/performance-tuning/trap/r01-repaired-prompt.md">examples/evaluations/runs/claude-code-safe/performance-tuning/trap/r01-repaired-prompt.md</a></li>
+<li>Transcript file: <a href="https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/claude-code-safe/performance-tuning/trap/r01-repaired-output.md">examples/evaluations/runs/claude-code-safe/performance-tuning/trap/r01-repaired-output.md</a></li>
+<li>Reviewability total: 11</li>
+<li>Outcome total: 3</li>
+<li>Evaluator notes: Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.</li>
+</ul>
+<pre class="text"><code>## Performance Analysis
+
+### Evidence Gap — Act First
+
+Profiling data is incomplete. Before any recommendation is actionable, I need:
+
+- **Query count per request** (e.g., Django debug toolbar, SQLAlchemy event listeners, or `pg_stat_statements`)
+- **Wall-clock breakdown by layer**: DB time vs. application CPU vs. network vs. serialization
+- **Request trace** (OpenTelemetry or equivalent) showing span durations end-to-end
+- **Connection pool saturation metrics** (pool wait time, checkout timeouts)
+
+Without these, all hypotheses below are unranked guesses.
+
+---
+
+### Bottleneck Hypotheses (ordered by base-rate likelihood on commodity cloud)
+
+| Rank | Hypothesis | Symptom Signal |
+|------|-----------|----------------|
+| 1 | **N+1 query pattern** — loop issues one DB call per iteration | Query count scales linearly with result set size |
+| 2 | **Missing index** — full table scans on hot paths | Slow query log, `EXPLAIN ANALYZE` showing Seq Scan |
+| 3 | **No query result caching** — repeated identical reads | High cache miss ratio, identical query fingerprints in pg_stat |
+| 4 | **Unbounded result sets** — fetching all rows then filtering in Python | Memory spikes, serialization overhead |
+| 5 | **Application CPU / algorithmic cost** | CPU-bound threads, `cProfile` hotspot in pure Python |
+
+A visible Python loop is a candidate for #5 only after #1–#4 are ruled out.
+
+---
+
+### What to Measure First
+</code></pre>
+<ol type="1">
+<li>query_count, query_time_p99 per request</li>
+<li>db_pool_wait_ms connection saturation</li>
+<li>request_duration breakdown (db / app / network slices)</li>
+<li>memory allocations if GC pauses are suspected</li>
+</ol>
+<pre><code>
+---
+
+### Ranked Optimizations (contingent on evidence)
+
+1. **Batch/eager-load queries** — replace N+1 with `SELECT … IN (…)` or ORM `prefetch_related`. High benefit, low risk.
+2. **Add indexes on filter/join columns** — zero application-code change. High benefit, negligible risk.
+3. **Cache read-heavy, low-staleness queries** — Redis or in-process TTL cache. High benefit, moderate invalidation complexity.
+4. **Paginate / stream large result sets** — fix unbounded fetches. Medium benefit, requires API contract check.
+5. **Algorithmic refactor** (e.g., O(n²) → O(n log n)) — only after DB cost is isolated. Variable benefit.
+6. **Loop-level micro-optimizations** — address last, if profiler proves CPU is the ceiling.
+
+---
+
+### Benchmark Plan
+
+- Baseline: record p50/p95/p99 latency and query count under realistic load (production clone or load test with representative data).
+- After each change: re-run same load profile, compare both latency **and** query count.
+- One change at a time to isolate effect.
+
+---
+
+### Success Criteria &amp; Rollback
+
+**Success**: p99 latency within budget; query count per request ≤ O(1) or bounded constant.
+**Regressions to watch**: correctness of results (stale cache reads), connection pool exhaustion under higher concurrency, increased memory from eager-loading large associations.
+**Rollback**: feature flag or deployment revert; DB index drops are fast if no benefit is confirmed.</code></pre>
+</section>
+<section id="codex-cli-default---weak-r1-1" class="level3" data-number="46.3.11">
+<h3 data-number="46.3.11" class="anchored" data-anchor-id="codex-cli-default---weak-r1-1"><span class="header-section-number">46.3.11</span> codex-cli-default - weak r1</h3>
+<ul>
+<li>Surface label: Codex CLI default model</li>
+<li>Run timestamp: <code>2026-07-02T13:02:27.950192+00:00</code></li>
+<li>Prompt file: <a href="https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/performance-tuning/trap/r01-weak-prompt.md">examples/evaluations/runs/codex-cli-default/performance-tuning/trap/r01-weak-prompt.md</a></li>
+<li>Transcript file: <a href="https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/performance-tuning/trap/r01-weak-output.md">examples/evaluations/runs/codex-cli-default/performance-tuning/trap/r01-weak-output.md</a></li>
+<li>Reviewability total: 7</li>
+<li>Outcome total: 3</li>
+<li>Evaluator notes: Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.</li>
+</ul>
+<pre class="text"><code>I can’t safely make a code change from the provided context: the endpoint/function, ORM/database access code, schema, trace, and tests are missing, and this workspace is read-only.
+
+What is clear from the fixture is the likely target: don’t micro-optimize the visible Python loop first. The planted bottleneck is repeated database access.
+
+The faster fix should start by measuring and reducing I/O:
+
+1. Instrument per-request query count, DB time, query fingerprints, rows read, and Python CPU time.
+2. Look for N+1 patterns inside the loop: one query per project/task/user/item.
+3. Replace repeated reads with batched queries, eager loading, joins, or precomputed aggregates.
+4. Add/verify indexes only after the query shape is known.
+5. Add a regression test that asserts bounded query count for a representative large input.
+6. Re-profile after DB access is fixed; only then tune local Python loops if they remain material.
+
+Missing to implement the patch: the actual Python code, database/ORM layer, schema/indexes, and a representative workload or trace.</code></pre>
+</section>
+<section id="codex-cli-default---repaired-r1-1" class="level3" data-number="46.3.12">
+<h3 data-number="46.3.12" class="anchored" data-anchor-id="codex-cli-default---repaired-r1-1"><span class="header-section-number">46.3.12</span> codex-cli-default - repaired r1</h3>
+<ul>
+<li>Surface label: Codex CLI default model</li>
+<li>Run timestamp: <code>2026-07-02T13:02:47.319234+00:00</code></li>
+<li>Prompt file: <a href="https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/performance-tuning/trap/r01-repaired-prompt.md">examples/evaluations/runs/codex-cli-default/performance-tuning/trap/r01-repaired-prompt.md</a></li>
+<li>Transcript file: <a href="https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/performance-tuning/trap/r01-repaired-output.md">examples/evaluations/runs/codex-cli-default/performance-tuning/trap/r01-repaired-output.md</a></li>
+<li>Reviewability total: 11</li>
+<li>Outcome total: 3</li>
+<li>Evaluator notes: Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.</li>
+</ul>
+<pre class="text"><code>**Bottleneck Hypotheses**
+
+1. **Repeated database access / N+1 query pattern**: Most likely production bottleneck. Even if a Python loop appears slow locally, repeated DB round trips can dominate latency on commodity cloud hardware.
+2. **I/O wait and network latency to the database**: Query count, connection reuse, lock waits, and result size may be driving tail latency.
+3. **Inefficient data access shape**: Fetching too much data, missing indexes, or repeated lookups inside request paths.
+4. **Allocation or serialization overhead**: Possible secondary cost if large result sets are materialized repeatedly.
+5. **Python loop cost**: Do not optimize yet. Only consider after query count, DB time, network time, and allocation costs are isolated.
+
+**What To Measure**
+
+Need the following before recommending code-level tuning:
+
+- Per-request query count.
+- Total DB time per request.
+- Individual query latency distribution: p50, p95, p99.
+- Duplicate query fingerprints within a request.
+- Rows scanned, rows returned, and execution plans.
+- Connection pool wait time and saturation.
+- Network round-trip time to DB.
+- CPU time vs wall-clock time in the application.
+- Allocation volume and serialization/deserialization time.
+- End-to-end request traces with spans for app code, DB, cache, and network.
+
+**Ranked Optimization Options**
+
+1. **Eliminate repeated DB calls**
+   - Batch queries, prefetch related records, or replace per-item lookups with set-based queries.
+   - Expected benefit: very high.
+   - Risk: medium, because data-shape changes can affect correctness.
+
+2. **Add or fix database indexes based on query plans**
+   - Only after confirming slow scans or poor plans.
+   - Expected benefit: high.
+   - Risk: medium; watch write amplification and migration impact.
+
+3. **Cache stable or repeated reads**
+   - Request-scoped cache first, then shared cache if safe.
+   - Expected benefit: medium to high.
+   - Risk: medium; stale data and invalidation complexity.
+
+4. **Reduce payload and materialization cost**
+   - Select only needed columns, paginate, stream large results.
+   - Expected benefit: medium.
+   - Risk: low to medium.
+
+5. **Optimize Python loop**
+   - Only after I/O, DB, allocation, and network effects are separated.
+   - Expected benefit: unknown, likely lower.
+   - Risk: low, but can waste effort and obscure the real issue.
+
+**Benchmark Plan**
+
+Create representative load tests with production-like data volume. Capture baseline p50/p95/p99 latency, throughput, query count, DB time, CPU, memory, and error rate. Test each optimization independently behind a feature flag or isolated branch. Compare against baseline under equal concurrency.
+
+**Success Measurement**
+
+Success means lower p95/p99 latency, fewer DB round trips, reduced DB time per request, and stable or improved throughput without increased errors.
+
+**Regressions To Watch**
+
+Watch correctness, stale reads, increased memory, connection pool saturation, DB CPU, lock waits, write latency, cache miss storms, and worse tail latency.
+
+**Rollback Criteria**
+
+Rollback if p95/p99 latency worsens, error rate rises, DB load increases materially, memory grows unexpectedly, or correctness checks fail.</code></pre>
+</section>
+<section id="codex-cli-default---weak-r2-1" class="level3" data-number="46.3.13">
+<h3 data-number="46.3.13" class="anchored" data-anchor-id="codex-cli-default---weak-r2-1"><span class="header-section-number">46.3.13</span> codex-cli-default - weak r2</h3>
+<ul>
+<li>Surface label: Codex CLI default model</li>
+<li>Run timestamp: <code>2026-07-02T13:03:27.779580+00:00</code></li>
+<li>Prompt file: <a href="https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/performance-tuning/trap/r02-weak-prompt.md">examples/evaluations/runs/codex-cli-default/performance-tuning/trap/r02-weak-prompt.md</a></li>
+<li>Transcript file: <a href="https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/performance-tuning/trap/r02-weak-output.md">examples/evaluations/runs/codex-cli-default/performance-tuning/trap/r02-weak-output.md</a></li>
+<li>Reviewability total: 4</li>
+<li>Outcome total: 3</li>
+<li>Evaluator notes: Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.</li>
+</ul>
+<pre class="text"><code>I can’t safely make a code change from the provided fixture alone. The available context only says the bottleneck is repeated database access, not the visible Python loop; it does not include the endpoint/function, ORM code, schema, trace, benchmark, or tests.
+
+The correct fix is to measure and reduce query count first:
+
+1. Add per-request query count and DB-time instrumentation.
+2. Find N+1 lookups inside the loop.
+3. Replace per-item queries with batched/eager-loaded reads, e.g. `WHERE id IN (...)`, joins, `select_related`, or `prefetch_related`.
+4. Add a regression test asserting bounded query count for a large fixture.
+5. Only consider Python loop micro-optimization after DB time is no longer dominant.
+
+No files were changed because the workspace is read-only and the task context lacks implementation details.</code></pre>
+</section>
+<section id="codex-cli-default---repaired-r2-1" class="level3" data-number="46.3.14">
+<h3 data-number="46.3.14" class="anchored" data-anchor-id="codex-cli-default---repaired-r2-1"><span class="header-section-number">46.3.14</span> codex-cli-default - repaired r2</h3>
+<ul>
+<li>Surface label: Codex CLI default model</li>
+<li>Run timestamp: <code>2026-07-02T13:03:48.567547+00:00</code></li>
+<li>Prompt file: <a href="https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/performance-tuning/trap/r02-repaired-prompt.md">examples/evaluations/runs/codex-cli-default/performance-tuning/trap/r02-repaired-prompt.md</a></li>
+<li>Transcript file: <a href="https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/performance-tuning/trap/r02-repaired-output.md">examples/evaluations/runs/codex-cli-default/performance-tuning/trap/r02-repaired-output.md</a></li>
+<li>Reviewability total: 11</li>
+<li>Outcome total: 3</li>
+<li>Evaluator notes: Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.</li>
+</ul>
+<pre class="text"><code>**Bottleneck Hypotheses**
+
+1. **Repeated database access / N+1 queries**: Most likely highest-impact bottleneck. On commodity cloud hardware with strict latency, query count, round trips, lock waits, and connection-pool contention usually dominate a visible Python loop.
+2. **Network and I/O latency**: Remote DB/cache/service calls may be adding tail latency, especially if serialized.
+3. **Database query shape**: Missing indexes, inefficient joins, large result sets, or per-request repeated reads could hurt both latency and throughput.
+4. **Allocation / serialization overhead**: Large object creation, JSON encoding/decoding, ORM hydration, or copying may matter after I/O is separated.
+5. **Python loop CPU cost**: Only investigate after confirming the request is CPU-bound and DB/network/allocation effects are not dominant.
+
+Evidence is currently insufficient for code-level recommendations. Before changing implementation, collect request traces, query counts, DB timing, CPU profiles, allocation profiles, and representative load-test data.
+
+**What To Measure**
+
+- Per-request query count and total DB time.
+- DB round trips, slow queries, lock waits, rows scanned/returned, index usage.
+- Connection-pool wait time and saturation.
+- External network call count, latency, retries, and timeout rates.
+- CPU wall time versus CPU active time.
+- Allocation rate, GC pressure, serialization/deserialization time.
+- p50, p95, p99 latency and throughput under realistic concurrency.
+- Cache hit rate, if caching exists.
+
+**Ranked Optimization Options**
+
+1. **Eliminate repeated DB access**
+   - Batch queries, prefetch related data, use joins where appropriate, remove N+1 patterns.
+   - Expected benefit: very high.
+   - Risk: medium, because data-shape changes can affect correctness.
+
+2. **Improve query plans and indexing**
+   - Add or adjust indexes based on actual `EXPLAIN` plans and production-like cardinality.
+   - Expected benefit: high.
+   - Risk: medium, due to write overhead and migration risk.
+
+3. **Reduce unnecessary I/O**
+   - Cache stable reads, avoid duplicate calls within a request, coalesce remote requests.
+   - Expected benefit: high.
+   - Risk: medium-high if cache invalidation is subtle.
+
+4. **Control concurrency and pooling**
+   - Tune DB pool size, request concurrency, and timeouts based on saturation data.
+   - Expected benefit: medium-high.
+   - Risk: medium.
+
+5. **Reduce allocation / serialization cost**
+   - Return narrower payloads, stream large responses, avoid unnecessary object hydration.
+   - Expected benefit: medium.
+   - Risk: low-medium.
+
+6. **Optimize Python loop**
+   - Consider vectorization or compiled paths only if profiling proves CPU-bound loop cost is material.
+   - Expected benefit: unknown, likely lower.
+   - Risk: low-medium, but premature.
+
+**Benchmark Plan**
+
+Use a production-like dataset and traffic mix. Capture baseline p50/p95/p99 latency, throughput, CPU, memory, DB time, query count, and error rate. Apply one optimization at a time. Run steady-state and burst tests at expected and peak concurrency.
+
+**Rollback Criteria**
+
+Rollback if p95/p99 latency worsens, error rate rises, DB CPU/locks increase materially, cache inconsistency appears, memory grows unexpectedly, or correctness tests fail.
+
+**Success Verification**
+
+Success means meeting the latency budget at target throughput with reduced DB round trips or I/O time, stable error rates, no correctness regressions, and no tail-latency degradation. Watch regressions in stale data, lock contention, write latency, memory use, and operational complexity.</code></pre>
+</section>
+<section id="codex-cli-default---weak-r3-1" class="level3" data-number="46.3.15">
+<h3 data-number="46.3.15" class="anchored" data-anchor-id="codex-cli-default---weak-r3-1"><span class="header-section-number">46.3.15</span> codex-cli-default - weak r3</h3>
+<ul>
+<li>Surface label: Codex CLI default model</li>
+<li>Run timestamp: <code>2026-07-02T13:04:05.900377+00:00</code></li>
+<li>Prompt file: <a href="https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/performance-tuning/trap/r03-weak-prompt.md">examples/evaluations/runs/codex-cli-default/performance-tuning/trap/r03-weak-prompt.md</a></li>
+<li>Transcript file: <a href="https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/performance-tuning/trap/r03-weak-output.md">examples/evaluations/runs/codex-cli-default/performance-tuning/trap/r03-weak-output.md</a></li>
+<li>Reviewability total: 7</li>
+<li>Outcome total: 2</li>
+<li>Evaluator notes: Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.</li>
+</ul>
+<pre class="text"><code>I can’t make a concrete code change from this context alone. What’s missing is the actual code path, profiling output, database query count, and representative input size/workload.
+
+Given the trap context, the right next step is not to micro-optimize the visible Python loop. I would first measure production-shaped performance and specifically check for repeated database access, such as an N+1 query pattern.
+
+The likely fix would be one of:
+
+- Batch database reads instead of querying inside the loop.
+- Use `select_related` / `prefetch_related` if this is Django.
+- Use joins/eager loading if this is SQLAlchemy or another ORM.
+- Fetch all needed rows once into a map keyed by ID, then do the Python loop over in-memory data.
+- Add or verify indexes for the queried columns.
+- Add instrumentation/tests that assert query count does not grow with item count.
+
+To proceed, I need the slow function or endpoint, the ORM/database layer being used, and ideally one profile or query log showing runtime and query count.</code></pre>
+</section>
+<section id="codex-cli-default---repaired-r3-1" class="level3" data-number="46.3.16">
+<h3 data-number="46.3.16" class="anchored" data-anchor-id="codex-cli-default---repaired-r3-1"><span class="header-section-number">46.3.16</span> codex-cli-default - repaired r3</h3>
+<ul>
+<li>Surface label: Codex CLI default model</li>
+<li>Run timestamp: <code>2026-07-02T13:04:24.685258+00:00</code></li>
+<li>Prompt file: <a href="https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/performance-tuning/trap/r03-repaired-prompt.md">examples/evaluations/runs/codex-cli-default/performance-tuning/trap/r03-repaired-prompt.md</a></li>
+<li>Transcript file: <a href="https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/performance-tuning/trap/r03-repaired-output.md">examples/evaluations/runs/codex-cli-default/performance-tuning/trap/r03-repaired-output.md</a></li>
+<li>Reviewability total: 11</li>
+<li>Outcome total: 3</li>
+<li>Evaluator notes: Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.</li>
+</ul>
+<pre class="text"><code>**Bottleneck Hypotheses**
+
+1. **Repeated database access / N+1 query pattern**
+   Most likely high-benefit bottleneck. A visible Python loop may look slow locally, but if it performs or triggers repeated DB calls, latency is dominated by I/O, query planning, network round trips, locks, or connection pool contention.
+
+2. **Database query inefficiency**
+   Slow queries, missing indexes, large result scans, excessive joins, or poor pagination may dominate request latency.
+
+3. **Network and service dependency latency**
+   Any per-item remote call inside the request path can amplify tail latency.
+
+4. **Allocation / serialization overhead**
+   Large object construction, JSON encoding, ORM hydration, or repeated data copying may matter after I/O is separated.
+
+5. **Local Python loop cost**
+   Only evaluate after confirming query count, DB time, network time, allocation, and serialization are not dominant.
+
+**What To Measure**
+
+- Per-request query count.
+- Total DB time per request and per-query latency distribution.
+- Number of network calls per request.
+- p50/p95/p99 request latency.
+- Connection pool wait time.
+- Rows scanned vs returned.
+- CPU time vs wall time.
+- Allocation / GC pressure.
+- Flamegraph or trace segmented by DB, network, CPU, serialization, and queueing.
+
+If this data is unavailable, collect production-like traces, DB query logs, and an end-to-end benchmark before recommending code-level tuning.
+
+**Ranked Optimization Options**
+
+1. **Batch or prefetch database access**
+   Expected benefit: high. Risk: medium.
+   Replace repeated per-item DB access with bulk queries, joins, prefetching, or request-scoped loading.
+
+2. **Reduce query count and round trips**
+   Expected benefit: high. Risk: low-medium.
+   Cache stable lookups within the request, remove duplicate queries, and avoid ORM lazy-loading in hot paths.
+
+3. **Optimize slow queries / indexes**
+   Expected benefit: high. Risk: medium.
+   Use query plans before adding indexes or rewriting SQL.
+
+4. **Introduce bounded caching**
+   Expected benefit: medium-high. Risk: medium.
+   Use only where freshness requirements are clear.
+
+5. **Reduce serialization/allocation overhead**
+   Expected benefit: medium. Risk: low-medium.
+   Apply after I/O is no longer dominant.
+
+6. **Micro-optimize Python loop**
+   Expected benefit: unknown/likely low. Risk: low but distracting.
+   Defer until measured CPU-bound evidence exists.
+
+**Benchmark Plan**
+
+Use production-shaped data, realistic concurrency, warm and cold cache runs, and compare baseline vs each change independently. Record latency percentiles, throughput, DB load, query count, CPU, memory, and error rate.
+
+**Rollback Criteria**
+
+Rollback if p95/p99 latency worsens, error rate increases, DB CPU/locks rise materially, memory grows unexpectedly, cache staleness causes incorrect behavior, or throughput drops under target load.
+
+**Success Measurement**
+
+Success means meeting the strict latency budget at target concurrency with reduced query count/DB time and no regressions in correctness, tail latency, memory, or dependency load.</code></pre>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/corbensorenson\.github\.io\/software-grimoire\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../examples/evaluations/test-generation.html" class="pagination-link" aria-label="Test Generation Without Overfitting To Implementation">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">44</span>&nbsp; <span class="chapter-title">Test Generation Without Overfitting To Implementation</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../examples/jailbreak-resilience/index.html" class="pagination-link" aria-label="Jailbreak-Resilience Bench">
+        <span class="nav-page-text"><span class="chapter-number">46</span>&nbsp; <span class="chapter-title">Jailbreak-Resilience Bench</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/corbensorenson/software-grimoire/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li><li><a href="https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/performance-tuning.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div></div></footer></body></html>

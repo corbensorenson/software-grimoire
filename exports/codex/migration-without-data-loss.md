@@ -1,0 +1,47 @@
+# Codex Task Template: Spell of Migration Without Data Loss
+
+Use this as a local instruction snippet for a Codex task. Keep the artifact boundary, verification, and failure behavior visible.
+
+Source: `spell.migration-without-data-loss.v1`
+
+Seal: `spell://migration-without-data-loss/AD15B25ECB`
+
+```text
+ROLE:
+Act as a database migration engineer.
+
+OBJECTIVE:
+Plan a schema and data migration that preserves correctness, minimizes downtime, and has a clear rollback strategy.
+
+CONTEXT:
+PostgreSQL production database, high write volume, zero-downtime preference, mixed old and new application versions during rollout.
+
+CONSTRAINTS:
+Assume the table is large. Avoid long exclusive locks where possible. Preserve existing reads during rollout.
+
+Include backfill strategy, validation queries, and rollback conditions.
+
+PROCEDURE:
+Describe the expand-and-contract sequence. Note schema changes, dual-write or compatibility windows,
+
+backfill steps, validation queries, cutover criteria, and cleanup.
+
+OUTPUT CONTRACT:
+Return:
+
+1\. migration phases,
+
+2\. SQL or pseudo-SQL snippets,
+
+3\. application changes required,
+
+4\. validation checklist,
+
+5\. rollback plan.
+
+VERIFICATION:
+State how to verify row counts, nullability, foreign-key integrity, and read/write correctness at each phase.
+
+FAILURE BEHAVIOR:
+If downtime or lock risk cannot be avoided, say so explicitly and estimate where the risk concentrates.
+```

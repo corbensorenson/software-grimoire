@@ -1,0 +1,12 @@
+{
+  "must_preserve": [
+    "normalize_user(raw) function name and single-argument signature",
+    "return keys: email, display_name, extra",
+    "email strip and lowercase behavior",
+    "display_name strip behavior",
+    "unknown fields in extra",
+    "falsy-but-valid unknown values such as 0, false, and empty string",
+    "TypeError for non-dict input"
+  ],
+  "planted_trap": "The starting implementation drops falsy unknown fields from extra."
+}

@@ -1,0 +1,63 @@
+{
+  "id": "stack.release-gate-stack.v1",
+  "title": "Release Gate Stack",
+  "version": 1,
+  "status": "canonical",
+  "enter": "Use when a change set is already built and the question is whether it is ready to ship.",
+  "inputs": [
+    "Task context",
+    "Relevant artifacts",
+    "Constraints",
+    "Verification expectations"
+  ],
+  "frames": [
+    {
+      "step": 1,
+      "spell": "Assemble candidate",
+      "artifact": "Frozen release artifact and config",
+      "advance_when": "Candidate is exact"
+    },
+    {
+      "step": 2,
+      "spell": "Quality gate",
+      "artifact": "Tests, static checks, scans, and prerequisites",
+      "advance_when": "Quality gate is green"
+    },
+    {
+      "step": 3,
+      "spell": "Stage deploy",
+      "artifact": "Staging or canary deployment",
+      "advance_when": "Limited environment is live"
+    },
+    {
+      "step": 4,
+      "spell": "Observe",
+      "artifact": "Metrics, logs, traces, dashboards, and critical-flow results",
+      "advance_when": "Signals remain green"
+    },
+    {
+      "step": 5,
+      "spell": "Promote or rollback",
+      "artifact": "Release decision",
+      "advance_when": "Broad release happens only if guard remains green"
+    }
+  ],
+  "loop": null,
+  "on_fail": "Rollback the candidate and open a repair stack instead of arguing from hope.",
+  "exit": "Broad release happens only if guard remains green",
+  "why_it_works": "It resists shipping by narrative alone.",
+  "source": "software_spellcraft_addendum_on_stacked_spells",
+  "human_title": "Release Gate Stack",
+  "working_seal": "stack://release-gate-stack/5798FD1FC7",
+  "runes": [
+    1073,
+    1086,
+    1146,
+    1180,
+    943
+  ],
+  "related_spells": [
+    "bug-diagnosis-from-logs",
+    "performance-tuning"
+  ]
+}

@@ -1,0 +1,367 @@
+{
+  "schema": "software-grimoire-library-v1",
+  "package_version": "3.0.0-v3-evidence-package",
+  "schema_versions": {
+    "spell": "schemas/spell.schema.json",
+    "stack": "schemas/stack.schema.json",
+    "bench": "schemas/bench-v2.schema.json"
+  },
+  "spells": [
+    {
+      "id": "spell.safe-refactoring.v1",
+      "version": 1,
+      "working_seal": "spell://safe-refactoring/517A86095D"
+    },
+    {
+      "id": "spell.bug-diagnosis-from-logs.v1",
+      "version": 1,
+      "working_seal": "spell://bug-diagnosis-from-logs/2BC4379FD0"
+    },
+    {
+      "id": "spell.api-design.v1",
+      "version": 1,
+      "working_seal": "spell://api-design/828C8A1237"
+    },
+    {
+      "id": "spell.migration-without-data-loss.v1",
+      "version": 1,
+      "working_seal": "spell://migration-without-data-loss/AD15B25ECB"
+    },
+    {
+      "id": "spell.test-generation.v1",
+      "version": 1,
+      "working_seal": "spell://test-generation/16A7DCF9E2"
+    },
+    {
+      "id": "spell.performance-tuning.v1",
+      "version": 1,
+      "working_seal": "spell://performance-tuning/75981D9E3F"
+    },
+    {
+      "id": "spell.jailbreak-resilience-review.v1",
+      "version": 1,
+      "working_seal": "spell://jailbreak-resilience-review/36B797783D"
+    }
+  ],
+  "stacks": [
+    {
+      "id": "stack.code-generation-and-repair-loop.v1",
+      "version": 1,
+      "working_seal": "stack://code-generation-and-repair-loop/DBD637DB96"
+    },
+    {
+      "id": "stack.bug-hunt-stack.v1",
+      "version": 1,
+      "working_seal": "stack://bug-hunt-stack/08B5079286"
+    },
+    {
+      "id": "stack.safe-refactor-stack.v1",
+      "version": 1,
+      "working_seal": "stack://safe-refactor-stack/E351AC61F4"
+    },
+    {
+      "id": "stack.live-migration-stack.v1",
+      "version": 1,
+      "working_seal": "stack://live-migration-stack/23AA56B454"
+    },
+    {
+      "id": "stack.release-gate-stack.v1",
+      "version": 1,
+      "working_seal": "stack://release-gate-stack/5798FD1FC7"
+    },
+    {
+      "id": "stack.recursive-decomposition-stack.v1",
+      "version": 1,
+      "working_seal": "stack://recursive-decomposition-stack/9E9D03E9C0"
+    },
+    {
+      "id": "stack.ai-red-team-loop.v1",
+      "version": 1,
+      "working_seal": "stack://ai-red-team-loop/6CF8F7698D"
+    }
+  ],
+  "assets": [
+    {
+      "path": "exports/README.md",
+      "sha256": "3fe0a2b47164928268c0c1aba2b75058aa7c18eec9dbc29da067011ff70b5338",
+      "bytes": 6936
+    },
+    {
+      "path": "exports/claude-code/skills/api-design.md",
+      "sha256": "90c496ff1b30dc8d2380298ced64ce5c798610920981c06adf371bdd4b6fb05a",
+      "bytes": 1410
+    },
+    {
+      "path": "exports/claude-code/skills/bug-diagnosis-from-logs.md",
+      "sha256": "4a85c575d5c8130cc7882ff464f1403433a0bfa4b05b3e50075ebd8940937c60",
+      "bytes": 1519
+    },
+    {
+      "path": "exports/claude-code/skills/jailbreak-resilience-review.md",
+      "sha256": "49a395852367f8b9ef44d7347d145728dc2ff8b77c22aa8b00244f98f04ccab3",
+      "bytes": 3275
+    },
+    {
+      "path": "exports/claude-code/skills/migration-without-data-loss.md",
+      "sha256": "e8811cb31c368bcbc336d23f6908b1f0ba2de187536079e9d1f93cc0d396d43c",
+      "bytes": 1410
+    },
+    {
+      "path": "exports/claude-code/skills/performance-tuning.md",
+      "sha256": "ec85696564a0e8408d068f5e4e79132766cd0306345c7ad1ffebe00a93af7ba2",
+      "bytes": 1489
+    },
+    {
+      "path": "exports/claude-code/skills/safe-refactoring.md",
+      "sha256": "5e399b42dab1321e5b703e83cff5131394dcd003fe4000ca6977fc0c9a0d248f",
+      "bytes": 1597
+    },
+    {
+      "path": "exports/claude-code/skills/test-generation.md",
+      "sha256": "d91adfbc02f2c26fd0b4b1e0f367058c31648b8d8469150f09369855db3850ac",
+      "bytes": 1304
+    },
+    {
+      "path": "exports/codex/api-design.md",
+      "sha256": "1f6862665df41045d816cb22e8709fb63296d2e4bca7d1c5d96ec65c438d080c",
+      "bytes": 1412
+    },
+    {
+      "path": "exports/codex/bug-diagnosis-from-logs.md",
+      "sha256": "c77551d60439bb5616bf24a300a33a2295a38cd1bc5119b175bfb8c3d38830be",
+      "bytes": 1521
+    },
+    {
+      "path": "exports/codex/jailbreak-resilience-review.md",
+      "sha256": "cd90accf79e41f44af46f8c14505f14d6cbeb88d0a76404d56f92958afd1568f",
+      "bytes": 3277
+    },
+    {
+      "path": "exports/codex/migration-without-data-loss.md",
+      "sha256": "94408764ec4cd6d15bbf351450805df5cfe5f1d468c6fee80b3cf224e5ba8706",
+      "bytes": 1412
+    },
+    {
+      "path": "exports/codex/performance-tuning.md",
+      "sha256": "4b578b5e7455489bc47123735679b7d691ce3b9deb06cd4aaebbd3e9ee994550",
+      "bytes": 1491
+    },
+    {
+      "path": "exports/codex/safe-refactoring.md",
+      "sha256": "e8b7d7931d284d0ab5b5db668af178d2f21a430e279e8c483c48cc0addd11b94",
+      "bytes": 1599
+    },
+    {
+      "path": "exports/codex/test-generation.md",
+      "sha256": "51a1a9f9ffc1026619dae4571379fb6322eb672c1fa225d5390c87aae5f6d686",
+      "bytes": 1306
+    },
+    {
+      "path": "exports/cursor/rules/api-design.mdc",
+      "sha256": "ffbb1b307764f7b50f63109d3a74f8a5a1b4573643830fd72cecefdc6a596269",
+      "bytes": 1425
+    },
+    {
+      "path": "exports/cursor/rules/bug-diagnosis-from-logs.mdc",
+      "sha256": "a4d8142986416e471f1fea15edc9aac2b80d931e64b77e51bf414de067d63f81",
+      "bytes": 1547
+    },
+    {
+      "path": "exports/cursor/rules/jailbreak-resilience-review.mdc",
+      "sha256": "b5021c540534e86444aec9fcee73d55aa03e7013a38873005a4f489931e8ee98",
+      "bytes": 3307
+    },
+    {
+      "path": "exports/cursor/rules/migration-without-data-loss.mdc",
+      "sha256": "24d90def0832e87c245cf1e07ef7545308e4c45a7da29046233b256bacf3b493",
+      "bytes": 1442
+    },
+    {
+      "path": "exports/cursor/rules/performance-tuning.mdc",
+      "sha256": "05e43e6f59639f1830fffc4d9c9a49e5e027cbf056177562c2419917c896a076",
+      "bytes": 1512
+    },
+    {
+      "path": "exports/cursor/rules/safe-refactoring.mdc",
+      "sha256": "15655e4864c20b964916000036c2caae449d4f2a5d2797b53cefc0082c03f4aa",
+      "bytes": 1618
+    },
+    {
+      "path": "exports/cursor/rules/test-generation.mdc",
+      "sha256": "29109baa615af5fbcf97d5cef15c34335ba585a36c26b7b97e7c2a0c6f592002",
+      "bytes": 1324
+    },
+    {
+      "path": "exports/markdown/spells/api-design.md",
+      "sha256": "395b71cefb744f1ab30e5a58eb153ee5fb021fa49e5b4adf38c6f677951a770d",
+      "bytes": 1364
+    },
+    {
+      "path": "exports/markdown/spells/bug-diagnosis-from-logs.md",
+      "sha256": "861a8624e8516d6a5837fe412abedbba05e6b310fbf925d25582df47d7579d32",
+      "bytes": 1490
+    },
+    {
+      "path": "exports/markdown/spells/jailbreak-resilience-review.md",
+      "sha256": "0ddb3eacfb70414f0e888598af8325a4d7877a1cb0e62670970f988c8e108a3c",
+      "bytes": 3315
+    },
+    {
+      "path": "exports/markdown/spells/migration-without-data-loss.md",
+      "sha256": "f8071adc780043fa7d6d6152c70af4e08df21d959cf337c2ce0ccd08b4ad39fe",
+      "bytes": 1377
+    },
+    {
+      "path": "exports/markdown/spells/performance-tuning.md",
+      "sha256": "862586fa7566d1eb28db0392947f89f783892179674838823bc9d11caddee26b",
+      "bytes": 1468
+    },
+    {
+      "path": "exports/markdown/spells/safe-refactoring.md",
+      "sha256": "43995e0c85e16124e61eef01197b8fb624ac82c1c9fa8ad36e5060a2c92267dd",
+      "bytes": 1564
+    },
+    {
+      "path": "exports/markdown/spells/test-generation.md",
+      "sha256": "7bd440c2c04354f9bf02443eaa2c6639bbacaa2ab5f53b6294d7f9d4c351f79f",
+      "bytes": 1263
+    },
+    {
+      "path": "exports/markdown/stacks/ai-red-team-loop.md",
+      "sha256": "af85e3d2ffd6a972791b6507f8a7590820238f3b7705fa220b01ff2e09544caa",
+      "bytes": 1718
+    },
+    {
+      "path": "exports/markdown/stacks/bug-hunt-stack.md",
+      "sha256": "2dec2e66223ae61cfff8bba7efac77b601b6fe014b7eacfd4cc0e0b28840c265",
+      "bytes": 1009
+    },
+    {
+      "path": "exports/markdown/stacks/code-generation-and-repair-loop.md",
+      "sha256": "39137142d7faef30a99f8fac7395bd1008f66380bc7c4e354c95651cff588f39",
+      "bytes": 1217
+    },
+    {
+      "path": "exports/markdown/stacks/live-migration-stack.md",
+      "sha256": "35ca5489b9039b93f7bfc7e6f96c755b0ec47da189eac8d2405a6accc416e2a7",
+      "bytes": 1184
+    },
+    {
+      "path": "exports/markdown/stacks/recursive-decomposition-stack.md",
+      "sha256": "35a5c05639049bd8853d82f0bacb0364057cdcd85a92c9145d6a2821d1476ce6",
+      "bytes": 999
+    },
+    {
+      "path": "exports/markdown/stacks/release-gate-stack.md",
+      "sha256": "439545067c4a78bc9e7c988a2147b98b025152d88a2bc2ebf2138ebf374db1d2",
+      "bytes": 983
+    },
+    {
+      "path": "exports/markdown/stacks/safe-refactor-stack.md",
+      "sha256": "d34f2683fcf4c4ad376cf1edd42870c29249977e40a2bfa422eeedf28bad9e9c",
+      "bytes": 1077
+    },
+    {
+      "path": "prompts/README.md",
+      "sha256": "620b30ea259f6fb63a42432d6f5f6138d0142484359564b5ada97c655413b8b6",
+      "bytes": 258
+    },
+    {
+      "path": "prompts/spells/api-design.txt",
+      "sha256": "b069acaceb021c86a7d066b9e24e1e2414733a0a8949297d86abae68584e59bd",
+      "bytes": 1319
+    },
+    {
+      "path": "prompts/spells/bug-diagnosis-from-logs.txt",
+      "sha256": "77aa3dde353b60a96a19856bac9dcdaedf8844ab50ed830b8c35a622e2d2d4e5",
+      "bytes": 1445
+    },
+    {
+      "path": "prompts/spells/jailbreak-resilience-review.txt",
+      "sha256": "8bf561a775dec6135ae6b36fe8ca9feb0f6eb13f412f36b4086fb5e536f86dae",
+      "bytes": 3270
+    },
+    {
+      "path": "prompts/spells/migration-without-data-loss.txt",
+      "sha256": "ba375474e2b6b83660fed217f3d8608226073efad1b9000513ac431a66a6817b",
+      "bytes": 1332
+    },
+    {
+      "path": "prompts/spells/performance-tuning.txt",
+      "sha256": "cf675a93c308d66d3f505da519b01c18a61c399de13e6bedbcc3153a5aa65c9e",
+      "bytes": 1423
+    },
+    {
+      "path": "prompts/spells/safe-refactoring.txt",
+      "sha256": "2227750be6c4569e10ce7fe1e5d190925585df4c1672515fe57f5c874edd1630",
+      "bytes": 1519
+    },
+    {
+      "path": "prompts/spells/test-generation.txt",
+      "sha256": "43dc9465a4db2f9df1e162da3df4b7d35761ce510d68c770e35b7becd30e3614",
+      "bytes": 1218
+    },
+    {
+      "path": "prompts/stacks/ai-red-team-loop.json",
+      "sha256": "d830109f1b32ecb2cb409ce52ad5fc73e8df7af1c1349c9238d9080854c44b9d",
+      "bytes": 2901
+    },
+    {
+      "path": "prompts/stacks/bug-hunt-stack.json",
+      "sha256": "df5aab0dec501a8c8b785a329a1016d7396d28c89f08f865c19ef99df46a8c04",
+      "bytes": 1971
+    },
+    {
+      "path": "prompts/stacks/code-generation-and-repair-loop.json",
+      "sha256": "d11b293483d79ca5c9a5ff7bef7df48f98aaa6cf3ae028a5d40fd6c2ff0110e0",
+      "bytes": 2283
+    },
+    {
+      "path": "prompts/stacks/live-migration-stack.json",
+      "sha256": "96b644fdfab4f9fae64c059bcbc4520678365a69394c5215beba91e45704ccb9",
+      "bytes": 2259
+    },
+    {
+      "path": "prompts/stacks/recursive-decomposition-stack.json",
+      "sha256": "d2575362df3f444172bc3af357e2cfc49eb9f8a95105da27526f79d714be5722",
+      "bytes": 1972
+    },
+    {
+      "path": "prompts/stacks/release-gate-stack.json",
+      "sha256": "65eb54452cd8722653ecf12a6dda6dfebbc216d9bae8022e7ba7c825f4d0370d",
+      "bytes": 1761
+    },
+    {
+      "path": "prompts/stacks/safe-refactor-stack.json",
+      "sha256": "9fd49cbc0430eb50b7e7d4b86401c04c10ae7dcdba84a21e470be3e50ebd5565",
+      "bytes": 2045
+    }
+  ],
+  "bundles": [
+    {
+      "path": "exports/bundles/software-grimoire-prompts.zip",
+      "sha256": "c972472c5bf9f869dae525291afe4c345b0ad0ded30ac7317a22e979af287804",
+      "bytes": 32089
+    },
+    {
+      "path": "exports/bundles/software-grimoire-codex-templates.zip",
+      "sha256": "fa41d1bb20408abe65157fa6ce440c5843ae0d20a37890a43c4f4b067f00c45c",
+      "bytes": 14498
+    },
+    {
+      "path": "exports/bundles/software-grimoire-cursor-rules.zip",
+      "sha256": "8b9a70d99e254b3b724257db84067a99fcb54be925916701a64126950571aa43",
+      "bytes": 14820
+    },
+    {
+      "path": "exports/bundles/software-grimoire-claude-code-skills.zip",
+      "sha256": "8209415cdbc216e23071e2ba3420c3b02915d51239b9a9993a6b142141898af6",
+      "bytes": 14760
+    },
+    {
+      "path": "exports/bundles/software-grimoire-stacks.zip",
+      "sha256": "87d714c28150efc37445f90a9834e7b98cf0975c497dee503384ec9f017d5377",
+      "bytes": 28429
+    }
+  ]
+}

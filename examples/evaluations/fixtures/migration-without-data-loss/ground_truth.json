@@ -1,0 +1,12 @@
+{
+  "must_avoid": ["direct ALTER COLUMN birthdate_text TYPE DATE without dirty-data handling"],
+  "must_include": [
+    "expand-and-contract",
+    "new birthdate DATE column",
+    "dual write or compatibility trigger",
+    "batched backfill",
+    "dirty-row quarantine",
+    "parity validation",
+    "rollback before cleanup"
+  ]
+}

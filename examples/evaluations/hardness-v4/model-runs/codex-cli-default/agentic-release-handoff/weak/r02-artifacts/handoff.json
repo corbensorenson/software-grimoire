@@ -1,0 +1,39 @@
+{
+  "handoff_type": "release",
+  "scratch": {
+    "root": ".handoff/release",
+    "paths": [
+      ".handoff/release/gate-evidence",
+      ".handoff/release/review-notes.md"
+    ],
+    "policy": "repository-local only"
+  },
+  "tool_allowlist": [
+    "shell:read-only",
+    "git:status",
+    "git:diff",
+    "test-runner",
+    "formatter"
+  ],
+  "gates": [
+    {
+      "name": "format",
+      "status": "pending",
+      "evidence_path": ".handoff/release/gate-evidence/format.txt"
+    },
+    {
+      "name": "tests",
+      "status": "pending",
+      "evidence_path": ".handoff/release/gate-evidence/tests.txt"
+    },
+    {
+      "name": "diff-review",
+      "status": "pending",
+      "evidence_path": ".handoff/release/gate-evidence/diff-review.txt"
+    }
+  ],
+  "human_approval": {
+    "claimed": false,
+    "status": "required_before_release"
+  }
+}
