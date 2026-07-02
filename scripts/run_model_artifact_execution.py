@@ -19,6 +19,7 @@ from surface_adapters import enrich_run_metadata, runnable_surfaces, run_surface
 
 
 SURFACES = {surface_id: surface_for_result(surface_id) for surface_id in runnable_surfaces()}
+SCRATCH_DIR = ROOT / "tmp"
 TIMEOUT_SECONDS = 20
 
 
@@ -81,7 +82,8 @@ Do not include prose outside the code block.
 
 
 def run_pytest(fixture: Path, files: dict[str, str], test_file: str) -> dict:
-    with tempfile.TemporaryDirectory(prefix="grimoire-model-artifact-") as raw_tmp:
+    SCRATCH_DIR.mkdir(parents=True, exist_ok=True)
+    with tempfile.TemporaryDirectory(prefix="grimoire-model-artifact-", dir=SCRATCH_DIR) as raw_tmp:
         tmp = Path(raw_tmp)
         shutil.copytree(fixture, tmp, dirs_exist_ok=True)
         for rel, content in files.items():
@@ -179,7 +181,7 @@ def main() -> int:
     results = {
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "version": "3.0.0-model-artifact-execution",
-        "policy": "Model outputs are saved as artifacts and graded only inside fixture-local temporary directories.",
+        "policy": "Model outputs are saved as artifacts and graded only inside repo-local fixture sandboxes under tmp/.",
         "surfaces": {surface: SURFACES[surface] for surface in surfaces},
         "cases": {},
     }

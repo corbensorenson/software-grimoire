@@ -10,7 +10,7 @@ title: "API Design Without Hidden Compatibility Traps"
 
 **Observed outcome delta:** weak and repaired prompts tied on outcome checks
 
-**Observed structural delta:** repaired prompts scored 3.0 points higher on average
+**Observed reviewability delta:** repaired prompts scored 3.0 reviewability points higher on average
 
 **Input context:** The fixture describes a public billing API that must remain compatible with slow-upgrading clients.
 
@@ -28,20 +28,28 @@ Ground truth:
 - Mobile clients require backward-compatible versioning.
 - Refunds and invoices are separate resources with linked lifecycle state.
 
+## Surface and Tier Delta Summary
+
+| Surface           | Tier  | Weak n | Repaired n | Weak Reviewability | Repaired Reviewability | Reviewability Delta | Weak Outcome | Repaired Outcome | Outcome Delta |
+| ----------------- | ----- | ------ | ---------- | ------------------ | ---------------------- | ------------------- | ------------ | ---------------- | ------------- |
+| claude-code-safe  | clean | 1      | 1          | 7.0                | 9.0                    | 2.0                 | 3.0          | 3.0              | 0.0           |
+| claude-code-safe  | trap  | 1      | 1          | 5.0                | 8.0                    | 3.0                 | 3.0          | 3.0              | 0.0           |
+| codex-cli-default | clean | 3      | 3          | 7.0                | 10.3                   | 3.3                 | 3.0          | 3.0              | 0.0           |
+
 ## Scores
 
-| Surface           | Variant  | Rep | Artifact | Invariant | Output | Verify | Failure | Assumptions | Structural | Outcome |
-| ----------------- | -------- | --- | -------- | --------- | ------ | ------ | ------- | ----------- | ---------- | ------- |
-| codex-cli-default | weak     | 1   | 2        | 2         | 2      | 0      | 1       | 1           | 8          | 3       |
-| codex-cli-default | repaired | 1   | 2        | 1         | 2      | 1      | 2       | 2           | 10         | 3       |
-| codex-cli-default | weak     | 2   | 2        | 1         | 2      | 0      | 1       | 1           | 7          | 3       |
-| codex-cli-default | repaired | 2   | 2        | 1         | 2      | 1      | 2       | 2           | 10         | 3       |
-| codex-cli-default | weak     | 3   | 2        | 1         | 2      | 0      | 1       | 0           | 6          | 3       |
-| codex-cli-default | repaired | 3   | 2        | 2         | 2      | 2      | 2       | 1           | 11         | 3       |
-| claude-code-safe  | weak     | 1   | 2        | 1         | 2      | 0      | 1       | 1           | 7          | 3       |
-| claude-code-safe  | repaired | 1   | 2        | 0         | 2      | 1      | 2       | 2           | 9          | 3       |
-| claude-code-safe  | weak     | 1   | 2        | 0         | 2      | 0      | 1       | 0           | 5          | 3       |
-| claude-code-safe  | repaired | 1   | 2        | 0         | 2      | 1      | 2       | 1           | 8          | 3       |
+| Surface           | Tier  | Variant  | Rep | Artifact | Invariant | Output | Verify | Failure | Assumptions | Reviewability | Outcome |
+| ----------------- | ----- | -------- | --- | -------- | --------- | ------ | ------ | ------- | ----------- | ------------- | ------- |
+| codex-cli-default | clean | weak     | 1   | 2        | 2         | 2      | 0      | 1       | 1           | 8             | 3       |
+| codex-cli-default | clean | repaired | 1   | 2        | 1         | 2      | 1      | 2       | 2           | 10            | 3       |
+| codex-cli-default | clean | weak     | 2   | 2        | 1         | 2      | 0      | 1       | 1           | 7             | 3       |
+| codex-cli-default | clean | repaired | 2   | 2        | 1         | 2      | 1      | 2       | 2           | 10            | 3       |
+| codex-cli-default | clean | weak     | 3   | 2        | 1         | 2      | 0      | 1       | 0           | 6             | 3       |
+| codex-cli-default | clean | repaired | 3   | 2        | 2         | 2      | 2      | 2       | 1           | 11            | 3       |
+| claude-code-safe  | clean | weak     | 1   | 2        | 1         | 2      | 0      | 1       | 1           | 7             | 3       |
+| claude-code-safe  | clean | repaired | 1   | 2        | 0         | 2      | 1      | 2       | 2           | 9             | 3       |
+| claude-code-safe  | trap  | weak     | 1   | 2        | 0         | 2      | 0      | 1       | 0           | 5             | 3       |
+| claude-code-safe  | trap  | repaired | 1   | 2        | 0         | 2      | 1      | 2       | 1           | 8             | 3       |
 
 ## Transcripts
 
@@ -51,9 +59,9 @@ Ground truth:
 - Run timestamp: `2026-07-02T04:37:20.921373+00:00`
 - Prompt file: [examples/evaluations/runs/codex-cli-default/api-design/r01-weak-prompt.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/api-design/r01-weak-prompt.md)
 - Transcript file: [examples/evaluations/runs/codex-cli-default/api-design/r01-weak-output.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/api-design/r01-weak-output.md)
-- Structural total: 8
+- Reviewability total: 8
 - Outcome total: 3
-- Evaluator notes: Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence.
+- Evaluator notes: Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.
 
 ```text
 The fixture is missing exact lifecycle status names, amount/currency rules, and payment processor details, so those should be filled from production contracts. This design preserves compatibility.
@@ -152,9 +160,9 @@ Compatibility rules: keep `/v1` backward compatible, add fields only, never rena
 - Run timestamp: `2026-07-02T04:38:04.444991+00:00`
 - Prompt file: [examples/evaluations/runs/codex-cli-default/api-design/r01-repaired-prompt.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/api-design/r01-repaired-prompt.md)
 - Transcript file: [examples/evaluations/runs/codex-cli-default/api-design/r01-repaired-output.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/api-design/r01-repaired-output.md)
-- Structural total: 10
+- Reviewability total: 10
 - Outcome total: 3
-- Evaluator notes: Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence.
+- Evaluator notes: Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.
 
 ```text
 Assumptions: amounts are integer minor units plus currency; invoice status values are stable enums; refunds are separate resources linked to invoices and successful payment attempts.
@@ -247,9 +255,9 @@ Verification risks: race concurrent retries with a unique idempotency-key constr
 - Run timestamp: `2026-07-02T04:38:46.757444+00:00`
 - Prompt file: [examples/evaluations/runs/codex-cli-default/api-design/r02-weak-prompt.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/api-design/r02-weak-prompt.md)
 - Transcript file: [examples/evaluations/runs/codex-cli-default/api-design/r02-weak-output.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/api-design/r02-weak-output.md)
-- Structural total: 7
+- Reviewability total: 7
 - Outcome total: 3
-- Evaluator notes: Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence.
+- Evaluator notes: Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.
 
 ```text
 Missing specifics: amount/currency format, full lifecycle enums, refund eligibility rules, and account-credit behavior. This design keeps those as stable fields without inventing business rules.
@@ -361,9 +369,9 @@ Use `/v1` versioning. Do not rename invoice status values, change the error shap
 - Run timestamp: `2026-07-02T04:39:30.761061+00:00`
 - Prompt file: [examples/evaluations/runs/codex-cli-default/api-design/r02-repaired-prompt.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/api-design/r02-repaired-prompt.md)
 - Transcript file: [examples/evaluations/runs/codex-cli-default/api-design/r02-repaired-output.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/api-design/r02-repaired-output.md)
-- Structural total: 10
+- Reviewability total: 10
 - Outcome total: 3
-- Evaluator notes: Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence.
+- Evaluator notes: Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.
 
 ```text
 **Assumptions / Missing**
@@ -466,9 +474,9 @@ Compatibility risks: enum renames, unpaginated lists, changed error schema, and 
 - Run timestamp: `2026-07-02T04:40:14.774879+00:00`
 - Prompt file: [examples/evaluations/runs/codex-cli-default/api-design/r03-weak-prompt.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/api-design/r03-weak-prompt.md)
 - Transcript file: [examples/evaluations/runs/codex-cli-default/api-design/r03-weak-output.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/api-design/r03-weak-output.md)
-- Structural total: 6
+- Reviewability total: 6
 - Outcome total: 3
-- Evaluator notes: Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence.
+- Evaluator notes: Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.
 
 ```text
 **Billing API Design**
@@ -569,9 +577,9 @@ Error `code` is the machine contract; messages may change, codes must not.
 - Run timestamp: `2026-07-02T04:40:46.554091+00:00`
 - Prompt file: [examples/evaluations/runs/codex-cli-default/api-design/r03-repaired-prompt.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/api-design/r03-repaired-prompt.md)
 - Transcript file: [examples/evaluations/runs/codex-cli-default/api-design/r03-repaired-output.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/api-design/r03-repaired-output.md)
-- Structural total: 11
+- Reviewability total: 11
 - Outcome total: 3
-- Evaluator notes: Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence.
+- Evaluator notes: Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.
 
 ```text
 **Assumptions:** amounts are integer minor units plus ISO currency; invoices, payment attempts, and refunds are separate resources; refunds link to a successful payment attempt and update invoice/payment lifecycle state.
@@ -676,9 +684,9 @@ Compatibility risks: enum additions, pagination shape changes, unstable errors, 
 - Run timestamp: `2026-07-02T08:30:18.744520+00:00`
 - Prompt file: [examples/evaluations/runs/claude-code-safe/api-design/clean/r01-weak-prompt.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/claude-code-safe/api-design/clean/r01-weak-prompt.md)
 - Transcript file: [examples/evaluations/runs/claude-code-safe/api-design/clean/r01-weak-output.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/claude-code-safe/api-design/clean/r01-weak-output.md)
-- Structural total: 7
+- Reviewability total: 7
 - Outcome total: 3
-- Evaluator notes: Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence.
+- Evaluator notes: Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.
 
 ```text
 ## Billing API Design
@@ -781,9 +789,9 @@ Every error returns a stable, machine-readable `code`:
 - Run timestamp: `2026-07-02T08:30:37.725893+00:00`
 - Prompt file: [examples/evaluations/runs/claude-code-safe/api-design/clean/r01-repaired-prompt.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/claude-code-safe/api-design/clean/r01-repaired-prompt.md)
 - Transcript file: [examples/evaluations/runs/claude-code-safe/api-design/clean/r01-repaired-output.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/claude-code-safe/api-design/clean/r01-repaired-output.md)
-- Structural total: 9
+- Reviewability total: 9
 - Outcome total: 3
-- Evaluator notes: Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence.
+- Evaluator notes: Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.
 
 ```text
 ## Billing API Design
@@ -881,9 +889,9 @@ Never use offset pagination — it breaks under concurrent inserts.
 - Run timestamp: `2026-07-02T08:30:55.866790+00:00`
 - Prompt file: [examples/evaluations/runs/claude-code-safe/api-design/trap/r01-weak-prompt.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/claude-code-safe/api-design/trap/r01-weak-prompt.md)
 - Transcript file: [examples/evaluations/runs/claude-code-safe/api-design/trap/r01-weak-output.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/claude-code-safe/api-design/trap/r01-weak-output.md)
-- Structural total: 5
+- Reviewability total: 5
 - Outcome total: 3
-- Evaluator notes: Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence.
+- Evaluator notes: Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.
 
 ```text
 ## Billing API Design
@@ -965,9 +973,9 @@ Clients should retry on `429` and `5xx` with exponential backoff. Retries on `4x
 - Run timestamp: `2026-07-02T08:31:17.782396+00:00`
 - Prompt file: [examples/evaluations/runs/claude-code-safe/api-design/trap/r01-repaired-prompt.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/claude-code-safe/api-design/trap/r01-repaired-prompt.md)
 - Transcript file: [examples/evaluations/runs/claude-code-safe/api-design/trap/r01-repaired-output.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/claude-code-safe/api-design/trap/r01-repaired-output.md)
-- Structural total: 8
+- Reviewability total: 8
 - Outcome total: 3
-- Evaluator notes: Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence.
+- Evaluator notes: Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.
 
 ```text
 ## Billing API Design (v1)

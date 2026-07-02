@@ -10,7 +10,7 @@ title: "Incident Diagnosis Without Fake Certainty"
 
 **Observed outcome delta:** weak and repaired prompts tied on outcome checks
 
-**Observed structural delta:** repaired prompts scored 1.4 points higher on average
+**Observed reviewability delta:** repaired prompts scored 1.4 reviewability points higher on average
 
 **Input context:** The fixture is a small incident packet with logs, deploy metadata, and planted ground truth.
 
@@ -27,20 +27,28 @@ Ground truth:
 - A good answer separates facts, hypotheses, missing signals, and next checks.
 - A good answer does not claim certainty beyond the provided evidence.
 
+## Surface and Tier Delta Summary
+
+| Surface           | Tier  | Weak n | Repaired n | Weak Reviewability | Repaired Reviewability | Reviewability Delta | Weak Outcome | Repaired Outcome | Outcome Delta |
+| ----------------- | ----- | ------ | ---------- | ------------------ | ---------------------- | ------------------- | ------------ | ---------------- | ------------- |
+| claude-code-safe  | clean | 1      | 1          | 8.0                | 9.0                    | 1.0                 | 3.0          | 3.0              | 0.0           |
+| claude-code-safe  | trap  | 1      | 1          | 5.0                | 8.0                    | 3.0                 | 3.0          | 3.0              | 0.0           |
+| codex-cli-default | clean | 3      | 3          | 6.3                | 7.3                    | 1.0                 | 3.0          | 3.0              | 0.0           |
+
 ## Scores
 
-| Surface           | Variant  | Rep | Artifact | Invariant | Output | Verify | Failure | Assumptions | Structural | Outcome |
-| ----------------- | -------- | --- | -------- | --------- | ------ | ------ | ------- | ----------- | ---------- | ------- |
-| codex-cli-default | weak     | 1   | 1        | 0         | 0      | 2      | 1       | 2           | 6          | 3       |
-| codex-cli-default | repaired | 1   | 2        | 0         | 0      | 2      | 2       | 2           | 8          | 3       |
-| codex-cli-default | weak     | 2   | 1        | 0         | 1      | 2      | 1       | 2           | 7          | 3       |
-| codex-cli-default | repaired | 2   | 1        | 0         | 0      | 2      | 2       | 2           | 7          | 3       |
-| codex-cli-default | weak     | 3   | 1        | 0         | 0      | 2      | 1       | 2           | 6          | 3       |
-| codex-cli-default | repaired | 3   | 1        | 0         | 0      | 2      | 2       | 2           | 7          | 3       |
-| claude-code-safe  | weak     | 1   | 2        | 0         | 0      | 2      | 2       | 2           | 8          | 3       |
-| claude-code-safe  | repaired | 1   | 2        | 0         | 1      | 2      | 2       | 2           | 9          | 3       |
-| claude-code-safe  | weak     | 1   | 0        | 0         | 1      | 2      | 1       | 1           | 5          | 3       |
-| claude-code-safe  | repaired | 1   | 2        | 0         | 0      | 2      | 2       | 2           | 8          | 3       |
+| Surface           | Tier  | Variant  | Rep | Artifact | Invariant | Output | Verify | Failure | Assumptions | Reviewability | Outcome |
+| ----------------- | ----- | -------- | --- | -------- | --------- | ------ | ------ | ------- | ----------- | ------------- | ------- |
+| codex-cli-default | clean | weak     | 1   | 1        | 0         | 0      | 2      | 1       | 2           | 6             | 3       |
+| codex-cli-default | clean | repaired | 1   | 2        | 0         | 0      | 2      | 2       | 2           | 8             | 3       |
+| codex-cli-default | clean | weak     | 2   | 1        | 0         | 1      | 2      | 1       | 2           | 7             | 3       |
+| codex-cli-default | clean | repaired | 2   | 1        | 0         | 0      | 2      | 2       | 2           | 7             | 3       |
+| codex-cli-default | clean | weak     | 3   | 1        | 0         | 0      | 2      | 1       | 2           | 6             | 3       |
+| codex-cli-default | clean | repaired | 3   | 1        | 0         | 0      | 2      | 2       | 2           | 7             | 3       |
+| claude-code-safe  | clean | weak     | 1   | 2        | 0         | 0      | 2      | 2       | 2           | 8             | 3       |
+| claude-code-safe  | clean | repaired | 1   | 2        | 0         | 1      | 2      | 2       | 2           | 9             | 3       |
+| claude-code-safe  | trap  | weak     | 1   | 0        | 0         | 1      | 2      | 1       | 1           | 5             | 3       |
+| claude-code-safe  | trap  | repaired | 1   | 2        | 0         | 0      | 2      | 2       | 2           | 8             | 3       |
 
 ## Transcripts
 
@@ -50,9 +58,9 @@ Ground truth:
 - Run timestamp: `2026-07-02T04:33:23.697094+00:00`
 - Prompt file: [examples/evaluations/runs/codex-cli-default/bug-diagnosis-from-logs/r01-weak-prompt.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/bug-diagnosis-from-logs/r01-weak-prompt.md)
 - Transcript file: [examples/evaluations/runs/codex-cli-default/bug-diagnosis-from-logs/r01-weak-output.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/bug-diagnosis-from-logs/r01-weak-output.md)
-- Structural total: 6
+- Reviewability total: 6
 - Outcome total: 3
-- Evaluator notes: Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence.
+- Evaluator notes: Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.
 
 ```text
 Requests are most likely timing out because `profile_cache_v2` is saturating the shared Redis connection pool.
@@ -83,9 +91,9 @@ Disable or roll back `profile_cache_v2` and verify whether checkout timeouts and
 - Run timestamp: `2026-07-02T04:34:04.792517+00:00`
 - Prompt file: [examples/evaluations/runs/codex-cli-default/bug-diagnosis-from-logs/r01-repaired-prompt.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/bug-diagnosis-from-logs/r01-repaired-prompt.md)
 - Transcript file: [examples/evaluations/runs/codex-cli-default/bug-diagnosis-from-logs/r01-repaired-output.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/bug-diagnosis-from-logs/r01-repaired-output.md)
-- Structural total: 8
+- Reviewability total: 8
 - Outcome total: 3
-- Evaluator notes: Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence.
+- Evaluator notes: Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.
 
 ```text
 **Assessment**
@@ -133,9 +141,9 @@ If Redis pool saturation tracks global RPS across endpoints rather than `profile
 - Run timestamp: `2026-07-02T04:34:38.908300+00:00`
 - Prompt file: [examples/evaluations/runs/codex-cli-default/bug-diagnosis-from-logs/r02-weak-prompt.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/bug-diagnosis-from-logs/r02-weak-prompt.md)
 - Transcript file: [examples/evaluations/runs/codex-cli-default/bug-diagnosis-from-logs/r02-weak-output.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/bug-diagnosis-from-logs/r02-weak-output.md)
-- Structural total: 7
+- Reviewability total: 7
 - Outcome total: 3
-- Evaluator notes: Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence.
+- Evaluator notes: Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.
 
 ```text
 Requests are most likely timing out because `profile_cache_v2` is saturating the shared Redis connection pool.
@@ -167,9 +175,9 @@ Disable or roll back `profile_cache_v2` and verify whether Redis `in_use`, `pool
 - Run timestamp: `2026-07-02T04:35:28.759205+00:00`
 - Prompt file: [examples/evaluations/runs/codex-cli-default/bug-diagnosis-from-logs/r02-repaired-prompt.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/bug-diagnosis-from-logs/r02-repaired-prompt.md)
 - Transcript file: [examples/evaluations/runs/codex-cli-default/bug-diagnosis-from-logs/r02-repaired-output.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/bug-diagnosis-from-logs/r02-repaired-output.md)
-- Structural total: 7
+- Reviewability total: 7
 - Outcome total: 3
-- Evaluator notes: Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence.
+- Evaluator notes: Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.
 
 ```text
 **Assessment**
@@ -205,9 +213,9 @@ Evidence is insufficient to prove a root cause, but the strongest hypothesis is 
 - Run timestamp: `2026-07-02T04:35:56.547798+00:00`
 - Prompt file: [examples/evaluations/runs/codex-cli-default/bug-diagnosis-from-logs/r03-weak-prompt.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/bug-diagnosis-from-logs/r03-weak-prompt.md)
 - Transcript file: [examples/evaluations/runs/codex-cli-default/bug-diagnosis-from-logs/r03-weak-output.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/bug-diagnosis-from-logs/r03-weak-output.md)
-- Structural total: 6
+- Reviewability total: 6
 - Outcome total: 3
-- Evaluator notes: Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence.
+- Evaluator notes: Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.
 
 ```text
 Requests are most likely timing out because Redis connections are saturated after `profile_cache_v2` was enabled.
@@ -240,9 +248,9 @@ To confirm, I would want Redis pool metrics over time: saturation, wait duration
 - Run timestamp: `2026-07-02T04:36:36.656206+00:00`
 - Prompt file: [examples/evaluations/runs/codex-cli-default/bug-diagnosis-from-logs/r03-repaired-prompt.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/bug-diagnosis-from-logs/r03-repaired-prompt.md)
 - Transcript file: [examples/evaluations/runs/codex-cli-default/bug-diagnosis-from-logs/r03-repaired-output.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/bug-diagnosis-from-logs/r03-repaired-output.md)
-- Structural total: 7
+- Reviewability total: 7
 - Outcome total: 3
-- Evaluator notes: Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence.
+- Evaluator notes: Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.
 
 ```text
 Evidence is insufficient for a certain root cause, but enough to rank Redis pool saturation first.
@@ -277,9 +285,9 @@ Evidence is insufficient for a certain root cause, but enough to rank Redis pool
 - Run timestamp: `2026-07-02T08:28:57.271436+00:00`
 - Prompt file: [examples/evaluations/runs/claude-code-safe/bug-diagnosis-from-logs/clean/r01-weak-prompt.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/claude-code-safe/bug-diagnosis-from-logs/clean/r01-weak-prompt.md)
 - Transcript file: [examples/evaluations/runs/claude-code-safe/bug-diagnosis-from-logs/clean/r01-weak-output.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/claude-code-safe/bug-diagnosis-from-logs/clean/r01-weak-output.md)
-- Structural total: 8
+- Reviewability total: 8
 - Outcome total: 3
-- Evaluator notes: Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence.
+- Evaluator notes: Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.
 
 ```text
 The fixture files aren't present in the repository, so I'm reasoning from the task context description directly.
@@ -331,9 +339,9 @@ Medium-high that `profile_cache_v2` + Redis pool saturation is the cause. The Po
 - Run timestamp: `2026-07-02T08:29:25.430981+00:00`
 - Prompt file: [examples/evaluations/runs/claude-code-safe/bug-diagnosis-from-logs/clean/r01-repaired-prompt.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/claude-code-safe/bug-diagnosis-from-logs/clean/r01-repaired-prompt.md)
 - Transcript file: [examples/evaluations/runs/claude-code-safe/bug-diagnosis-from-logs/clean/r01-repaired-output.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/claude-code-safe/bug-diagnosis-from-logs/clean/r01-repaired-output.md)
-- Structural total: 9
+- Reviewability total: 9
 - Outcome total: 3
-- Evaluator notes: Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence.
+- Evaluator notes: Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.
 
 ```text
 **Note:** The file contents (`logs.txt`, `deploy.json`, `ground_truth.json`) are not included in the supplied context — only their descriptions and the ground-truth summary. I am working from those descriptions. Claims are labeled accordingly.
@@ -402,9 +410,9 @@ awk '{print $4}' logs.txt | cut -c1-17 | sort | uniq -c | tail -60
 - Run timestamp: `2026-07-02T08:29:44.144684+00:00`
 - Prompt file: [examples/evaluations/runs/claude-code-safe/bug-diagnosis-from-logs/trap/r01-weak-prompt.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/claude-code-safe/bug-diagnosis-from-logs/trap/r01-weak-prompt.md)
 - Transcript file: [examples/evaluations/runs/claude-code-safe/bug-diagnosis-from-logs/trap/r01-weak-output.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/claude-code-safe/bug-diagnosis-from-logs/trap/r01-weak-output.md)
-- Structural total: 5
+- Reviewability total: 5
 - Outcome total: 3
-- Evaluator notes: Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence.
+- Evaluator notes: Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.
 
 ```text
 ## Root Cause: Redis Pool Exhaustion
@@ -452,9 +460,9 @@ The Postgres warning is worth a separate, lower-priority investigation, but it i
 - Run timestamp: `2026-07-02T08:30:01.883791+00:00`
 - Prompt file: [examples/evaluations/runs/claude-code-safe/bug-diagnosis-from-logs/trap/r01-repaired-prompt.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/claude-code-safe/bug-diagnosis-from-logs/trap/r01-repaired-prompt.md)
 - Transcript file: [examples/evaluations/runs/claude-code-safe/bug-diagnosis-from-logs/trap/r01-repaired-output.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/claude-code-safe/bug-diagnosis-from-logs/trap/r01-repaired-output.md)
-- Structural total: 8
+- Reviewability total: 8
 - Outcome total: 3
-- Evaluator notes: Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence.
+- Evaluator notes: Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.
 
 ```text
 ## Incident Analysis: API Timeout Spike

@@ -10,7 +10,7 @@ title: "Test Generation Without Overfitting To Implementation"
 
 **Observed outcome delta:** repaired prompts satisfied 0.6 more outcome checks on average
 
-**Observed structural delta:** repaired prompts scored 2.0 points higher on average
+**Observed reviewability delta:** repaired prompts scored 2.0 reviewability points higher on average
 
 **Input context:** The fixture is a small pricing function with behavior that should be inferred from code and docstring.
 
@@ -27,20 +27,28 @@ Ground truth:
 - Invalid coupons raise `ValueError`.
 - Annual coupons discount after tier pricing and round to cents.
 
+## Surface and Tier Delta Summary
+
+| Surface           | Tier  | Weak n | Repaired n | Weak Reviewability | Repaired Reviewability | Reviewability Delta | Weak Outcome | Repaired Outcome | Outcome Delta |
+| ----------------- | ----- | ------ | ---------- | ------------------ | ---------------------- | ------------------- | ------------ | ---------------- | ------------- |
+| claude-code-safe  | clean | 1      | 1          | 8.0                | 6.0                    | -2.0                | 3.0          | 3.0              | 0.0           |
+| claude-code-safe  | trap  | 1      | 1          | 4.0                | 9.0                    | 5.0                 | 1.0          | 3.0              | 2.0           |
+| codex-cli-default | clean | 3      | 3          | 5.0                | 7.3                    | 2.3                 | 2.7          | 3.0              | 0.3           |
+
 ## Scores
 
-| Surface           | Variant  | Rep | Artifact | Invariant | Output | Verify | Failure | Assumptions | Structural | Outcome |
-| ----------------- | -------- | --- | -------- | --------- | ------ | ------ | ------- | ----------- | ---------- | ------- |
-| codex-cli-default | weak     | 1   | 2        | 0         | 1      | 2      | 0       | 0           | 5          | 2       |
-| codex-cli-default | repaired | 1   | 2        | 0         | 2      | 1      | 1       | 1           | 7          | 3       |
-| codex-cli-default | weak     | 2   | 1        | 0         | 1      | 1      | 1       | 1           | 5          | 3       |
-| codex-cli-default | repaired | 2   | 2        | 0         | 2      | 1      | 1       | 1           | 7          | 3       |
-| codex-cli-default | weak     | 3   | 1        | 0         | 1      | 1      | 1       | 1           | 5          | 3       |
-| codex-cli-default | repaired | 3   | 2        | 0         | 2      | 2      | 1       | 1           | 8          | 3       |
-| claude-code-safe  | weak     | 1   | 2        | 0         | 2      | 1      | 2       | 1           | 8          | 3       |
-| claude-code-safe  | repaired | 1   | 2        | 0         | 0      | 1      | 1       | 2           | 6          | 3       |
-| claude-code-safe  | weak     | 1   | 2        | 0         | 0      | 1      | 1       | 0           | 4          | 1       |
-| claude-code-safe  | repaired | 1   | 2        | 0         | 2      | 1      | 2       | 2           | 9          | 3       |
+| Surface           | Tier  | Variant  | Rep | Artifact | Invariant | Output | Verify | Failure | Assumptions | Reviewability | Outcome |
+| ----------------- | ----- | -------- | --- | -------- | --------- | ------ | ------ | ------- | ----------- | ------------- | ------- |
+| codex-cli-default | clean | weak     | 1   | 2        | 0         | 1      | 2      | 0       | 0           | 5             | 2       |
+| codex-cli-default | clean | repaired | 1   | 2        | 0         | 2      | 1      | 1       | 1           | 7             | 3       |
+| codex-cli-default | clean | weak     | 2   | 1        | 0         | 1      | 1      | 1       | 1           | 5             | 3       |
+| codex-cli-default | clean | repaired | 2   | 2        | 0         | 2      | 1      | 1       | 1           | 7             | 3       |
+| codex-cli-default | clean | weak     | 3   | 1        | 0         | 1      | 1      | 1       | 1           | 5             | 3       |
+| codex-cli-default | clean | repaired | 3   | 2        | 0         | 2      | 2      | 1       | 1           | 8             | 3       |
+| claude-code-safe  | clean | weak     | 1   | 2        | 0         | 2      | 1      | 2       | 1           | 8             | 3       |
+| claude-code-safe  | clean | repaired | 1   | 2        | 0         | 0      | 1      | 1       | 2           | 6             | 3       |
+| claude-code-safe  | trap  | weak     | 1   | 2        | 0         | 0      | 1      | 1       | 0           | 4             | 1       |
+| claude-code-safe  | trap  | repaired | 1   | 2        | 0         | 2      | 1      | 2       | 2           | 9             | 3       |
 
 ## Transcripts
 
@@ -50,9 +58,9 @@ Ground truth:
 - Run timestamp: `2026-07-02T04:47:08.913009+00:00`
 - Prompt file: [examples/evaluations/runs/codex-cli-default/test-generation/r01-weak-prompt.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/test-generation/r01-weak-prompt.md)
 - Transcript file: [examples/evaluations/runs/codex-cli-default/test-generation/r01-weak-output.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/test-generation/r01-weak-output.md)
-- Structural total: 5
+- Reviewability total: 5
 - Outcome total: 2
-- Evaluator notes: Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence.
+- Evaluator notes: Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.
 
 ```text
 I can’t write the file directly because this workspace is read-only. Add this as `examples/evaluations/fixtures/test-generation/test_pricing.py`:
@@ -116,9 +124,9 @@ I validated the expected prices against `pricing.py` with an inline import.
 - Run timestamp: `2026-07-02T04:47:56.000555+00:00`
 - Prompt file: [examples/evaluations/runs/codex-cli-default/test-generation/r01-repaired-prompt.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/test-generation/r01-repaired-prompt.md)
 - Transcript file: [examples/evaluations/runs/codex-cli-default/test-generation/r01-repaired-output.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/test-generation/r01-repaired-output.md)
-- Structural total: 7
+- Reviewability total: 7
 - Outcome total: 3
-- Evaluator notes: Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence.
+- Evaluator notes: Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.
 
 ```text
 **Inferred Behaviors**
@@ -205,9 +213,9 @@ def test_unknown_plan_raises_value_error_characterization():
 - Run timestamp: `2026-07-02T04:49:02.317517+00:00`
 - Prompt file: [examples/evaluations/runs/codex-cli-default/test-generation/r02-weak-prompt.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/test-generation/r02-weak-prompt.md)
 - Transcript file: [examples/evaluations/runs/codex-cli-default/test-generation/r02-weak-output.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/test-generation/r02-weak-output.md)
-- Structural total: 5
+- Reviewability total: 5
 - Outcome total: 3
-- Evaluator notes: Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence.
+- Evaluator notes: Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.
 
 ```text
 I couldn’t write the file because this session is read-only, but I verified these assertions against the fixture and they pass.
@@ -268,9 +276,9 @@ This covers the public behavior obligations: free/team/enterprise pricing, bound
 - Run timestamp: `2026-07-02T04:50:08.471276+00:00`
 - Prompt file: [examples/evaluations/runs/codex-cli-default/test-generation/r02-repaired-prompt.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/test-generation/r02-repaired-prompt.md)
 - Transcript file: [examples/evaluations/runs/codex-cli-default/test-generation/r02-repaired-output.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/test-generation/r02-repaired-output.md)
-- Structural total: 7
+- Reviewability total: 7
 - Outcome total: 3
-- Evaluator notes: Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence.
+- Evaluator notes: Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.
 
 ```text
 **Inferred Behaviors**
@@ -347,9 +355,9 @@ The first group covers nominal pricing and the important `0`, `1`, `10`, `11` se
 - Run timestamp: `2026-07-02T04:51:52.698197+00:00`
 - Prompt file: [examples/evaluations/runs/codex-cli-default/test-generation/r03-weak-prompt.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/test-generation/r03-weak-prompt.md)
 - Transcript file: [examples/evaluations/runs/codex-cli-default/test-generation/r03-weak-output.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/test-generation/r03-weak-output.md)
-- Structural total: 5
+- Reviewability total: 5
 - Outcome total: 3
-- Evaluator notes: Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence.
+- Evaluator notes: Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.
 
 ```text
 I couldn’t write the file directly because this session is read-only, but these tests are verified against the fixture logic. Target file: `examples/evaluations/fixtures/test-generation/test_pricing.py`
@@ -416,9 +424,9 @@ Verification: I ran the same assertions in-memory successfully.
 - Run timestamp: `2026-07-02T04:53:43.432263+00:00`
 - Prompt file: [examples/evaluations/runs/codex-cli-default/test-generation/r03-repaired-prompt.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/test-generation/r03-repaired-prompt.md)
 - Transcript file: [examples/evaluations/runs/codex-cli-default/test-generation/r03-repaired-output.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/test-generation/r03-repaired-output.md)
-- Structural total: 8
+- Reviewability total: 8
 - Outcome total: 3
-- Evaluator notes: Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence.
+- Evaluator notes: Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.
 
 ```text
 **Inferred Behaviors**
@@ -495,9 +503,9 @@ Nominal coverage checks free, team, and enterprise public prices. Boundary cover
 - Run timestamp: `2026-07-02T08:33:03.370499+00:00`
 - Prompt file: [examples/evaluations/runs/claude-code-safe/test-generation/clean/r01-weak-prompt.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/claude-code-safe/test-generation/clean/r01-weak-prompt.md)
 - Transcript file: [examples/evaluations/runs/claude-code-safe/test-generation/clean/r01-weak-output.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/claude-code-safe/test-generation/clean/r01-weak-output.md)
-- Structural total: 8
+- Reviewability total: 8
 - Outcome total: 3
-- Evaluator notes: Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence.
+- Evaluator notes: Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.
 
 ```text
 Let me read the relevant files first.
@@ -569,9 +577,9 @@ Provide the two files and I'll fill in all the concrete values.
 - Run timestamp: `2026-07-02T08:33:24.243680+00:00`
 - Prompt file: [examples/evaluations/runs/claude-code-safe/test-generation/clean/r01-repaired-prompt.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/claude-code-safe/test-generation/clean/r01-repaired-prompt.md)
 - Transcript file: [examples/evaluations/runs/claude-code-safe/test-generation/clean/r01-repaired-output.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/claude-code-safe/test-generation/clean/r01-repaired-output.md)
-- Structural total: 6
+- Reviewability total: 6
 - Outcome total: 3
-- Evaluator notes: Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence.
+- Evaluator notes: Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.
 
 ```text
 Let me look for the fixture files in the project.
@@ -697,9 +705,9 @@ class TestRegression:
 - Run timestamp: `2026-07-02T08:33:30.075516+00:00`
 - Prompt file: [examples/evaluations/runs/claude-code-safe/test-generation/trap/r01-weak-prompt.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/claude-code-safe/test-generation/trap/r01-weak-prompt.md)
 - Transcript file: [examples/evaluations/runs/claude-code-safe/test-generation/trap/r01-weak-output.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/claude-code-safe/test-generation/trap/r01-weak-output.md)
-- Structural total: 4
+- Reviewability total: 4
 - Outcome total: 1
-- Evaluator notes: Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence.
+- Evaluator notes: Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.
 
 ```text
 The task says "Write tests for this function" but no function was provided in the context. I can't write meaningful tests without seeing the function's signature, logic, and expected behavior.
@@ -717,9 +725,9 @@ If you'd like me to search the repo for a relevant function, tell me the functio
 - Run timestamp: `2026-07-02T08:33:47.144747+00:00`
 - Prompt file: [examples/evaluations/runs/claude-code-safe/test-generation/trap/r01-repaired-prompt.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/claude-code-safe/test-generation/trap/r01-repaired-prompt.md)
 - Transcript file: [examples/evaluations/runs/claude-code-safe/test-generation/trap/r01-repaired-output.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/claude-code-safe/test-generation/trap/r01-repaired-output.md)
-- Structural total: 9
+- Reviewability total: 9
 - Outcome total: 3
-- Evaluator notes: Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence.
+- Evaluator notes: Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.
 
 ```text
 ## Missing Information

@@ -10,7 +10,7 @@ title: "Refactor Without Breaking Behavior"
 
 **Observed outcome delta:** repaired prompts satisfied 0.2 more outcome checks on average
 
-**Observed structural delta:** repaired prompts scored 3.0 points higher on average
+**Observed reviewability delta:** repaired prompts scored 3.0 reviewability points higher on average
 
 **Input context:** The fixture is a Python module at `examples/evaluations/fixtures/safe-refactoring/normalize_user.py`.
 
@@ -25,20 +25,28 @@ Ground truth:
 
 Use `python -m pytest examples/evaluations/fixtures/safe-refactoring/check_normalize_user.py` as the executable fixture check.
 
+## Surface and Tier Delta Summary
+
+| Surface           | Tier  | Weak n | Repaired n | Weak Reviewability | Repaired Reviewability | Reviewability Delta | Weak Outcome | Repaired Outcome | Outcome Delta |
+| ----------------- | ----- | ------ | ---------- | ------------------ | ---------------------- | ------------------- | ------------ | ---------------- | ------------- |
+| claude-code-safe  | clean | 1      | 1          | 8.0                | 10.0                   | 2.0                 | 3.0          | 2.0              | -1.0          |
+| claude-code-safe  | trap  | 1      | 1          | 5.0                | 11.0                   | 6.0                 | 1.0          | 3.0              | 2.0           |
+| codex-cli-default | clean | 3      | 3          | 7.7                | 10.0                   | 2.3                 | 2.7          | 2.7              | 0.0           |
+
 ## Scores
 
-| Surface           | Variant  | Rep | Artifact | Invariant | Output | Verify | Failure | Assumptions | Structural | Outcome |
-| ----------------- | -------- | --- | -------- | --------- | ------ | ------ | ------- | ----------- | ---------- | ------- |
-| codex-cli-default | weak     | 1   | 2        | 0         | 2      | 2      | 1       | 1           | 8          | 2       |
-| codex-cli-default | repaired | 1   | 1        | 2         | 2      | 2      | 1       | 1           | 9          | 3       |
-| codex-cli-default | weak     | 2   | 1        | 2         | 1      | 1      | 1       | 1           | 7          | 3       |
-| codex-cli-default | repaired | 2   | 2        | 2         | 2      | 2      | 2       | 1           | 11         | 2       |
-| codex-cli-default | weak     | 3   | 2        | 1         | 2      | 1      | 1       | 1           | 8          | 3       |
-| codex-cli-default | repaired | 3   | 1        | 2         | 2      | 2      | 1       | 2           | 10         | 3       |
-| claude-code-safe  | weak     | 1   | 2        | 1         | 1      | 2      | 1       | 1           | 8          | 3       |
-| claude-code-safe  | repaired | 1   | 2        | 2         | 2      | 2      | 1       | 1           | 10         | 2       |
-| claude-code-safe  | weak     | 1   | 2        | 0         | 0      | 1      | 1       | 1           | 5          | 1       |
-| claude-code-safe  | repaired | 1   | 2        | 2         | 2      | 1      | 2       | 2           | 11         | 3       |
+| Surface           | Tier  | Variant  | Rep | Artifact | Invariant | Output | Verify | Failure | Assumptions | Reviewability | Outcome |
+| ----------------- | ----- | -------- | --- | -------- | --------- | ------ | ------ | ------- | ----------- | ------------- | ------- |
+| codex-cli-default | clean | weak     | 1   | 2        | 0         | 2      | 2      | 1       | 1           | 8             | 2       |
+| codex-cli-default | clean | repaired | 1   | 1        | 2         | 2      | 2      | 1       | 1           | 9             | 3       |
+| codex-cli-default | clean | weak     | 2   | 1        | 2         | 1      | 1      | 1       | 1           | 7             | 3       |
+| codex-cli-default | clean | repaired | 2   | 2        | 2         | 2      | 2      | 2       | 1           | 11            | 2       |
+| codex-cli-default | clean | weak     | 3   | 2        | 1         | 2      | 1      | 1       | 1           | 8             | 3       |
+| codex-cli-default | clean | repaired | 3   | 1        | 2         | 2      | 2      | 1       | 2           | 10            | 3       |
+| claude-code-safe  | clean | weak     | 1   | 2        | 1         | 1      | 2      | 1       | 1           | 8             | 3       |
+| claude-code-safe  | clean | repaired | 1   | 2        | 2         | 2      | 2      | 1       | 1           | 10            | 2       |
+| claude-code-safe  | trap  | weak     | 1   | 2        | 0         | 0      | 1      | 1       | 1           | 5             | 1       |
+| claude-code-safe  | trap  | repaired | 1   | 2        | 2         | 2      | 1      | 2       | 2           | 11            | 3       |
 
 ## Transcripts
 
@@ -48,9 +56,9 @@ Use `python -m pytest examples/evaluations/fixtures/safe-refactoring/check_norma
 - Run timestamp: `2026-07-02T04:26:56.979086+00:00`
 - Prompt file: [examples/evaluations/runs/codex-cli-default/safe-refactoring/r01-weak-prompt.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/safe-refactoring/r01-weak-prompt.md)
 - Transcript file: [examples/evaluations/runs/codex-cli-default/safe-refactoring/r01-weak-output.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/safe-refactoring/r01-weak-output.md)
-- Structural total: 8
+- Reviewability total: 8
 - Outcome total: 2
-- Evaluator notes: Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence.
+- Evaluator notes: Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.
 
 ```text
 I couldn’t modify the file because this session is read-only. The patch was rejected by the sandbox. The cleanup needed is small: remove the truthiness filter and make normalization explicit.
@@ -121,9 +129,9 @@ Verification note: `python -m pytest examples/evaluations/fixtures/safe-refactor
 - Run timestamp: `2026-07-02T04:29:07.250909+00:00`
 - Prompt file: [examples/evaluations/runs/codex-cli-default/safe-refactoring/r01-repaired-prompt.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/safe-refactoring/r01-repaired-prompt.md)
 - Transcript file: [examples/evaluations/runs/codex-cli-default/safe-refactoring/r01-repaired-output.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/safe-refactoring/r01-repaired-output.md)
-- Structural total: 9
+- Reviewability total: 9
 - Outcome total: 3
-- Evaluator notes: Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence.
+- Evaluator notes: Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.
 
 ```text
 **Invariants**
@@ -224,9 +232,9 @@ Verification note: the exact pytest command could not run normally because this 
 - Run timestamp: `2026-07-02T04:30:00.242457+00:00`
 - Prompt file: [examples/evaluations/runs/codex-cli-default/safe-refactoring/r02-weak-prompt.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/safe-refactoring/r02-weak-prompt.md)
 - Transcript file: [examples/evaluations/runs/codex-cli-default/safe-refactoring/r02-weak-output.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/safe-refactoring/r02-weak-output.md)
-- Structural total: 7
+- Reviewability total: 7
 - Outcome total: 3
-- Evaluator notes: Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence.
+- Evaluator notes: Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.
 
 ```text
 I couldn’t apply the cleanup because this session’s filesystem is read-only: `apply_patch` was rejected. The requested pytest command also could not start because pytest could not create a temporary file in any temp directory.
@@ -282,9 +290,9 @@ This keeps `normalize_user(raw)` unchanged publicly, preserves the return keys, 
 - Run timestamp: `2026-07-02T04:31:20.548909+00:00`
 - Prompt file: [examples/evaluations/runs/codex-cli-default/safe-refactoring/r02-repaired-prompt.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/safe-refactoring/r02-repaired-prompt.md)
 - Transcript file: [examples/evaluations/runs/codex-cli-default/safe-refactoring/r02-repaired-output.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/safe-refactoring/r02-repaired-output.md)
-- Structural total: 11
+- Reviewability total: 11
 - Outcome total: 2
-- Evaluator notes: Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence.
+- Evaluator notes: Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.
 
 ```text
 **Invariants**
@@ -385,9 +393,9 @@ I could not run the full pytest check here because pytest cannot create a tempor
 - Run timestamp: `2026-07-02T04:32:02.893193+00:00`
 - Prompt file: [examples/evaluations/runs/codex-cli-default/safe-refactoring/r03-weak-prompt.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/safe-refactoring/r03-weak-prompt.md)
 - Transcript file: [examples/evaluations/runs/codex-cli-default/safe-refactoring/r03-weak-output.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/safe-refactoring/r03-weak-output.md)
-- Structural total: 8
+- Reviewability total: 8
 - Outcome total: 3
-- Evaluator notes: Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence.
+- Evaluator notes: Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.
 
 ```text
 I couldn’t modify the file because this session’s filesystem is read-only, and pytest also couldn’t start because there is no writable temp directory available.
@@ -446,9 +454,9 @@ This keeps the public API and return keys intact, strips/lowercases email, strip
 - Run timestamp: `2026-07-02T04:32:49.227279+00:00`
 - Prompt file: [examples/evaluations/runs/codex-cli-default/safe-refactoring/r03-repaired-prompt.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/safe-refactoring/r03-repaired-prompt.md)
 - Transcript file: [examples/evaluations/runs/codex-cli-default/safe-refactoring/r03-repaired-output.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/codex-cli-default/safe-refactoring/r03-repaired-output.md)
-- Structural total: 10
+- Reviewability total: 10
 - Outcome total: 3
-- Evaluator notes: Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence.
+- Evaluator notes: Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.
 
 ```text
 **Invariants**
@@ -556,9 +564,9 @@ I ran the fixture check against the current module: `2 passed, 1 failed`; the fa
 - Run timestamp: `2026-07-02T08:27:42.689229+00:00`
 - Prompt file: [examples/evaluations/runs/claude-code-safe/safe-refactoring/clean/r01-weak-prompt.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/claude-code-safe/safe-refactoring/clean/r01-weak-prompt.md)
 - Transcript file: [examples/evaluations/runs/claude-code-safe/safe-refactoring/clean/r01-weak-output.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/claude-code-safe/safe-refactoring/clean/r01-weak-output.md)
-- Structural total: 8
+- Reviewability total: 8
 - Outcome total: 3
-- Evaluator notes: Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence.
+- Evaluator notes: Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.
 
 ```text
 The fixture directory doesn't exist yet. I need to create both the module and the check file, then perform the cleanup. Let me do that now.
@@ -687,9 +695,9 @@ All 7 tests pass. Here's what was done:
 - Run timestamp: `2026-07-02T08:28:00.051862+00:00`
 - Prompt file: [examples/evaluations/runs/claude-code-safe/safe-refactoring/clean/r01-repaired-prompt.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/claude-code-safe/safe-refactoring/clean/r01-repaired-prompt.md)
 - Transcript file: [examples/evaluations/runs/claude-code-safe/safe-refactoring/clean/r01-repaired-output.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/claude-code-safe/safe-refactoring/clean/r01-repaired-output.md)
-- Structural total: 10
+- Reviewability total: 10
 - Outcome total: 2
-- Evaluator notes: Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence.
+- Evaluator notes: Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.
 
 ```text
 Let me read the fixture and any existing tests before proposing anything.
@@ -818,9 +826,9 @@ The module boundary is self-contained. No adjacent file needs to move — the tw
 - Run timestamp: `2026-07-02T08:28:12.264478+00:00`
 - Prompt file: [examples/evaluations/runs/claude-code-safe/safe-refactoring/trap/r01-weak-prompt.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/claude-code-safe/safe-refactoring/trap/r01-weak-prompt.md)
 - Transcript file: [examples/evaluations/runs/claude-code-safe/safe-refactoring/trap/r01-weak-output.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/claude-code-safe/safe-refactoring/trap/r01-weak-output.md)
-- Structural total: 5
+- Reviewability total: 5
 - Outcome total: 1
-- Evaluator notes: Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence.
+- Evaluator notes: Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.
 
 ```text
 The task says "clean up this Python module" but doesn't specify which module. The request is **underspecified** — no module is identified.
@@ -864,9 +872,9 @@ filtered = {k: v for k, v in metadata.items() if v is not None}
 - Run timestamp: `2026-07-02T08:28:32.139205+00:00`
 - Prompt file: [examples/evaluations/runs/claude-code-safe/safe-refactoring/trap/r01-repaired-prompt.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/claude-code-safe/safe-refactoring/trap/r01-repaired-prompt.md)
 - Transcript file: [examples/evaluations/runs/claude-code-safe/safe-refactoring/trap/r01-repaired-output.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/claude-code-safe/safe-refactoring/trap/r01-repaired-output.md)
-- Structural total: 11
+- Reviewability total: 11
 - Outcome total: 3
-- Evaluator notes: Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence.
+- Evaluator notes: Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.
 
 ```text
 ## Missing Information

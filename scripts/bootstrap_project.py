@@ -2334,6 +2334,31 @@ def outcome_delta_for_runs(runs: list[dict]) -> str:
     return "weak and repaired prompts tied on outcome checks"
 
 
+def reviewability_delta_for_runs(runs: list[dict]) -> str:
+    weak = [run_reviewability_total(run) for run in runs if run.get("variant") == "weak"]
+    repaired = [run_reviewability_total(run) for run in runs if run.get("variant") == "repaired"]
+    weak = [value for value in weak if value != ""]
+    repaired = [value for value in repaired if value != ""]
+    if not weak or not repaired:
+        return "pending"
+    weak_avg = sum(weak) / len(weak)
+    repaired_avg = sum(repaired) / len(repaired)
+    delta = repaired_avg - weak_avg
+    if delta > 0:
+        return f"repaired prompts scored {delta:.1f} reviewability points higher on average"
+    if delta < 0:
+        return f"weak prompts scored {-delta:.1f} reviewability points higher on average"
+    return "weak and repaired prompts tied on reviewability score"
+
+
+def surface_delta_items(case: dict, surface: str) -> list[dict]:
+    return [
+        item
+        for item in case.get("delta_summaries", [])
+        if item.get("surface") == surface
+    ]
+
+
 def evidence_artifact_record(
     artifact_id: str,
     title: str,
@@ -2549,13 +2574,22 @@ def rune_usage_graph_data(lexicon: list[dict], spells: list[dict], stacks: list[
     }
 
 
+def run_reviewability_scores(run: dict) -> dict:
+    return run.get("reviewability_scores") or run.get("structural_scores") or run.get("scores", {})
+
+
+def run_reviewability_total(run: dict):
+    return run.get("reviewability_total", run.get("structural_total", run.get("total_score", "")))
+
+
 def run_score_table(runs: list[dict]) -> str:
-    rows = [["Surface", "Variant", "Rep", "Artifact", "Invariant", "Output", "Verify", "Failure", "Assumptions", "Structural", "Outcome"]]
+    rows = [["Surface", "Tier", "Variant", "Rep", "Artifact", "Invariant", "Output", "Verify", "Failure", "Assumptions", "Reviewability", "Outcome"]]
     for run in runs:
-        scores = run.get("structural_scores") or run.get("scores", {})
+        scores = run_reviewability_scores(run)
         rows.append(
             [
                 run.get("surface", ""),
+                run.get("tier", "clean"),
                 run.get("variant", ""),
                 str(run.get("repetition", 1)),
                 str(scores.get("artifact_boundary", "")),
@@ -2564,8 +2598,34 @@ def run_score_table(runs: list[dict]) -> str:
                 str(scores.get("verification", "")),
                 str(scores.get("failure_behavior", "")),
                 str(scores.get("assumption_control", "")),
-                str(run.get("structural_total", run.get("total_score", ""))),
+                str(run_reviewability_total(run)),
                 str(run.get("outcome_total", "pending")),
+            ]
+        )
+    return qmd_table(rows)
+
+
+def delta_summary_table(case: dict) -> str:
+    summaries = case.get("delta_summaries", [])
+    if not summaries:
+        return "No per-surface/tier delta summaries recorded yet."
+    rows = [["Surface", "Tier", "Weak n", "Repaired n", "Weak Reviewability", "Repaired Reviewability", "Reviewability Delta", "Weak Outcome", "Repaired Outcome", "Outcome Delta"]]
+    def fmt(value) -> str:
+        return "pending" if value is None else f"{value:.1f}"
+
+    for item in summaries:
+        rows.append(
+            [
+                item.get("surface", ""),
+                item.get("tier", "clean"),
+                str(item.get("weak_runs", 0)),
+                str(item.get("repaired_runs", 0)),
+                fmt(item.get("weak_reviewability_avg")),
+                fmt(item.get("repaired_reviewability_avg")),
+                fmt(item.get("reviewability_delta")),
+                fmt(item.get("weak_outcome_avg")),
+                fmt(item.get("repaired_outcome_avg")),
+                fmt(item.get("outcome_delta")),
             ]
         )
     return qmd_table(rows)
@@ -2574,7 +2634,7 @@ def run_score_table(runs: list[dict]) -> str:
 def write_evaluation_pages() -> None:
     results = load_evaluation_results()
     cases = results.get("cases", {})
-    index_rows = [["Case", "Surfaces", "Weak Outcome", "Repaired Outcome", "Outcome Delta", "Structural Delta"]]
+    index_rows = [["Case", "Surfaces", "Weak Outcome", "Repaired Outcome", "Outcome Delta", "Reviewability Delta"]]
     for slug, proof in PROOF_CASES.items():
         case = cases.get(slug, {})
         runs = case.get("runs", [])
@@ -2583,9 +2643,9 @@ def write_evaluation_pages() -> None:
         weak_avg = f"{sum(weak) / len(weak):.1f}" if weak else "pending"
         repaired_avg = f"{sum(repaired) / len(repaired):.1f}" if repaired else "pending"
         outcome_delta = case.get("observed_outcome_delta") or "pending recorded run"
-        structural_delta = case.get("observed_delta") or "pending recorded run"
+        reviewability_delta = case.get("observed_reviewability_delta") or case.get("observed_delta") or "pending recorded run"
         surfaces = ", ".join(sorted({run.get("surface", "") for run in runs if run.get("surface")})) or "pending"
-        index_rows.append([f"[{proof['title']}]({slug}.qmd)", surfaces, weak_avg, repaired_avg, outcome_delta, structural_delta])
+        index_rows.append([f"[{proof['title']}]({slug}.qmd)", surfaces, weak_avg, repaired_avg, outcome_delta, reviewability_delta])
 
         body_parts = [
             f"# {proof['title']}",
@@ -2596,9 +2656,13 @@ def write_evaluation_pages() -> None:
             "",
             f"**Observed outcome delta:** {case.get('observed_outcome_delta', 'pending recorded run')}",
             "",
-            f"**Observed structural delta:** {case.get('observed_delta', 'pending recorded run')}",
+            f"**Observed reviewability delta:** {reviewability_delta}",
             "",
             f"**Input context:** {case.get('input_context', EVALUATION_CONTEXTS[slug])}",
+            "",
+            "## Surface and Tier Delta Summary",
+            "",
+            delta_summary_table(case),
             "",
             "## Scores",
             "",
@@ -2618,9 +2682,9 @@ def write_evaluation_pages() -> None:
                     f"- Run timestamp: `{run.get('run_timestamp', results.get('generated_at') or 'not recorded')}`",
                     f"- Prompt file: [{run.get('prompt_path')}]({prompt_url})",
                     f"- Transcript file: [{run.get('transcript_path')}]({transcript_url})",
-                    f"- Structural total: {run.get('structural_total', run.get('total_score', 'pending'))}",
+                    f"- Reviewability total: {run_reviewability_total(run)}",
                     f"- Outcome total: {run.get('outcome_total', 'pending')}",
-                    f"- Evaluator notes: {run.get('evaluator_notes', 'Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence.')}",
+                    f"- Evaluator notes: {run.get('evaluator_notes', 'Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.')}",
                     "",
                     "```text",
                     run.get("output", "").strip(),
@@ -2643,7 +2707,7 @@ Generated at: `{results.get('generated_at') or 'pending'}`
 
 Outcome scores count case-specific obligations such as passing fixture tests, naming planted causes, preserving invariants, avoiding dirty-data traps, and including rollback boundaries.
 
-Structural scores use 0-2 per criterion: artifact boundary, invariants, output contract, verification, failure behavior, and assumption control. The structural score is secondary and review-oriented. It partly rewards prompt echo because repaired spells contain words such as invariant, verify, rollback, and assumption. Read it as an inspectability signal, not as direct work quality. Transcripts and outcome checks remain the primary evidence.
+Reviewability scores use 0-2 per criterion: artifact boundary, invariants, output contract, verification, failure behavior, and assumption control. The reviewability score is secondary and review-oriented. It partly rewards prompt echo because repaired spells contain words such as invariant, verify, rollback, and assumption. Read it as an inspectability signal, not as direct work quality. Transcripts and outcome checks remain the primary evidence.
 """
     write_text(ROOT / "examples" / "evaluations" / "index.qmd", page("Recorded Evaluations", index_body))
 
@@ -2996,7 +3060,7 @@ Raw results: [results.json](results.json)
 def write_surface_comparison_pages() -> None:
     evaluation_results = load_evaluation_results()
     execution = execution_results(EXECUTION_BENCH_DATA)
-    field_rows = [["Case", "Surface", "Weak/Repaired Delta", "Execution Signal", "Limitation"]]
+    field_rows = [["Case", "Surface", "Tier", "Outcome Delta", "Reviewability Delta", "Runs", "Evidence", "Limitation"]]
     field_matrix = {}
     declared_surfaces = dict(SURFACE_COMPARISON_DATA["surfaces"])
     for surface_id, surface in evaluation_results.get("surfaces", {}).items():
@@ -3022,26 +3086,51 @@ def write_surface_comparison_pages() -> None:
         for run in codex_case.get("runs", []):
             runs_by_surface.setdefault(run.get("surface", "unknown"), []).append(run)
         for surface, runs in sorted(runs_by_surface.items()):
+            cells = surface_delta_items(codex_case, surface)
             field_matrix[slug]["surfaces"][surface] = {
                 "delta": outcome_delta_for_runs(runs),
+                "reviewability_delta": reviewability_delta_for_runs(runs),
                 "evidence": "recorded transcripts and marker outcome scoring",
-                "limitation": "model-surface evidence for the named local CLI/tool configuration; marker scoring remains secondary",
+                "limitation": "model-surface evidence for the named local CLI/tool configuration; reviewability scoring remains secondary",
                 "run_count": len(runs),
                 "tiers": sorted({run.get("tier", "clean") for run in runs}),
+                "cells": cells,
             }
         if "codex-cli-default" not in field_matrix[slug]["surfaces"]:
             field_matrix[slug]["surfaces"]["codex-cli-default"] = {
                 "delta": codex_case.get("observed_outcome_delta", "pending"),
+                "reviewability_delta": codex_case.get("observed_reviewability_delta", codex_case.get("observed_delta", "pending")),
                 "evidence": "recorded transcripts and marker outcome scoring",
-                "limitation": "single model/tool surface; marker scoring remains secondary",
+                "limitation": "single model/tool surface; reviewability scoring remains secondary",
+                "cells": [],
             }
         field_matrix[slug]["surfaces"]["local-deterministic-grader"] = {
             "delta": local_delta,
+            "reviewability_delta": "not applicable",
             "evidence": "fixture-local artifact execution where grader exists",
             "limitation": "repository-owned deterministic tool surface, not independent model evidence",
+            "cells": [],
         }
         for surface, item in field_matrix[slug]["surfaces"].items():
-            field_rows.append([proof["title"], surface, item["delta"], item["evidence"], item["limitation"]])
+            cells = item.get("cells") or [{"tier": ", ".join(item.get("tiers", [])) or "n/a", "outcome_delta": None, "reviewability_delta": None, "weak_runs": "", "repaired_runs": ""}]
+            for cell in cells:
+                runs = ""
+                if cell.get("weak_runs") != "" or cell.get("repaired_runs") != "":
+                    runs = f"{cell.get('weak_runs', 0)} weak / {cell.get('repaired_runs', 0)} repaired"
+                outcome_delta = cell.get("outcome_delta")
+                reviewability_delta = cell.get("reviewability_delta")
+                field_rows.append(
+                    [
+                        proof["title"],
+                        surface,
+                        cell.get("tier", "n/a"),
+                        f"{outcome_delta:.1f}" if isinstance(outcome_delta, (int, float)) else item["delta"],
+                        f"{reviewability_delta:.1f}" if isinstance(reviewability_delta, (int, float)) else item["reviewability_delta"],
+                        runs or str(item.get("run_count", "")),
+                        item["evidence"],
+                        item["limitation"],
+                    ]
+                )
 
     surface_data = {
         "version": SURFACE_COMPARISON_DATA["version"],
@@ -3052,7 +3141,7 @@ def write_surface_comparison_pages() -> None:
     write_json(ROOT / "examples" / "evaluations" / "surface-comparison.json", surface_data)
     body = """# Surface Comparison
 
-This comparison keeps project-owned model transcripts separate from repository-owned deterministic tooling. It does not count local deterministic graders as independent external adoption.
+This comparison keeps project-owned model transcripts separate from repository-owned deterministic tooling. It does not count local deterministic graders as independent external adoption. Model rows are split by tier where per-cell evidence exists so clean and trap results do not disappear into an aggregate.
 
 ## Field-Spell Matrix
 

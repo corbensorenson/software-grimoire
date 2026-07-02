@@ -14,6 +14,7 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
+SCRATCH_DIR = ROOT / "tmp"
 
 
 def run(command: list[str], cwd: Path = ROOT) -> subprocess.CompletedProcess[str]:
@@ -64,7 +65,8 @@ def main() -> int:
         out.write_text(json.dumps(report, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
         return 1
 
-    with tempfile.TemporaryDirectory(prefix="grimoire-package-check-") as raw_tmp:
+    SCRATCH_DIR.mkdir(parents=True, exist_ok=True)
+    with tempfile.TemporaryDirectory(prefix="grimoire-package-check-", dir=SCRATCH_DIR) as raw_tmp:
         venv = Path(raw_tmp) / "venv"
         created = run([sys.executable, "-m", "venv", str(venv)])
         report["steps"].append({"name": "create venv", "passed": created.returncode == 0, "stdout": created.stdout, "stderr": created.stderr})

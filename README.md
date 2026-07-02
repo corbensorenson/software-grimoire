@@ -47,8 +47,8 @@ Implemented:
 - Surface comparison records that separate project-owned model transcripts from
   repository-owned deterministic graders.
 - Codex-owned measured weak-vs-repaired evaluation runs for all six field
-  spells: executable fixtures, planted ground truth, outcome scores, structural
-  scores, and three repetitions per variant.
+  spells: executable fixtures, planted ground truth, outcome scores,
+  reviewability scores, and three repetitions per variant.
 - Defensive jailbreak-resilience layer: adversarial promptcraft chapter,
   source-mapped reference page, warded spell fields, AI red-team loop, eight
   harmless fixtures, and 24 preserved Codex-owned bench runs.

@@ -14,6 +14,7 @@ from bootstrap_project import EXECUTION_BENCH_DATA, PROOF_CASES, SURFACE_COMPARI
 
 
 ROOT = Path(__file__).resolve().parents[1]
+SCRATCH_DIR = ROOT / "tmp"
 TIMEOUT_SECONDS = 15
 
 
@@ -26,7 +27,8 @@ def run_safe_refactoring_fixture(tier: str, variant: str) -> bool:
         raise FileNotFoundError(f"missing fixture: {fixture}")
     if not artifact.exists():
         raise FileNotFoundError(f"missing artifact: {artifact}")
-    with tempfile.TemporaryDirectory(prefix="grimoire-exec-bench-") as raw_tmp:
+    SCRATCH_DIR.mkdir(parents=True, exist_ok=True)
+    with tempfile.TemporaryDirectory(prefix="grimoire-exec-bench-", dir=SCRATCH_DIR) as raw_tmp:
         tmp = Path(raw_tmp)
         shutil.copytree(fixture, tmp, dirs_exist_ok=True)
         shutil.copy2(artifact, tmp / "normalize_user.py")

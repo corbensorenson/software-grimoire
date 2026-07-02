@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import json
+import shutil
 import subprocess
 import sys
 import zipfile
@@ -11,6 +12,7 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
+SCRATCH = ROOT / "tmp" / "tests" / "install-assets"
 EXPECTED_CASES = {
     "safe-refactoring",
     "bug-diagnosis-from-logs",
@@ -173,6 +175,13 @@ def test_surface_comparison_and_warded_baselines_exist() -> None:
     for item in surface["field_spell_matrix"].values():
         assert {"codex-cli-default", "local-deterministic-grader"} <= set(item["surfaces"])
         assert "not independent model evidence" in item["surfaces"]["local-deterministic-grader"]["limitation"]
+        for model_surface in ["codex-cli-default", "claude-code-safe"]:
+            if model_surface in item["surfaces"]:
+                cells = item["surfaces"][model_surface]["cells"]
+                assert cells
+                assert all(cell["surface"] == model_surface for cell in cells)
+                assert all("reviewability_delta" in cell and "outcome_delta" in cell for cell in cells)
+        assert item["surfaces"]["local-deterministic-grader"]["cells"] == []
 
     baseline = json.loads((ROOT / "examples" / "jailbreak-resilience" / "baseline-results.json").read_text(encoding="utf-8"))
     assert baseline["payload_policy"] == "defanged-fixtures-only"
@@ -244,7 +253,9 @@ def test_adoption_evidence_contract_and_template_exist() -> None:
     assert (ROOT / "adoption" / "evidence.qmd").exists()
 
 
-def test_install_assets_dry_run_and_write(tmp_path: Path) -> None:
+def test_install_assets_dry_run_and_write() -> None:
+    shutil.rmtree(SCRATCH, ignore_errors=True)
+    SCRATCH.mkdir(parents=True, exist_ok=True)
     dry_run = subprocess.run(
         [
             sys.executable,
@@ -252,7 +263,7 @@ def test_install_assets_dry_run_and_write(tmp_path: Path) -> None:
             "--target",
             "codex",
             "--dest",
-            str(tmp_path),
+            str(SCRATCH),
         ],
         cwd=ROOT,
         check=False,
@@ -261,7 +272,7 @@ def test_install_assets_dry_run_and_write(tmp_path: Path) -> None:
     )
     assert dry_run.returncode == 0, dry_run.stderr
     assert "dry-run: exports/codex/safe-refactoring.md" in dry_run.stdout
-    assert not (tmp_path / "exports" / "codex" / "safe-refactoring.md").exists()
+    assert not (SCRATCH / "exports" / "codex" / "safe-refactoring.md").exists()
 
     written = subprocess.run(
         [
@@ -270,7 +281,7 @@ def test_install_assets_dry_run_and_write(tmp_path: Path) -> None:
             "--target",
             "codex",
             "--dest",
-            str(tmp_path),
+            str(SCRATCH),
             "--write",
         ],
         cwd=ROOT,
@@ -279,7 +290,7 @@ def test_install_assets_dry_run_and_write(tmp_path: Path) -> None:
         text=True,
     )
     assert written.returncode == 0, written.stderr
-    installed = tmp_path / "exports" / "codex" / "safe-refactoring.md"
+    installed = SCRATCH / "exports" / "codex" / "safe-refactoring.md"
     assert installed.exists()
     assert "spell.safe-refactoring.v1" in installed.read_text(encoding="utf-8")
 
@@ -290,7 +301,7 @@ def test_install_assets_dry_run_and_write(tmp_path: Path) -> None:
             "--target",
             "claude-code",
             "--dest",
-            str(tmp_path),
+            str(SCRATCH),
         ],
         cwd=ROOT,
         check=False,

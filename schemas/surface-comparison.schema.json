@@ -39,10 +39,31 @@
               "required": ["delta", "evidence", "limitation"],
               "properties": {
                 "delta": {"type": "string", "minLength": 1},
+                "reviewability_delta": {"type": "string", "minLength": 1},
                 "evidence": {"type": "string", "minLength": 1},
                 "limitation": {"type": "string", "minLength": 1},
                 "run_count": {"type": "integer", "minimum": 0},
-                "tiers": {"type": "array", "items": {"type": "string", "minLength": 1}}
+                "tiers": {"type": "array", "items": {"type": "string", "minLength": 1}},
+                "cells": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "required": ["surface", "tier", "weak_runs", "repaired_runs"],
+                    "properties": {
+                      "surface": {"type": "string", "minLength": 1},
+                      "tier": {"type": "string", "minLength": 1},
+                      "weak_runs": {"type": "integer", "minimum": 0},
+                      "repaired_runs": {"type": "integer", "minimum": 0},
+                      "weak_reviewability_avg": {"type": ["number", "null"]},
+                      "repaired_reviewability_avg": {"type": ["number", "null"]},
+                      "reviewability_delta": {"type": ["number", "null"]},
+                      "weak_outcome_avg": {"type": ["number", "null"]},
+                      "repaired_outcome_avg": {"type": ["number", "null"]},
+                      "outcome_delta": {"type": ["number", "null"]}
+                    },
+                    "additionalProperties": false
+                  }
+                }
               },
               "additionalProperties": false
             }

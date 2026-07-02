@@ -13,6 +13,14 @@
   project examples do not write to device-global `/tmp`.
 - Hardened `scripts/smoke_public_site.py` so report output paths must stay
   inside the repository.
+- Moved package checks, execution benches, model-artifact grading, Codex
+  adapter output, and CLI/export tests onto repo-local `tmp/` scratch paths.
+- Renamed the preserved evaluation metric from structural scoring to
+  reviewability scoring across data, generated pages, scripts, schemas, and
+  tests while retaining legacy JSON aliases for compatibility.
+- Added per-surface and per-tier delta cells to recorded evaluation and surface
+  comparison evidence so clean/trap and Codex/Claude results cannot be hidden
+  inside aggregate case averages.
 
 ## v3.0.0-evidence-package
 

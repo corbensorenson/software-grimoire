@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import json
+import shutil
 import subprocess
 import sys
 from pathlib import Path
@@ -11,6 +12,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 CLI = ROOT / "scripts" / "grimoire.py"
+SCRATCH = ROOT / "tmp" / "tests" / "grimoire-cli"
 
 
 def run_cli(*args: str) -> subprocess.CompletedProcess[str]:
@@ -23,8 +25,10 @@ def run_cli(*args: str) -> subprocess.CompletedProcess[str]:
     )
 
 
-def test_new_spell_validate_and_seal_round_trip(tmp_path: Path) -> None:
-    spell_path = tmp_path / "local-spell.json"
+def test_new_spell_validate_and_seal_round_trip() -> None:
+    shutil.rmtree(SCRATCH, ignore_errors=True)
+    SCRATCH.mkdir(parents=True, exist_ok=True)
+    spell_path = SCRATCH / "local-spell.json"
 
     created = run_cli("new", "spell", str(spell_path))
     assert created.returncode == 0, created.stderr

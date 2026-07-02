@@ -277,7 +277,7 @@
       "input_context": "The fixture is a Python module at `examples/evaluations/fixtures/safe-refactoring/normalize_user.py`.\n\nGround truth:\n\n- Public function `normalize_user(raw)` must keep its name, one-argument signature, return type, and return keys.\n- Email values are stripped and lowercased.\n- `display_name` is stripped when present.\n- Unknown fields must be preserved in `extra`.\n- Falsy-but-valid values such as `0`, `False`, and empty strings in unknown fields must not be dropped.\n- Invalid input still raises `TypeError`.\n\nUse `python -m pytest examples/evaluations/fixtures/safe-refactoring/check_normalize_user.py` as the executable fixture check.",
       "fixture_path": "examples/evaluations/fixtures/safe-refactoring",
       "expected_delta": "The repaired spell narrows blast radius, makes invariants reviewable, and forces proof through tests instead of relying on claims of cleanliness.",
-      "observed_delta": "repaired prompts scored 3.0 points higher on average",
+      "observed_delta": "repaired prompts scored 3.0 reviewability points higher on average",
       "observed_outcome_delta": "repaired prompts satisfied 0.2 more outcome checks on average",
       "runs": [
         {
@@ -314,7 +314,16 @@
           },
           "outcome_total": 2,
           "total_score": 8,
-          "evaluator_notes": "Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence."
+          "evaluator_notes": "Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.",
+          "reviewability_scores": {
+            "artifact_boundary": 2,
+            "invariants": 0,
+            "output_contract": 2,
+            "verification": 2,
+            "failure_behavior": 1,
+            "assumption_control": 1
+          },
+          "reviewability_total": 8
         },
         {
           "surface": "codex-cli-default",
@@ -350,7 +359,16 @@
           },
           "outcome_total": 3,
           "total_score": 9,
-          "evaluator_notes": "Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence."
+          "evaluator_notes": "Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.",
+          "reviewability_scores": {
+            "artifact_boundary": 1,
+            "invariants": 2,
+            "output_contract": 2,
+            "verification": 2,
+            "failure_behavior": 1,
+            "assumption_control": 1
+          },
+          "reviewability_total": 9
         },
         {
           "surface": "codex-cli-default",
@@ -386,7 +404,16 @@
           },
           "outcome_total": 3,
           "total_score": 7,
-          "evaluator_notes": "Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence."
+          "evaluator_notes": "Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.",
+          "reviewability_scores": {
+            "artifact_boundary": 1,
+            "invariants": 2,
+            "output_contract": 1,
+            "verification": 1,
+            "failure_behavior": 1,
+            "assumption_control": 1
+          },
+          "reviewability_total": 7
         },
         {
           "surface": "codex-cli-default",
@@ -422,7 +449,16 @@
           },
           "outcome_total": 2,
           "total_score": 11,
-          "evaluator_notes": "Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence."
+          "evaluator_notes": "Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.",
+          "reviewability_scores": {
+            "artifact_boundary": 2,
+            "invariants": 2,
+            "output_contract": 2,
+            "verification": 2,
+            "failure_behavior": 2,
+            "assumption_control": 1
+          },
+          "reviewability_total": 11
         },
         {
           "surface": "codex-cli-default",
@@ -458,7 +494,16 @@
           },
           "outcome_total": 3,
           "total_score": 8,
-          "evaluator_notes": "Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence."
+          "evaluator_notes": "Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.",
+          "reviewability_scores": {
+            "artifact_boundary": 2,
+            "invariants": 1,
+            "output_contract": 2,
+            "verification": 1,
+            "failure_behavior": 1,
+            "assumption_control": 1
+          },
+          "reviewability_total": 8
         },
         {
           "surface": "codex-cli-default",
@@ -494,7 +539,16 @@
           },
           "outcome_total": 3,
           "total_score": 10,
-          "evaluator_notes": "Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence."
+          "evaluator_notes": "Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.",
+          "reviewability_scores": {
+            "artifact_boundary": 1,
+            "invariants": 2,
+            "output_contract": 2,
+            "verification": 2,
+            "failure_behavior": 1,
+            "assumption_control": 2
+          },
+          "reviewability_total": 10
         },
         {
           "surface": "claude-code-safe",
@@ -540,7 +594,16 @@
           },
           "outcome_total": 3,
           "total_score": 8,
-          "evaluator_notes": "Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence."
+          "evaluator_notes": "Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.",
+          "reviewability_scores": {
+            "artifact_boundary": 2,
+            "invariants": 1,
+            "output_contract": 1,
+            "verification": 2,
+            "failure_behavior": 1,
+            "assumption_control": 1
+          },
+          "reviewability_total": 8
         },
         {
           "surface": "claude-code-safe",
@@ -586,7 +649,16 @@
           },
           "outcome_total": 2,
           "total_score": 10,
-          "evaluator_notes": "Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence."
+          "evaluator_notes": "Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.",
+          "reviewability_scores": {
+            "artifact_boundary": 2,
+            "invariants": 2,
+            "output_contract": 2,
+            "verification": 2,
+            "failure_behavior": 1,
+            "assumption_control": 1
+          },
+          "reviewability_total": 10
         },
         {
           "surface": "claude-code-safe",
@@ -632,7 +704,16 @@
           },
           "outcome_total": 1,
           "total_score": 5,
-          "evaluator_notes": "Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence."
+          "evaluator_notes": "Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.",
+          "reviewability_scores": {
+            "artifact_boundary": 2,
+            "invariants": 0,
+            "output_contract": 0,
+            "verification": 1,
+            "failure_behavior": 1,
+            "assumption_control": 1
+          },
+          "reviewability_total": 5
         },
         {
           "surface": "claude-code-safe",
@@ -678,28 +759,78 @@
           },
           "outcome_total": 3,
           "total_score": 11,
-          "evaluator_notes": "Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence."
+          "evaluator_notes": "Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.",
+          "reviewability_scores": {
+            "artifact_boundary": 2,
+            "invariants": 2,
+            "output_contract": 2,
+            "verification": 1,
+            "failure_behavior": 2,
+            "assumption_control": 2
+          },
+          "reviewability_total": 11
         }
       ],
       "tier_summaries": {
         "clean": {
-          "observed_delta": "repaired prompts scored 2.2 points higher on average",
+          "observed_reviewability_delta": "repaired prompts scored 2.2 reviewability points higher on average",
+          "observed_delta": "repaired prompts scored 2.2 reviewability points higher on average",
           "observed_outcome_delta": "weak prompts satisfied 0.2 more outcome checks on average",
           "runs": 8
         },
         "trap": {
-          "observed_delta": "repaired prompts scored 6.0 points higher on average",
+          "observed_reviewability_delta": "repaired prompts scored 6.0 reviewability points higher on average",
+          "observed_delta": "repaired prompts scored 6.0 reviewability points higher on average",
           "observed_outcome_delta": "repaired prompts satisfied 2.0 more outcome checks on average",
           "runs": 2
         }
-      }
+      },
+      "observed_reviewability_delta": "repaired prompts scored 3.0 reviewability points higher on average",
+      "delta_summaries": [
+        {
+          "surface": "claude-code-safe",
+          "tier": "clean",
+          "weak_runs": 1,
+          "repaired_runs": 1,
+          "weak_reviewability_avg": 8.0,
+          "repaired_reviewability_avg": 10.0,
+          "reviewability_delta": 2.0,
+          "weak_outcome_avg": 3.0,
+          "repaired_outcome_avg": 2.0,
+          "outcome_delta": -1.0
+        },
+        {
+          "surface": "claude-code-safe",
+          "tier": "trap",
+          "weak_runs": 1,
+          "repaired_runs": 1,
+          "weak_reviewability_avg": 5.0,
+          "repaired_reviewability_avg": 11.0,
+          "reviewability_delta": 6.0,
+          "weak_outcome_avg": 1.0,
+          "repaired_outcome_avg": 3.0,
+          "outcome_delta": 2.0
+        },
+        {
+          "surface": "codex-cli-default",
+          "tier": "clean",
+          "weak_runs": 3,
+          "repaired_runs": 3,
+          "weak_reviewability_avg": 7.666666666666667,
+          "repaired_reviewability_avg": 10.0,
+          "reviewability_delta": 2.333333333333333,
+          "weak_outcome_avg": 2.6666666666666665,
+          "repaired_outcome_avg": 2.6666666666666665,
+          "outcome_delta": 0.0
+        }
+      ]
     },
     "bug-diagnosis-from-logs": {
       "title": "Incident Diagnosis Without Fake Certainty",
       "input_context": "The fixture is a small incident packet with logs, deploy metadata, and planted ground truth.\n\nFiles:\n\n- `logs.txt`: observed request, Redis, and PostgreSQL logs.\n- `deploy.json`: deploy metadata and feature flag state.\n- `ground_truth.json`: planted cause and expected diagnosis obligations.\n\nGround truth:\n\n- The most likely planted cause is Redis connection-pool saturation triggered by `profile_cache_v2`.\n- PostgreSQL slow queries are a correlated symptom, not the primary planted cause.\n- A good answer separates facts, hypotheses, missing signals, and next checks.\n- A good answer does not claim certainty beyond the provided evidence.",
       "fixture_path": "examples/evaluations/fixtures/bug-diagnosis-from-logs",
       "expected_delta": "The repaired spell prevents counterfeit certainty while still producing actionable next checks.",
-      "observed_delta": "repaired prompts scored 1.4 points higher on average",
+      "observed_delta": "repaired prompts scored 1.4 reviewability points higher on average",
       "observed_outcome_delta": "weak and repaired prompts tied on outcome checks",
       "runs": [
         {
@@ -736,7 +867,16 @@
           },
           "outcome_total": 3,
           "total_score": 6,
-          "evaluator_notes": "Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence."
+          "evaluator_notes": "Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.",
+          "reviewability_scores": {
+            "artifact_boundary": 1,
+            "invariants": 0,
+            "output_contract": 0,
+            "verification": 2,
+            "failure_behavior": 1,
+            "assumption_control": 2
+          },
+          "reviewability_total": 6
         },
         {
           "surface": "codex-cli-default",
@@ -772,7 +912,16 @@
           },
           "outcome_total": 3,
           "total_score": 8,
-          "evaluator_notes": "Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence."
+          "evaluator_notes": "Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.",
+          "reviewability_scores": {
+            "artifact_boundary": 2,
+            "invariants": 0,
+            "output_contract": 0,
+            "verification": 2,
+            "failure_behavior": 2,
+            "assumption_control": 2
+          },
+          "reviewability_total": 8
         },
         {
           "surface": "codex-cli-default",
@@ -808,7 +957,16 @@
           },
           "outcome_total": 3,
           "total_score": 7,
-          "evaluator_notes": "Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence."
+          "evaluator_notes": "Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.",
+          "reviewability_scores": {
+            "artifact_boundary": 1,
+            "invariants": 0,
+            "output_contract": 1,
+            "verification": 2,
+            "failure_behavior": 1,
+            "assumption_control": 2
+          },
+          "reviewability_total": 7
         },
         {
           "surface": "codex-cli-default",
@@ -844,7 +1002,16 @@
           },
           "outcome_total": 3,
           "total_score": 7,
-          "evaluator_notes": "Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence."
+          "evaluator_notes": "Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.",
+          "reviewability_scores": {
+            "artifact_boundary": 1,
+            "invariants": 0,
+            "output_contract": 0,
+            "verification": 2,
+            "failure_behavior": 2,
+            "assumption_control": 2
+          },
+          "reviewability_total": 7
         },
         {
           "surface": "codex-cli-default",
@@ -880,7 +1047,16 @@
           },
           "outcome_total": 3,
           "total_score": 6,
-          "evaluator_notes": "Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence."
+          "evaluator_notes": "Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.",
+          "reviewability_scores": {
+            "artifact_boundary": 1,
+            "invariants": 0,
+            "output_contract": 0,
+            "verification": 2,
+            "failure_behavior": 1,
+            "assumption_control": 2
+          },
+          "reviewability_total": 6
         },
         {
           "surface": "codex-cli-default",
@@ -916,7 +1092,16 @@
           },
           "outcome_total": 3,
           "total_score": 7,
-          "evaluator_notes": "Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence."
+          "evaluator_notes": "Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.",
+          "reviewability_scores": {
+            "artifact_boundary": 1,
+            "invariants": 0,
+            "output_contract": 0,
+            "verification": 2,
+            "failure_behavior": 2,
+            "assumption_control": 2
+          },
+          "reviewability_total": 7
         },
         {
           "surface": "claude-code-safe",
@@ -962,7 +1147,16 @@
           },
           "outcome_total": 3,
           "total_score": 8,
-          "evaluator_notes": "Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence."
+          "evaluator_notes": "Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.",
+          "reviewability_scores": {
+            "artifact_boundary": 2,
+            "invariants": 0,
+            "output_contract": 0,
+            "verification": 2,
+            "failure_behavior": 2,
+            "assumption_control": 2
+          },
+          "reviewability_total": 8
         },
         {
           "surface": "claude-code-safe",
@@ -1008,7 +1202,16 @@
           },
           "outcome_total": 3,
           "total_score": 9,
-          "evaluator_notes": "Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence."
+          "evaluator_notes": "Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.",
+          "reviewability_scores": {
+            "artifact_boundary": 2,
+            "invariants": 0,
+            "output_contract": 1,
+            "verification": 2,
+            "failure_behavior": 2,
+            "assumption_control": 2
+          },
+          "reviewability_total": 9
         },
         {
           "surface": "claude-code-safe",
@@ -1054,7 +1257,16 @@
           },
           "outcome_total": 3,
           "total_score": 5,
-          "evaluator_notes": "Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence."
+          "evaluator_notes": "Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.",
+          "reviewability_scores": {
+            "artifact_boundary": 0,
+            "invariants": 0,
+            "output_contract": 1,
+            "verification": 2,
+            "failure_behavior": 1,
+            "assumption_control": 1
+          },
+          "reviewability_total": 5
         },
         {
           "surface": "claude-code-safe",
@@ -1100,28 +1312,78 @@
           },
           "outcome_total": 3,
           "total_score": 8,
-          "evaluator_notes": "Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence."
+          "evaluator_notes": "Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.",
+          "reviewability_scores": {
+            "artifact_boundary": 2,
+            "invariants": 0,
+            "output_contract": 0,
+            "verification": 2,
+            "failure_behavior": 2,
+            "assumption_control": 2
+          },
+          "reviewability_total": 8
         }
       ],
       "tier_summaries": {
         "clean": {
-          "observed_delta": "repaired prompts scored 1.0 points higher on average",
+          "observed_reviewability_delta": "repaired prompts scored 1.0 reviewability points higher on average",
+          "observed_delta": "repaired prompts scored 1.0 reviewability points higher on average",
           "observed_outcome_delta": "weak and repaired prompts tied on outcome checks",
           "runs": 8
         },
         "trap": {
-          "observed_delta": "repaired prompts scored 3.0 points higher on average",
+          "observed_reviewability_delta": "repaired prompts scored 3.0 reviewability points higher on average",
+          "observed_delta": "repaired prompts scored 3.0 reviewability points higher on average",
           "observed_outcome_delta": "weak and repaired prompts tied on outcome checks",
           "runs": 2
         }
-      }
+      },
+      "observed_reviewability_delta": "repaired prompts scored 1.4 reviewability points higher on average",
+      "delta_summaries": [
+        {
+          "surface": "claude-code-safe",
+          "tier": "clean",
+          "weak_runs": 1,
+          "repaired_runs": 1,
+          "weak_reviewability_avg": 8.0,
+          "repaired_reviewability_avg": 9.0,
+          "reviewability_delta": 1.0,
+          "weak_outcome_avg": 3.0,
+          "repaired_outcome_avg": 3.0,
+          "outcome_delta": 0.0
+        },
+        {
+          "surface": "claude-code-safe",
+          "tier": "trap",
+          "weak_runs": 1,
+          "repaired_runs": 1,
+          "weak_reviewability_avg": 5.0,
+          "repaired_reviewability_avg": 8.0,
+          "reviewability_delta": 3.0,
+          "weak_outcome_avg": 3.0,
+          "repaired_outcome_avg": 3.0,
+          "outcome_delta": 0.0
+        },
+        {
+          "surface": "codex-cli-default",
+          "tier": "clean",
+          "weak_runs": 3,
+          "repaired_runs": 3,
+          "weak_reviewability_avg": 6.333333333333333,
+          "repaired_reviewability_avg": 7.333333333333333,
+          "reviewability_delta": 1.0,
+          "weak_outcome_avg": 3.0,
+          "repaired_outcome_avg": 3.0,
+          "outcome_delta": 0.0
+        }
+      ]
     },
     "api-design": {
       "title": "API Design Without Hidden Compatibility Traps",
       "input_context": "The fixture describes a public billing API that must remain compatible with slow-upgrading clients.\n\nFiles:\n\n- `requirements.json`: product and compatibility requirements.\n- `client_contracts.json`: existing client assumptions.\n- `ground_truth.json`: planted compatibility traps.\n\nGround truth:\n\n- Payment attempts need idempotency keys.\n- Error responses need stable machine-readable codes.\n- List endpoints need pagination.\n- Mobile clients require backward-compatible versioning.\n- Refunds and invoices are separate resources with linked lifecycle state.",
       "fixture_path": "examples/evaluations/fixtures/api-design",
       "expected_delta": "The repaired spell forces the design to expose compatibility, authorization, idempotency, and migration surfaces up front.",
-      "observed_delta": "repaired prompts scored 3.0 points higher on average",
+      "observed_delta": "repaired prompts scored 3.0 reviewability points higher on average",
       "observed_outcome_delta": "weak and repaired prompts tied on outcome checks",
       "runs": [
         {
@@ -1158,7 +1420,16 @@
           },
           "outcome_total": 3,
           "total_score": 8,
-          "evaluator_notes": "Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence."
+          "evaluator_notes": "Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.",
+          "reviewability_scores": {
+            "artifact_boundary": 2,
+            "invariants": 2,
+            "output_contract": 2,
+            "verification": 0,
+            "failure_behavior": 1,
+            "assumption_control": 1
+          },
+          "reviewability_total": 8
         },
         {
           "surface": "codex-cli-default",
@@ -1194,7 +1465,16 @@
           },
           "outcome_total": 3,
           "total_score": 10,
-          "evaluator_notes": "Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence."
+          "evaluator_notes": "Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.",
+          "reviewability_scores": {
+            "artifact_boundary": 2,
+            "invariants": 1,
+            "output_contract": 2,
+            "verification": 1,
+            "failure_behavior": 2,
+            "assumption_control": 2
+          },
+          "reviewability_total": 10
         },
         {
           "surface": "codex-cli-default",
@@ -1230,7 +1510,16 @@
           },
           "outcome_total": 3,
           "total_score": 7,
-          "evaluator_notes": "Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence."
+          "evaluator_notes": "Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.",
+          "reviewability_scores": {
+            "artifact_boundary": 2,
+            "invariants": 1,
+            "output_contract": 2,
+            "verification": 0,
+            "failure_behavior": 1,
+            "assumption_control": 1
+          },
+          "reviewability_total": 7
         },
         {
           "surface": "codex-cli-default",
@@ -1266,7 +1555,16 @@
           },
           "outcome_total": 3,
           "total_score": 10,
-          "evaluator_notes": "Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence."
+          "evaluator_notes": "Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.",
+          "reviewability_scores": {
+            "artifact_boundary": 2,
+            "invariants": 1,
+            "output_contract": 2,
+            "verification": 1,
+            "failure_behavior": 2,
+            "assumption_control": 2
+          },
+          "reviewability_total": 10
         },
         {
           "surface": "codex-cli-default",
@@ -1302,7 +1600,16 @@
           },
           "outcome_total": 3,
           "total_score": 6,
-          "evaluator_notes": "Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence."
+          "evaluator_notes": "Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.",
+          "reviewability_scores": {
+            "artifact_boundary": 2,
+            "invariants": 1,
+            "output_contract": 2,
+            "verification": 0,
+            "failure_behavior": 1,
+            "assumption_control": 0
+          },
+          "reviewability_total": 6
         },
         {
           "surface": "codex-cli-default",
@@ -1338,7 +1645,16 @@
           },
           "outcome_total": 3,
           "total_score": 11,
-          "evaluator_notes": "Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence."
+          "evaluator_notes": "Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.",
+          "reviewability_scores": {
+            "artifact_boundary": 2,
+            "invariants": 2,
+            "output_contract": 2,
+            "verification": 2,
+            "failure_behavior": 2,
+            "assumption_control": 1
+          },
+          "reviewability_total": 11
         },
         {
           "surface": "claude-code-safe",
@@ -1384,7 +1700,16 @@
           },
           "outcome_total": 3,
           "total_score": 7,
-          "evaluator_notes": "Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence."
+          "evaluator_notes": "Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.",
+          "reviewability_scores": {
+            "artifact_boundary": 2,
+            "invariants": 1,
+            "output_contract": 2,
+            "verification": 0,
+            "failure_behavior": 1,
+            "assumption_control": 1
+          },
+          "reviewability_total": 7
         },
         {
           "surface": "claude-code-safe",
@@ -1430,7 +1755,16 @@
           },
           "outcome_total": 3,
           "total_score": 9,
-          "evaluator_notes": "Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence."
+          "evaluator_notes": "Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.",
+          "reviewability_scores": {
+            "artifact_boundary": 2,
+            "invariants": 0,
+            "output_contract": 2,
+            "verification": 1,
+            "failure_behavior": 2,
+            "assumption_control": 2
+          },
+          "reviewability_total": 9
         },
         {
           "surface": "claude-code-safe",
@@ -1476,7 +1810,16 @@
           },
           "outcome_total": 3,
           "total_score": 5,
-          "evaluator_notes": "Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence."
+          "evaluator_notes": "Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.",
+          "reviewability_scores": {
+            "artifact_boundary": 2,
+            "invariants": 0,
+            "output_contract": 2,
+            "verification": 0,
+            "failure_behavior": 1,
+            "assumption_control": 0
+          },
+          "reviewability_total": 5
         },
         {
           "surface": "claude-code-safe",
@@ -1522,28 +1865,78 @@
           },
           "outcome_total": 3,
           "total_score": 8,
-          "evaluator_notes": "Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence."
+          "evaluator_notes": "Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.",
+          "reviewability_scores": {
+            "artifact_boundary": 2,
+            "invariants": 0,
+            "output_contract": 2,
+            "verification": 1,
+            "failure_behavior": 2,
+            "assumption_control": 1
+          },
+          "reviewability_total": 8
         }
       ],
       "tier_summaries": {
         "clean": {
-          "observed_delta": "repaired prompts scored 3.0 points higher on average",
+          "observed_reviewability_delta": "repaired prompts scored 3.0 reviewability points higher on average",
+          "observed_delta": "repaired prompts scored 3.0 reviewability points higher on average",
           "observed_outcome_delta": "weak and repaired prompts tied on outcome checks",
           "runs": 8
         },
         "trap": {
-          "observed_delta": "repaired prompts scored 3.0 points higher on average",
+          "observed_reviewability_delta": "repaired prompts scored 3.0 reviewability points higher on average",
+          "observed_delta": "repaired prompts scored 3.0 reviewability points higher on average",
           "observed_outcome_delta": "weak and repaired prompts tied on outcome checks",
           "runs": 2
         }
-      }
+      },
+      "observed_reviewability_delta": "repaired prompts scored 3.0 reviewability points higher on average",
+      "delta_summaries": [
+        {
+          "surface": "claude-code-safe",
+          "tier": "clean",
+          "weak_runs": 1,
+          "repaired_runs": 1,
+          "weak_reviewability_avg": 7.0,
+          "repaired_reviewability_avg": 9.0,
+          "reviewability_delta": 2.0,
+          "weak_outcome_avg": 3.0,
+          "repaired_outcome_avg": 3.0,
+          "outcome_delta": 0.0
+        },
+        {
+          "surface": "claude-code-safe",
+          "tier": "trap",
+          "weak_runs": 1,
+          "repaired_runs": 1,
+          "weak_reviewability_avg": 5.0,
+          "repaired_reviewability_avg": 8.0,
+          "reviewability_delta": 3.0,
+          "weak_outcome_avg": 3.0,
+          "repaired_outcome_avg": 3.0,
+          "outcome_delta": 0.0
+        },
+        {
+          "surface": "codex-cli-default",
+          "tier": "clean",
+          "weak_runs": 3,
+          "repaired_runs": 3,
+          "weak_reviewability_avg": 7.0,
+          "repaired_reviewability_avg": 10.333333333333334,
+          "reviewability_delta": 3.333333333333334,
+          "weak_outcome_avg": 3.0,
+          "repaired_outcome_avg": 3.0,
+          "outcome_delta": 0.0
+        }
+      ]
     },
     "migration-without-data-loss": {
       "title": "Online Migration Without Data Loss",
       "input_context": "The fixture is a live PostgreSQL migration packet for `users.birthdate_text`.\n\nFiles:\n\n- `schema.sql`: starting schema.\n- `dirty_rows.csv`: representative dirty values.\n- `checks.sql`: validation queries expected in a safe answer.\n- `ground_truth.json`: planted traps.\n\nGround truth:\n\n- Direct destructive type conversion is unsafe.\n- The safe path is expand-and-contract with dual write or compatibility triggers.\n- Dirty rows such as `unknown`, empty strings, nulls, and ambiguous formats need quarantine or explicit business handling.\n- Rollback must remain possible until parity and dirty-data handling are verified.",
       "fixture_path": "examples/evaluations/fixtures/migration-without-data-loss",
       "expected_delta": "The repaired spell turns one risky command into a reversible campaign with validation and dirty-data handling.",
-      "observed_delta": "repaired prompts scored 0.6 points higher on average",
+      "observed_delta": "repaired prompts scored 0.6 reviewability points higher on average",
       "observed_outcome_delta": "repaired prompts satisfied 0.2 more outcome checks on average",
       "runs": [
         {
@@ -1580,7 +1973,16 @@
           },
           "outcome_total": 3,
           "total_score": 10,
-          "evaluator_notes": "Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence."
+          "evaluator_notes": "Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.",
+          "reviewability_scores": {
+            "artifact_boundary": 2,
+            "invariants": 1,
+            "output_contract": 2,
+            "verification": 1,
+            "failure_behavior": 2,
+            "assumption_control": 2
+          },
+          "reviewability_total": 10
         },
         {
           "surface": "codex-cli-default",
@@ -1616,7 +2018,16 @@
           },
           "outcome_total": 3,
           "total_score": 9,
-          "evaluator_notes": "Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence."
+          "evaluator_notes": "Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.",
+          "reviewability_scores": {
+            "artifact_boundary": 2,
+            "invariants": 1,
+            "output_contract": 2,
+            "verification": 0,
+            "failure_behavior": 2,
+            "assumption_control": 2
+          },
+          "reviewability_total": 9
         },
         {
           "surface": "codex-cli-default",
@@ -1652,7 +2063,16 @@
           },
           "outcome_total": 3,
           "total_score": 7,
-          "evaluator_notes": "Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence."
+          "evaluator_notes": "Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.",
+          "reviewability_scores": {
+            "artifact_boundary": 1,
+            "invariants": 1,
+            "output_contract": 2,
+            "verification": 0,
+            "failure_behavior": 1,
+            "assumption_control": 2
+          },
+          "reviewability_total": 7
         },
         {
           "surface": "codex-cli-default",
@@ -1688,7 +2108,16 @@
           },
           "outcome_total": 3,
           "total_score": 9,
-          "evaluator_notes": "Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence."
+          "evaluator_notes": "Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.",
+          "reviewability_scores": {
+            "artifact_boundary": 2,
+            "invariants": 1,
+            "output_contract": 2,
+            "verification": 0,
+            "failure_behavior": 2,
+            "assumption_control": 2
+          },
+          "reviewability_total": 9
         },
         {
           "surface": "codex-cli-default",
@@ -1724,7 +2153,16 @@
           },
           "outcome_total": 3,
           "total_score": 9,
-          "evaluator_notes": "Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence."
+          "evaluator_notes": "Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.",
+          "reviewability_scores": {
+            "artifact_boundary": 2,
+            "invariants": 1,
+            "output_contract": 2,
+            "verification": 1,
+            "failure_behavior": 2,
+            "assumption_control": 1
+          },
+          "reviewability_total": 9
         },
         {
           "surface": "codex-cli-default",
@@ -1760,7 +2198,16 @@
           },
           "outcome_total": 3,
           "total_score": 10,
-          "evaluator_notes": "Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence."
+          "evaluator_notes": "Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.",
+          "reviewability_scores": {
+            "artifact_boundary": 2,
+            "invariants": 2,
+            "output_contract": 2,
+            "verification": 0,
+            "failure_behavior": 2,
+            "assumption_control": 2
+          },
+          "reviewability_total": 10
         },
         {
           "surface": "claude-code-safe",
@@ -1806,7 +2253,16 @@
           },
           "outcome_total": 3,
           "total_score": 9,
-          "evaluator_notes": "Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence."
+          "evaluator_notes": "Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.",
+          "reviewability_scores": {
+            "artifact_boundary": 2,
+            "invariants": 0,
+            "output_contract": 2,
+            "verification": 2,
+            "failure_behavior": 2,
+            "assumption_control": 1
+          },
+          "reviewability_total": 9
         },
         {
           "surface": "claude-code-safe",
@@ -1852,7 +2308,16 @@
           },
           "outcome_total": 3,
           "total_score": 9,
-          "evaluator_notes": "Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence."
+          "evaluator_notes": "Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.",
+          "reviewability_scores": {
+            "artifact_boundary": 2,
+            "invariants": 1,
+            "output_contract": 2,
+            "verification": 1,
+            "failure_behavior": 2,
+            "assumption_control": 1
+          },
+          "reviewability_total": 9
         },
         {
           "surface": "claude-code-safe",
@@ -1898,7 +2363,16 @@
           },
           "outcome_total": 2,
           "total_score": 7,
-          "evaluator_notes": "Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence."
+          "evaluator_notes": "Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.",
+          "reviewability_scores": {
+            "artifact_boundary": 1,
+            "invariants": 0,
+            "output_contract": 2,
+            "verification": 1,
+            "failure_behavior": 1,
+            "assumption_control": 2
+          },
+          "reviewability_total": 7
         },
         {
           "surface": "claude-code-safe",
@@ -1944,28 +2418,78 @@
           },
           "outcome_total": 3,
           "total_score": 8,
-          "evaluator_notes": "Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence."
+          "evaluator_notes": "Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.",
+          "reviewability_scores": {
+            "artifact_boundary": 2,
+            "invariants": 0,
+            "output_contract": 2,
+            "verification": 1,
+            "failure_behavior": 2,
+            "assumption_control": 1
+          },
+          "reviewability_total": 8
         }
       ],
       "tier_summaries": {
         "clean": {
-          "observed_delta": "repaired prompts scored 0.5 points higher on average",
+          "observed_reviewability_delta": "repaired prompts scored 0.5 reviewability points higher on average",
+          "observed_delta": "repaired prompts scored 0.5 reviewability points higher on average",
           "observed_outcome_delta": "weak and repaired prompts tied on outcome checks",
           "runs": 8
         },
         "trap": {
-          "observed_delta": "repaired prompts scored 1.0 points higher on average",
+          "observed_reviewability_delta": "repaired prompts scored 1.0 reviewability points higher on average",
+          "observed_delta": "repaired prompts scored 1.0 reviewability points higher on average",
           "observed_outcome_delta": "repaired prompts satisfied 1.0 more outcome checks on average",
           "runs": 2
         }
-      }
+      },
+      "observed_reviewability_delta": "repaired prompts scored 0.6 reviewability points higher on average",
+      "delta_summaries": [
+        {
+          "surface": "claude-code-safe",
+          "tier": "clean",
+          "weak_runs": 1,
+          "repaired_runs": 1,
+          "weak_reviewability_avg": 9.0,
+          "repaired_reviewability_avg": 9.0,
+          "reviewability_delta": 0.0,
+          "weak_outcome_avg": 3.0,
+          "repaired_outcome_avg": 3.0,
+          "outcome_delta": 0.0
+        },
+        {
+          "surface": "claude-code-safe",
+          "tier": "trap",
+          "weak_runs": 1,
+          "repaired_runs": 1,
+          "weak_reviewability_avg": 7.0,
+          "repaired_reviewability_avg": 8.0,
+          "reviewability_delta": 1.0,
+          "weak_outcome_avg": 2.0,
+          "repaired_outcome_avg": 3.0,
+          "outcome_delta": 1.0
+        },
+        {
+          "surface": "codex-cli-default",
+          "tier": "clean",
+          "weak_runs": 3,
+          "repaired_runs": 3,
+          "weak_reviewability_avg": 8.666666666666666,
+          "repaired_reviewability_avg": 9.333333333333334,
+          "reviewability_delta": 0.6666666666666679,
+          "weak_outcome_avg": 3.0,
+          "repaired_outcome_avg": 3.0,
+          "outcome_delta": 0.0
+        }
+      ]
     },
     "test-generation": {
       "title": "Test Generation Without Overfitting To Implementation",
       "input_context": "The fixture is a small pricing function with behavior that should be inferred from code and docstring.\n\nFiles:\n\n- `pricing.py`: function under test.\n- `expected_behavior.json`: planted behavior obligations.\n\nGround truth:\n\n- Tests should cover public behavior, not private implementation.\n- Boundary seats matter at 0, 1, 10, and 11 seats.\n- Negative seats raise `ValueError`.\n- Invalid coupons raise `ValueError`.\n- Annual coupons discount after tier pricing and round to cents.",
       "fixture_path": "examples/evaluations/fixtures/test-generation",
       "expected_delta": "The repaired spell makes tests protect behavior instead of freezing incidental implementation shape.",
-      "observed_delta": "repaired prompts scored 2.0 points higher on average",
+      "observed_delta": "repaired prompts scored 2.0 reviewability points higher on average",
       "observed_outcome_delta": "repaired prompts satisfied 0.6 more outcome checks on average",
       "runs": [
         {
@@ -2002,7 +2526,16 @@
           },
           "outcome_total": 2,
           "total_score": 5,
-          "evaluator_notes": "Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence."
+          "evaluator_notes": "Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.",
+          "reviewability_scores": {
+            "artifact_boundary": 2,
+            "invariants": 0,
+            "output_contract": 1,
+            "verification": 2,
+            "failure_behavior": 0,
+            "assumption_control": 0
+          },
+          "reviewability_total": 5
         },
         {
           "surface": "codex-cli-default",
@@ -2038,7 +2571,16 @@
           },
           "outcome_total": 3,
           "total_score": 7,
-          "evaluator_notes": "Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence."
+          "evaluator_notes": "Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.",
+          "reviewability_scores": {
+            "artifact_boundary": 2,
+            "invariants": 0,
+            "output_contract": 2,
+            "verification": 1,
+            "failure_behavior": 1,
+            "assumption_control": 1
+          },
+          "reviewability_total": 7
         },
         {
           "surface": "codex-cli-default",
@@ -2074,7 +2616,16 @@
           },
           "outcome_total": 3,
           "total_score": 5,
-          "evaluator_notes": "Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence."
+          "evaluator_notes": "Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.",
+          "reviewability_scores": {
+            "artifact_boundary": 1,
+            "invariants": 0,
+            "output_contract": 1,
+            "verification": 1,
+            "failure_behavior": 1,
+            "assumption_control": 1
+          },
+          "reviewability_total": 5
         },
         {
           "surface": "codex-cli-default",
@@ -2110,7 +2661,16 @@
           },
           "outcome_total": 3,
           "total_score": 7,
-          "evaluator_notes": "Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence."
+          "evaluator_notes": "Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.",
+          "reviewability_scores": {
+            "artifact_boundary": 2,
+            "invariants": 0,
+            "output_contract": 2,
+            "verification": 1,
+            "failure_behavior": 1,
+            "assumption_control": 1
+          },
+          "reviewability_total": 7
         },
         {
           "surface": "codex-cli-default",
@@ -2146,7 +2706,16 @@
           },
           "outcome_total": 3,
           "total_score": 5,
-          "evaluator_notes": "Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence."
+          "evaluator_notes": "Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.",
+          "reviewability_scores": {
+            "artifact_boundary": 1,
+            "invariants": 0,
+            "output_contract": 1,
+            "verification": 1,
+            "failure_behavior": 1,
+            "assumption_control": 1
+          },
+          "reviewability_total": 5
         },
         {
           "surface": "codex-cli-default",
@@ -2182,7 +2751,16 @@
           },
           "outcome_total": 3,
           "total_score": 8,
-          "evaluator_notes": "Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence."
+          "evaluator_notes": "Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.",
+          "reviewability_scores": {
+            "artifact_boundary": 2,
+            "invariants": 0,
+            "output_contract": 2,
+            "verification": 2,
+            "failure_behavior": 1,
+            "assumption_control": 1
+          },
+          "reviewability_total": 8
         },
         {
           "surface": "claude-code-safe",
@@ -2228,7 +2806,16 @@
           },
           "outcome_total": 3,
           "total_score": 8,
-          "evaluator_notes": "Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence."
+          "evaluator_notes": "Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.",
+          "reviewability_scores": {
+            "artifact_boundary": 2,
+            "invariants": 0,
+            "output_contract": 2,
+            "verification": 1,
+            "failure_behavior": 2,
+            "assumption_control": 1
+          },
+          "reviewability_total": 8
         },
         {
           "surface": "claude-code-safe",
@@ -2274,7 +2861,16 @@
           },
           "outcome_total": 3,
           "total_score": 6,
-          "evaluator_notes": "Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence."
+          "evaluator_notes": "Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.",
+          "reviewability_scores": {
+            "artifact_boundary": 2,
+            "invariants": 0,
+            "output_contract": 0,
+            "verification": 1,
+            "failure_behavior": 1,
+            "assumption_control": 2
+          },
+          "reviewability_total": 6
         },
         {
           "surface": "claude-code-safe",
@@ -2320,7 +2916,16 @@
           },
           "outcome_total": 1,
           "total_score": 4,
-          "evaluator_notes": "Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence."
+          "evaluator_notes": "Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.",
+          "reviewability_scores": {
+            "artifact_boundary": 2,
+            "invariants": 0,
+            "output_contract": 0,
+            "verification": 1,
+            "failure_behavior": 1,
+            "assumption_control": 0
+          },
+          "reviewability_total": 4
         },
         {
           "surface": "claude-code-safe",
@@ -2366,28 +2971,78 @@
           },
           "outcome_total": 3,
           "total_score": 9,
-          "evaluator_notes": "Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence."
+          "evaluator_notes": "Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.",
+          "reviewability_scores": {
+            "artifact_boundary": 2,
+            "invariants": 0,
+            "output_contract": 2,
+            "verification": 1,
+            "failure_behavior": 2,
+            "assumption_control": 2
+          },
+          "reviewability_total": 9
         }
       ],
       "tier_summaries": {
         "clean": {
-          "observed_delta": "repaired prompts scored 1.2 points higher on average",
+          "observed_reviewability_delta": "repaired prompts scored 1.2 reviewability points higher on average",
+          "observed_delta": "repaired prompts scored 1.2 reviewability points higher on average",
           "observed_outcome_delta": "repaired prompts satisfied 0.2 more outcome checks on average",
           "runs": 8
         },
         "trap": {
-          "observed_delta": "repaired prompts scored 5.0 points higher on average",
+          "observed_reviewability_delta": "repaired prompts scored 5.0 reviewability points higher on average",
+          "observed_delta": "repaired prompts scored 5.0 reviewability points higher on average",
           "observed_outcome_delta": "repaired prompts satisfied 2.0 more outcome checks on average",
           "runs": 2
         }
-      }
+      },
+      "observed_reviewability_delta": "repaired prompts scored 2.0 reviewability points higher on average",
+      "delta_summaries": [
+        {
+          "surface": "claude-code-safe",
+          "tier": "clean",
+          "weak_runs": 1,
+          "repaired_runs": 1,
+          "weak_reviewability_avg": 8.0,
+          "repaired_reviewability_avg": 6.0,
+          "reviewability_delta": -2.0,
+          "weak_outcome_avg": 3.0,
+          "repaired_outcome_avg": 3.0,
+          "outcome_delta": 0.0
+        },
+        {
+          "surface": "claude-code-safe",
+          "tier": "trap",
+          "weak_runs": 1,
+          "repaired_runs": 1,
+          "weak_reviewability_avg": 4.0,
+          "repaired_reviewability_avg": 9.0,
+          "reviewability_delta": 5.0,
+          "weak_outcome_avg": 1.0,
+          "repaired_outcome_avg": 3.0,
+          "outcome_delta": 2.0
+        },
+        {
+          "surface": "codex-cli-default",
+          "tier": "clean",
+          "weak_runs": 3,
+          "repaired_runs": 3,
+          "weak_reviewability_avg": 5.0,
+          "repaired_reviewability_avg": 7.333333333333333,
+          "reviewability_delta": 2.333333333333333,
+          "weak_outcome_avg": 2.6666666666666665,
+          "repaired_outcome_avg": 3.0,
+          "outcome_delta": 0.3333333333333335
+        }
+      ]
     },
     "performance-tuning": {
       "title": "Performance Tuning Without Micro-Optimization Drift",
       "input_context": "The fixture is a report endpoint performance packet.\n\nFiles:\n\n- `trace.json`: representative trace showing query count and timing.\n- `workload.json`: target latency budget and data scale.\n- `ground_truth.json`: planted bottlenecks and misleading path.\n\nGround truth:\n\n- The planted primary bottleneck is database query count/N+1 behavior, not Python loop micro-optimization.\n- A good answer measures first, asks for profiling/tracing, and ranks optimizations by risk and expected benefit.\n- A good answer names rollback or regression criteria before changing production behavior.",
       "fixture_path": "examples/evaluations/fixtures/performance-tuning",
       "expected_delta": "The repaired spell forces measurement before optimization and keeps rollback criteria attached to speed claims.",
-      "observed_delta": "repaired prompts scored 3.0 points higher on average",
+      "observed_delta": "repaired prompts scored 3.0 reviewability points higher on average",
       "observed_outcome_delta": "repaired prompts satisfied 0.6 more outcome checks on average",
       "runs": [
         {
@@ -2424,7 +3079,16 @@
           },
           "outcome_total": 3,
           "total_score": 7,
-          "evaluator_notes": "Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence."
+          "evaluator_notes": "Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.",
+          "reviewability_scores": {
+            "artifact_boundary": 1,
+            "invariants": 0,
+            "output_contract": 2,
+            "verification": 2,
+            "failure_behavior": 2,
+            "assumption_control": 0
+          },
+          "reviewability_total": 7
         },
         {
           "surface": "codex-cli-default",
@@ -2460,7 +3124,16 @@
           },
           "outcome_total": 3,
           "total_score": 11,
-          "evaluator_notes": "Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence."
+          "evaluator_notes": "Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.",
+          "reviewability_scores": {
+            "artifact_boundary": 2,
+            "invariants": 1,
+            "output_contract": 2,
+            "verification": 2,
+            "failure_behavior": 2,
+            "assumption_control": 2
+          },
+          "reviewability_total": 11
         },
         {
           "surface": "codex-cli-default",
@@ -2496,7 +3169,16 @@
           },
           "outcome_total": 3,
           "total_score": 10,
-          "evaluator_notes": "Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence."
+          "evaluator_notes": "Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.",
+          "reviewability_scores": {
+            "artifact_boundary": 2,
+            "invariants": 1,
+            "output_contract": 2,
+            "verification": 2,
+            "failure_behavior": 2,
+            "assumption_control": 1
+          },
+          "reviewability_total": 10
         },
         {
           "surface": "codex-cli-default",
@@ -2532,7 +3214,16 @@
           },
           "outcome_total": 3,
           "total_score": 11,
-          "evaluator_notes": "Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence."
+          "evaluator_notes": "Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.",
+          "reviewability_scores": {
+            "artifact_boundary": 2,
+            "invariants": 2,
+            "output_contract": 2,
+            "verification": 2,
+            "failure_behavior": 2,
+            "assumption_control": 1
+          },
+          "reviewability_total": 11
         },
         {
           "surface": "codex-cli-default",
@@ -2568,7 +3259,16 @@
           },
           "outcome_total": 3,
           "total_score": 9,
-          "evaluator_notes": "Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence."
+          "evaluator_notes": "Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.",
+          "reviewability_scores": {
+            "artifact_boundary": 1,
+            "invariants": 1,
+            "output_contract": 2,
+            "verification": 2,
+            "failure_behavior": 2,
+            "assumption_control": 1
+          },
+          "reviewability_total": 9
         },
         {
           "surface": "codex-cli-default",
@@ -2604,7 +3304,16 @@
           },
           "outcome_total": 3,
           "total_score": 11,
-          "evaluator_notes": "Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence."
+          "evaluator_notes": "Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.",
+          "reviewability_scores": {
+            "artifact_boundary": 2,
+            "invariants": 1,
+            "output_contract": 2,
+            "verification": 2,
+            "failure_behavior": 2,
+            "assumption_control": 2
+          },
+          "reviewability_total": 11
         },
         {
           "surface": "claude-code-safe",
@@ -2650,7 +3359,16 @@
           },
           "outcome_total": 3,
           "total_score": 10,
-          "evaluator_notes": "Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence."
+          "evaluator_notes": "Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.",
+          "reviewability_scores": {
+            "artifact_boundary": 2,
+            "invariants": 0,
+            "output_contract": 2,
+            "verification": 2,
+            "failure_behavior": 2,
+            "assumption_control": 2
+          },
+          "reviewability_total": 10
         },
         {
           "surface": "claude-code-safe",
@@ -2696,7 +3414,16 @@
           },
           "outcome_total": 3,
           "total_score": 8,
-          "evaluator_notes": "Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence."
+          "evaluator_notes": "Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.",
+          "reviewability_scores": {
+            "artifact_boundary": 2,
+            "invariants": 0,
+            "output_contract": 1,
+            "verification": 2,
+            "failure_behavior": 2,
+            "assumption_control": 1
+          },
+          "reviewability_total": 8
         },
         {
           "surface": "claude-code-safe",
@@ -2742,7 +3469,16 @@
           },
           "outcome_total": 0,
           "total_score": 1,
-          "evaluator_notes": "Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence."
+          "evaluator_notes": "Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.",
+          "reviewability_scores": {
+            "artifact_boundary": 0,
+            "invariants": 0,
+            "output_contract": 1,
+            "verification": 0,
+            "failure_behavior": 0,
+            "assumption_control": 0
+          },
+          "reviewability_total": 1
         },
         {
           "surface": "claude-code-safe",
@@ -2788,21 +3524,128 @@
           },
           "outcome_total": 3,
           "total_score": 11,
-          "evaluator_notes": "Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence."
+          "evaluator_notes": "Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.",
+          "reviewability_scores": {
+            "artifact_boundary": 2,
+            "invariants": 1,
+            "output_contract": 2,
+            "verification": 2,
+            "failure_behavior": 2,
+            "assumption_control": 2
+          },
+          "reviewability_total": 11
         }
       ],
       "tier_summaries": {
         "clean": {
-          "observed_delta": "repaired prompts scored 1.2 points higher on average",
+          "observed_reviewability_delta": "repaired prompts scored 1.2 reviewability points higher on average",
+          "observed_delta": "repaired prompts scored 1.2 reviewability points higher on average",
           "observed_outcome_delta": "weak and repaired prompts tied on outcome checks",
           "runs": 8
         },
         "trap": {
-          "observed_delta": "repaired prompts scored 10.0 points higher on average",
+          "observed_reviewability_delta": "repaired prompts scored 10.0 reviewability points higher on average",
+          "observed_delta": "repaired prompts scored 10.0 reviewability points higher on average",
           "observed_outcome_delta": "repaired prompts satisfied 3.0 more outcome checks on average",
           "runs": 2
         }
-      }
+      },
+      "observed_reviewability_delta": "repaired prompts scored 3.0 reviewability points higher on average",
+      "delta_summaries": [
+        {
+          "surface": "claude-code-safe",
+          "tier": "clean",
+          "weak_runs": 1,
+          "repaired_runs": 1,
+          "weak_reviewability_avg": 10.0,
+          "repaired_reviewability_avg": 8.0,
+          "reviewability_delta": -2.0,
+          "weak_outcome_avg": 3.0,
+          "repaired_outcome_avg": 3.0,
+          "outcome_delta": 0.0
+        },
+        {
+          "surface": "claude-code-safe",
+          "tier": "trap",
+          "weak_runs": 1,
+          "repaired_runs": 1,
+          "weak_reviewability_avg": 1.0,
+          "repaired_reviewability_avg": 11.0,
+          "reviewability_delta": 10.0,
+          "weak_outcome_avg": 0.0,
+          "repaired_outcome_avg": 3.0,
+          "outcome_delta": 3.0
+        },
+        {
+          "surface": "codex-cli-default",
+          "tier": "clean",
+          "weak_runs": 3,
+          "repaired_runs": 3,
+          "weak_reviewability_avg": 8.666666666666666,
+          "repaired_reviewability_avg": 11.0,
+          "reviewability_delta": 2.333333333333334,
+          "weak_outcome_avg": 3.0,
+          "repaired_outcome_avg": 3.0,
+          "outcome_delta": 0.0
+        }
+      ]
     }
+  },
+  "reviewability_rubric": {
+    "artifact_boundary": [
+      "artifact",
+      "module",
+      "file",
+      "endpoint",
+      "table",
+      "boundary",
+      "scope",
+      "function"
+    ],
+    "invariants": [
+      "invariant",
+      "preserve",
+      "must not",
+      "unchanged",
+      "compatibility",
+      "correctness"
+    ],
+    "output_contract": [
+      "return",
+      "section",
+      "table",
+      "plan",
+      "format",
+      "output",
+      "checklist"
+    ],
+    "verification": [
+      "verify",
+      "test",
+      "measure",
+      "check",
+      "query",
+      "evidence",
+      "benchmark",
+      "validate"
+    ],
+    "failure_behavior": [
+      "if",
+      "fallback",
+      "rollback",
+      "insufficient",
+      "unsafe",
+      "risk",
+      "cannot"
+    ],
+    "assumption_control": [
+      "assumption",
+      "hypothesis",
+      "unknown",
+      "missing",
+      "evidence",
+      "uncertain",
+      "insufficient"
+    ]
   }
 }

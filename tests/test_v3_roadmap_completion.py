@@ -69,10 +69,10 @@ def test_package_and_smoke_checks_pass() -> None:
     assert {"index.html", "reference/evidence-browser.html", "exports/library-manifest.json"} <= {check["target"] for check in smoke["checks"]}
 
 
-def test_public_smoke_report_stays_inside_repo(tmp_path: Path) -> None:
+def test_public_smoke_report_stays_inside_repo() -> None:
     from scripts import smoke_public_site
 
-    external = tmp_path / "live-smoke.json"
+    external = ROOT.parent / "software-grimoire-external-smoke.json"
     scratch = ROOT / "tmp" / "live-smoke.json"
     internal = ROOT / "examples" / "release-gate" / "public-smoke-check.json"
 

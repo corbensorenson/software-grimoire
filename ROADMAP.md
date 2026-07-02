@@ -59,8 +59,9 @@ Current public-site status:
   public smoke checks, canon audit page, usage-earned canon page, and semantic
   promotion board.
 - The recorded evaluation layer has moved past the seed state: all six field
-  spells now have executable fixtures, planted ground truth, structural scores,
-  outcome scores, preserved transcripts, and repeated Codex-owned runs.
+  spells now have executable fixtures, planted ground truth, reviewability
+  scores, outcome scores, preserved transcripts, and repeated Codex-owned
+  runs.
 - The full 1,645-entry lexicon is structurally authored with zero `stub` rows,
   non-empty summaries, forces, shadows, semantic status, and visible
   generated-draft versus reviewed-canon distinction.
@@ -499,8 +500,14 @@ Post-v3 external review findings accepted into the roadmap:
 Absorption status:
 
 - Findings 1 through 10 define the v4 boundary-hunt and ward-science roadmap.
-  The immediate documentation update is in progress. Implementation is tracked
-  in Phase 36 and the active project goal.
+  The roadmap update is complete and implementation is tracked in Phase 36 and
+  the active project goal.
+- The first v4 implementation slice is underway: repo-local scratch hygiene,
+  explicit reviewability-score fields, and per-surface/per-tier delta reporting
+  are implemented for the preserved v3 replay corpus. The remaining open work
+  is the real matrix-completion runs, hardness-ladder fixtures/results,
+  ward-science ablations, package-index release materials, adoption-report
+  generator, and methods write-up.
 
 ## 1. End State
 
@@ -4559,6 +4566,13 @@ North star:
    documented operative use and named human maintainer signoff.
 
 Workstream A: Bench v4 hardness ladder
+
+Implementation note as of July 2, 2026: Items A1 and A2 are implemented for
+the preserved v3 replay corpus. Evaluation pages now expose per-surface and
+per-tier delta cells; the data model carries explicit `reviewability_scores`
+and `reviewability_total` fields while retaining old structural aliases only
+for backward compatibility; project scratch output is routed under repo-local
+`tmp/`.
 
 1. Fix current reporting before adding new cases:
    - report deltas by surface, tier, variant, and repetition cell;

@@ -14,7 +14,7 @@ from surface_adapters import enrich_run_metadata, runnable_surfaces, run_surface
 
 SURFACES = {surface_id: surface_for_result(surface_id) for surface_id in runnable_surfaces()}
 
-CRITERION_KEYWORDS = {
+REVIEWABILITY_RUBRIC = {
     "artifact_boundary": ["artifact", "module", "file", "endpoint", "table", "boundary", "scope", "function"],
     "invariants": ["invariant", "preserve", "must not", "unchanged", "compatibility", "correctness"],
     "output_contract": ["return", "section", "table", "plan", "format", "output", "checklist"],
@@ -22,6 +22,7 @@ CRITERION_KEYWORDS = {
     "failure_behavior": ["if", "fallback", "rollback", "insufficient", "unsafe", "risk", "cannot"],
     "assumption_control": ["assumption", "hypothesis", "unknown", "missing", "evidence", "uncertain", "insufficient"],
 }
+CRITERION_KEYWORDS = REVIEWABILITY_RUBRIC
 
 OUTCOME_RUBRICS = {
     "safe-refactoring": [
@@ -86,10 +87,10 @@ USER REQUEST:
 """
 
 
-def score_output(text: str) -> dict[str, int]:
+def score_reviewability(text: str) -> dict[str, int]:
     lowered = text.lower()
     scores: dict[str, int] = {}
-    for criterion, keywords in CRITERION_KEYWORDS.items():
+    for criterion, keywords in REVIEWABILITY_RUBRIC.items():
         hits = sum(1 for keyword in keywords if keyword in lowered)
         scores[criterion] = 2 if hits >= 2 else 1 if hits == 1 else 0
     return scores
@@ -103,19 +104,23 @@ def score_outcome(slug: str, text: str) -> dict[str, int]:
     return scores
 
 
-def observed_delta(runs: list[dict]) -> str:
-    weak = [run["structural_total"] for run in runs if run["variant"] == "weak"]
-    repaired = [run["structural_total"] for run in runs if run["variant"] == "repaired"]
+def reviewability_total(run: dict) -> int:
+    return run.get("reviewability_total", run.get("structural_total", run.get("total_score", 0)))
+
+
+def observed_reviewability_delta(runs: list[dict]) -> str:
+    weak = [reviewability_total(run) for run in runs if run["variant"] == "weak"]
+    repaired = [reviewability_total(run) for run in runs if run["variant"] == "repaired"]
     if not weak or not repaired:
         return "pending"
     weak_avg = sum(weak) / len(weak)
     repaired_avg = sum(repaired) / len(repaired)
     delta = repaired_avg - weak_avg
     if delta > 0:
-        return f"repaired prompts scored {delta:.1f} points higher on average"
+        return f"repaired prompts scored {delta:.1f} reviewability points higher on average"
     if delta < 0:
-        return f"weak prompts scored {-delta:.1f} points higher on average"
-    return "weak and repaired prompts tied on the structural rubric"
+        return f"weak prompts scored {-delta:.1f} reviewability points higher on average"
+    return "weak and repaired prompts tied on the reviewability score"
 
 
 def observed_outcome_delta(runs: list[dict]) -> str:
@@ -137,7 +142,8 @@ def default_results(surfaces: list[str]) -> dict:
     return {
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "surfaces": {name: SURFACES[name] for name in surfaces},
-        "structural_rubric": CRITERION_KEYWORDS,
+        "reviewability_rubric": REVIEWABILITY_RUBRIC,
+        "structural_rubric": REVIEWABILITY_RUBRIC,
         "outcome_rubric": OUTCOME_RUBRICS,
         "cases": {},
     }
@@ -169,17 +175,56 @@ def next_repetition(existing_runs: list[dict], surface: str, tier: str, variant:
 def recompute_case_summary(results: dict) -> None:
     for slug, case in results["cases"].items():
         runs = case.get("runs", [])
-        case["observed_delta"] = observed_delta(runs)
+        case["observed_reviewability_delta"] = observed_reviewability_delta(runs)
+        case["observed_delta"] = case["observed_reviewability_delta"]
         case["observed_outcome_delta"] = observed_outcome_delta(runs)
+        delta_summaries = []
         tier_summaries = {}
         for tier in sorted({run.get("tier", "clean") for run in runs}):
             tier_runs = [run for run in runs if run.get("tier", "clean") == tier]
             tier_summaries[tier] = {
-                "observed_delta": observed_delta(tier_runs),
+                "observed_reviewability_delta": observed_reviewability_delta(tier_runs),
+                "observed_delta": observed_reviewability_delta(tier_runs),
                 "observed_outcome_delta": observed_outcome_delta(tier_runs),
                 "runs": len(tier_runs),
             }
+        for surface in sorted({run.get("surface", "unknown") for run in runs}):
+            for tier in sorted({run.get("tier", "clean") for run in runs if run.get("surface", "unknown") == surface}):
+                cell_runs = [
+                    run
+                    for run in runs
+                    if run.get("surface", "unknown") == surface and run.get("tier", "clean") == tier
+                ]
+                weak = [run for run in cell_runs if run.get("variant") == "weak"]
+                repaired = [run for run in cell_runs if run.get("variant") == "repaired"]
+                def avg(items: list[dict], key: str):
+                    values = [
+                        reviewability_total(item) if key == "reviewability" else item.get("outcome_total")
+                        for item in items
+                    ]
+                    values = [value for value in values if value is not None]
+                    return sum(values) / len(values) if values else None
+
+                weak_review = avg(weak, "reviewability")
+                repaired_review = avg(repaired, "reviewability")
+                weak_outcome = avg(weak, "outcome")
+                repaired_outcome = avg(repaired, "outcome")
+                delta_summaries.append(
+                    {
+                        "surface": surface,
+                        "tier": tier,
+                        "weak_runs": len(weak),
+                        "repaired_runs": len(repaired),
+                        "weak_reviewability_avg": weak_review,
+                        "repaired_reviewability_avg": repaired_review,
+                        "reviewability_delta": None if weak_review is None or repaired_review is None else repaired_review - weak_review,
+                        "weak_outcome_avg": weak_outcome,
+                        "repaired_outcome_avg": repaired_outcome,
+                        "outcome_delta": None if weak_outcome is None or repaired_outcome is None else repaired_outcome - weak_outcome,
+                    }
+                )
         case["tier_summaries"] = tier_summaries
+        case["delta_summaries"] = delta_summaries
 
 
 def main() -> int:
@@ -196,7 +241,8 @@ def main() -> int:
     tiers = args.tier or ["clean"]
     results = load_existing_results() if args.append and load_existing_results() else default_results(surfaces)
     results["generated_at"] = datetime.now(timezone.utc).isoformat()
-    results.setdefault("structural_rubric", CRITERION_KEYWORDS)
+    results.setdefault("reviewability_rubric", REVIEWABILITY_RUBRIC)
+    results.setdefault("structural_rubric", REVIEWABILITY_RUBRIC)
     results.setdefault("outcome_rubric", OUTCOME_RUBRICS)
     results.setdefault("cases", {})
     results.setdefault("surfaces", {})
@@ -238,7 +284,7 @@ def main() -> int:
                         output = run_surface(surface, prompt)
                         run_timestamp = datetime.now(timezone.utc).isoformat()
                         transcript_path.write_text(output.rstrip() + "\n", encoding="utf-8")
-                        structural_scores = score_output(output)
+                        reviewability_scores = score_reviewability(output)
                         outcome_scores = score_outcome(slug, output)
                         metadata = enrich_run_metadata(surface)
                         existing_case["runs"].append(
@@ -254,13 +300,15 @@ def main() -> int:
                                 "prompt_path": str(prompt_path.relative_to(ROOT)),
                                 "transcript_path": str(transcript_path.relative_to(ROOT)),
                                 "output": output.rstrip(),
-                                "scores": structural_scores,
-                                "structural_scores": structural_scores,
-                                "structural_total": sum(structural_scores.values()),
+                                "scores": reviewability_scores,
+                                "reviewability_scores": reviewability_scores,
+                                "reviewability_total": sum(reviewability_scores.values()),
+                                "structural_scores": reviewability_scores,
+                                "structural_total": sum(reviewability_scores.values()),
                                 "outcome_scores": outcome_scores,
                                 "outcome_total": sum(outcome_scores.values()),
-                                "total_score": sum(structural_scores.values()),
-                                "evaluator_notes": "Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence.",
+                                "total_score": sum(reviewability_scores.values()),
+                                "evaluator_notes": "Auto-scored with outcome checks and a secondary reviewability rubric; transcript remains the primary evidence.",
                             }
                         )
 

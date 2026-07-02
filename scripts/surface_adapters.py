@@ -10,6 +10,7 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
+SCRATCH_DIR = ROOT / "tmp"
 CODEX_BIN = Path("/Applications/Codex.app/Contents/Resources/codex")
 
 
@@ -106,7 +107,8 @@ def surface_for_result(surface_id: str) -> dict:
 def run_codex(prompt: str, timeout: int = 240) -> str:
     if not codex_available():
         raise RuntimeError("Codex CLI is not available")
-    with tempfile.NamedTemporaryFile("w+", suffix=".txt", delete=False) as tmp:
+    SCRATCH_DIR.mkdir(parents=True, exist_ok=True)
+    with tempfile.NamedTemporaryFile("w+", suffix=".txt", dir=SCRATCH_DIR, delete=False) as tmp:
         out_path = Path(tmp.name)
     try:
         result = subprocess.run(
