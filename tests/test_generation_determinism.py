@@ -30,6 +30,8 @@ TRACKED_GENERATED = [
     "reference/hardness-v4.qmd",
     "examples/adoption/package-index-release-plan.json",
     "reference/package-index-release.qmd",
+    "examples/jailbreak-resilience/ward-science-results.json",
+    "reference/ward-science.qmd",
     "examples/jailbreak-resilience/baseline-results.json",
     "exports/library-manifest.json",
     "exports/checksums.sha256",

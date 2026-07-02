@@ -85,6 +85,11 @@ def test_warded_baseline_matches_schema() -> None:
     assert not errors, "\n".join(errors[:25])
 
 
+def test_ward_science_matches_schema() -> None:
+    errors = collect_errors("schemas/ward-science.schema.json", [load_json("examples/jailbreak-resilience/ward-science-results.json")], "ward_science")
+    assert not errors, "\n".join(errors[:25])
+
+
 def test_semantic_promotion_matches_schema() -> None:
     errors = collect_errors("schemas/semantic-promotion.schema.json", [load_json("data/semantic_promotion.json")], "semantic_promotion")
     assert not errors, "\n".join(errors[:25])

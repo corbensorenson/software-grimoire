@@ -50,7 +50,7 @@ Current public-site status:
 - The repository includes schemas, validation, seal generation, CI, GitHub Pages
   publishing, pull-request checks, contribution templates, examples, package
   metadata, install tooling, and public releases.
-- The rendered Quarto site currently contains 109 pages, including six
+- The rendered Quarto site currently contains 110 pages, including six
   Proof-by-Difference cases, six recorded evaluation result pages, a dedicated
   Proof by Difference reference page, an installable-library page, a visual
   grammar, a task chooser, adoption evidence, a jailbreak-resilience bench,
@@ -99,6 +99,10 @@ Current public-site status:
   preflight checks, build commands, post-upload checks, evidence rules, schema,
   generated reference page, and evidence-index entry all preserve upload as
   pending until a maintainer performs it.
+- Ward science now has a local deterministic seed: a limb ablation over a
+  defanged indirect-injection case, overrefusal-aware scoring, and six
+  additional defanged attack-shape designs. Model-provider ward-science runs
+  remain future evidence.
 
 Reader-experience requirements:
 
@@ -4703,6 +4707,11 @@ one-step `grimoire install` wrapper is also implemented over the dry-run-first
 asset installer, with tests covering repo-local `tmp/` destinations. The
 package-index release plan is prepared as structured release material, but
 actual TestPyPI/PyPI upload remains pending human action.
+
+Implementation note as of July 2, 2026: Workstream B has a local deterministic
+seed for ward-limb ablation and the six additional defanged attack shapes are
+catalogued. This satisfies the structural ward-science scaffold, but real
+baseline/warded model-surface A/B expansion remains open.
 
 1. Prepare package-index release materials:
    - long description suitable for PyPI;

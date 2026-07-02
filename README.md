@@ -54,6 +54,9 @@ Implemented:
   harmless fixtures, and 24 preserved Codex-owned bench runs.
 - Baseline-vs-warded jailbreak-resilience matrix using defanged fixtures and an
   explicit project-owned evidence limitation.
+- Ward-science seed with deterministic limb ablation over a defanged indirect
+  injection shape, resistance/utility/audit/overrefusal scoring, and six
+  additional defanged attack-shape designs.
 - Adversarial harness v2 for simulated tool mediation, retrieval taint,
   multi-turn scope creep, long-context drift, canary redaction, and overrefusal.
 - Semantic promotion ladder for moving generated-draft vocabulary into reviewed
@@ -127,7 +130,7 @@ The generated site is written to `_site/`.
 Repo-local scratch files should go under `tmp/`, which is ignored except for
 `tmp/.gitkeep`.
 
-Current render size: 109 Quarto pages.
+Current render size: 110 Quarto pages.
 
 ## Repository Map
 

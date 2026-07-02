@@ -20,6 +20,7 @@ QUARTO_RESOURCE_PATTERNS = [
     "examples/jailbreak-resilience/fixtures/**",
     "examples/jailbreak-resilience/results.json",
     "examples/jailbreak-resilience/baseline-results.json",
+    "examples/jailbreak-resilience/ward-science-results.json",
     "examples/jailbreak-resilience/ab-results.json",
     "examples/jailbreak-resilience/baselines/**",
     "examples/jailbreak-resilience/ab-runs/**",

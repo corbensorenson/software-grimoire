@@ -33,6 +33,9 @@
 - Added package-index release materials for human TestPyPI/PyPI upload,
   including structured plan data, schema validation, generated reference page,
   smoke coverage, and evidence-index disclosure that upload is still pending.
+- Added a ward-science seed with deterministic limb ablation, overrefusal-aware
+  scoring, six additional defanged attack-shape designs, schema validation,
+  generated reference/evidence pages, and smoke coverage.
 
 ## v3.0.0-evidence-package
 

@@ -3,8 +3,8 @@
   "generated_at": "2026-07-02T00:00:00Z",
   "policy": "Calibration fixtures, project-owned model runs, local deterministic checks, reviewer imports, human audit, and adoption reports must remain separately labeled.",
   "summary": {
-    "artifact_count": 10,
-    "available_artifacts": 10,
+    "artifact_count": 11,
+    "available_artifacts": 11,
     "project_owned_model_surfaces": [
       "claude-code-safe",
       "claude-code-safe:baseline",
@@ -112,6 +112,21 @@
       "run_count": 16
     },
     {
+      "id": "ward-science-seed",
+      "title": "Ward Science Seed",
+      "path": "examples/jailbreak-resilience/ward-science-results.json",
+      "exists": true,
+      "bytes": 4513,
+      "evidence_class": "local_deterministic_control",
+      "calibration_role": "control_evidence",
+      "claim_scope": "Deterministic ward-limb ablation seed and additional defanged attack-shape catalog.",
+      "generated_at": null,
+      "surfaces": [
+        "local-ward-limb-control"
+      ],
+      "run_count": 6
+    },
+    {
       "id": "real-warded-ab",
       "title": "Real Surface Warded A/B Runs",
       "path": "examples/jailbreak-resilience/ab-results.json",
@@ -160,13 +175,13 @@
       "title": "Public Site Smoke Check",
       "path": "examples/release-gate/public-smoke-check.json",
       "exists": true,
-      "bytes": 1888,
+      "bytes": 2138,
       "evidence_class": "packaging_or_release_check",
       "calibration_role": "release_evidence",
       "claim_scope": "Rendered local site resources and optionally live GitHub Pages URLs resolve.",
-      "generated_at": "2026-07-02T11:01:24.479586+00:00",
+      "generated_at": "2026-07-02T11:13:29.633507+00:00",
       "surfaces": [],
-      "run_count": 15,
+      "run_count": 17,
       "passed": true
     }
   ]

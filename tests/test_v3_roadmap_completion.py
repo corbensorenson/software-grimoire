@@ -70,11 +70,13 @@ def test_package_and_smoke_checks_pass() -> None:
         "index.html",
         "reference/evidence-browser.html",
         "reference/hardness-v4.html",
+        "reference/ward-science.html",
         "reference/package-index-release.html",
         "exports/library-manifest.json",
     } <= {check["target"] for check in smoke["checks"]}
     assert "examples/evaluations/hardness-v4/results.json" in {check["target"] for check in smoke["checks"]}
     assert "examples/adoption/package-index-release-plan.json" in {check["target"] for check in smoke["checks"]}
+    assert "examples/jailbreak-resilience/ward-science-results.json" in {check["target"] for check in smoke["checks"]}
 
 
 def test_public_smoke_report_stays_inside_repo() -> None:
