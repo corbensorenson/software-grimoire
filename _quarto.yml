@@ -1,0 +1,92 @@
+project:
+  type: book
+  output-dir: _site
+  resources:
+    - .nojekyll
+    - data/*.json
+
+lang: en-US
+
+book:
+  title: "The Grimoire of Software Magic Words"
+  subtitle: "Operative Vocabulary, Prompt-Spells, and Stackcraft for AI-Assisted Software Engineering"
+  author: "Corben Sorenson"
+  site-url: "https://corbensorenson.github.io/software-grimoire/"
+  repo-url: "https://github.com/corbensorenson/software-grimoire"
+  repo-actions: [issue, source]
+  chapters:
+    - index.qmd
+    - preface.qmd
+    - part: "Core Grimoire"
+      chapters:
+        - chapters/01-operative-language.qmd
+        - chapters/02-what-a-spell-is.qmd
+        - chapters/03-crafting-spells.qmd
+        - chapters/04-sigils-canonicalization-and-seals.qmd
+        - chapters/05-coil-inspection.qmd
+        - chapters/06-field-spells.qmd
+        - chapters/07-public-canon.qmd
+        - chapters/08-stackcraft.qmd
+        - chapters/09-tooling-and-formalization.qmd
+        - chapters/10-living-practice.qmd
+    - part: "Spell Library"
+      chapters:
+        - spells/index.qmd
+        - spells/safe-refactoring.qmd
+        - spells/bug-diagnosis-from-logs.qmd
+        - spells/api-design.qmd
+        - spells/migration-without-data-loss.qmd
+        - spells/test-generation.qmd
+        - spells/performance-tuning.qmd
+    - part: "Stack Library"
+      chapters:
+        - stacks/index.qmd
+        - stacks/code-generation-and-repair-loop.qmd
+        - stacks/bug-hunt-stack.qmd
+        - stacks/safe-refactor-stack.qmd
+        - stacks/live-migration-stack.qmd
+        - stacks/release-gate-stack.qmd
+        - stacks/recursive-decomposition-stack.qmd
+    - part: "Reference"
+      chapters:
+        - reference/index.qmd
+        - reference/cast-levels.qmd
+        - reference/spell-skeleton.qmd
+        - reference/stack-grammar.qmd
+        - reference/seals-and-sigils.qmd
+        - reference/failure-modes.qmd
+        - reference/major-canon.qmd
+        - reference/pocket-canon.qmd
+        - reference/pocket-field-guide.qmd
+        - reference/lexicon.qmd
+        - reference/house-architecture-abstraction-and-design.qmd
+        - reference/house-language-semantics-and-formal-shape.qmd
+        - reference/house-data-state-and-representation.qmd
+        - reference/house-transformation-algorithms-and-working-verbs.qmd
+        - reference/house-control-flow-coordination-and-temporal-logic.qmd
+        - reference/house-runtime-memory-and-execution.qmd
+        - reference/house-systems-programming-and-operating-system-words.qmd
+        - reference/house-networking-and-distributed-systems.qmd
+        - reference/house-databases-persistence-and-time-binding-words.qmd
+        - reference/house-security-trust-and-warding-words.qmd
+        - reference/house-build-tooling-versioning-and-release.qmd
+        - reference/house-testing-verification-and-observability.qmd
+        - reference/house-hardware-embedded-and-performance-near-words.qmd
+        - reference/house-interface-ux-and-human-facing-words.qmd
+        - reference/house-promptcraft-ai-oriented-engineering-and-spell-structure.qmd
+        - reference/house-guarantee-words-quality-attributes-and-behavioral-adjectives.qmd
+        - reference/house-failure-words-pathologies-and-counter-spells.qmd
+        - reference/house-compound-forms-prefixes-suffixes-and-naming-runes.qmd
+
+format:
+  html:
+    toc: true
+    number-sections: true
+    code-fold: true
+    theme:
+      - cosmo
+      - assets/styles.scss
+    link-external-newwindow: true
+
+execute:
+  freeze: auto

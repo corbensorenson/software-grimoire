@@ -1,0 +1,24 @@
+---
+title: "Tooling and Formalization"
+---
+
+# Tooling and Formalization
+
+The grimoire becomes more useful when its structures are machine-readable. This repository treats spells, stacks, houses, runes, and seals as data.
+
+## Structured Layers
+
+- `data/lexicon.json` stores the full sigil canon.
+- `data/major_arcana.json` stores the 50 expanded public words.
+- `data/pocket_runes.json` stores the 300-entry field canon.
+- `data/spells.json` stores reusable spell templates.
+- `data/stacks.json` stores repeatable workflow choreography.
+- `schemas/` documents the expected shape of each data file.
+
+## Validation
+
+The validation script checks uniqueness, house ranges, required fields, spell limbs, stack handoffs, loop exits, recursive base cases, and broken references.
+
+## Seals
+
+Working seals are short stable digests derived from canonical streams. They are meant for commits, prompt registries, dashboards, and experiment logs. Formal sigils preserve the exact canonical stream for tooling.

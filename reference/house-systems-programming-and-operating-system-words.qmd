@@ -1,0 +1,96 @@
+---
+title: "Systems Programming and Operating-System Words"
+---
+
+# Systems Programming and Operating-System Words
+
+Range: `0685-0770`.
+
+| Sigil | Term                 | Summary                                                                                     |
+| ----- | -------------------- | ------------------------------------------------------------------------------------------- |
+| 0685  | boot                 | A host-word; it governs how programs bargain with the operating system.                     |
+| 0686  | bootloader           | An operating word; it changes how software inhabits the host machine.                       |
+| 0687  | capability mode      | An operating word; it changes how software inhabits the host machine.                       |
+| 0688  | cgroup               | A host-word; it governs how programs bargain with the operating system.                     |
+| 0689  | chroot               | An operating word; it changes how software inhabits the host machine.                       |
+| 0690  | context switch       | An operating word; it changes how software inhabits the host machine.                       |
+| 0691  | cron                 | A machine-host word; it marks a boundary where software meets system authority.             |
+| 0692  | daemon {Sys}         | A host-word; it governs how programs bargain with the operating system.                     |
+| 0693  | device               | A host-word; it governs how programs bargain with the operating system.                     |
+| 0694  | device tree          | A host-word; it governs how programs bargain with the operating system.                     |
+| 0695  | direct I/O           | A machine-host word; it marks a boundary where software meets system authority.             |
+| 0696  | driver               | A translation word between software intent and device behavior.                             |
+| 0697  | epoll                | A host-word; it governs how programs bargain with the operating system.                     |
+| 0698  | exec                 | A kernel-adjacent word; it concerns process, device, file, or privilege.                    |
+| 0699  | exit code            | A kernel-adjacent word; it concerns process, device, file, or privilege.                    |
+| 0700  | file                 | A host-word; it governs how programs bargain with the operating system.                     |
+| 0701  | file descriptor      | An operating word; it changes how software inhabits the host machine.                       |
+| 0702  | file lock            | A kernel-adjacent word; it concerns process, device, file, or privilege.                    |
+| 0703  | filesystem           | A kernel-adjacent word; it concerns process, device, file, or privilege.                    |
+| 0704  | firmware {Sys}       | A kernel-adjacent word; it concerns process, device, file, or privilege.                    |
+| 0705  | fork {Sys}           | A machine-host word; it marks a boundary where software meets system authority.             |
+| 0706  | futex                | A host-word; it governs how programs bargain with the operating system.                     |
+| 0707  | group id             | A machine-host word; it marks a boundary where software meets system authority.             |
+| 0708  | init                 | A host-word; it governs how programs bargain with the operating system.                     |
+| 0709  | inode                | An operating word; it changes how software inhabits the host machine.                       |
+| 0710  | interrupt            | A priority word from the machine; ordinary flow is preempted for urgent handling.           |
+| 0711  | ioctl                | An operating word; it changes how software inhabits the host machine.                       |
+| 0712  | IRQ                  | A host-word; it governs how programs bargain with the operating system.                     |
+| 0713  | isolate {Sys}        | A kernel-adjacent word; it concerns process, device, file, or privilege.                    |
+| 0714  | kernel               | A sovereignty word; the operating system's core authority over process, memory, and device. |
+| 0715  | kernelspace          | A kernel-adjacent word; it concerns process, device, file, or privilege.                    |
+| 0716  | kill signal          | A machine-host word; it marks a boundary where software meets system authority.             |
+| 0717  | link layer device    | An operating word; it changes how software inhabits the host machine.                       |
+| 0718  | load average         | An operating word; it changes how software inhabits the host machine.                       |
+| 0719  | login shell          | A kernel-adjacent word; it concerns process, device, file, or privilege.                    |
+| 0720  | mount                | An operating word; it changes how software inhabits the host machine.                       |
+| 0721  | namespace {Sys}      | A kernel-adjacent word; it concerns process, device, file, or privilege.                    |
+| 0722  | niceness             | A host-word; it governs how programs bargain with the operating system.                     |
+| 0723  | nonblocking I/O      | An operating word; it changes how software inhabits the host machine.                       |
+| 0724  | open file table      | A machine-host word; it marks a boundary where software meets system authority.             |
+| 0725  | page cache           | A kernel-adjacent word; it concerns process, device, file, or privilege.                    |
+| 0726  | page table           | A kernel-adjacent word; it concerns process, device, file, or privilege.                    |
+| 0727  | path                 | A kernel-adjacent word; it concerns process, device, file, or privilege.                    |
+| 0728  | permission {Sys}     | A kernel-adjacent word; it concerns process, device, file, or privilege.                    |
+| 0729  | pipe                 | A machine-host word; it marks a boundary where software meets system authority.             |
+| 0730  | poll {Sys}           | An operating word; it changes how software inhabits the host machine.                       |
+| 0731  | privilege            | An operating word; it changes how software inhabits the host machine.                       |
+| 0732  | process {Sys}        | A sovereignty word; an executing program with its own protected address space.              |
+| 0733  | process table        | An operating word; it changes how software inhabits the host machine.                       |
+| 0734  | pseudo-terminal      | A kernel-adjacent word; it concerns process, device, file, or privilege.                    |
+| 0735  | pthread              | A host-word; it governs how programs bargain with the operating system.                     |
+| 0736  | quota                | A machine-host word; it marks a boundary where software meets system authority.             |
+| 0737  | read-only mount      | A machine-host word; it marks a boundary where software meets system authority.             |
+| 0738  | real-time scheduler  | An operating word; it changes how software inhabits the host machine.                       |
+| 0739  | run queue            | A machine-host word; it marks a boundary where software meets system authority.             |
+| 0740  | scheduler class      | A kernel-adjacent word; it concerns process, device, file, or privilege.                    |
+| 0741  | select {Sys}         | A host-word; it governs how programs bargain with the operating system.                     |
+| 0742  | service manager      | A host-word; it governs how programs bargain with the operating system.                     |
+| 0743  | session leader       | A kernel-adjacent word; it concerns process, device, file, or privilege.                    |
+| 0744  | shared memory        | A host-word; it governs how programs bargain with the operating system.                     |
+| 0745  | signal {Sys}         | A machine-host word; it marks a boundary where software meets system authority.             |
+| 0746  | socket {Sys}         | A conduit word; a live endpoint for network communication.                                  |
+| 0747  | softirq              | A host-word; it governs how programs bargain with the operating system.                     |
+| 0748  | spawn {Sys}          | A kernel-adjacent word; it concerns process, device, file, or privilege.                    |
+| 0749  | standard error       | An operating word; it changes how software inhabits the host machine.                       |
+| 0750  | standard input       | A kernel-adjacent word; it concerns process, device, file, or privilege.                    |
+| 0751  | standard output      | A machine-host word; it marks a boundary where software meets system authority.             |
+| 0752  | sticky bit           | A machine-host word; it marks a boundary where software meets system authority.             |
+| 0753  | stream descriptor    | An operating word; it changes how software inhabits the host machine.                       |
+| 0754  | swap                 | An operating word; it changes how software inhabits the host machine.                       |
+| 0755  | syscall              | An operating word; it changes how software inhabits the host machine.                       |
+| 0756  | system call boundary | A kernel-adjacent word; it concerns process, device, file, or privilege.                    |
+| 0757  | systemd unit         | A kernel-adjacent word; it concerns process, device, file, or privilege.                    |
+| 0758  | tempfile             | A machine-host word; it marks a boundary where software meets system authority.             |
+| 0759  | terminal             | A host-word; it governs how programs bargain with the operating system.                     |
+| 0760  | thread               | A line-of-execution word that shares process memory with its siblings.                      |
+| 0761  | timer                | A kernel-adjacent word; it concerns process, device, file, or privilege.                    |
+| 0762  | trap                 | An operating word; it changes how software inhabits the host machine.                       |
+| 0763  | tty                  | A kernel-adjacent word; it concerns process, device, file, or privilege.                    |
+| 0764  | umask                | A kernel-adjacent word; it concerns process, device, file, or privilege.                    |
+| 0765  | unmount              | A machine-host word; it marks a boundary where software meets system authority.             |
+| 0766  | user id              | A host-word; it governs how programs bargain with the operating system.                     |
+| 0767  | userland             | A machine-host word; it marks a boundary where software meets system authority.             |
+| 0768  | virtual file system  | A host-word; it governs how programs bargain with the operating system.                     |
+| 0769  | watchdog             | A kernel-adjacent word; it concerns process, device, file, or privilege.                    |
+| 0770  | writeback            | A host-word; it governs how programs bargain with the operating system.                     |

@@ -1,0 +1,365 @@
+Addendum I
+
+On Stacked Spells
+
+Queues, Loops, and Recursive Rituals for Software Spellcraft
+
+A companion to Software Magic Grimoire v3 and Pocket Grimoire: Software Spellcraft
+
+Version 1.0 · March 2026
+
+<table>
+<colgroup>
+<col style="width: 100%" />
+</colgroup>
+<thead>
+<tr>
+<th><p><strong>Abstract</strong></p>
+<p>The original grimoire defines the spell as the basic unit of software-operative language. This addendum introduces the spell stack: a named, reusable queue of spells cast in stable order with explicit handoffs, guards, and termination rules. Spell stacks are the missing middle layer between a single prompt and a full engineering campaign. They explain why competent AI-assisted software work rarely comes from one giant incantation. Real work alternates between discovery, design, generation, verification, repair, release, and rollback readiness. Stacks encode those alternations. This addendum defines stack structure, laws, notation, and composite seals, then gives examples of linear, guarded, looped, and recursive stacks. Looped stacks repeat until a measurable exit condition is satisfied. Recursive stacks call themselves on smaller scopes until a base case is reached. Together they extend the spell system from isolated prompts to reproducible multi-step operations.</p></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+
+*A spell chooses a mode of action; a stack chooses an order of operations.*
+
+# I. Why Stacks Exist
+
+A single spell can be powerful, but software work almost never stays in one cognitive mode for long. The same task may begin with discovery, pass into design, descend into implementation, halt for verification, and then branch into repair or release. When all of those modes are packed into one giant prompt, the model is asked to reason, decide, generate, critique, and certify all at once. That usually produces mush: too much breadth, too little accountability, and no obvious place to inspect failure.
+
+Spell stacks solve this by turning one large wish into a named procession of smaller casts. Each spell in the sequence has a job, an artifact to hand forward, and a condition that authorizes the next move. In ordinary engineering language, a stack is part playbook, part pipeline, part queue, part review discipline. In grimoire language, it is a repeatable choreography of force.
+
+The common case is simple: first this spell, then that one. But once the pattern is made explicit, richer forms appear naturally. Some sequences wait on guards. Some loop until a measurement clears a threshold. Some recurse into smaller scopes. Some are made of whole sub-stacks rather than single spells. Stacks are to spells what procedures are to statements, what release trains are to single commands, and what incident playbooks are to individual instincts.
+
+# II. Definitions
+
+The terminology below makes spell stacks precise without draining them of usability.
+
+| **Term** | **Meaning** |
+|----|----|
+| **Spell** | A bounded operative instruction. In the grimoire, a spell is usually expressed through the limbs of role, objective, context, constraints, procedure, output, verification, and failure behavior. |
+| **Spell stack** | A named, reusable queue of spells cast in stable order. A stack includes handoffs, guards, and explicit entry and exit rules. |
+| **Stack frame** | One invocation of one spell inside a stack, together with the local artifacts and state it receives. |
+| **Handoff artifact** | The concrete output passed from one spell to the next: a plan, a patch, a failing test, a metrics snapshot, a schema diff, an evidence bundle. |
+| **Guard** | A condition that must be satisfied before the next spell may fire. Guards are usually verification, parity, approval, or threshold checks. |
+| **Loop** | A substack that repeats on the same scope until a measurable exit condition is met. |
+| **Recursion** | A stack that calls itself on smaller scope until a base case is reached. |
+| **Recovery path** | The spell or substack invoked when the main line fails, stalls, or violates a guard. |
+
+Despite the name, most spell stacks behave like queues in time: first cast, first handoff, next cast. They are called stacks because the spells accumulate, may nest, and may themselves be composed into higher-order structures. So the image is layered; the execution is usually sequential.
+
+# III. Relation to the Existing System
+
+Spell stacks do not replace the spell. They sit above it. The individual spell remains the atomic unit of force; the stack is the reusable choreography that binds several spells into one operation.
+
+**1. Limbs are preserved.** Each spell in a stack still carries whatever limbs it needs. Some frames are fast casts with only role, objective, context, and verify; others are full rituals with all eight limbs.
+
+**2. Cast levels become local.** A single stack may contain minor casts for drafting, working casts for generation, and ritual casts for verification, migration, or release gating.
+
+**3. Sigils become composite.** If a spell has a canonical form, then a stack has one too: an ordered composition of spell seals, transition operators, entry conditions, exit rules, and recovery paths.
+
+**4. Coils gain time.** The coil diagram inspects the internal geometry of one spell. A stack can be thought of as a procession or braid of such coils through time. Repeated transitions become stable paths; loops create re-entry arcs; recursion creates nested descent.
+
+**5. The canon becomes operational.** The lexicon lists words of force. Stacks are where those words are repeatedly made to work together: reproduce, instrument, patch, verify; expand, backfill, compare, cut over, rollback.
+
+### A compact formalization is useful:
+
+<table>
+<colgroup>
+<col style="width: 100%" />
+</colgroup>
+<thead>
+<tr>
+<th><p>Let a spell be Sigma = (R, O, C, K, P, U, V, F),</p>
+<p>where omitted limbs are simply left blank in a lighter cast.</p>
+<p>Then a stack T may be written as:</p>
+<p>T = (E, Sigma1, tau1, Sigma2, tau2, ... , tau(n-1), Sigman, X, Q)</p>
+<p>E = entry condition</p>
+<p>tau_i = transition rule or guard between spells</p>
+<p>X = exit condition</p>
+<p>Q = recovery map or failure path</p></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+
+# IV. Stack Grammar and Notation
+
+A practical stack template should be readable by humans, castable by AI systems, and cleanly canonicalized for tooling.
+
+<table>
+<colgroup>
+<col style="width: 100%" />
+</colgroup>
+<thead>
+<tr>
+<th><p>STACK &lt;Name&gt; v&lt;Version&gt;</p>
+<p>ENTER: &lt;when this stack is appropriate&gt;</p>
+<p>IN: &lt;artifacts or context required&gt;</p>
+<p>1. &lt;Spell Name&gt; [minor|working|ritual]</p>
+<p>OUT: &lt;artifact emitted&gt;</p>
+<p>ADVANCE WHEN: &lt;guard or transition rule&gt;</p>
+<p>2. &lt;Spell Name&gt; [cast level]</p>
+<p>OUT: &lt;artifact emitted&gt;</p>
+<p>ADVANCE WHEN: &lt;guard or transition rule&gt;</p>
+<p>LOOP &lt;steps a..b&gt; UNTIL &lt;exit condition&gt; # optional</p>
+<p>CALL &lt;Stack Name&gt;(&lt;smaller scope&gt;) # optional</p>
+<p>ON FAIL -&gt; &lt;Recovery Spell or Recovery Stack&gt; # optional</p>
+<p>EXIT: &lt;success condition&gt;</p></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+
+### Useful control operators:
+
+| **Operator** | **Meaning** | **Typical use** |
+|----|----|----|
+| **-\>** | Then / hand off | Move from one spell to the next after the stated artifact is produced. |
+| **\[guard\]** | Gate before advance | Require tests, approval, parity, or threshold checks before the next step. |
+| **LOOP** | Repeat substack | Use for debugging, optimization, repair, and parity verification. |
+| **CALL** | Recursive descent | Invoke the same stack on a smaller module, service, file, or decision scope. |
+| **ON FAIL** | Recovery path | Rollback, escalate, preserve evidence, or switch to a repair stack. |
+
+# V. The Laws of Stackcraft
+
+**1. Separate incompatible modes.** Do not ask the same spell to discover facts, design the solution, implement code, and certify safety all at once.
+
+**2. Make every handoff concrete.** A stack should pass artifacts, not vibes. Plans, diffs, traces, tests, and parity reports are better than vague summaries.
+
+**3. Name the gate between spells.** Every meaningful transition should say what authorizes the next step.
+
+**4. Verify before irreversible action.** Cutovers, deletes, merges, and releases should not happen on the same breath that invented them.
+
+**5. Loop on evidence, not on hope.** A repeated substack must name the metric or observation that tells you whether progress is real.
+
+**6. Recurse only when scope narrows.** If a recursive call is not moving to a smaller or simpler problem, it is not recursion; it is wandering.
+
+**7. Keep recovery nearby.** Risky stacks should define rollback, escalation, or evidence-preservation spells before anything goes wrong.
+
+**8. Version repeated stacks.** Once a choreography is reused, give it a name, a version, and a canonical seal.
+
+# VI. Canonical Forms
+
+Most practical stacks fall into a small set of recurring shapes.
+
+| **Form** | **Shape** | **Best for** | **Primary hazard** |
+|----|----|----|----|
+| **Linear** | A fixed queue of spells. | Release, onboarding, migration, checklists. | Hidden assumptions between steps. |
+| **Guarded** | A queue with explicit gates. | Risky actions, deploys, schema changes. | Skipping the gate under time pressure. |
+| **Branched** | A queue that chooses from a few next spells. | Triage, incident routing, support diagnosis. | Branch explosion. |
+| **Looped** | A repeated substack on the same scope. | Debugging, optimization, repair. | Infinite spin without measurable progress. |
+| **Recursive** | The same stack called on smaller scope. | Large refactors, subsystem design, tree search. | No base case or no scope reduction. |
+| **Macro-stack** | A stack made of named sub-stacks. | Feature delivery, incident programs, agentic workflows. | Process bloat. |
+
+<img src="media/image1.png" style="width:6.65in;height:3.22in" />
+
+*Figure 1. Canonical spell stack forms. Linear stacks dominate ordinary work. Looped and recursive forms are advanced but extremely powerful when their exit rules are explicit.*
+
+# VII. Looped Stacks and Recursive Stacks
+
+These two advanced forms are related but not identical. A loop revisits the same problem at the same level with improved evidence. Recursion descends into a smaller problem and then returns upward.
+
+| **Question** | **Looped stack** | **Recursive stack** |
+|----|----|----|
+| **What repeats?** | A substack on the same scope. | The whole stack on smaller scope. |
+| **What changes each pass?** | Evidence, metrics, patch candidate, test state. | Problem size, module boundary, search depth. |
+| **What ends it?** | A measurable exit condition or attempt budget. | A base case: small enough scope, solved leaf, or maximum depth. |
+| **Typical use** | Bug repair, performance tuning, backfill verification. | Large refactors, subsystem decomposition, agentic planning trees. |
+| **Failure mode** | Spin without progress. | Explode in depth or lose contract consistency. |
+
+The two can be combined. A recursive implementation stack may descend into smaller modules, while each leaf module uses a looped build-test-repair stack until its local verification passes.
+
+# VIII. Worked Spell Stacks
+
+The examples below are intentionally practical. Each one names the queue, the handoff logic, and the exit rule. These are not the only valid stacks, but they are strong default choreographies for common software work.
+
+## 1. Code Generation and Repair Loop
+
+Use when an AI system is helping write or modify software and you want generation to stay tied to real execution evidence.
+
+| **\#** | **Spell** | **Artifact and advance rule** |
+|:--:|----|----|
+| **1** | **Specify** | Emit a precise task statement, constraints, interfaces, and non-goals. Advance when the target is testable. |
+| **2** | **Draft** | Produce the smallest plausible implementation or patch. Advance when the code compiles in principle and names assumptions. |
+| **3** | **Run** | Execute build, tests, linters, or type checks. Advance when the actual failures are captured verbatim. |
+| **4** | **Diagnose** | Interpret failures using only the emitted evidence. Advance when the likely cause and repair surface are stated. |
+| **5** | **Repair** | Apply the smallest diff that addresses the diagnosed cause. Advance when the patch is explicit. |
+| **6** | **Verify** | Re-run checks and summarize residual risk. Advance when the exit condition holds. |
+
+**Loop rule:** Repeat steps 3 through 6 until the checks pass, the error surface stabilizes without progress, or the attempt budget is exhausted.
+
+**On fail:** Escalate with the full evidence bundle: spec, code diff, failing output, diagnostic notes, and unresolved assumptions.
+
+**Why it works:** It separates invention from judgment. The model is allowed to generate code, but only a later spell is allowed to interpret the results.
+
+## 2. Bug-Hunt Stack
+
+Use when a defect is real but the cause is not yet localized.
+
+| **\#** | **Spell** | **Artifact and advance rule** |
+|:--:|----|----|
+| **1** | **Reproduce** | Create or tighten a stable reproduction. Advance when the failure can be triggered on demand. |
+| **2** | **Localize** | Narrow the suspect surface to component, file, feature flag, or request path. Advance when the search field is smaller. |
+| **3** | **Instrument** | Add logging, traces, asserts, or counters. Advance when new evidence can distinguish hypotheses. |
+| **4** | **Hypothesize** | State the likely failure mechanism and the smallest repair surface. |
+| **5** | **Patch** | Apply the minimal change that addresses the current hypothesis. |
+| **6** | **Verify** | Confirm the defect is gone and run a regression sweep on neighboring behavior. |
+
+**Loop rule:** Repeat steps 2 through 6 until the bug is eliminated or the evidence stops improving.
+
+**On fail:** Escalate to a deeper diagnostic stack; preserve the reproduction, traces, and last rejected hypotheses.
+
+**Why it works:** The stack prevents the classic failure mode of patching before localization.
+
+## 3. Safe Refactor Stack
+
+Use when the code structure must improve without changing externally visible behavior.
+
+| **\#** | **Spell** | **Artifact and advance rule** |
+|:--:|----|----|
+| **1** | **Freeze invariants** | Name what must not change: API behavior, outputs, performance envelope, data semantics. |
+| **2** | **Characterize** | Write or collect tests that pin current behavior. |
+| **3** | **Reshape** | Extract, rename, split, or simplify structure. |
+| **4** | **Static verify** | Run type checks, linters, and architecture rules. |
+| **5** | **Behavior verify** | Run characterization tests and inspect semantic diffs. |
+| **6** | **Review** | Look for leaky abstractions, drift, or renamed confusion before merge. |
+
+**Loop rule:** Repeat steps 3 through 5 until the desired structure is reached without invariant breakage.
+
+**On fail:** Revert to the last green state and restate the invariants more precisely.
+
+**Why it works:** It puts behavioral contracts in front of structural ambition.
+
+## 4. Live Migration Stack
+
+Use when data, schemas, or infrastructure are changing in a live environment.
+
+| **\#** | **Spell** | **Artifact and advance rule** |
+|:--:|----|----|
+| **1** | **Inventory** | Map the moving parts, dependencies, rollback boundary, and blast radius. |
+| **2** | **Prepare rollback** | Take backups, snapshots, feature flags, or dual-read capability. Advance only when reversal is real. |
+| **3** | **Expand compatibly** | Add the new structure in a backward-compatible form. |
+| **4** | **Backfill** | Populate the new representation without cutting off the old one. |
+| **5** | **Compare parity** | Measure whether old and new paths agree on real traffic or replayed fixtures. |
+| **6** | **Cut over** | Switch reads or writes only after parity holds and rollback is live. |
+| **7** | **Observe** | Monitor errors, latency, drift, and rollback triggers during the live window. |
+| **8** | **Contract** | Remove old paths after the safety window closes. |
+
+**Loop rule:** Repeat parity checks and observation windows until confidence is sufficient for cutover and contraction.
+
+**On fail:** Rollback immediately using the prepared boundary; preserve divergence samples for the postmortem.
+
+**Why it works:** The stack forces reversibility to exist before forward motion becomes expensive.
+
+## 5. Release Gate Stack
+
+Use when a change set is already built and the question is whether it is ready to ship.
+
+| **\#** | **Spell** | **Artifact and advance rule** |
+|:--:|----|----|
+| **1** | **Assemble candidate** | Freeze the release artifact and the exact config that will ship. |
+| **2** | **Quality gate** | Run tests, static checks, dependency scans, and rollout prerequisites. |
+| **3** | **Stage deploy** | Ship to a staging or canary environment. |
+| **4** | **Observe** | Inspect metrics, logs, traces, dashboards, and user-critical flows. |
+| **5** | **Promote or rollback** | Advance to broad release only if the guard remains green. |
+
+**On fail:** Rollback the candidate and open a repair stack instead of arguing from hope.
+
+**Why it works:** This is the shortest stack in the set, but it is one of the most important because it resists shipping by narrative alone.
+
+## 6. Recursive Decomposition Stack
+
+Use when the task is too large for one spell or one session: a subsystem rewrite, a multi-package extraction, or an agentic planning tree. The trick is to recurse only while the scope is truly shrinking.
+
+<table>
+<colgroup>
+<col style="width: 100%" />
+</colgroup>
+<thead>
+<tr>
+<th><p>STACK Implement-Subsystem(scope)</p>
+<p>ENTER: scope is too large, risky, or entangled for a one-pass spell</p>
+<p>IF scope &lt;= base_case:</p>
+<p>CAST Design-Implement-Verify(scope)</p>
+<p>RETURN</p>
+<p>CAST Define-Contract(scope)</p>
+<p>CAST Split-Into-Children(scope)</p>
+<p>FOR child IN children(scope):</p>
+<p>CALL Implement-Subsystem(child)</p>
+<p>CAST Integrate(scope)</p>
+<p>CAST System-Verify(scope)</p>
+<p>EXIT: children are green and the parent contract still holds</p></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+
+Base case: a scope small enough to be understood, implemented, and verified in one bounded pass.
+
+Primary hazard: fake recursion. If each descent merely renames the same giant problem, the stack will grow without solving anything.
+
+Why it works: it lets one named choreography operate at several scales while preserving contracts at every boundary.
+
+## A higher-order example: macro-stacks
+
+Stacks can themselves be queued. A feature-delivery campaign, for example, can be modeled as:
+
+| Discovery Stack -\> Design Stack -\> Build Stack -\> Verification Stack -\> Release Stack |
+|----|
+
+That is a stack made of named sub-stacks rather than leaf spells. Once a team begins naming these macro-stacks, prompt practice starts to look less like ad hoc querying and more like versioned operational craft.
+
+# IX. Canonicalization, Seals, and Numbering for Stacks
+
+Because the grimoire already defines canonical forms for individual spells, spell stacks can inherit the same discipline.
+
+A practical stack seal should be derived from a canonical stack stream. The stream should include, in order: the stack name and version, the entry condition, the ordered spell seals, the transition operators and guards between them, the exit rule, and the recovery path.
+
+<table>
+<colgroup>
+<col style="width: 100%" />
+</colgroup>
+<thead>
+<tr>
+<th><p>Canonical stream example:</p>
+<p>STACK|CODE-REPAIR-LOOP|v1|ENTER:failing tests or precise spec|SPECIFY|THEN|DRAFT|THEN|RUN|THEN|DIAGNOSE|THEN|REPAIR|THEN|VERIFY|LOOP(3..6)|UNTIL:checks pass or budget exhausted|FAIL:escalate-with-evidence</p>
+<p>Formal sigil: Gödel-encode the canonical token stream.</p>
+<p>Working seal: derive a short digest from that same stream for everyday use.</p></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+
+This keeps the theory and the practice aligned. The formal sigil provides exactness; the working seal provides usability. The numbers themselves may become astronomical, which is expected. In ordinary use, teams should handle the short seal, the name, and the version. The important part is that stack identity is determined by ordered choreography, not just by a title.
+
+# X. Failure Modes of Stacks
+
+**Monolithic relapse.** A team names a stack but still hides most of the work in one bloated spell.
+
+**Invisible handoffs.** The next spell depends on information that was never emitted as an artifact.
+
+**Gate skipping.** A release, cutover, or merge advances without satisfying the stated guard.
+
+**Spin loops.** A loop repeats without a metric, a budget, or a way to tell whether progress occurred.
+
+**Infinite descent.** A recursive stack has no real base case or keeps re-creating the same scale of problem.
+
+**Process bloat.** A tiny task is forced through a heavyweight stack that costs more than it saves.
+
+**Seal drift.** The stack changes order or exit logic but keeps the old name and version, defeating reuse.
+
+# XI. Closing Note
+
+The single spell remains the elemental unit of software-operative language. The spell stack is the next layer up: the point where isolated prompts become repeatable craft.
+
+Once a sequence of casts is used again and again in stable order, it deserves a name. Once it has a name, it can be versioned. Once it is versioned, it can be taught, compared, sealed, and improved.
+
+That is the purpose of stacked spells. They let teams stop pretending that software work happens in one breath. They give shape to the real rhythm of engineering: discover, define, generate, test, repair, verify, release, recover.
+
+**Name the queue. Guard the transitions. Repeat only with evidence. Recurse only with a base case.**

@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Software Grimoire Lexicon House",
+  "type": "object",
+  "required": ["id", "name", "start", "end", "range", "expected_count"],
+  "properties": {
+    "id": {"type": "string"},
+    "name": {"type": "string"},
+    "start": {"type": "integer"},
+    "end": {"type": "integer"},
+    "range": {"type": "string", "pattern": "^[0-9]{4}-[0-9]{4}$"},
+    "expected_count": {"type": "integer"}
+  }
+}
+

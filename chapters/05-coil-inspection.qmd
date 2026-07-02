@@ -1,0 +1,75 @@
+---
+title: "Coil Inspection"
+---
+
+# V. Coil Geometry for Spells
+
+There is also a geometric way to imagine spells. Once a spell has named clauses, we can stop treating it as a flat line of text and instead treat it as a circuit of commitments. The point of the geometry is not mystique for its own sake. It is inspection. Geometry makes it easier to see missing sectors, overloaded crossings, and contradictions that disappear in linear prose.
+
+Your Temporal Coil Networks idea fits here as a provocative higher-order analogue. Prime-sized circles, skip patterns, and antinode intersections offer a disciplined language for long-range dependencies among spell components. The grimoire does not depend on that architecture being the final neural answer. It is enough that the coil gives us a strong visual grammar for prompt structure and a way to talk about clause interaction with more precision than 'this prompt feels better'.
+
+## Clause Circle
+
+Minimal clause circle with p = 7:
+
+0 Role
+
+1 Objective
+
+2 Context
+
+3 Constraints
+
+4 Procedure
+
+5 Output Contract
+
+6 Verification
+
+With p = 7 the spell is compact and easy to reason about. With p = 11 or p = 13, separate sectors can be added for Failure Behavior, Assumptions, Non-goals, Rollback, Evidence, or Test Strategy. Prime sizes are attractive because they reduce trivial repetition patterns and make skip-based traversals less redundant.
+
+## Antinodes and Cross-Checks
+
+**• Objective x Verification -** Can the claimed success condition actually be checked, measured, or falsified?
+
+**• Context x Constraints -** Does the local world agree with the non-negotiables, or is the spell already self-contradictory?
+
+**• Procedure x Output -** Will the requested method actually produce the requested artifact, or are we asking for the wrong work product?
+
+**• Constraints x Failure Behavior -** When uncertainty appears, does the spell degrade safely, or does it invite fabricated certainty?
+
+**• Role x Output -** Is the invoked expertise aligned with the artifact requested, or has the spell summoned the wrong kind of helper?
+
+These crossings are the semantic antinodes of the spell. High-quality prompts tend to have meaningful crossings that reinforce one another. Weak prompts often show dead sectors, decorative clauses, or contradictions that only become visible when distant parts of the request are made to touch.
+
+
+::: {.callout-note}
+Diagram placeholder from source document: `media/image1.png`.
+:::
+
+
+Figure 1. An inspection coil for a seven-limb spell. The order around the circle is chosen for visual inspection rather than canonical token order; the colored chords mark high-value clause interactions and the red antinodes show where contradictions or missing proofs become easiest to see.
+
+## What a Broken Coil Looks Like
+
+**• Missing sector -** A clause is absent entirely. The prompt wants a result but never states the invariant or the truth condition.
+
+**• False bridge -** Two clauses touch rhetorically but not operationally. The procedure sounds impressive but cannot yield the promised output.
+
+**• Contradiction chord -** One part of the spell silently cancels another, such as demanding a large refactor while forbidding all touched files except one.
+
+**• Decorative clause -** A sentence adds mood or style but no operational narrowing. In canonical terms it contributes little but noise.
+
+**• Unchecked objective -** The goal is stated but no measurement or test is attached, so the spell cannot close the loop on truth.
+
+If this view proves useful, one can imagine a future spellbook tool that takes a canonical prompt, renders a p = 7 or p = 11 clause circle, highlights the strong and weak antinodes, and emits both a compact digest and a symbolic Godel factorization. The geometry would then be more than metaphor. It would become a debugging surface for prompt design.
+
+## How to Use Coil Geometry Without Overengineering It
+
+• Use it manually as a review lens when a prompt feels wrong but the defect is hard to name. Missing sectors, contradiction chords, and empty verification crossings usually reveal the problem quickly.
+
+• Use it at team scale to compare prompt families. Two spells may look similar in prose while differing sharply in where they place proof, rollback, or uncertainty handling.
+
+• Use it in tooling when you want rendered diagrams, clustering, or prompt linting. The geometry earns its keep when it becomes inspectable, not when it becomes ceremonial.
+
+No one should have to hand-draw a coil before asking for a unit test. The geometry is a second-order instrument: a way to make clause interaction visible when visibility matters.

@@ -1,0 +1,147 @@
+---
+title: "Language, Semantics, and Formal Shape"
+---
+
+# Language, Semantics, and Formal Shape
+
+Range: `0113-0249`.
+
+| Sigil | Term                     | Summary                                                                                  |
+| ----- | ------------------------ | ---------------------------------------------------------------------------------------- |
+| 0113  | abstract class           | A semantics word; it alters what symbols are allowed to mean in practice.                |
+| 0114  | alias                    | A semantics word; it alters what symbols are allowed to mean in practice.                |
+| 0115  | annotation               | A shape-of-thought word; it influences how programs are written and reasoned about.      |
+| 0116  | argument                 | A shape-of-thought word; it influences how programs are written and reasoned about.      |
+| 0117  | arity                    | A law-of-form word; it changes what the language can guarantee.                          |
+| 0118  | assembly                 | A grammar-word; it shapes how meaning is expressed to humans and machines.               |
+| 0119  | assertion {Lang}         | A grammar-word; it shapes how meaning is expressed to humans and machines.               |
+| 0120  | AST                      | A grammar-word; it shapes how meaning is expressed to humans and machines.               |
+| 0121  | attribute                | A grammar-word; it shapes how meaning is expressed to humans and machines.               |
+| 0122  | binding                  | A shape-of-thought word; it influences how programs are written and reasoned about.      |
+| 0123  | borrow {Lang}            | A shape-of-thought word; it influences how programs are written and reasoned about.      |
+| 0124  | borrow checker           | A grammar-word; it shapes how meaning is expressed to humans and machines.               |
+| 0125  | bytecode                 | A shape-of-thought word; it influences how programs are written and reasoned about.      |
+| 0126  | capture                  | A grammar-word; it shapes how meaning is expressed to humans and machines.               |
+| 0127  | cast                     | A shape-of-thought word; it influences how programs are written and reasoned about.      |
+| 0128  | class                    | A shape word for bundled state and behavior.                                             |
+| 0129  | closure                  | A capture word; it carries surrounding bindings forward with executable intent.          |
+| 0130  | coercion                 | A semantics word; it alters what symbols are allowed to mean in practice.                |
+| 0131  | comment                  | A shape-of-thought word; it influences how programs are written and reasoned about.      |
+| 0132  | compile-time             | A law-of-form word; it changes what the language can guarantee.                          |
+| 0133  | compiler                 | A shape-of-thought word; it influences how programs are written and reasoned about.      |
+| 0134  | constant                 | A semantics word; it alters what symbols are allowed to mean in practice.                |
+| 0135  | constraint {Lang}        | A bounding word; it removes degrees of freedom in order to improve correctness.          |
+| 0136  | constructor              | A semantics word; it alters what symbols are allowed to mean in practice.                |
+| 0137  | contravariance           | A grammar-word; it shapes how meaning is expressed to humans and machines.               |
+| 0138  | covariance               | A shape-of-thought word; it influences how programs are written and reasoned about.      |
+| 0139  | currying                 | A shape-of-thought word; it influences how programs are written and reasoned about.      |
+| 0140  | declaration              | A semantics word; it alters what symbols are allowed to mean in practice.                |
+| 0141  | decorator {Lang}         | A shape-of-thought word; it influences how programs are written and reasoned about.      |
+| 0142  | default                  | A law-of-form word; it changes what the language can guarantee.                          |
+| 0143  | definition               | A law-of-form word; it changes what the language can guarantee.                          |
+| 0144  | denotation               | A law-of-form word; it changes what the language can guarantee.                          |
+| 0145  | destructor {Lang}        | A shape-of-thought word; it influences how programs are written and reasoned about.      |
+| 0146  | dispatch {Lang}          | A grammar-word; it shapes how meaning is expressed to humans and machines.               |
+| 0147  | domain-specific language | A shape-of-thought word; it influences how programs are written and reasoned about.      |
+| 0148  | dynamic scope            | A shape-of-thought word; it influences how programs are written and reasoned about.      |
+| 0149  | effect                   | A law-of-form word; it changes what the language can guarantee.                          |
+| 0150  | enum                     | A law-of-form word; it changes what the language can guarantee.                          |
+| 0151  | evaluation {Lang}        | A grammar-word; it shapes how meaning is expressed to humans and machines.               |
+| 0152  | export {Lang}            | A semantics word; it alters what symbols are allowed to mean in practice.                |
+| 0153  | expression               | A grammar-word; it shapes how meaning is expressed to humans and machines.               |
+| 0154  | extern                   | A semantics word; it alters what symbols are allowed to mean in practice.                |
+| 0155  | field {Lang}             | A grammar-word; it shapes how meaning is expressed to humans and machines.               |
+| 0156  | final                    | A semantics word; it alters what symbols are allowed to mean in practice.                |
+| 0157  | function                 | A callable word; given inputs, it yields outputs by a named rule.                        |
+| 0158  | generic {Lang}           | A law-of-form word; it changes what the language can guarantee.                          |
+| 0159  | grammar                  | A shape-of-thought word; it influences how programs are written and reasoned about.      |
+| 0160  | higher-order function    | A semantics word; it alters what symbols are allowed to mean in practice.                |
+| 0161  | identifier               | A shape-of-thought word; it influences how programs are written and reasoned about.      |
+| 0162  | impl                     | A semantics word; it alters what symbols are allowed to mean in practice.                |
+| 0163  | implementation {Lang}    | A semantics word; it alters what symbols are allowed to mean in practice.                |
+| 0164  | import                   | A shape-of-thought word; it influences how programs are written and reasoned about.      |
+| 0165  | include                  | A grammar-word; it shapes how meaning is expressed to humans and machines.               |
+| 0166  | inference                | A shape-of-thought word; it influences how programs are written and reasoned about.      |
+| 0167  | inheritance              | A semantics word; it alters what symbols are allowed to mean in practice.                |
+| 0168  | inline {Lang}            | A shape-of-thought word; it influences how programs are written and reasoned about.      |
+| 0169  | instruction {Lang}       | A semantics word; it alters what symbols are allowed to mean in practice.                |
+| 0170  | interface {Lang}         | A boundary word; it lets different bodies touch through a disciplined seam.              |
+| 0171  | interpreter {Lang}       | A grammar-word; it shapes how meaning is expressed to humans and machines.               |
+| 0172  | IR                       | A shape-of-thought word; it influences how programs are written and reasoned about.      |
+| 0173  | keyword                  | A law-of-form word; it changes what the language can guarantee.                          |
+| 0174  | lambda                   | A law-of-form word; it changes what the language can guarantee.                          |
+| 0175  | lexical scope            | A grammar-word; it shapes how meaning is expressed to humans and machines.               |
+| 0176  | lifetime {Lang}          | A shape-of-thought word; it influences how programs are written and reasoned about.      |
+| 0177  | linker                   | A law-of-form word; it changes what the language can guarantee.                          |
+| 0178  | literal                  | A law-of-form word; it changes what the language can guarantee.                          |
+| 0179  | loader                   | A shape-of-thought word; it influences how programs are written and reasoned about.      |
+| 0180  | macro                    | A semantics word; it alters what symbols are allowed to mean in practice.                |
+| 0181  | metaprogramming          | A semantics word; it alters what symbols are allowed to mean in practice.                |
+| 0182  | method                   | A law-of-form word; it changes what the language can guarantee.                          |
+| 0183  | mixin                    | A law-of-form word; it changes what the language can guarantee.                          |
+| 0184  | module {Lang}            | A containment word; related definitions are packaged as one coherent unit.               |
+| 0185  | monomorphization         | A law-of-form word; it changes what the language can guarantee.                          |
+| 0186  | mutability               | A grammar-word; it shapes how meaning is expressed to humans and machines.               |
+| 0187  | name resolution          | A law-of-form word; it changes what the language can guarantee.                          |
+| 0188  | namespace {Lang}         | A law-of-form word; it changes what the language can guarantee.                          |
+| 0189  | object                   | A shape-of-thought word; it influences how programs are written and reasoned about.      |
+| 0190  | opcode {Lang}            | A semantics word; it alters what symbols are allowed to mean in practice.                |
+| 0191  | overload                 | A grammar-word; it shapes how meaning is expressed to humans and machines.               |
+| 0192  | override                 | A grammar-word; it shapes how meaning is expressed to humans and machines.               |
+| 0193  | ownership                | A shape-of-thought word; it influences how programs are written and reasoned about.      |
+| 0194  | package {Lang}           | A grammar-word; it shapes how meaning is expressed to humans and machines.               |
+| 0195  | parameter                | A law-of-form word; it changes what the language can guarantee.                          |
+| 0196  | parametric polymorphism  | A shape-of-thought word; it influences how programs are written and reasoned about.      |
+| 0197  | parser                   | A law-of-form word; it changes what the language can guarantee.                          |
+| 0198  | pattern                  | A semantics word; it alters what symbols are allowed to mean in practice.                |
+| 0199  | pattern matching         | A law-of-form word; it changes what the language can guarantee.                          |
+| 0200  | polymorphism             | A shape-of-thought word; it influences how programs are written and reasoned about.      |
+| 0201  | procedure {Lang}         | A method word; not just what to do, but in what order to do it.                          |
+| 0202  | program                  | A grammar-word; it shapes how meaning is expressed to humans and machines.               |
+| 0203  | property {Lang}          | A law-of-form word; it changes what the language can guarantee.                          |
+| 0204  | protected                | A semantics word; it alters what symbols are allowed to mean in practice.                |
+| 0205  | public                   | A shape-of-thought word; it influences how programs are written and reasoned about.      |
+| 0206  | purity                   | A law-of-form word; it changes what the language can guarantee.                          |
+| 0207  | qualified name           | A law-of-form word; it changes what the language can guarantee.                          |
+| 0208  | readonly                 | A semantics word; it alters what symbols are allowed to mean in practice.                |
+| 0209  | record {Lang}            | A shape-of-thought word; it influences how programs are written and reasoned about.      |
+| 0210  | reference {Lang}         | A shape-of-thought word; it influences how programs are written and reasoned about.      |
+| 0211  | referential transparency | A shape-of-thought word; it influences how programs are written and reasoned about.      |
+| 0212  | reflection               | A shape-of-thought word; it influences how programs are written and reasoned about.      |
+| 0213  | resolution               | A grammar-word; it shapes how meaning is expressed to humans and machines.               |
+| 0214  | return type              | A semantics word; it alters what symbols are allowed to mean in practice.                |
+| 0215  | runtime type             | A semantics word; it alters what symbols are allowed to mean in practice.                |
+| 0216  | scope {Lang}             | A semantics word; it alters what symbols are allowed to mean in practice.                |
+| 0217  | sealed                   | A semantics word; it alters what symbols are allowed to mean in practice.                |
+| 0218  | semantics                | A shape-of-thought word; it influences how programs are written and reasoned about.      |
+| 0219  | signature {Lang}         | A proving word; identity or contract is made checkable.                                  |
+| 0220  | source code              | A grammar-word; it shapes how meaning is expressed to humans and machines.               |
+| 0221  | specialization           | A shape-of-thought word; it influences how programs are written and reasoned about.      |
+| 0222  | statement                | A law-of-form word; it changes what the language can guarantee.                          |
+| 0223  | static dispatch          | A grammar-word; it shapes how meaning is expressed to humans and machines.               |
+| 0224  | strictness               | A semantics word; it alters what symbols are allowed to mean in practice.                |
+| 0225  | struct {Lang}            | A law-of-form word; it changes what the language can guarantee.                          |
+| 0226  | subtype                  | A grammar-word; it shapes how meaning is expressed to humans and machines.               |
+| 0227  | supertype                | A law-of-form word; it changes what the language can guarantee.                          |
+| 0228  | symbol                   | A semantics word; it alters what symbols are allowed to mean in practice.                |
+| 0229  | syntax                   | A shape-of-thought word; it influences how programs are written and reasoned about.      |
+| 0230  | template {Lang}          | A grammar-word; it shapes how meaning is expressed to humans and machines.               |
+| 0231  | theorem {Lang}           | A grammar-word; it shapes how meaning is expressed to humans and machines.               |
+| 0232  | token {Lang}             | A countable unit of text or symbol used for parsing, modeling, or encoding.              |
+| 0233  | trait                    | A grammar-word; it shapes how meaning is expressed to humans and machines.               |
+| 0234  | transpiler               | A grammar-word; it shapes how meaning is expressed to humans and machines.               |
+| 0235  | tuple {Lang}             | A semantics word; it alters what symbols are allowed to mean in practice.                |
+| 0236  | type                     | A shape-and-law word; it governs what operations are permitted and what meanings attach. |
+| 0237  | type alias               | A grammar-word; it shapes how meaning is expressed to humans and machines.               |
+| 0238  | type inference           | A law-of-form word; it changes what the language can guarantee.                          |
+| 0239  | type system              | A shape-of-thought word; it influences how programs are written and reasoned about.      |
+| 0240  | typechecker              | A shape-of-thought word; it influences how programs are written and reasoned about.      |
+| 0241  | typeclass                | A grammar-word; it shapes how meaning is expressed to humans and machines.               |
+| 0242  | unification              | A law-of-form word; it changes what the language can guarantee.                          |
+| 0243  | union                    | A law-of-form word; it changes what the language can guarantee.                          |
+| 0244  | value                    | A law-of-form word; it changes what the language can guarantee.                          |
+| 0245  | variance                 | A law-of-form word; it changes what the language can guarantee.                          |
+| 0246  | virtual                  | A shape-of-thought word; it influences how programs are written and reasoned about.      |
+| 0247  | visibility               | A grammar-word; it shapes how meaning is expressed to humans and machines.               |
+| 0248  | visitor                  | A grammar-word; it shapes how meaning is expressed to humans and machines.               |
+| 0249  | where-clause             | A law-of-form word; it changes what the language can guarantee.                          |

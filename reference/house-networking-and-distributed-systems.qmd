@@ -1,0 +1,126 @@
+---
+title: "Networking and Distributed Systems"
+---
+
+# Networking and Distributed Systems
+
+Range: `0771-0886`.
+
+| Sigil | Term                 | Summary                                                                                                                                |
+| ----- | -------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
+| 0771  | accept               | A distance-word; it carries intention across boundaries and unreliable space.                                                          |
+| 0772  | acknowledgment       | A distributed-systems word; it manages failure, ordering, or reachability across nodes.                                                |
+| 0773  | anycast              | A distributed-systems word; it manages failure, ordering, or reachability across nodes.                                                |
+| 0774  | API request          | A distributed-systems word; it manages failure, ordering, or reachability across nodes.                                                |
+| 0775  | API response         | A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.                                        |
+| 0776  | availability zone    | A distributed-systems word; it manages failure, ordering, or reachability across nodes.                                                |
+| 0777  | backoff {Net}        | A distance-word; it carries intention across boundaries and unreliable space.                                                          |
+| 0778  | backpressure         | Resistance pushed upstream when demand outruns capacity. Without it, overload spreads faster than truth.                               |
+| 0779  | bandwidth {Net}      | A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.                                        |
+| 0780  | bind                 | A fastening word; it joins a name, port, address, or variable to a concrete referent.                                                  |
+| 0781  | broadcast            | A distributed-systems word; it manages failure, ordering, or reachability across nodes.                                                |
+| 0782  | broker {Net}         | A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.                                        |
+| 0783  | CDN                  | A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.                                        |
+| 0784  | certificate {Net}    | A delegated-trust word; it lets one party assert another's identity by signed authority.                                               |
+| 0785  | checksum handoff     | A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.                                        |
+| 0786  | client {Net}         | A distributed-systems word; it manages failure, ordering, or reachability across nodes.                                                |
+| 0787  | client timeout       | A many-machine word; it coordinates transport, routing, or agreement beyond one process.                                               |
+| 0788  | cluster {Net}        | A many-body word; several machines are treated as one operational unit.                                                                |
+| 0789  | connect              | A many-machine word; it coordinates transport, routing, or agreement beyond one process.                                               |
+| 0790  | connection pool      | A many-machine word; it coordinates transport, routing, or agreement beyond one process.                                               |
+| 0791  | consensus            | A many-machine law-word; it creates shared order without a single unquestioned body.                                                   |
+| 0792  | consistency level    | A many-machine word; it coordinates transport, routing, or agreement beyond one process.                                               |
+| 0793  | control plane {Net}  | A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.                                        |
+| 0794  | CRC                  | A distance-word; it carries intention across boundaries and unreliable space.                                                          |
+| 0795  | datagram             | A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.                                        |
+| 0796  | deadline             | A many-machine word; it coordinates transport, routing, or agreement beyond one process.                                               |
+| 0797  | destination          | A many-machine word; it coordinates transport, routing, or agreement beyond one process.                                               |
+| 0798  | discovery            | A distance-word; it carries intention across boundaries and unreliable space.                                                          |
+| 0799  | DNS                  | A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.                                        |
+| 0800  | DNS record           | A distance-word; it carries intention across boundaries and unreliable space.                                                          |
+| 0801  | edge {Net}           | A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.                                        |
+| 0802  | egress               | A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.                                        |
+| 0803  | election             | A distributed-systems word; it manages failure, ordering, or reachability across nodes.                                                |
+| 0804  | endpoint             | A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.                                        |
+| 0805  | eventual consistency | Agreement postponed rather than denied. Shadow: stale reads treated as if they were fresh truth.                                       |
+| 0806  | failover             | A continuity word; authority or traffic moves when the current holder fails.                                                           |
+| 0807  | fan-out {Net}        | A many-machine word; it coordinates transport, routing, or agreement beyond one process.                                               |
+| 0808  | firewall             | A many-machine word; it coordinates transport, routing, or agreement beyond one process.                                               |
+| 0809  | follower             | A many-machine word; it coordinates transport, routing, or agreement beyond one process.                                               |
+| 0810  | forwarding           | A distributed-systems word; it manages failure, ordering, or reachability across nodes.                                                |
+| 0811  | frame {Net}          | A distributed-systems word; it manages failure, ordering, or reachability across nodes.                                                |
+| 0812  | gateway {Net}        | A many-machine word; it coordinates transport, routing, or agreement beyond one process.                                               |
+| 0813  | gossip               | A rumor-propagation word; state spreads by repeated local exchange.                                                                    |
+| 0814  | gRPC                 | A distance-word; it carries intention across boundaries and unreliable space.                                                          |
+| 0815  | handshake            | A mutual-recognition word used to establish parameters, trust, or shared readiness.                                                    |
+| 0816  | health check         | A distance-word; it carries intention across boundaries and unreliable space.                                                          |
+| 0817  | heartbeat {Net}      | A distance-word; it carries intention across boundaries and unreliable space.                                                          |
+| 0818  | hop                  | A distributed-systems word; it manages failure, ordering, or reachability across nodes.                                                |
+| 0819  | HTTP                 | A distance-word; it carries intention across boundaries and unreliable space.                                                          |
+| 0820  | HTTPS                | A distributed-systems word; it manages failure, ordering, or reachability across nodes.                                                |
+| 0821  | idempotency key      | A many-machine word; it coordinates transport, routing, or agreement beyond one process.                                               |
+| 0822  | ingress              | A distributed-systems word; it manages failure, ordering, or reachability across nodes.                                                |
+| 0823  | jitter {Net}         | A timing-noise word; repeated operations arrive with unstable spacing.                                                                 |
+| 0824  | keepalive            | A many-machine word; it coordinates transport, routing, or agreement beyond one process.                                               |
+| 0825  | latency              | The delay before useful work reaches the caller. Latency is what users feel even when throughput graphs look flattering.               |
+| 0826  | leader               | A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.                                        |
+| 0827  | lease                | A temporary-authority word; a resource is held only for a bounded duration.                                                            |
+| 0828  | load balancer        | A distance-word; it carries intention across boundaries and unreliable space.                                                          |
+| 0829  | loss                 | A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.                                        |
+| 0830  | mailbox              | A distance-word; it carries intention across boundaries and unreliable space.                                                          |
+| 0831  | membership           | A distance-word; it carries intention across boundaries and unreliable space.                                                          |
+| 0832  | mesh {Net}           | A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.                                        |
+| 0833  | message queue        | A many-machine word; it coordinates transport, routing, or agreement beyond one process.                                               |
+| 0834  | mTLS {Net}           | A distance-word; it carries intention across boundaries and unreliable space.                                                          |
+| 0835  | multicast            | A many-machine word; it coordinates transport, routing, or agreement beyond one process.                                               |
+| 0836  | NAT                  | A distributed-systems word; it manages failure, ordering, or reachability across nodes.                                                |
+| 0837  | network partition    | A distance-word; it carries intention across boundaries and unreliable space.                                                          |
+| 0838  | node {Net}           | A many-machine word; it coordinates transport, routing, or agreement beyond one process.                                               |
+| 0839  | origin               | A distance-word; it carries intention across boundaries and unreliable space.                                                          |
+| 0840  | packet               | A distance-word; it carries intention across boundaries and unreliable space.                                                          |
+| 0841  | packet loss {Net}    | A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.                                        |
+| 0842  | peer                 | A distance-word; it carries intention across boundaries and unreliable space.                                                          |
+| 0843  | pipeline depth       | A distributed-systems word; it manages failure, ordering, or reachability across nodes.                                                |
+| 0844  | port {Net}           | A contact word; a defined point of communication or adaptation.                                                                        |
+| 0845  | proxy {Net}          | A stand-in word; one body speaks or receives on behalf of another.                                                                     |
+| 0846  | publish-subscribe    | A many-machine word; it coordinates transport, routing, or agreement beyond one process.                                               |
+| 0847  | QUIC                 | A many-machine word; it coordinates transport, routing, or agreement beyond one process.                                               |
+| 0848  | quorum               | Not everyone must agree, but enough must. This word turns distributed action into a threshold question instead of a unanimous fantasy. |
+| 0849  | rate limit           | A distributed-systems word; it manages failure, ordering, or reachability across nodes.                                                |
+| 0850  | receiver window      | A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.                                        |
+| 0851  | redirect             | A many-machine word; it coordinates transport, routing, or agreement beyond one process.                                               |
+| 0852  | replica              | A mirroring word; state is maintained in more than one place.                                                                          |
+| 0853  | replication          | A many-machine word; it coordinates transport, routing, or agreement beyond one process.                                               |
+| 0854  | request              | A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.                                        |
+| 0855  | request coalescing   | A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.                                        |
+| 0856  | response             | A returning word; the answer carried back across an invoked boundary.                                                                  |
+| 0857  | retry {Net}          | A second-attempt word; failure does not end the ritual if policy allows another try.                                                   |
+| 0858  | reverse proxy        | A many-machine word; it coordinates transport, routing, or agreement beyond one process.                                               |
+| 0859  | route                | A path word; messages or requests are sent by a chosen way rather than all ways.                                                       |
+| 0860  | router {Net}         | A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.                                        |
+| 0861  | routing table        | A distance-word; it carries intention across boundaries and unreliable space.                                                          |
+| 0862  | RPC                  | A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.                                        |
+| 0863  | segment {Net}        | A distributed-systems word; it manages failure, ordering, or reachability across nodes.                                                |
+| 0864  | sequence number      | A many-machine word; it coordinates transport, routing, or agreement beyond one process.                                               |
+| 0865  | service discovery    | A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.                                        |
+| 0866  | service mesh {Net}   | A side-channel governance word for service-to-service traffic.                                                                         |
+| 0867  | shard {Net}          | A splitting word; one logical body is divided across multiple partitions.                                                              |
+| 0868  | sidecar              | A distributed-systems word; it manages failure, ordering, or reachability across nodes.                                                |
+| 0869  | sliding window       | A many-machine word; it coordinates transport, routing, or agreement beyond one process.                                               |
+| 0870  | socket {Net}         | A conduit word; a live endpoint for network communication.                                                                             |
+| 0871  | source               | A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.                                        |
+| 0872  | split-brain {Net}    | A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.                                        |
+| 0873  | stream {Net}         | A flow word; values arrive over time rather than all at once.                                                                          |
+| 0874  | strong consistency   | A sameness word across distance; readers do not see old worlds after new ones commit.                                                  |
+| 0875  | subscription         | A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.                                        |
+| 0876  | TCP                  | A distributed-systems word; it manages failure, ordering, or reachability across nodes.                                                |
+| 0877  | timeout {Net}        | A patience-bound word; after a duration, waiting is no longer allowed.                                                                 |
+| 0878  | TLS                  | A distributed-systems word; it manages failure, ordering, or reachability across nodes.                                                |
+| 0879  | topic                | A distributed-systems word; it manages failure, ordering, or reachability across nodes.                                                |
+| 0880  | tracing header       | A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.                                        |
+| 0881  | UDP                  | A packet-and-possibility word; it matters because the other side may be absent, slow, or stale.                                        |
+| 0882  | unicast              | A distributed-systems word; it manages failure, ordering, or reachability across nodes.                                                |
+| 0883  | virtual IP           | A distance-word; it carries intention across boundaries and unreliable space.                                                          |
+| 0884  | webhook              | A distributed-systems word; it manages failure, ordering, or reachability across nodes.                                                |
+| 0885  | WebSocket            | A distributed-systems word; it manages failure, ordering, or reachability across nodes.                                                |
+| 0886  | wire format          | A distance-word; it carries intention across boundaries and unreliable space.                                                          |

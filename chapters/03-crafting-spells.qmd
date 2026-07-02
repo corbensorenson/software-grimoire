@@ -1,0 +1,63 @@
+---
+title: "Crafting Spells"
+---
+
+# III. How to Craft Software Spells
+
+To craft a good software spell, begin by reducing ambiguity rather than by increasing drama. The best spells do not rely on ornate wording. They rely on bounded context, visible constraints, explicit artifacts, and a clear test for success. Good promptcraft is therefore closer to writing an excellent engineering ticket or review request than to improvising clever prose.
+
+A useful distinction is between exploration spells and execution spells. Exploration spells are for mapping the space: identify causes, outline options, compare designs, surface tradeoffs, list invariants, or ask questions. Execution spells are for producing a bounded artifact: write the patch, generate the migration, draft the tests, or emit the checklist. Confusing the two is a common source of disappointing results.
+
+## A Practical Spellcraft Workflow
+
+**• Name the artifact -** Say exactly what is being acted on: file, module, function, endpoint, query, table, migration, service, build step, alert, or design document.
+
+**• State the invariant -** Name what must stay true while the change happens: public behavior, schema shape, latency ceiling, auth boundary, ordering guarantee, or backward compatibility.
+
+**• State the desired change -** Name the transformation itself, not just the dissatisfaction: deduplicate, diagnose, refactor, batch, paginate, normalize, backfill, instrument, rollback, or harden.
+
+**• Bound the search space -** Call out dependency bans, time limits, file limits, version constraints, deployment rules, and other non-negotiables so the model does not solve the problem by stepping outside the acceptable world.
+
+**• Demand an output shape -** Ask for a diff, plan, table, checklist, RFC outline, set of tests, or incident timeline. Shape turns free response into deliverable work.
+
+**• Force verification -** Require tests, sample inputs, performance checks, risk notes, or commands to reproduce. Truth conditions are part of the spell, not an afterthought.
+
+**• Decide failure behavior -** Tell the model what to do when information is missing. Safe uncertainty beats confident invention every time.
+
+## Common Prompt Pathologies
+
+**• Vague target -** Words like better, cleaner, simpler, or more scalable do not specify what metric or invariant matters.
+
+**• Hidden constraints -** If API stability, compliance, or deployment rules are important but unstated, the model may optimize for the wrong world.
+
+**• Missing artifact boundary -** Without a stated file or subsystem boundary, the solution may sprawl across the codebase.
+
+**• No output contract -** A response can sound helpful while remaining unusable. Specify the artifact to receive.
+
+**• No truth test -** Without verification, the spell rewards plausibility rather than correctness.
+
+**• No fallback behavior -** When uncertainty is not handled explicitly, the model is tempted to fill gaps with invented specifics.
+
+Most bad prompts are not too short or too long. They are under-structured. The cure is not to add adjectives. The cure is to name the right nouns, the right invariants, and the right acceptance checks.
+
+## Practical Principles
+
+**• Separate facts from wishes -** Facts belong in Context and Constraints. Desired transformations belong in Objective. Mixing them creates unstable instructions.
+
+**• Ask for intermediate structure -** For nontrivial tasks, request assumptions, invariants, edge cases, or a short risk analysis before the final artifact.
+
+**• Prefer bounded patches -** A small correct change with tests is usually more valuable than a sweeping rewrite with unclear blast radius.
+
+**• Keep verification close to the request -** Do not rely on the model to infer what proof is expected. Name the tests or checks explicitly.
+
+**• Use pressure only where it matters -** A good spell is not maximalist. It is selective. Tighten the high-risk dimensions; leave harmless details loose.
+
+## A Tiny Repair Example
+
+WEAK:
+
+Design an API for billing.
+
+REPAIRED:
+
+Design a REST API for recurring subscription billing. Return the core resources, endpoints, idempotency strategy for payment retries, error model, and the migration risks if we later add invoice preview and proration.

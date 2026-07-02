@@ -1,0 +1,245 @@
+---
+title: "The Public Canon"
+---
+
+# VII. The Public Canon: Major Arcana and Proof by Difference
+
+The full lexicon is an exhaustive back-catalogue. Public use begins with a smaller canon: the words that repeatedly alter code review, architecture, incident response, migration planning, benchmarking, deployment, and AI-assisted engineering. The fifty entries below are not the only force-bearing runes. They are the ones most likely to change outcomes when named early and used precisely.
+
+These entries are deliberately richer than the compact master lexicon. Each gives a force description, a practical use, and a failure shadow. Read them as the major arcana of software spellcraft: not complete, but disproportionately world-running.
+
+## The Fifty World-Running Words
+
+The list is arranged in five clusters so the reader can move from design seams to durable truth, from runtime pressure to proof surfaces, and finally to authority and named failure shadows.
+
+## Boundaries, seams, and collaboration
+
+\[0001\] abstraction — A deliberate forgetting of detail so larger structure can be reasoned about without drowning in mechanism. Shadow: hiding the only failure that matters.
+
+\[0002\] adapter — A negotiated translator between unlike shapes. Use it when two systems must meet without infecting one another. Shadow: adapter jungles that preserve confusion rather than resolve it.
+
+\[0006\] API gateway — A threshold that centralizes entry, policy, and routing at the edge of a service world. Shadow: a convenience chokepoint that quietly becomes a monolith.
+
+\[0012\] boundary — The line that says where one responsibility ends and another begins. Shadow: porous edges that smear blame, ownership, and test scope.
+
+\[0013\] bounded context — A protection against semantic bleed: the same word may not mean the same thing in every subsystem. Shadow: false unification through shared names.
+
+\[0030\] coupling — The hidden tax paid when change in one place forces change elsewhere. Name it early if you want modularity to survive contact with reality.
+
+\[0034\] dependency inversion — Stable policy should not kneel before unstable detail. Shadow: concrete dependencies hard-wired into places that should remain portable.
+
+\[0055\] interface {Arch} — A disciplined seam that lets unlike bodies cooperate without swapping internal organs. Shadow: tight coupling and type bleed.
+
+\[0347\] schema {Data} — The declared shape of stored meaning. Shadow: drift, silent coercion, and backward-incompatible surprise.
+
+\[1152\] contract test — A promise checked at the seam between systems. Use it when mocks are too flattering and end-to-end tests are too blunt.
+
+## State, durable truth, and reversibility
+
+\[1172\] invariant — A law that must remain true while the rest of the system is allowed to move. If you cannot say the invariant, you probably do not yet understand the change.
+
+\[0926\] migration — Stored reality changing shape without being lost. Good migrations are staged, inspectable, and reversible long enough to discover what the data actually contains.
+
+\[0898\] commit {DB} — The moment a proposed change becomes durable history. Shadow: writing too early, before the world is actually ready to carry the new truth.
+
+\[0943\] rollback {DB} — Permission to retreat toward a previously trusted state. A system without rollback mistakes hope for safety.
+
+\[0805\] eventual consistency — Agreement postponed rather than denied. Shadow: stale reads treated as if they were fresh truth.
+
+\[0848\] quorum — Not everyone must agree, but enough must. This word turns distributed action into a threshold question instead of a unanimous fantasy.
+
+\[1461\] idempotent — The word that makes retries survivable: same request, same lasting effect. Shadow: duplicate charges, duplicate emails, and fear of recovery.
+
+\[1425\] atomic — No halfway state is allowed to leak across the line. Use it when partial success would be indistinguishable from corruption.
+
+\[1445\] deterministic — Given the same inputs, the same result should return. This is the antidote to drift, heisenbugs, and unreviewable behavior.
+
+\[1492\] serializable {Qual} — Concurrency forced to behave as though transactions happened in one clean order. Expensive when overused, indispensable when history must remain sane.
+
+## Runtime pressure, behavior, and operational physics
+
+\[1481\] pure — Same inputs, same output, no hidden state smuggled in from the side. Use it to shrink reasoning scope.
+
+\[1462\] immutable — Once written, this thing does not change in place. Immutability buys clarity, replayability, and safer sharing at the cost of update convenience.
+
+\[0576\] retry {Ctrl} — Failure does not necessarily end the ritual; policy may permit another attempt. Shadow: blind repetition against a broken precondition.
+
+\[0598\] timeout {Ctrl} — Waiting is not free and patience must have a boundary. A timeout is a contract with reality about how long uncertainty is allowed to persist.
+
+\[0825\] latency — The delay before useful work reaches the caller. Latency is what users feel even when throughput graphs look flattering.
+
+\[1281\] throughput — How much useful work the system can push through a narrow world in bounded time. Shadow: chasing bulk capacity while tail latency burns the user.
+
+\[0778\] backpressure — Resistance pushed upstream when demand outruns capacity. Without it, overload spreads faster than truth.
+
+\[0615\] cache {Run} — Keep likely things close so future cost falls. Shadow: stale truth delivered at machine speed.
+
+\[0684\] zero-copy {Run} — Data movement stripped down to the minimum number of duplications. Use it when the bottleneck is physical movement rather than arithmetic.
+
+\[1472\] memory-safe {Qual} — A promise that the system will not casually trespass across allocation boundaries. Shadow: leaks, corruption, and security bugs born from illegal touch.
+
+## Observation, release, and proof surfaces
+
+\[1180\] observability — Enough internal evidence exists that you can infer what the system is doing from the outside. Not logs alone: legible state under pressure.
+
+\[1202\] telemetry — Measurements leaving the system in a form other systems can compare, store, and alert on. Shadow: metric exhaust without explanatory power.
+
+\[1204\] trace {Proof} — A preserved path through execution. Use it when the question is not only what failed, but where the causal thread first bent.
+
+\[1146\] benchmark — A performance claim forced to meet measurement. Benchmarks are where speed rhetoric either cashes out or dies.
+
+\[1073\] canary — A deliberately limited release whose job is to discover whether production reality agrees with the story told in staging.
+
+\[1086\] deploy — The crossing from forge to world. Many good ideas become bad facts only after they are actually shipped.
+
+\[1088\] diff {Forge} — A visible account of what changed between one state and another. Good diffs make review local; bad diffs turn truth into fog.
+
+\[1186\] property-based test — Instead of checking one remembered example, ask whether a law survives many generated cases. Use it when you care more about the invariant than the anecdote.
+
+\[0974\] attestation — A proof that a thing is what it claims to be or was produced the way it claims. It matters most when trust cannot be assumed.
+
+\[1467\] linearizable — Every operation behaves as though it took effect at one real instant visible to all observers. Use it rarely, but mean it fully.
+
+## Authority, trust, and named shadows
+
+\[1017\] least privilege — Give only the authority required for the present act, no more. It is one of the simplest words for reducing future regret.
+
+\[0978\] authorization — After identity is known, what acts are permitted? Shadow: accidental omnipotence hidden behind a successful login.
+
+\[0976\] authenticate — Prove who is making the claim before deciding what the claimant may do. Shadow: trusting names that have not earned entrance.
+
+\[1050\] signature {Sec} — Identity or intent made checkable through cryptographic proof. Useful wherever trust must survive distance and replay.
+
+\[1007\] hash {Sec} — Arbitrary input reduced to a fixed fingerprint. Use it for identity, integrity, bucketing, and change detection; never mistake it for secrecy.
+
+\[1028\] policy — The declared rule by which a class of cases is decided. Good policy reduces arbitrary judgment; bad policy merely freezes confusion.
+
+\[1561\] race — An ordering curse: outcomes depend on timing you do not actually control. Name the race and the system becomes debuggable again.
+
+\[1546\] leak {Curse} — Something escapes the boundary that should have held it: memory, secrets, file descriptors, authority, abstraction, or time.
+
+\[1567\] schema drift — The stored world and the assumed world have silently stopped matching. This is how migrations keep hurting after everyone thinks they are done.
+
+\[1564\] retry storm — Recovery logic amplifying failure instead of containing it. Unguided retries can turn a partial outage into a self-made siege.
+
+## Proof by Difference
+
+A public methodology earns trust when it shows not only the polished theory but the practical delta. The three cases below are archetypal rather than model-specific. Their job is to show how structure changes the probable quality of the answer.
+
+## Case I. Refactor Without Breaking Behavior
+
+Weak request
+
+Clean up this Python module and make it nicer.
+
+Repaired spell
+
+ROLE: Act as a senior Python engineer performing behavior-preserving refactoring.
+
+OBJECTIVE: Remove duplication in the supplied module without changing public behavior.
+
+CONTEXT: The module is imported by two API handlers and one CLI entry point. Python 3.11. Existing tests cover only the happy path.
+
+CONSTRAINTS: Do not change public function names, parameter order, return types, or raised exception classes. Touch only this module and its tests.
+
+OUTPUT CONTRACT: Return a minimal patch plan, the proposed refactor, and tests that prove unchanged behavior.
+
+VERIFICATION: State the invariants first; then show before/after test cases for edge inputs.
+
+FAILURE BEHAVIOR: If the module boundary is too small for a safe refactor, say exactly what adjacent file must also move and why.
+
+Weak-cast answers tend to widen the blast radius: renamed public helpers, decorative rewrites, and claims of cleanliness without behavioral proof. The repaired spell forces the assistant to surface invariants, stay inside a bounded file set, and pay its debt in tests. Review becomes local because the spell demanded locality.
+
+## Case II. Online Migration Without Data Loss
+
+Weak request
+
+Migrate users.birthdate from string to date.
+
+Repaired spell
+
+ROLE: Act as a migration planner for a production PostgreSQL system.
+
+OBJECTIVE: Move users.birthdate from VARCHAR to DATE without data loss and without breaking reads or writes during rollout.
+
+CONTEXT: The table is large, writes continue during business hours, and some existing rows contain invalid or partial dates.
+
+CONSTRAINTS: Use an expand-and-contract strategy. Preserve rollback until data quality is validated. Assume two application deploys are allowed.
+
+OUTPUT CONTRACT: Return phased SQL and application steps: schema expand, dual write, backfill, validation queries, read switch, cleanup, rollback plan.
+
+VERIFICATION: Include checks for invalid rows, null behavior, row-count parity, and post-cutover consistency.
+
+FAILURE BEHAVIOR: If the data quality problem is too large for a safe automatic cast, stop at the quarantine step and describe the manual decision boundary.
+
+Weak-cast answers often collapse directly to ALTER COLUMN ... TYPE DATE and call the job done. The repaired spell produces a staged migration, names the dirty-data problem, preserves reversibility, and makes validation first-class. Instead of a single irreversible act, the result becomes a controlled campaign.
+
+## Case III. Incident Diagnosis Without Fake Certainty
+
+Weak request
+
+Why are requests timing out?
+
+Repaired spell
+
+ROLE: Act as a production incident analyst.
+
+OBJECTIVE: Narrow the most likely causes of the timeout spike and say what evidence would distinguish them.
+
+CONTEXT: A web API talks to Redis and PostgreSQL. Latency increased in the last hour. No code deploy is known. Logs are partial.
+
+CONSTRAINTS: Do not claim a root cause that is not supported by the supplied evidence. Distinguish hypothesis from fact.
+
+OUTPUT CONTRACT: Return ranked hypotheses, evidence already present, missing evidence, and the next three commands or dashboards to inspect.
+
+VERIFICATION: Every factual claim must cite the observed symptom that supports it or else be labeled hypothesis.
+
+FAILURE BEHAVIOR: If the evidence is insufficient, say insufficient and identify the minimum additional signals needed to move from speculation to diagnosis.
+
+Weak-cast answers guess. Strong-cast answers separate observation from hypothesis, preserve uncertainty, and still move the operator forward. The repaired spell does not magically know the root cause; it prevents counterfeit knowing while still producing useful next steps.
+
+## What the Delta Teaches
+
+• Good spellcraft does not guarantee a perfect answer; it reliably raises the floor by forcing the right nouns, invariants, and truth tests into the request.
+
+• The biggest gains usually come from three moves: narrowing the artifact boundary, naming the invariant, and specifying how correctness will be checked.
+
+• Failure behavior is not decorative. It is what prevents an assistant from converting missing context into counterfeit certainty.
+
+• A repaired spell is easier to review, version, compare, and automate because its obligations are explicit rather than implied.
+
+• The more expensive the real-world mistake, the more the spell should pay in verification and rollback language up front.
+
+This is the practical thesis of the whole grimoire. Spellcraft is not about sounding commanding, mystical, or verbose. It is about giving language enough structure that useful work can be distinguished from plausible theater.
+
+## How to Read the Master Lexicon
+
+The master lexicon is overcomplete by design. It includes near-synonyms, neighboring senses, and families of compounds because software work is unusually sensitive to nuance. The public canon above gives the richer entry form. The master lexicon below compresses for breadth, stable numbering, and scanability.
+
+Each entry is a word-sense with a sigil number, a house label, and an operative gloss. Read the section in four ways: as a technical reference, as a vocabulary source for constructing better prompts, as a map of guarantee words and failure shadows, and as the numbered substrate from which canonical spell encodings can be built. When a compact gloss feels too small, treat the Public Canon as the expanded commentary layer for the most repeatedly useful runes.
+
+**• Browse by house -** When framing a task, move through the relevant domains: architecture, data, runtime, testing, security, deployment, or human interface.
+
+**• Pair light with shadow -** Strong guarantees become more useful when read beside their corresponding pathologies: consistency beside drift, concurrency beside race, allocation beside leak, exposure beside exploit.
+
+**• Use sigils as stable handles -** When canonicalizing a spell, treat the lexicon entries as reusable numbered components rather than as ornamental vocabulary.
+
+**• Treat compounds as tuning runes -** Prefixes, suffixes, and compound modifiers often do real narrowing work. Behavior-preserving, bounded, streaming, append-only, best-effort, zero-downtime, and read-only are not stylistic fluff.
+
+If you later build a digital spellbook, this lexicon becomes the substrate: each word-sense becomes a node, each spell becomes a path through nodes, each token stream can be rendered into a Godel-style signature, and each clause circle can be visualized as a small coil of obligations and checks. For now, the main practical use is simpler: better words lead to better prompts, better designs, and better engineering conversations.
+
+## A Simple Browsing Method
+
+• Start with the canon - If the task is common and high-stakes, the Public Canon will usually supply the first few runes you need.
+
+• Descend by house - Once the core terms are named, browse the relevant houses for local detail: database guarantees, runtime behavior, security wards, or release mechanics.
+
+• Pair force with shadow - For every guarantee word you cast, ask what failure word should stand beside it. Idempotent wants duplicate side effects; migration wants drift; concurrency wants race.
+
+• Use compounds late - Add tuning runes such as bounded, append-only, read-only, zero-downtime, or behavior-preserving only after the larger nouns are correct.
+
+• Write the spell in layers - Begin with title and objective, then add constraints, output contract, verification, and failure behavior until the risk feels bounded.
+
+A quick working pattern is: choose one or two architecture words, one or two state words, one guarantee word, one failure shadow, and one verification word. That small bundle is often enough to turn a vague request into an inspectable spell.
+
+Example bundle: interface + schema + idempotent + schema drift + contract test.

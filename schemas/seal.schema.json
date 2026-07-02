@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Software Grimoire Seal",
+  "type": "object",
+  "required": ["human_title", "working_seal", "formal_sigil"],
+  "properties": {
+    "human_title": {"type": "string"},
+    "working_seal": {"type": "string"},
+    "formal_sigil": {
+      "type": "object",
+      "required": ["canonical_stream", "digest_algorithm", "digest"]
+    }
+  }
+}
+

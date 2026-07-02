@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Software Grimoire Stack",
+  "type": "object",
+  "required": ["id", "title", "version", "enter", "frames", "on_fail", "exit", "working_seal", "formal_sigil"],
+  "properties": {
+    "id": {"type": "string", "pattern": "^stack\\.[a-z0-9-]+\\.v[0-9]+$"},
+    "title": {"type": "string"},
+    "version": {"type": "integer", "minimum": 1},
+    "enter": {"type": "string"},
+    "frames": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["step", "spell", "artifact", "advance_when"]
+      }
+    },
+    "working_seal": {"type": "string", "pattern": "^stack://[a-z0-9-]+/[A-F0-9]{10}$"}
+  }
+}
+

@@ -1,0 +1,35 @@
+---
+title: "Recursive Decomposition Stack"
+---
+
+# Recursive Decomposition Stack
+
+**Working seal:** `stack://recursive-decomposition-stack/10A93D734F`
+
+**Enter:** Use when the task is too large for one spell or one session and scope can shrink recursively.
+
+| Step | Spell               | Artifact                     | Advance when                                 |
+| ---- | ------------------- | ---------------------------- | -------------------------------------------- |
+| 1    | Define contract     | Parent contract              | Boundary and obligations are clear           |
+| 2    | Split into children | Smaller scopes               | Every child is smaller than parent scope     |
+| 3    | Call child stack    | Solved child scope           | Child base case or child verification passes |
+| 4    | Integrate           | Integrated parent scope      | Children compose under parent contract       |
+| 5    | System verify       | Parent verification evidence | Children are green and parent contract holds |
+
+## Loop or Recursion
+
+```json
+{
+  "recursive": true,
+  "base_case": "Scope is small enough to understand, implement, and verify in one bounded pass"
+}
+```
+
+
+## On Fail
+
+Stop descent if child scopes do not shrink or contract consistency is lost.
+
+## Why It Works
+
+It lets one choreography operate at several scales while preserving contracts at every boundary.

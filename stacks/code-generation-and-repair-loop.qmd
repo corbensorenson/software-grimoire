@@ -1,0 +1,41 @@
+---
+title: "Code Generation and Repair Loop"
+---
+
+# Code Generation and Repair Loop
+
+**Working seal:** `stack://code-generation-and-repair-loop/D239381DD2`
+
+**Enter:** Use when an AI system is helping write or modify software and generation should stay tied to execution evidence.
+
+| Step | Spell    | Artifact                                                       | Advance when                                         |
+| ---- | -------- | -------------------------------------------------------------- | ---------------------------------------------------- |
+| 1    | Specify  | Precise task statement, constraints, interfaces, and non-goals | The target is testable                               |
+| 2    | Draft    | Smallest plausible implementation or patch                     | The code compiles in principle and names assumptions |
+| 3    | Run      | Build, test, lint, or type-check output                        | Actual failures are captured verbatim                |
+| 4    | Diagnose | Likely cause and repair surface                                | The diagnosis uses only emitted evidence             |
+| 5    | Repair   | Smallest diff addressing the diagnosed cause                   | The patch is explicit                                |
+| 6    | Verify   | Check results and residual risk                                | Checks pass or residual risk is clearly bounded      |
+
+## Loop or Recursion
+
+```json
+{
+  "steps": [
+    3,
+    4,
+    5,
+    6
+  ],
+  "until": "Checks pass, error surface stabilizes without progress, or attempt budget is exhausted"
+}
+```
+
+
+## On Fail
+
+Escalate with spec, code diff, failing output, diagnostic notes, and unresolved assumptions.
+
+## Why It Works
+
+It separates invention from judgment and binds repair to execution evidence.

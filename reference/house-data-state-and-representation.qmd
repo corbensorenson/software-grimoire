@@ -1,0 +1,132 @@
+---
+title: "Data, State, and Representation"
+---
+
+# Data, State, and Representation
+
+Range: `0250-0371`.
+
+| Sigil | Term                  | Summary                                                                                                   |
+| ----- | --------------------- | --------------------------------------------------------------------------------------------------------- |
+| 0250  | address               | A storage-word; it determines how meaning is carried through memory or transport.                         |
+| 0251  | aggregate state       | A matter-word; it names something that can be held, moved, or compared.                                   |
+| 0252  | array                 | A shape-of-state word; it influences what later transformations are easy or hard.                         |
+| 0253  | bag                   | A storage-word; it determines how meaning is carried through memory or transport.                         |
+| 0254  | binary blob           | A matter-word; it names something that can be held, moved, or compared.                                   |
+| 0255  | bit                   | A shape-of-state word; it influences what later transformations are easy or hard.                         |
+| 0256  | bitmap                | A representation-word; it gives state a vessel or surface.                                                |
+| 0257  | blob                  | A shape-of-state word; it influences what later transformations are easy or hard.                         |
+| 0258  | block {Data}          | A shape-of-state word; it influences what later transformations are easy or hard.                         |
+| 0259  | Bloom filter          | A shape-of-state word; it influences what later transformations are easy or hard.                         |
+| 0260  | body                  | A storage-word; it determines how meaning is carried through memory or transport.                         |
+| 0261  | book-keeping field    | A shape-of-state word; it influences what later transformations are easy or hard.                         |
+| 0262  | bucket {Data}         | A storage-word; it determines how meaning is carried through memory or transport.                         |
+| 0263  | buffer                | A storage-word; it determines how meaning is carried through memory or transport.                         |
+| 0264  | byte                  | A matter-word; it names something that can be held, moved, or compared.                                   |
+| 0265  | cache entry           | A storage-word; it determines how meaning is carried through memory or transport.                         |
+| 0266  | canonical form {Data} | A normalization word; many possible surfaces are forced into one agreed shape.                            |
+| 0267  | cell                  | A matter-word; it names something that can be held, moved, or compared.                                   |
+| 0268  | checksum              | A shape-of-state word; it influences what later transformations are easy or hard.                         |
+| 0269  | chunk                 | A representation-word; it gives state a vessel or surface.                                                |
+| 0270  | column {Data}         | A storage-word; it determines how meaning is carried through memory or transport.                         |
+| 0271  | composite value       | A matter-word; it names something that can be held, moved, or compared.                                   |
+| 0272  | config                | A storage-word; it determines how meaning is carried through memory or transport.                         |
+| 0273  | constant pool         | A matter-word; it names something that can be held, moved, or compared.                                   |
+| 0274  | content               | A shape-of-state word; it influences what later transformations are easy or hard.                         |
+| 0275  | context object        | A matter-word; it names something that can be held, moved, or compared.                                   |
+| 0276  | cookie                | A storage-word; it determines how meaning is carried through memory or transport.                         |
+| 0277  | corpus                | A matter-word; it names something that can be held, moved, or compared.                                   |
+| 0278  | counter {Data}        | A matter-word; it names something that can be held, moved, or compared.                                   |
+| 0279  | credential {Data}     | A shape-of-state word; it influences what later transformations are easy or hard.                         |
+| 0280  | cursor {Data}         | A storage-word; it determines how meaning is carried through memory or transport.                         |
+| 0281  | data frame            | A representation-word; it gives state a vessel or surface.                                                |
+| 0282  | data point            | A matter-word; it names something that can be held, moved, or compared.                                   |
+| 0283  | dataset               | A storage-word; it determines how meaning is carried through memory or transport.                         |
+| 0284  | datum                 | A shape-of-state word; it influences what later transformations are easy or hard.                         |
+| 0285  | delta                 | A storage-word; it determines how meaning is carried through memory or transport.                         |
+| 0286  | dense vector          | A storage-word; it determines how meaning is carried through memory or transport.                         |
+| 0287  | descriptor            | A shape-of-state word; it influences what later transformations are easy or hard.                         |
+| 0288  | dictionary            | A storage-word; it determines how meaning is carried through memory or transport.                         |
+| 0289  | digest {Data}         | A matter-word; it names something that can be held, moved, or compared.                                   |
+| 0290  | document              | A shape-of-state word; it influences what later transformations are easy or hard.                         |
+| 0291  | edge {Data}           | A representation-word; it gives state a vessel or surface.                                                |
+| 0292  | element               | A storage-word; it determines how meaning is carried through memory or transport.                         |
+| 0293  | embedding {Data}      | A closeness word; it places meaning into geometry.                                                        |
+| 0294  | entity                | A representation-word; it gives state a vessel or surface.                                                |
+| 0295  | enum value            | A storage-word; it determines how meaning is carried through memory or transport.                         |
+| 0296  | envelope              | A storage-word; it determines how meaning is carried through memory or transport.                         |
+| 0297  | event                 | A happening word; something occurred and may now be recorded, reacted to, or replayed.                    |
+| 0298  | event log             | A matter-word; it names something that can be held, moved, or compared.                                   |
+| 0299  | fact                  | A storage-word; it determines how meaning is carried through memory or transport.                         |
+| 0300  | feature               | A matter-word; it names something that can be held, moved, or compared.                                   |
+| 0301  | field {Data}          | A matter-word; it names something that can be held, moved, or compared.                                   |
+| 0302  | fingerprint           | A matter-word; it names something that can be held, moved, or compared.                                   |
+| 0303  | flag                  | A storage-word; it determines how meaning is carried through memory or transport.                         |
+| 0304  | frame {Data}          | A shape-of-state word; it influences what later transformations are easy or hard.                         |
+| 0305  | handle {Data}         | A matter-word; it names something that can be held, moved, or compared.                                   |
+| 0306  | hash {Data}           | A condensation word; arbitrary input becomes a fixed fingerprint.                                         |
+| 0307  | hash map              | A storage-word; it determines how meaning is carried through memory or transport.                         |
+| 0308  | header                | A representation-word; it gives state a vessel or surface.                                                |
+| 0309  | heap record           | A representation-word; it gives state a vessel or surface.                                                |
+| 0310  | index {Data}          | A retrieval word; it makes later access faster by storing an alternate path to data.                      |
+| 0311  | index key             | A representation-word; it gives state a vessel or surface.                                                |
+| 0312  | item                  | A shape-of-state word; it influences what later transformations are easy or hard.                         |
+| 0313  | iterator              | A storage-word; it determines how meaning is carried through memory or transport.                         |
+| 0314  | journal               | A shape-of-state word; it influences what later transformations are easy or hard.                         |
+| 0315  | key {Data}            | A representation-word; it gives state a vessel or surface.                                                |
+| 0316  | key-value pair        | A shape-of-state word; it influences what later transformations are easy or hard.                         |
+| 0317  | ledger                | A shape-of-state word; it influences what later transformations are easy or hard.                         |
+| 0318  | list                  | A matter-word; it names something that can be held, moved, or compared.                                   |
+| 0319  | literal value         | A storage-word; it determines how meaning is carried through memory or transport.                         |
+| 0320  | map {Data}            | A storage-word; it determines how meaning is carried through memory or transport.                         |
+| 0321  | matrix                | A representation-word; it gives state a vessel or surface.                                                |
+| 0322  | message               | A carrier word; intent or state is wrapped for transport between components.                              |
+| 0323  | metadata              | A representation-word; it gives state a vessel or surface.                                                |
+| 0324  | model {Data}          | A representative word; a simplified structure stands in for a larger reality.                             |
+| 0325  | multimap              | A representation-word; it gives state a vessel or surface.                                                |
+| 0326  | node {Data}           | A storage-word; it determines how meaning is carried through memory or transport.                         |
+| 0327  | null                  | A shape-of-state word; it influences what later transformations are easy or hard.                         |
+| 0328  | object state          | A matter-word; it names something that can be held, moved, or compared.                                   |
+| 0329  | offset                | A shape-of-state word; it influences what later transformations are easy or hard.                         |
+| 0330  | page {Data}           | A representation-word; it gives state a vessel or surface.                                                |
+| 0331  | pair                  | A matter-word; it names something that can be held, moved, or compared.                                   |
+| 0332  | payload               | A storage-word; it determines how meaning is carried through memory or transport.                         |
+| 0333  | pointer {Data}        | A location word; it does not hold the thing, but where the thing may be found.                            |
+| 0334  | pool                  | A storage-word; it determines how meaning is carried through memory or transport.                         |
+| 0335  | property {Data}       | A representation-word; it gives state a vessel or surface.                                                |
+| 0336  | queue element         | A shape-of-state word; it influences what later transformations are easy or hard.                         |
+| 0337  | range                 | A representation-word; it gives state a vessel or surface.                                                |
+| 0338  | record {Data}         | A shape-of-state word; it influences what later transformations are easy or hard.                         |
+| 0339  | reference {Data}      | A shape-of-state word; it influences what later transformations are easy or hard.                         |
+| 0340  | relation {Data}       | A storage-word; it determines how meaning is carried through memory or transport.                         |
+| 0341  | representation        | A shape-of-state word; it influences what later transformations are easy or hard.                         |
+| 0342  | resource              | A bounded-thing word; something that must be acquired, used, and released.                                |
+| 0343  | revision {Data}       | A shape-of-state word; it influences what later transformations are easy or hard.                         |
+| 0344  | ring buffer           | A storage-word; it determines how meaning is carried through memory or transport.                         |
+| 0345  | row {Data}            | A matter-word; it names something that can be held, moved, or compared.                                   |
+| 0346  | scalar                | A storage-word; it determines how meaning is carried through memory or transport.                         |
+| 0347  | schema {Data}         | The declared shape of stored meaning. Shadow: drift, silent coercion, and backward-incompatible surprise. |
+| 0348  | secret {Data}         | A guarded-value word meant to remain hidden except to the few who must know it.                           |
+| 0349  | segment {Data}        | A shape-of-state word; it influences what later transformations are easy or hard.                         |
+| 0350  | sequence              | A representation-word; it gives state a vessel or surface.                                                |
+| 0351  | series                | A shape-of-state word; it influences what later transformations are easy or hard.                         |
+| 0352  | session               | A matter-word; it names something that can be held, moved, or compared.                                   |
+| 0353  | set                   | A matter-word; it names something that can be held, moved, or compared.                                   |
+| 0354  | sketch                | A storage-word; it determines how meaning is carried through memory or transport.                         |
+| 0355  | slice                 | A matter-word; it names something that can be held, moved, or compared.                                   |
+| 0356  | snapshot              | A matter-word; it names something that can be held, moved, or compared.                                   |
+| 0357  | sparse vector         | A representation-word; it gives state a vessel or surface.                                                |
+| 0358  | stack item            | A representation-word; it gives state a vessel or surface.                                                |
+| 0359  | state                 | A condition word; what the system is like right now.                                                      |
+| 0360  | stream item           | A shape-of-state word; it influences what later transformations are easy or hard.                         |
+| 0361  | string                | A shape-of-state word; it influences what later transformations are easy or hard.                         |
+| 0362  | struct {Data}         | A representation-word; it gives state a vessel or surface.                                                |
+| 0363  | table {Data}          | A matter-word; it names something that can be held, moved, or compared.                                   |
+| 0364  | tensor                | A shape-of-state word; it influences what later transformations are easy or hard.                         |
+| 0365  | token {Data}          | A countable unit of text or symbol used for parsing, modeling, or encoding.                               |
+| 0366  | tree node             | A storage-word; it determines how meaning is carried through memory or transport.                         |
+| 0367  | trie                  | A matter-word; it names something that can be held, moved, or compared.                                   |
+| 0368  | tuple {Data}          | A storage-word; it determines how meaning is carried through memory or transport.                         |
+| 0369  | vector                | A shape-of-state word; it influences what later transformations are easy or hard.                         |
+| 0370  | view {Data}           | A shape-of-state word; it influences what later transformations are easy or hard.                         |
+| 0371  | window                | A matter-word; it names something that can be held, moved, or compared.                                   |

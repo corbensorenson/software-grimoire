@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Software Grimoire Spell",
+  "type": "object",
+  "required": [
+    "id",
+    "title",
+    "version",
+    "cast_level",
+    "role",
+    "objective",
+    "context",
+    "constraints",
+    "procedure",
+    "output_contract",
+    "verification",
+    "failure_behavior",
+    "working_seal",
+    "formal_sigil"
+  ],
+  "properties": {
+    "id": {"type": "string", "pattern": "^spell\\.[a-z0-9-]+\\.v[0-9]+$"},
+    "title": {"type": "string"},
+    "version": {"type": "integer", "minimum": 1},
+    "cast_level": {"enum": ["quick", "working", "full"]},
+    "status": {"type": "string"},
+    "use_when": {"type": "string"},
+    "working_seal": {"type": "string", "pattern": "^spell://[a-z0-9-]+/[A-F0-9]{10}$"}
+  }
+}
+

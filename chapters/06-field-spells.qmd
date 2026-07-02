@@ -1,0 +1,315 @@
+---
+title: "Field Spells"
+---
+
+# VI. Example Spells for AI-Assisted Software Engineering
+
+The example spells that follow are meant to be adapted rather than memorized. Their job is to show how software requests become more reliable when they explicitly name role, artifact, invariants, output shape, and truth conditions. Each spell can later be compressed, canonicalized, or translated into sigil form, but it is helpful to first see the structure in full prose.
+
+## How to Read and Adapt These Spells
+
+**• Keep the skeleton, swap the nouns -** The field structure is often more important than the exact phrasing. Replace the local artifact names, versions, or risk notes while preserving the underlying limbs.
+
+**• Change Objective before Procedure -** If the spell feels wrong, fix the desired outcome first. Procedure should serve the objective, not substitute for it.
+
+**• Tighten constraints as risk rises -** Production changes, security-sensitive work, migrations, and public APIs deserve stronger non-negotiables than low-risk exploratory analysis.
+
+**• Never drop verification on high-impact work -** The more the answer can touch reality, the more the spell should demand explicit proof, tests, or checks.
+
+**• Use failure behavior to control uncertainty -** When context may be incomplete, say so and tell the system how to proceed safely rather than leaving it to guess.
+
+When a spell feels too long, cut decoration before you cut structure. Remove redundancy, grandiose framing, and harmless adjectives first. Keep the nouns, invariants, and verification clauses that make the request safe and testable.
+
+## Spell of Safe Refactoring
+
+ROLE:
+
+Act as a senior Python engineer performing behavior-preserving refactoring.
+
+OBJECTIVE:
+
+Refactor the supplied module to reduce duplication and improve readability without changing public behavior.
+
+CONTEXT:
+
+Python 3.12. The module runs inside a web API process and is called on every request. Existing tests are incomplete.
+
+The function signatures are part of a stable public API.
+
+CONSTRAINTS:
+
+Do not add third-party dependencies. Do not change public function names, parameter order, or return schema.
+
+Preserve current logging side effects unless they are obviously duplicated. Keep the patch bounded to the supplied file unless a test file is requested.
+
+PROCEDURE:
+
+First identify the invariants that must remain true. Then list duplication or code-smell candidates.
+
+Propose the minimal refactor that removes the duplication. Explain tradeoffs briefly before showing code.
+
+OUTPUT CONTRACT:
+
+Return:
+
+1\. a short summary,
+
+2\. the invariants,
+
+3\. a unified diff,
+
+4\. the revised code,
+
+5\. a targeted test plan.
+
+VERIFICATION:
+
+Include edge cases for empty input, malformed input, Unicode content, and large input size.
+
+State why the refactor preserves behavior.
+
+FAILURE BEHAVIOR:
+
+If behavior cannot be inferred from the provided code, say exactly what is ambiguous and proceed with the safest minimal change.
+
+## Spell of Bug Diagnosis from Logs
+
+ROLE:
+
+Act as a production incident engineer diagnosing a backend failure.
+
+OBJECTIVE:
+
+Determine the most likely root causes of the supplied error logs and propose the shortest safe path to confirmation and mitigation.
+
+CONTEXT:
+
+The service is a stateless containerized API backed by PostgreSQL and Redis. Latency SLO is 250 ms p95.
+
+A recent deploy occurred within the last hour.
+
+CONSTRAINTS:
+
+Do not assume facts not present in the logs. Separate confirmed observations from hypotheses.
+
+Prefer mitigations that are reversible and low-risk. Mention monitoring to watch during mitigation.
+
+PROCEDURE:
+
+Extract the timeline, cluster repeated errors, identify likely failure domain, and rank hypotheses.
+
+For each hypothesis, give one confirming check and one mitigating action. Call out whether the problem looks like config, code, dependency, infrastructure, or data.
+
+OUTPUT CONTRACT:
+
+Return:
+
+1\. confirmed observations,
+
+2\. ranked hypotheses,
+
+3\. immediate mitigation options,
+
+4\. confirmation steps,
+
+5\. rollback criteria.
+
+VERIFICATION:
+
+Tie every claim to a concrete log line or absence of an expected line.
+
+FAILURE BEHAVIOR:
+
+If the logs are insufficient, say what additional evidence would most reduce uncertainty.
+
+## Spell of API Design
+
+ROLE:
+
+Act as a backend architect designing a public JSON API.
+
+OBJECTIVE:
+
+Design an API for the described resource model that is clean, versionable, secure, and observable.
+
+CONTEXT:
+
+Clients include web, mobile, and internal automation. The system uses OAuth-based authorization and PostgreSQL storage.
+
+Backward compatibility matters because mobile clients update slowly.
+
+CONSTRAINTS:
+
+Prefer boring, maintainable patterns over novelty. Include pagination, error schema, idempotency where appropriate,
+
+authorization notes, and migration considerations. Do not hand-wave failure modes.
+
+PROCEDURE:
+
+Start from the resource model and operations. Then define endpoints, request and response schemas,
+
+error codes, pagination, filtering, authorization checks, and observability requirements.
+
+OUTPUT CONTRACT:
+
+Return:
+
+1\. resource model,
+
+2\. endpoint table,
+
+3\. example requests and responses,
+
+4\. error format,
+
+5\. auth model,
+
+6\. migration and versioning notes.
+
+VERIFICATION:
+
+Call out edge cases, race conditions, and compatibility risks.
+
+FAILURE BEHAVIOR:
+
+If the resource model is underspecified, list the assumptions explicitly before designing.
+
+## Spell of Migration Without Data Loss
+
+ROLE:
+
+Act as a database migration engineer.
+
+OBJECTIVE:
+
+Plan a schema and data migration that preserves correctness, minimizes downtime, and has a clear rollback strategy.
+
+CONTEXT:
+
+PostgreSQL production database, high write volume, zero-downtime preference, mixed old and new application versions during rollout.
+
+CONSTRAINTS:
+
+Assume the table is large. Avoid long exclusive locks where possible. Preserve existing reads during rollout.
+
+Include backfill strategy, validation queries, and rollback conditions.
+
+PROCEDURE:
+
+Describe the expand-and-contract sequence. Note schema changes, dual-write or compatibility windows,
+
+backfill steps, validation queries, cutover criteria, and cleanup.
+
+OUTPUT CONTRACT:
+
+Return:
+
+1\. migration phases,
+
+2\. SQL or pseudo-SQL snippets,
+
+3\. application changes required,
+
+4\. validation checklist,
+
+5\. rollback plan.
+
+VERIFICATION:
+
+State how to verify row counts, nullability, foreign-key integrity, and read/write correctness at each phase.
+
+FAILURE BEHAVIOR:
+
+If downtime or lock risk cannot be avoided, say so explicitly and estimate where the risk concentrates.
+
+## Spell of Test Generation
+
+ROLE:
+
+Act as a meticulous test engineer.
+
+OBJECTIVE:
+
+Generate a focused test suite for the supplied function or module that captures intended behavior and important edge cases.
+
+CONTEXT:
+
+The code may be partially undocumented. Existing examples, docstrings, and type hints are the primary clues to behavior.
+
+CONSTRAINTS:
+
+Prefer high-signal tests over high-count tests. Group tests by behavior. Avoid mocking unless interaction boundaries require it.
+
+Call out assumptions whenever behavior is not explicit.
+
+PROCEDURE:
+
+Infer invariants, enumerate edge cases, identify boundary values, and generate tests that make hidden assumptions visible.
+
+OUTPUT CONTRACT:
+
+Return:
+
+1\. inferred behaviors,
+
+2\. missing-behavior ambiguities,
+
+3\. the test file,
+
+4\. a short rationale for each test group.
+
+VERIFICATION:
+
+Include nominal cases, boundary cases, error cases, and one regression-style case if appropriate.
+
+FAILURE BEHAVIOR:
+
+If the code is too ambiguous for faithful tests, write characterization tests and say that you are doing so.
+
+## Spell of Performance Tuning
+
+ROLE:
+
+Act as a performance engineer.
+
+OBJECTIVE:
+
+Identify the most likely causes of latency or throughput loss in the supplied code or system description and propose optimizations ranked by expected benefit versus risk.
+
+CONTEXT:
+
+The service has a strict latency budget and runs on commodity cloud hardware. A profiler or benchmark may or may not be available.
+
+CONSTRAINTS:
+
+Do not recommend micro-optimizations before addressing algorithmic or I/O-bound issues.
+
+Separate CPU, memory, allocation, database, and network effects. Mention measurement strategy.
+
+PROCEDURE:
+
+First classify the probable bottleneck class. Then propose measurement steps. After that, list optimization candidates in descending order of expected value.
+
+Note when an optimization trades readability, portability, or safety for speed.
+
+OUTPUT CONTRACT:
+
+Return:
+
+1\. bottleneck hypotheses,
+
+2\. what to measure,
+
+3\. optimization options ranked by expected payoff,
+
+4\. benchmark plan,
+
+5\. rollback criteria.
+
+VERIFICATION:
+
+State how success will be measured and what regression risks need to be watched.
+
+FAILURE BEHAVIOR:
+
+If evidence is insufficient, say what profile, trace, or benchmark data would most improve the recommendation.

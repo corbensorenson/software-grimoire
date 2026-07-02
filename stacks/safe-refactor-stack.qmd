@@ -1,0 +1,40 @@
+---
+title: "Safe Refactor Stack"
+---
+
+# Safe Refactor Stack
+
+**Working seal:** `stack://safe-refactor-stack/FFFD7C5D32`
+
+**Enter:** Use when structure must improve without changing externally visible behavior.
+
+| Step | Spell             | Artifact                                  | Advance when                                              |
+| ---- | ----------------- | ----------------------------------------- | --------------------------------------------------------- |
+| 1    | Freeze invariants | Behavior and data contracts               | What must not change is named                             |
+| 2    | Characterize      | Tests or characterization evidence        | Current behavior is pinned                                |
+| 3    | Reshape           | Structural patch                          | Structure improves without intentional behavior change    |
+| 4    | Static verify     | Type, lint, and architecture check output | Static checks pass                                        |
+| 5    | Behavior verify   | Characterization test output              | Behavior evidence stays green                             |
+| 6    | Review            | Human review notes                        | No leaky abstractions, drift, or renamed confusion remain |
+
+## Loop or Recursion
+
+```json
+{
+  "steps": [
+    3,
+    4,
+    5
+  ],
+  "until": "Desired structure is reached without invariant breakage"
+}
+```
+
+
+## On Fail
+
+Revert to the last green state and restate invariants more precisely.
+
+## Why It Works
+
+It puts behavioral contracts in front of structural ambition.

@@ -1,0 +1,28 @@
+---
+title: "Stack Grammar"
+---
+
+# Stack Grammar
+
+```text
+STACK <Name> v<Version>
+ENTER: <when this stack is appropriate>
+IN: <artifacts or context required>
+1. <Spell Name> [cast level]
+OUT: <artifact emitted>
+ADVANCE WHEN: <guard or transition rule>
+LOOP <steps a..b> UNTIL <exit condition>
+CALL <Stack Name>(<smaller scope>)
+ON FAIL -> <Recovery Spell or Recovery Stack>
+EXIT: <success condition>
+```
+
+Operators:
+
+| Operator | Meaning |
+|---|---|
+| `->` | Then / hand off |
+| `[guard]` | Gate before advance |
+| `LOOP` | Repeat substack |
+| `CALL` | Recursive descent |
+| `ON FAIL` | Recovery path |

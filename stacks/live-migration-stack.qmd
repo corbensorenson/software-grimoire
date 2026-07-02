@@ -1,0 +1,42 @@
+---
+title: "Live Migration Stack"
+---
+
+# Live Migration Stack
+
+**Working seal:** `stack://live-migration-stack/E1592AF20E`
+
+**Enter:** Use when data, schemas, or infrastructure are changing in a live environment.
+
+| Step | Spell             | Artifact                                  | Advance when                      |
+| ---- | ----------------- | ----------------------------------------- | --------------------------------- |
+| 1    | Inventory         | Dependency and blast-radius map           | Moving parts are known            |
+| 2    | Prepare rollback  | Backup, snapshot, flag, or dual-read path | Reversal is real                  |
+| 3    | Expand compatibly | Backward-compatible new structure         | Old paths still work              |
+| 4    | Backfill          | New representation                        | Old path is not cut off           |
+| 5    | Compare parity    | Parity report                             | Old and new paths agree           |
+| 6    | Cut over          | Read or write switch                      | Parity holds and rollback is live |
+| 7    | Observe           | Live metrics and divergence samples       | Safety window remains stable      |
+| 8    | Contract          | Removed old paths                         | Safety window closes cleanly      |
+
+## Loop or Recursion
+
+```json
+{
+  "steps": [
+    5,
+    6,
+    7
+  ],
+  "until": "Confidence is sufficient for cutover and contraction"
+}
+```
+
+
+## On Fail
+
+Rollback immediately using the prepared boundary and preserve divergence samples.
+
+## Why It Works
+
+It forces reversibility to exist before forward motion becomes expensive.

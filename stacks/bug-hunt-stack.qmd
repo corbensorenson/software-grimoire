@@ -1,0 +1,42 @@
+---
+title: "Bug-Hunt Stack"
+---
+
+# Bug-Hunt Stack
+
+**Working seal:** `stack://bug-hunt-stack/0F28AE2008`
+
+**Enter:** Use when a defect is real but the cause is not yet localized.
+
+| Step | Spell       | Artifact                           | Advance when                                       |
+| ---- | ----------- | ---------------------------------- | -------------------------------------------------- |
+| 1    | Reproduce   | Stable reproduction                | The failure can be triggered on demand             |
+| 2    | Localize    | Smaller suspect surface            | The search field is smaller                        |
+| 3    | Instrument  | Logs, traces, asserts, or counters | New evidence can distinguish hypotheses            |
+| 4    | Hypothesize | Likely failure mechanism           | Repair surface is stated                           |
+| 5    | Patch       | Minimal change                     | Patch matches current hypothesis                   |
+| 6    | Verify      | Regression sweep                   | Defect is gone and neighboring behavior is checked |
+
+## Loop or Recursion
+
+```json
+{
+  "steps": [
+    2,
+    3,
+    4,
+    5,
+    6
+  ],
+  "until": "The bug is eliminated or evidence stops improving"
+}
+```
+
+
+## On Fail
+
+Escalate to a deeper diagnostic stack and preserve reproduction, traces, and rejected hypotheses.
+
+## Why It Works
+
+It prevents patching before localization.

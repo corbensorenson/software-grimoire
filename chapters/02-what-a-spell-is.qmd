@@ -1,0 +1,91 @@
+---
+title: "What a Spell Is"
+---
+
+# II. What a Spell Is
+
+A spell, as the term is used here, is a deliberately shaped instruction artifact. It need not be mystical and it need not be verbose. It only needs to be arranged so that an invoked actor - human or machine - can transform a bounded context into a bounded software result. A spell is successful when it reduces ambiguity at the exact points where ambiguity would otherwise generate the wrong work.
+
+A wish says, 'make this faster.' A specification says, 'reduce p95 latency below 80 ms without changing the external API.' A program embodies a complete executable procedure. A spell sits in the middle. It is more concrete than a wish, more situated than a pure specification, and more portable than a full implementation. It is the layer where modern software work is often negotiated.
+
+This is especially true in AI-assisted engineering. We ask models to review diffs, draft migrations, explain stack traces, write tests, propose API shapes, summarize incident data, or generate bounded patches. In every case the model performs better when the spell explicitly names the artifact, the objective, the constraints, the expected output shape, and the truth conditions under which the result will later be judged.
+
+A useful canonical definition is: Spell S = (Role, Objective, Context, Constraints, Procedure, Output Contract, Verification, Failure Behavior). A tiny spell may compress some limbs into short phrases. A risky spell should usually make each limb explicit.
+
+## The Eight Limbs of a Spell
+
+**• Role -** What kind of actor is being invoked? Senior backend engineer, migration planner, security reviewer, incident analyst, compiler tutor, test engineer, or architecture critic.
+
+**• Objective -** What outcome matters most? Not general helpfulness, but the primary transformation: preserve behavior, cut latency, diagnose cause, design a stable API, migrate safely, or generate tests.
+
+**• Context -** What local world is already true? Versions, architecture, runtime environment, current symptoms, existing files, performance characteristics, and constraints inherited from the surrounding system.
+
+**• Constraints -** What may not break? Public interfaces, dependency policy, latency budgets, security boundaries, rollout windows, file scope, team conventions, or compliance rules.
+
+**• Procedure -** How should the work proceed? Ask for staged analysis, invariants first, edge cases, tradeoffs, minimal patching, test strategy, rollback, or explicit assumptions.
+
+**• Output contract -** What shape must the answer take? Diff, code block, test file, incident timeline, RFC outline, migration plan, checklist, table, or short recommendation memo.
+
+**• Verification -** How will truth be checked? Unit tests, invariants, sample inputs, reproducible commands, schema checks, performance measurements, or security review criteria.
+
+**• Failure behavior -** What should happen if context is missing or contradictory? Ask for assumptions, refuse unsafe changes, propose the smallest safe next step, or return a questions-first response.
+
+These limbs can be collapsed for tiny tasks, but every omitted limb tends to reappear somewhere as risk. If Role is missing, the assistant may reason from the wrong frame. If Constraints are missing, it may optimize the wrong variable. If Verification is missing, it may produce output that is fluent but ungrounded. If Failure Behavior is missing, it may invent facts rather than surface uncertainty.
+
+## Cast Levels and Minimum Adequate Ritual
+
+The eight-limb form is the complete anatomy of a spell, not a demand that every request be ceremonial. Public release version 3 therefore distinguishes three cast levels. The theory stays whole; the daily burden scales with risk.
+
+• Quick cast - ROLE \| OBJECTIVE \| CONTEXT \| VERIFY. Use this for explanation, review, drafting, and low-risk bounded tasks where the artifact is small and the blast radius is local.
+
+• Working cast - ROLE \| OBJECTIVE \| CONTEXT \| CONSTRAINTS \| OUTPUT \| VERIFY. This is the daily engineering form. It is usually enough for code edits, test writing, API sketches, benchmarking requests, and design comparison.
+
+• Full ritual - ROLE \| OBJECTIVE \| CONTEXT \| CONSTRAINTS \| PROCEDURE \| OUTPUT \| VERIFY \| FAILURE. Use this when the work can damage production reality, hide uncertainty, or automate across multiple steps: migrations, refactors, incidents, security-sensitive work, or agentic pipelines.
+
+A good rule is simple: the more a spell can change durable state, public behavior, or team time, the more limbs it should carry. Minimal form is a convenience. Full form is a safety device.
+
+## Canonical Spell Skeleton
+
+ROLE:
+
+\[what actor or expertise is being invoked\]
+
+OBJECTIVE:
+
+\[what outcome matters most\]
+
+CONTEXT:
+
+\[local facts, environment, versions, architecture, constraints already true\]
+
+CONSTRAINTS:
+
+\[non-negotiables, things that must not break, banned dependencies, limits\]
+
+PROCEDURE:
+
+\[how the work should proceed; ask for invariants, edge cases, tradeoffs, or staged reasoning\]
+
+OUTPUT CONTRACT:
+
+\[required output shape: diff, code, table, checklist, RFC outline, test plan, etc.\]
+
+VERIFICATION:
+
+\[how to check truth or correctness\]
+
+FAILURE BEHAVIOR:
+
+\[what to do if information is missing, ambiguous, or conflicting\]
+
+## From Wish to Spell
+
+The difference between a weak request and a strong spell is not theatricality. It is inspectability. A strong spell can be critiqued, versioned, canonicalized, debugged, and partly automated. A weak wish usually cannot. In practice, the shift often looks like moving from vague adjectives to concrete invariants and output shapes.
+
+WEAK:
+
+Optimize this endpoint and make the code cleaner.
+
+STRONGER:
+
+Reduce p95 latency on GET /accounts by at least 20 percent without changing the JSON schema or adding third-party dependencies. Return the likely bottlenecks, the minimal patch, and the tests needed to prove behavior is preserved.

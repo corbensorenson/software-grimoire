@@ -1,0 +1,86 @@
+---
+title: "Build, Tooling, Versioning, and Release"
+---
+
+# Build, Tooling, Versioning, and Release
+
+Range: `1064-1139`.
+
+| Sigil | Term                   | Summary                                                                                                                       |
+| ----- | ---------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| 1064  | artifact               | A history-and-release word; it determines how change is packaged and remembered.                                              |
+| 1065  | assemble {Forge}       | A forge-word; it turns work into artifact, revision, or release.                                                              |
+| 1066  | baseline {Forge}       | A workshop word; it shapes the rituals by which teams produce running systems.                                                |
+| 1067  | binary                 | A delivery word; it moves software through build, review, and deployment.                                                     |
+| 1068  | branch {Forge}         | A divergence word; execution or history splits into alternate paths.                                                          |
+| 1069  | build                  | A forge word; it turns source into artifact.                                                                                  |
+| 1070  | build cache            | A forge-word; it turns work into artifact, revision, or release.                                                              |
+| 1071  | build graph            | A history-and-release word; it determines how change is packaged and remembered.                                              |
+| 1072  | bundle                 | A history-and-release word; it determines how change is packaged and remembered.                                              |
+| 1073  | canary                 | A deliberately limited release whose job is to discover whether production reality agrees with the story told in staging.     |
+| 1074  | changelog              | A forge-word; it turns work into artifact, revision, or release.                                                              |
+| 1075  | cherry-pick            | A delivery word; it moves software through build, review, and deployment.                                                     |
+| 1076  | CI                     | A forge-word; it turns work into artifact, revision, or release.                                                              |
+| 1077  | codegen                | A delivery word; it moves software through build, review, and deployment.                                                     |
+| 1078  | commit {Forge}         | A sealing word; it makes a change part of durable history.                                                                    |
+| 1079  | compile {Forge}        | A transmutation word; it transforms one language into another fit for execution.                                              |
+| 1080  | container {Forge}      | A workshop word; it shapes the rituals by which teams produce running systems.                                                |
+| 1081  | container image        | A history-and-release word; it determines how change is packaged and remembered.                                              |
+| 1082  | continuous delivery    | A workshop word; it shapes the rituals by which teams produce running systems.                                                |
+| 1083  | continuous integration | A workshop word; it shapes the rituals by which teams produce running systems.                                                |
+| 1084  | dependency             | A workshop word; it shapes the rituals by which teams produce running systems.                                                |
+| 1085  | dependency graph       | A delivery word; it moves software through build, review, and deployment.                                                     |
+| 1086  | deploy                 | The crossing from forge to world. Many good ideas become bad facts only after they are actually shipped.                      |
+| 1087  | deployment ring        | A delivery word; it moves software through build, review, and deployment.                                                     |
+| 1088  | diff {Forge}           | A visible account of what changed between one state and another. Good diffs make review local; bad diffs turn truth into fog. |
+| 1089  | distribution           | A forge-word; it turns work into artifact, revision, or release.                                                              |
+| 1090  | Dockerfile             | A forge-word; it turns work into artifact, revision, or release.                                                              |
+| 1091  | downgrade              | A workshop word; it shapes the rituals by which teams produce running systems.                                                |
+| 1092  | environment            | A delivery word; it moves software through build, review, and deployment.                                                     |
+| 1093  | feature flag           | A history-and-release word; it determines how change is packaged and remembered.                                              |
+| 1094  | formatter              | A forge-word; it turns work into artifact, revision, or release.                                                              |
+| 1095  | hermetic build         | A delivery word; it moves software through build, review, and deployment.                                                     |
+| 1096  | install                | A workshop word; it shapes the rituals by which teams produce running systems.                                                |
+| 1097  | installer              | A history-and-release word; it determines how change is packaged and remembered.                                              |
+| 1098  | issue tracker          | A delivery word; it moves software through build, review, and deployment.                                                     |
+| 1099  | job runner             | A delivery word; it moves software through build, review, and deployment.                                                     |
+| 1100  | label {Forge}          | A forge-word; it turns work into artifact, revision, or release.                                                              |
+| 1101  | lint                   | A workshop word; it shapes the rituals by which teams produce running systems.                                                |
+| 1102  | lockfile               | A delivery word; it moves software through build, review, and deployment.                                                     |
+| 1103  | manifest               | A workshop word; it shapes the rituals by which teams produce running systems.                                                |
+| 1104  | merge {Forge}          | A reconciliation word; separate lines of change are brought back together.                                                    |
+| 1105  | migration script       | A workshop word; it shapes the rituals by which teams produce running systems.                                                |
+| 1106  | minifier               | A workshop word; it shapes the rituals by which teams produce running systems.                                                |
+| 1107  | package {Forge}        | A forge-word; it turns work into artifact, revision, or release.                                                              |
+| 1108  | package manager        | A workshop word; it shapes the rituals by which teams produce running systems.                                                |
+| 1109  | patch release          | A delivery word; it moves software through build, review, and deployment.                                                     |
+| 1110  | pin                    | A workshop word; it shapes the rituals by which teams produce running systems.                                                |
+| 1111  | pipeline {Forge}       | A procession word; work passes through ordered stages.                                                                        |
+| 1112  | precommit hook         | A delivery word; it moves software through build, review, and deployment.                                                     |
+| 1113  | preview environment    | A workshop word; it shapes the rituals by which teams produce running systems.                                                |
+| 1114  | promote                | A history-and-release word; it determines how change is packaged and remembered.                                              |
+| 1115  | publish                | A workshop word; it shapes the rituals by which teams produce running systems.                                                |
+| 1116  | rebase                 | A history-and-release word; it determines how change is packaged and remembered.                                              |
+| 1117  | release                | A delivery word; it moves software through build, review, and deployment.                                                     |
+| 1118  | release candidate      | A history-and-release word; it determines how change is packaged and remembered.                                              |
+| 1119  | repository {Forge}     | A custody word; an official place from which versions or entities are retrieved.                                              |
+| 1120  | reproducible build     | A forge-word; it turns work into artifact, revision, or release.                                                              |
+| 1121  | restore {Forge}        | A forge-word; it turns work into artifact, revision, or release.                                                              |
+| 1122  | revision {Forge}       | A workshop word; it shapes the rituals by which teams produce running systems.                                                |
+| 1123  | rollback {Forge}       | A reversal word; the system returns toward an earlier trusted state.                                                          |
+| 1124  | rollout                | A delivery word; it moves software through build, review, and deployment.                                                     |
+| 1125  | scaffold {Forge}       | A history-and-release word; it determines how change is packaged and remembered.                                              |
+| 1126  | semantic version       | A history-and-release word; it determines how change is packaged and remembered.                                              |
+| 1127  | ship                   | A forge-word; it turns work into artifact, revision, or release.                                                              |
+| 1128  | source map             | A workshop word; it shapes the rituals by which teams produce running systems.                                                |
+| 1129  | staging                | A delivery word; it moves software through build, review, and deployment.                                                     |
+| 1130  | static analysis        | A forge-word; it turns work into artifact, revision, or release.                                                              |
+| 1131  | tag                    | A forge-word; it turns work into artifact, revision, or release.                                                              |
+| 1132  | template {Forge}       | A forge-word; it turns work into artifact, revision, or release.                                                              |
+| 1133  | test gate              | A delivery word; it moves software through build, review, and deployment.                                                     |
+| 1134  | toolchain              | A delivery word; it moves software through build, review, and deployment.                                                     |
+| 1135  | transitive dependency  | A forge-word; it turns work into artifact, revision, or release.                                                              |
+| 1136  | upgrade                | A forge-word; it turns work into artifact, revision, or release.                                                              |
+| 1137  | version                | A chronology word; the same thing is named at different moments.                                                              |
+| 1138  | version pin            | A delivery word; it moves software through build, review, and deployment.                                                     |
+| 1139  | workspace              | A workshop word; it shapes the rituals by which teams produce running systems.                                                |

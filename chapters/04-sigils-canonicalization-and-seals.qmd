@@ -1,0 +1,77 @@
+---
+title: "Sigils, Canonicalization, and Seals"
+---
+
+# IV. Numeric Spellcraft: Sigils, Canonicalization, and Godel Numbers
+
+Reducing a spell to a number is completely workable, but only after the spell has been canonicalized. This condition matters. Godel encoding does not rescue ambiguity; it faithfully encodes whatever ordered token stream you give it. The difficult part is therefore not exponentiation but normalization.
+
+A practical canonical vocabulary needs at least four token families. First are structural tokens such as ROLE, OBJECTIVE, CONTEXT, and VERIFY. Second are lexicon tokens drawn from the houses of this grimoire: interface, idempotent, migrate, shard, rollback, and so on, resolved at the level of word-sense. Third are literals or out-of-vocabulary items such as file names, version numbers, endpoint paths, and schema names. Fourth are relation tokens that preserve order, separators, and scope where those affect interpretation.
+
+## Canonicalization Pipeline
+
+**• Normalize text -** Regularize whitespace, case policy, punctuation policy, and section labels so superficial formatting differences do not produce different signatures.
+
+**• Split by spell limbs -** Parse the artifact into named fields such as Role, Objective, Context, and so on. Field order becomes part of the canonical form.
+
+**• Resolve word-senses -** Map lexicon terms to their house-specific sigils where possible. Atomic{database} and atomic{cpu} must remain distinguishable if the ontology requires it.
+
+**• Encode literals -** Preserve concrete names, paths, versions, and other local tokens through a consistent literal scheme so the spell remains reconstructible.
+
+**• Serialize structure -** Emit the ordered token stream, including structural delimiters or field markers needed to recover the original normalized arrangement.
+
+**• Assign token ids -** Map each structural token, sigil token, and literal token to its canonical integer id.
+
+**• Construct the number -** Apply the prime-exponent scheme or an equivalent injective encoding to the ordered id sequence.
+
+This means the Godel number is not a universal fingerprint of abstract meaning. It is a fingerprint of one agreed canonical representation. Two prompts that feel semantically similar but canonicalize differently will receive different numbers. That is acceptable. Engineering usually needs disciplined sameness, not metaphysical sameness.
+
+Once a spell has been normalized into a token sequence T = (t1, t2, ..., tn), a Godel-style spell number can be defined as G(T) = product over i from 1 to n of p_i^(t_i + 1), where p_i is the i-th prime. The +1 prevents zero exponents and keeps every position visible in the factorization.
+
+The fully expanded decimal integer becomes enormous almost immediately. That is normal behavior, not a defect. In practice the useful forms are the canonical token stream, the sparse prime-exponent vector, and a short operational digest of the canonical form. The digest is the pocket sigil. The prime-exponent form is the rigorous underlying encoding.
+
+## What the Number Buys You
+
+**• Stable reference -** A spell can be named, cached, versioned, and discussed without relying on its full prose every time.
+
+**• Diffability -** Small changes in structure or sigils become visible as token edits or exponent changes rather than vague prose drift.
+
+**• Evaluation hooks -** Prompts used in tooling or experiments can be logged, compared, clustered, and replayed against model changes.
+
+**• Geometric rendering -** The same canonical structure can feed later visualizations such as clause circles, antinode diagrams, or prompt families.
+
+## Formal Sigils, Working Seals, and Human Titles
+
+For public use it helps to separate three layers that are easy to confuse. A human title is the browsable name of the spell: Safe refactor of account serializer. A working seal is the short practical handle a team can carry in commits, notebooks, dashboards, or a prompt registry. A formal sigil is the exact canonical token stream together with its injective numeric encoding.
+
+Humans should usually exchange titles and seals. Tooling should preserve formal sigils. The point of the mathematics is not to force engineers to hand-compute astronomical integers; it is to make prompt identity stable enough for versioning, replay, clustering, and audit.
+
+• Human title - memorable, descriptive, and optimized for browsing.
+
+• Working seal - short, portable, and easy to paste into issue trackers or commit messages; for example spell://safe-refactor/9H4X2Q.
+
+• Formal sigil - canonical token stream plus Godel-style encoding; exact, reproducible, and meant for tools rather than conversation.
+
+## Adoption Ladder
+
+• Manual practice - use the spell skeleton and a good title.
+
+• Team practice - add a working seal and keep canonical prompt text under version control.
+
+• Tooling practice - store the formal sigil, render the coil, and log evaluation results against model and prompt versions.
+
+The deep structure can be exact without demanding exactness from the human every time. That is the right relationship between theory and practice.
+
+## Toy Example
+
+Toy vocabulary: ROLE=1, OBJECTIVE=2, CONTEXT=3, CONSTRAINTS=4, OUTPUT=5, VERIFY=6, python=7, refactor=8, test=9, diff=10.
+
+Canonical token stream: \[ROLE, python, OBJECTIVE, refactor, CONTEXT, CONSTRAINTS, OUTPUT, diff, VERIFY, test\].
+
+Numeric stream: \[1, 7, 2, 8, 3, 4, 5, 10, 6, 9\].
+
+Godel-style signature: 2^(1+1) \* 3^(7+1) \* 5^(2+1) \* 7^(8+1) \* 11^(3+1) \* 13^(4+1) \* 17^(5+1) \* 19^(10+1) \* 23^(6+1) \* 29^(9+1).
+
+In tooling, this prime-exponent form is usually stored symbolically rather than expanded into decimal.
+
+Practical note: if you want one field-portable identifier for a spell, keep both forms: the canonical token stream for reconstruction and a short digest for transport; treat the Godel factorization as the lossless underlying signature.

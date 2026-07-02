@@ -1,0 +1,25 @@
+---
+title: "Release Gate Stack"
+---
+
+# Release Gate Stack
+
+**Working seal:** `stack://release-gate-stack/B694241159`
+
+**Enter:** Use when a change set is already built and the question is whether it is ready to ship.
+
+| Step | Spell               | Artifact                                                     | Advance when                                      |
+| ---- | ------------------- | ------------------------------------------------------------ | ------------------------------------------------- |
+| 1    | Assemble candidate  | Frozen release artifact and config                           | Candidate is exact                                |
+| 2    | Quality gate        | Tests, static checks, scans, and prerequisites               | Quality gate is green                             |
+| 3    | Stage deploy        | Staging or canary deployment                                 | Limited environment is live                       |
+| 4    | Observe             | Metrics, logs, traces, dashboards, and critical-flow results | Signals remain green                              |
+| 5    | Promote or rollback | Release decision                                             | Broad release happens only if guard remains green |
+
+## On Fail
+
+Rollback the candidate and open a repair stack instead of arguing from hope.
+
+## Why It Works
+
+It resists shipping by narrative alone.

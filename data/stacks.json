@@ -1,0 +1,414 @@
+[
+  {
+    "id": "stack.code-generation-and-repair-loop.v1",
+    "title": "Code Generation and Repair Loop",
+    "version": 1,
+    "status": "canonical",
+    "enter": "Use when an AI system is helping write or modify software and generation should stay tied to execution evidence.",
+    "inputs": [
+      "Task context",
+      "Relevant artifacts",
+      "Constraints",
+      "Verification expectations"
+    ],
+    "frames": [
+      {
+        "step": 1,
+        "spell": "Specify",
+        "artifact": "Precise task statement, constraints, interfaces, and non-goals",
+        "advance_when": "The target is testable"
+      },
+      {
+        "step": 2,
+        "spell": "Draft",
+        "artifact": "Smallest plausible implementation or patch",
+        "advance_when": "The code compiles in principle and names assumptions"
+      },
+      {
+        "step": 3,
+        "spell": "Run",
+        "artifact": "Build, test, lint, or type-check output",
+        "advance_when": "Actual failures are captured verbatim"
+      },
+      {
+        "step": 4,
+        "spell": "Diagnose",
+        "artifact": "Likely cause and repair surface",
+        "advance_when": "The diagnosis uses only emitted evidence"
+      },
+      {
+        "step": 5,
+        "spell": "Repair",
+        "artifact": "Smallest diff addressing the diagnosed cause",
+        "advance_when": "The patch is explicit"
+      },
+      {
+        "step": 6,
+        "spell": "Verify",
+        "artifact": "Check results and residual risk",
+        "advance_when": "Checks pass or residual risk is clearly bounded"
+      }
+    ],
+    "loop": {
+      "steps": [
+        3,
+        4,
+        5,
+        6
+      ],
+      "until": "Checks pass, error surface stabilizes without progress, or attempt budget is exhausted"
+    },
+    "on_fail": "Escalate with spec, code diff, failing output, diagnostic notes, and unresolved assumptions.",
+    "exit": "Checks pass or residual risk is clearly bounded",
+    "why_it_works": "It separates invention from judgment and binds repair to execution evidence.",
+    "source": "software_spellcraft_addendum_on_stacked_spells",
+    "human_title": "Code Generation and Repair Loop",
+    "working_seal": "stack://code-generation-and-repair-loop/D239381DD2",
+    "formal_sigil": {
+      "canonical_stream": "STACK|stack.code-generation-and-repair-loop.v1|v1|ENTER|Use when an AI system is helping write or modify software and generation should stay tied to execution evidence.|EXIT|Checks pass or residual risk is clearly bounded|FRAMES|[{\"advance_when\": \"The target is testable\", \"artifact\": \"Precise task statement, constraints, interfaces, and non-goals\", \"spell\": \"Specify\", \"step\": 1}, {\"advance_when\": \"The code compiles in principle and names assumptions\", \"artifact\": \"Smallest plausible implementation or patch\", \"spell\": \"Draft\", \"step\": 2}, {\"advance_when\": \"Actual failures are captured verbatim\", \"artifact\": \"Build, test, lint, or type-check output\", \"spell\": \"Run\", \"step\": 3}, {\"advance_when\": \"The diagnosis uses only emitted evidence\", \"artifact\": \"Likely cause and repair surface\", \"spell\": \"Diagnose\", \"step\": 4}, {\"advance_when\": \"The patch is explicit\", \"artifact\": \"Smallest diff addressing the diagnosed cause\", \"spell\": \"Repair\", \"step\": 5}, {\"advance_when\": \"Checks pass or residual risk is clearly bounded\", \"artifact\": \"Check results and residual risk\", \"spell\": \"Verify\", \"step\": 6}]|ID|stack.code-generation-and-repair-loop.v1|INPUTS|[\"Task context\", \"Relevant artifacts\", \"Constraints\", \"Verification expectations\"]|LOOP|{\"steps\": [3, 4, 5, 6], \"until\": \"Checks pass, error surface stabilizes without progress, or attempt budget is exhausted\"}|ON_FAIL|Escalate with spec, code diff, failing output, diagnostic notes, and unresolved assumptions.|SOURCE|software_spellcraft_addendum_on_stacked_spells|STATUS|canonical|TITLE|Code Generation and Repair Loop|VERSION|1|WHY_IT_WORKS|It separates invention from judgment and binds repair to execution evidence.",
+      "digest_algorithm": "sha256-hex-truncated-10",
+      "digest": "D239381DD2"
+    }
+  },
+  {
+    "id": "stack.bug-hunt-stack.v1",
+    "title": "Bug-Hunt Stack",
+    "version": 1,
+    "status": "canonical",
+    "enter": "Use when a defect is real but the cause is not yet localized.",
+    "inputs": [
+      "Task context",
+      "Relevant artifacts",
+      "Constraints",
+      "Verification expectations"
+    ],
+    "frames": [
+      {
+        "step": 1,
+        "spell": "Reproduce",
+        "artifact": "Stable reproduction",
+        "advance_when": "The failure can be triggered on demand"
+      },
+      {
+        "step": 2,
+        "spell": "Localize",
+        "artifact": "Smaller suspect surface",
+        "advance_when": "The search field is smaller"
+      },
+      {
+        "step": 3,
+        "spell": "Instrument",
+        "artifact": "Logs, traces, asserts, or counters",
+        "advance_when": "New evidence can distinguish hypotheses"
+      },
+      {
+        "step": 4,
+        "spell": "Hypothesize",
+        "artifact": "Likely failure mechanism",
+        "advance_when": "Repair surface is stated"
+      },
+      {
+        "step": 5,
+        "spell": "Patch",
+        "artifact": "Minimal change",
+        "advance_when": "Patch matches current hypothesis"
+      },
+      {
+        "step": 6,
+        "spell": "Verify",
+        "artifact": "Regression sweep",
+        "advance_when": "Defect is gone and neighboring behavior is checked"
+      }
+    ],
+    "loop": {
+      "steps": [
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "until": "The bug is eliminated or evidence stops improving"
+    },
+    "on_fail": "Escalate to a deeper diagnostic stack and preserve reproduction, traces, and rejected hypotheses.",
+    "exit": "Defect is gone and neighboring behavior is checked",
+    "why_it_works": "It prevents patching before localization.",
+    "source": "software_spellcraft_addendum_on_stacked_spells",
+    "human_title": "Bug-Hunt Stack",
+    "working_seal": "stack://bug-hunt-stack/0F28AE2008",
+    "formal_sigil": {
+      "canonical_stream": "STACK|stack.bug-hunt-stack.v1|v1|ENTER|Use when a defect is real but the cause is not yet localized.|EXIT|Defect is gone and neighboring behavior is checked|FRAMES|[{\"advance_when\": \"The failure can be triggered on demand\", \"artifact\": \"Stable reproduction\", \"spell\": \"Reproduce\", \"step\": 1}, {\"advance_when\": \"The search field is smaller\", \"artifact\": \"Smaller suspect surface\", \"spell\": \"Localize\", \"step\": 2}, {\"advance_when\": \"New evidence can distinguish hypotheses\", \"artifact\": \"Logs, traces, asserts, or counters\", \"spell\": \"Instrument\", \"step\": 3}, {\"advance_when\": \"Repair surface is stated\", \"artifact\": \"Likely failure mechanism\", \"spell\": \"Hypothesize\", \"step\": 4}, {\"advance_when\": \"Patch matches current hypothesis\", \"artifact\": \"Minimal change\", \"spell\": \"Patch\", \"step\": 5}, {\"advance_when\": \"Defect is gone and neighboring behavior is checked\", \"artifact\": \"Regression sweep\", \"spell\": \"Verify\", \"step\": 6}]|ID|stack.bug-hunt-stack.v1|INPUTS|[\"Task context\", \"Relevant artifacts\", \"Constraints\", \"Verification expectations\"]|LOOP|{\"steps\": [2, 3, 4, 5, 6], \"until\": \"The bug is eliminated or evidence stops improving\"}|ON_FAIL|Escalate to a deeper diagnostic stack and preserve reproduction, traces, and rejected hypotheses.|SOURCE|software_spellcraft_addendum_on_stacked_spells|STATUS|canonical|TITLE|Bug-Hunt Stack|VERSION|1|WHY_IT_WORKS|It prevents patching before localization.",
+      "digest_algorithm": "sha256-hex-truncated-10",
+      "digest": "0F28AE2008"
+    }
+  },
+  {
+    "id": "stack.safe-refactor-stack.v1",
+    "title": "Safe Refactor Stack",
+    "version": 1,
+    "status": "canonical",
+    "enter": "Use when structure must improve without changing externally visible behavior.",
+    "inputs": [
+      "Task context",
+      "Relevant artifacts",
+      "Constraints",
+      "Verification expectations"
+    ],
+    "frames": [
+      {
+        "step": 1,
+        "spell": "Freeze invariants",
+        "artifact": "Behavior and data contracts",
+        "advance_when": "What must not change is named"
+      },
+      {
+        "step": 2,
+        "spell": "Characterize",
+        "artifact": "Tests or characterization evidence",
+        "advance_when": "Current behavior is pinned"
+      },
+      {
+        "step": 3,
+        "spell": "Reshape",
+        "artifact": "Structural patch",
+        "advance_when": "Structure improves without intentional behavior change"
+      },
+      {
+        "step": 4,
+        "spell": "Static verify",
+        "artifact": "Type, lint, and architecture check output",
+        "advance_when": "Static checks pass"
+      },
+      {
+        "step": 5,
+        "spell": "Behavior verify",
+        "artifact": "Characterization test output",
+        "advance_when": "Behavior evidence stays green"
+      },
+      {
+        "step": 6,
+        "spell": "Review",
+        "artifact": "Human review notes",
+        "advance_when": "No leaky abstractions, drift, or renamed confusion remain"
+      }
+    ],
+    "loop": {
+      "steps": [
+        3,
+        4,
+        5
+      ],
+      "until": "Desired structure is reached without invariant breakage"
+    },
+    "on_fail": "Revert to the last green state and restate invariants more precisely.",
+    "exit": "No leaky abstractions, drift, or renamed confusion remain",
+    "why_it_works": "It puts behavioral contracts in front of structural ambition.",
+    "source": "software_spellcraft_addendum_on_stacked_spells",
+    "human_title": "Safe Refactor Stack",
+    "working_seal": "stack://safe-refactor-stack/FFFD7C5D32",
+    "formal_sigil": {
+      "canonical_stream": "STACK|stack.safe-refactor-stack.v1|v1|ENTER|Use when structure must improve without changing externally visible behavior.|EXIT|No leaky abstractions, drift, or renamed confusion remain|FRAMES|[{\"advance_when\": \"What must not change is named\", \"artifact\": \"Behavior and data contracts\", \"spell\": \"Freeze invariants\", \"step\": 1}, {\"advance_when\": \"Current behavior is pinned\", \"artifact\": \"Tests or characterization evidence\", \"spell\": \"Characterize\", \"step\": 2}, {\"advance_when\": \"Structure improves without intentional behavior change\", \"artifact\": \"Structural patch\", \"spell\": \"Reshape\", \"step\": 3}, {\"advance_when\": \"Static checks pass\", \"artifact\": \"Type, lint, and architecture check output\", \"spell\": \"Static verify\", \"step\": 4}, {\"advance_when\": \"Behavior evidence stays green\", \"artifact\": \"Characterization test output\", \"spell\": \"Behavior verify\", \"step\": 5}, {\"advance_when\": \"No leaky abstractions, drift, or renamed confusion remain\", \"artifact\": \"Human review notes\", \"spell\": \"Review\", \"step\": 6}]|ID|stack.safe-refactor-stack.v1|INPUTS|[\"Task context\", \"Relevant artifacts\", \"Constraints\", \"Verification expectations\"]|LOOP|{\"steps\": [3, 4, 5], \"until\": \"Desired structure is reached without invariant breakage\"}|ON_FAIL|Revert to the last green state and restate invariants more precisely.|SOURCE|software_spellcraft_addendum_on_stacked_spells|STATUS|canonical|TITLE|Safe Refactor Stack|VERSION|1|WHY_IT_WORKS|It puts behavioral contracts in front of structural ambition.",
+      "digest_algorithm": "sha256-hex-truncated-10",
+      "digest": "FFFD7C5D32"
+    }
+  },
+  {
+    "id": "stack.live-migration-stack.v1",
+    "title": "Live Migration Stack",
+    "version": 1,
+    "status": "canonical",
+    "enter": "Use when data, schemas, or infrastructure are changing in a live environment.",
+    "inputs": [
+      "Task context",
+      "Relevant artifacts",
+      "Constraints",
+      "Verification expectations"
+    ],
+    "frames": [
+      {
+        "step": 1,
+        "spell": "Inventory",
+        "artifact": "Dependency and blast-radius map",
+        "advance_when": "Moving parts are known"
+      },
+      {
+        "step": 2,
+        "spell": "Prepare rollback",
+        "artifact": "Backup, snapshot, flag, or dual-read path",
+        "advance_when": "Reversal is real"
+      },
+      {
+        "step": 3,
+        "spell": "Expand compatibly",
+        "artifact": "Backward-compatible new structure",
+        "advance_when": "Old paths still work"
+      },
+      {
+        "step": 4,
+        "spell": "Backfill",
+        "artifact": "New representation",
+        "advance_when": "Old path is not cut off"
+      },
+      {
+        "step": 5,
+        "spell": "Compare parity",
+        "artifact": "Parity report",
+        "advance_when": "Old and new paths agree"
+      },
+      {
+        "step": 6,
+        "spell": "Cut over",
+        "artifact": "Read or write switch",
+        "advance_when": "Parity holds and rollback is live"
+      },
+      {
+        "step": 7,
+        "spell": "Observe",
+        "artifact": "Live metrics and divergence samples",
+        "advance_when": "Safety window remains stable"
+      },
+      {
+        "step": 8,
+        "spell": "Contract",
+        "artifact": "Removed old paths",
+        "advance_when": "Safety window closes cleanly"
+      }
+    ],
+    "loop": {
+      "steps": [
+        5,
+        6,
+        7
+      ],
+      "until": "Confidence is sufficient for cutover and contraction"
+    },
+    "on_fail": "Rollback immediately using the prepared boundary and preserve divergence samples.",
+    "exit": "Safety window closes cleanly",
+    "why_it_works": "It forces reversibility to exist before forward motion becomes expensive.",
+    "source": "software_spellcraft_addendum_on_stacked_spells",
+    "human_title": "Live Migration Stack",
+    "working_seal": "stack://live-migration-stack/E1592AF20E",
+    "formal_sigil": {
+      "canonical_stream": "STACK|stack.live-migration-stack.v1|v1|ENTER|Use when data, schemas, or infrastructure are changing in a live environment.|EXIT|Safety window closes cleanly|FRAMES|[{\"advance_when\": \"Moving parts are known\", \"artifact\": \"Dependency and blast-radius map\", \"spell\": \"Inventory\", \"step\": 1}, {\"advance_when\": \"Reversal is real\", \"artifact\": \"Backup, snapshot, flag, or dual-read path\", \"spell\": \"Prepare rollback\", \"step\": 2}, {\"advance_when\": \"Old paths still work\", \"artifact\": \"Backward-compatible new structure\", \"spell\": \"Expand compatibly\", \"step\": 3}, {\"advance_when\": \"Old path is not cut off\", \"artifact\": \"New representation\", \"spell\": \"Backfill\", \"step\": 4}, {\"advance_when\": \"Old and new paths agree\", \"artifact\": \"Parity report\", \"spell\": \"Compare parity\", \"step\": 5}, {\"advance_when\": \"Parity holds and rollback is live\", \"artifact\": \"Read or write switch\", \"spell\": \"Cut over\", \"step\": 6}, {\"advance_when\": \"Safety window remains stable\", \"artifact\": \"Live metrics and divergence samples\", \"spell\": \"Observe\", \"step\": 7}, {\"advance_when\": \"Safety window closes cleanly\", \"artifact\": \"Removed old paths\", \"spell\": \"Contract\", \"step\": 8}]|ID|stack.live-migration-stack.v1|INPUTS|[\"Task context\", \"Relevant artifacts\", \"Constraints\", \"Verification expectations\"]|LOOP|{\"steps\": [5, 6, 7], \"until\": \"Confidence is sufficient for cutover and contraction\"}|ON_FAIL|Rollback immediately using the prepared boundary and preserve divergence samples.|SOURCE|software_spellcraft_addendum_on_stacked_spells|STATUS|canonical|TITLE|Live Migration Stack|VERSION|1|WHY_IT_WORKS|It forces reversibility to exist before forward motion becomes expensive.",
+      "digest_algorithm": "sha256-hex-truncated-10",
+      "digest": "E1592AF20E"
+    }
+  },
+  {
+    "id": "stack.release-gate-stack.v1",
+    "title": "Release Gate Stack",
+    "version": 1,
+    "status": "canonical",
+    "enter": "Use when a change set is already built and the question is whether it is ready to ship.",
+    "inputs": [
+      "Task context",
+      "Relevant artifacts",
+      "Constraints",
+      "Verification expectations"
+    ],
+    "frames": [
+      {
+        "step": 1,
+        "spell": "Assemble candidate",
+        "artifact": "Frozen release artifact and config",
+        "advance_when": "Candidate is exact"
+      },
+      {
+        "step": 2,
+        "spell": "Quality gate",
+        "artifact": "Tests, static checks, scans, and prerequisites",
+        "advance_when": "Quality gate is green"
+      },
+      {
+        "step": 3,
+        "spell": "Stage deploy",
+        "artifact": "Staging or canary deployment",
+        "advance_when": "Limited environment is live"
+      },
+      {
+        "step": 4,
+        "spell": "Observe",
+        "artifact": "Metrics, logs, traces, dashboards, and critical-flow results",
+        "advance_when": "Signals remain green"
+      },
+      {
+        "step": 5,
+        "spell": "Promote or rollback",
+        "artifact": "Release decision",
+        "advance_when": "Broad release happens only if guard remains green"
+      }
+    ],
+    "loop": null,
+    "on_fail": "Rollback the candidate and open a repair stack instead of arguing from hope.",
+    "exit": "Broad release happens only if guard remains green",
+    "why_it_works": "It resists shipping by narrative alone.",
+    "source": "software_spellcraft_addendum_on_stacked_spells",
+    "human_title": "Release Gate Stack",
+    "working_seal": "stack://release-gate-stack/B694241159",
+    "formal_sigil": {
+      "canonical_stream": "STACK|stack.release-gate-stack.v1|v1|ENTER|Use when a change set is already built and the question is whether it is ready to ship.|EXIT|Broad release happens only if guard remains green|FRAMES|[{\"advance_when\": \"Candidate is exact\", \"artifact\": \"Frozen release artifact and config\", \"spell\": \"Assemble candidate\", \"step\": 1}, {\"advance_when\": \"Quality gate is green\", \"artifact\": \"Tests, static checks, scans, and prerequisites\", \"spell\": \"Quality gate\", \"step\": 2}, {\"advance_when\": \"Limited environment is live\", \"artifact\": \"Staging or canary deployment\", \"spell\": \"Stage deploy\", \"step\": 3}, {\"advance_when\": \"Signals remain green\", \"artifact\": \"Metrics, logs, traces, dashboards, and critical-flow results\", \"spell\": \"Observe\", \"step\": 4}, {\"advance_when\": \"Broad release happens only if guard remains green\", \"artifact\": \"Release decision\", \"spell\": \"Promote or rollback\", \"step\": 5}]|ID|stack.release-gate-stack.v1|INPUTS|[\"Task context\", \"Relevant artifacts\", \"Constraints\", \"Verification expectations\"]|LOOP|None|ON_FAIL|Rollback the candidate and open a repair stack instead of arguing from hope.|SOURCE|software_spellcraft_addendum_on_stacked_spells|STATUS|canonical|TITLE|Release Gate Stack|VERSION|1|WHY_IT_WORKS|It resists shipping by narrative alone.",
+      "digest_algorithm": "sha256-hex-truncated-10",
+      "digest": "B694241159"
+    }
+  },
+  {
+    "id": "stack.recursive-decomposition-stack.v1",
+    "title": "Recursive Decomposition Stack",
+    "version": 1,
+    "status": "canonical",
+    "enter": "Use when the task is too large for one spell or one session and scope can shrink recursively.",
+    "inputs": [
+      "Task context",
+      "Relevant artifacts",
+      "Constraints",
+      "Verification expectations"
+    ],
+    "frames": [
+      {
+        "step": 1,
+        "spell": "Define contract",
+        "artifact": "Parent contract",
+        "advance_when": "Boundary and obligations are clear"
+      },
+      {
+        "step": 2,
+        "spell": "Split into children",
+        "artifact": "Smaller scopes",
+        "advance_when": "Every child is smaller than parent scope"
+      },
+      {
+        "step": 3,
+        "spell": "Call child stack",
+        "artifact": "Solved child scope",
+        "advance_when": "Child base case or child verification passes"
+      },
+      {
+        "step": 4,
+        "spell": "Integrate",
+        "artifact": "Integrated parent scope",
+        "advance_when": "Children compose under parent contract"
+      },
+      {
+        "step": 5,
+        "spell": "System verify",
+        "artifact": "Parent verification evidence",
+        "advance_when": "Children are green and parent contract holds"
+      }
+    ],
+    "loop": {
+      "recursive": true,
+      "base_case": "Scope is small enough to understand, implement, and verify in one bounded pass"
+    },
+    "on_fail": "Stop descent if child scopes do not shrink or contract consistency is lost.",
+    "exit": "Children are green and parent contract holds",
+    "why_it_works": "It lets one choreography operate at several scales while preserving contracts at every boundary.",
+    "source": "software_spellcraft_addendum_on_stacked_spells",
+    "human_title": "Recursive Decomposition Stack",
+    "working_seal": "stack://recursive-decomposition-stack/10A93D734F",
+    "formal_sigil": {
+      "canonical_stream": "STACK|stack.recursive-decomposition-stack.v1|v1|ENTER|Use when the task is too large for one spell or one session and scope can shrink recursively.|EXIT|Children are green and parent contract holds|FRAMES|[{\"advance_when\": \"Boundary and obligations are clear\", \"artifact\": \"Parent contract\", \"spell\": \"Define contract\", \"step\": 1}, {\"advance_when\": \"Every child is smaller than parent scope\", \"artifact\": \"Smaller scopes\", \"spell\": \"Split into children\", \"step\": 2}, {\"advance_when\": \"Child base case or child verification passes\", \"artifact\": \"Solved child scope\", \"spell\": \"Call child stack\", \"step\": 3}, {\"advance_when\": \"Children compose under parent contract\", \"artifact\": \"Integrated parent scope\", \"spell\": \"Integrate\", \"step\": 4}, {\"advance_when\": \"Children are green and parent contract holds\", \"artifact\": \"Parent verification evidence\", \"spell\": \"System verify\", \"step\": 5}]|ID|stack.recursive-decomposition-stack.v1|INPUTS|[\"Task context\", \"Relevant artifacts\", \"Constraints\", \"Verification expectations\"]|LOOP|{\"base_case\": \"Scope is small enough to understand, implement, and verify in one bounded pass\", \"recursive\": true}|ON_FAIL|Stop descent if child scopes do not shrink or contract consistency is lost.|SOURCE|software_spellcraft_addendum_on_stacked_spells|STATUS|canonical|TITLE|Recursive Decomposition Stack|VERSION|1|WHY_IT_WORKS|It lets one choreography operate at several scales while preserving contracts at every boundary.",
+      "digest_algorithm": "sha256-hex-truncated-10",
+      "digest": "10A93D734F"
+    }
+  }
+]
