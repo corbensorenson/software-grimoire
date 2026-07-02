@@ -66,8 +66,15 @@ def test_package_and_smoke_checks_pass() -> None:
     assert package["passed"] is True
     assert smoke["passed"] is True
     assert {"build wheel and sdist", "install wheel"} <= {step["name"] for step in package["steps"]}
-    assert {"index.html", "reference/evidence-browser.html", "reference/hardness-v4.html", "exports/library-manifest.json"} <= {check["target"] for check in smoke["checks"]}
+    assert {
+        "index.html",
+        "reference/evidence-browser.html",
+        "reference/hardness-v4.html",
+        "reference/package-index-release.html",
+        "exports/library-manifest.json",
+    } <= {check["target"] for check in smoke["checks"]}
     assert "examples/evaluations/hardness-v4/results.json" in {check["target"] for check in smoke["checks"]}
+    assert "examples/adoption/package-index-release-plan.json" in {check["target"] for check in smoke["checks"]}
 
 
 def test_public_smoke_report_stays_inside_repo() -> None:

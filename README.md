@@ -77,6 +77,9 @@ Implemented:
   runs, model-produced artifact execution, real warded A/B runs, evidence
   browser pages, public smoke checks, package install checks, and usage-earned
   canon audit records.
+- Package-index release plan for TestPyPI/PyPI human upload, with preflight,
+  build, upload, post-upload, and evidence-recording instructions that keep
+  public package availability pending until a maintainer performs it.
 - Bench v4 seed hardness ladder with ambiguity and hidden-invariant executable
   fixtures, weak/repaired seed artifacts, five deterministic repetitions per
   variant, and a generated reference page.
@@ -124,7 +127,7 @@ The generated site is written to `_site/`.
 Repo-local scratch files should go under `tmp/`, which is ignored except for
 `tmp/.gitkeep`.
 
-Current render size: 107 Quarto pages.
+Current render size: 109 Quarto pages.
 
 ## Repository Map
 

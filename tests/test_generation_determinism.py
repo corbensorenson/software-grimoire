@@ -28,6 +28,8 @@ TRACKED_GENERATED = [
     "examples/evaluations/surface-comparison.json",
     "examples/evaluations/hardness-v4/results.json",
     "reference/hardness-v4.qmd",
+    "examples/adoption/package-index-release-plan.json",
+    "reference/package-index-release.qmd",
     "examples/jailbreak-resilience/baseline-results.json",
     "exports/library-manifest.json",
     "exports/checksums.sha256",

@@ -8,7 +8,7 @@ The evidence browser is the project ledger. It separates calibration materials f
 
 ## Summary
 
-- Available artifacts: `9/9`
+- Available artifacts: `10/10`
 - Project-owned model surfaces: `claude-code-safe, claude-code-safe:baseline, claude-code-safe:warded, codex-cli-default`
 - Recorded model runs: `132`
 - Deterministic execution runs: `50`
@@ -27,7 +27,8 @@ The evidence browser is the project ledger. It separates calibration materials f
 | Local Warded Baseline Matrix           | local_deterministic_control   | 16   | local-unwarded-control, local-warded-reviewer      | present | [examples/jailbreak-resilience/baseline-results.json](../examples/jailbreak-resilience/baseline-results.json) |
 | Real Surface Warded A/B Runs           | project_owned_model_run       | 48   | claude-code-safe:baseline, claude-code-safe:warded | present | [examples/jailbreak-resilience/ab-results.json](../examples/jailbreak-resilience/ab-results.json)             |
 | Public Package Build and Install Check | packaging_or_release_check    | 9    | -                                                  | present | [examples/adoption/package-check.json](../examples/adoption/package-check.json)                               |
-| Public Site Smoke Check                | packaging_or_release_check    | 13   | -                                                  | present | [examples/release-gate/public-smoke-check.json](../examples/release-gate/public-smoke-check.json)             |
+| Package-Index Release Plan             | packaging_or_release_check    | 9    | -                                                  | present | [examples/adoption/package-index-release-plan.json](../examples/adoption/package-index-release-plan.json)     |
+| Public Site Smoke Check                | packaging_or_release_check    | 15   | -                                                  | present | [examples/release-gate/public-smoke-check.json](../examples/release-gate/public-smoke-check.json)             |
 
 ## Evidence Classes
 

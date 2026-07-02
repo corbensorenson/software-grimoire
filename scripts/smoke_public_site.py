@@ -17,6 +17,7 @@ LOCAL_REQUIRED = [
     "reference/evidence-browser.html",
     "reference/calibration.html",
     "reference/hardness-v4.html",
+    "reference/package-index-release.html",
     "examples/evaluations/index.html",
     "examples/jailbreak-resilience/index.html",
 ]
@@ -25,6 +26,7 @@ RESOURCE_REQUIRED = [
     "data/evidence_index.json",
     "examples/evaluations/model-execution-results.json",
     "examples/evaluations/hardness-v4/results.json",
+    "examples/adoption/package-index-release-plan.json",
     "examples/jailbreak-resilience/ab-results.json",
     "exports/library-manifest.json",
     "exports/checksums.sha256",

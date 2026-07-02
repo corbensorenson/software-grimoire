@@ -1,0 +1,62 @@
+---
+title: "Package-Index Release Plan"
+---
+
+# Package-Index Release Plan
+
+This page prepares the package-index release path without pretending the package
+has already been uploaded. Local wheel/sdist checks are release evidence; public
+TestPyPI/PyPI availability requires a named human maintainer to perform upload
+and record the post-upload checks.
+
+## Status
+
+| Area                  | Value                       |
+| --------------------- | --------------------------- |
+| Package               | software-grimoire           |
+| Version               | 3.0.0                       |
+| Upload status         | not-uploaded-human-required |
+| Human upload required | true                        |
+
+## Preflight
+
+- `python3 scripts/bootstrap_project.py`
+- `python3 scripts/validate_data.py`
+- `python3 -m pytest`
+- `python3 scripts/check_package.py`
+- `quarto render`
+- `python3 scripts/smoke_public_site.py --write-report tmp/package-index-smoke.json`
+
+## Build
+
+```bash
+rm -rf dist
+python3 -m build
+python3 -m twine check dist/*
+```
+
+## TestPyPI
+
+Human required: `true`
+
+```bash
+python3 -m twine upload --repository testpypi dist/*
+python3 -m pip install --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple software-grimoire==3.0.0
+```
+
+## PyPI
+
+Human required: `true`
+
+```bash
+python3 -m twine upload dist/*
+python3 -m pip install software-grimoire==3.0.0
+```
+
+## Evidence Rules
+
+- Do not mark package-index release complete before a human performs upload.
+- Do not count local wheel install as package-index availability.
+- Record TestPyPI/PyPI URL, uploader, date, installed version, and post-upload smoke output after upload.
+
+Raw plan: [package-index-release-plan.json](../examples/adoption/package-index-release-plan.json)

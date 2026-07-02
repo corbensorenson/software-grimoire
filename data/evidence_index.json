@@ -3,8 +3,8 @@
   "generated_at": "2026-07-02T00:00:00Z",
   "policy": "Calibration fixtures, project-owned model runs, local deterministic checks, reviewer imports, human audit, and adoption reports must remain separately labeled.",
   "summary": {
-    "artifact_count": 9,
-    "available_artifacts": 9,
+    "artifact_count": 10,
+    "available_artifacts": 10,
     "project_owned_model_surfaces": [
       "claude-code-safe",
       "claude-code-safe:baseline",
@@ -142,17 +142,31 @@
       "passed": true
     },
     {
+      "id": "package-index-release-plan",
+      "title": "Package-Index Release Plan",
+      "path": "examples/adoption/package-index-release-plan.json",
+      "exists": true,
+      "bytes": 1493,
+      "evidence_class": "packaging_or_release_check",
+      "calibration_role": "release_materials",
+      "claim_scope": "Human-upload package-index release instructions and checks are prepared; upload remains pending.",
+      "generated_at": null,
+      "surfaces": [],
+      "run_count": 9,
+      "passed": false
+    },
+    {
       "id": "public-smoke-check",
       "title": "Public Site Smoke Check",
       "path": "examples/release-gate/public-smoke-check.json",
       "exists": true,
-      "bytes": 1635,
+      "bytes": 1888,
       "evidence_class": "packaging_or_release_check",
       "calibration_role": "release_evidence",
       "claim_scope": "Rendered local site resources and optionally live GitHub Pages URLs resolve.",
-      "generated_at": "2026-07-02T10:32:33.808133+00:00",
+      "generated_at": "2026-07-02T11:01:24.479586+00:00",
       "surfaces": [],
-      "run_count": 13,
+      "run_count": 15,
       "passed": true
     }
   ]

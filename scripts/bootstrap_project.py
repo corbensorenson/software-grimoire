@@ -444,6 +444,45 @@ ADOPTION_EVIDENCE_DATA = {
     },
 }
 
+PACKAGE_INDEX_RELEASE_PLAN = {
+    "version": "4.0.0-package-index-release-plan",
+    "policy": "Codex may prepare package-index materials and checks, but TestPyPI/PyPI uploads require a named human maintainer.",
+    "package": {
+        "name": "software-grimoire",
+        "current_version": "3.0.0",
+        "source": "pyproject.toml",
+        "upload_status": "not-uploaded-human-required",
+    },
+    "preflight_checks": [
+        "python3 scripts/bootstrap_project.py",
+        "python3 scripts/validate_data.py",
+        "python3 -m pytest",
+        "python3 scripts/check_package.py",
+        "quarto render",
+        "python3 scripts/smoke_public_site.py --write-report tmp/package-index-smoke.json",
+    ],
+    "build_commands": [
+        "rm -rf dist",
+        "python3 -m build",
+        "python3 -m twine check dist/*",
+    ],
+    "testpypi_upload": {
+        "human_required": True,
+        "command": "python3 -m twine upload --repository testpypi dist/*",
+        "post_upload_check": "python3 -m pip install --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple software-grimoire==3.0.0",
+    },
+    "pypi_upload": {
+        "human_required": True,
+        "command": "python3 -m twine upload dist/*",
+        "post_upload_check": "python3 -m pip install software-grimoire==3.0.0",
+    },
+    "evidence_rules": [
+        "Do not mark package-index release complete before a human performs upload.",
+        "Do not count local wheel install as package-index availability.",
+        "Record TestPyPI/PyPI URL, uploader, date, installed version, and post-upload smoke output after upload.",
+    ],
+}
+
 EVIDENCE_TAXONOMY_DATA = {
     "version": "3.0.0-evidence-taxonomy",
     "policy": "Calibration fixtures, project-owned model runs, local deterministic checks, reviewer imports, human audit, and adoption reports must remain separately labeled.",
@@ -2398,6 +2437,7 @@ def evidence_index_data() -> dict:
     deterministic_baseline = load_runtime_json("examples/jailbreak-resilience/baseline-results.json", {"surfaces": {}, "cases": {}})
     real_ab = load_runtime_json("examples/jailbreak-resilience/ab-results.json", {"surfaces": {}, "cases": {}})
     package_check = load_runtime_json("examples/adoption/package-check.json", {"steps": [], "passed": False})
+    package_index_plan = load_runtime_json("examples/adoption/package-index-release-plan.json", {"preflight_checks": [], "build_commands": []})
     smoke = load_runtime_json("examples/release-gate/public-smoke-check.json", {"checks": [], "passed": False})
 
     artifacts = [
@@ -2477,6 +2517,20 @@ def evidence_index_data() -> dict:
             "surfaces": [],
             "run_count": len(package_check.get("steps", [])),
             "passed": package_check.get("passed", False),
+        },
+        {
+            "id": "package-index-release-plan",
+            "title": "Package-Index Release Plan",
+            "path": "examples/adoption/package-index-release-plan.json",
+            "exists": (ROOT / "examples/adoption/package-index-release-plan.json").exists(),
+            "bytes": (ROOT / "examples/adoption/package-index-release-plan.json").stat().st_size if (ROOT / "examples/adoption/package-index-release-plan.json").exists() else 0,
+            "evidence_class": "packaging_or_release_check",
+            "calibration_role": "release_materials",
+            "claim_scope": "Human-upload package-index release instructions and checks are prepared; upload remains pending.",
+            "generated_at": package_index_plan.get("generated_at"),
+            "surfaces": [],
+            "run_count": len(package_index_plan.get("preflight_checks", [])) + len(package_index_plan.get("build_commands", [])),
+            "passed": package_index_plan.get("package", {}).get("upload_status") == "uploaded",
         },
         {
             "id": "public-smoke-check",
@@ -4153,6 +4207,76 @@ Paste the filled spell into your AI tool. Save the model/tool surface, output, v
     )
 
 
+def write_package_index_release_pages() -> None:
+    plan = PACKAGE_INDEX_RELEASE_PLAN
+    write_json(ROOT / "examples" / "adoption" / "package-index-release-plan.json", plan)
+    package = plan["package"]
+    rows = [
+        ["Area", "Value"],
+        ["Package", package["name"]],
+        ["Version", package["current_version"]],
+        ["Upload status", package["upload_status"]],
+        ["Human upload required", "true"],
+    ]
+    body = """# Package-Index Release Plan
+
+This page prepares the package-index release path without pretending the package
+has already been uploaded. Local wheel/sdist checks are release evidence; public
+TestPyPI/PyPI availability requires a named human maintainer to perform upload
+and record the post-upload checks.
+
+## Status
+
+{status}
+
+## Preflight
+
+{preflight}
+
+## Build
+
+```bash
+{build}
+```
+
+## TestPyPI
+
+Human required: `{test_human}`
+
+```bash
+{test_command}
+{test_check}
+```
+
+## PyPI
+
+Human required: `{pypi_human}`
+
+```bash
+{pypi_command}
+{pypi_check}
+```
+
+## Evidence Rules
+
+{rules}
+
+Raw plan: [package-index-release-plan.json](../examples/adoption/package-index-release-plan.json)
+""".format(
+        status=qmd_table(rows),
+        preflight="\n".join(f"- `{item}`" for item in plan["preflight_checks"]),
+        build="\n".join(plan["build_commands"]),
+        test_human=str(plan["testpypi_upload"]["human_required"]).lower(),
+        test_command=plan["testpypi_upload"]["command"],
+        test_check=plan["testpypi_upload"]["post_upload_check"],
+        pypi_human=str(plan["pypi_upload"]["human_required"]).lower(),
+        pypi_command=plan["pypi_upload"]["command"],
+        pypi_check=plan["pypi_upload"]["post_upload_check"],
+        rules="\n".join(f"- {item}" for item in plan["evidence_rules"]),
+    )
+    write_text(ROOT / "reference" / "package-index-release.qmd", page("Package-Index Release Plan", body))
+
+
 def write_chapters(public_text: str, pocket_text: str, stacks_text: str, lexicon: list[dict], houses: list[dict]) -> None:
     counts = completion_counts(lexicon)
     s_counts = semantic_counts(lexicon)
@@ -4706,6 +4830,7 @@ def write_reference_pages(houses: list[dict], lexicon: list[dict], major: dict[i
             "- [Canon Audit](canon-audit.qmd)\n"
             "- [Usage-Earned Canon](usage-earned-canon.qmd)\n"
             "- [Public Smoke Checks](public-smoke-checks.qmd)\n"
+            "- [Package-Index Release Plan](package-index-release.qmd)\n"
             "- [Generator Architecture](generator-architecture.qmd)\n"
             "- [Visual Grammar](visual-grammar.qmd)\n"
             "- [Task Chooser](task-chooser.qmd)\n"
@@ -5214,6 +5339,7 @@ def write_quarto_config(houses: list[dict]) -> None:
             "reference/canon-audit.qmd",
             "reference/usage-earned-canon.qmd",
             "reference/public-smoke-checks.qmd",
+            "reference/package-index-release.qmd",
             "reference/generator-architecture.qmd",
             "reference/visual-grammar.qmd",
             "reference/task-chooser.qmd",
@@ -5391,6 +5517,7 @@ def main() -> None:
     write_generator_architecture_pages()
     write_visual_practice_pages(spells, stacks)
     write_adoption_evidence_pages()
+    write_package_index_release_pages()
     write_v3_evidence_pages(lexicon, spells, stacks)
     write_adoption_pages()
     write_semantic_promotion_pages(semantic_promotion_report(lexicon, houses))

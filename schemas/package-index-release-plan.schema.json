@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Software Grimoire Package-Index Release Plan",
+  "type": "object",
+  "required": ["version", "policy", "package", "preflight_checks", "build_commands", "testpypi_upload", "pypi_upload", "evidence_rules"],
+  "properties": {
+    "version": {"type": "string", "minLength": 1},
+    "policy": {"type": "string", "minLength": 1},
+    "package": {
+      "type": "object",
+      "required": ["name", "current_version", "source", "upload_status"],
+      "properties": {
+        "name": {"type": "string", "minLength": 1},
+        "current_version": {"type": "string", "minLength": 1},
+        "source": {"type": "string", "minLength": 1},
+        "upload_status": {"enum": ["not-uploaded-human-required", "uploaded"]}
+      },
+      "additionalProperties": false
+    },
+    "preflight_checks": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+    "build_commands": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+    "testpypi_upload": {"$ref": "#/$defs/upload"},
+    "pypi_upload": {"$ref": "#/$defs/upload"},
+    "evidence_rules": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}}
+  },
+  "$defs": {
+    "upload": {
+      "type": "object",
+      "required": ["human_required", "command", "post_upload_check"],
+      "properties": {
+        "human_required": {"type": "boolean"},
+        "command": {"type": "string", "minLength": 1},
+        "post_upload_check": {"type": "string", "minLength": 1}
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

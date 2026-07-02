@@ -30,6 +30,9 @@
   fabricating external adoption.
 - Added `grimoire install` as the one-step dry-run-first wrapper for generated
   Codex, Cursor, Claude Code, Markdown, prompt, and stack assets.
+- Added package-index release materials for human TestPyPI/PyPI upload,
+  including structured plan data, schema validation, generated reference page,
+  smoke coverage, and evidence-index disclosure that upload is still pending.
 
 ## v3.0.0-evidence-package
 

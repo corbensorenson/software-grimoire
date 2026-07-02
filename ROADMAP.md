@@ -50,7 +50,7 @@ Current public-site status:
 - The repository includes schemas, validation, seal generation, CI, GitHub Pages
   publishing, pull-request checks, contribution templates, examples, package
   metadata, install tooling, and public releases.
-- The rendered Quarto site currently contains 107 pages, including six
+- The rendered Quarto site currently contains 109 pages, including six
   Proof-by-Difference cases, six recorded evaluation result pages, a dedicated
   Proof by Difference reference page, an installable-library page, a visual
   grammar, a task chooser, adoption evidence, a jailbreak-resilience bench,
@@ -95,6 +95,10 @@ Current public-site status:
 - The external-reality workstream now has a standalone adoption-report
   generator that creates schema-valid report drafts while keeping publication,
   external-adoption counts, and reviewer acceptance separate from generation.
+- Package-index release materials are prepared for human TestPyPI/PyPI upload:
+  preflight checks, build commands, post-upload checks, evidence rules, schema,
+  generated reference page, and evidence-index entry all preserve upload as
+  pending until a maintainer performs it.
 
 Reader-experience requirements:
 
@@ -4696,7 +4700,9 @@ generator is implemented with schema validation, repo-local output guardrails,
 CLI/package entry points, tests, and documentation. It creates report drafts
 only; it does not publish them or increment external adoption counts. The
 one-step `grimoire install` wrapper is also implemented over the dry-run-first
-asset installer, with tests covering repo-local `tmp/` destinations.
+asset installer, with tests covering repo-local `tmp/` destinations. The
+package-index release plan is prepared as structured release material, but
+actual TestPyPI/PyPI upload remains pending human action.
 
 1. Prepare package-index release materials:
    - long description suitable for PyPI;
