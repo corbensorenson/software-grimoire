@@ -1,0 +1,33 @@
+---
+title: "Calibration"
+---
+
+# Calibration
+
+Calibration explains what a fixture or toy example is allowed to prove. A trap case can reveal whether a prompt structure names the right invariant, but only a recorded model run or executable artifact can support a claim about a named surface.
+
+## Calibration Layers
+
+| Layer              | Role                                                                                      |
+| ------------------ | ----------------------------------------------------------------------------------------- |
+| toy                | Small examples used for learning prompt structure.                                        |
+| clean_fixture      | Longitudinal software tasks where old and new model surfaces can be compared.             |
+| trap_fixture       | Planted-failure cases that expose missing invariants, compatibility, or trust boundaries. |
+| artifact_execution | Generated code or tests must run inside a fixture-local sandbox.                          |
+| public_smoke       | Rendered, packaged, and public-site artifacts are checked as release surfaces.            |
+
+## Promotion Rules
+
+- Do not use local deterministic graders as independent model evidence.
+- Do not count project-owned dogfood as external adoption.
+- Do not promote generated-draft vocabulary to canonical without usage evidence and human signoff.
+- Do not publish operational jailbreak payloads; publish defensive morphology and defanged fixtures only.
+- Preserve non-wins and awkward outcomes instead of rewriting them into a success narrative.
+
+## Practical Reading Order
+
+1. Read a spell page to understand the intended structure.
+2. Read its Proof by Difference case to see the calibration target.
+3. Read recorded evaluations for named model-surface behavior.
+4. Read execution results for fixture-local pass/fail evidence.
+5. Read adoption evidence only after checking provenance.

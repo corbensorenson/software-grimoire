@@ -6,18 +6,18 @@ title: "Recorded Evaluations"
 
 Proof by Difference becomes credible only when weak and repaired prompts are run against the same fixture and scored with the same rubric. This section preserves those runs, including non-wins when they occur.
 
-Generated at: `2026-07-02T04:25:50.025930+00:00`
+Generated at: `2026-07-02T08:26:38.682126+00:00`
 
 ## Summary
 
-| Case                                                                          | Surfaces          | Weak Outcome | Repaired Outcome | Outcome Delta                                                 | Structural Delta                                     |
-| ----------------------------------------------------------------------------- | ----------------- | ------------ | ---------------- | ------------------------------------------------------------- | ---------------------------------------------------- |
-| [Refactor Without Breaking Behavior](safe-refactoring.qmd)                    | codex-cli-default | 2.7          | 2.7              | weak and repaired prompts tied on outcome checks              | repaired prompts scored 2.3 points higher on average |
-| [Incident Diagnosis Without Fake Certainty](bug-diagnosis-from-logs.qmd)      | codex-cli-default | 3.0          | 3.0              | weak and repaired prompts tied on outcome checks              | repaired prompts scored 1.0 points higher on average |
-| [API Design Without Hidden Compatibility Traps](api-design.qmd)               | codex-cli-default | 3.0          | 3.0              | weak and repaired prompts tied on outcome checks              | repaired prompts scored 3.3 points higher on average |
-| [Online Migration Without Data Loss](migration-without-data-loss.qmd)         | codex-cli-default | 3.0          | 3.0              | weak and repaired prompts tied on outcome checks              | repaired prompts scored 0.7 points higher on average |
-| [Test Generation Without Overfitting To Implementation](test-generation.qmd)  | codex-cli-default | 2.7          | 3.0              | repaired prompts satisfied 0.3 more outcome checks on average | repaired prompts scored 2.3 points higher on average |
-| [Performance Tuning Without Micro-Optimization Drift](performance-tuning.qmd) | codex-cli-default | 3.0          | 3.0              | weak and repaired prompts tied on outcome checks              | repaired prompts scored 2.3 points higher on average |
+| Case                                                                          | Surfaces                            | Weak Outcome | Repaired Outcome | Outcome Delta                                                 | Structural Delta                                     |
+| ----------------------------------------------------------------------------- | ----------------------------------- | ------------ | ---------------- | ------------------------------------------------------------- | ---------------------------------------------------- |
+| [Refactor Without Breaking Behavior](safe-refactoring.qmd)                    | claude-code-safe, codex-cli-default | 2.4          | 2.6              | repaired prompts satisfied 0.2 more outcome checks on average | repaired prompts scored 3.0 points higher on average |
+| [Incident Diagnosis Without Fake Certainty](bug-diagnosis-from-logs.qmd)      | claude-code-safe, codex-cli-default | 3.0          | 3.0              | weak and repaired prompts tied on outcome checks              | repaired prompts scored 1.4 points higher on average |
+| [API Design Without Hidden Compatibility Traps](api-design.qmd)               | claude-code-safe, codex-cli-default | 3.0          | 3.0              | weak and repaired prompts tied on outcome checks              | repaired prompts scored 3.0 points higher on average |
+| [Online Migration Without Data Loss](migration-without-data-loss.qmd)         | claude-code-safe, codex-cli-default | 2.8          | 3.0              | repaired prompts satisfied 0.2 more outcome checks on average | repaired prompts scored 0.6 points higher on average |
+| [Test Generation Without Overfitting To Implementation](test-generation.qmd)  | claude-code-safe, codex-cli-default | 2.4          | 3.0              | repaired prompts satisfied 0.6 more outcome checks on average | repaired prompts scored 2.0 points higher on average |
+| [Performance Tuning Without Micro-Optimization Drift](performance-tuning.qmd) | claude-code-safe, codex-cli-default | 2.4          | 3.0              | repaired prompts satisfied 0.6 more outcome checks on average | repaired prompts scored 3.0 points higher on average |
 
 ## Rubric
 

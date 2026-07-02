@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Software Grimoire Rune Usage Graph",
+  "type": "object",
+  "required": ["version", "policy", "summary", "nodes", "canonical_review_candidates"],
+  "properties": {
+    "version": {"type": "string", "minLength": 1},
+    "policy": {"type": "string", "minLength": 1},
+    "summary": {"type": "object", "additionalProperties": true},
+    "nodes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "sigil", "term", "semantic_status", "uses"],
+        "properties": {
+          "id": {"type": "integer", "minimum": 1},
+          "sigil": {"type": "string", "minLength": 4},
+          "term": {"type": "string", "minLength": 1},
+          "semantic_status": {"type": "string", "minLength": 1},
+          "uses": {"type": "array", "items": {"type": "object", "additionalProperties": true}}
+        },
+        "additionalProperties": false
+      }
+    },
+    "canonical_review_candidates": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "sigil", "term", "use_count", "current_semantic_status", "usage_earned_status", "promotion_blocker"],
+        "properties": {
+          "id": {"type": "integer", "minimum": 1},
+          "sigil": {"type": "string", "minLength": 4},
+          "term": {"type": "string", "minLength": 1},
+          "use_count": {"type": "integer", "minimum": 1},
+          "current_semantic_status": {"type": "string", "minLength": 1},
+          "usage_earned_status": {"type": "string", "minLength": 1},
+          "promotion_blocker": {"type": "string", "minLength": 1}
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

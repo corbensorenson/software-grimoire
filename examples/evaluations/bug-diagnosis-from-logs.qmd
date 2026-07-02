@@ -10,7 +10,7 @@ title: "Incident Diagnosis Without Fake Certainty"
 
 **Observed outcome delta:** weak and repaired prompts tied on outcome checks
 
-**Observed structural delta:** repaired prompts scored 1.0 points higher on average
+**Observed structural delta:** repaired prompts scored 1.4 points higher on average
 
 **Input context:** The fixture is a small incident packet with logs, deploy metadata, and planted ground truth.
 
@@ -37,6 +37,10 @@ Ground truth:
 | codex-cli-default | repaired | 2   | 1        | 0         | 0      | 2      | 2       | 2           | 7          | 3       |
 | codex-cli-default | weak     | 3   | 1        | 0         | 0      | 2      | 1       | 2           | 6          | 3       |
 | codex-cli-default | repaired | 3   | 1        | 0         | 0      | 2      | 2       | 2           | 7          | 3       |
+| claude-code-safe  | weak     | 1   | 2        | 0         | 0      | 2      | 2       | 2           | 8          | 3       |
+| claude-code-safe  | repaired | 1   | 2        | 0         | 1      | 2      | 2       | 2           | 9          | 3       |
+| claude-code-safe  | weak     | 1   | 0        | 0         | 1      | 2      | 1       | 1           | 5          | 3       |
+| claude-code-safe  | repaired | 1   | 2        | 0         | 0      | 2      | 2       | 2           | 8          | 3       |
 
 ## Transcripts
 
@@ -265,4 +269,243 @@ Evidence is insufficient for a certain root cause, but enough to rank Redis pool
 2. Feature flag/deploy dashboard: confirm `profile_cache_v2` rollout timing, exposure, and test disable/rollback while watching checkout latency and Redis pool wait.
 
 3. APM/tracing plus DB dashboard: inspect slow checkout traces split by Redis pool wait, Redis command time, PostgreSQL query time, and compare requests with `profile_cache_v2=true` vs false.
+```
+
+### claude-code-safe - weak r1
+
+- Surface label: Claude Code CLI with tools disabled
+- Run timestamp: `2026-07-02T08:28:57.271436+00:00`
+- Prompt file: [examples/evaluations/runs/claude-code-safe/bug-diagnosis-from-logs/clean/r01-weak-prompt.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/claude-code-safe/bug-diagnosis-from-logs/clean/r01-weak-prompt.md)
+- Transcript file: [examples/evaluations/runs/claude-code-safe/bug-diagnosis-from-logs/clean/r01-weak-output.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/claude-code-safe/bug-diagnosis-from-logs/clean/r01-weak-output.md)
+- Structural total: 8
+- Outcome total: 3
+- Evaluator notes: Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence.
+
+```text
+The fixture files aren't present in the repository, so I'm reasoning from the task context description directly.
+
+---
+
+## Timeout Diagnosis
+
+### Facts (from evidence)
+
+- Requests are timing out across the service.
+- The deploy included a feature flag change enabling `profile_cache_v2`.
+- Redis logs show connection-pool exhaustion — new connections are being refused or queued.
+- PostgreSQL logs show slow queries concurrent with the timeout window.
+
+### Most Likely Cause
+
+**Redis connection-pool saturation**, triggered by `profile_cache_v2`.
+
+The new cache path likely opens more connections per request than the old path (e.g., no connection reuse, fan-out reads, or missing pool limits in the new code). When the pool is full, requests block waiting for a slot — and eventually time out at the HTTP layer.
+
+### PostgreSQL slow queries: correlated symptom, not root cause
+
+The DB slowness is most plausibly a downstream effect: if Redis is unavailable, cache-miss rate spikes, sending all reads to PostgreSQL and overwhelming it. Do not treat this as the primary cause without evidence that DB latency preceded the Redis saturation.
+
+### Missing Signals
+
+- Redis `INFO clients` / `connected_clients` at incident time — needed to confirm pool exhaustion vs. other Redis errors.
+- Per-endpoint timeout breakdown — confirms whether only profile-touching endpoints are affected.
+- `profile_cache_v2` flag rollout percentage and timing relative to first timeout alert.
+- Application-side pool configuration (max connections, timeout settings) for the new cache client.
+
+### Next Checks
+
+1. **Correlate flag enablement time with timeout onset** — if they align within seconds, that's strong signal.
+2. **Check Redis `maxclients` hits** in Redis logs or metrics.
+3. **Compare connection-pool config** between `profile_cache_v1` and `profile_cache_v2` code paths.
+4. **Rollback or disable `profile_cache_v2`** as the fastest mitigation to confirm causality.
+5. If rollback resolves it, audit the new cache client for missing `pool_size` / `timeout` configuration.
+
+### Confidence
+
+Medium-high that `profile_cache_v2` + Redis pool saturation is the cause. The PostgreSQL correlation could indicate a different primary cause (e.g., a slow query holding locks that cascades to timeouts) — this is ruled out only if Redis saturation is confirmed to have preceded the DB degradation.
+```
+
+### claude-code-safe - repaired r1
+
+- Surface label: Claude Code CLI with tools disabled
+- Run timestamp: `2026-07-02T08:29:25.430981+00:00`
+- Prompt file: [examples/evaluations/runs/claude-code-safe/bug-diagnosis-from-logs/clean/r01-repaired-prompt.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/claude-code-safe/bug-diagnosis-from-logs/clean/r01-repaired-prompt.md)
+- Transcript file: [examples/evaluations/runs/claude-code-safe/bug-diagnosis-from-logs/clean/r01-repaired-output.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/claude-code-safe/bug-diagnosis-from-logs/clean/r01-repaired-output.md)
+- Structural total: 9
+- Outcome total: 3
+- Evaluator notes: Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence.
+
+```text
+**Note:** The file contents (`logs.txt`, `deploy.json`, `ground_truth.json`) are not included in the supplied context — only their descriptions and the ground-truth summary. I am working from those descriptions. Claims are labeled accordingly.
+
+---
+
+## Ranked Hypotheses
+
+**H1 — Redis connection-pool saturation (primary, higher confidence)**
+`profile_cache_v2` was recently deployed (ground-truth description). If it increases per-request Redis calls or holds connections longer, the pool exhausts and callers queue or time out.
+*Supporting symptom:* Redis log entries observed; latency spike correlates with deploy window. (described, not quoted)
+*Gap:* Actual pool-size config and current active/waiting counters not in supplied logs.
+
+**H2 — PostgreSQL slow queries (correlated symptom, not cause)**
+Slow-query events are present in the logs (described). These could be caused by the same traffic surge that is saturating Redis, or by lock contention from whatever `profile_cache_v2` is caching past.
+*Supporting symptom:* PostgreSQL slow-query log entries observed (described).
+*Gap:* No query plan or lock-wait data supplied; cannot distinguish slow-query cause.
+
+**H3 — Upstream traffic spike (low confidence)**
+A surge in request rate could exhaust both Redis and PG independently. No request-rate metric is cited in the supplied context; this is **hypothesis only**.
+
+---
+
+## Evidence Already Present
+
+| Signal | Source | Label |
+|---|---|---|
+| Latency increased last hour | Task context | Fact |
+| `profile_cache_v2` active at deploy time | `deploy.json` description | Fact |
+| Redis log entries exist | `logs.txt` description | Fact |
+| PostgreSQL slow-query entries exist | `logs.txt` description | Fact |
+| Logs are partial | Task context | Fact |
+
+---
+
+## Missing Evidence
+
+1. **Redis pool metrics** — `connected_clients`, `blocked_clients`, pool `maxconn` vs. active at spike onset.
+2. **Request rate / p99 latency time-series** — needed to determine if H3 applies and to anchor the timeline.
+3. **`profile_cache_v2` call pattern** — how many Redis ops per request it adds and whether it uses pipelining or blocking `GET`/`SET`.
+4. **PostgreSQL lock-wait / `pg_stat_activity`** — distinguishes slow queries caused by load versus lock contention.
+
+---
+
+## Next Three Checks
+
+```bash
+# 1. Redis pool state at spike time
+redis-cli INFO clients | grep -E 'connected|blocked|maxclients'
+
+# 2. Slow-query volume before vs. after deploy
+grep "slow query" logs.txt | awk '{print $1, $2}' | sort | uniq -c
+
+# 3. Request rate from access logs aligned to deploy timestamp
+awk '{print $4}' logs.txt | cut -c1-17 | sort | uniq -c | tail -60
+```
+
+**Dashboard:** Overlay Redis `connected_clients` and API p99 latency on the same time axis; if they co-rise at the `profile_cache_v2` deploy boundary, H1 is strongly supported.
+
+**Verdict if evidence remains insufficient:** Cannot confirm H1 without Redis pool counters and the deploy timestamp. Minimum additional signals: items 1 and 3 from the missing-evidence list above.
+```
+
+### claude-code-safe - weak r1
+
+- Surface label: Claude Code CLI with tools disabled
+- Run timestamp: `2026-07-02T08:29:44.144684+00:00`
+- Prompt file: [examples/evaluations/runs/claude-code-safe/bug-diagnosis-from-logs/trap/r01-weak-prompt.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/claude-code-safe/bug-diagnosis-from-logs/trap/r01-weak-prompt.md)
+- Transcript file: [examples/evaluations/runs/claude-code-safe/bug-diagnosis-from-logs/trap/r01-weak-output.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/claude-code-safe/bug-diagnosis-from-logs/trap/r01-weak-output.md)
+- Structural total: 5
+- Outcome total: 3
+- Evaluator notes: Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence.
+
+```text
+## Root Cause: Redis Pool Exhaustion
+
+The PostgreSQL warning appearing near the timeout window is a **decoy** — coincidental timing, not causation.
+
+### Why Redis is the actual culprit
+
+**The signal that matters:**
+- Requests are timing out at the point where they wait to acquire a Redis connection from the pool
+- When the pool is saturated (all connections in use), new requests queue and eventually exceed the timeout threshold
+- This produces bulk timeouts that appear correlated with whatever else is happening at that moment — including routine DB warnings
+
+**Why the Postgres warning is noise:**
+- A warning logged *near* a timeout is not the same as a warning *causing* a timeout
+- DB query latency would produce a different timeout signature: individual slow queries, not queue-style bulk failures
+- PostgreSQL warnings at timeout boundaries are often `idle in transaction` or `statement_timeout` notices that fire *because* the upstream Redis stall held a transaction open, not the reverse
+
+### How to confirm
+
+```bash
+# Check Redis pool metrics at time of incident
+redis-cli INFO clients | grep connected_clients
+redis-cli INFO stats | grep rejected_connections
+
+# Look for connection wait queue depth in app metrics
+# e.g., pool.wait_time_ms or pool.checkout_timeout events
+```
+
+If `connected_clients` is at or above `maxmemory`/pool ceiling during the timeout window, that confirms saturation.
+
+### Fix
+
+1. **Increase pool size** if headroom exists on the Redis server
+2. **Tune pool checkout timeout** to fail fast with a clear error rather than a generic request timeout
+3. **Add circuit breaking** or request shedding before the pool exhausts
+4. **Audit connection leaks** — pool exhaustion under normal load usually means connections aren't being returned (missing `finally` block, uncaught exception before `.release()`, etc.)
+
+The Postgres warning is worth a separate, lower-priority investigation, but it is not why requests are timing out.
+```
+
+### claude-code-safe - repaired r1
+
+- Surface label: Claude Code CLI with tools disabled
+- Run timestamp: `2026-07-02T08:30:01.883791+00:00`
+- Prompt file: [examples/evaluations/runs/claude-code-safe/bug-diagnosis-from-logs/trap/r01-repaired-prompt.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/claude-code-safe/bug-diagnosis-from-logs/trap/r01-repaired-prompt.md)
+- Transcript file: [examples/evaluations/runs/claude-code-safe/bug-diagnosis-from-logs/trap/r01-repaired-output.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/claude-code-safe/bug-diagnosis-from-logs/trap/r01-repaired-output.md)
+- Structural total: 8
+- Outcome total: 3
+- Evaluator notes: Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence.
+
+```text
+## Incident Analysis: API Timeout Spike
+
+**Evidence supplied:** Latency increased in last hour. Logs are partial. System components: Redis, PostgreSQL.
+
+---
+
+### Ranked Hypotheses
+
+**1. Redis connection pool exhaustion** *(primary suspect)*
+- **Why ranked first:** Pool exhaustion causes synchronous blocking at the connection-acquire step, producing uniform latency increases across all endpoints that touch Redis — a pattern consistent with a broad timeout spike rather than isolated query slowness.
+- **Observed support:** None cited yet — this is a **hypothesis** pending pool metric confirmation.
+
+**2. PostgreSQL query degradation** *(secondary)*
+- A warning near the timeout window is a **noted signal**, not a root cause. Warnings (e.g., slow query logs, lock waits) can be downstream effects of upstream saturation — if Redis blocks the app thread, open DB connections accumulate, producing secondary DB warnings.
+- **Risk of misranking:** Treating this warning as the primary cause without ruling out Redis first is the classic correlation-causation trap.
+
+**3. Application-level thread/worker starvation** *(tertiary)*
+- If Redis blocks worker threads, the app appears slow globally regardless of DB state.
+
+---
+
+### Missing Evidence (minimum signals needed)
+
+| Signal | Why critical |
+|---|---|
+| Redis `INFO stats` → `rejected_connections`, `connected_clients`, `blocked_clients` | Directly confirms/denies pool exhaustion |
+| Redis pool config vs. observed concurrent connections | Establishes whether the limit was hit |
+| PostgreSQL `pg_stat_activity` snapshot during spike | Distinguishes primary DB degradation from idle connections piling up |
+| App-side connection wait time histogram | Shows where time is actually spent |
+
+---
+
+### Next Three Commands
+
+```bash
+# 1. Check Redis saturation
+redis-cli INFO stats | grep -E 'connected_clients|blocked_clients|rejected_connections'
+redis-cli INFO clients
+
+# 2. Check PostgreSQL for lock contention vs. idle accumulation
+psql -c "SELECT state, wait_event_type, wait_event, count(*) FROM pg_stat_activity GROUP BY 1,2,3 ORDER BY 4 DESC;"
+
+# 3. Correlate app error logs with component
+grep -E 'timeout|pool|exhausted|connection refused' /var/log/app/*.log | awk '{print $1, $2}' | sort | uniq -c | sort -rn | head -20
+```
+
+---
+
+### Verdict
+
+**Insufficient evidence to declare root cause.** Redis pool exhaustion is the highest-prior hypothesis given the symptom profile. The PostgreSQL warning is a **candidate red herring** — it must be shown to precede (not follow) the latency spike before it can be ranked above Redis saturation.
 ```

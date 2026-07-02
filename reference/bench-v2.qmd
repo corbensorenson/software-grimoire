@@ -8,13 +8,14 @@ Bench v2 is the replay contract for the grimoire's evidence layer. It keeps mode
 
 ## Surfaces
 
-| Surface                    | Kind          | Ownership         | Execution                           | Credentials | Redaction                                                                                                                   |
-| -------------------------- | ------------- | ----------------- | ----------------------------------- | ----------- | --------------------------------------------------------------------------------------------------------------------------- |
-| codex-cli-default          | codex         | project-owned     | local-codex-cli                     | no          | No real secrets; harmless canaries may appear only in fixture prompts and ground truth.                                     |
-| manual-reviewer-import     | manual-import | reviewer-supplied | manual transcript import            | no          | Reviewer must redact private data and declare model/tool surface, fixture version, prompt path, transcript path, and notes. |
-| local-deterministic-grader | local-tool    | project-owned     | local read-only fixture execution   | no          | No secrets; stdout/stderr from fixture-local commands may be published.                                                     |
-| local-unwarded-control     | local-tool    | project-owned     | local deterministic baseline matrix | no          | No canary values or operational bypass strings are repeated in outputs.                                                     |
-| local-warded-reviewer      | local-tool    | project-owned     | local deterministic warded matrix   | no          | No canary values or operational bypass strings are repeated in outputs.                                                     |
+| Surface                    | Kind          | Ownership         | Execution                             | Credentials | Redaction                                                                                                                   |
+| -------------------------- | ------------- | ----------------- | ------------------------------------- | ----------- | --------------------------------------------------------------------------------------------------------------------------- |
+| codex-cli-default          | codex         | project-owned     | local-codex-cli                       | no          | No real secrets; harmless canaries may appear only in fixture prompts and ground truth.                                     |
+| claude-code-safe           | claude-code   | project-owned     | local CLI, print mode, tools disabled | yes         | Public fixtures only; outputs are redacted for fixture canaries and forbidden operational strings before publication.       |
+| manual-reviewer-import     | manual-import | reviewer-supplied | manual transcript import              | no          | Reviewer must redact private data and declare model/tool surface, fixture version, prompt path, transcript path, and notes. |
+| local-deterministic-grader | local-tool    | project-owned     | local read-only fixture execution     | no          | No secrets; stdout/stderr from fixture-local commands may be published.                                                     |
+| local-unwarded-control     | local-tool    | project-owned     | local deterministic baseline matrix   | no          | No canary values or operational bypass strings are repeated in outputs.                                                     |
+| local-warded-reviewer      | local-tool    | project-owned     | local deterministic warded matrix     | no          | No canary values or operational bypass strings are repeated in outputs.                                                     |
 
 ## Manual Import Contract
 

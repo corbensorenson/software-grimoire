@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Software Grimoire Evidence Taxonomy",
+  "type": "object",
+  "required": ["version", "policy", "evidence_classes", "calibration_layers", "promotion_rules"],
+  "properties": {
+    "version": {"type": "string", "minLength": 1},
+    "policy": {"type": "string", "minLength": 1},
+    "evidence_classes": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+        "type": "object",
+        "required": ["claim_power", "examples"],
+        "properties": {
+          "claim_power": {"type": "string", "minLength": 1},
+          "examples": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}}
+        },
+        "additionalProperties": false
+      }
+    },
+    "calibration_layers": {"type": "object", "minProperties": 1, "additionalProperties": {"type": "string", "minLength": 1}},
+    "promotion_rules": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}}
+  },
+  "additionalProperties": false
+}

@@ -22,7 +22,7 @@ jobs:
           python-version: "3.11"
 
       - name: Install test dependencies
-        run: python -m pip install --upgrade pip pytest jsonschema
+        run: python -m pip install --upgrade pip pytest jsonschema build
 
       - name: Generate reference content
         run: python scripts/bootstrap_project.py
@@ -36,10 +36,25 @@ jobs:
       - name: Run execution bench
         run: python scripts/run_execution_bench.py
 
+      - name: Check package build and install
+        run: python scripts/check_package.py
+
+      - name: Refresh generated evidence pages
+        run: python scripts/bootstrap_project.py
+
       - name: Validate bench import contract
         run: python scripts/run_bench.py import examples/evaluations/manual-import-template.json
 
       - name: Render site
+        run: quarto render
+
+      - name: Smoke-check rendered site
+        run: python scripts/smoke_public_site.py
+
+      - name: Refresh smoke-check page
+        run: python scripts/bootstrap_project.py
+
+      - name: Render site with smoke report
         run: quarto render
 
       - name: Test generated site and data

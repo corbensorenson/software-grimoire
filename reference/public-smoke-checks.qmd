@@ -1,0 +1,43 @@
+---
+title: "Public Smoke Checks"
+---
+
+# Public Smoke Checks
+
+This page records release-surface checks that sit outside prompt quality: package build/install, console script availability, local rendered site resources, and optional live GitHub Pages URLs.
+
+## Package Check
+
+Passed: `True`
+
+| Step                                 | Passed |
+| ------------------------------------ | ------ |
+| build wheel and sdist                | True   |
+| create venv                          | True   |
+| install wheel                        | True   |
+| python -m pip show software-grimoire | True   |
+| grimoire --help                      | True   |
+| grimoire-install-assets --help       | True   |
+| grimoire-run-bench --help            | True   |
+
+Raw package report: [package-check.json](../examples/adoption/package-check.json)
+
+## Site Smoke Check
+
+Passed: `True`
+
+| Check          | Target                                            | Passed |
+| -------------- | ------------------------------------------------- | ------ |
+| local_html     | index.html                                        | True   |
+| local_html     | reference/evidence-browser.html                   | True   |
+| local_html     | reference/calibration.html                        | True   |
+| local_html     | examples/evaluations/index.html                   | True   |
+| local_html     | examples/jailbreak-resilience/index.html          | True   |
+| local_resource | data/evidence_taxonomy.json                       | True   |
+| local_resource | data/evidence_index.json                          | True   |
+| local_resource | examples/evaluations/model-execution-results.json | True   |
+| local_resource | examples/jailbreak-resilience/ab-results.json     | True   |
+| local_resource | exports/library-manifest.json                     | True   |
+| local_resource | exports/checksums.sha256                          | True   |
+
+Raw smoke report: [public-smoke-check.json](../examples/release-gate/public-smoke-check.json)

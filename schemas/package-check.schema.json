@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Software Grimoire Package Check",
+  "type": "object",
+  "required": ["generated_at", "steps", "passed"],
+  "properties": {
+    "generated_at": {"type": "string", "minLength": 1},
+    "passed": {"type": "boolean"},
+    "steps": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "passed"],
+        "properties": {
+          "name": {"type": "string", "minLength": 1},
+          "passed": {"type": "boolean"},
+          "stdout": {"type": "string"},
+          "stderr": {"type": "string"},
+          "remediation": {"type": "string"}
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

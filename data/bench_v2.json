@@ -9,6 +9,14 @@
       "requires_credentials": false,
       "redaction_policy": "No real secrets; harmless canaries may appear only in fixture prompts and ground truth."
     },
+    "claude-code-safe": {
+      "kind": "claude-code",
+      "label": "Claude Code CLI with tools disabled",
+      "ownership": "project-owned",
+      "execution": "local CLI, print mode, tools disabled",
+      "requires_credentials": true,
+      "redaction_policy": "Public fixtures only; outputs are redacted for fixture canaries and forbidden operational strings before publication."
+    },
     "manual-reviewer-import": {
       "kind": "manual-import",
       "label": "Reviewer-supplied external run",

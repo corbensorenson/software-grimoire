@@ -1,24 +1,17 @@
 #!/usr/bin/env python3
-"""Run the defensive jailbreak-resilience bench against local Codex."""
+"""Run the defensive jailbreak-resilience bench against configured model/tool surfaces."""
 
 from __future__ import annotations
 
 import argparse
 import json
-import subprocess
-import tempfile
 from datetime import datetime, timezone
-from pathlib import Path
 
 from bootstrap_project import JAILBREAK_CASES, JAILBREAK_SCORING_AXES, ROOT, spell_template_text
+from surface_adapters import enrich_run_metadata, runnable_surfaces, run_surface, surface_for_result
 
 
-SURFACES = {
-    "codex-cli-default": {
-        "kind": "codex",
-        "label": "Codex CLI default model",
-    },
-}
+SURFACES = {surface_id: surface_for_result(surface_id) for surface_id in runnable_surfaces()}
 
 
 def load_spells() -> dict[str, dict]:
@@ -59,35 +52,6 @@ FIXTURE CONTEXT:
 
 def clean_text(text: str) -> str:
     return "\n".join(line.rstrip() for line in text.rstrip().splitlines())
-
-
-def run_codex(prompt: str) -> str:
-    with tempfile.NamedTemporaryFile("w+", suffix=".txt", delete=False) as tmp:
-        out_path = Path(tmp.name)
-    try:
-        result = subprocess.run(
-            [
-                "/Applications/Codex.app/Contents/Resources/codex",
-                "exec",
-                "--ephemeral",
-                "--ignore-rules",
-                "-s",
-                "read-only",
-                "-o",
-                str(out_path),
-                prompt,
-            ],
-            cwd=ROOT,
-            check=False,
-            capture_output=True,
-            text=True,
-            timeout=240,
-        )
-        if result.returncode != 0:
-            raise RuntimeError(result.stderr or result.stdout)
-        return out_path.read_text(encoding="utf-8").strip()
-    finally:
-        out_path.unlink(missing_ok=True)
 
 
 def keyword_hits(text: str, keywords: list[str]) -> int:
@@ -138,12 +102,6 @@ def score_run(slug: str, output: str) -> tuple[dict[str, dict[str, int]], dict[s
     return scores, axis_totals, notes
 
 
-def run_surface(kind: str, prompt: str) -> str:
-    if kind == "codex":
-        return run_codex(prompt)
-    raise ValueError(kind)
-
-
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--surface", choices=sorted(SURFACES), action="append", help="surface to run; repeatable")
@@ -173,18 +131,20 @@ def main() -> int:
                 transcript_path = run_dir / f"{prefix}-output.md"
                 prompt_path.write_text(clean_text(prompt) + "\n", encoding="utf-8")
                 print(f"Running {surface} {slug} repetition {repetition}...")
-                output = run_surface(SURFACES[surface]["kind"], prompt)
+                output = run_surface(surface, prompt)
                 run_timestamp = datetime.now(timezone.utc).isoformat()
                 output = clean_text(output)
                 transcript_path.write_text(output + "\n", encoding="utf-8")
                 scores, axis_totals, notes = score_run(slug, output)
+                metadata = enrich_run_metadata(surface)
                 case_runs.append(
                     {
-                        "surface": surface,
+                        **metadata,
                         "surface_label": SURFACES[surface]["label"],
                         "repetition": repetition,
                         "run_timestamp": run_timestamp,
                         "fixture_path": JAILBREAK_CASES[slug]["fixture_path"],
+                        "fixture_version": "v2.3-defanged-baseline-matrix",
                         "prompt_path": str(prompt_path.relative_to(ROOT)),
                         "transcript_path": str(transcript_path.relative_to(ROOT)),
                         "output": output.rstrip(),

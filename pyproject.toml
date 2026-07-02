@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "software-grimoire"
-version = "2.5.0"
+version = "3.0.0"
 description = "Operative vocabulary, prompt-spells, and stackcraft for AI-assisted software engineering."
 readme = "README.md"
 requires-python = ">=3.9"
@@ -28,6 +28,10 @@ grimoire-install-assets = "install_assets:main"
 grimoire-run-bench = "run_bench:main"
 grimoire-run-execution-bench = "run_execution_bench:main"
 grimoire-run-adversarial-harness = "run_adversarial_harness:main"
+grimoire-run-model-artifacts = "run_model_artifact_execution:main"
+grimoire-run-warded-ab = "run_warded_ab:main"
+grimoire-check-package = "check_package:main"
+grimoire-smoke-public-site = "smoke_public_site:main"
 
 [tool.setuptools]
 package-dir = {"" = "scripts"}
@@ -36,9 +40,16 @@ py-modules = [
   "generate_seals",
   "grimoire",
   "install_assets",
+  "check_package",
   "run_adversarial_harness",
   "run_bench",
   "run_execution_bench",
+  "run_evaluations",
+  "run_jailbreak_resilience",
+  "run_model_artifact_execution",
+  "run_warded_ab",
+  "smoke_public_site",
+  "surface_adapters",
   "sync_scaffold",
   "validate_data"
 ]
@@ -46,3 +57,6 @@ py-modules = [
 [tool.setuptools.packages.find]
 where = ["scripts"]
 include = ["grimoire_build*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

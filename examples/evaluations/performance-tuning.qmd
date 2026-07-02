@@ -8,9 +8,9 @@ title: "Performance Tuning Without Micro-Optimization Drift"
 
 **Fixture:** [examples/evaluations/fixtures/performance-tuning](https://github.com/corbensorenson/software-grimoire/tree/main/examples/evaluations/fixtures/performance-tuning)
 
-**Observed outcome delta:** weak and repaired prompts tied on outcome checks
+**Observed outcome delta:** repaired prompts satisfied 0.6 more outcome checks on average
 
-**Observed structural delta:** repaired prompts scored 2.3 points higher on average
+**Observed structural delta:** repaired prompts scored 3.0 points higher on average
 
 **Input context:** The fixture is a report endpoint performance packet.
 
@@ -36,6 +36,10 @@ Ground truth:
 | codex-cli-default | repaired | 2   | 2        | 2         | 2      | 2      | 2       | 1           | 11         | 3       |
 | codex-cli-default | weak     | 3   | 1        | 1         | 2      | 2      | 2       | 1           | 9          | 3       |
 | codex-cli-default | repaired | 3   | 2        | 1         | 2      | 2      | 2       | 2           | 11         | 3       |
+| claude-code-safe  | weak     | 1   | 2        | 0         | 2      | 2      | 2       | 2           | 10         | 3       |
+| claude-code-safe  | repaired | 1   | 2        | 0         | 1      | 2      | 2       | 1           | 8          | 3       |
+| claude-code-safe  | weak     | 1   | 0        | 0         | 1      | 0      | 0       | 0           | 1          | 0       |
+| claude-code-safe  | repaired | 1   | 2        | 1         | 2      | 2      | 2       | 2           | 11         | 3       |
 
 ## Transcripts
 
@@ -348,4 +352,224 @@ Baseline the current endpoint with tracing enabled on representative large accou
 Roll back or disable behind a feature flag if p95 exceeds budget, query count rises materially, DB CPU/I/O or connection wait worsens, error rate increases, report results differ from baseline, memory grows unexpectedly, or stale/incomplete report data appears.
 
 Success means p95 under `1500ms`, materially lower query count, lower DB time, stable correctness, and no throughput regression under target load.
+```
+
+### claude-code-safe - weak r1
+
+- Surface label: Claude Code CLI with tools disabled
+- Run timestamp: `2026-07-02T08:34:10.172350+00:00`
+- Prompt file: [examples/evaluations/runs/claude-code-safe/performance-tuning/clean/r01-weak-prompt.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/claude-code-safe/performance-tuning/clean/r01-weak-prompt.md)
+- Transcript file: [examples/evaluations/runs/claude-code-safe/performance-tuning/clean/r01-weak-output.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/claude-code-safe/performance-tuning/clean/r01-weak-output.md)
+- Structural total: 10
+- Outcome total: 3
+- Evaluator notes: Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence.
+
+```text
+Before touching any code, I need more information. "Make this faster" without measurement context is how you optimize the wrong thing.
+
+## What's missing
+
+I have the fixture file names but not their contents. Please share:
+- The actual `trace.json` content (query counts, timing breakdown)
+- The actual `workload.json` content (target latency budget, data scale)
+- The relevant endpoint code
+
+## How I'd proceed once I have them
+
+**Step 1 — Measure, don't guess.**
+Read the trace to find where time is actually spent. A profiler output or query log beats intuition every time. Without this, you risk spending effort on Python loop micro-optimization while an N+1 query pattern burns 80% of your wall time.
+
+**Step 2 — Form a ranked hypothesis list.**
+From the fixture description (report endpoint, performance packet), likely candidates in order of expected impact:
+
+| Rank | Candidate | Why it matters |
+|------|-----------|----------------|
+| 1 | Query count / N+1 behavior | Report endpoints frequently iterate over records and fire per-row queries; multiplicative cost |
+| 2 | Missing indexes on filter/join columns | Linear scans on large tables |
+| 3 | Serialization / large payload size | Sending more data than the caller needs |
+| 4 | Python-side computation loops | Almost never the primary bottleneck vs. DB round-trips |
+
+**Step 3 — Define regression criteria before touching anything.**
+For each change, state up front:
+- What metric proves it worked (p95 latency, query count, row scan count)
+- What rollback looks like (revert the migration, re-enable the old code path, feature flag off)
+- What "worse" means so you catch it in staging (e.g., query count increases, or p99 crosses the budget in `workload.json`)
+
+**Step 4 — Change one thing at a time, measure after each.**
+If you batch changes and something regresses, you won't know which fix caused it.
+
+---
+
+**Share the trace and endpoint code and I'll give you a concrete diff with the above framework applied.**
+```
+
+### claude-code-safe - repaired r1
+
+- Surface label: Claude Code CLI with tools disabled
+- Run timestamp: `2026-07-02T08:34:32.743371+00:00`
+- Prompt file: [examples/evaluations/runs/claude-code-safe/performance-tuning/clean/r01-repaired-prompt.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/claude-code-safe/performance-tuning/clean/r01-repaired-prompt.md)
+- Transcript file: [examples/evaluations/runs/claude-code-safe/performance-tuning/clean/r01-repaired-output.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/claude-code-safe/performance-tuning/clean/r01-repaired-output.md)
+- Structural total: 8
+- Outcome total: 3
+- Evaluator notes: Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence.
+
+```text
+Let me read the fixture files before forming any hypotheses.
+
+**Reading fixture files.**
+
+The task references `trace.json`, `workload.json`, and `ground_truth.json` but does not provide their contents — only metadata about them. I'll work from what is described and flag where file content is needed.
+
+---
+
+## Bottleneck Hypotheses
+
+**H1 (High confidence): N+1 query pattern**
+The trace description explicitly notes "query count" as a signal. Report endpoints that aggregate across rows commonly emit one query per row to fetch related objects. This is the primary suspect.
+
+**H2 (Medium confidence): Missing or ineffective index on the report's filter/sort columns**
+High query count alone doesn't explain latency if each query is fast; an index miss compounds it.
+
+**H3 (Low confidence): Python loop processing**
+Do not investigate until H1 and H2 are eliminated. Per the ground truth, this is the planted misleading path.
+
+---
+
+## What to Measure First
+
+| Signal | Tool | Threshold |
+|---|---|---|
+| Query count per request | DB slow-query log or ORM query counter | >10 queries for a single report render is a red flag |
+| Per-query latency p50/p99 | `EXPLAIN ANALYZE` on each query shape | |
+| Total endpoint latency vs. DB time | APM span breakdown (e.g., OpenTelemetry) | DB should be <60% of budget |
+| Row-fetch vs. aggregate ratio | Trace span count per DB call | |
+
+**Required before recommending changes:** full trace with per-span durations from `trace.json` and the latency budget from `workload.json`. Without those numbers, rankings below are ordered by prior probability, not measured impact.
+
+---
+
+## Ranked Optimizations
+
+| Rank | Optimization | Expected Benefit | Risk |
+|---|---|---|---|
+| 1 | Batch/eager-load queries (select_related / DataLoader / JOIN) | Reduces query count from O(n) to O(1) | Medium — changes query shape; test with representative data scale |
+| 2 | Add covering index on filter + sort columns | Eliminates sequential scans | Low — additive DDL, easy to drop |
+| 3 | Cache rendered report at report-definition + parameter hash | Eliminates DB round-trips entirely on repeat reads | Medium — invalidation logic required |
+| 4 | Paginate or stream large result sets | Reduces memory pressure and first-byte latency | Low-medium — API contract change |
+
+---
+
+## Benchmark Plan
+
+1. Capture baseline p50/p99/p99.9 at the data scale in `workload.json`.
+2. Enable query logging; record query count histogram per endpoint call.
+3. Apply optimization #1 behind a feature flag on a staging environment.
+4. Re-run the same load profile; compare query count and latency distributions.
+
+---
+
+## Rollback Criteria
+
+- **Trigger rollback if:** p99 latency increases >5% over baseline, error rate rises, or query count does not decrease by ≥50%.
+- **Rollback mechanism:** feature flag off; no schema changes until index is validated in staging first.
+
+## Success Definition
+
+Success = p99 latency within the budget defined in `workload.json`, query count ≤ a fixed ceiling (recommended: 5 per report render), zero increase in error rate. Watch for regressions on adjacent list/detail endpoints that share the same ORM models.
+```
+
+### claude-code-safe - weak r1
+
+- Surface label: Claude Code CLI with tools disabled
+- Run timestamp: `2026-07-02T08:34:38.593222+00:00`
+- Prompt file: [examples/evaluations/runs/claude-code-safe/performance-tuning/trap/r01-weak-prompt.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/claude-code-safe/performance-tuning/trap/r01-weak-prompt.md)
+- Transcript file: [examples/evaluations/runs/claude-code-safe/performance-tuning/trap/r01-weak-output.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/claude-code-safe/performance-tuning/trap/r01-weak-output.md)
+- Structural total: 1
+- Outcome total: 0
+- Evaluator notes: Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence.
+
+```text
+No code was provided. To help, I need:
+
+1. The actual code you want optimized
+2. Ideally, a profiling output or description of where it's slow
+
+Without the code, I can't make anything faster.
+```
+
+### claude-code-safe - repaired r1
+
+- Surface label: Claude Code CLI with tools disabled
+- Run timestamp: `2026-07-02T08:35:03.964819+00:00`
+- Prompt file: [examples/evaluations/runs/claude-code-safe/performance-tuning/trap/r01-repaired-prompt.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/claude-code-safe/performance-tuning/trap/r01-repaired-prompt.md)
+- Transcript file: [examples/evaluations/runs/claude-code-safe/performance-tuning/trap/r01-repaired-output.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/claude-code-safe/performance-tuning/trap/r01-repaired-output.md)
+- Structural total: 11
+- Outcome total: 3
+- Evaluator notes: Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence.
+
+```text
+## Performance Analysis
+
+### Evidence Gap — Act First
+
+Profiling data is incomplete. Before any recommendation is actionable, I need:
+
+- **Query count per request** (e.g., Django debug toolbar, SQLAlchemy event listeners, or `pg_stat_statements`)
+- **Wall-clock breakdown by layer**: DB time vs. application CPU vs. network vs. serialization
+- **Request trace** (OpenTelemetry or equivalent) showing span durations end-to-end
+- **Connection pool saturation metrics** (pool wait time, checkout timeouts)
+
+Without these, all hypotheses below are unranked guesses.
+
+---
+
+### Bottleneck Hypotheses (ordered by base-rate likelihood on commodity cloud)
+
+| Rank | Hypothesis | Symptom Signal |
+|------|-----------|----------------|
+| 1 | **N+1 query pattern** — loop issues one DB call per iteration | Query count scales linearly with result set size |
+| 2 | **Missing index** — full table scans on hot paths | Slow query log, `EXPLAIN ANALYZE` showing Seq Scan |
+| 3 | **No query result caching** — repeated identical reads | High cache miss ratio, identical query fingerprints in pg_stat |
+| 4 | **Unbounded result sets** — fetching all rows then filtering in Python | Memory spikes, serialization overhead |
+| 5 | **Application CPU / algorithmic cost** | CPU-bound threads, `cProfile` hotspot in pure Python |
+
+A visible Python loop is a candidate for #5 only after #1–#4 are ruled out.
+
+---
+
+### What to Measure First
+
+```
+1. query_count, query_time_p99  per request
+2. db_pool_wait_ms              connection saturation
+3. request_duration breakdown   (db / app / network slices)
+4. memory allocations           if GC pauses are suspected
+```
+
+---
+
+### Ranked Optimizations (contingent on evidence)
+
+1. **Batch/eager-load queries** — replace N+1 with `SELECT … IN (…)` or ORM `prefetch_related`. High benefit, low risk.
+2. **Add indexes on filter/join columns** — zero application-code change. High benefit, negligible risk.
+3. **Cache read-heavy, low-staleness queries** — Redis or in-process TTL cache. High benefit, moderate invalidation complexity.
+4. **Paginate / stream large result sets** — fix unbounded fetches. Medium benefit, requires API contract check.
+5. **Algorithmic refactor** (e.g., O(n²) → O(n log n)) — only after DB cost is isolated. Variable benefit.
+6. **Loop-level micro-optimizations** — address last, if profiler proves CPU is the ceiling.
+
+---
+
+### Benchmark Plan
+
+- Baseline: record p50/p95/p99 latency and query count under realistic load (production clone or load test with representative data).
+- After each change: re-run same load profile, compare both latency **and** query count.
+- One change at a time to isolate effect.
+
+---
+
+### Success Criteria & Rollback
+
+**Success**: p99 latency within budget; query count per request ≤ O(1) or bounded constant.
+**Regressions to watch**: correctness of results (stale cache reads), connection pool exhaustion under higher concurrency, increased memory from eager-loading large associations.
+**Rollback**: feature flag or deployment revert; DB index drops are fast if no benefit is confirmed.
 ```

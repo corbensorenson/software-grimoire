@@ -24,7 +24,7 @@ jobs:
           python-version: "3.11"
 
       - name: Install validation dependencies
-        run: python -m pip install --upgrade pip pytest jsonschema
+        run: python -m pip install --upgrade pip pytest jsonschema build
 
       - name: Generate release assets
         run: python scripts/bootstrap_project.py
@@ -34,6 +34,15 @@ jobs:
 
       - name: Run execution bench
         run: python scripts/run_execution_bench.py
+
+      - name: Check package build and install
+        run: python scripts/check_package.py
+
+      - name: Refresh generated evidence pages
+        run: python scripts/bootstrap_project.py
+
+      - name: Validate refreshed generated assets
+        run: python scripts/validate_data.py
 
       - name: Resolve release tag
         id: tag

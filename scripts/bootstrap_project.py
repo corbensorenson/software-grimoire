@@ -206,6 +206,14 @@ BENCH_V2_DATA = {
             "requires_credentials": False,
             "redaction_policy": "No real secrets; harmless canaries may appear only in fixture prompts and ground truth.",
         },
+        "claude-code-safe": {
+            "kind": "claude-code",
+            "label": "Claude Code CLI with tools disabled",
+            "ownership": "project-owned",
+            "execution": "local CLI, print mode, tools disabled",
+            "requires_credentials": True,
+            "redaction_policy": "Public fixtures only; outputs are redacted for fixture canaries and forbidden operational strings before publication.",
+        },
         "manual-reviewer-import": {
             "kind": "manual-import",
             "label": "Reviewer-supplied external run",
@@ -434,6 +442,92 @@ ADOPTION_EVIDENCE_DATA = {
         "policy": "Do not fabricate external adoption. Project-owned dogfood is useful but labeled separately.",
         "next_request": "Invite external users or reviewers to submit reports using the template.",
     },
+}
+
+EVIDENCE_TAXONOMY_DATA = {
+    "version": "3.0.0-evidence-taxonomy",
+    "policy": "Calibration fixtures, project-owned model runs, local deterministic checks, reviewer imports, human audit, and adoption reports must remain separately labeled.",
+    "evidence_classes": {
+        "calibration_fixture": {
+            "claim_power": "teaches the method and exposes expected failure modes; does not prove model performance",
+            "examples": ["weak-vs-repaired cases", "trap-tier fixture contexts"],
+        },
+        "project_owned_model_run": {
+            "claim_power": "evidence about the named local model/tool surface under the recorded prompt, fixture, and date",
+            "examples": ["Codex CLI transcripts", "Claude Code safe-mode transcripts"],
+        },
+        "reviewer_supplied_model_run": {
+            "claim_power": "external or reviewer evidence only after provenance, redaction, and transcript paths are supplied",
+            "examples": ["manual import template records"],
+        },
+        "local_deterministic_execution": {
+            "claim_power": "evidence that a saved artifact satisfies a fixture-local executable check",
+            "examples": ["safe-refactoring pytest fixture", "model-produced artifact pytest runs"],
+        },
+        "local_deterministic_control": {
+            "claim_power": "project-owned control evidence for baseline/ward comparisons, not independent model evidence",
+            "examples": ["defanged local warded baseline matrix"],
+        },
+        "packaging_or_release_check": {
+            "claim_power": "evidence that public artifacts can be rendered, installed, or fetched through declared release surfaces",
+            "examples": ["wheel install checks", "Quarto render checks", "GitHub Pages smoke checks"],
+        },
+        "human_audit_pending": {
+            "claim_power": "records what still requires a named human maintainer before canonical status can be claimed",
+            "examples": ["canon audit queue", "reviewed-to-canonical blockers"],
+        },
+        "adoption_report": {
+            "claim_power": "evidence that a practitioner used the grimoire and reported success, friction, or failure",
+            "examples": ["project-owned dogfood", "reviewer-supplied reports", "external-user reports"],
+        },
+    },
+    "calibration_layers": {
+        "toy": "Small examples used for learning prompt structure.",
+        "clean_fixture": "Longitudinal software tasks where old and new model surfaces can be compared.",
+        "trap_fixture": "Planted-failure cases that expose missing invariants, compatibility, or trust boundaries.",
+        "artifact_execution": "Generated code or tests must run inside a fixture-local sandbox.",
+        "public_smoke": "Rendered, packaged, and public-site artifacts are checked as release surfaces.",
+    },
+    "promotion_rules": [
+        "Do not use local deterministic graders as independent model evidence.",
+        "Do not count project-owned dogfood as external adoption.",
+        "Do not promote generated-draft vocabulary to canonical without usage evidence and human signoff.",
+        "Do not publish operational jailbreak payloads; publish defensive morphology and defanged fixtures only.",
+        "Preserve non-wins and awkward outcomes instead of rewriting them into a success narrative.",
+    ],
+}
+
+CANON_AUDIT_DATA = {
+    "version": "3.0.0-human-canon-audit",
+    "status": "pending-human-maintainer-signoff",
+    "policy": "Codex can prepare audit records and preflight evidence, but canonical human review requires a named human maintainer decision.",
+    "required_human_fields": ["reviewer", "review_date", "decision", "scope", "notes"],
+    "audit_queue": [
+        {
+            "id": "canon.major-50.shadow-review",
+            "scope": "50 major canon entries",
+            "prepared_evidence": "data/canon_quality.json shows 50/50 reviewed major-canon shadows.",
+            "ai_pre_audit": "No doubled shadow labels and no generated-template language detected.",
+            "human_signoff_status": "pending",
+            "blocker": "A named human maintainer must decide whether these reviewed shadows are canonically accepted.",
+        },
+        {
+            "id": "canon.pocket-300.prompt-use-review",
+            "scope": "300 pocket canon entries",
+            "prepared_evidence": "Every reviewed entry has prompt uses and examples.",
+            "ai_pre_audit": "Pocket entries are structurally ready for human sampling and correction.",
+            "human_signoff_status": "pending",
+            "blocker": "Usage-earned promotion needs maintainer acceptance and issue-driven correction path.",
+        },
+        {
+            "id": "canon.first-two-houses.reviewed-tranche",
+            "scope": "Architecture and language/semantics houses",
+            "prepared_evidence": "data/semantic_promotion.json marks the first two houses fully reviewed.",
+            "ai_pre_audit": "Generated-template summaries were removed for the tranche.",
+            "human_signoff_status": "pending",
+            "blocker": "Canonical status remains blocked on human review notes.",
+        },
+    ],
 }
 
 JAILBREAK_CASES = {
@@ -2131,7 +2225,7 @@ def write_library_manifest_and_bundles(spells: list[dict], stacks: list[dict]) -
     asset_files = collect_package_files(library_asset_roots(ROOT))
     manifest = {
         "schema": "software-grimoire-library-v1",
-        "package_version": "1.8.0-library-package",
+        "package_version": "3.0.0-v3-evidence-package",
         "schema_versions": {
             "spell": "schemas/spell.schema.json",
             "stack": "schemas/stack.schema.json",
@@ -2208,6 +2302,251 @@ def load_evaluation_results() -> dict:
     if not path.exists():
         return {"generated_at": None, "surfaces": {}, "cases": {}}
     return json.loads(path.read_text(encoding="utf-8"))
+
+
+def load_runtime_json(relative_path: str, default: dict | None = None) -> dict:
+    path = ROOT / relative_path
+    if not path.exists():
+        return default or {}
+    return json.loads(path.read_text(encoding="utf-8"))
+
+
+def count_result_runs(data: dict) -> int:
+    return sum(len(case.get("runs", [])) for case in data.get("cases", {}).values())
+
+
+def result_surfaces(data: dict) -> list[str]:
+    return sorted(data.get("surfaces", {}))
+
+
+def outcome_delta_for_runs(runs: list[dict]) -> str:
+    weak = [run["outcome_total"] for run in runs if run.get("variant") == "weak" and "outcome_total" in run]
+    repaired = [run["outcome_total"] for run in runs if run.get("variant") == "repaired" and "outcome_total" in run]
+    if not weak or not repaired:
+        return "pending"
+    weak_avg = sum(weak) / len(weak)
+    repaired_avg = sum(repaired) / len(repaired)
+    delta = repaired_avg - weak_avg
+    if delta > 0:
+        return f"repaired prompts satisfied {delta:.1f} more outcome checks on average"
+    if delta < 0:
+        return f"weak prompts satisfied {-delta:.1f} more outcome checks on average"
+    return "weak and repaired prompts tied on outcome checks"
+
+
+def evidence_artifact_record(
+    artifact_id: str,
+    title: str,
+    path: str,
+    evidence_class: str,
+    calibration_role: str,
+    claim_scope: str,
+    data: dict | None = None,
+) -> dict:
+    full = ROOT / path
+    payload = data if data is not None else load_runtime_json(path, {})
+    return {
+        "id": artifact_id,
+        "title": title,
+        "path": path,
+        "exists": full.exists(),
+        "bytes": full.stat().st_size if full.exists() else 0,
+        "evidence_class": evidence_class,
+        "calibration_role": calibration_role,
+        "claim_scope": claim_scope,
+        "generated_at": payload.get("generated_at"),
+        "surfaces": result_surfaces(payload),
+        "run_count": count_result_runs(payload),
+    }
+
+
+def evidence_index_data() -> dict:
+    evaluation = load_runtime_json("examples/evaluations/results.json", {"surfaces": {}, "cases": {}})
+    execution = load_runtime_json("examples/evaluations/execution-results.json", {"surfaces": {}, "cases": {}})
+    model_execution = load_runtime_json("examples/evaluations/model-execution-results.json", {"surfaces": {}, "cases": {}})
+    jailbreak = load_runtime_json("examples/jailbreak-resilience/results.json", {"surfaces": {}, "cases": {}})
+    deterministic_baseline = load_runtime_json("examples/jailbreak-resilience/baseline-results.json", {"surfaces": {}, "cases": {}})
+    real_ab = load_runtime_json("examples/jailbreak-resilience/ab-results.json", {"surfaces": {}, "cases": {}})
+    package_check = load_runtime_json("examples/adoption/package-check.json", {"steps": [], "passed": False})
+    smoke = load_runtime_json("examples/release-gate/public-smoke-check.json", {"checks": [], "passed": False})
+
+    artifacts = [
+        evidence_artifact_record(
+            "field-spell-model-runs",
+            "Field Spell Model Runs",
+            "examples/evaluations/results.json",
+            "project_owned_model_run",
+            "benchmark_evidence",
+            "Weak/repaired prompt behavior on clean and trap fixtures for named local model/tool surfaces.",
+            evaluation,
+        ),
+        evidence_artifact_record(
+            "fixture-local-execution",
+            "Fixture-Local Execution Results",
+            "examples/evaluations/execution-results.json",
+            "local_deterministic_execution",
+            "execution_evidence",
+            "Saved project artifacts pass or fail fixture-local checks; non-executable cases state documented reasons.",
+            execution,
+        ),
+        evidence_artifact_record(
+            "model-produced-artifact-execution",
+            "Model-Produced Artifact Execution",
+            "examples/evaluations/model-execution-results.json",
+            "local_deterministic_execution",
+            "execution_evidence",
+            "Model outputs are extracted into files and graded inside fixture-local temporary directories.",
+            model_execution,
+        ),
+        evidence_artifact_record(
+            "jailbreak-resilience-model-runs",
+            "Jailbreak-Resilience Model Runs",
+            "examples/jailbreak-resilience/results.json",
+            "project_owned_model_run",
+            "security_benchmark_evidence",
+            "Defensive red-team transcripts over defanged fixtures for named local model/tool surfaces.",
+            jailbreak,
+        ),
+        evidence_artifact_record(
+            "local-warded-baseline",
+            "Local Warded Baseline Matrix",
+            "examples/jailbreak-resilience/baseline-results.json",
+            "local_deterministic_control",
+            "control_evidence",
+            "Repository-owned unwarded/warded controls over defanged fixtures.",
+            deterministic_baseline,
+        ),
+        evidence_artifact_record(
+            "real-warded-ab",
+            "Real Surface Warded A/B Runs",
+            "examples/jailbreak-resilience/ab-results.json",
+            "project_owned_model_run",
+            "security_benchmark_evidence",
+            "A/B transcripts comparing unwarded and warded prompts on real local model surfaces with publication redaction.",
+            real_ab,
+        ),
+        {
+            "id": "package-check",
+            "title": "Public Package Build and Install Check",
+            "path": "examples/adoption/package-check.json",
+            "exists": (ROOT / "examples/adoption/package-check.json").exists(),
+            "bytes": (ROOT / "examples/adoption/package-check.json").stat().st_size if (ROOT / "examples/adoption/package-check.json").exists() else 0,
+            "evidence_class": "packaging_or_release_check",
+            "calibration_role": "release_evidence",
+            "claim_scope": "The wheel/sdist build, temporary install, and console scripts work in the current environment.",
+            "generated_at": package_check.get("generated_at"),
+            "surfaces": [],
+            "run_count": len(package_check.get("steps", [])),
+            "passed": package_check.get("passed", False),
+        },
+        {
+            "id": "public-smoke-check",
+            "title": "Public Site Smoke Check",
+            "path": "examples/release-gate/public-smoke-check.json",
+            "exists": (ROOT / "examples/release-gate/public-smoke-check.json").exists(),
+            "bytes": (ROOT / "examples/release-gate/public-smoke-check.json").stat().st_size if (ROOT / "examples/release-gate/public-smoke-check.json").exists() else 0,
+            "evidence_class": "packaging_or_release_check",
+            "calibration_role": "release_evidence",
+            "claim_scope": "Rendered local site resources and optionally live GitHub Pages URLs resolve.",
+            "generated_at": smoke.get("generated_at"),
+            "surfaces": [],
+            "run_count": len(smoke.get("checks", [])),
+            "passed": smoke.get("passed", False),
+        },
+    ]
+    model_surfaces = sorted(
+        {
+            surface
+            for artifact in artifacts
+            for surface in artifact.get("surfaces", [])
+            if not surface.startswith("local-")
+        }
+    )
+    return {
+        "version": "3.0.0-evidence-index",
+        "generated_at": "2026-07-02T00:00:00Z",
+        "policy": EVIDENCE_TAXONOMY_DATA["policy"],
+        "summary": {
+            "artifact_count": len(artifacts),
+            "available_artifacts": sum(1 for artifact in artifacts if artifact["exists"]),
+            "project_owned_model_surfaces": model_surfaces,
+            "project_owned_model_surface_count": len(model_surfaces),
+            "recorded_model_runs": sum(
+                artifact["run_count"]
+                for artifact in artifacts
+                if artifact["evidence_class"] == "project_owned_model_run"
+            ),
+            "deterministic_execution_runs": sum(
+                artifact["run_count"]
+                for artifact in artifacts
+                if artifact["evidence_class"] == "local_deterministic_execution"
+            ),
+            "external_adoption_reports": ADOPTION_EVIDENCE_DATA["external_status"]["external_reports_published"],
+            "human_canon_signoff": CANON_AUDIT_DATA["status"],
+        },
+        "artifacts": artifacts,
+    }
+
+
+def rune_usage_graph_data(lexicon: list[dict], spells: list[dict], stacks: list[dict]) -> dict:
+    lex_by_id = {entry["id"]: entry for entry in lexicon}
+    usage: dict[int, dict] = {}
+
+    def touch(ident: int, kind: str, source_id: str, source_title: str) -> None:
+        entry = lex_by_id.get(ident)
+        if not entry:
+            return
+        item = usage.setdefault(
+            ident,
+            {
+                "id": ident,
+                "sigil": f"{ident:04d}",
+                "term": entry["raw_term"],
+                "semantic_status": entry["semantic_status"],
+                "uses": [],
+            },
+        )
+        item["uses"].append({"kind": kind, "source_id": source_id, "title": source_title})
+
+    for spell in spells:
+        for ident in spell.get("runes", []):
+            touch(ident, "spell", spell["id"], spell["title"])
+    for stack in stacks:
+        for ident in stack.get("runes", []):
+            touch(ident, "stack", stack["id"], stack["title"])
+    for slug, case in PROOF_CASES.items():
+        for ident in SPELL_RUNES.get(slug, []):
+            touch(ident, "proof_case", slug, case["title"])
+    for ident in SPELL_RUNES.get("jailbreak-resilience-review", []):
+        touch(ident, "defensive_bench", "jailbreak-resilience", "Jailbreak-Resilience Bench")
+
+    nodes = sorted(usage.values(), key=lambda item: (-len(item["uses"]), item["id"]))
+    candidates = []
+    for item in nodes:
+        use_count = len(item["uses"])
+        if use_count >= 3:
+            candidates.append(
+                {
+                    "id": item["id"],
+                    "sigil": item["sigil"],
+                    "term": item["term"],
+                    "use_count": use_count,
+                    "current_semantic_status": item["semantic_status"],
+                    "usage_earned_status": "eligible_for_human_canonical_review",
+                    "promotion_blocker": "human maintainer signoff required",
+                }
+            )
+    return {
+        "version": "3.0.0-usage-earned-canon",
+        "policy": "Usage can nominate a rune for canonical review, but cannot by itself grant canonical status.",
+        "summary": {
+            "runes_with_recorded_usage": len(nodes),
+            "canonical_review_candidates": len(candidates),
+            "human_signoff_status": CANON_AUDIT_DATA["status"],
+        },
+        "nodes": nodes,
+        "canonical_review_candidates": candidates,
+    }
 
 
 def run_score_table(runs: list[dict]) -> str:
@@ -2659,6 +2998,15 @@ def write_surface_comparison_pages() -> None:
     execution = execution_results(EXECUTION_BENCH_DATA)
     field_rows = [["Case", "Surface", "Weak/Repaired Delta", "Execution Signal", "Limitation"]]
     field_matrix = {}
+    declared_surfaces = dict(SURFACE_COMPARISON_DATA["surfaces"])
+    for surface_id, surface in evaluation_results.get("surfaces", {}).items():
+        declared_surfaces[surface_id] = {
+            "kind": surface.get("kind", "model"),
+            "label": surface.get("label", surface_id),
+            "provenance": surface.get("ownership") or surface.get("provenance", "project-owned"),
+            "execution": surface.get("execution", "recorded transcript"),
+            "evidence_class": surface.get("evidence_class", "project_owned_model_run"),
+        }
     for slug, proof in PROOF_CASES.items():
         codex_case = evaluation_results.get("cases", {}).get(slug, {})
         local_runs = execution["cases"][slug]["runs"]
@@ -2669,20 +3017,28 @@ def write_surface_comparison_pages() -> None:
             if weak_trap["execution_result"]["passed"] is False and repaired_trap["execution_result"]["passed"] is True
             else "execution delta pending"
         )
-        field_matrix[slug] = {
-            "title": proof["title"],
-            "surfaces": {
-                "codex-cli-default": {
-                    "delta": codex_case.get("observed_outcome_delta", "pending"),
-                    "evidence": "recorded transcripts and marker outcome scoring",
-                    "limitation": "single model/tool surface; marker scoring remains secondary",
-                },
-                "local-deterministic-grader": {
-                    "delta": local_delta,
-                    "evidence": "fixture-local artifact execution where grader exists",
-                    "limitation": "repository-owned deterministic tool surface, not independent model evidence",
-                },
-            },
+        field_matrix[slug] = {"title": proof["title"], "surfaces": {}}
+        runs_by_surface: dict[str, list[dict]] = {}
+        for run in codex_case.get("runs", []):
+            runs_by_surface.setdefault(run.get("surface", "unknown"), []).append(run)
+        for surface, runs in sorted(runs_by_surface.items()):
+            field_matrix[slug]["surfaces"][surface] = {
+                "delta": outcome_delta_for_runs(runs),
+                "evidence": "recorded transcripts and marker outcome scoring",
+                "limitation": "model-surface evidence for the named local CLI/tool configuration; marker scoring remains secondary",
+                "run_count": len(runs),
+                "tiers": sorted({run.get("tier", "clean") for run in runs}),
+            }
+        if "codex-cli-default" not in field_matrix[slug]["surfaces"]:
+            field_matrix[slug]["surfaces"]["codex-cli-default"] = {
+                "delta": codex_case.get("observed_outcome_delta", "pending"),
+                "evidence": "recorded transcripts and marker outcome scoring",
+                "limitation": "single model/tool surface; marker scoring remains secondary",
+            }
+        field_matrix[slug]["surfaces"]["local-deterministic-grader"] = {
+            "delta": local_delta,
+            "evidence": "fixture-local artifact execution where grader exists",
+            "limitation": "repository-owned deterministic tool surface, not independent model evidence",
         }
         for surface, item in field_matrix[slug]["surfaces"].items():
             field_rows.append([proof["title"], surface, item["delta"], item["evidence"], item["limitation"]])
@@ -2690,7 +3046,7 @@ def write_surface_comparison_pages() -> None:
     surface_data = {
         "version": SURFACE_COMPARISON_DATA["version"],
         "policy": SURFACE_COMPARISON_DATA["policy"],
-        "surfaces": SURFACE_COMPARISON_DATA["surfaces"],
+        "surfaces": declared_surfaces,
         "field_spell_matrix": field_matrix,
     }
     write_json(ROOT / "examples" / "evaluations" / "surface-comparison.json", surface_data)
@@ -3202,6 +3558,280 @@ Template: [adoption-report-template.json](../examples/adoption/adoption-report-t
     write_text(ROOT / "adoption" / "evidence.qmd", page("Adoption Evidence", body))
 
 
+def write_v3_evidence_pages(lexicon: list[dict], spells: list[dict], stacks: list[dict]) -> None:
+    taxonomy = EVIDENCE_TAXONOMY_DATA
+    index = evidence_index_data()
+    usage_graph = rune_usage_graph_data(lexicon, spells, stacks)
+    write_json(ROOT / "data" / "evidence_taxonomy.json", taxonomy)
+    write_json(ROOT / "data" / "evidence_index.json", index)
+    write_json(ROOT / "data" / "canon_audit.json", CANON_AUDIT_DATA)
+    write_json(ROOT / "data" / "rune_usage_graph.json", usage_graph)
+
+    taxonomy_rows = [["Evidence Class", "Claim Power", "Examples"]]
+    for key, item in taxonomy["evidence_classes"].items():
+        taxonomy_rows.append([key, item["claim_power"], "; ".join(item["examples"])])
+    calibration_rows = [["Layer", "Role"]]
+    for key, value in taxonomy["calibration_layers"].items():
+        calibration_rows.append([key, value])
+    artifact_rows = [["Artifact", "Class", "Runs", "Surfaces", "Status", "Path"]]
+    for artifact in index["artifacts"]:
+        artifact_rows.append(
+            [
+                artifact["title"],
+                artifact["evidence_class"],
+                str(artifact.get("run_count", 0)),
+                ", ".join(artifact.get("surfaces", [])) or "-",
+                "present" if artifact["exists"] else "missing",
+                f"[{artifact['path']}](../{artifact['path']})",
+            ]
+        )
+    evidence_body = """# Evidence Browser
+
+The evidence browser is the project ledger. It separates calibration materials from evidence-bearing artifacts, then records the class and claim scope for each artifact.
+
+## Summary
+
+- Available artifacts: `{available}/{total}`
+- Project-owned model surfaces: `{surfaces}`
+- Recorded model runs: `{model_runs}`
+- Deterministic execution runs: `{execution_runs}`
+- External adoption reports: `{external_reports}`
+- Human canon signoff: `{human_signoff}`
+
+## Artifacts
+
+{artifact_rows}
+
+## Evidence Classes
+
+{taxonomy_rows}
+
+Raw data: [evidence_index.json](../data/evidence_index.json) and [evidence_taxonomy.json](../data/evidence_taxonomy.json)
+""".format(
+        available=index["summary"]["available_artifacts"],
+        total=index["summary"]["artifact_count"],
+        surfaces=", ".join(index["summary"]["project_owned_model_surfaces"]) or "none recorded",
+        model_runs=index["summary"]["recorded_model_runs"],
+        execution_runs=index["summary"]["deterministic_execution_runs"],
+        external_reports=index["summary"]["external_adoption_reports"],
+        human_signoff=index["summary"]["human_canon_signoff"],
+        artifact_rows=qmd_table(artifact_rows),
+        taxonomy_rows=qmd_table(taxonomy_rows),
+    )
+    write_text(ROOT / "reference" / "evidence-browser.qmd", page("Evidence Browser", evidence_body))
+
+    calibration_body = """# Calibration
+
+Calibration explains what a fixture or toy example is allowed to prove. A trap case can reveal whether a prompt structure names the right invariant, but only a recorded model run or executable artifact can support a claim about a named surface.
+
+## Calibration Layers
+
+{calibration_rows}
+
+## Promotion Rules
+
+{rules}
+
+## Practical Reading Order
+
+1. Read a spell page to understand the intended structure.
+2. Read its Proof by Difference case to see the calibration target.
+3. Read recorded evaluations for named model-surface behavior.
+4. Read execution results for fixture-local pass/fail evidence.
+5. Read adoption evidence only after checking provenance.
+""".format(
+        calibration_rows=qmd_table(calibration_rows),
+        rules="\n".join(f"- {item}" for item in taxonomy["promotion_rules"]),
+    )
+    write_text(ROOT / "reference" / "calibration.qmd", page("Calibration", calibration_body))
+
+    model_results = load_runtime_json("examples/evaluations/model-execution-results.json", {"cases": {}, "surfaces": {}})
+    model_rows = [["Case", "Surface", "Tier", "Variant", "Passed", "Artifact"]]
+    for case in model_results.get("cases", {}).values():
+        for run in case.get("runs", []):
+            model_rows.append(
+                [
+                    case["title"],
+                    run.get("surface", ""),
+                    run.get("tier", ""),
+                    run.get("variant", ""),
+                    str(run.get("execution_result", {}).get("passed")),
+                    f"[artifact](../{run.get('artifact_path')})" if run.get("artifact_path") else "",
+                ]
+            )
+    model_body = """# Model Artifact Execution
+
+This page records the Phase 31 bridge from model prose to executable artifacts. The runner asks a model surface for code or tests, extracts the artifact, stores it, and grades it in a temporary fixture-local directory.
+
+## Results
+
+{rows}
+
+Raw data: [model-execution-results.json](../examples/evaluations/model-execution-results.json)
+""".format(rows=qmd_table(model_rows) if len(model_rows) > 1 else "No model-produced artifact execution has been recorded yet.")
+    write_text(ROOT / "reference" / "model-artifact-execution.qmd", page("Model Artifact Execution", model_body))
+
+    ab = load_runtime_json("examples/jailbreak-resilience/ab-results.json", {"cases": {}, "surfaces": {}, "baseline_failures": []})
+    ab_rows = [["Case", "Observed Delta", "Runs", "Baseline Failures"]]
+    for slug, case in ab.get("cases", {}).items():
+        ab_rows.append(
+            [
+                case["title"],
+                case.get("observed_delta", "pending"),
+                str(len(case.get("runs", []))),
+                str(sum(1 for run in case.get("runs", []) if run.get("baseline_failure"))),
+            ]
+        )
+    ab_body = """# Warded A/B Evidence
+
+This page records real model-surface unwarded versus warded runs over the same defanged fixtures. Published outputs are redacted for fixture canaries and forbidden operational strings.
+
+## Summary
+
+- Surfaces: `{surfaces}`
+- Baseline failures recorded: `{failures}`
+
+## Cases
+
+{rows}
+
+Raw data: [ab-results.json](../examples/jailbreak-resilience/ab-results.json)
+""".format(
+        surfaces=", ".join(sorted(ab.get("surfaces", {}))) or "none recorded",
+        failures=len(ab.get("baseline_failures", [])),
+        rows=qmd_table(ab_rows) if len(ab_rows) > 1 else "No real warded A/B run has been recorded yet.",
+    )
+    write_text(ROOT / "reference" / "warded-ab-evidence.qmd", page("Warded A/B Evidence", ab_body))
+
+    audit_rows = [["Audit", "Scope", "Prepared Evidence", "Status", "Blocker"]]
+    for item in CANON_AUDIT_DATA["audit_queue"]:
+        audit_rows.append([item["id"], item["scope"], item["prepared_evidence"], item["human_signoff_status"], item["blocker"]])
+    audit_body = """# Canon Audit
+
+The canon audit page is intentionally strict. AI-assisted pre-audit can prepare evidence, but the project cannot claim human canonical signoff until a named human maintainer records it.
+
+## Status
+
+- Current status: `{status}`
+- Policy: {policy}
+
+## Required Human Fields
+
+{fields}
+
+## Queue
+
+{rows}
+
+Raw data: [canon_audit.json](../data/canon_audit.json)
+""".format(
+        status=CANON_AUDIT_DATA["status"],
+        policy=CANON_AUDIT_DATA["policy"],
+        fields="\n".join(f"- `{field}`" for field in CANON_AUDIT_DATA["required_human_fields"]),
+        rows=qmd_table(audit_rows),
+    )
+    write_text(ROOT / "reference" / "canon-audit.qmd", page("Canon Audit", audit_body))
+
+    usage_rows = [["Sigil", "Term", "Uses", "Status", "Promotion"]]
+    for item in usage_graph["canonical_review_candidates"][:80]:
+        usage_rows.append(
+            [
+                item["sigil"],
+                item["term"],
+                str(item["use_count"]),
+                item["current_semantic_status"],
+                item["usage_earned_status"],
+            ]
+        )
+    usage_body = """# Usage-Earned Canon
+
+Usage-earned canon is a nomination layer. A rune earns review pressure when spells, stacks, proof cases, and benches keep using it. That still does not bypass human canonical review.
+
+## Summary
+
+- Runes with recorded usage: `{used}`
+- Canonical review candidates: `{candidates}`
+- Human signoff status: `{signoff}`
+
+## Candidates
+
+{rows}
+
+Raw data: [rune_usage_graph.json](../data/rune_usage_graph.json)
+""".format(
+        used=usage_graph["summary"]["runes_with_recorded_usage"],
+        candidates=usage_graph["summary"]["canonical_review_candidates"],
+        signoff=usage_graph["summary"]["human_signoff_status"],
+        rows=qmd_table(usage_rows) if len(usage_rows) > 1 else "No usage-earned candidates yet.",
+    )
+    write_text(ROOT / "reference" / "usage-earned-canon.qmd", page("Usage-Earned Canon", usage_body))
+
+    package = load_runtime_json("examples/adoption/package-check.json", {"steps": [], "passed": False})
+    smoke = load_runtime_json("examples/release-gate/public-smoke-check.json", {"checks": [], "passed": False})
+    smoke_rows = [["Check", "Target", "Passed"]]
+    for item in smoke.get("checks", []):
+        smoke_rows.append([item.get("kind", ""), item.get("target", ""), str(item.get("passed"))])
+    package_rows = [["Step", "Passed"]]
+    for item in package.get("steps", []):
+        package_rows.append([item.get("name", ""), str(item.get("passed"))])
+    smoke_body = """# Public Smoke Checks
+
+This page records release-surface checks that sit outside prompt quality: package build/install, console script availability, local rendered site resources, and optional live GitHub Pages URLs.
+
+## Package Check
+
+Passed: `{package_passed}`
+
+{package_rows}
+
+Raw package report: [package-check.json](../examples/adoption/package-check.json)
+
+## Site Smoke Check
+
+Passed: `{smoke_passed}`
+
+{smoke_rows}
+
+Raw smoke report: [public-smoke-check.json](../examples/release-gate/public-smoke-check.json)
+""".format(
+        package_passed=package.get("passed", False),
+        smoke_passed=smoke.get("passed", False),
+        package_rows=qmd_table(package_rows) if len(package_rows) > 1 else "No package check has been recorded yet.",
+        smoke_rows=qmd_table(smoke_rows) if len(smoke_rows) > 1 else "No smoke check has been recorded yet.",
+    )
+    write_text(ROOT / "reference" / "public-smoke-checks.qmd", page("Public Smoke Checks", smoke_body))
+
+    adoption_body = """# Adoption Playbook
+
+The public repo needs an adoption flywheel that collects real use without overstating it.
+
+## Maintainer Loop
+
+1. Ship generated templates and bundles with stable seals.
+2. Invite users to start from one spell or stack, not the whole book.
+3. Ask for an adoption report that includes success, friction, verification, and whether the spell was reused.
+4. Import reviewer-supplied model runs only through the manual import contract.
+5. Promote vocabulary through the usage graph, then require human audit before canonical status.
+
+## Intake Paths
+
+- [Adoption evidence template](evidence.qmd)
+- [External walkthrough](external-walkthrough.qmd)
+- [Installable library](installable-library.qmd)
+- [Evidence browser](../reference/evidence-browser.qmd)
+- [Canon audit](../reference/canon-audit.qmd)
+
+## Non-Negotiables
+
+- Do not fabricate adoption.
+- Do not shrink the concept just because a phase is labor-intensive.
+- Do not treat project-owned runs as independent external proof.
+- Keep failures, ties, and overkill reports visible.
+- Keep jailbreak material defensive and defanged.
+"""
+    write_text(ROOT / "adoption" / "playbook.qmd", page("Adoption Playbook", adoption_body))
+
+
 def write_adoption_pages() -> None:
     write_text(
         ROOT / "adoption" / "index.qmd",
@@ -3218,6 +3848,7 @@ The adoption kit is intentionally small. It exists to make the field spell templ
 - [Stack workflow templates](https://github.com/corbensorenson/software-grimoire/tree/main/prompts/stacks)
 - [Installable library exports](installable-library.qmd)
 - [Adoption evidence and report template](evidence.qmd)
+- [Adoption playbook](playbook.qmd)
 - [Jailbreak-resilience reference](../reference/jailbreak-resilience.qmd)
 
 ## Minimal CLI
@@ -3886,13 +4517,20 @@ def write_reference_pages(houses: list[dict], lexicon: list[dict], major: dict[i
             "- [The Fifty World-Running Words](major-canon.qmd)\n"
             "- [Pocket Canon](pocket-canon.qmd)\n"
             "- [Proof by Difference](proof-by-difference.qmd)\n"
+            "- [Evidence Browser](evidence-browser.qmd)\n"
+            "- [Calibration](calibration.qmd)\n"
             "- [Bench v2](bench-v2.qmd)\n"
             "- [Execution-Graded Bench](execution-bench.qmd)\n"
+            "- [Model Artifact Execution](model-artifact-execution.qmd)\n"
             "- [Surface Comparison](surface-comparison.qmd)\n"
             "- [Jailbreak Resilience](jailbreak-resilience.qmd)\n"
             "- [Adversarial Harness v2](adversarial-harness.qmd)\n"
             "- [Warded Baselines](warded-baselines.qmd)\n"
+            "- [Warded A/B Evidence](warded-ab-evidence.qmd)\n"
             "- [Semantic Promotion Ladder](semantic-promotion.qmd)\n"
+            "- [Canon Audit](canon-audit.qmd)\n"
+            "- [Usage-Earned Canon](usage-earned-canon.qmd)\n"
+            "- [Public Smoke Checks](public-smoke-checks.qmd)\n"
             "- [Generator Architecture](generator-architecture.qmd)\n"
             "- [Visual Grammar](visual-grammar.qmd)\n"
             "- [Task Chooser](task-chooser.qmd)\n"
@@ -4375,6 +5013,7 @@ def write_quarto_config(houses: list[dict]) -> None:
             "adoption/index.qmd",
             "adoption/installable-library.qmd",
             "adoption/evidence.qmd",
+            "adoption/playbook.qmd",
             "adoption/external-walkthrough.qmd",
         ],
         "reference_pages": [
@@ -4385,13 +5024,20 @@ def write_quarto_config(houses: list[dict]) -> None:
             "reference/seals-and-sigils.qmd",
             "reference/failure-modes.qmd",
             "reference/proof-by-difference.qmd",
+            "reference/evidence-browser.qmd",
+            "reference/calibration.qmd",
             "reference/bench-v2.qmd",
             "reference/execution-bench.qmd",
+            "reference/model-artifact-execution.qmd",
             "reference/surface-comparison.qmd",
             "reference/jailbreak-resilience.qmd",
             "reference/adversarial-harness.qmd",
             "reference/warded-baselines.qmd",
+            "reference/warded-ab-evidence.qmd",
             "reference/semantic-promotion.qmd",
+            "reference/canon-audit.qmd",
+            "reference/usage-earned-canon.qmd",
+            "reference/public-smoke-checks.qmd",
             "reference/generator-architecture.qmd",
             "reference/visual-grammar.qmd",
             "reference/task-chooser.qmd",
@@ -4568,6 +5214,7 @@ def main() -> None:
     write_generator_architecture_pages()
     write_visual_practice_pages(spells, stacks)
     write_adoption_evidence_pages()
+    write_v3_evidence_pages(lexicon, spells, stacks)
     write_adoption_pages()
     write_semantic_promotion_pages(semantic_promotion_report(lexicon, houses))
     write_reference_pages(houses, lexicon, major, pocket, spells, stacks)

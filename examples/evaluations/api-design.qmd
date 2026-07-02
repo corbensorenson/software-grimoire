@@ -10,7 +10,7 @@ title: "API Design Without Hidden Compatibility Traps"
 
 **Observed outcome delta:** weak and repaired prompts tied on outcome checks
 
-**Observed structural delta:** repaired prompts scored 3.3 points higher on average
+**Observed structural delta:** repaired prompts scored 3.0 points higher on average
 
 **Input context:** The fixture describes a public billing API that must remain compatible with slow-upgrading clients.
 
@@ -38,6 +38,10 @@ Ground truth:
 | codex-cli-default | repaired | 2   | 2        | 1         | 2      | 1      | 2       | 2           | 10         | 3       |
 | codex-cli-default | weak     | 3   | 2        | 1         | 2      | 0      | 1       | 0           | 6          | 3       |
 | codex-cli-default | repaired | 3   | 2        | 2         | 2      | 2      | 2       | 1           | 11         | 3       |
+| claude-code-safe  | weak     | 1   | 2        | 1         | 2      | 0      | 1       | 1           | 7          | 3       |
+| claude-code-safe  | repaired | 1   | 2        | 0         | 2      | 1      | 2       | 2           | 9          | 3       |
+| claude-code-safe  | weak     | 1   | 2        | 0         | 2      | 0      | 1       | 0           | 5          | 3       |
+| claude-code-safe  | repaired | 1   | 2        | 0         | 2      | 1      | 2       | 1           | 8          | 3       |
 
 ## Transcripts
 
@@ -664,4 +668,391 @@ Race conditions: concurrent payment attempts for one invoice, duplicate refunds,
 Retry hazards: network timeout after charge succeeds; client retries must receive the same attempt, not create a second charge.
 
 Compatibility risks: enum additions, pagination shape changes, unstable errors, and merging refunds into invoices would break slow-upgrading clients.
+```
+
+### claude-code-safe - weak r1
+
+- Surface label: Claude Code CLI with tools disabled
+- Run timestamp: `2026-07-02T08:30:18.744520+00:00`
+- Prompt file: [examples/evaluations/runs/claude-code-safe/api-design/clean/r01-weak-prompt.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/claude-code-safe/api-design/clean/r01-weak-prompt.md)
+- Transcript file: [examples/evaluations/runs/claude-code-safe/api-design/clean/r01-weak-output.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/claude-code-safe/api-design/clean/r01-weak-output.md)
+- Structural total: 7
+- Outcome total: 3
+- Evaluator notes: Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence.
+
+```text
+## Billing API Design
+
+### Versioning
+
+All endpoints are versioned via URL prefix: `/v1/`. Breaking changes increment the major version. Mobile clients on older versions continue to receive responses in their requested schema via `Accept: application/vnd.billing.v1+json`.
+
+---
+
+### Payments
+
+```
+POST /v1/payments
+Headers: Idempotency-Key: <uuid>   # required; server rejects duplicates within 24h
+Body: { amount, currency, source, metadata }
+Response: { id, status, created_at }
+```
+
+Idempotency keys are **required** — the server returns `400 MISSING_IDEMPOTENCY_KEY` if absent. Replaying the same key within the TTL returns the original response without side effects.
+
+---
+
+### Invoices
+
+```
+POST   /v1/invoices
+GET    /v1/invoices/{id}
+GET    /v1/invoices?cursor=&limit=   # paginated
+PATCH  /v1/invoices/{id}             # draft updates only
+```
+
+Invoice lifecycle states: `draft → open → paid | void`. The `status` field is stable and machine-readable.
+
+---
+
+### Refunds
+
+```
+POST  /v1/refunds
+Headers: Idempotency-Key: <uuid>   # required
+Body: { payment_id, amount, reason }
+
+GET   /v1/refunds/{id}
+GET   /v1/refunds?cursor=&limit=
+```
+
+Refunds are a **separate resource** linked to a payment, not a sub-action of `Invoice`. A refund transitions through `pending → succeeded | failed`. When a refund succeeds, the linked invoice transitions to `refunded` — this is the lifecycle link between the two resources.
+
+---
+
+### Pagination
+
+All list endpoints use cursor-based pagination:
+
+```json
+{
+  "data": [...],
+  "next_cursor": "opaque_token",
+  "has_more": true
+}
+```
+
+No offset pagination — it breaks under concurrent writes and is incompatible with the slow-upgrading client guarantee.
+
+---
+
+### Error Responses
+
+Every error returns a stable, machine-readable `code`:
+
+```json
+{
+  "error": {
+    "code": "CARD_DECLINED",
+    "message": "Human-readable detail.",
+    "request_id": "req_abc123"
+  }
+}
+```
+
+`message` may change; `code` is a **stable contract**. Error codes are documented and semver-protected. Example codes: `MISSING_IDEMPOTENCY_KEY`, `INVALID_AMOUNT`, `INVOICE_NOT_FOUND`, `REFUND_EXCEEDS_ORIGINAL`.
+
+---
+
+### Compatibility Contract
+
+| Concern | Mechanism |
+|---|---|
+| Slow-upgrading mobile clients | URL versioning + additive-only field changes |
+| Duplicate payment prevention | Required `Idempotency-Key` header |
+| Stable error handling | Machine-readable `code` field, never removed |
+| Large result sets | Cursor pagination on all list endpoints |
+| Refund/invoice coupling | Separate resources with shared `status` transitions |
+```
+
+### claude-code-safe - repaired r1
+
+- Surface label: Claude Code CLI with tools disabled
+- Run timestamp: `2026-07-02T08:30:37.725893+00:00`
+- Prompt file: [examples/evaluations/runs/claude-code-safe/api-design/clean/r01-repaired-prompt.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/claude-code-safe/api-design/clean/r01-repaired-prompt.md)
+- Transcript file: [examples/evaluations/runs/claude-code-safe/api-design/clean/r01-repaired-output.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/claude-code-safe/api-design/clean/r01-repaired-output.md)
+- Structural total: 9
+- Outcome total: 3
+- Evaluator notes: Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence.
+
+```text
+## Billing API Design
+
+**Assumptions (resource model is fully specified by ground truth):**
+- Refunds reference a Payment; Invoices reference a Payment when settled
+- Invoice lifecycle: `draft → open → paid | void`
+- Payment lifecycle: `pending → succeeded | failed`
+- Refund lifecycle: `pending → succeeded | failed`
+
+---
+
+### Endpoint Table
+
+| Method | Path | Description |
+|--------|------|-------------|
+| POST | `/v1/invoices` | Create invoice |
+| GET | `/v1/invoices` | List invoices (paginated) |
+| GET | `/v1/invoices/{id}` | Get invoice |
+| POST | `/v1/invoices/{id}/payments` | Attempt payment on invoice |
+| GET | `/v1/invoices/{id}/payments` | List payments for invoice |
+| GET | `/v1/payments/{id}` | Get payment attempt |
+| POST | `/v1/payments/{id}/refunds` | Create refund |
+| GET | `/v1/refunds/{id}` | Get refund |
+
+---
+
+### Auth
+OAuth 2.0 Bearer tokens on every request. Scope examples: `billing:read`, `billing:write`.
+
+---
+
+### Idempotency
+All `POST` requests require `Idempotency-Key: <client-uuid>` header. Server stores key → response for 24h. Replaying an identical key returns the cached response with `Idempotency-Replayed: true`. Mismatched body on replay returns `409 Conflict`.
+
+---
+
+### Request/Response Examples
+
+**POST /v1/invoices/{id}/payments**
+```json
+// Request
+{ "amount_cents": 4999, "currency": "USD", "payment_method_id": "pm_abc" }
+
+// Response 201
+{
+  "id": "pay_xyz",
+  "invoice_id": "inv_abc",
+  "status": "succeeded",
+  "amount_cents": 4999,
+  "currency": "USD",
+  "created_at": "2026-07-02T00:00:00Z"
+}
+```
+
+**Error schema (stable, machine-readable):**
+```json
+{ "error": { "code": "insufficient_funds", "message": "...", "param": null } }
+```
+`code` values are frozen per major version. Never remove or rename a code.
+
+---
+
+### Pagination
+All list endpoints use cursor-based pagination:
+```
+GET /v1/invoices?limit=20&starting_after=inv_abc
+```
+Response includes `{ "data": [...], "has_more": true, "next_cursor": "inv_xyz" }`.
+Never use offset pagination — it breaks under concurrent inserts.
+
+---
+
+### Versioning & Migration
+- URL-versioned (`/v1/`). Additive changes (new fields, new statuses) are non-breaking.
+- Breaking changes (removed fields, renamed codes) require `/v2/`.
+- Run both versions in parallel during transition; sunset v1 only after client cadence allows (12+ months minimum given slow-upgrade constraint).
+- New optional fields default to `null` on old records.
+
+---
+
+### Race Conditions & Retry Hazards
+
+| Risk | Mitigation |
+|------|------------|
+| Double-charge on network retry | Idempotency key + DB unique constraint on key |
+| Payment succeeded but webhook lost | Client polls `GET /v1/payments/{id}` before retrying |
+| Refund on already-refunded payment | Check refunded amount ≤ captured amount in DB transaction |
+| Invoice voided mid-payment | Pessimistic lock on invoice row during payment attempt |
+```
+
+### claude-code-safe - weak r1
+
+- Surface label: Claude Code CLI with tools disabled
+- Run timestamp: `2026-07-02T08:30:55.866790+00:00`
+- Prompt file: [examples/evaluations/runs/claude-code-safe/api-design/trap/r01-weak-prompt.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/claude-code-safe/api-design/trap/r01-weak-prompt.md)
+- Transcript file: [examples/evaluations/runs/claude-code-safe/api-design/trap/r01-weak-output.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/claude-code-safe/api-design/trap/r01-weak-output.md)
+- Structural total: 5
+- Outcome total: 3
+- Evaluator notes: Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence.
+
+```text
+## Billing API Design
+
+### Core Principles
+
+This design explicitly addresses the two most common production failure modes in billing APIs: **duplicate charges from retries** and **breaking client error handling across versions**.
+
+---
+
+### Idempotency
+
+Every mutating operation requires a client-supplied `Idempotency-Key` header (UUID). The server stores the key and its response for 24 hours. Replaying a request with the same key returns the cached response with a `X-Idempotency-Replayed: true` header — no double-charge.
+
+```
+POST /v1/charges
+Idempotency-Key: 550e8400-e29b-41d4-a716-446655440000
+
+{ "customer_id": "cus_123", "amount_cents": 4999, "currency": "usd" }
+```
+
+Keys are scoped per API credential. A key collision from a *different* customer returns `409 Conflict`, not a silent merge.
+
+---
+
+### Stable Error Envelope
+
+All error responses — now and in future versions — conform to this envelope:
+
+```json
+{
+  "error": {
+    "code": "card_declined",
+    "message": "The card was declined.",
+    "param": null,
+    "request_id": "req_abc123"
+  }
+}
+```
+
+**Stability contract:**
+- `error.code` is a stable enum string; clients may switch on it.
+- `error.message` is human-readable and may change across versions — do not parse it.
+- New fields may be added; existing fields are never removed or renamed within a major version.
+- HTTP status codes map predictably: `402` for payment failure, `422` for validation, `409` for idempotency conflicts, `429` for rate limits, `5xx` for server faults.
+
+---
+
+### Versioning
+
+URL-versioned (`/v1/`, `/v2/`). Old versions remain live for a minimum 12-month deprecation window. Version sunset is communicated via `Deprecation` and `Sunset` response headers on every request to a deprecated version.
+
+---
+
+### Key Endpoints
+
+| Method | Path | Idempotency Required |
+|--------|------|----------------------|
+| POST | `/v1/charges` | Yes |
+| POST | `/v1/refunds` | Yes |
+| GET | `/v1/charges/{id}` | No |
+| POST | `/v1/subscriptions` | Yes |
+| DELETE | `/v1/subscriptions/{id}` | No |
+
+---
+
+### Retry Guidance
+
+Clients should retry on `429` and `5xx` with exponential backoff. Retries on `4xx` (except `429`) are safe only if the original request included an idempotency key — the server guarantees at-most-once execution for keyed requests.
+
+---
+
+**What's deliberately excluded:** webhook delivery semantics and PCI scope are real concerns but require separate specs — listing them here without detail would be worse than deferring.
+```
+
+### claude-code-safe - repaired r1
+
+- Surface label: Claude Code CLI with tools disabled
+- Run timestamp: `2026-07-02T08:31:17.782396+00:00`
+- Prompt file: [examples/evaluations/runs/claude-code-safe/api-design/trap/r01-repaired-prompt.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/claude-code-safe/api-design/trap/r01-repaired-prompt.md)
+- Transcript file: [examples/evaluations/runs/claude-code-safe/api-design/trap/r01-repaired-output.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/claude-code-safe/api-design/trap/r01-repaired-output.md)
+- Structural total: 8
+- Outcome total: 3
+- Evaluator notes: Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence.
+
+```text
+## Billing API Design (v1)
+
+### Assumptions (resource model was underspecified)
+
+- Invoices are immutable once finalized; line items are set at creation.
+- A PaymentAttempt is a child of Invoice; refunds are children of a PaymentAttempt.
+- Idempotency keys are client-supplied, stored server-side for 24 hours minimum.
+- OAuth scopes: `billing:read`, `billing:write`, `billing:admin`.
+
+---
+
+### Endpoint Table
+
+| Method | Path | Scope | Description |
+|--------|------|-------|-------------|
+| GET | `/v1/invoices` | billing:read | List invoices (paginated) |
+| POST | `/v1/invoices` | billing:write | Create invoice |
+| GET | `/v1/invoices/{id}` | billing:read | Get invoice |
+| POST | `/v1/invoices/{id}/payment-attempts` | billing:write | Attempt payment |
+| GET | `/v1/invoices/{id}/payment-attempts` | billing:read | List attempts |
+| POST | `/v1/payment-attempts/{id}/refunds` | billing:admin | Issue refund |
+
+---
+
+### Error Envelope (stable contract — never change field names)
+
+```json
+{
+  "error": {
+    "code": "PAYMENT_DECLINED",
+    "message": "Card was declined by issuer.",
+    "request_id": "req_abc123",
+    "retryable": false
+  }
+}
+```
+
+`retryable: true` signals the client may safely replay. Always return this field — omission breaks retry logic in existing clients.
+
+---
+
+### Idempotency
+
+- `POST` endpoints require `Idempotency-Key: <uuid>` header.
+- Server stores (key → response) in PostgreSQL for **72 hours**.
+- Replayed requests return the **exact original response** (same body, same HTTP status).
+- If the same key arrives while the original is still processing: return `409 Conflict` with `code: IDEMPOTENCY_CONFLICT`.
+- Keys are scoped to `(oauth_client_id, key)` — prevents cross-tenant collisions.
+
+---
+
+### Pagination
+
+```json
+{
+  "data": [...],
+  "pagination": {
+    "cursor": "cur_xyz",
+    "has_more": true
+  }
+}
+```
+
+Use cursor-based pagination only. Offset pagination is banned — it creates phantom/duplicate rows under concurrent writes.
+
+---
+
+### Race Conditions & Retry Hazards
+
+| Risk | Mitigation |
+|------|------------|
+| Double-charge on network timeout | Idempotency key deduplication at DB level (unique constraint on key) |
+| Refund on already-refunded attempt | Optimistic lock; check `status = 'succeeded'` before issuing |
+| Concurrent payment attempts on same invoice | DB-level advisory lock on `invoice_id` during attempt creation |
+| Stale status read mid-payment | Clients must poll; never trust local cache on terminal states |
+
+---
+
+### Versioning & Migration
+
+- Version in URL path (`/v1/`). Never in headers — harder to route and log.
+- **Additive-only changes** (new fields, new optional params) are non-breaking within v1.
+- Removing or renaming fields requires `/v2/` with a **minimum 12-month v1 sunset window** — slow mobile upgrade cadence demands this.
+- v1 and v2 run simultaneously behind the same gateway; both write to the same PostgreSQL schema using views to isolate breaking changes.
+- Deprecation communicated via `Deprecation` and `Sunset` response headers on every v1 response once sunset is announced.
 ```

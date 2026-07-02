@@ -1,24 +1,18 @@
 #!/usr/bin/env python3
-"""Run Proof by Difference evaluations against local Codex."""
+"""Run Proof by Difference evaluations against configured model/tool surfaces."""
 
 from __future__ import annotations
 
 import argparse
 import json
-import subprocess
-import tempfile
 from datetime import datetime, timezone
 from pathlib import Path
 
 from bootstrap_project import EVALUATION_CONTEXTS, PROOF_CASES, ROOT
+from surface_adapters import enrich_run_metadata, runnable_surfaces, run_surface, surface_for_result
 
 
-SURFACES = {
-    "codex-cli-default": {
-        "kind": "codex",
-        "label": "Codex CLI default model",
-    },
-}
+SURFACES = {surface_id: surface_for_result(surface_id) for surface_id in runnable_surfaces()}
 
 CRITERION_KEYWORDS = {
     "artifact_boundary": ["artifact", "module", "file", "endpoint", "table", "boundary", "scope", "function"],
@@ -63,55 +57,33 @@ OUTCOME_RUBRICS = {
 }
 
 
-def fixture_context(slug: str) -> str:
-    context_path = ROOT / "examples" / "evaluations" / "fixtures" / slug / "context.md"
+def fixture_context(slug: str, tier: str) -> str:
+    fixture_slug = slug if tier == "clean" else f"{slug}-trap"
+    context_path = ROOT / "examples" / "evaluations" / "fixtures" / fixture_slug / "context.md"
     if context_path.exists():
         return context_path.read_text(encoding="utf-8").strip()
+    if tier != "clean":
+        raise FileNotFoundError(f"missing trap fixture context: {context_path}")
     return EVALUATION_CONTEXTS[slug]
 
 
-def build_prompt(slug: str, variant: str) -> str:
+def build_prompt(slug: str, variant: str, tier: str) -> str:
     case = PROOF_CASES[slug]
     request = case["weak"] if variant == "weak" else case["repaired"]
+    tier_note = "clean longitudinal fixture" if tier == "clean" else "trap-tier fixture with planted failure mode"
     return f"""You are completing a software-engineering task. Use only the context below.
 If the task is underspecified, say what is missing instead of inventing facts.
 Keep the answer under 450 words.
 
+EVALUATION TIER:
+{tier_note}
+
 TASK CONTEXT:
-{fixture_context(slug)}
+{fixture_context(slug, tier)}
 
 USER REQUEST:
 {request}
 """
-
-
-def run_codex(prompt: str) -> str:
-    with tempfile.NamedTemporaryFile("w+", suffix=".txt", delete=False) as tmp:
-        out_path = Path(tmp.name)
-    try:
-        result = subprocess.run(
-            [
-                "/Applications/Codex.app/Contents/Resources/codex",
-                "exec",
-                "--ephemeral",
-                "--ignore-rules",
-                "-s",
-                "read-only",
-                "-o",
-                str(out_path),
-                prompt,
-            ],
-            cwd=ROOT,
-            check=False,
-            capture_output=True,
-            text=True,
-            timeout=240,
-        )
-        if result.returncode != 0:
-            raise RuntimeError(result.stderr or result.stdout)
-        return out_path.read_text(encoding="utf-8").strip()
-    finally:
-        out_path.unlink(missing_ok=True)
 
 
 def score_output(text: str) -> dict[str, int]:
@@ -161,22 +133,8 @@ def observed_outcome_delta(runs: list[dict]) -> str:
     return "weak and repaired prompts tied on outcome checks"
 
 
-def run_surface(kind: str, prompt: str) -> str:
-    if kind == "codex":
-        return run_codex(prompt)
-    raise ValueError(kind)
-
-
-def main() -> int:
-    parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--surface", choices=sorted(SURFACES), action="append", help="surface to run; repeatable")
-    parser.add_argument("--case", choices=sorted(PROOF_CASES), action="append", help="case to run; repeatable")
-    parser.add_argument("--repetitions", type=int, default=1, help="number of runs per variant")
-    args = parser.parse_args()
-
-    surfaces = args.surface or list(SURFACES)
-    slugs = args.case or list(PROOF_CASES)
-    results = {
+def default_results(surfaces: list[str]) -> dict:
+    return {
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "surfaces": {name: SURFACES[name] for name in surfaces},
         "structural_rubric": CRITERION_KEYWORDS,
@@ -184,54 +142,129 @@ def main() -> int:
         "cases": {},
     }
 
-    for slug in slugs:
-        case_runs = []
-        for surface in surfaces:
-            for repetition in range(1, args.repetitions + 1):
-                for variant in ["weak", "repaired"]:
-                    prompt = build_prompt(slug, variant)
-                    run_dir = ROOT / "examples" / "evaluations" / "runs" / surface / slug
-                    run_dir.mkdir(parents=True, exist_ok=True)
-                    prefix = f"r{repetition:02d}-{variant}"
-                    prompt_path = run_dir / f"{prefix}-prompt.md"
-                    transcript_path = run_dir / f"{prefix}-output.md"
-                    prompt_path.write_text(prompt, encoding="utf-8")
-                    print(f"Running {surface} {slug} {variant} repetition {repetition}...")
-                    output = run_surface(SURFACES[surface]["kind"], prompt)
-                    run_timestamp = datetime.now(timezone.utc).isoformat()
-                    transcript_path.write_text(output.rstrip() + "\n", encoding="utf-8")
-                    structural_scores = score_output(output)
-                    outcome_scores = score_outcome(slug, output)
-                    case_runs.append(
-                        {
-                            "surface": surface,
-                            "surface_label": SURFACES[surface]["label"],
-                            "variant": variant,
-                            "repetition": repetition,
-                            "run_timestamp": run_timestamp,
-                            "fixture_path": f"examples/evaluations/fixtures/{slug}",
-                            "prompt_path": str(prompt_path.relative_to(ROOT)),
-                            "transcript_path": str(transcript_path.relative_to(ROOT)),
-                            "output": output.rstrip(),
-                            "scores": structural_scores,
-                            "structural_scores": structural_scores,
-                            "structural_total": sum(structural_scores.values()),
-                            "outcome_scores": outcome_scores,
-                            "outcome_total": sum(outcome_scores.values()),
-                            "total_score": sum(structural_scores.values()),
-                            "evaluator_notes": "Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence.",
-                        }
-                    )
-        results["cases"][slug] = {
-            "title": PROOF_CASES[slug]["title"],
-            "input_context": fixture_context(slug),
-            "fixture_path": f"examples/evaluations/fixtures/{slug}",
-            "expected_delta": PROOF_CASES[slug]["delta"],
-            "observed_delta": observed_delta(case_runs),
-            "observed_outcome_delta": observed_outcome_delta(case_runs),
-            "runs": case_runs,
-        }
 
+def load_existing_results() -> dict | None:
+    path = ROOT / "examples" / "evaluations" / "results.json"
+    if not path.exists():
+        return None
+    return json.loads(path.read_text(encoding="utf-8"))
+
+
+def fixture_path_for(slug: str, tier: str) -> str:
+    fixture_slug = slug if tier == "clean" else f"{slug}-trap"
+    return f"examples/evaluations/fixtures/{fixture_slug}"
+
+
+def next_repetition(existing_runs: list[dict], surface: str, tier: str, variant: str, requested_repetition: int, append: bool) -> int:
+    if not append:
+        return requested_repetition
+    prior = [
+        run.get("repetition", 0)
+        for run in existing_runs
+        if run.get("surface") == surface and run.get("tier", "clean") == tier and run.get("variant") == variant
+    ]
+    return (max(prior) if prior else 0) + requested_repetition
+
+
+def recompute_case_summary(results: dict) -> None:
+    for slug, case in results["cases"].items():
+        runs = case.get("runs", [])
+        case["observed_delta"] = observed_delta(runs)
+        case["observed_outcome_delta"] = observed_outcome_delta(runs)
+        tier_summaries = {}
+        for tier in sorted({run.get("tier", "clean") for run in runs}):
+            tier_runs = [run for run in runs if run.get("tier", "clean") == tier]
+            tier_summaries[tier] = {
+                "observed_delta": observed_delta(tier_runs),
+                "observed_outcome_delta": observed_outcome_delta(tier_runs),
+                "runs": len(tier_runs),
+            }
+        case["tier_summaries"] = tier_summaries
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--surface", choices=sorted(SURFACES), action="append", help="surface to run; repeatable")
+    parser.add_argument("--case", choices=sorted(PROOF_CASES), action="append", help="case to run; repeatable")
+    parser.add_argument("--tier", choices=["clean", "trap"], action="append", help="tier to run; repeatable")
+    parser.add_argument("--repetitions", type=int, default=1, help="number of runs per variant")
+    parser.add_argument("--append", action="store_true", help="append to existing results instead of replacing them")
+    args = parser.parse_args()
+
+    surfaces = args.surface or list(SURFACES)
+    slugs = args.case or list(PROOF_CASES)
+    tiers = args.tier or ["clean"]
+    results = load_existing_results() if args.append and load_existing_results() else default_results(surfaces)
+    results["generated_at"] = datetime.now(timezone.utc).isoformat()
+    results.setdefault("structural_rubric", CRITERION_KEYWORDS)
+    results.setdefault("outcome_rubric", OUTCOME_RUBRICS)
+    results.setdefault("cases", {})
+    results.setdefault("surfaces", {})
+    for surface in surfaces:
+        results["surfaces"][surface] = SURFACES[surface]
+
+    for slug in slugs:
+        existing_case = results["cases"].setdefault(
+            slug,
+            {
+                "title": PROOF_CASES[slug]["title"],
+                "input_context": fixture_context(slug, "clean"),
+                "fixture_path": fixture_path_for(slug, "clean"),
+                "expected_delta": PROOF_CASES[slug]["delta"],
+                "observed_delta": "pending",
+                "observed_outcome_delta": "pending",
+                "runs": [],
+            },
+        )
+        if not args.append:
+            existing_case["runs"] = [
+                run
+                for run in existing_case.get("runs", [])
+                if run.get("surface") not in surfaces or run.get("tier", "clean") not in tiers
+            ]
+        for surface in surfaces:
+            for tier in tiers:
+                for repetition in range(1, args.repetitions + 1):
+                    for variant in ["weak", "repaired"]:
+                        run_repetition = next_repetition(existing_case["runs"], surface, tier, variant, repetition, args.append)
+                        prompt = build_prompt(slug, variant, tier)
+                        run_dir = ROOT / "examples" / "evaluations" / "runs" / surface / slug / tier
+                        run_dir.mkdir(parents=True, exist_ok=True)
+                        prefix = f"r{run_repetition:02d}-{variant}"
+                        prompt_path = run_dir / f"{prefix}-prompt.md"
+                        transcript_path = run_dir / f"{prefix}-output.md"
+                        prompt_path.write_text(prompt, encoding="utf-8")
+                        print(f"Running {surface} {slug} {tier} {variant} repetition {run_repetition}...")
+                        output = run_surface(surface, prompt)
+                        run_timestamp = datetime.now(timezone.utc).isoformat()
+                        transcript_path.write_text(output.rstrip() + "\n", encoding="utf-8")
+                        structural_scores = score_output(output)
+                        outcome_scores = score_outcome(slug, output)
+                        metadata = enrich_run_metadata(surface)
+                        existing_case["runs"].append(
+                            {
+                                **metadata,
+                                "surface_label": SURFACES[surface]["label"],
+                                "tier": tier,
+                                "variant": variant,
+                                "repetition": run_repetition,
+                                "run_timestamp": run_timestamp,
+                                "fixture_path": fixture_path_for(slug, tier),
+                                "fixture_version": "v2.2-clean-and-trap-fixtures",
+                                "prompt_path": str(prompt_path.relative_to(ROOT)),
+                                "transcript_path": str(transcript_path.relative_to(ROOT)),
+                                "output": output.rstrip(),
+                                "scores": structural_scores,
+                                "structural_scores": structural_scores,
+                                "structural_total": sum(structural_scores.values()),
+                                "outcome_scores": outcome_scores,
+                                "outcome_total": sum(outcome_scores.values()),
+                                "total_score": sum(structural_scores.values()),
+                                "evaluator_notes": "Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence.",
+                            }
+                        )
+
+    recompute_case_summary(results)
     out = ROOT / "examples" / "evaluations" / "results.json"
     out.write_text(json.dumps(results, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     print(f"Wrote {out.relative_to(ROOT)}")

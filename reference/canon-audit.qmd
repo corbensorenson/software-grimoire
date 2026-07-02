@@ -1,0 +1,30 @@
+---
+title: "Canon Audit"
+---
+
+# Canon Audit
+
+The canon audit page is intentionally strict. AI-assisted pre-audit can prepare evidence, but the project cannot claim human canonical signoff until a named human maintainer records it.
+
+## Status
+
+- Current status: `pending-human-maintainer-signoff`
+- Policy: Codex can prepare audit records and preflight evidence, but canonical human review requires a named human maintainer decision.
+
+## Required Human Fields
+
+- `reviewer`
+- `review_date`
+- `decision`
+- `scope`
+- `notes`
+
+## Queue
+
+| Audit                                   | Scope                                      | Prepared Evidence                                                       | Status  | Blocker                                                                                       |
+| --------------------------------------- | ------------------------------------------ | ----------------------------------------------------------------------- | ------- | --------------------------------------------------------------------------------------------- |
+| canon.major-50.shadow-review            | 50 major canon entries                     | data/canon_quality.json shows 50/50 reviewed major-canon shadows.       | pending | A named human maintainer must decide whether these reviewed shadows are canonically accepted. |
+| canon.pocket-300.prompt-use-review      | 300 pocket canon entries                   | Every reviewed entry has prompt uses and examples.                      | pending | Usage-earned promotion needs maintainer acceptance and issue-driven correction path.          |
+| canon.first-two-houses.reviewed-tranche | Architecture and language/semantics houses | data/semantic_promotion.json marks the first two houses fully reviewed. | pending | Canonical status remains blocked on human review notes.                                       |
+
+Raw data: [canon_audit.json](../data/canon_audit.json)

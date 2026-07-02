@@ -113,3 +113,43 @@ def test_visual_practice_matches_schema() -> None:
 def test_adoption_evidence_matches_schema() -> None:
     errors = collect_errors("schemas/adoption-evidence.schema.json", [load_json("data/adoption_evidence.json")], "adoption_evidence")
     assert not errors, "\n".join(errors[:25])
+
+
+def test_evidence_taxonomy_matches_schema() -> None:
+    errors = collect_errors("schemas/evidence-taxonomy.schema.json", [load_json("data/evidence_taxonomy.json")], "evidence_taxonomy")
+    assert not errors, "\n".join(errors[:25])
+
+
+def test_evidence_index_matches_schema() -> None:
+    errors = collect_errors("schemas/evidence-index.schema.json", [load_json("data/evidence_index.json")], "evidence_index")
+    assert not errors, "\n".join(errors[:25])
+
+
+def test_canon_audit_matches_schema() -> None:
+    errors = collect_errors("schemas/canon-audit.schema.json", [load_json("data/canon_audit.json")], "canon_audit")
+    assert not errors, "\n".join(errors[:25])
+
+
+def test_rune_usage_graph_matches_schema() -> None:
+    errors = collect_errors("schemas/rune-usage-graph.schema.json", [load_json("data/rune_usage_graph.json")], "rune_usage_graph")
+    assert not errors, "\n".join(errors[:25])
+
+
+def test_model_execution_results_match_schema() -> None:
+    errors = collect_errors("schemas/model-execution-results.schema.json", [load_json("examples/evaluations/model-execution-results.json")], "model_execution")
+    assert not errors, "\n".join(errors[:25])
+
+
+def test_warded_ab_matches_schema() -> None:
+    errors = collect_errors("schemas/warded-ab.schema.json", [load_json("examples/jailbreak-resilience/ab-results.json")], "warded_ab")
+    assert not errors, "\n".join(errors[:25])
+
+
+def test_package_check_matches_schema() -> None:
+    errors = collect_errors("schemas/package-check.schema.json", [load_json("examples/adoption/package-check.json")], "package_check")
+    assert not errors, "\n".join(errors[:25])
+
+
+def test_public_smoke_check_matches_schema() -> None:
+    errors = collect_errors("schemas/public-smoke-check.schema.json", [load_json("examples/release-gate/public-smoke-check.json")], "public_smoke")
+    assert not errors, "\n".join(errors[:25])

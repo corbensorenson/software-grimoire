@@ -1,0 +1,44 @@
+---
+title: "Evidence Browser"
+---
+
+# Evidence Browser
+
+The evidence browser is the project ledger. It separates calibration materials from evidence-bearing artifacts, then records the class and claim scope for each artifact.
+
+## Summary
+
+- Available artifacts: `8/8`
+- Project-owned model surfaces: `claude-code-safe, claude-code-safe:baseline, claude-code-safe:warded, codex-cli-default`
+- Recorded model runs: `132`
+- Deterministic execution runs: `30`
+- External adoption reports: `0`
+- Human canon signoff: `pending-human-maintainer-signoff`
+
+## Artifacts
+
+| Artifact                               | Class                         | Runs | Surfaces                                           | Status  | Path                                                                                                          |
+| -------------------------------------- | ----------------------------- | ---- | -------------------------------------------------- | ------- | ------------------------------------------------------------------------------------------------------------- |
+| Field Spell Model Runs                 | project_owned_model_run       | 60   | claude-code-safe, codex-cli-default                | present | [examples/evaluations/results.json](../examples/evaluations/results.json)                                     |
+| Fixture-Local Execution Results        | local_deterministic_execution | 24   | codex-cli-default, local-deterministic-grader      | present | [examples/evaluations/execution-results.json](../examples/evaluations/execution-results.json)                 |
+| Model-Produced Artifact Execution      | local_deterministic_execution | 6    | claude-code-safe                                   | present | [examples/evaluations/model-execution-results.json](../examples/evaluations/model-execution-results.json)     |
+| Jailbreak-Resilience Model Runs        | project_owned_model_run       | 24   | codex-cli-default                                  | present | [examples/jailbreak-resilience/results.json](../examples/jailbreak-resilience/results.json)                   |
+| Local Warded Baseline Matrix           | local_deterministic_control   | 16   | local-unwarded-control, local-warded-reviewer      | present | [examples/jailbreak-resilience/baseline-results.json](../examples/jailbreak-resilience/baseline-results.json) |
+| Real Surface Warded A/B Runs           | project_owned_model_run       | 48   | claude-code-safe:baseline, claude-code-safe:warded | present | [examples/jailbreak-resilience/ab-results.json](../examples/jailbreak-resilience/ab-results.json)             |
+| Public Package Build and Install Check | packaging_or_release_check    | 7    | -                                                  | present | [examples/adoption/package-check.json](../examples/adoption/package-check.json)                               |
+| Public Site Smoke Check                | packaging_or_release_check    | 11   | -                                                  | present | [examples/release-gate/public-smoke-check.json](../examples/release-gate/public-smoke-check.json)             |
+
+## Evidence Classes
+
+| Evidence Class                | Claim Power                                                                                             | Examples                                                                |
+| ----------------------------- | ------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------- |
+| calibration_fixture           | teaches the method and exposes expected failure modes; does not prove model performance                 | weak-vs-repaired cases; trap-tier fixture contexts                      |
+| project_owned_model_run       | evidence about the named local model/tool surface under the recorded prompt, fixture, and date          | Codex CLI transcripts; Claude Code safe-mode transcripts                |
+| reviewer_supplied_model_run   | external or reviewer evidence only after provenance, redaction, and transcript paths are supplied       | manual import template records                                          |
+| local_deterministic_execution | evidence that a saved artifact satisfies a fixture-local executable check                               | safe-refactoring pytest fixture; model-produced artifact pytest runs    |
+| local_deterministic_control   | project-owned control evidence for baseline/ward comparisons, not independent model evidence            | defanged local warded baseline matrix                                   |
+| packaging_or_release_check    | evidence that public artifacts can be rendered, installed, or fetched through declared release surfaces | wheel install checks; Quarto render checks; GitHub Pages smoke checks   |
+| human_audit_pending           | records what still requires a named human maintainer before canonical status can be claimed             | canon audit queue; reviewed-to-canonical blockers                       |
+| adoption_report               | evidence that a practitioner used the grimoire and reported success, friction, or failure               | project-owned dogfood; reviewer-supplied reports; external-user reports |
+
+Raw data: [evidence_index.json](../data/evidence_index.json) and [evidence_taxonomy.json](../data/evidence_taxonomy.json)

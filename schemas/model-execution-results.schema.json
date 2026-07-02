@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Software Grimoire Model Artifact Execution Results",
+  "type": "object",
+  "required": ["generated_at", "version", "policy", "surfaces", "cases"],
+  "properties": {
+    "generated_at": {"type": "string", "minLength": 1},
+    "version": {"type": "string", "minLength": 1},
+    "policy": {"type": "string", "minLength": 1},
+    "surfaces": {"type": "object", "minProperties": 1, "additionalProperties": {"type": "object", "additionalProperties": true}},
+    "cases": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+        "type": "object",
+        "required": ["title", "runs"],
+        "properties": {
+          "title": {"type": "string", "minLength": 1},
+          "runs": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "required": ["surface", "case_slug", "tier", "variant", "fixture_path", "prompt_path", "transcript_path", "artifact_path", "execution_command", "execution_result", "grader_version"],
+              "properties": {
+                "surface": {"type": "string", "minLength": 1},
+                "case_slug": {"type": "string", "minLength": 1},
+                "tier": {"type": "string", "minLength": 1},
+                "variant": {"type": "string", "minLength": 1},
+                "fixture_path": {"type": "string", "minLength": 1},
+                "prompt_path": {"type": "string", "minLength": 1},
+                "transcript_path": {"type": "string", "minLength": 1},
+                "artifact_path": {"type": "string", "minLength": 1},
+                "execution_command": {"type": "string", "minLength": 1},
+                "execution_result": {"type": "object", "required": ["passed"], "additionalProperties": true},
+                "grader_version": {"type": "string", "minLength": 1}
+              },
+              "additionalProperties": true
+            }
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

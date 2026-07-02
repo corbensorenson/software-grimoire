@@ -1,0 +1,20 @@
+---
+title: "Model Artifact Execution"
+---
+
+# Model Artifact Execution
+
+This page records the Phase 31 bridge from model prose to executable artifacts. The runner asks a model surface for code or tests, extracts the artifact, stores it, and grades it in a temporary fixture-local directory.
+
+## Results
+
+| Case                                                  | Surface          | Tier  | Variant  | Passed | Artifact                                                                                                               |
+| ----------------------------------------------------- | ---------------- | ----- | -------- | ------ | ---------------------------------------------------------------------------------------------------------------------- |
+| Refactor Without Breaking Behavior                    | claude-code-safe | clean | weak     | True   | [artifact](../examples/evaluations/model-artifacts/claude-code-safe/safe-refactoring/clean/weak/normalize_user.py)     |
+| Refactor Without Breaking Behavior                    | claude-code-safe | clean | repaired | True   | [artifact](../examples/evaluations/model-artifacts/claude-code-safe/safe-refactoring/clean/repaired/normalize_user.py) |
+| Refactor Without Breaking Behavior                    | claude-code-safe | trap  | weak     | True   | [artifact](../examples/evaluations/model-artifacts/claude-code-safe/safe-refactoring/trap/weak/normalize_user.py)      |
+| Refactor Without Breaking Behavior                    | claude-code-safe | trap  | repaired | True   | [artifact](../examples/evaluations/model-artifacts/claude-code-safe/safe-refactoring/trap/repaired/normalize_user.py)  |
+| Test Generation Without Overfitting To Implementation | claude-code-safe | clean | weak     | True   | [artifact](../examples/evaluations/model-artifacts/claude-code-safe/test-generation/clean/weak/test_pricing.py)        |
+| Test Generation Without Overfitting To Implementation | claude-code-safe | clean | repaired | True   | [artifact](../examples/evaluations/model-artifacts/claude-code-safe/test-generation/clean/repaired/test_pricing.py)    |
+
+Raw data: [model-execution-results.json](../examples/evaluations/model-execution-results.json)

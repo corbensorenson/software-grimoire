@@ -1,0 +1,1074 @@
+{
+  "version": "3.0.0-usage-earned-canon",
+  "policy": "Usage can nominate a rune for canonical review, but cannot by itself grant canonical status.",
+  "summary": {
+    "runes_with_recorded_usage": 40,
+    "canonical_review_candidates": 19,
+    "human_signoff_status": "pending-human-maintainer-signoff"
+  },
+  "nodes": [
+    {
+      "id": 1172,
+      "sigil": "1172",
+      "term": "invariant",
+      "semantic_status": "reviewed",
+      "uses": [
+        {
+          "kind": "spell",
+          "source_id": "spell.safe-refactoring.v1",
+          "title": "Spell of Safe Refactoring"
+        },
+        {
+          "kind": "spell",
+          "source_id": "spell.migration-without-data-loss.v1",
+          "title": "Spell of Migration Without Data Loss"
+        },
+        {
+          "kind": "spell",
+          "source_id": "spell.test-generation.v1",
+          "title": "Spell of Test Generation"
+        },
+        {
+          "kind": "stack",
+          "source_id": "stack.code-generation-and-repair-loop.v1",
+          "title": "Code Generation and Repair Loop"
+        },
+        {
+          "kind": "stack",
+          "source_id": "stack.bug-hunt-stack.v1",
+          "title": "Bug-Hunt Stack"
+        },
+        {
+          "kind": "stack",
+          "source_id": "stack.safe-refactor-stack.v1",
+          "title": "Safe Refactor Stack"
+        },
+        {
+          "kind": "stack",
+          "source_id": "stack.recursive-decomposition-stack.v1",
+          "title": "Recursive Decomposition Stack"
+        },
+        {
+          "kind": "proof_case",
+          "source_id": "safe-refactoring",
+          "title": "Refactor Without Breaking Behavior"
+        },
+        {
+          "kind": "proof_case",
+          "source_id": "migration-without-data-loss",
+          "title": "Online Migration Without Data Loss"
+        },
+        {
+          "kind": "proof_case",
+          "source_id": "test-generation",
+          "title": "Test Generation Without Overfitting To Implementation"
+        }
+      ]
+    },
+    {
+      "id": 1445,
+      "sigil": "1445",
+      "term": "deterministic",
+      "semantic_status": "reviewed",
+      "uses": [
+        {
+          "kind": "spell",
+          "source_id": "spell.safe-refactoring.v1",
+          "title": "Spell of Safe Refactoring"
+        },
+        {
+          "kind": "spell",
+          "source_id": "spell.test-generation.v1",
+          "title": "Spell of Test Generation"
+        },
+        {
+          "kind": "stack",
+          "source_id": "stack.bug-hunt-stack.v1",
+          "title": "Bug-Hunt Stack"
+        },
+        {
+          "kind": "stack",
+          "source_id": "stack.safe-refactor-stack.v1",
+          "title": "Safe Refactor Stack"
+        },
+        {
+          "kind": "stack",
+          "source_id": "stack.recursive-decomposition-stack.v1",
+          "title": "Recursive Decomposition Stack"
+        },
+        {
+          "kind": "proof_case",
+          "source_id": "safe-refactoring",
+          "title": "Refactor Without Breaking Behavior"
+        },
+        {
+          "kind": "proof_case",
+          "source_id": "test-generation",
+          "title": "Test Generation Without Overfitting To Implementation"
+        }
+      ]
+    },
+    {
+      "id": 943,
+      "sigil": "0943",
+      "term": "rollback {DB}",
+      "semantic_status": "reviewed",
+      "uses": [
+        {
+          "kind": "spell",
+          "source_id": "spell.bug-diagnosis-from-logs.v1",
+          "title": "Spell of Bug Diagnosis from Logs"
+        },
+        {
+          "kind": "spell",
+          "source_id": "spell.migration-without-data-loss.v1",
+          "title": "Spell of Migration Without Data Loss"
+        },
+        {
+          "kind": "stack",
+          "source_id": "stack.live-migration-stack.v1",
+          "title": "Live Migration Stack"
+        },
+        {
+          "kind": "stack",
+          "source_id": "stack.release-gate-stack.v1",
+          "title": "Release Gate Stack"
+        },
+        {
+          "kind": "proof_case",
+          "source_id": "bug-diagnosis-from-logs",
+          "title": "Incident Diagnosis Without Fake Certainty"
+        },
+        {
+          "kind": "proof_case",
+          "source_id": "migration-without-data-loss",
+          "title": "Online Migration Without Data Loss"
+        }
+      ]
+    },
+    {
+      "id": 347,
+      "sigil": "0347",
+      "term": "schema {Data}",
+      "semantic_status": "reviewed",
+      "uses": [
+        {
+          "kind": "spell",
+          "source_id": "spell.api-design.v1",
+          "title": "Spell of API Design"
+        },
+        {
+          "kind": "spell",
+          "source_id": "spell.migration-without-data-loss.v1",
+          "title": "Spell of Migration Without Data Loss"
+        },
+        {
+          "kind": "stack",
+          "source_id": "stack.live-migration-stack.v1",
+          "title": "Live Migration Stack"
+        },
+        {
+          "kind": "proof_case",
+          "source_id": "api-design",
+          "title": "API Design Without Hidden Compatibility Traps"
+        },
+        {
+          "kind": "proof_case",
+          "source_id": "migration-without-data-loss",
+          "title": "Online Migration Without Data Loss"
+        }
+      ]
+    },
+    {
+      "id": 1152,
+      "sigil": "1152",
+      "term": "contract test",
+      "semantic_status": "reviewed",
+      "uses": [
+        {
+          "kind": "spell",
+          "source_id": "spell.safe-refactoring.v1",
+          "title": "Spell of Safe Refactoring"
+        },
+        {
+          "kind": "spell",
+          "source_id": "spell.test-generation.v1",
+          "title": "Spell of Test Generation"
+        },
+        {
+          "kind": "stack",
+          "source_id": "stack.safe-refactor-stack.v1",
+          "title": "Safe Refactor Stack"
+        },
+        {
+          "kind": "proof_case",
+          "source_id": "safe-refactoring",
+          "title": "Refactor Without Breaking Behavior"
+        },
+        {
+          "kind": "proof_case",
+          "source_id": "test-generation",
+          "title": "Test Generation Without Overfitting To Implementation"
+        }
+      ]
+    },
+    {
+      "id": 1180,
+      "sigil": "1180",
+      "term": "observability",
+      "semantic_status": "reviewed",
+      "uses": [
+        {
+          "kind": "spell",
+          "source_id": "spell.bug-diagnosis-from-logs.v1",
+          "title": "Spell of Bug Diagnosis from Logs"
+        },
+        {
+          "kind": "stack",
+          "source_id": "stack.code-generation-and-repair-loop.v1",
+          "title": "Code Generation and Repair Loop"
+        },
+        {
+          "kind": "stack",
+          "source_id": "stack.bug-hunt-stack.v1",
+          "title": "Bug-Hunt Stack"
+        },
+        {
+          "kind": "stack",
+          "source_id": "stack.release-gate-stack.v1",
+          "title": "Release Gate Stack"
+        },
+        {
+          "kind": "proof_case",
+          "source_id": "bug-diagnosis-from-logs",
+          "title": "Incident Diagnosis Without Fake Certainty"
+        }
+      ]
+    },
+    {
+      "id": 1430,
+      "sigil": "1430",
+      "term": "backward-compatible",
+      "semantic_status": "reviewed",
+      "uses": [
+        {
+          "kind": "spell",
+          "source_id": "spell.safe-refactoring.v1",
+          "title": "Spell of Safe Refactoring"
+        },
+        {
+          "kind": "spell",
+          "source_id": "spell.api-design.v1",
+          "title": "Spell of API Design"
+        },
+        {
+          "kind": "stack",
+          "source_id": "stack.safe-refactor-stack.v1",
+          "title": "Safe Refactor Stack"
+        },
+        {
+          "kind": "proof_case",
+          "source_id": "safe-refactoring",
+          "title": "Refactor Without Breaking Behavior"
+        },
+        {
+          "kind": "proof_case",
+          "source_id": "api-design",
+          "title": "API Design Without Hidden Compatibility Traps"
+        }
+      ]
+    },
+    {
+      "id": 1088,
+      "sigil": "1088",
+      "term": "diff {Forge}",
+      "semantic_status": "reviewed",
+      "uses": [
+        {
+          "kind": "spell",
+          "source_id": "spell.safe-refactoring.v1",
+          "title": "Spell of Safe Refactoring"
+        },
+        {
+          "kind": "stack",
+          "source_id": "stack.code-generation-and-repair-loop.v1",
+          "title": "Code Generation and Repair Loop"
+        },
+        {
+          "kind": "stack",
+          "source_id": "stack.safe-refactor-stack.v1",
+          "title": "Safe Refactor Stack"
+        },
+        {
+          "kind": "proof_case",
+          "source_id": "safe-refactoring",
+          "title": "Refactor Without Breaking Behavior"
+        }
+      ]
+    },
+    {
+      "id": 1146,
+      "sigil": "1146",
+      "term": "benchmark",
+      "semantic_status": "reviewed",
+      "uses": [
+        {
+          "kind": "spell",
+          "source_id": "spell.performance-tuning.v1",
+          "title": "Spell of Performance Tuning"
+        },
+        {
+          "kind": "stack",
+          "source_id": "stack.code-generation-and-repair-loop.v1",
+          "title": "Code Generation and Repair Loop"
+        },
+        {
+          "kind": "stack",
+          "source_id": "stack.release-gate-stack.v1",
+          "title": "Release Gate Stack"
+        },
+        {
+          "kind": "proof_case",
+          "source_id": "performance-tuning",
+          "title": "Performance Tuning Without Micro-Optimization Drift"
+        }
+      ]
+    },
+    {
+      "id": 55,
+      "sigil": "0055",
+      "term": "interface {Arch}",
+      "semantic_status": "reviewed",
+      "uses": [
+        {
+          "kind": "spell",
+          "source_id": "spell.api-design.v1",
+          "title": "Spell of API Design"
+        },
+        {
+          "kind": "stack",
+          "source_id": "stack.recursive-decomposition-stack.v1",
+          "title": "Recursive Decomposition Stack"
+        },
+        {
+          "kind": "proof_case",
+          "source_id": "api-design",
+          "title": "API Design Without Hidden Compatibility Traps"
+        }
+      ]
+    },
+    {
+      "id": 926,
+      "sigil": "0926",
+      "term": "migration",
+      "semantic_status": "reviewed",
+      "uses": [
+        {
+          "kind": "spell",
+          "source_id": "spell.migration-without-data-loss.v1",
+          "title": "Spell of Migration Without Data Loss"
+        },
+        {
+          "kind": "stack",
+          "source_id": "stack.live-migration-stack.v1",
+          "title": "Live Migration Stack"
+        },
+        {
+          "kind": "proof_case",
+          "source_id": "migration-without-data-loss",
+          "title": "Online Migration Without Data Loss"
+        }
+      ]
+    },
+    {
+      "id": 1017,
+      "sigil": "1017",
+      "term": "least privilege",
+      "semantic_status": "reviewed",
+      "uses": [
+        {
+          "kind": "spell",
+          "source_id": "spell.jailbreak-resilience-review.v1",
+          "title": "Spell of Jailbreak-Resilience Review"
+        },
+        {
+          "kind": "stack",
+          "source_id": "stack.ai-red-team-loop.v1",
+          "title": "AI Red-Team Loop"
+        },
+        {
+          "kind": "defensive_bench",
+          "source_id": "jailbreak-resilience",
+          "title": "Jailbreak-Resilience Bench"
+        }
+      ]
+    },
+    {
+      "id": 1034,
+      "sigil": "1034",
+      "term": "quarantine",
+      "semantic_status": "generated_draft",
+      "uses": [
+        {
+          "kind": "spell",
+          "source_id": "spell.jailbreak-resilience-review.v1",
+          "title": "Spell of Jailbreak-Resilience Review"
+        },
+        {
+          "kind": "stack",
+          "source_id": "stack.ai-red-team-loop.v1",
+          "title": "AI Red-Team Loop"
+        },
+        {
+          "kind": "defensive_bench",
+          "source_id": "jailbreak-resilience",
+          "title": "Jailbreak-Resilience Bench"
+        }
+      ]
+    },
+    {
+      "id": 1204,
+      "sigil": "1204",
+      "term": "trace {Proof}",
+      "semantic_status": "reviewed",
+      "uses": [
+        {
+          "kind": "spell",
+          "source_id": "spell.bug-diagnosis-from-logs.v1",
+          "title": "Spell of Bug Diagnosis from Logs"
+        },
+        {
+          "kind": "stack",
+          "source_id": "stack.bug-hunt-stack.v1",
+          "title": "Bug-Hunt Stack"
+        },
+        {
+          "kind": "proof_case",
+          "source_id": "bug-diagnosis-from-logs",
+          "title": "Incident Diagnosis Without Fake Certainty"
+        }
+      ]
+    },
+    {
+      "id": 1374,
+      "sigil": "1374",
+      "term": "guardrail",
+      "semantic_status": "reviewed",
+      "uses": [
+        {
+          "kind": "spell",
+          "source_id": "spell.jailbreak-resilience-review.v1",
+          "title": "Spell of Jailbreak-Resilience Review"
+        },
+        {
+          "kind": "stack",
+          "source_id": "stack.ai-red-team-loop.v1",
+          "title": "AI Red-Team Loop"
+        },
+        {
+          "kind": "defensive_bench",
+          "source_id": "jailbreak-resilience",
+          "title": "Jailbreak-Resilience Bench"
+        }
+      ]
+    },
+    {
+      "id": 1390,
+      "sigil": "1390",
+      "term": "prompt injection",
+      "semantic_status": "generated_draft",
+      "uses": [
+        {
+          "kind": "spell",
+          "source_id": "spell.jailbreak-resilience-review.v1",
+          "title": "Spell of Jailbreak-Resilience Review"
+        },
+        {
+          "kind": "stack",
+          "source_id": "stack.ai-red-team-loop.v1",
+          "title": "AI Red-Team Loop"
+        },
+        {
+          "kind": "defensive_bench",
+          "source_id": "jailbreak-resilience",
+          "title": "Jailbreak-Resilience Bench"
+        }
+      ]
+    },
+    {
+      "id": 1414,
+      "sigil": "1414",
+      "term": "tool call",
+      "semantic_status": "reviewed",
+      "uses": [
+        {
+          "kind": "spell",
+          "source_id": "spell.jailbreak-resilience-review.v1",
+          "title": "Spell of Jailbreak-Resilience Review"
+        },
+        {
+          "kind": "stack",
+          "source_id": "stack.ai-red-team-loop.v1",
+          "title": "AI Red-Team Loop"
+        },
+        {
+          "kind": "defensive_bench",
+          "source_id": "jailbreak-resilience",
+          "title": "Jailbreak-Resilience Bench"
+        }
+      ]
+    },
+    {
+      "id": 1461,
+      "sigil": "1461",
+      "term": "idempotent",
+      "semantic_status": "reviewed",
+      "uses": [
+        {
+          "kind": "spell",
+          "source_id": "spell.api-design.v1",
+          "title": "Spell of API Design"
+        },
+        {
+          "kind": "stack",
+          "source_id": "stack.live-migration-stack.v1",
+          "title": "Live Migration Stack"
+        },
+        {
+          "kind": "proof_case",
+          "source_id": "api-design",
+          "title": "API Design Without Hidden Compatibility Traps"
+        }
+      ]
+    },
+    {
+      "id": 1485,
+      "sigil": "1485",
+      "term": "reproducible",
+      "semantic_status": "reviewed",
+      "uses": [
+        {
+          "kind": "spell",
+          "source_id": "spell.test-generation.v1",
+          "title": "Spell of Test Generation"
+        },
+        {
+          "kind": "stack",
+          "source_id": "stack.code-generation-and-repair-loop.v1",
+          "title": "Code Generation and Repair Loop"
+        },
+        {
+          "kind": "proof_case",
+          "source_id": "test-generation",
+          "title": "Test Generation Without Overfitting To Implementation"
+        }
+      ]
+    },
+    {
+      "id": 598,
+      "sigil": "0598",
+      "term": "timeout {Ctrl}",
+      "semantic_status": "reviewed",
+      "uses": [
+        {
+          "kind": "spell",
+          "source_id": "spell.bug-diagnosis-from-logs.v1",
+          "title": "Spell of Bug Diagnosis from Logs"
+        },
+        {
+          "kind": "proof_case",
+          "source_id": "bug-diagnosis-from-logs",
+          "title": "Incident Diagnosis Without Fake Certainty"
+        }
+      ]
+    },
+    {
+      "id": 615,
+      "sigil": "0615",
+      "term": "cache {Run}",
+      "semantic_status": "reviewed",
+      "uses": [
+        {
+          "kind": "spell",
+          "source_id": "spell.performance-tuning.v1",
+          "title": "Spell of Performance Tuning"
+        },
+        {
+          "kind": "proof_case",
+          "source_id": "performance-tuning",
+          "title": "Performance Tuning Without Micro-Optimization Drift"
+        }
+      ]
+    },
+    {
+      "id": 778,
+      "sigil": "0778",
+      "term": "backpressure",
+      "semantic_status": "reviewed",
+      "uses": [
+        {
+          "kind": "spell",
+          "source_id": "spell.performance-tuning.v1",
+          "title": "Spell of Performance Tuning"
+        },
+        {
+          "kind": "proof_case",
+          "source_id": "performance-tuning",
+          "title": "Performance Tuning Without Micro-Optimization Drift"
+        }
+      ]
+    },
+    {
+      "id": 825,
+      "sigil": "0825",
+      "term": "latency",
+      "semantic_status": "reviewed",
+      "uses": [
+        {
+          "kind": "spell",
+          "source_id": "spell.performance-tuning.v1",
+          "title": "Spell of Performance Tuning"
+        },
+        {
+          "kind": "proof_case",
+          "source_id": "performance-tuning",
+          "title": "Performance Tuning Without Micro-Optimization Drift"
+        }
+      ]
+    },
+    {
+      "id": 978,
+      "sigil": "0978",
+      "term": "authorization",
+      "semantic_status": "reviewed",
+      "uses": [
+        {
+          "kind": "spell",
+          "source_id": "spell.api-design.v1",
+          "title": "Spell of API Design"
+        },
+        {
+          "kind": "proof_case",
+          "source_id": "api-design",
+          "title": "API Design Without Hidden Compatibility Traps"
+        }
+      ]
+    },
+    {
+      "id": 1044,
+      "sigil": "1044",
+      "term": "secret {Sec}",
+      "semantic_status": "reviewed",
+      "uses": [
+        {
+          "kind": "spell",
+          "source_id": "spell.jailbreak-resilience-review.v1",
+          "title": "Spell of Jailbreak-Resilience Review"
+        },
+        {
+          "kind": "defensive_bench",
+          "source_id": "jailbreak-resilience",
+          "title": "Jailbreak-Resilience Bench"
+        }
+      ]
+    },
+    {
+      "id": 1057,
+      "sigil": "1057",
+      "term": "trust boundary",
+      "semantic_status": "generated_draft",
+      "uses": [
+        {
+          "kind": "spell",
+          "source_id": "spell.jailbreak-resilience-review.v1",
+          "title": "Spell of Jailbreak-Resilience Review"
+        },
+        {
+          "kind": "defensive_bench",
+          "source_id": "jailbreak-resilience",
+          "title": "Jailbreak-Resilience Bench"
+        }
+      ]
+    },
+    {
+      "id": 1186,
+      "sigil": "1186",
+      "term": "property-based test",
+      "semantic_status": "reviewed",
+      "uses": [
+        {
+          "kind": "spell",
+          "source_id": "spell.test-generation.v1",
+          "title": "Spell of Test Generation"
+        },
+        {
+          "kind": "proof_case",
+          "source_id": "test-generation",
+          "title": "Test Generation Without Overfitting To Implementation"
+        }
+      ]
+    },
+    {
+      "id": 1202,
+      "sigil": "1202",
+      "term": "telemetry",
+      "semantic_status": "reviewed",
+      "uses": [
+        {
+          "kind": "spell",
+          "source_id": "spell.bug-diagnosis-from-logs.v1",
+          "title": "Spell of Bug Diagnosis from Logs"
+        },
+        {
+          "kind": "proof_case",
+          "source_id": "bug-diagnosis-from-logs",
+          "title": "Incident Diagnosis Without Fake Certainty"
+        }
+      ]
+    },
+    {
+      "id": 1281,
+      "sigil": "1281",
+      "term": "throughput",
+      "semantic_status": "reviewed",
+      "uses": [
+        {
+          "kind": "spell",
+          "source_id": "spell.performance-tuning.v1",
+          "title": "Spell of Performance Tuning"
+        },
+        {
+          "kind": "proof_case",
+          "source_id": "performance-tuning",
+          "title": "Performance Tuning Without Micro-Optimization Drift"
+        }
+      ]
+    },
+    {
+      "id": 1409,
+      "sigil": "1409",
+      "term": "system prompt",
+      "semantic_status": "reviewed",
+      "uses": [
+        {
+          "kind": "spell",
+          "source_id": "spell.jailbreak-resilience-review.v1",
+          "title": "Spell of Jailbreak-Resilience Review"
+        },
+        {
+          "kind": "defensive_bench",
+          "source_id": "jailbreak-resilience",
+          "title": "Jailbreak-Resilience Bench"
+        }
+      ]
+    },
+    {
+      "id": 1425,
+      "sigil": "1425",
+      "term": "atomic",
+      "semantic_status": "reviewed",
+      "uses": [
+        {
+          "kind": "spell",
+          "source_id": "spell.migration-without-data-loss.v1",
+          "title": "Spell of Migration Without Data Loss"
+        },
+        {
+          "kind": "proof_case",
+          "source_id": "migration-without-data-loss",
+          "title": "Online Migration Without Data Loss"
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "sigil": "0012",
+      "term": "boundary",
+      "semantic_status": "reviewed",
+      "uses": [
+        {
+          "kind": "stack",
+          "source_id": "stack.recursive-decomposition-stack.v1",
+          "title": "Recursive Decomposition Stack"
+        }
+      ]
+    },
+    {
+      "id": 1042,
+      "sigil": "1042",
+      "term": "sandbox {Sec}",
+      "semantic_status": "reviewed",
+      "uses": [
+        {
+          "kind": "stack",
+          "source_id": "stack.ai-red-team-loop.v1",
+          "title": "AI Red-Team Loop"
+        }
+      ]
+    },
+    {
+      "id": 1054,
+      "sigil": "1054",
+      "term": "threat model",
+      "semantic_status": "reviewed",
+      "uses": [
+        {
+          "kind": "stack",
+          "source_id": "stack.ai-red-team-loop.v1",
+          "title": "AI Red-Team Loop"
+        }
+      ]
+    },
+    {
+      "id": 1073,
+      "sigil": "1073",
+      "term": "canary",
+      "semantic_status": "reviewed",
+      "uses": [
+        {
+          "kind": "stack",
+          "source_id": "stack.release-gate-stack.v1",
+          "title": "Release Gate Stack"
+        }
+      ]
+    },
+    {
+      "id": 1086,
+      "sigil": "1086",
+      "term": "deploy",
+      "semantic_status": "reviewed",
+      "uses": [
+        {
+          "kind": "stack",
+          "source_id": "stack.release-gate-stack.v1",
+          "title": "Release Gate Stack"
+        }
+      ]
+    },
+    {
+      "id": 1364,
+      "sigil": "1364",
+      "term": "evaluation {AI}",
+      "semantic_status": "reviewed",
+      "uses": [
+        {
+          "kind": "stack",
+          "source_id": "stack.ai-red-team-loop.v1",
+          "title": "AI Red-Team Loop"
+        }
+      ]
+    },
+    {
+      "id": 1437,
+      "sigil": "1437",
+      "term": "composable",
+      "semantic_status": "reviewed",
+      "uses": [
+        {
+          "kind": "stack",
+          "source_id": "stack.recursive-decomposition-stack.v1",
+          "title": "Recursive Decomposition Stack"
+        }
+      ]
+    },
+    {
+      "id": 1562,
+      "sigil": "1562",
+      "term": "regression",
+      "semantic_status": "reviewed",
+      "uses": [
+        {
+          "kind": "stack",
+          "source_id": "stack.bug-hunt-stack.v1",
+          "title": "Bug-Hunt Stack"
+        }
+      ]
+    },
+    {
+      "id": 1567,
+      "sigil": "1567",
+      "term": "schema drift",
+      "semantic_status": "reviewed",
+      "uses": [
+        {
+          "kind": "stack",
+          "source_id": "stack.live-migration-stack.v1",
+          "title": "Live Migration Stack"
+        }
+      ]
+    }
+  ],
+  "canonical_review_candidates": [
+    {
+      "id": 1172,
+      "sigil": "1172",
+      "term": "invariant",
+      "use_count": 10,
+      "current_semantic_status": "reviewed",
+      "usage_earned_status": "eligible_for_human_canonical_review",
+      "promotion_blocker": "human maintainer signoff required"
+    },
+    {
+      "id": 1445,
+      "sigil": "1445",
+      "term": "deterministic",
+      "use_count": 7,
+      "current_semantic_status": "reviewed",
+      "usage_earned_status": "eligible_for_human_canonical_review",
+      "promotion_blocker": "human maintainer signoff required"
+    },
+    {
+      "id": 943,
+      "sigil": "0943",
+      "term": "rollback {DB}",
+      "use_count": 6,
+      "current_semantic_status": "reviewed",
+      "usage_earned_status": "eligible_for_human_canonical_review",
+      "promotion_blocker": "human maintainer signoff required"
+    },
+    {
+      "id": 347,
+      "sigil": "0347",
+      "term": "schema {Data}",
+      "use_count": 5,
+      "current_semantic_status": "reviewed",
+      "usage_earned_status": "eligible_for_human_canonical_review",
+      "promotion_blocker": "human maintainer signoff required"
+    },
+    {
+      "id": 1152,
+      "sigil": "1152",
+      "term": "contract test",
+      "use_count": 5,
+      "current_semantic_status": "reviewed",
+      "usage_earned_status": "eligible_for_human_canonical_review",
+      "promotion_blocker": "human maintainer signoff required"
+    },
+    {
+      "id": 1180,
+      "sigil": "1180",
+      "term": "observability",
+      "use_count": 5,
+      "current_semantic_status": "reviewed",
+      "usage_earned_status": "eligible_for_human_canonical_review",
+      "promotion_blocker": "human maintainer signoff required"
+    },
+    {
+      "id": 1430,
+      "sigil": "1430",
+      "term": "backward-compatible",
+      "use_count": 5,
+      "current_semantic_status": "reviewed",
+      "usage_earned_status": "eligible_for_human_canonical_review",
+      "promotion_blocker": "human maintainer signoff required"
+    },
+    {
+      "id": 1088,
+      "sigil": "1088",
+      "term": "diff {Forge}",
+      "use_count": 4,
+      "current_semantic_status": "reviewed",
+      "usage_earned_status": "eligible_for_human_canonical_review",
+      "promotion_blocker": "human maintainer signoff required"
+    },
+    {
+      "id": 1146,
+      "sigil": "1146",
+      "term": "benchmark",
+      "use_count": 4,
+      "current_semantic_status": "reviewed",
+      "usage_earned_status": "eligible_for_human_canonical_review",
+      "promotion_blocker": "human maintainer signoff required"
+    },
+    {
+      "id": 55,
+      "sigil": "0055",
+      "term": "interface {Arch}",
+      "use_count": 3,
+      "current_semantic_status": "reviewed",
+      "usage_earned_status": "eligible_for_human_canonical_review",
+      "promotion_blocker": "human maintainer signoff required"
+    },
+    {
+      "id": 926,
+      "sigil": "0926",
+      "term": "migration",
+      "use_count": 3,
+      "current_semantic_status": "reviewed",
+      "usage_earned_status": "eligible_for_human_canonical_review",
+      "promotion_blocker": "human maintainer signoff required"
+    },
+    {
+      "id": 1017,
+      "sigil": "1017",
+      "term": "least privilege",
+      "use_count": 3,
+      "current_semantic_status": "reviewed",
+      "usage_earned_status": "eligible_for_human_canonical_review",
+      "promotion_blocker": "human maintainer signoff required"
+    },
+    {
+      "id": 1034,
+      "sigil": "1034",
+      "term": "quarantine",
+      "use_count": 3,
+      "current_semantic_status": "generated_draft",
+      "usage_earned_status": "eligible_for_human_canonical_review",
+      "promotion_blocker": "human maintainer signoff required"
+    },
+    {
+      "id": 1204,
+      "sigil": "1204",
+      "term": "trace {Proof}",
+      "use_count": 3,
+      "current_semantic_status": "reviewed",
+      "usage_earned_status": "eligible_for_human_canonical_review",
+      "promotion_blocker": "human maintainer signoff required"
+    },
+    {
+      "id": 1374,
+      "sigil": "1374",
+      "term": "guardrail",
+      "use_count": 3,
+      "current_semantic_status": "reviewed",
+      "usage_earned_status": "eligible_for_human_canonical_review",
+      "promotion_blocker": "human maintainer signoff required"
+    },
+    {
+      "id": 1390,
+      "sigil": "1390",
+      "term": "prompt injection",
+      "use_count": 3,
+      "current_semantic_status": "generated_draft",
+      "usage_earned_status": "eligible_for_human_canonical_review",
+      "promotion_blocker": "human maintainer signoff required"
+    },
+    {
+      "id": 1414,
+      "sigil": "1414",
+      "term": "tool call",
+      "use_count": 3,
+      "current_semantic_status": "reviewed",
+      "usage_earned_status": "eligible_for_human_canonical_review",
+      "promotion_blocker": "human maintainer signoff required"
+    },
+    {
+      "id": 1461,
+      "sigil": "1461",
+      "term": "idempotent",
+      "use_count": 3,
+      "current_semantic_status": "reviewed",
+      "usage_earned_status": "eligible_for_human_canonical_review",
+      "promotion_blocker": "human maintainer signoff required"
+    },
+    {
+      "id": 1485,
+      "sigil": "1485",
+      "term": "reproducible",
+      "use_count": 3,
+      "current_semantic_status": "reviewed",
+      "usage_earned_status": "eligible_for_human_canonical_review",
+      "promotion_blocker": "human maintainer signoff required"
+    }
+  ]
+}

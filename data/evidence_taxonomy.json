@@ -1,0 +1,76 @@
+{
+  "version": "3.0.0-evidence-taxonomy",
+  "policy": "Calibration fixtures, project-owned model runs, local deterministic checks, reviewer imports, human audit, and adoption reports must remain separately labeled.",
+  "evidence_classes": {
+    "calibration_fixture": {
+      "claim_power": "teaches the method and exposes expected failure modes; does not prove model performance",
+      "examples": [
+        "weak-vs-repaired cases",
+        "trap-tier fixture contexts"
+      ]
+    },
+    "project_owned_model_run": {
+      "claim_power": "evidence about the named local model/tool surface under the recorded prompt, fixture, and date",
+      "examples": [
+        "Codex CLI transcripts",
+        "Claude Code safe-mode transcripts"
+      ]
+    },
+    "reviewer_supplied_model_run": {
+      "claim_power": "external or reviewer evidence only after provenance, redaction, and transcript paths are supplied",
+      "examples": [
+        "manual import template records"
+      ]
+    },
+    "local_deterministic_execution": {
+      "claim_power": "evidence that a saved artifact satisfies a fixture-local executable check",
+      "examples": [
+        "safe-refactoring pytest fixture",
+        "model-produced artifact pytest runs"
+      ]
+    },
+    "local_deterministic_control": {
+      "claim_power": "project-owned control evidence for baseline/ward comparisons, not independent model evidence",
+      "examples": [
+        "defanged local warded baseline matrix"
+      ]
+    },
+    "packaging_or_release_check": {
+      "claim_power": "evidence that public artifacts can be rendered, installed, or fetched through declared release surfaces",
+      "examples": [
+        "wheel install checks",
+        "Quarto render checks",
+        "GitHub Pages smoke checks"
+      ]
+    },
+    "human_audit_pending": {
+      "claim_power": "records what still requires a named human maintainer before canonical status can be claimed",
+      "examples": [
+        "canon audit queue",
+        "reviewed-to-canonical blockers"
+      ]
+    },
+    "adoption_report": {
+      "claim_power": "evidence that a practitioner used the grimoire and reported success, friction, or failure",
+      "examples": [
+        "project-owned dogfood",
+        "reviewer-supplied reports",
+        "external-user reports"
+      ]
+    }
+  },
+  "calibration_layers": {
+    "toy": "Small examples used for learning prompt structure.",
+    "clean_fixture": "Longitudinal software tasks where old and new model surfaces can be compared.",
+    "trap_fixture": "Planted-failure cases that expose missing invariants, compatibility, or trust boundaries.",
+    "artifact_execution": "Generated code or tests must run inside a fixture-local sandbox.",
+    "public_smoke": "Rendered, packaged, and public-site artifacts are checked as release surfaces."
+  },
+  "promotion_rules": [
+    "Do not use local deterministic graders as independent model evidence.",
+    "Do not count project-owned dogfood as external adoption.",
+    "Do not promote generated-draft vocabulary to canonical without usage evidence and human signoff.",
+    "Do not publish operational jailbreak payloads; publish defensive morphology and defanged fixtures only.",
+    "Preserve non-wins and awkward outcomes instead of rewriting them into a success narrative."
+  ]
+}

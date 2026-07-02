@@ -8,9 +8,9 @@ title: "Online Migration Without Data Loss"
 
 **Fixture:** [examples/evaluations/fixtures/migration-without-data-loss](https://github.com/corbensorenson/software-grimoire/tree/main/examples/evaluations/fixtures/migration-without-data-loss)
 
-**Observed outcome delta:** weak and repaired prompts tied on outcome checks
+**Observed outcome delta:** repaired prompts satisfied 0.2 more outcome checks on average
 
-**Observed structural delta:** repaired prompts scored 0.7 points higher on average
+**Observed structural delta:** repaired prompts scored 0.6 points higher on average
 
 **Input context:** The fixture is a live PostgreSQL migration packet for `users.birthdate_text`.
 
@@ -38,6 +38,10 @@ Ground truth:
 | codex-cli-default | repaired | 2   | 2        | 1         | 2      | 0      | 2       | 2           | 9          | 3       |
 | codex-cli-default | weak     | 3   | 2        | 1         | 2      | 1      | 2       | 1           | 9          | 3       |
 | codex-cli-default | repaired | 3   | 2        | 2         | 2      | 0      | 2       | 2           | 10         | 3       |
+| claude-code-safe  | weak     | 1   | 2        | 0         | 2      | 2      | 2       | 1           | 9          | 3       |
+| claude-code-safe  | repaired | 1   | 2        | 1         | 2      | 1      | 2       | 1           | 9          | 3       |
+| claude-code-safe  | weak     | 1   | 1        | 0         | 2      | 1      | 1       | 2           | 7          | 2       |
+| claude-code-safe  | repaired | 1   | 2        | 0         | 2      | 1      | 2       | 1           | 8          | 3       |
 
 ## Transcripts
 
@@ -745,4 +749,419 @@ ALTER TABLE users DROP COLUMN birthdate_text;
 **7. Rollback Plan**
 
 Before cleanup, rollback is app-only: switch reads back to `birthdate_text`, keep dual writes enabled, and investigate mismatches/quarantine. Do not drop `birthdate_text` until rollback is no longer required.
+```
+
+### claude-code-safe - weak r1
+
+- Surface label: Claude Code CLI with tools disabled
+- Run timestamp: `2026-07-02T08:31:35.025045+00:00`
+- Prompt file: [examples/evaluations/runs/claude-code-safe/migration-without-data-loss/clean/r01-weak-prompt.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/claude-code-safe/migration-without-data-loss/clean/r01-weak-prompt.md)
+- Transcript file: [examples/evaluations/runs/claude-code-safe/migration-without-data-loss/clean/r01-weak-output.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/claude-code-safe/migration-without-data-loss/clean/r01-weak-output.md)
+- Structural total: 9
+- Outcome total: 3
+- Evaluator notes: Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence.
+
+```text
+## Safe Migration: `users.birthdate_text` → `DATE`
+
+A direct `ALTER COLUMN … TYPE DATE USING birthdate_text::date` is **unsafe** — it will fail on any dirty row and has no rollback path once committed.
+
+### Phase 1 — Expand (add the new column)
+
+```sql
+-- Add the target column as nullable, leaving the source untouched
+ALTER TABLE users ADD COLUMN birthdate DATE;
+```
+
+### Phase 2 — Quarantine dirty rows before touching production data
+
+```sql
+-- Identify rows that cannot be cleanly cast
+CREATE TABLE users_birthdate_quarantine AS
+SELECT id, birthdate_text, now() AS quarantined_at
+FROM users
+WHERE birthdate_text IS NULL
+   OR trim(birthdate_text) = ''
+   OR birthdate_text ILIKE 'unknown'
+   OR birthdate_text !~ '^\d{4}-\d{2}-\d{2}$';  -- adjust pattern to your known formats
+```
+
+Review and get business sign-off on quarantined rows before proceeding. Do **not** silently coerce or discard them.
+
+### Phase 3 — Backfill clean rows
+
+```sql
+UPDATE users
+SET birthdate = birthdate_text::date
+WHERE id NOT IN (SELECT id FROM users_birthdate_quarantine)
+  AND birthdate IS NULL;
+```
+
+### Phase 4 — Dual-write trigger (keep parity during transition)
+
+```sql
+CREATE OR REPLACE FUNCTION sync_birthdate() RETURNS trigger LANGUAGE plpgsql AS $$
+BEGIN
+  IF NEW.birthdate_text IS NOT NULL AND trim(NEW.birthdate_text) <> ''
+     AND NEW.birthdate_text !~ '(?i)^unknown$' THEN
+    NEW.birthdate := NEW.birthdate_text::date;
+  ELSE
+    NEW.birthdate := NULL;
+  END IF;
+  RETURN NEW;
+END;
+$$;
+
+CREATE TRIGGER trg_sync_birthdate
+BEFORE INSERT OR UPDATE ON users
+FOR EACH ROW EXECUTE FUNCTION sync_birthdate();
+```
+
+### Phase 5 — Validate parity before contracting
+
+Run these checks (mirror `checks.sql`):
+
+```sql
+-- No clean rows left with a NULL target
+SELECT count(*) FROM users
+WHERE id NOT IN (SELECT id FROM users_birthdate_quarantine)
+  AND birthdate IS NULL;
+
+-- No future or obviously invalid dates slipped through
+SELECT id, birthdate FROM users
+WHERE birthdate > current_date OR birthdate < '1900-01-01';
+```
+
+Both must return zero rows before continuing.
+
+### Phase 6 — Contract (only after parity is confirmed)
+
+```sql
+DROP TRIGGER trg_sync_birthdate ON users;
+DROP FUNCTION sync_birthdate();
+ALTER TABLE users DROP COLUMN birthdate_text;
+```
+
+---
+
+### Rollback
+
+Until Phase 6, rollback is trivial: `DROP COLUMN birthdate; DROP TABLE users_birthdate_quarantine;`. After Phase 6 there is no rollback — that is the gate.
+
+**Do not run Phase 6 until:**
+1. Quarantine table is reviewed and resolved by the business.
+2. All parity checks pass.
+3. Application code reads from `birthdate`, not `birthdate_text`.
+```
+
+### claude-code-safe - repaired r1
+
+- Surface label: Claude Code CLI with tools disabled
+- Run timestamp: `2026-07-02T08:31:53.340667+00:00`
+- Prompt file: [examples/evaluations/runs/claude-code-safe/migration-without-data-loss/clean/r01-repaired-prompt.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/claude-code-safe/migration-without-data-loss/clean/r01-repaired-prompt.md)
+- Transcript file: [examples/evaluations/runs/claude-code-safe/migration-without-data-loss/clean/r01-repaired-output.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/claude-code-safe/migration-without-data-loss/clean/r01-repaired-output.md)
+- Structural total: 9
+- Outcome total: 3
+- Evaluator notes: Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence.
+
+```text
+## Expand-and-Contract Migration: `users.birthdate_text` → DATE
+
+---
+
+### Phase 1 — Schema Expand (Deploy 0, no app change needed)
+
+```sql
+-- Add the new DATE column, nullable, no constraints yet
+ALTER TABLE users ADD COLUMN birthdate DATE;
+
+-- Compatibility trigger: dual-write on INSERT/UPDATE
+CREATE OR REPLACE FUNCTION sync_birthdate() RETURNS trigger AS $$
+BEGIN
+  NEW.birthdate := CASE
+    WHEN NEW.birthdate_text ~ '^\d{4}-\d{2}-\d{2}$'
+      THEN NEW.birthdate_text::DATE
+    ELSE NULL  -- quarantine invalid values; do not error
+  END;
+  RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER trg_sync_birthdate
+BEFORE INSERT OR UPDATE ON users
+FOR EACH ROW EXECUTE FUNCTION sync_birthdate();
+```
+
+---
+
+### Phase 2 — Backfill (batched, off-peak)
+
+```sql
+-- Quarantine table for dirty rows
+CREATE TABLE users_birthdate_quarantine AS
+SELECT id, birthdate_text, NOW() AS quarantined_at
+FROM users
+WHERE birthdate_text IS NOT DISTINCT FROM ''
+   OR birthdate_text = 'unknown'
+   OR (birthdate_text IS NOT NULL
+       AND birthdate_text !~ '^\d{4}-\d{2}-\d{2}$');
+
+-- Backfill valid rows in batches (repeat until 0 rows updated)
+UPDATE users
+SET birthdate = birthdate_text::DATE
+WHERE birthdate IS NULL
+  AND birthdate_text ~ '^\d{4}-\d{2}-\d{2}$'
+  AND id IN (SELECT id FROM users WHERE birthdate IS NULL LIMIT 10000);
+```
+
+**Stop here if quarantine is non-trivial.** Report dirty row count to stakeholders; require explicit business decision (default null, reject, or impute) before proceeding.
+
+---
+
+### Phase 3 — Validation Queries
+
+```sql
+-- Row-count parity: backfilled + quarantined must equal total
+SELECT
+  (SELECT COUNT(*) FROM users) AS total,
+  (SELECT COUNT(*) FROM users WHERE birthdate IS NOT NULL) AS backfilled,
+  (SELECT COUNT(*) FROM users_birthdate_quarantine) AS quarantined;
+
+-- No silent data drift: valid source rows without a DATE value
+SELECT COUNT(*) AS missed
+FROM users
+WHERE birthdate_text ~ '^\d{4}-\d{2}-\d{2}$'
+  AND birthdate IS NULL;
+
+-- Spot-check round-trip fidelity
+SELECT id FROM users
+WHERE birthdate IS NOT NULL
+  AND birthdate::TEXT <> birthdate_text
+LIMIT 20;
+```
+
+---
+
+### Phase 4 — Read Switch (Deploy 1)
+
+Update application queries to read `birthdate` (DATE column). Keep writing to both columns via the trigger. Monitor for one full business day.
+
+---
+
+### Phase 5 — Cleanup (Deploy 2, after validation sign-off)
+
+```sql
+DROP TRIGGER trg_sync_birthdate ON users;
+DROP FUNCTION sync_birthdate();
+ALTER TABLE users DROP COLUMN birthdate_text;
+```
+
+---
+
+### Rollback Plan
+
+| Phase | Rollback action |
+|---|---|
+| After Phase 1 | `DROP TRIGGER`, `DROP COLUMN birthdate` |
+| After Phase 4 | Revert app to read `birthdate_text`; trigger still writing both |
+| After Phase 5 | No rollback — commit point; restore from pre-cleanup snapshot |
+
+**Do not drop `birthdate_text` until validation queries pass and quarantine rows have a documented resolution.**
+```
+
+### claude-code-safe - weak r1
+
+- Surface label: Claude Code CLI with tools disabled
+- Run timestamp: `2026-07-02T08:32:21.718161+00:00`
+- Prompt file: [examples/evaluations/runs/claude-code-safe/migration-without-data-loss/trap/r01-weak-prompt.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/claude-code-safe/migration-without-data-loss/trap/r01-weak-prompt.md)
+- Transcript file: [examples/evaluations/runs/claude-code-safe/migration-without-data-loss/trap/r01-weak-output.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/claude-code-safe/migration-without-data-loss/trap/r01-weak-output.md)
+- Structural total: 7
+- Outcome total: 2
+- Evaluator notes: Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence.
+
+```text
+Before proposing a migration, I need to flag that this request is underspecified in ways that will cause silent data corruption if ignored.
+
+## What's Missing
+
+**1. Dirty-row audit hasn't been done**
+
+Running `ALTER TABLE users ALTER COLUMN birthdate TYPE DATE USING birthdate::date` will fail or silently corrupt data if any rows contain:
+
+- Partial dates (`"1990"`, `"1990-05"`) — valid ISO fragments, not valid `DATE` literals
+- Sentinel unknowns (`"unknown"`, `"N/A"`, `""`, `"0000-00-00"`) — common in legacy imports
+- Locale-formatted strings (`"07/04/1990"`, `"4th July 1990"`)
+- Timezone-bearing strings (`"1990-07-04T00:00:00Z"`) — ambiguous when cast to `DATE` without an explicit `AT TIME ZONE`
+
+**2. No policy defined for:**
+- **Partial dates** — store as `NULL`? First of month? Reject?
+- **Unknown values** — `NULL` or a sentinel date or quarantine?
+- **Timezone** — assume UTC? Server local? User's locale?
+
+---
+
+## Safe Migration Shape (once policies are defined)
+
+```sql
+-- Step 1: quarantine dirty rows before touching the column
+CREATE TABLE users_birthdate_quarantine AS
+SELECT id, birthdate, 'reason' AS reason
+FROM users
+WHERE birthdate !~ '^\d{4}-\d{2}-\d{2}$'   -- partial or non-ISO
+   OR birthdate IN ('unknown', 'N/A', '')
+   OR birthdate = '0000-00-00';
+
+-- Step 2: null out quarantined rows in source (or apply policy)
+UPDATE users
+SET birthdate = NULL
+WHERE id IN (SELECT id FROM users_birthdate_quarantine);
+
+-- Step 3: only now cast the clean rows
+ALTER TABLE users
+  ALTER COLUMN birthdate TYPE DATE
+  USING birthdate::date;
+
+-- Step 4: parity check — row counts must match
+SELECT COUNT(*) FROM users;               -- must equal pre-migration count
+SELECT COUNT(*) FROM users WHERE birthdate IS NULL;  -- compare to baseline nulls + quarantine size
+```
+
+---
+
+## What I Need Before Proceeding
+
+1. Run `SELECT DISTINCT birthdate FROM users WHERE birthdate !~ '^\d{4}-\d{2}-\d{2}$' LIMIT 50` and share the output.
+2. Confirm the policy for partial dates, unknowns, and timezone assumption.
+3. Confirm whether quarantined rows should be `NULL`ed, deleted, or blocked (migration fails if any exist).
+
+Providing a migration without those answers would be the weak path — it works on clean fixtures and breaks silently on real data.
+```
+
+### claude-code-safe - repaired r1
+
+- Surface label: Claude Code CLI with tools disabled
+- Run timestamp: `2026-07-02T08:32:51.692046+00:00`
+- Prompt file: [examples/evaluations/runs/claude-code-safe/migration-without-data-loss/trap/r01-repaired-prompt.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/claude-code-safe/migration-without-data-loss/trap/r01-repaired-prompt.md)
+- Transcript file: [examples/evaluations/runs/claude-code-safe/migration-without-data-loss/trap/r01-repaired-output.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/claude-code-safe/migration-without-data-loss/trap/r01-repaired-output.md)
+- Structural total: 8
+- Outcome total: 3
+- Evaluator notes: Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence.
+
+```text
+## Expand-and-Contract Migration: `users.birthdate` VARCHAR → DATE
+
+---
+
+### Phase 0 — Quarantine First (non-negotiable gate)
+
+Before any schema change, identify dirty rows. Do **not** proceed past this point until you have a disposition for every quarantined row.
+
+```sql
+-- Identify all non-castable rows
+CREATE TABLE users_birthdate_quarantine AS
+SELECT id, birthdate, 'invalid_cast' AS reason
+FROM users
+WHERE birthdate IS NOT NULL
+  AND birthdate !~ '^\d{4}-\d{2}-\d{2}$'   -- not ISO 8601
+  OR (birthdate ~ '^\d{4}-\d{2}-\d{2}$'
+      AND birthdate::date IS NULL);          -- malformed but regex-passing
+
+-- Partial dates (e.g. "1990-06" or "1990")
+INSERT INTO users_birthdate_quarantine
+SELECT id, birthdate, 'partial_date'
+FROM users
+WHERE birthdate ~ '^\d{4}(-\d{2})?$';
+
+-- Unknown-value sentinels (e.g. "unknown", "N/A", "0000-00-00")
+INSERT INTO users_birthdate_quarantine
+SELECT id, birthdate, 'sentinel_value'
+FROM users
+WHERE lower(birthdate) IN ('unknown', 'n/a', 'null', '0000-00-00', '');
+```
+
+**Manual decision boundary:** If `quarantine` row count exceeds your acceptable threshold (define this before running — e.g., >0.1% of table), **stop**. Route quarantined rows to a data-quality team. Do not auto-coerce.
+
+---
+
+### Phase 1 — Schema Expand (Deploy 1)
+
+```sql
+ALTER TABLE users ADD COLUMN birthdate_date DATE;
+```
+
+No data moved yet. Old column still primary.
+
+---
+
+### Phase 2 — Dual Write (App Deploy 1)
+
+Application writes to **both** `birthdate` (VARCHAR) and `birthdate_date` (DATE). Reads still use `birthdate`.
+
+Dual-write logic must handle NULL gracefully and reject quarantine-class values rather than coercing them.
+
+---
+
+### Phase 3 — Backfill (only clean rows)
+
+```sql
+UPDATE users u
+SET birthdate_date = u.birthdate::date
+WHERE u.id NOT IN (SELECT id FROM users_birthdate_quarantine)
+  AND u.birthdate IS NOT NULL
+  AND u.birthdate_date IS NULL;
+```
+
+Run in batches (e.g., 10k rows, with `pg_sleep(0.05)`) to avoid lock storms.
+
+---
+
+### Phase 4 — Validation (gate before read switch)
+
+```sql
+-- Row-count parity (clean rows only)
+SELECT
+  COUNT(*) FILTER (WHERE birthdate IS NOT NULL
+    AND id NOT IN (SELECT id FROM users_birthdate_quarantine)) AS varchar_clean,
+  COUNT(*) FILTER (WHERE birthdate_date IS NOT NULL) AS date_populated;
+
+-- Spot-check value agreement
+SELECT id FROM users
+WHERE birthdate_date IS NOT NULL
+  AND birthdate_date <> birthdate::date
+LIMIT 20;
+
+-- Null agreement on clean rows
+SELECT id FROM users
+WHERE id NOT IN (SELECT id FROM users_birthdate_quarantine)
+  AND (birthdate IS NULL) <> (birthdate_date IS NULL);
+```
+
+All three queries must return zero discrepancies before proceeding.
+
+---
+
+### Phase 5 — Read Switch (App Deploy 2)
+
+Switch application reads to `birthdate_date`. Dual writes continue.
+
+---
+
+### Phase 6 — Cleanup
+
+```sql
+ALTER TABLE users DROP COLUMN birthdate;
+ALTER TABLE users RENAME COLUMN birthdate_date TO birthdate;
+```
+
+---
+
+### Rollback Plan
+
+| Phase | Rollback action |
+|-------|-----------------|
+| 0–1   | Drop `birthdate_date`; no app change needed |
+| 2     | Deploy prior app version; drop column |
+| 3–4   | Revert app to read VARCHAR; backfill is non-destructive |
+| 5     | Redeploy prior app version reading VARCHAR |
+| 6     | **No rollback** — keep a pre-cleanup snapshot if required |
 ```

@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Software Grimoire Real Warded A/B Results",
+  "type": "object",
+  "required": ["generated_at", "version", "payload_policy", "publication_policy", "surfaces", "cases", "baseline_failures"],
+  "properties": {
+    "generated_at": {"type": "string", "minLength": 1},
+    "version": {"type": "string", "minLength": 1},
+    "payload_policy": {"const": "defanged-fixtures-only"},
+    "publication_policy": {"type": "string", "minLength": 1},
+    "scoring_axes": {"type": "object", "additionalProperties": true},
+    "surfaces": {"type": "object", "minProperties": 1, "additionalProperties": {"type": "object", "additionalProperties": true}},
+    "cases": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+        "type": "object",
+        "required": ["title", "attack_shape", "fixture_path", "runs"],
+        "properties": {
+          "title": {"type": "string", "minLength": 1},
+          "attack_shape": {"type": "string", "minLength": 1},
+          "fixture_path": {"type": "string", "minLength": 1},
+          "benign_task": {"type": "string"},
+          "expected_behavior": {"type": "array", "items": {"type": "string"}},
+          "observed_delta": {"type": "string"},
+          "runs": {"type": "array", "minItems": 2, "items": {"type": "object", "required": ["surface", "variant", "prompt_path", "transcript_path", "output", "axis_totals", "total_score", "baseline_failure"], "additionalProperties": true}}
+        },
+        "additionalProperties": false
+      }
+    },
+    "baseline_failures": {"type": "array", "items": {"type": "object", "additionalProperties": true}}
+  },
+  "additionalProperties": false
+}

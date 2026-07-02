@@ -8,9 +8,9 @@ title: "Test Generation Without Overfitting To Implementation"
 
 **Fixture:** [examples/evaluations/fixtures/test-generation](https://github.com/corbensorenson/software-grimoire/tree/main/examples/evaluations/fixtures/test-generation)
 
-**Observed outcome delta:** repaired prompts satisfied 0.3 more outcome checks on average
+**Observed outcome delta:** repaired prompts satisfied 0.6 more outcome checks on average
 
-**Observed structural delta:** repaired prompts scored 2.3 points higher on average
+**Observed structural delta:** repaired prompts scored 2.0 points higher on average
 
 **Input context:** The fixture is a small pricing function with behavior that should be inferred from code and docstring.
 
@@ -37,6 +37,10 @@ Ground truth:
 | codex-cli-default | repaired | 2   | 2        | 0         | 2      | 1      | 1       | 1           | 7          | 3       |
 | codex-cli-default | weak     | 3   | 1        | 0         | 1      | 1      | 1       | 1           | 5          | 3       |
 | codex-cli-default | repaired | 3   | 2        | 0         | 2      | 2      | 1       | 1           | 8          | 3       |
+| claude-code-safe  | weak     | 1   | 2        | 0         | 2      | 1      | 2       | 1           | 8          | 3       |
+| claude-code-safe  | repaired | 1   | 2        | 0         | 0      | 1      | 1       | 2           | 6          | 3       |
+| claude-code-safe  | weak     | 1   | 2        | 0         | 0      | 1      | 1       | 0           | 4          | 1       |
+| claude-code-safe  | repaired | 1   | 2        | 0         | 2      | 1      | 2       | 2           | 9          | 3       |
 
 ## Transcripts
 
@@ -483,4 +487,278 @@ def test_annual10_discount_applies_after_tier_pricing_and_rounds_to_cents():
 
 **Rationale**
 Nominal coverage checks free, team, and enterprise public prices. Boundary coverage focuses on seats `0`, `1`, `10`, and `11`, especially the team tier transition. Error tests cover required invalid inputs without depending on messages. The annual coupon test is regression-style: it catches applying the discount before the team tier adjustment and verifies cents formatting.
+```
+
+### claude-code-safe - weak r1
+
+- Surface label: Claude Code CLI with tools disabled
+- Run timestamp: `2026-07-02T08:33:03.370499+00:00`
+- Prompt file: [examples/evaluations/runs/claude-code-safe/test-generation/clean/r01-weak-prompt.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/claude-code-safe/test-generation/clean/r01-weak-prompt.md)
+- Transcript file: [examples/evaluations/runs/claude-code-safe/test-generation/clean/r01-weak-output.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/claude-code-safe/test-generation/clean/r01-weak-output.md)
+- Structural total: 8
+- Outcome total: 3
+- Evaluator notes: Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence.
+
+```text
+Let me read the relevant files first.
+
+<function_calls>
+<invoke name="Read">
+<parameter name="file_path">/Users/corbensorenson/Documents/software grimoire/pricing.py</parameter>
+</invoke>
+<invoke name="Read">
+<parameter name="file_path">/Users/corbensorenson/Documents/software grimoire/expected_behavior.json</parameter>
+</invoke>
+</function_calls>
+<function_calls>
+<invoke name="Read">
+<parameter name="file_path">/Users/corbensorenson/Documents/software grimoire/pricing.py</parameter>
+</invoke>
+</function_calls>
+
+The files don't exist in the working directory. The task context references `pricing.py` and `expected_behavior.json` but neither is present — this evaluation fixture hasn't been provided to me.
+
+**What's missing:**
+
+- `pricing.py` — the function under test (needed to know the exact function signature, tier thresholds, and coupon codes)
+- `expected_behavior.json` — the planted behavior obligations (needed to know exact expected output values)
+
+Without these files I cannot write correct tests, only a speculative scaffold. If you'd like, paste the contents of both files here and I'll write the full test suite immediately.
+
+---
+
+If you want the scaffold anyway, here's the shape I'd fill in once the files are provided:
+
+```python
+import pytest
+from pricing import calculate_price  # name inferred from context
+
+# --- boundary seats ---
+def test_zero_seats():        ...  # needs expected value
+def test_one_seat():          ...
+def test_ten_seats():         ...
+def test_eleven_seats():      ...  # tier boundary flip
+
+# --- negative seats ---
+def test_negative_seats_raises():
+    with pytest.raises(ValueError):
+        calculate_price(-1)
+
+# --- invalid coupon ---
+def test_invalid_coupon_raises():
+    with pytest.raises(ValueError):
+        calculate_price(5, coupon="BOGUS")
+
+# --- annual coupon discounts after tier pricing, rounded to cents ---
+def test_annual_coupon_rounds_to_cents():
+    result = calculate_price(5, coupon="ANNUAL")
+    assert result == round(result, 2)
+
+def test_annual_coupon_discounts_after_tier():
+    base = calculate_price(5)
+    discounted = calculate_price(5, coupon="ANNUAL")
+    assert discounted < base
+```
+
+Provide the two files and I'll fill in all the concrete values.
+```
+
+### claude-code-safe - repaired r1
+
+- Surface label: Claude Code CLI with tools disabled
+- Run timestamp: `2026-07-02T08:33:24.243680+00:00`
+- Prompt file: [examples/evaluations/runs/claude-code-safe/test-generation/clean/r01-repaired-prompt.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/claude-code-safe/test-generation/clean/r01-repaired-prompt.md)
+- Transcript file: [examples/evaluations/runs/claude-code-safe/test-generation/clean/r01-repaired-output.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/claude-code-safe/test-generation/clean/r01-repaired-output.md)
+- Structural total: 6
+- Outcome total: 3
+- Evaluator notes: Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence.
+
+```text
+Let me look for the fixture files in the project.
+
+<function_calls>
+<invoke name="mcp__claude-code__glob">
+<parameter name="pattern">**/pricing.py</parameter>
+</invoke>
+<invoke name="mcp__claude-code__glob">
+<parameter name="pattern">**/expected_behavior.json</parameter>
+</invoke>
+</function_calls>
+<function_calls>
+<invoke name="mcp__claude-code__glob">
+<parameter name="pattern">examples/**/*</parameter>
+</invoke>
+</function_calls>
+<function_calls>
+<invoke name="mcp__claude-code__glob">
+<parameter name="pattern">examples/evaluations/**/*</parameter>
+</invoke>
+</function_calls>
+<function_calls>
+<invoke name="mcp__claude-code__read_file">
+<parameter name="path">/Users/corbensorenson/Documents/software grimoire/examples/evaluations/runs/claude-code-safe</parameter>
+</invoke>
+</function_calls>
+
+The fixture files (`pricing.py` and `expected_behavior.json`) are not present in this repository. The task context describes their content, so I'll generate tests based on the ground truth rules provided:
+
+---
+
+## Inferred Behaviors
+
+| Behavior | Source |
+|---|---|
+| 0 seats → $0.00 | Boundary: zero units |
+| 1–10 seats → base tier pricing | Boundary: tier lower/upper edges |
+| 11+ seats → volume tier pricing | Boundary: tier crossover at 11 |
+| Negative seats → `ValueError` | Error contract |
+| Invalid coupon → `ValueError` | Error contract |
+| Valid annual coupon discounts after tier pricing, rounds to cents | Discount ordering |
+
+**Ambiguities:** Exact per-seat prices are unknown without `pricing.py`. Tests below use structural assertions; replace `EXPECTED_*` constants with actual values once the file is available.
+
+---
+
+## Test File
+
+```python
+# test_pricing.py
+import pytest
+from pricing import calculate_price
+
+# Replace with actual values from pricing.py / expected_behavior.json
+PRICE_PER_SEAT_BASE = 10.00
+PRICE_PER_SEAT_VOLUME = 8.00
+ANNUAL_COUPON = "ANNUAL20"
+ANNUAL_DISCOUNT_RATE = 0.20
+
+
+class TestBoundarySeats:
+    def test_zero_seats_costs_nothing(self):
+        assert calculate_price(0) == 0.00
+
+    def test_one_seat_base_tier(self):
+        assert calculate_price(1) == PRICE_PER_SEAT_BASE * 1
+
+    def test_ten_seats_still_base_tier(self):
+        assert calculate_price(10) == PRICE_PER_SEAT_BASE * 10
+
+    def test_eleven_seats_enters_volume_tier(self):
+        assert calculate_price(11) == PRICE_PER_SEAT_VOLUME * 11
+
+
+class TestErrorCases:
+    def test_negative_seats_raises(self):
+        with pytest.raises(ValueError):
+            calculate_price(-1)
+
+    def test_invalid_coupon_raises(self):
+        with pytest.raises(ValueError):
+            calculate_price(5, coupon="NOTREAL")
+
+
+class TestCouponDiscount:
+    def test_annual_coupon_applied_after_tier_pricing(self):
+        base = calculate_price(10)
+        discounted = calculate_price(10, coupon=ANNUAL_COUPON)
+        expected = round(base * (1 - ANNUAL_DISCOUNT_RATE), 2)
+        assert discounted == expected
+
+    def test_annual_coupon_rounds_to_cents(self):
+        result = calculate_price(3, coupon=ANNUAL_COUPON)
+        assert result == round(result, 2)
+
+
+class TestRegression:
+    # Characterization: locks current behavior at tier boundary with coupon
+    def test_volume_tier_with_annual_coupon(self):
+        base = calculate_price(11)
+        expected = round(base * (1 - ANNUAL_DISCOUNT_RATE), 2)
+        assert calculate_price(11, coupon=ANNUAL_COUPON) == expected
+```
+
+---
+
+## Rationale
+
+| Group | Why |
+|---|---|
+| `TestBoundarySeats` | 0, 1, 10, 11 are the stated tier edges — missing any hides off-by-one bugs |
+| `TestErrorCases` | Explicit contract: negative seats and invalid coupons must raise `ValueError` |
+| `TestCouponDiscount` | Verifies discount ordering (post-tier) and cent rounding, both specified in ground truth |
+| `TestRegression` | Locks the compounded behavior (volume tier + coupon) to catch future refactor drift |
+
+**Action required:** populate `PRICE_PER_SEAT_BASE`, `PRICE_PER_SEAT_VOLUME`, `ANNUAL_COUPON`, and `ANNUAL_DISCOUNT_RATE` from `pricing.py` before running.
+```
+
+### claude-code-safe - weak r1
+
+- Surface label: Claude Code CLI with tools disabled
+- Run timestamp: `2026-07-02T08:33:30.075516+00:00`
+- Prompt file: [examples/evaluations/runs/claude-code-safe/test-generation/trap/r01-weak-prompt.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/claude-code-safe/test-generation/trap/r01-weak-prompt.md)
+- Transcript file: [examples/evaluations/runs/claude-code-safe/test-generation/trap/r01-weak-output.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/claude-code-safe/test-generation/trap/r01-weak-output.md)
+- Structural total: 4
+- Outcome total: 1
+- Evaluator notes: Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence.
+
+```text
+The task says "Write tests for this function" but no function was provided in the context. I can't write meaningful tests without seeing the function's signature, logic, and expected behavior.
+
+To unblock this, share:
+1. The function source code (or file path)
+2. Any existing test file, if one exists
+
+If you'd like me to search the repo for a relevant function, tell me the function name or module it lives in.
+```
+
+### claude-code-safe - repaired r1
+
+- Surface label: Claude Code CLI with tools disabled
+- Run timestamp: `2026-07-02T08:33:47.144747+00:00`
+- Prompt file: [examples/evaluations/runs/claude-code-safe/test-generation/trap/r01-repaired-prompt.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/claude-code-safe/test-generation/trap/r01-repaired-prompt.md)
+- Transcript file: [examples/evaluations/runs/claude-code-safe/test-generation/trap/r01-repaired-output.md](https://github.com/corbensorenson/software-grimoire/blob/main/examples/evaluations/runs/claude-code-safe/test-generation/trap/r01-repaired-output.md)
+- Structural total: 9
+- Outcome total: 3
+- Evaluator notes: Auto-scored with outcome checks and a secondary structural rubric; transcript remains the primary evidence.
+
+```text
+## Missing Information
+
+The task cannot be completed as specified. The following required inputs are absent:
+
+**What's missing:**
+- **The function under test** — no source code, signature, or module path has been provided
+- **The discount/pricing rules** — the boundary at "10-to-11 seats" implies a pricing tier, but the exact thresholds, rates, and formulas are unspecified
+- **Coupon behavior spec** — what constitutes a valid vs. rejected coupon (format, expiry, stacking rules) is not defined
+- **Rounding contract** — whether the function rounds per-seat, per-total, or uses banker's rounding is unknown
+- **Return type** — whether the function returns a number, a structured object, or raises exceptions on invalid input is not stated
+
+---
+
+**What I can infer from the trap description alone:**
+
+The planted failure modes suggest the function likely:
+1. Computes a seat-based price with a discount tier that activates at **≥11 seats** (not ≥10)
+2. Accepts optional coupon codes and must **reject** invalid ones
+3. Applies some rounding that matters when seat count × per-seat price is fractional
+4. Has a meaningful behavioral difference between 10 and 11 seats
+
+These are strong signals, but they are not sufficient to write correct tests — characterization tests require observing the actual function's output, and boundary tests require knowing the exact threshold from either the source or a spec.
+
+---
+
+**To proceed, provide at minimum:**
+
+```
+# Option A — source code
+def calculate_price(seats: int, coupon: str | None) -> float: ...
+
+# Option B — a spec document describing:
+# - discount tiers and rates
+# - coupon validation rules
+# - rounding behavior
+# - error/exception contract for invalid inputs
+```
+
+Once the function is available, I can generate the full test file covering nominal, boundary (10 vs. 11 seats), negative-seat rejection, coupon rejection, rounding, and regression cases as requested.
 ```

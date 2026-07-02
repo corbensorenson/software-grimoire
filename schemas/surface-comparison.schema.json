@@ -16,7 +16,9 @@
           "kind": {"type": "string", "minLength": 1},
           "label": {"type": "string", "minLength": 1},
           "provenance": {"type": "string", "minLength": 1},
-          "limitation": {"type": "string", "minLength": 1}
+          "limitation": {"type": "string", "minLength": 1},
+          "execution": {"type": "string", "minLength": 1},
+          "evidence_class": {"type": "string", "minLength": 1}
         },
         "additionalProperties": false
       }
@@ -38,7 +40,9 @@
               "properties": {
                 "delta": {"type": "string", "minLength": 1},
                 "evidence": {"type": "string", "minLength": 1},
-                "limitation": {"type": "string", "minLength": 1}
+                "limitation": {"type": "string", "minLength": 1},
+                "run_count": {"type": "integer", "minimum": 0},
+                "tiers": {"type": "array", "items": {"type": "string", "minLength": 1}}
               },
               "additionalProperties": false
             }
